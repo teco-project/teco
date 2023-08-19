@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mna {
     /// GetStatisticData请求参数结构体
-    public struct GetStatisticDataRequest: TCRequestModel {
+    public struct GetStatisticDataRequest: TCRequest {
         /// 设备ID
         public let deviceId: String
 
@@ -51,7 +51,7 @@ extension Mna {
     }
 
     /// GetStatisticData返回参数结构体
-    public struct GetStatisticDataResponse: TCResponseModel {
+    public struct GetStatisticDataResponse: TCResponse {
         /// 文件地址url
         public let filePath: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Antiddos {
     /// DescribeDefaultAlarmThreshold请求参数结构体
-    public struct DescribeDefaultAlarmThresholdRequest: TCRequestModel {
+    public struct DescribeDefaultAlarmThresholdRequest: TCRequest {
         /// 产品类型，取值[
         /// bgp(表示高防包产品)
         /// bgpip(表示高防IP产品)
@@ -45,7 +45,7 @@ extension Antiddos {
     }
 
     /// DescribeDefaultAlarmThreshold返回参数结构体
-    public struct DescribeDefaultAlarmThresholdResponse: TCResponseModel {
+    public struct DescribeDefaultAlarmThresholdResponse: TCResponse {
         /// 默认告警阈值配置
         public let defaultAlarmConfigList: [DefaultAlarmThreshold]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcbr {
     /// DescribeServerManageTask请求参数结构体
-    public struct DescribeServerManageTaskRequest: TCRequestModel {
+    public struct DescribeServerManageTaskRequest: TCRequest {
         /// 环境Id
         public let envId: String
 
@@ -49,7 +49,7 @@ extension Tcbr {
     }
 
     /// DescribeServerManageTask返回参数结构体
-    public struct DescribeServerManageTaskResponse: TCResponseModel {
+    public struct DescribeServerManageTaskResponse: TCResponse {
         /// 是否存在
         public let isExist: Bool
 

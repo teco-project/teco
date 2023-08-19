@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// ChannelCreatePrepareFlow请求参数结构体
-    public struct ChannelCreatePrepareFlowRequest: TCRequestModel {
+    public struct ChannelCreatePrepareFlowRequest: TCRequest {
         /// 资源id，与ResourceType对应
         public let resourceId: String
 
@@ -90,7 +90,7 @@ extension Essbasic {
     }
 
     /// ChannelCreatePrepareFlow返回参数结构体
-    public struct ChannelCreatePrepareFlowResponse: TCResponseModel {
+    public struct ChannelCreatePrepareFlowResponse: TCResponse {
         /// 预发起的合同链接
         public let prepareFlowUrl: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cbs {
     /// DescribeSnapshotSharePermission请求参数结构体
-    public struct DescribeSnapshotSharePermissionRequest: TCRequestModel {
+    public struct DescribeSnapshotSharePermissionRequest: TCRequest {
         /// 要查询快照的ID。可通过[DescribeSnapshots](https://cloud.tencent.com/document/api/362/15647)查询获取。
         public let snapshotId: String
 
@@ -34,7 +34,7 @@ extension Cbs {
     }
 
     /// DescribeSnapshotSharePermission返回参数结构体
-    public struct DescribeSnapshotSharePermissionResponse: TCResponseModel {
+    public struct DescribeSnapshotSharePermissionResponse: TCResponse {
         /// 快照的分享信息的集合
         public let sharePermissionSet: [SharePermission]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mongodb {
     /// CreateBackupDownloadTask请求参数结构体
-    public struct CreateBackupDownloadTaskRequest: TCRequestModel {
+    public struct CreateBackupDownloadTaskRequest: TCRequest {
         /// 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同。
         public let instanceId: String
 
@@ -46,7 +46,7 @@ extension Mongodb {
     }
 
     /// CreateBackupDownloadTask返回参数结构体
-    public struct CreateBackupDownloadTaskResponse: TCResponseModel {
+    public struct CreateBackupDownloadTaskResponse: TCResponse {
         /// 下载任务状态
         public let tasks: [BackupDownloadTaskStatus]
 

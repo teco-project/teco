@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// AllocateHosts请求参数结构体
-    public struct AllocateHostsRequest: TCRequestModel {
+    public struct AllocateHostsRequest: TCRequest {
         /// 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目等属性。
         public let placement: Placement
 
@@ -64,7 +64,7 @@ extension Cvm {
     }
 
     /// AllocateHosts返回参数结构体
-    public struct AllocateHostsResponse: TCResponseModel {
+    public struct AllocateHostsResponse: TCResponse {
         /// 新创建云子机的实例ID列表。
         public let hostIdSet: [String]
 

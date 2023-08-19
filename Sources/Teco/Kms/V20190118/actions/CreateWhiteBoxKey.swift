@@ -20,7 +20,7 @@ import TecoCore
 
 extension Kms {
     /// CreateWhiteBoxKey请求参数结构体
-    public struct CreateWhiteBoxKeyRequest: TCRequestModel {
+    public struct CreateWhiteBoxKeyRequest: TCRequest {
         /// 作为密钥更容易辨识，更容易被人看懂的别名， 不可为空，1-60个字母数字 - _ 的组合，首字符必须为字母或者数字。Alias不可重复。
         public let alias: String
 
@@ -49,7 +49,7 @@ extension Kms {
     }
 
     /// CreateWhiteBoxKey返回参数结构体
-    public struct CreateWhiteBoxKeyResponse: TCResponseModel {
+    public struct CreateWhiteBoxKeyResponse: TCResponse {
         /// 用于加密的密钥，base64编码
         public let encryptKey: String
 

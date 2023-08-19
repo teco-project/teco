@@ -20,7 +20,7 @@ import TecoCore
 
 extension As {
     /// UpgradeLifecycleHook请求参数结构体
-    public struct UpgradeLifecycleHookRequest: TCRequestModel {
+    public struct UpgradeLifecycleHookRequest: TCRequest {
         /// 生命周期挂钩ID
         public let lifecycleHookId: String
 
@@ -74,7 +74,7 @@ extension As {
     }
 
     /// UpgradeLifecycleHook返回参数结构体
-    public struct UpgradeLifecycleHookResponse: TCResponseModel {
+    public struct UpgradeLifecycleHookResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

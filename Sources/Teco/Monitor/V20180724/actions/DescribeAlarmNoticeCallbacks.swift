@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// DescribeAlarmNoticeCallbacks请求参数结构体
-    public struct DescribeAlarmNoticeCallbacksRequest: TCRequestModel {
+    public struct DescribeAlarmNoticeCallbacksRequest: TCRequest {
         /// 模块名，这里填“monitor”
         public let module: String
 
@@ -34,7 +34,7 @@ extension Monitor {
     }
 
     /// DescribeAlarmNoticeCallbacks返回参数结构体
-    public struct DescribeAlarmNoticeCallbacksResponse: TCResponseModel {
+    public struct DescribeAlarmNoticeCallbacksResponse: TCResponse {
         /// 告警回调通知
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let urlNotices: [URLNotice]?

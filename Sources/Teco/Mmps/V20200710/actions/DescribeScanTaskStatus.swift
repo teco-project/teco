@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mmps {
     /// DescribeScanTaskStatus请求参数结构体
-    public struct DescribeScanTaskStatusRequest: TCRequestModel {
+    public struct DescribeScanTaskStatusRequest: TCRequest {
         /// 任务类型, 0:基础版, 1:专家版, 2:本地化
         public let taskType: Int64
 
@@ -49,7 +49,7 @@ extension Mmps {
     }
 
     /// DescribeScanTaskStatus返回参数结构体
-    public struct DescribeScanTaskStatusResponse: TCResponseModel {
+    public struct DescribeScanTaskStatusResponse: TCResponse {
         /// 返回值, 0:成功, 其他值请查看“返回值”定义
         public let result: Int64
 

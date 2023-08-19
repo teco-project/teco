@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// ModifyDeviceData请求参数结构体
-    public struct ModifyDeviceDataRequest: TCRequestModel {
+    public struct ModifyDeviceDataRequest: TCRequest {
         /// 设备唯一标识
         public let deviceId: String
 
@@ -39,7 +39,7 @@ extension Iotvideoindustry {
     }
 
     /// ModifyDeviceData返回参数结构体
-    public struct ModifyDeviceDataResponse: TCResponseModel {
+    public struct ModifyDeviceDataResponse: TCResponse {
         /// 操作结果,“OK”表示成功，其他表示失败。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?

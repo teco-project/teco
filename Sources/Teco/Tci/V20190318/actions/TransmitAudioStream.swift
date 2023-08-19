@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tci {
     /// TransmitAudioStream请求参数结构体
-    public struct TransmitAudioStreamRequest: TCRequestModel {
+    public struct TransmitAudioStreamRequest: TCRequest {
         /// 功能开关列表，表示是否需要打开相应的功能，返回相应的信息
         public let functions: Function
 
@@ -79,7 +79,7 @@ extension Tci {
     }
 
     /// TransmitAudioStream返回参数结构体
-    public struct TransmitAudioStreamResponse: TCResponseModel {
+    public struct TransmitAudioStreamResponse: TCResponse {
         /// 返回的当前音频的统计信息。当进度为100时返回。
         public let asrStat: ASRStat
 

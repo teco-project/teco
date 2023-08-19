@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ams {
     /// CreateBizConfig请求参数结构体
-    public struct CreateBizConfigRequest: TCRequestModel {
+    public struct CreateBizConfigRequest: TCRequest {
         /// 业务类型，仅限英文字母、数字和下划线（_）组成，长度不超过8位
         public let bizType: String
 
@@ -49,7 +49,7 @@ extension Ams {
     }
 
     /// CreateBizConfig返回参数结构体
-    public struct CreateBizConfigResponse: TCResponseModel {
+    public struct CreateBizConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

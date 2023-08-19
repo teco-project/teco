@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// CreateImage请求参数结构体
-    public struct CreateImageRequest: TCRequestModel {
+    public struct CreateImageRequest: TCRequest {
         /// 镜像名称。
         public let imageName: String
 
@@ -52,7 +52,7 @@ extension Ecm {
     }
 
     /// CreateImage返回参数结构体
-    public struct CreateImageResponse: TCResponseModel {
+    public struct CreateImageResponse: TCResponse {
         /// 任务id
         public let taskId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// DescribeSupervisors请求参数结构体
-    public struct DescribeSupervisorsRequest: TCRequestModel {
+    public struct DescribeSupervisorsRequest: TCRequest {
         /// 低代码互动课堂的SdkAppId。
         public let sdkAppId: UInt64
 
@@ -44,7 +44,7 @@ extension Lcic {
     }
 
     /// DescribeSupervisors返回参数结构体
-    public struct DescribeSupervisorsResponse: TCResponseModel {
+    public struct DescribeSupervisorsResponse: TCResponse {
         /// 数据总量
         public let total: UInt64
 

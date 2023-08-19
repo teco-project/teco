@@ -20,7 +20,7 @@ import TecoCore
 
 extension Solar {
     /// CreateSubProject请求参数结构体
-    public struct CreateSubProjectRequest: TCRequestModel {
+    public struct CreateSubProjectRequest: TCRequest {
         /// 所属项目id
         public let projectId: String
 
@@ -39,7 +39,7 @@ extension Solar {
     }
 
     /// CreateSubProject返回参数结构体
-    public struct CreateSubProjectResponse: TCResponseModel {
+    public struct CreateSubProjectResponse: TCResponse {
         /// 子项目id
         public let subProjectId: String
 

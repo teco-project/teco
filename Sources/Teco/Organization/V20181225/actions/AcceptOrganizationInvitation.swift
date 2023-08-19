@@ -20,7 +20,7 @@ import TecoCore
 
 extension Organization {
     /// AcceptOrganizationInvitation请求参数结构体
-    public struct AcceptOrganizationInvitationRequest: TCRequestModel {
+    public struct AcceptOrganizationInvitationRequest: TCRequest {
         /// 邀请ID
         public let id: UInt64
 
@@ -34,7 +34,7 @@ extension Organization {
     }
 
     /// AcceptOrganizationInvitation返回参数结构体
-    public struct AcceptOrganizationInvitationResponse: TCResponseModel {
+    public struct AcceptOrganizationInvitationResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DescribeApiVersions请求参数结构体
-    public struct DescribeApiVersionsRequest: TCRequestModel {
+    public struct DescribeApiVersionsRequest: TCRequest {
         /// 微服务ID
         public let microserviceId: String
 
@@ -44,7 +44,7 @@ extension Tsf {
     }
 
     /// DescribeApiVersions返回参数结构体
-    public struct DescribeApiVersionsResponse: TCResponseModel {
+    public struct DescribeApiVersionsResponse: TCResponse {
         /// API版本列表
         public let result: [ApiVersionArray]
 

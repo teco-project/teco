@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeVulInfoCvss请求参数结构体
-    public struct DescribeVulInfoCvssRequest: TCRequestModel {
+    public struct DescribeVulInfoCvssRequest: TCRequest {
         /// 漏洞id
         public let vulId: UInt64
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// DescribeVulInfoCvss返回参数结构体
-    public struct DescribeVulInfoCvssResponse: TCResponseModel {
+    public struct DescribeVulInfoCvssResponse: TCResponse {
         /// 漏洞id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vulId: UInt64?

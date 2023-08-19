@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// LoginOriginId请求参数结构体
-    public struct LoginOriginIdRequest: TCRequestModel {
+    public struct LoginOriginIdRequest: TCRequest {
         /// 低代码互动课堂的SdkAppId。
         public let sdkAppId: UInt64
 
@@ -39,7 +39,7 @@ extension Lcic {
     }
 
     /// LoginOriginId返回参数结构体
-    public struct LoginOriginIdResponse: TCResponseModel {
+    public struct LoginOriginIdResponse: TCResponse {
         /// 用户Id。
         public let userId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// ModifyProxyGroupAttribute请求参数结构体
-    public struct ModifyProxyGroupAttributeRequest: TCRequestModel {
+    public struct ModifyProxyGroupAttributeRequest: TCRequest {
         /// 需要修改的通道组ID。
         public let groupId: String
 
@@ -44,7 +44,7 @@ extension Gaap {
     }
 
     /// ModifyProxyGroupAttribute返回参数结构体
-    public struct ModifyProxyGroupAttributeResponse: TCResponseModel {
+    public struct ModifyProxyGroupAttributeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Pts {
     /// DescribeSampleLogs请求参数结构体
-    public struct DescribeSampleLogsRequest: TCRequestModel {
+    public struct DescribeSampleLogsRequest: TCRequest {
         /// 测试项目ID
         public let projectId: String
 
@@ -117,7 +117,7 @@ extension Pts {
     }
 
     /// DescribeSampleLogs返回参数结构体
-    public struct DescribeSampleLogsResponse: TCResponseModel {
+    public struct DescribeSampleLogsResponse: TCResponse {
         /// 日志总数
         public let total: Int64
 

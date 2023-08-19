@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dnspod {
     /// CreateRecordBatch请求参数结构体
-    public struct CreateRecordBatchRequest: TCRequestModel {
+    public struct CreateRecordBatchRequest: TCRequest {
         /// 域名ID，多个 domain_id 用英文逗号进行分割。
         public let domainIdList: [String]
 
@@ -39,7 +39,7 @@ extension Dnspod {
     }
 
     /// CreateRecordBatch返回参数结构体
-    public struct CreateRecordBatchResponse: TCResponseModel {
+    public struct CreateRecordBatchResponse: TCResponse {
         /// 批量添加域名信息
         public let detailList: [CreateRecordBatchDetail]
 

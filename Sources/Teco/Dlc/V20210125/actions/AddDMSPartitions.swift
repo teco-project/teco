@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// AddDMSPartitions请求参数结构体
-    public struct AddDMSPartitionsRequest: TCRequestModel {
+    public struct AddDMSPartitionsRequest: TCRequest {
         /// 分区
         public let partitions: [DMSPartition]?
 
@@ -34,7 +34,7 @@ extension Dlc {
     }
 
     /// AddDMSPartitions返回参数结构体
-    public struct AddDMSPartitionsResponse: TCResponseModel {
+    public struct AddDMSPartitionsResponse: TCResponse {
         /// 成功数量
         public let total: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// UpdatePrometheusScrapeJob请求参数结构体
-    public struct UpdatePrometheusScrapeJobRequest: TCRequestModel {
+    public struct UpdatePrometheusScrapeJobRequest: TCRequest {
         /// Prometheus 实例 ID，例如：prom-abcd1234
         public let instanceId: String
 
@@ -49,7 +49,7 @@ extension Monitor {
     }
 
     /// UpdatePrometheusScrapeJob返回参数结构体
-    public struct UpdatePrometheusScrapeJobResponse: TCResponseModel {
+    public struct UpdatePrometheusScrapeJobResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

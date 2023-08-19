@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// DescribeBlockStaticList请求参数结构体
-    public struct DescribeBlockStaticListRequest: TCRequestModel {
+    public struct DescribeBlockStaticListRequest: TCRequest {
         /// 开始时间
         public let startTime: String
 
@@ -54,7 +54,7 @@ extension Cfw {
     }
 
     /// DescribeBlockStaticList返回参数结构体
-    public struct DescribeBlockStaticListResponse: TCResponseModel {
+    public struct DescribeBlockStaticListResponse: TCResponse {
         public let data: [StaticInfo]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

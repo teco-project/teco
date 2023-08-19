@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcaplusdb {
     /// ModifyTableQuotas请求参数结构体
-    public struct ModifyTableQuotasRequest: TCRequestModel {
+    public struct ModifyTableQuotasRequest: TCRequest {
         /// 带扩缩容表所属集群ID
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Tcaplusdb {
     }
 
     /// ModifyTableQuotas返回参数结构体
-    public struct ModifyTableQuotasResponse: TCResponseModel {
+    public struct ModifyTableQuotasResponse: TCResponse {
         /// 扩缩容结果数量
         public let totalCount: UInt64
 

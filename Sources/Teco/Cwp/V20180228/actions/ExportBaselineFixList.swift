@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ExportBaselineFixList请求参数结构体
-    public struct ExportBaselineFixListRequest: TCRequestModel {
+    public struct ExportBaselineFixListRequest: TCRequest {
         /// - ItemName - String - 是否必填：否 - 项名称
         public let filters: [Filter]?
 
@@ -39,7 +39,7 @@ extension Cwp {
     }
 
     /// ExportBaselineFixList返回参数结构体
-    public struct ExportBaselineFixListResponse: TCResponseModel {
+    public struct ExportBaselineFixListResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ivld {
     /// UpdateCustomCategory请求参数结构体
-    public struct UpdateCustomCategoryRequest: TCRequestModel {
+    public struct UpdateCustomCategoryRequest: TCRequest {
         /// 自定义人物类型Id
         public let categoryId: String
 
@@ -44,7 +44,7 @@ extension Ivld {
     }
 
     /// UpdateCustomCategory返回参数结构体
-    public struct UpdateCustomCategoryResponse: TCResponseModel {
+    public struct UpdateCustomCategoryResponse: TCResponse {
         /// 成功更新的自定义人物类型Id
         public let categoryId: String
 

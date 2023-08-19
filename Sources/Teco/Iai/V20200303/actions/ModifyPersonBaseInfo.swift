@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iai {
     /// ModifyPersonBaseInfo请求参数结构体
-    public struct ModifyPersonBaseInfoRequest: TCRequestModel {
+    public struct ModifyPersonBaseInfoRequest: TCRequest {
         /// 人员ID，取值为创建人员接口中的PersonId
         public let personId: String
 
@@ -44,7 +44,7 @@ extension Iai {
     }
 
     /// ModifyPersonBaseInfo返回参数结构体
-    public struct ModifyPersonBaseInfoResponse: TCResponseModel {
+    public struct ModifyPersonBaseInfoResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

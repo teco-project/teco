@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// DescribeStatisticDetails请求参数结构体
-    public struct DescribeStatisticDetailsRequest: TCRequestModel {
+    public struct DescribeStatisticDetailsRequest: TCRequest {
         /// 开始日期，格式【YYYY-MM-DD】
         public let startDate: String
 
@@ -51,7 +51,7 @@ extension Iotvideoindustry {
     }
 
     /// DescribeStatisticDetails返回参数结构体
-    public struct DescribeStatisticDetailsResponse: TCResponseModel {
+    public struct DescribeStatisticDetailsResponse: TCResponse {
         /// 统计详情列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [StatisticItem]?

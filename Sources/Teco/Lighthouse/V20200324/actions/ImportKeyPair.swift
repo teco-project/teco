@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// ImportKeyPair请求参数结构体
-    public struct ImportKeyPairRequest: TCRequestModel {
+    public struct ImportKeyPairRequest: TCRequest {
         /// 密钥对名称，可由数字，字母和下划线组成，长度不超过 25 个字符。
         public let keyName: String
 
@@ -39,7 +39,7 @@ extension Lighthouse {
     }
 
     /// ImportKeyPair返回参数结构体
-    public struct ImportKeyPairResponse: TCResponseModel {
+    public struct ImportKeyPairResponse: TCResponse {
         /// 密钥对 ID。
         public let keyId: String
 

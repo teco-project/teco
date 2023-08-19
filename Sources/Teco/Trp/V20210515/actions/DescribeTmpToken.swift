@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trp {
     /// DescribeTmpToken请求参数结构体
-    public struct DescribeTmpTokenRequest: TCRequestModel {
+    public struct DescribeTmpTokenRequest: TCRequest {
         /// 企业ID
         public let corpId: UInt64?
 
@@ -34,7 +34,7 @@ extension Trp {
     }
 
     /// DescribeTmpToken返回参数结构体
-    public struct DescribeTmpTokenResponse: TCResponseModel {
+    public struct DescribeTmpTokenResponse: TCResponse {
         /// 临时token
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let token: String?

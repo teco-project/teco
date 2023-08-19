@@ -20,13 +20,13 @@ import TecoCore
 
 extension Ssm {
     /// DescribeSupportedProducts请求参数结构体
-    public struct DescribeSupportedProductsRequest: TCRequestModel {
+    public struct DescribeSupportedProductsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeSupportedProducts返回参数结构体
-    public struct DescribeSupportedProductsResponse: TCResponseModel {
+    public struct DescribeSupportedProductsResponse: TCResponse {
         /// 支持的产品列表。
         public let products: [String]
 

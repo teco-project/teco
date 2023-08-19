@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotcloud {
     /// DeleteLoraDevice请求参数结构体
-    public struct DeleteLoraDeviceRequest: TCRequestModel {
+    public struct DeleteLoraDeviceRequest: TCRequest {
         /// 设备所属产品ID
         public let productId: String
 
@@ -39,7 +39,7 @@ extension Iotcloud {
     }
 
     /// DeleteLoraDevice返回参数结构体
-    public struct DeleteLoraDeviceResponse: TCResponseModel {
+    public struct DeleteLoraDeviceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

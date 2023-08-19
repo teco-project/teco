@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bpaas {
     /// GetBpaasApproveDetail请求参数结构体
-    public struct GetBpaasApproveDetailRequest: TCRequestModel {
+    public struct GetBpaasApproveDetailRequest: TCRequest {
         /// 审批id
         public let approveId: UInt64
 
@@ -34,7 +34,7 @@ extension Bpaas {
     }
 
     /// GetBpaasApproveDetail返回参数结构体
-    public struct GetBpaasApproveDetailResponse: TCResponseModel {
+    public struct GetBpaasApproveDetailResponse: TCResponse {
         /// 申请人uin
         public let applyUin: UInt64
 

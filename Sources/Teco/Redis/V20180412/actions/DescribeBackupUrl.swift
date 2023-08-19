@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// DescribeBackupUrl请求参数结构体
-    public struct DescribeBackupUrlRequest: TCRequestModel {
+    public struct DescribeBackupUrlRequest: TCRequest {
         /// 实例 ID。
         public let instanceId: String
 
@@ -71,7 +71,7 @@ extension Redis {
     }
 
     /// DescribeBackupUrl返回参数结构体
-    public struct DescribeBackupUrlResponse: TCResponseModel {
+    public struct DescribeBackupUrlResponse: TCResponse {
         /// 外网下载地址（6小时内链接有效），该字段正在逐步废弃中。
         public let downloadUrl: [String]
 

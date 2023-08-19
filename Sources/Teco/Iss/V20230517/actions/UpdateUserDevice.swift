@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// UpdateUserDevice请求参数结构体
-    public struct UpdateUserDeviceRequest: TCRequestModel {
+    public struct UpdateUserDeviceRequest: TCRequest {
         /// 设备ID（从获取设备列表接口ListDevices中获取）
         public let deviceId: String
 
@@ -69,7 +69,7 @@ extension Iss {
     }
 
     /// UpdateUserDevice返回参数结构体
-    public struct UpdateUserDeviceResponse: TCResponseModel {
+    public struct UpdateUserDeviceResponse: TCResponse {
         /// 返回数据
         public let data: UpdateDeviceResponse
 

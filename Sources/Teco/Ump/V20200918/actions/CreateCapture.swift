@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ump {
     /// CreateCapture请求参数结构体
-    public struct CreateCaptureRequest: TCRequestModel {
+    public struct CreateCaptureRequest: TCRequest {
         /// 原始抓拍报文
         public let data: String
 
@@ -34,7 +34,7 @@ extension Ump {
     }
 
     /// CreateCapture返回参数结构体
-    public struct CreateCaptureResponse: TCResponseModel {
+    public struct CreateCaptureResponse: TCResponse {
         /// 原始应答报文
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rspData: String?

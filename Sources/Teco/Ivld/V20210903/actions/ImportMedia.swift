@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ivld {
     /// ImportMedia请求参数结构体
-    public struct ImportMediaRequest: TCRequestModel {
+    public struct ImportMediaRequest: TCRequest {
         /// 待分析视频的URL，目前只支持*不带签名的*COS地址，长度最长1KB
         public let url: String
 
@@ -66,7 +66,7 @@ extension Ivld {
     }
 
     /// ImportMedia返回参数结构体
-    public struct ImportMediaResponse: TCResponseModel {
+    public struct ImportMediaResponse: TCResponse {
         /// 媒资文件在系统中的ID
         public let mediaId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DeleteRepository请求参数结构体
-    public struct DeleteRepositoryRequest: TCRequestModel {
+    public struct DeleteRepositoryRequest: TCRequest {
         /// 仓库ID
         public let repositoryId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// DeleteRepository返回参数结构体
-    public struct DeleteRepositoryResponse: TCResponseModel {
+    public struct DeleteRepositoryResponse: TCResponse {
         /// 删除仓库是否成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

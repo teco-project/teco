@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// StartFlow请求参数结构体
-    public struct StartFlowRequest: TCRequestModel {
+    public struct StartFlowRequest: TCRequest {
         /// 调用方用户信息，userId 必填。支持填入集团子公司经办人 userId代发合同。
         public let `operator`: UserInfo
 
@@ -54,7 +54,7 @@ extension Ess {
     }
 
     /// StartFlow返回参数结构体
-    public struct StartFlowResponse: TCResponseModel {
+    public struct StartFlowResponse: TCResponse {
         /// 返回描述，START-发起成功， REVIEW-提交审核成功，EXECUTING-已提交发起任务
         public let status: String
 

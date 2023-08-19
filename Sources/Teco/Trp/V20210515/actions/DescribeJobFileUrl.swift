@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trp {
     /// DescribeJobFileUrl请求参数结构体
-    public struct DescribeJobFileUrlRequest: TCRequestModel {
+    public struct DescribeJobFileUrlRequest: TCRequest {
         /// 调度ID
         public let jobId: UInt64
 
@@ -39,7 +39,7 @@ extension Trp {
     }
 
     /// DescribeJobFileUrl返回参数结构体
-    public struct DescribeJobFileUrlResponse: TCResponseModel {
+    public struct DescribeJobFileUrlResponse: TCResponse {
         /// 码包地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let url: String?

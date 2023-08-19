@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bi {
     /// ApplyEmbedInterval请求参数结构体
-    public struct ApplyEmbedIntervalRequest: TCRequestModel {
+    public struct ApplyEmbedIntervalRequest: TCRequest {
         /// 分享项目id，必选
         public let projectId: UInt64?
 
@@ -54,7 +54,7 @@ extension Bi {
     }
 
     /// ApplyEmbedInterval返回参数结构体
-    public struct ApplyEmbedIntervalResponse: TCResponseModel {
+    public struct ApplyEmbedIntervalResponse: TCResponse {
         /// 额外参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extra: String?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trp {
     /// ModifyTraceCodeUnlink请求参数结构体
-    public struct ModifyTraceCodeUnlinkRequest: TCRequestModel {
+    public struct ModifyTraceCodeUnlinkRequest: TCRequest {
         /// 批次ID
         public let batchId: String
 
@@ -44,7 +44,7 @@ extension Trp {
     }
 
     /// ModifyTraceCodeUnlink返回参数结构体
-    public struct ModifyTraceCodeUnlinkResponse: TCResponseModel {
+    public struct ModifyTraceCodeUnlinkResponse: TCResponse {
         /// 成功解绑溯源码的数量
         public let unlinkCnt: UInt64
 

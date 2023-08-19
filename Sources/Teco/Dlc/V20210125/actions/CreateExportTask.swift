@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// CreateExportTask请求参数结构体
-    public struct CreateExportTaskRequest: TCRequestModel {
+    public struct CreateExportTaskRequest: TCRequest {
         /// 数据来源，lakefsStorage、taskResult
         public let inputType: String
 
@@ -49,7 +49,7 @@ extension Dlc {
     }
 
     /// CreateExportTask返回参数结构体
-    public struct CreateExportTaskResponse: TCResponseModel {
+    public struct CreateExportTaskResponse: TCResponse {
         /// 任务id
         public let taskId: String
 

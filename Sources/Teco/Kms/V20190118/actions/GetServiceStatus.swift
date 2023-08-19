@@ -20,13 +20,13 @@ import TecoCore
 
 extension Kms {
     /// GetServiceStatus请求参数结构体
-    public struct GetServiceStatusRequest: TCRequestModel {
+    public struct GetServiceStatusRequest: TCRequest {
         public init() {
         }
     }
 
     /// GetServiceStatus返回参数结构体
-    public struct GetServiceStatusResponse: TCResponseModel {
+    public struct GetServiceStatusResponse: TCResponse {
         /// KMS服务是否开通， true 表示已开通
         public let serviceEnabled: Bool
 

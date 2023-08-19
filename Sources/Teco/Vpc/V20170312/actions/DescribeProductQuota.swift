@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DescribeProductQuota请求参数结构体
-    public struct DescribeProductQuotaRequest: TCRequestModel {
+    public struct DescribeProductQuotaRequest: TCRequest {
         /// 查询的网络产品名称，可查询的产品有：vpc、ccn、vpn、dc、dfw、clb、eip。
         public let product: String
 
@@ -34,7 +34,7 @@ extension Vpc {
     }
 
     /// DescribeProductQuota返回参数结构体
-    public struct DescribeProductQuotaResponse: TCResponseModel {
+    public struct DescribeProductQuotaResponse: TCResponse {
         /// ProductQuota对象数组。
         public let productQuotaSet: [ProductQuota]
 

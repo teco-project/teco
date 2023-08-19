@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// StopFleetActions请求参数结构体
-    public struct StopFleetActionsRequest: TCRequestModel {
+    public struct StopFleetActionsRequest: TCRequest {
         /// 服务器舰队 Id
         public let fleetId: String
 
@@ -39,7 +39,7 @@ extension Gse {
     }
 
     /// StopFleetActions返回参数结构体
-    public struct StopFleetActionsResponse: TCResponseModel {
+    public struct StopFleetActionsResponse: TCResponse {
         /// 服务器舰队 Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fleetId: String?

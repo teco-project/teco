@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// SwitchDataEngine请求参数结构体
-    public struct SwitchDataEngineRequest: TCRequestModel {
+    public struct SwitchDataEngineRequest: TCRequest {
         /// 主集群名称
         public let dataEngineName: String
 
@@ -39,7 +39,7 @@ extension Dlc {
     }
 
     /// SwitchDataEngine返回参数结构体
-    public struct SwitchDataEngineResponse: TCResponseModel {
+    public struct SwitchDataEngineResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

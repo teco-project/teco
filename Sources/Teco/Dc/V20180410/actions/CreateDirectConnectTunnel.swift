@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dc {
     /// CreateDirectConnectTunnel请求参数结构体
-    public struct CreateDirectConnectTunnelRequest: TCRequestModel {
+    public struct CreateDirectConnectTunnelRequest: TCRequest {
         /// 专线 ID，例如：dc-kd7d06of
         public let directConnectId: String
 
@@ -138,7 +138,7 @@ extension Dc {
     }
 
     /// CreateDirectConnectTunnel返回参数结构体
-    public struct CreateDirectConnectTunnelResponse: TCResponseModel {
+    public struct CreateDirectConnectTunnelResponse: TCResponse {
         /// 专用通道ID
         public let directConnectTunnelIdSet: [String]
 

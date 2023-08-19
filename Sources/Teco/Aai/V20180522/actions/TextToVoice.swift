@@ -20,7 +20,7 @@ import TecoCore
 
 extension Aai {
     /// TextToVoice请求参数结构体
-    public struct TextToVoiceRequest: TCRequestModel {
+    public struct TextToVoiceRequest: TCRequest {
         /// 合成语音的源文本，按UTF-8编码统一计算。
         /// 中文最大支持100个汉字（全角标点符号算一个汉字）；英文最大支持400个字母（半角标点符号算一个字母）。包含空格等字符时需要url encode再传输。
         public let text: String
@@ -98,7 +98,7 @@ extension Aai {
     }
 
     /// TextToVoice返回参数结构体
-    public struct TextToVoiceResponse: TCResponseModel {
+    public struct TextToVoiceResponse: TCResponse {
         /// base64编码的wav/mp3音频数据
         public let audio: String
 

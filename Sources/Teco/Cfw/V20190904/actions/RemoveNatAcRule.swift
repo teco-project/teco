@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// RemoveNatAcRule请求参数结构体
-    public struct RemoveNatAcRuleRequest: TCRequestModel {
+    public struct RemoveNatAcRuleRequest: TCRequest {
         /// 规则的uuid列表，可通过查询规则列表获取，注意：如果传入的是[-1]将删除所有规则
         public let ruleUuid: [Int64]
 
@@ -39,7 +39,7 @@ extension Cfw {
     }
 
     /// RemoveNatAcRule返回参数结构体
-    public struct RemoveNatAcRuleResponse: TCResponseModel {
+    public struct RemoveNatAcRuleResponse: TCResponse {
         /// 删除成功后返回被删除策略的uuid列表
         public let ruleUuid: [Int64]
 

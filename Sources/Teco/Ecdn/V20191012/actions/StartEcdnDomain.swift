@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecdn {
     /// StartEcdnDomain请求参数结构体
-    public struct StartEcdnDomainRequest: TCRequestModel {
+    public struct StartEcdnDomainRequest: TCRequest {
         /// 待启用域名。
         public let domain: String
 
@@ -34,7 +34,7 @@ extension Ecdn {
     }
 
     /// StartEcdnDomain返回参数结构体
-    public struct StartEcdnDomainResponse: TCResponseModel {
+    public struct StartEcdnDomainResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

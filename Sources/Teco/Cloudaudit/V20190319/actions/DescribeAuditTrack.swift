@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cloudaudit {
     /// DescribeAuditTrack请求参数结构体
-    public struct DescribeAuditTrackRequest: TCRequestModel {
+    public struct DescribeAuditTrackRequest: TCRequest {
         /// 跟踪集 ID
         public let trackId: UInt64
 
@@ -34,7 +34,7 @@ extension Cloudaudit {
     }
 
     /// DescribeAuditTrack返回参数结构体
-    public struct DescribeAuditTrackResponse: TCResponseModel {
+    public struct DescribeAuditTrackResponse: TCResponse {
         /// 跟踪集名称
         public let name: String
 

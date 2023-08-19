@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cr {
     /// ChangeBotTaskStatus请求参数结构体
-    public struct ChangeBotTaskStatusRequest: TCRequestModel {
+    public struct ChangeBotTaskStatusRequest: TCRequest {
         /// 模块名。默认值（固定）：AiApi
         public let module: String
 
@@ -55,7 +55,7 @@ extension Cr {
     }
 
     /// ChangeBotTaskStatus返回参数结构体
-    public struct ChangeBotTaskStatusResponse: TCResponseModel {
+    public struct ChangeBotTaskStatusResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

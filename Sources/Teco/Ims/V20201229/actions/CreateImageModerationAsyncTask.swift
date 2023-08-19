@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ims {
     /// CreateImageModerationAsyncTask请求参数结构体
-    public struct CreateImageModerationAsyncTaskRequest: TCRequestModel {
+    public struct CreateImageModerationAsyncTaskRequest: TCRequest {
         /// 接收审核信息回调地址，审核过程中产生的所有结果发送至此地址。
         public let callbackUrl: String
 
@@ -86,7 +86,7 @@ extension Ims {
     }
 
     /// CreateImageModerationAsyncTask返回参数结构体
-    public struct CreateImageModerationAsyncTaskResponse: TCResponseModel {
+    public struct CreateImageModerationAsyncTaskResponse: TCResponse {
         /// 该字段用于返回检测对象对应请求参数中的DataId。
         public let dataId: String
 

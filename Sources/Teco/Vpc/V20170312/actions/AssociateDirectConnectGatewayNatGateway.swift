@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// AssociateDirectConnectGatewayNatGateway请求参数结构体
-    public struct AssociateDirectConnectGatewayNatGatewayRequest: TCRequestModel {
+    public struct AssociateDirectConnectGatewayNatGatewayRequest: TCRequest {
         /// VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
         public let vpcId: String
 
@@ -44,7 +44,7 @@ extension Vpc {
     }
 
     /// AssociateDirectConnectGatewayNatGateway返回参数结构体
-    public struct AssociateDirectConnectGatewayNatGatewayResponse: TCResponseModel {
+    public struct AssociateDirectConnectGatewayNatGatewayResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Asr {
     /// CloseAsyncRecognitionTask请求参数结构体
-    public struct CloseAsyncRecognitionTaskRequest: TCRequestModel {
+    public struct CloseAsyncRecognitionTaskRequest: TCRequest {
         /// 语音流异步识别任务的唯一标识，在创建任务时会返回
         public let taskId: Int64
 
@@ -34,7 +34,7 @@ extension Asr {
     }
 
     /// CloseAsyncRecognitionTask返回参数结构体
-    public struct CloseAsyncRecognitionTaskResponse: TCResponseModel {
+    public struct CloseAsyncRecognitionTaskResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

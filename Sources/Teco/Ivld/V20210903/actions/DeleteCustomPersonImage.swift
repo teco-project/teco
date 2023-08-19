@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ivld {
     /// DeleteCustomPersonImage请求参数结构体
-    public struct DeleteCustomPersonImageRequest: TCRequestModel {
+    public struct DeleteCustomPersonImageRequest: TCRequest {
         /// 自定义人物Id
         public let personId: String
 
@@ -39,7 +39,7 @@ extension Ivld {
     }
 
     /// DeleteCustomPersonImage返回参数结构体
-    public struct DeleteCustomPersonImageResponse: TCResponseModel {
+    public struct DeleteCustomPersonImageResponse: TCResponse {
         /// 自定义人物Id
         public let personId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iot {
     /// AppGetDevice请求参数结构体
-    public struct AppGetDeviceRequest: TCRequestModel {
+    public struct AppGetDeviceRequest: TCRequest {
         /// 访问Token
         public let accessToken: String
 
@@ -44,7 +44,7 @@ extension Iot {
     }
 
     /// AppGetDevice返回参数结构体
-    public struct AppGetDeviceResponse: TCResponseModel {
+    public struct AppGetDeviceResponse: TCResponse {
         /// 绑定设备详情
         public let appDevice: AppDeviceDetail
 

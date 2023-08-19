@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// ExportImages请求参数结构体
-    public struct ExportImagesRequest: TCRequestModel {
+    public struct ExportImagesRequest: TCRequest {
         /// COS存储桶名称
         public let bucketName: String
 
@@ -64,7 +64,7 @@ extension Cvm {
     }
 
     /// ExportImages返回参数结构体
-    public struct ExportImagesResponse: TCResponseModel {
+    public struct ExportImagesResponse: TCResponse {
         /// 导出镜像任务ID
         public let taskId: UInt64
 

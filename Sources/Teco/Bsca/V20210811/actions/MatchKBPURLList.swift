@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bsca {
     /// MatchKBPURLList请求参数结构体
-    public struct MatchKBPURLListRequest: TCRequestModel {
+    public struct MatchKBPURLListRequest: TCRequest {
         /// SHA1。
         public let sha1: String?
 
@@ -34,7 +34,7 @@ extension Bsca {
     }
 
     /// MatchKBPURLList返回参数结构体
-    public struct MatchKBPURLListResponse: TCResponseModel {
+    public struct MatchKBPURLListResponse: TCResponse {
         /// 组件列表。
         public let purlList: [PURL]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// RegisterUser请求参数结构体
-    public struct RegisterUserRequest: TCRequestModel {
+    public struct RegisterUserRequest: TCRequest {
         /// 低代码互动课堂的SdkAppId。
         public let sdkAppId: UInt64
 
@@ -49,7 +49,7 @@ extension Lcic {
     }
 
     /// RegisterUser返回参数结构体
-    public struct RegisterUserResponse: TCResponseModel {
+    public struct RegisterUserResponse: TCResponse {
         /// 用户Id。
         public let userId: String
 

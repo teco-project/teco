@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeInLongAgentVpcList请求参数结构体
-    public struct DescribeInLongAgentVpcListRequest: TCRequestModel {
+    public struct DescribeInLongAgentVpcListRequest: TCRequest {
         /// WeData项目ID
         public let projectId: String
 
@@ -34,7 +34,7 @@ extension Wedata {
     }
 
     /// DescribeInLongAgentVpcList返回参数结构体
-    public struct DescribeInLongAgentVpcListResponse: TCResponseModel {
+    public struct DescribeInLongAgentVpcListResponse: TCResponse {
         /// VPC列表
         public let vpcList: [String]
 

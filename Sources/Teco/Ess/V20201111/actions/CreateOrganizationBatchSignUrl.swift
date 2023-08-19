@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// CreateOrganizationBatchSignUrl请求参数结构体
-    public struct CreateOrganizationBatchSignUrlRequest: TCRequestModel {
+    public struct CreateOrganizationBatchSignUrlRequest: TCRequest {
         /// 调用方用户信息，UserId 必填，支持填入集团子公司经办人UserId。
         public let `operator`: UserInfo
 
@@ -59,7 +59,7 @@ extension Ess {
     }
 
     /// CreateOrganizationBatchSignUrl返回参数结构体
-    public struct CreateOrganizationBatchSignUrlResponse: TCResponseModel {
+    public struct CreateOrganizationBatchSignUrlResponse: TCResponse {
         /// 批量签署入口链接
         public let signUrl: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iai {
     /// DetectLiveFace请求参数结构体
-    public struct DetectLiveFaceRequest: TCRequestModel {
+    public struct DetectLiveFaceRequest: TCRequest {
         /// 图片 base64 数据，base64 编码后大小不可超过5M。
         /// jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。（图片的宽高比请接近3:4，不符合宽高比的图片返回的分值不具备参考意义）。
         /// 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
@@ -60,7 +60,7 @@ extension Iai {
     }
 
     /// DetectLiveFace返回参数结构体
-    public struct DetectLiveFaceResponse: TCResponseModel {
+    public struct DetectLiveFaceResponse: TCResponse {
         /// 活体打分，取值范围 [0,100]，分数一般落于[80, 100]区间内，0分也为常见值。推荐相大于 87 时可判断为活体。可根据具体场景自行调整阈值。
         /// 本字段当且仅当FaceModelVersion为2.0时才具备参考意义。
         public let score: Float

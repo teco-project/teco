@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// CreateScheduledSql请求参数结构体
-    public struct CreateScheduledSqlRequest: TCRequestModel {
+    public struct CreateScheduledSqlRequest: TCRequest {
         /// 源日志主题
         public let srcTopicId: String
 
@@ -94,7 +94,7 @@ extension Cls {
     }
 
     /// CreateScheduledSql返回参数结构体
-    public struct CreateScheduledSqlResponse: TCResponseModel {
+    public struct CreateScheduledSqlResponse: TCResponse {
         /// 任务id
         public let taskId: String
 

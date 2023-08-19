@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// ResetPassword请求参数结构体
-    public struct ResetPasswordRequest: TCRequestModel {
+    public struct ResetPasswordRequest: TCRequest {
         /// Redis实例ID
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Redis {
     }
 
     /// ResetPassword返回参数结构体
-    public struct ResetPasswordResponse: TCResponseModel {
+    public struct ResetPasswordResponse: TCResponse {
         /// 任务ID（修改密码时的任务ID，如果时切换免密码或者非免密码实例，则无需关注此返回值）
         public let taskId: Int64
 

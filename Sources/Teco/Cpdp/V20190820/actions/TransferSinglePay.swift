@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// TransferSinglePay请求参数结构体
-    public struct TransferSinglePayRequest: TCRequestModel {
+    public struct TransferSinglePayRequest: TCRequest {
         /// 商户号
         public let merchantId: String
 
@@ -98,7 +98,7 @@ extension Cpdp {
     }
 
     /// TransferSinglePay返回参数结构体
-    public struct TransferSinglePayResponse: TCResponseModel {
+    public struct TransferSinglePayResponse: TCResponse {
         /// 错误码。响应成功："SUCCESS"，其他为不成功
         public let errCode: String
 

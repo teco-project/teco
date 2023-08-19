@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ocr {
     /// IDCardOCR请求参数结构体
-    public struct IDCardOCRRequest: TCRequestModel {
+    public struct IDCardOCRRequest: TCRequest {
         /// 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
         /// 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         public let imageBase64: String?
@@ -74,7 +74,7 @@ extension Ocr {
     }
 
     /// IDCardOCR返回参数结构体
-    public struct IDCardOCRResponse: TCResponseModel {
+    public struct IDCardOCRResponse: TCResponse {
         /// 姓名（人像面）
         public let name: String
 

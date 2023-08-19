@@ -20,13 +20,13 @@ import TecoCore
 
 extension Waf {
     /// DescribeUserClbWafRegions请求参数结构体
-    public struct DescribeUserClbWafRegionsRequest: TCRequestModel {
+    public struct DescribeUserClbWafRegionsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeUserClbWafRegions返回参数结构体
-    public struct DescribeUserClbWafRegionsResponse: TCResponseModel {
+    public struct DescribeUserClbWafRegionsResponse: TCResponse {
         /// 地域（标准的ap-格式）列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [String]?

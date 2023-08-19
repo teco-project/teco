@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// CreatePreparedPersonalEsign请求参数结构体
-    public struct CreatePreparedPersonalEsignRequest: TCRequestModel {
+    public struct CreatePreparedPersonalEsignRequest: TCRequest {
         /// 个人用户姓名
         public let userName: String
 
@@ -121,7 +121,7 @@ extension Ess {
     }
 
     /// CreatePreparedPersonalEsign返回参数结构体
-    public struct CreatePreparedPersonalEsignResponse: TCResponseModel {
+    public struct CreatePreparedPersonalEsignResponse: TCResponse {
         /// 导入生成的印章ID
         public let sealId: String
 

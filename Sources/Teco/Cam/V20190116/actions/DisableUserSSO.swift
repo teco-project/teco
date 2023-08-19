@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cam {
     /// DisableUserSSO请求参数结构体
-    public struct DisableUserSSORequest: TCRequestModel {
+    public struct DisableUserSSORequest: TCRequest {
         public init() {
         }
     }
 
     /// DisableUserSSO返回参数结构体
-    public struct DisableUserSSOResponse: TCResponseModel {
+    public struct DisableUserSSOResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

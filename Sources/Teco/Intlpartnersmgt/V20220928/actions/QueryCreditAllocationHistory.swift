@@ -20,7 +20,7 @@ import TecoCore
 
 extension Intlpartnersmgt {
     /// QueryCreditAllocationHistory请求参数结构体
-    public struct QueryCreditAllocationHistoryRequest: TCRequestModel {
+    public struct QueryCreditAllocationHistoryRequest: TCRequest {
         /// 客户uin
         public let clientUin: UInt64
 
@@ -44,7 +44,7 @@ extension Intlpartnersmgt {
     }
 
     /// QueryCreditAllocationHistory返回参数结构体
-    public struct QueryCreditAllocationHistoryResponse: TCResponseModel {
+    public struct QueryCreditAllocationHistoryResponse: TCResponse {
         /// 历史信息总条数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let total: UInt64?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotexplorer {
     /// CreateLoRaFrequency请求参数结构体
-    public struct CreateLoRaFrequencyRequest: TCRequestModel {
+    public struct CreateLoRaFrequencyRequest: TCRequest {
         /// 频点配置名称
         public let freqName: String?
 
@@ -69,7 +69,7 @@ extension Iotexplorer {
     }
 
     /// CreateLoRaFrequency返回参数结构体
-    public struct CreateLoRaFrequencyResponse: TCResponseModel {
+    public struct CreateLoRaFrequencyResponse: TCResponse {
         /// LoRa频点信息
         public let data: LoRaFrequencyEntry
 

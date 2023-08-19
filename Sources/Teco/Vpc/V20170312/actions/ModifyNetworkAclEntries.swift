@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// ModifyNetworkAclEntries请求参数结构体
-    public struct ModifyNetworkAclEntriesRequest: TCRequestModel {
+    public struct ModifyNetworkAclEntriesRequest: TCRequest {
         /// 网络ACL实例ID。例如：acl-12345678。
         public let networkAclId: String
 
@@ -44,7 +44,7 @@ extension Vpc {
     }
 
     /// ModifyNetworkAclEntries返回参数结构体
-    public struct ModifyNetworkAclEntriesResponse: TCResponseModel {
+    public struct ModifyNetworkAclEntriesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

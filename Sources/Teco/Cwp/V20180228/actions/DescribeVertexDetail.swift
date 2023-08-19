@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeVertexDetail请求参数结构体
-    public struct DescribeVertexDetailRequest: TCRequestModel {
+    public struct DescribeVertexDetailRequest: TCRequest {
         /// 点id列表
         public let vertexIds: [String]
 
@@ -44,7 +44,7 @@ extension Cwp {
     }
 
     /// DescribeVertexDetail返回参数结构体
-    public struct DescribeVertexDetailResponse: TCResponseModel {
+    public struct DescribeVertexDetailResponse: TCResponse {
         /// 指定点列表的属性信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vertexDetails: [VertexDetail]?

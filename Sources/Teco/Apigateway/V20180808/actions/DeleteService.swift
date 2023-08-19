@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// DeleteService请求参数结构体
-    public struct DeleteServiceRequest: TCRequestModel {
+    public struct DeleteServiceRequest: TCRequest {
         /// 待删除服务的唯一 ID。
         public let serviceId: String
 
@@ -39,7 +39,7 @@ extension Apigateway {
     }
 
     /// DeleteService返回参数结构体
-    public struct DeleteServiceResponse: TCResponseModel {
+    public struct DeleteServiceResponse: TCResponse {
         /// 删除操作是否成功。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

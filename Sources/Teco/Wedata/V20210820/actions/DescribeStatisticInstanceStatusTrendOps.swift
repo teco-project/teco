@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeStatisticInstanceStatusTrendOps请求参数结构体
-    public struct DescribeStatisticInstanceStatusTrendOpsRequest: TCRequestModel {
+    public struct DescribeStatisticInstanceStatusTrendOpsRequest: TCRequest {
         /// 项目ID
         public let projectId: String
 
@@ -69,7 +69,7 @@ extension Wedata {
     }
 
     /// DescribeStatisticInstanceStatusTrendOps返回参数结构体
-    public struct DescribeStatisticInstanceStatusTrendOpsResponse: TCResponseModel {
+    public struct DescribeStatisticInstanceStatusTrendOpsResponse: TCResponse {
         /// 实例状态统计结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [InstanceStatisticInfo]?

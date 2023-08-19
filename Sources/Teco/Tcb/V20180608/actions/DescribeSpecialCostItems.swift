@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeSpecialCostItems请求参数结构体
-    public struct DescribeSpecialCostItemsRequest: TCRequestModel {
+    public struct DescribeSpecialCostItemsRequest: TCRequest {
         /// 环境id
         public let envId: String?
 
@@ -44,7 +44,7 @@ extension Tcb {
     }
 
     /// DescribeSpecialCostItems返回参数结构体
-    public struct DescribeSpecialCostItemsResponse: TCResponseModel {
+    public struct DescribeSpecialCostItemsResponse: TCResponse {
         /// 1分钱抵扣详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let specialCostItems: [SpecialCostItem]?

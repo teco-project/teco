@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tia {
     /// CreateJob请求参数结构体
-    public struct CreateJobRequest: TCRequestModel {
+    public struct CreateJobRequest: TCRequest {
         /// 任务名称
         public let name: String
 
@@ -99,7 +99,7 @@ extension Tia {
     }
 
     /// CreateJob返回参数结构体
-    public struct CreateJobResponse: TCResponseModel {
+    public struct CreateJobResponse: TCResponse {
         /// 训练任务信息
         public let job: Job
 

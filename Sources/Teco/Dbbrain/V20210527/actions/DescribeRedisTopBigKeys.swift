@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Dbbrain {
     /// DescribeRedisTopBigKeys请求参数结构体
-    public struct DescribeRedisTopBigKeysRequest: TCRequestModel {
+    public struct DescribeRedisTopBigKeysRequest: TCRequest {
         /// 实例ID。
         public let instanceId: String
 
@@ -64,7 +64,7 @@ extension Dbbrain {
     }
 
     /// DescribeRedisTopBigKeys返回参数结构体
-    public struct DescribeRedisTopBigKeysResponse: TCResponseModel {
+    public struct DescribeRedisTopBigKeysResponse: TCResponse {
         /// top key列表。
         public let topKeys: [RedisKeySpaceData]
 

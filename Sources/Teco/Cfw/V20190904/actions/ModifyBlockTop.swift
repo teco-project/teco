@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// ModifyBlockTop请求参数结构体
-    public struct ModifyBlockTopRequest: TCRequestModel {
+    public struct ModifyBlockTopRequest: TCRequest {
         /// 记录id
         public let uniqueId: String
 
@@ -39,7 +39,7 @@ extension Cfw {
     }
 
     /// ModifyBlockTop返回参数结构体
-    public struct ModifyBlockTopResponse: TCResponseModel {
+    public struct ModifyBlockTopResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

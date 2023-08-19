@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tem {
     /// DescribeRelatedIngresses请求参数结构体
-    public struct DescribeRelatedIngressesRequest: TCRequestModel {
+    public struct DescribeRelatedIngressesRequest: TCRequest {
         /// 环境 id
         public let environmentId: String?
 
@@ -49,7 +49,7 @@ extension Tem {
     }
 
     /// DescribeRelatedIngresses返回参数结构体
-    public struct DescribeRelatedIngressesResponse: TCResponseModel {
+    public struct DescribeRelatedIngressesResponse: TCResponse {
         /// ingress 数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: [IngressInfo]?

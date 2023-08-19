@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trp {
     /// ModifyProduct请求参数结构体
-    public struct ModifyProductRequest: TCRequestModel {
+    public struct ModifyProductRequest: TCRequest {
         /// 商品名称
         public let name: String
 
@@ -64,7 +64,7 @@ extension Trp {
     }
 
     /// ModifyProduct返回参数结构体
-    public struct ModifyProductResponse: TCResponseModel {
+    public struct ModifyProductResponse: TCResponse {
         /// 商品ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let productId: String?

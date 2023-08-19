@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// ModifyAccountMaxUserConnections请求参数结构体
-    public struct ModifyAccountMaxUserConnectionsRequest: TCRequestModel {
+    public struct ModifyAccountMaxUserConnectionsRequest: TCRequest {
         /// 云数据库账号。
         public let accounts: [Account]
 
@@ -44,7 +44,7 @@ extension Cdb {
     }
 
     /// ModifyAccountMaxUserConnections返回参数结构体
-    public struct ModifyAccountMaxUserConnectionsResponse: TCResponseModel {
+    public struct ModifyAccountMaxUserConnectionsResponse: TCResponse {
         /// 异步任务的请求 ID，可使用此 ID 查询异步任务的执行结果。
         public let asyncRequestId: String
 

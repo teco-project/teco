@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// ModifyNetworkConfig请求参数结构体
-    public struct ModifyNetworkConfigRequest: TCRequestModel {
+    public struct ModifyNetworkConfigRequest: TCRequest {
         /// 实例 ID。
         public let instanceId: String
 
@@ -72,7 +72,7 @@ extension Redis {
     }
 
     /// ModifyNetworkConfig返回参数结构体
-    public struct ModifyNetworkConfigResponse: TCResponseModel {
+    public struct ModifyNetworkConfigResponse: TCResponse {
         /// 执行状态，请忽略该参数。
         public let status: Bool
 

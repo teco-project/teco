@@ -20,13 +20,13 @@ import TecoCore
 
 extension Bmeip {
     /// DescribeEipQuota请求参数结构体
-    public struct DescribeEipQuotaRequest: TCRequestModel {
+    public struct DescribeEipQuotaRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeEipQuota返回参数结构体
-    public struct DescribeEipQuotaResponse: TCResponseModel {
+    public struct DescribeEipQuotaResponse: TCResponse {
         /// 能拥有的EIP个数的总配额，默认是100个
         public let eipNumQuota: Int64
 

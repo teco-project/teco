@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ms {
     /// CreateResourceInstances请求参数结构体
-    public struct CreateResourceInstancesRequest: TCRequestModel {
+    public struct CreateResourceInstancesRequest: TCRequest {
         /// 资源类型id。13624：加固专业版。
         public let pid: UInt64
 
@@ -49,7 +49,7 @@ extension Ms {
     }
 
     /// CreateResourceInstances返回参数结构体
-    public struct CreateResourceInstancesResponse: TCResponseModel {
+    public struct CreateResourceInstancesResponse: TCResponse {
         /// 新创建的资源列表。
         public let resourceSet: [String]
 

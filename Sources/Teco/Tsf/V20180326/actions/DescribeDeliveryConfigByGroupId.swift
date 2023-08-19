@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DescribeDeliveryConfigByGroupId请求参数结构体
-    public struct DescribeDeliveryConfigByGroupIdRequest: TCRequestModel {
+    public struct DescribeDeliveryConfigByGroupIdRequest: TCRequest {
         /// 部署组id
         public let groupId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// DescribeDeliveryConfigByGroupId返回参数结构体
-    public struct DescribeDeliveryConfigByGroupIdResponse: TCResponseModel {
+    public struct DescribeDeliveryConfigByGroupIdResponse: TCResponse {
         /// 投递kafak配置项
         public let result: SimpleKafkaDeliveryConfig
 

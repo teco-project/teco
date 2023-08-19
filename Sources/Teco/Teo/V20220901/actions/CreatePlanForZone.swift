@@ -20,7 +20,7 @@ import TecoCore
 
 extension Teo {
     /// CreatePlanForZone请求参数结构体
-    public struct CreatePlanForZoneRequest: TCRequestModel {
+    public struct CreatePlanForZoneRequest: TCRequest {
         /// 站点ID。
         public let zoneId: String
 
@@ -52,7 +52,7 @@ extension Teo {
     }
 
     /// CreatePlanForZone返回参数结构体
-    public struct CreatePlanForZoneResponse: TCResponseModel {
+    public struct CreatePlanForZoneResponse: TCResponse {
         /// 购买的资源名字列表。
         public let resourceNames: [String]
 

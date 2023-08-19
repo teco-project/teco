@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// SendRocketMQMessage请求参数结构体
-    public struct SendRocketMQMessageRequest: TCRequestModel {
+    public struct SendRocketMQMessageRequest: TCRequest {
         /// 集群id
         public let clusterId: String
 
@@ -59,7 +59,7 @@ extension Tdmq {
     }
 
     /// SendRocketMQMessage返回参数结构体
-    public struct SendRocketMQMessageResponse: TCResponseModel {
+    public struct SendRocketMQMessageResponse: TCResponse {
         /// 发送结果
         public let result: Bool
 

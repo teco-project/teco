@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mongodb {
     /// CreateDBInstance请求参数结构体
-    public struct CreateDBInstanceRequest: TCRequestModel {
+    public struct CreateDBInstanceRequest: TCRequest {
         /// 指每个副本集内节点个数。具体售卖规格，请通过接口 [DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567) 获取。
         public let nodeNum: UInt64
 
@@ -199,7 +199,7 @@ extension Mongodb {
     }
 
     /// CreateDBInstance返回参数结构体
-    public struct CreateDBInstanceResponse: TCResponseModel {
+    public struct CreateDBInstanceResponse: TCResponse {
         /// 订单ID
         public let dealId: String
 

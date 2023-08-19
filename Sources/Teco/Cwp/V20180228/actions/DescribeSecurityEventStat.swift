@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeSecurityEventStat请求参数结构体
-    public struct DescribeSecurityEventStatRequest: TCRequestModel {
+    public struct DescribeSecurityEventStatRequest: TCRequest {
         /// 该接口无过滤条件
         public let filters: [Filter]?
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// DescribeSecurityEventStat返回参数结构体
-    public struct DescribeSecurityEventStatResponse: TCResponseModel {
+    public struct DescribeSecurityEventStatResponse: TCResponse {
         /// 木马事件统计
         public let malwareStat: EventStat
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tat {
     /// DeleteCommand请求参数结构体
-    public struct DeleteCommandRequest: TCRequestModel {
+    public struct DeleteCommandRequest: TCRequest {
         /// 待删除的命令ID。
         public let commandId: String
 
@@ -34,7 +34,7 @@ extension Tat {
     }
 
     /// DeleteCommand返回参数结构体
-    public struct DeleteCommandResponse: TCResponseModel {
+    public struct DeleteCommandResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

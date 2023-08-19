@@ -20,13 +20,13 @@ import TecoCore
 
 extension Iss {
     /// ListRecordBackupPlans请求参数结构体
-    public struct ListRecordBackupPlansRequest: TCRequestModel {
+    public struct ListRecordBackupPlansRequest: TCRequest {
         public init() {
         }
     }
 
     /// ListRecordBackupPlans返回参数结构体
-    public struct ListRecordBackupPlansResponse: TCResponseModel {
+    public struct ListRecordBackupPlansResponse: TCResponse {
         /// 返回数据
         public let data: [ListRecordBackupPlanResponse]
 

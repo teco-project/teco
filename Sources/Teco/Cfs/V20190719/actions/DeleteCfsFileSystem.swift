@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfs {
     /// DeleteCfsFileSystem请求参数结构体
-    public struct DeleteCfsFileSystemRequest: TCRequestModel {
+    public struct DeleteCfsFileSystemRequest: TCRequest {
         /// 文件系统 ID。说明，进行删除文件系统操作前需要先调用 DeleteMountTarget 接口删除该文件系统的挂载点，否则会删除失败。
         public let fileSystemId: String
 
@@ -34,7 +34,7 @@ extension Cfs {
     }
 
     /// DeleteCfsFileSystem返回参数结构体
-    public struct DeleteCfsFileSystemResponse: TCResponseModel {
+    public struct DeleteCfsFileSystemResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

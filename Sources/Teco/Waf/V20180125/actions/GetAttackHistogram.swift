@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Waf {
     /// GetAttackHistogram请求参数结构体
-    public struct GetAttackHistogramRequest: TCRequestModel {
+    public struct GetAttackHistogramRequest: TCRequest {
         /// 查询的域名，所有域名使用all
         public let domain: String
 
@@ -57,7 +57,7 @@ extension Waf {
     }
 
     /// GetAttackHistogram返回参数结构体
-    public struct GetAttackHistogramResponse: TCResponseModel {
+    public struct GetAttackHistogramResponse: TCResponse {
         /// 统计详情
         public let data: [LogHistogramInfo]
 

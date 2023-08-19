@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdwch {
     /// DescribeInstanceClusters请求参数结构体
-    public struct DescribeInstanceClustersRequest: TCRequestModel {
+    public struct DescribeInstanceClustersRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Cdwch {
     }
 
     /// DescribeInstanceClusters返回参数结构体
-    public struct DescribeInstanceClustersResponse: TCResponseModel {
+    public struct DescribeInstanceClustersResponse: TCResponse {
         /// cluster列表
         public let clusters: [ClusterInfo]
 

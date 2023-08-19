@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// OpenDBExtranetAccess请求参数结构体
-    public struct OpenDBExtranetAccessRequest: TCRequestModel {
+    public struct OpenDBExtranetAccessRequest: TCRequest {
         /// 实例ID，形如postgres-hez4fh0v
         public let dbInstanceId: String
 
@@ -39,7 +39,7 @@ extension Postgres {
     }
 
     /// OpenDBExtranetAccess返回参数结构体
-    public struct OpenDBExtranetAccessResponse: TCResponseModel {
+    public struct OpenDBExtranetAccessResponse: TCResponse {
         /// 异步任务流程ID
         public let flowId: Int64
 

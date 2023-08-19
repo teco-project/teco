@@ -20,13 +20,13 @@ import TecoCore
 
 extension Ame {
     /// DescribeKTVMusicTags请求参数结构体
-    public struct DescribeKTVMusicTagsRequest: TCRequestModel {
+    public struct DescribeKTVMusicTagsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeKTVMusicTags返回参数结构体
-    public struct DescribeKTVMusicTagsResponse: TCResponseModel {
+    public struct DescribeKTVMusicTagsResponse: TCResponse {
         /// 标签分组列表
         public let tagGroupSet: [KTVMusicTagGroup]
 

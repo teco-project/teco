@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mongodb {
     /// SetAutoRenew请求参数结构体
-    public struct SetAutoRenewRequest: TCRequestModel {
+    public struct SetAutoRenewRequest: TCRequest {
         /// 实例ID列表，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
         public let instanceIds: [String]
 
@@ -39,7 +39,7 @@ extension Mongodb {
     }
 
     /// SetAutoRenew返回参数结构体
-    public struct SetAutoRenewResponse: TCResponseModel {
+    public struct SetAutoRenewResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

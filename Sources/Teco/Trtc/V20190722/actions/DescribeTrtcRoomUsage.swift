@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trtc {
     /// DescribeTrtcRoomUsage请求参数结构体
-    public struct DescribeTrtcRoomUsageRequest: TCRequestModel {
+    public struct DescribeTrtcRoomUsageRequest: TCRequest {
         /// TRTC的SdkAppId，和房间所对应的SdkAppId相同。
         public let sdkAppid: UInt64
 
@@ -44,7 +44,7 @@ extension Trtc {
     }
 
     /// DescribeTrtcRoomUsage返回参数结构体
-    public struct DescribeTrtcRoomUsageResponse: TCResponseModel {
+    public struct DescribeTrtcRoomUsageResponse: TCResponse {
         /// 房间维度用量数据，csv文件格式，单位：秒。
         public let data: String
 

@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Vpc {
     /// DescribeIpGeolocationDatabaseUrl请求参数结构体
-    public struct DescribeIpGeolocationDatabaseUrlRequest: TCRequestModel {
+    public struct DescribeIpGeolocationDatabaseUrlRequest: TCRequest {
         /// IP地理位置库协议类型，目前仅支持"ipv4"。
         public let type: String
 
@@ -36,7 +36,7 @@ extension Vpc {
     }
 
     /// DescribeIpGeolocationDatabaseUrl返回参数结构体
-    public struct DescribeIpGeolocationDatabaseUrlResponse: TCResponseModel {
+    public struct DescribeIpGeolocationDatabaseUrlResponse: TCResponse {
         /// IP地理位置库下载链接地址。
         public let downLoadUrl: String
 

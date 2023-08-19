@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// ModifyAsset请求参数结构体
-    public struct ModifyAssetRequest: TCRequestModel {
+    public struct ModifyAssetRequest: TCRequest {
         /// 全部同步
         public let all: Bool?
 
@@ -39,7 +39,7 @@ extension Tcss {
     }
 
     /// ModifyAsset返回参数结构体
-    public struct ModifyAssetResponse: TCResponseModel {
+    public struct ModifyAssetResponse: TCResponse {
         /// 同步任务发送结果
         public let status: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// DescribeFlowApprovers请求参数结构体
-    public struct DescribeFlowApproversRequest: TCRequestModel {
+    public struct DescribeFlowApproversRequest: TCRequest {
         /// 调用方信息
         public let caller: Caller
 
@@ -49,7 +49,7 @@ extension Essbasic {
     }
 
     /// DescribeFlowApprovers返回参数结构体
-    public struct DescribeFlowApproversResponse: TCResponseModel {
+    public struct DescribeFlowApproversResponse: TCResponse {
         /// 流程编号
         public let flowId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CreateVpc请求参数结构体
-    public struct CreateVpcRequest: TCRequestModel {
+    public struct CreateVpcRequest: TCRequest {
         /// vpc名称，最大长度不能超过60个字节。
         public let vpcName: String
 
@@ -59,7 +59,7 @@ extension Vpc {
     }
 
     /// CreateVpc返回参数结构体
-    public struct CreateVpcResponse: TCResponseModel {
+    public struct CreateVpcResponse: TCResponse {
         /// Vpc对象。
         public let vpc: Vpc
 

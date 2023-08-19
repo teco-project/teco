@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// DescribeGatewayMonitor请求参数结构体
-    public struct DescribeGatewayMonitorRequest: TCRequestModel {
+    public struct DescribeGatewayMonitorRequest: TCRequest {
         /// 网关索引ID（从获取网关列表接口ListGateways中获取）
         public let gatewayId: String
 
@@ -34,7 +34,7 @@ extension Iss {
     }
 
     /// DescribeGatewayMonitor返回参数结构体
-    public struct DescribeGatewayMonitorResponse: TCResponseModel {
+    public struct DescribeGatewayMonitorResponse: TCResponse {
         /// 返回数据
         public let data: DescribeGatewayMonitor
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mariadb {
     /// ModifyBackupTime请求参数结构体
-    public struct ModifyBackupTimeRequest: TCRequestModel {
+    public struct ModifyBackupTimeRequest: TCRequest {
         /// 实例ID，形如：tdsql-ow728lmc，可以通过 DescribeDBInstances 查询实例详情获得。
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Mariadb {
     }
 
     /// ModifyBackupTime返回参数结构体
-    public struct ModifyBackupTimeResponse: TCResponseModel {
+    public struct ModifyBackupTimeResponse: TCResponse {
         /// 设置的状态，0 表示成功
         public let status: Int64
 

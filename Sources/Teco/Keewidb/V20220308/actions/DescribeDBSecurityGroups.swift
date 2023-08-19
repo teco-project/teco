@@ -20,7 +20,7 @@ import TecoCore
 
 extension Keewidb {
     /// DescribeDBSecurityGroups请求参数结构体
-    public struct DescribeDBSecurityGroupsRequest: TCRequestModel {
+    public struct DescribeDBSecurityGroupsRequest: TCRequest {
         /// 数据库引擎名称：keewidb。
         public let product: String
 
@@ -39,7 +39,7 @@ extension Keewidb {
     }
 
     /// DescribeDBSecurityGroups返回参数结构体
-    public struct DescribeDBSecurityGroupsResponse: TCResponseModel {
+    public struct DescribeDBSecurityGroupsResponse: TCResponse {
         /// 安全组规则。
         public let groups: [SecurityGroup]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdcpg {
     /// CreateClusterInstances请求参数结构体
-    public struct CreateClusterInstancesRequest: TCRequestModel {
+    public struct CreateClusterInstancesRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -54,7 +54,7 @@ extension Tdcpg {
     }
 
     /// CreateClusterInstances返回参数结构体
-    public struct CreateClusterInstancesResponse: TCResponseModel {
+    public struct CreateClusterInstancesResponse: TCResponse {
         /// 订单号
         public let dealNameSet: [String]
 

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Gse {
     /// DescribeInstanceTypes请求参数结构体
-    public struct DescribeInstanceTypesRequest: TCRequestModel {
+    public struct DescribeInstanceTypesRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeInstanceTypes返回参数结构体
-    public struct DescribeInstanceTypesResponse: TCResponseModel {
+    public struct DescribeInstanceTypesResponse: TCResponse {
         /// 服务器实例类型列表
         public let instanceTypeList: [InstanceTypeInfo]
 

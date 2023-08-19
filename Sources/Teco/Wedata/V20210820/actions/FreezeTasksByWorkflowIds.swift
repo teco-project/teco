@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// FreezeTasksByWorkflowIds请求参数结构体
-    public struct FreezeTasksByWorkflowIdsRequest: TCRequestModel {
+    public struct FreezeTasksByWorkflowIdsRequest: TCRequest {
         /// 工作流id列表
         public let workflowIds: [String]
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// FreezeTasksByWorkflowIds返回参数结构体
-    public struct FreezeTasksByWorkflowIdsResponse: TCResponseModel {
+    public struct FreezeTasksByWorkflowIdsResponse: TCResponse {
         /// 操作返回结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: OperationOpsDto?

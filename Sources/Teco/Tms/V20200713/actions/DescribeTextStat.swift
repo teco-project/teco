@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tms {
     /// DescribeTextStat请求参数结构体
-    public struct DescribeTextStatRequest: TCRequestModel {
+    public struct DescribeTextStatRequest: TCRequest {
         /// 审核类型 1: 机器审核; 2: 人工审核
         public let auditType: Int64
 
@@ -39,7 +39,7 @@ extension Tms {
     }
 
     /// DescribeTextStat返回参数结构体
-    public struct DescribeTextStatResponse: TCResponseModel {
+    public struct DescribeTextStatResponse: TCResponse {
         /// 识别结果统计
         public let overview: Overview
 

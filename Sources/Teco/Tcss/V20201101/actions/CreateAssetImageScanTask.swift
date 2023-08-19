@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// CreateAssetImageScanTask请求参数结构体
-    public struct CreateAssetImageScanTaskRequest: TCRequestModel {
+    public struct CreateAssetImageScanTaskRequest: TCRequest {
         /// 是否扫描全部镜像；全部镜像，镜像列表和根据过滤条件筛选三选一。
         public let all: Bool?
 
@@ -64,7 +64,7 @@ extension Tcss {
     }
 
     /// CreateAssetImageScanTask返回参数结构体
-    public struct CreateAssetImageScanTaskResponse: TCResponseModel {
+    public struct CreateAssetImageScanTaskResponse: TCResponse {
         /// 任务id
         public let taskID: String
 

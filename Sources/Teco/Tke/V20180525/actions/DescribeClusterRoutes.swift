@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeClusterRoutes请求参数结构体
-    public struct DescribeClusterRoutesRequest: TCRequestModel {
+    public struct DescribeClusterRoutesRequest: TCRequest {
         /// 路由表名称。
         public let routeTableName: String
 
@@ -39,7 +39,7 @@ extension Tke {
     }
 
     /// DescribeClusterRoutes返回参数结构体
-    public struct DescribeClusterRoutesResponse: TCResponseModel {
+    public struct DescribeClusterRoutesResponse: TCResponse {
         /// 符合条件的实例数量。
         public let totalCount: Int64
 

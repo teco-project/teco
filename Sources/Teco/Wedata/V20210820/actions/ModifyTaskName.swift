@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// ModifyTaskName请求参数结构体
-    public struct ModifyTaskNameRequest: TCRequestModel {
+    public struct ModifyTaskNameRequest: TCRequest {
         /// 名称
         public let taskName: String
 
@@ -49,7 +49,7 @@ extension Wedata {
     }
 
     /// ModifyTaskName返回参数结构体
-    public struct ModifyTaskNameResponse: TCResponseModel {
+    public struct ModifyTaskNameResponse: TCResponse {
         /// 结果
         public let data: Bool
 

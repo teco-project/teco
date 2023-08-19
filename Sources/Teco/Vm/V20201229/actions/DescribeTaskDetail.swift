@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vm {
     /// DescribeTaskDetail请求参数结构体
-    public struct DescribeTaskDetailRequest: TCRequestModel {
+    public struct DescribeTaskDetailRequest: TCRequest {
         /// 该字段表示创建视频审核任务后返回的任务ID（在Results参数中），用于标识需要查询任务详情的审核任务。
         ///
         /// 备注：查询接口单次最大查询量为**20条每次**。
@@ -41,7 +41,7 @@ extension Vm {
     }
 
     /// DescribeTaskDetail返回参数结构体
-    public struct DescribeTaskDetailResponse: TCResponseModel {
+    public struct DescribeTaskDetailResponse: TCResponse {
         /// 该字段用于返回创建视频审核任务后返回的任务ID（在Results参数中），用于标识需要查询任务详情的审核任务。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?

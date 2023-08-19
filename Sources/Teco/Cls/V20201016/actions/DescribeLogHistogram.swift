@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// DescribeLogHistogram请求参数结构体
-    public struct DescribeLogHistogramRequest: TCRequestModel {
+    public struct DescribeLogHistogramRequest: TCRequest {
         /// 要查询的日志的起始时间，Unix时间戳，单位ms
         public let from: Int64
 
@@ -61,7 +61,7 @@ extension Cls {
     }
 
     /// DescribeLogHistogram返回参数结构体
-    public struct DescribeLogHistogramResponse: TCResponseModel {
+    public struct DescribeLogHistogramResponse: TCResponse {
         /// 统计周期： 单位ms
         public let interval: Int64
 

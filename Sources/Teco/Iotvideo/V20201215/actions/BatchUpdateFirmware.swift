@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// BatchUpdateFirmware请求参数结构体
-    public struct BatchUpdateFirmwareRequest: TCRequestModel {
+    public struct BatchUpdateFirmwareRequest: TCRequest {
         /// 产品ID
         public let productID: String
 
@@ -69,7 +69,7 @@ extension Iotvideo {
     }
 
     /// BatchUpdateFirmware返回参数结构体
-    public struct BatchUpdateFirmwareResponse: TCResponseModel {
+    public struct BatchUpdateFirmwareResponse: TCResponse {
         /// 任务ID
         public let taskId: UInt64
 

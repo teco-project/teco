@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryOpenBankRefundOrder请求参数结构体
-    public struct QueryOpenBankRefundOrderRequest: TCRequestModel {
+    public struct QueryOpenBankRefundOrderRequest: TCRequest {
         /// 渠道商户号。
         public let channelMerchantId: String
 
@@ -52,7 +52,7 @@ extension Cpdp {
     }
 
     /// QueryOpenBankRefundOrder返回参数结构体
-    public struct QueryOpenBankRefundOrderResponse: TCResponseModel {
+    public struct QueryOpenBankRefundOrderResponse: TCResponse {
         /// 错误码
         public let errCode: String
 

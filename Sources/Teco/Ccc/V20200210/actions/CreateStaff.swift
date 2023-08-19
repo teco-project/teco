@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ccc {
     /// CreateStaff请求参数结构体
-    public struct CreateStaffRequest: TCRequestModel {
+    public struct CreateStaffRequest: TCRequest {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         public let sdkAppId: Int64
 
@@ -44,7 +44,7 @@ extension Ccc {
     }
 
     /// CreateStaff返回参数结构体
-    public struct CreateStaffResponse: TCResponseModel {
+    public struct CreateStaffResponse: TCResponse {
         /// 错误坐席列表及错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorStaffList: [ErrStaffItem]?

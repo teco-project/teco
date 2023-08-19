@@ -20,7 +20,7 @@ import TecoCore
 
 extension Antiddos {
     /// ModifyCCPrecisionPolicy请求参数结构体
-    public struct ModifyCCPrecisionPolicyRequest: TCRequestModel {
+    public struct ModifyCCPrecisionPolicyRequest: TCRequest {
         /// 实例Id
         public let instanceId: String
 
@@ -49,7 +49,7 @@ extension Antiddos {
     }
 
     /// ModifyCCPrecisionPolicy返回参数结构体
-    public struct ModifyCCPrecisionPolicyResponse: TCResponseModel {
+    public struct ModifyCCPrecisionPolicyResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

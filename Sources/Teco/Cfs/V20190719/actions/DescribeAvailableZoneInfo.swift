@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cfs {
     /// DescribeAvailableZoneInfo请求参数结构体
-    public struct DescribeAvailableZoneInfoRequest: TCRequestModel {
+    public struct DescribeAvailableZoneInfoRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeAvailableZoneInfo返回参数结构体
-    public struct DescribeAvailableZoneInfoResponse: TCResponseModel {
+    public struct DescribeAvailableZoneInfoResponse: TCResponse {
         /// 各可用区的资源售卖情况以及支持的存储类型、存储协议等信息
         public let regionZones: [AvailableRegion]
 

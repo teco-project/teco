@@ -22,13 +22,13 @@ import TecoDateHelpers
 
 extension Dayu {
     /// DescribeUnBlockStatis请求参数结构体
-    public struct DescribeUnBlockStatisRequest: TCRequestModel {
+    public struct DescribeUnBlockStatisRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeUnBlockStatis返回参数结构体
-    public struct DescribeUnBlockStatisResponse: TCResponseModel {
+    public struct DescribeUnBlockStatisResponse: TCResponse {
         /// 解封总配额数
         public let total: UInt64
 

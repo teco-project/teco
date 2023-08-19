@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// DeleteDBInstanceNetworkAccess请求参数结构体
-    public struct DeleteDBInstanceNetworkAccessRequest: TCRequestModel {
+    public struct DeleteDBInstanceNetworkAccessRequest: TCRequest {
         /// 实例ID，形如：postgres-6bwgamo3。
         public let dbInstanceId: String
 
@@ -49,7 +49,7 @@ extension Postgres {
     }
 
     /// DeleteDBInstanceNetworkAccess返回参数结构体
-    public struct DeleteDBInstanceNetworkAccessResponse: TCResponseModel {
+    public struct DeleteDBInstanceNetworkAccessResponse: TCResponse {
         /// 流程ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowId: Int64?

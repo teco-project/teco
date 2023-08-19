@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// FetchMessageByOffset请求参数结构体
-    public struct FetchMessageByOffsetRequest: TCRequestModel {
+    public struct FetchMessageByOffsetRequest: TCRequest {
         /// 实例Id
         public let instanceId: String
 
@@ -49,7 +49,7 @@ extension Ckafka {
     }
 
     /// FetchMessageByOffset返回参数结构体
-    public struct FetchMessageByOffsetResponse: TCResponseModel {
+    public struct FetchMessageByOffsetResponse: TCResponse {
         /// 返回结果
         public let result: ConsumerRecord
 

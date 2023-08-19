@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dbbrain {
     /// DescribeDBSpaceStatus请求参数结构体
-    public struct DescribeDBSpaceStatusRequest: TCRequestModel {
+    public struct DescribeDBSpaceStatusRequest: TCRequest {
         /// 实例 ID 。
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Dbbrain {
     }
 
     /// DescribeDBSpaceStatus返回参数结构体
-    public struct DescribeDBSpaceStatusResponse: TCResponseModel {
+    public struct DescribeDBSpaceStatusResponse: TCResponse {
         /// 磁盘增长量(MB)。
         public let growth: Int64
 

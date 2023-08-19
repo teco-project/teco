@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mariadb {
     /// ModifyDBInstanceName请求参数结构体
-    public struct ModifyDBInstanceNameRequest: TCRequestModel {
+    public struct ModifyDBInstanceNameRequest: TCRequest {
         /// 待修改的实例 ID。形如：tdsql-ow728lmc，可以通过 DescribeDBInstances 查询实例详情获得。
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Mariadb {
     }
 
     /// ModifyDBInstanceName返回参数结构体
-    public struct ModifyDBInstanceNameResponse: TCResponseModel {
+    public struct ModifyDBInstanceNameResponse: TCResponse {
         /// 实例ID
         public let instanceId: String
 

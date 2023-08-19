@@ -20,7 +20,7 @@ import TecoCore
 
 extension Kms {
     /// DeleteWhiteBoxKey请求参数结构体
-    public struct DeleteWhiteBoxKeyRequest: TCRequestModel {
+    public struct DeleteWhiteBoxKeyRequest: TCRequest {
         /// 白盒密钥的全局唯一标识符
         public let keyId: String
 
@@ -34,7 +34,7 @@ extension Kms {
     }
 
     /// DeleteWhiteBoxKey返回参数结构体
-    public struct DeleteWhiteBoxKeyResponse: TCResponseModel {
+    public struct DeleteWhiteBoxKeyResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

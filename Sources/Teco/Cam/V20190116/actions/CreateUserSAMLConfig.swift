@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// CreateUserSAMLConfig请求参数结构体
-    public struct CreateUserSAMLConfigRequest: TCRequestModel {
+    public struct CreateUserSAMLConfigRequest: TCRequest {
         /// SAML元数据文档，需要base64 encode
         public let samlMetadataDocument: String
 
@@ -39,7 +39,7 @@ extension Cam {
     }
 
     /// CreateUserSAMLConfig返回参数结构体
-    public struct CreateUserSAMLConfigResponse: TCResponseModel {
+    public struct CreateUserSAMLConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

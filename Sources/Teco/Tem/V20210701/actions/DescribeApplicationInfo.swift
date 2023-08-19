@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tem {
     /// DescribeApplicationInfo请求参数结构体
-    public struct DescribeApplicationInfoRequest: TCRequestModel {
+    public struct DescribeApplicationInfoRequest: TCRequest {
         /// 服务版本ID
         public let applicationId: String
 
@@ -44,7 +44,7 @@ extension Tem {
     }
 
     /// DescribeApplicationInfo返回参数结构体
-    public struct DescribeApplicationInfoResponse: TCResponseModel {
+    public struct DescribeApplicationInfoResponse: TCResponse {
         /// 返回结果
         public let result: TemServiceVersionInfo
 

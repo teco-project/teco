@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apcas {
     /// PredictRating请求参数结构体
-    public struct PredictRatingRequest: TCRequestModel {
+    public struct PredictRatingRequest: TCRequest {
         /// ID标志的类型，0:IMEI 7:IDFA 8:MD5(imei) 100: 手机号明文 101: 手机号md5加密
         public let type: Int64
 
@@ -39,7 +39,7 @@ extension Apcas {
     }
 
     /// PredictRating返回参数结构体
-    public struct PredictRatingResponse: TCResponseModel {
+    public struct PredictRatingResponse: TCResponse {
         /// 意向评级
         public let ratingData: RatingData
 

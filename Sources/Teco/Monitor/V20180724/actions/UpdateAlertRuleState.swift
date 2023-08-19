@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// UpdateAlertRuleState请求参数结构体
-    public struct UpdateAlertRuleStateRequest: TCRequestModel {
+    public struct UpdateAlertRuleStateRequest: TCRequest {
         /// 规则 ID 列表
         public let ruleIds: [String]
 
@@ -48,7 +48,7 @@ extension Monitor {
     }
 
     /// UpdateAlertRuleState返回参数结构体
-    public struct UpdateAlertRuleStateResponse: TCResponseModel {
+    public struct UpdateAlertRuleStateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

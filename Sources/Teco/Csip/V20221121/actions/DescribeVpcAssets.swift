@@ -20,7 +20,7 @@ import TecoCore
 
 extension Csip {
     /// DescribeVpcAssets请求参数结构体
-    public struct DescribeVpcAssetsRequest: TCRequestModel {
+    public struct DescribeVpcAssetsRequest: TCRequest {
         /// 过滤参数
         public let filter: Filter?
 
@@ -34,7 +34,7 @@ extension Csip {
     }
 
     /// DescribeVpcAssets返回参数结构体
-    public struct DescribeVpcAssetsResponse: TCResponseModel {
+    public struct DescribeVpcAssetsResponse: TCResponse {
         /// 列表
         public let data: [Vpc]
 

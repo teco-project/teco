@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmvpc {
     /// ModifyVpnConnectionAttribute请求参数结构体
-    public struct ModifyVpnConnectionAttributeRequest: TCRequestModel {
+    public struct ModifyVpnConnectionAttributeRequest: TCRequest {
         /// VPN通道实例ID。形如：bmvpnx-f49l6u0z。
         public let vpnConnectionId: String
 
@@ -64,7 +64,7 @@ extension Bmvpc {
     }
 
     /// ModifyVpnConnectionAttribute返回参数结构体
-    public struct ModifyVpnConnectionAttributeResponse: TCResponseModel {
+    public struct ModifyVpnConnectionAttributeResponse: TCResponse {
         /// 任务ID
         public let taskId: UInt64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiia {
     /// DetectMisbehavior请求参数结构体
-    public struct DetectMisbehaviorRequest: TCRequestModel {
+    public struct DetectMisbehaviorRequest: TCRequest {
         /// 图片URL地址。
         /// 图片限制：
         /// • 图片格式：PNG、JPG、JPEG。
@@ -47,7 +47,7 @@ extension Tiia {
     }
 
     /// DetectMisbehavior返回参数结构体
-    public struct DetectMisbehaviorResponse: TCResponseModel {
+    public struct DetectMisbehaviorResponse: TCResponse {
         /// 对于图片中包含不良行为的置信度，取值[0,1]，一般超过0.5则表明可能包含不良行为内容；
         public let confidence: Float
 

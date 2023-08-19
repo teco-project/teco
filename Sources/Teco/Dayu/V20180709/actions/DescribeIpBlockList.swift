@@ -20,13 +20,13 @@ import TecoCore
 
 extension Dayu {
     /// DescribeIpBlockList请求参数结构体
-    public struct DescribeIpBlockListRequest: TCRequestModel {
+    public struct DescribeIpBlockListRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeIpBlockList返回参数结构体
-    public struct DescribeIpBlockListResponse: TCResponseModel {
+    public struct DescribeIpBlockListResponse: TCResponse {
         /// IP封堵列表
         public let list: [IpBlockData]
 

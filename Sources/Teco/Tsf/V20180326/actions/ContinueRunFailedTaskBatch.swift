@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// ContinueRunFailedTaskBatch请求参数结构体
-    public struct ContinueRunFailedTaskBatchRequest: TCRequestModel {
+    public struct ContinueRunFailedTaskBatchRequest: TCRequest {
         /// 批次ID。
         public let batchId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// ContinueRunFailedTaskBatch返回参数结构体
-    public struct ContinueRunFailedTaskBatchResponse: TCResponseModel {
+    public struct ContinueRunFailedTaskBatchResponse: TCResponse {
         /// 成功或失败
         public let result: Bool
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// DescribeIotDataType请求参数结构体
-    public struct DescribeIotDataTypeRequest: TCRequestModel {
+    public struct DescribeIotDataTypeRequest: TCRequest {
         /// 自定义数据类型的标识符，为空则返回全量自定义类型的列表
         public let typeId: String?
 
@@ -34,7 +34,7 @@ extension Iotvideo {
     }
 
     /// DescribeIotDataType返回参数结构体
-    public struct DescribeIotDataTypeResponse: TCResponseModel {
+    public struct DescribeIotDataTypeResponse: TCResponse {
         /// 自定义数据类型，json格式的字符串
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [String]?

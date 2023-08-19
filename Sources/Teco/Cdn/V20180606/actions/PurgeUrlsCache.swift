@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdn {
     /// PurgeUrlsCache请求参数结构体
-    public struct PurgeUrlsCacheRequest: TCRequestModel {
+    public struct PurgeUrlsCacheRequest: TCRequest {
         /// URL 列表，需要包含协议头部 http:// 或 https://
         public let urls: [String]
 
@@ -48,7 +48,7 @@ extension Cdn {
     }
 
     /// PurgeUrlsCache返回参数结构体
-    public struct PurgeUrlsCacheResponse: TCResponseModel {
+    public struct PurgeUrlsCacheResponse: TCResponse {
         /// 刷新任务 ID，同一批次提交的 URL 共用一个任务 ID
         public let taskId: String
 

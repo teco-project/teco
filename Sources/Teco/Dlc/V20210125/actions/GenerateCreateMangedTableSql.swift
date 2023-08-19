@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// GenerateCreateMangedTableSql请求参数结构体
-    public struct GenerateCreateMangedTableSqlRequest: TCRequestModel {
+    public struct GenerateCreateMangedTableSqlRequest: TCRequest {
         /// 表基本信息
         public let tableBaseInfo: TableBaseInfo
 
@@ -54,7 +54,7 @@ extension Dlc {
     }
 
     /// GenerateCreateMangedTableSql返回参数结构体
-    public struct GenerateCreateMangedTableSqlResponse: TCResponseModel {
+    public struct GenerateCreateMangedTableSqlResponse: TCResponse {
         /// 创建托管存储内表sql语句描述
         public let execution: Execution
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ic {
     /// DescribeCard请求参数结构体
-    public struct DescribeCardRequest: TCRequestModel {
+    public struct DescribeCardRequest: TCRequest {
         /// 应用ID
         public let sdkappid: Int64
 
@@ -39,7 +39,7 @@ extension Ic {
     }
 
     /// DescribeCard返回参数结构体
-    public struct DescribeCardResponse: TCResponseModel {
+    public struct DescribeCardResponse: TCResponse {
         /// 卡片详细信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: CardInfo?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tem {
     /// GenerateApplicationPackageDownloadUrl请求参数结构体
-    public struct GenerateApplicationPackageDownloadUrlRequest: TCRequestModel {
+    public struct GenerateApplicationPackageDownloadUrlRequest: TCRequest {
         /// 应用ID
         public let applicationId: String
 
@@ -49,7 +49,7 @@ extension Tem {
     }
 
     /// GenerateApplicationPackageDownloadUrl返回参数结构体
-    public struct GenerateApplicationPackageDownloadUrlResponse: TCResponseModel {
+    public struct GenerateApplicationPackageDownloadUrlResponse: TCResponse {
         /// 包下载临时链接
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: String?

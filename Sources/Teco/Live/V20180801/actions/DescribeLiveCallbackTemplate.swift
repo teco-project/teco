@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeLiveCallbackTemplate请求参数结构体
-    public struct DescribeLiveCallbackTemplateRequest: TCRequestModel {
+    public struct DescribeLiveCallbackTemplateRequest: TCRequest {
         /// 模板 ID。
         /// 1. 在创建回调模板接口 [CreateLiveCallbackTemplate](/document/product/267/32637) 调用的返回值中获取模板 ID。
         /// 2. 可以从接口 [DescribeLiveCallbackTemplates](/document/product/267/32632) 查询已经创建的过的模板列表。
@@ -36,7 +36,7 @@ extension Live {
     }
 
     /// DescribeLiveCallbackTemplate返回参数结构体
-    public struct DescribeLiveCallbackTemplateResponse: TCResponseModel {
+    public struct DescribeLiveCallbackTemplateResponse: TCResponse {
         /// 回调模板信息。
         public let template: CallBackTemplateInfo
 

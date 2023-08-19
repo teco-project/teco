@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eb {
     /// PutEvents请求参数结构体
-    public struct PutEventsRequest: TCRequestModel {
+    public struct PutEventsRequest: TCRequest {
         /// 事件列表
         public let eventList: [Event]
 
@@ -39,7 +39,7 @@ extension Eb {
     }
 
     /// PutEvents返回参数结构体
-    public struct PutEventsResponse: TCResponseModel {
+    public struct PutEventsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

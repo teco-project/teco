@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DescribeDBInstanceRebootTime请求参数结构体
-    public struct DescribeDBInstanceRebootTimeRequest: TCRequestModel {
+    public struct DescribeDBInstanceRebootTimeRequest: TCRequest {
         /// 实例的 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceIds: [String]
 
@@ -34,7 +34,7 @@ extension Cdb {
     }
 
     /// DescribeDBInstanceRebootTime返回参数结构体
-    public struct DescribeDBInstanceRebootTimeResponse: TCResponseModel {
+    public struct DescribeDBInstanceRebootTimeResponse: TCResponse {
         /// 符合查询条件的实例总数。
         public let totalCount: Int64
 

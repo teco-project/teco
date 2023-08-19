@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// CreateUserOIDCConfig请求参数结构体
-    public struct CreateUserOIDCConfigRequest: TCRequestModel {
+    public struct CreateUserOIDCConfigRequest: TCRequest {
         /// 身份提供商URL。OpenID Connect身份提供商标识。
         /// 对应企业IdP提供的Openid-configuration中"issuer"字段的值。
         public let identityUrl: String
@@ -75,7 +75,7 @@ extension Cam {
     }
 
     /// CreateUserOIDCConfig返回参数结构体
-    public struct CreateUserOIDCConfigResponse: TCResponseModel {
+    public struct CreateUserOIDCConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

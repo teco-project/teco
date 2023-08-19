@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ivld {
     /// CreateTask请求参数结构体
-    public struct CreateTaskRequest: TCRequestModel {
+    public struct CreateTaskRequest: TCRequest {
         /// 媒资文件ID，最长32B
         public let mediaId: String
 
@@ -59,7 +59,7 @@ extension Ivld {
     }
 
     /// CreateTask返回参数结构体
-    public struct CreateTaskResponse: TCResponseModel {
+    public struct CreateTaskResponse: TCResponse {
         /// 智能标签视频分析任务ID
         public let taskId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// CreateLiveTranscodeTemplate请求参数结构体
-    public struct CreateLiveTranscodeTemplateRequest: TCRequestModel {
+    public struct CreateLiveTranscodeTemplateRequest: TCRequest {
         /// 模板名称，例： 900p 仅支持字母和数字的组合。
         /// 长度限制：
         ///   标准转码：1-10个字符
@@ -169,7 +169,7 @@ extension Live {
     }
 
     /// CreateLiveTranscodeTemplate返回参数结构体
-    public struct CreateLiveTranscodeTemplateResponse: TCResponseModel {
+    public struct CreateLiveTranscodeTemplateResponse: TCResponse {
         /// 模板Id。
         public let templateId: Int64
 

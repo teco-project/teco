@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dcdb {
     /// CreateDCDBInstance请求参数结构体
-    public struct CreateDCDBInstanceRequest: TCRequestModel {
+    public struct CreateDCDBInstanceRequest: TCRequest {
         /// 分片节点可用区分布，最多可填两个可用区。当分片规格为一主两从时，其中两个节点在第一个可用区。
         /// 注意当前可售卖的可用区需要通过DescribeDCDBSaleInfo接口拉取。
         public let zones: [String]
@@ -143,7 +143,7 @@ extension Dcdb {
     }
 
     /// CreateDCDBInstance返回参数结构体
-    public struct CreateDCDBInstanceResponse: TCResponseModel {
+    public struct CreateDCDBInstanceResponse: TCResponse {
         /// 长订单号。可以据此调用 DescribeOrders
         ///  查询订单详细信息，或在支付失败时调用用户账号相关接口进行支付。
         public let dealName: String

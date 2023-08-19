@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// CreateH5FaceIdUrl请求参数结构体
-    public struct CreateH5FaceIdUrlRequest: TCRequestModel {
+    public struct CreateH5FaceIdUrlRequest: TCRequest {
         /// 调用方信息; 必选
         public let caller: Caller
 
@@ -74,7 +74,7 @@ extension Essbasic {
     }
 
     /// CreateH5FaceIdUrl返回参数结构体
-    public struct CreateH5FaceIdUrlResponse: TCResponseModel {
+    public struct CreateH5FaceIdUrlResponse: TCResponse {
         /// 跳转到人脸核身页面的链接
         public let url: String
 

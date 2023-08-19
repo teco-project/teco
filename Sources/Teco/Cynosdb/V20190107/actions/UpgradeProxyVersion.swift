@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// UpgradeProxyVersion请求参数结构体
-    public struct UpgradeProxyVersionRequest: TCRequestModel {
+    public struct UpgradeProxyVersionRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -54,7 +54,7 @@ extension Cynosdb {
     }
 
     /// UpgradeProxyVersion返回参数结构体
-    public struct UpgradeProxyVersionResponse: TCResponseModel {
+    public struct UpgradeProxyVersionResponse: TCResponse {
         /// 异步流程ID
         public let flowId: Int64
 

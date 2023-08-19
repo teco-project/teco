@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeVulLevelImageSummary请求参数结构体
-    public struct DescribeVulLevelImageSummaryRequest: TCRequestModel {
+    public struct DescribeVulLevelImageSummaryRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeVulLevelImageSummary返回参数结构体
-    public struct DescribeVulLevelImageSummaryResponse: TCResponseModel {
+    public struct DescribeVulLevelImageSummaryResponse: TCResponse {
         /// 高危漏洞最新本地镜像占比
         public let highLevelVulLocalImagePercent: Float
 

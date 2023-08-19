@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// CreatePrometheusGlobalNotification请求参数结构体
-    public struct CreatePrometheusGlobalNotificationRequest: TCRequestModel {
+    public struct CreatePrometheusGlobalNotificationRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Tke {
     }
 
     /// CreatePrometheusGlobalNotification返回参数结构体
-    public struct CreatePrometheusGlobalNotificationResponse: TCResponseModel {
+    public struct CreatePrometheusGlobalNotificationResponse: TCResponse {
         /// 全局告警通知渠道ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: String?

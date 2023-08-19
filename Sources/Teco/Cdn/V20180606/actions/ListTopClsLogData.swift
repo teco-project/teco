@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdn {
     /// ListTopClsLogData请求参数结构体
-    public struct ListTopClsLogDataRequest: TCRequestModel {
+    public struct ListTopClsLogDataRequest: TCRequest {
         /// 需要查询的日志集ID
         public let logsetId: String
 
@@ -77,7 +77,7 @@ extension Cdn {
     }
 
     /// ListTopClsLogData返回参数结构体
-    public struct ListTopClsLogDataResponse: TCResponseModel {
+    public struct ListTopClsLogDataResponse: TCResponse {
         /// 数据列表
         public let data: [ClsLogIpData]
 

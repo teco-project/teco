@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// DescribePeakNetworkOverview请求参数结构体
-    public struct DescribePeakNetworkOverviewRequest: TCRequestModel {
+    public struct DescribePeakNetworkOverviewRequest: TCRequest {
         /// 开始时间（xxxx-xx-xx）如2019-08-14，默认为一周之前的日期，不应与当前日期间隔超过30天。
         public let startTime: String?
 
@@ -55,7 +55,7 @@ extension Ecm {
     }
 
     /// DescribePeakNetworkOverview返回参数结构体
-    public struct DescribePeakNetworkOverviewResponse: TCResponseModel {
+    public struct DescribePeakNetworkOverviewResponse: TCResponse {
         /// 网络峰值数组。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let peakNetworkRegionSet: [PeakNetworkRegionInfo]?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// PutScalingPolicy请求参数结构体
-    public struct PutScalingPolicyRequest: TCRequestModel {
+    public struct PutScalingPolicyRequest: TCRequest {
         /// 扩缩容配置服务器舰队ID
         public let fleetId: String
 
@@ -82,7 +82,7 @@ extension Gse {
     }
 
     /// PutScalingPolicy返回参数结构体
-    public struct PutScalingPolicyResponse: TCResponseModel {
+    public struct PutScalingPolicyResponse: TCResponse {
         /// 规则名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?

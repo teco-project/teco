@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// ModifyCluster请求参数结构体
-    public struct ModifyClusterRequest: TCRequestModel {
+    public struct ModifyClusterRequest: TCRequest {
         /// Pulsar 集群的ID，需要更新的集群Id。
         public let clusterId: String
 
@@ -49,7 +49,7 @@ extension Tdmq {
     }
 
     /// ModifyCluster返回参数结构体
-    public struct ModifyClusterResponse: TCResponseModel {
+    public struct ModifyClusterResponse: TCResponse {
         /// Pulsar 集群的ID
         public let clusterId: String
 

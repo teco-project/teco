@@ -20,7 +20,7 @@ import TecoCore
 
 extension As {
     /// ModifyLaunchConfigurationAttributes请求参数结构体
-    public struct ModifyLaunchConfigurationAttributesRequest: TCRequestModel {
+    public struct ModifyLaunchConfigurationAttributesRequest: TCRequest {
         /// 启动配置ID
         public let launchConfigurationId: String
 
@@ -174,7 +174,7 @@ extension As {
     }
 
     /// ModifyLaunchConfigurationAttributes返回参数结构体
-    public struct ModifyLaunchConfigurationAttributesResponse: TCResponseModel {
+    public struct ModifyLaunchConfigurationAttributesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

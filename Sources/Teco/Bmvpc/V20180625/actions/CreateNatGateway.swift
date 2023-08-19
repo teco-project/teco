@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmvpc {
     /// CreateNatGateway请求参数结构体
-    public struct CreateNatGatewayRequest: TCRequestModel {
+    public struct CreateNatGatewayRequest: TCRequest {
         /// 转发模式，其中0表示IP方式，1表示网段方式；通过cidr方式可支持更多的IP接入到NAT网关
         public let forwardMode: String
 
@@ -74,7 +74,7 @@ extension Bmvpc {
     }
 
     /// CreateNatGateway返回参数结构体
-    public struct CreateNatGatewayResponse: TCResponseModel {
+    public struct CreateNatGatewayResponse: TCResponse {
         /// 任务ID
         public let taskId: UInt64
 

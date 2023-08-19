@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// CreateNatFwInstance请求参数结构体
-    public struct CreateNatFwInstanceRequest: TCRequestModel {
+    public struct CreateNatFwInstanceRequest: TCRequest {
         /// 防火墙实例名称
         public let name: String
 
@@ -74,7 +74,7 @@ extension Cfw {
     }
 
     /// CreateNatFwInstance返回参数结构体
-    public struct CreateNatFwInstanceResponse: TCResponseModel {
+    public struct CreateNatFwInstanceResponse: TCResponse {
         /// 防火墙实例id
         public let cfwInsId: String
 

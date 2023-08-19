@@ -20,7 +20,7 @@ import TecoCore
 
 extension Oceanus {
     /// CreateResourceConfig请求参数结构体
-    public struct CreateResourceConfigRequest: TCRequestModel {
+    public struct CreateResourceConfigRequest: TCRequest {
         /// 资源ID
         public let resourceId: String
 
@@ -54,7 +54,7 @@ extension Oceanus {
     }
 
     /// CreateResourceConfig返回参数结构体
-    public struct CreateResourceConfigResponse: TCResponseModel {
+    public struct CreateResourceConfigResponse: TCResponse {
         /// 资源版本ID
         public let version: Int64
 

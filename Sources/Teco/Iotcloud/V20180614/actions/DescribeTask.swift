@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotcloud {
     /// DescribeTask请求参数结构体
-    public struct DescribeTaskRequest: TCRequestModel {
+    public struct DescribeTaskRequest: TCRequest {
         /// 任务ID
         public let id: String
 
@@ -34,7 +34,7 @@ extension Iotcloud {
     }
 
     /// DescribeTask返回参数结构体
-    public struct DescribeTaskResponse: TCResponseModel {
+    public struct DescribeTaskResponse: TCResponse {
         /// 任务类型，目前取值为 “UpdateShadow” 或者 “PublishMessage”
         public let type: String
 

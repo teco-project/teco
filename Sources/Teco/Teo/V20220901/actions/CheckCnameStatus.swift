@@ -20,7 +20,7 @@ import TecoCore
 
 extension Teo {
     /// CheckCnameStatus请求参数结构体
-    public struct CheckCnameStatusRequest: TCRequestModel {
+    public struct CheckCnameStatusRequest: TCRequest {
         /// 站点 ID。
         public let zoneId: String
 
@@ -39,7 +39,7 @@ extension Teo {
     }
 
     /// CheckCnameStatus返回参数结构体
-    public struct CheckCnameStatusResponse: TCResponseModel {
+    public struct CheckCnameStatusResponse: TCResponse {
         /// 加速域名 CNAME 状态信息列表。
         public let cnameStatus: [CnameStatus]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tse {
     /// DescribeCloudNativeAPIGatewayServiceRateLimit请求参数结构体
-    public struct DescribeCloudNativeAPIGatewayServiceRateLimitRequest: TCRequestModel {
+    public struct DescribeCloudNativeAPIGatewayServiceRateLimitRequest: TCRequest {
         /// 网关Id
         public let gatewayId: String
 
@@ -39,7 +39,7 @@ extension Tse {
     }
 
     /// DescribeCloudNativeAPIGatewayServiceRateLimit返回参数结构体
-    public struct DescribeCloudNativeAPIGatewayServiceRateLimitResponse: TCResponseModel {
+    public struct DescribeCloudNativeAPIGatewayServiceRateLimitResponse: TCResponse {
         /// 获取云原生网关限流插件(服务)
         public let result: CloudNativeAPIGatewayRateLimitDetail
 

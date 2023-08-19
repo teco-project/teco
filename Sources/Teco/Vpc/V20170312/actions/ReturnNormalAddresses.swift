@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// ReturnNormalAddresses请求参数结构体
-    public struct ReturnNormalAddressesRequest: TCRequestModel {
+    public struct ReturnNormalAddressesRequest: TCRequest {
         /// EIP 的 IP 地址,示例：101.35.139.183
         public let addressIps: [String]?
 
@@ -34,7 +34,7 @@ extension Vpc {
     }
 
     /// ReturnNormalAddresses返回参数结构体
-    public struct ReturnNormalAddressesResponse: TCResponseModel {
+    public struct ReturnNormalAddressesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

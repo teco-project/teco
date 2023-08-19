@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmvpc {
     /// DeleteVirtualIp请求参数结构体
-    public struct DeleteVirtualIpRequest: TCRequestModel {
+    public struct DeleteVirtualIpRequest: TCRequest {
         /// 私有网络唯一ID。
         public let vpcId: String
 
@@ -39,7 +39,7 @@ extension Bmvpc {
     }
 
     /// DeleteVirtualIp返回参数结构体
-    public struct DeleteVirtualIpResponse: TCResponseModel {
+    public struct DeleteVirtualIpResponse: TCResponse {
         /// 异步任务ID。
         public let taskId: UInt64
 

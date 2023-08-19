@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// ProcessImage请求参数结构体
-    public struct ProcessImageRequest: TCRequestModel {
+    public struct ProcessImageRequest: TCRequest {
         /// 媒体文件 ID，即该文件在云点播上的全局唯一标识符。本接口要求媒体文件必须是图片格式。
         public let fileId: String
 
@@ -49,7 +49,7 @@ extension Vod {
     }
 
     /// ProcessImage返回参数结构体
-    public struct ProcessImageResponse: TCResponseModel {
+    public struct ProcessImageResponse: TCResponse {
         /// 图片内容智能识别任务结果。
         public let contentReviewResultSet: [ContentReviewResult]
 

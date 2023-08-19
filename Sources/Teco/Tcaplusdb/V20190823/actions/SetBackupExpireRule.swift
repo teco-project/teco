@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcaplusdb {
     /// SetBackupExpireRule请求参数结构体
-    public struct SetBackupExpireRuleRequest: TCRequestModel {
+    public struct SetBackupExpireRuleRequest: TCRequest {
         /// 表所属集群实例ID
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Tcaplusdb {
     }
 
     /// SetBackupExpireRule返回参数结构体
-    public struct SetBackupExpireRuleResponse: TCResponseModel {
+    public struct SetBackupExpireRuleResponse: TCResponse {
         /// TaskId由 AppInstanceId-taskId 组成，以区分不同集群的任务
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?

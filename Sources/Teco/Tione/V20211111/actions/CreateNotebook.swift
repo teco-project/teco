@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// CreateNotebook请求参数结构体
-    public struct CreateNotebookRequest: TCRequestModel {
+    public struct CreateNotebookRequest: TCRequest {
         /// 名称。不超过60个字符，仅支持中英文、数字、下划线"_"、短横"-"，只能以中英文、数字开头
         public let name: String
 
@@ -145,7 +145,7 @@ extension Tione {
     }
 
     /// CreateNotebook返回参数结构体
-    public struct CreateNotebookResponse: TCResponseModel {
+    public struct CreateNotebookResponse: TCResponse {
         /// notebook标志
         public let id: String
 

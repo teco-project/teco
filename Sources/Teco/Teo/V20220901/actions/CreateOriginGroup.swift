@@ -20,7 +20,7 @@ import TecoCore
 
 extension Teo {
     /// CreateOriginGroup请求参数结构体
-    public struct CreateOriginGroupRequest: TCRequestModel {
+    public struct CreateOriginGroupRequest: TCRequest {
         /// 站点ID。
         public let zoneId: String
 
@@ -66,7 +66,7 @@ extension Teo {
     }
 
     /// CreateOriginGroup返回参数结构体
-    public struct CreateOriginGroupResponse: TCResponseModel {
+    public struct CreateOriginGroupResponse: TCResponse {
         /// 源站组ID。
         public let originGroupId: String
 

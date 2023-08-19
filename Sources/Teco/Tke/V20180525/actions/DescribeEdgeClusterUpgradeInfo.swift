@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeEdgeClusterUpgradeInfo请求参数结构体
-    public struct DescribeEdgeClusterUpgradeInfoRequest: TCRequestModel {
+    public struct DescribeEdgeClusterUpgradeInfoRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Tke {
     }
 
     /// DescribeEdgeClusterUpgradeInfo返回参数结构体
-    public struct DescribeEdgeClusterUpgradeInfoResponse: TCResponseModel {
+    public struct DescribeEdgeClusterUpgradeInfoResponse: TCResponse {
         /// 可升级的集群组件和
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let componentVersion: String?

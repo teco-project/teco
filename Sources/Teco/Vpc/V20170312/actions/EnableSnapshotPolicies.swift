@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// EnableSnapshotPolicies请求参数结构体
-    public struct EnableSnapshotPoliciesRequest: TCRequestModel {
+    public struct EnableSnapshotPoliciesRequest: TCRequest {
         /// 快照策略Id。
         public let snapshotPolicyIds: [String]
 
@@ -34,7 +34,7 @@ extension Vpc {
     }
 
     /// EnableSnapshotPolicies返回参数结构体
-    public struct EnableSnapshotPoliciesResponse: TCResponseModel {
+    public struct EnableSnapshotPoliciesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

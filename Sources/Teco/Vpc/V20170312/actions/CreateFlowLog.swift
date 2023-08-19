@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CreateFlowLog请求参数结构体
-    public struct CreateFlowLogRequest: TCRequestModel {
+    public struct CreateFlowLogRequest: TCRequest {
         /// 流日志实例名字。
         public let flowLogName: String
 
@@ -84,7 +84,7 @@ extension Vpc {
     }
 
     /// CreateFlowLog返回参数结构体
-    public struct CreateFlowLogResponse: TCResponseModel {
+    public struct CreateFlowLogResponse: TCResponse {
         /// 创建的流日志信息。
         public let flowLog: [FlowLog]
 

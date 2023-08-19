@@ -20,7 +20,7 @@ import TecoCore
 
 extension Anicloud {
     /// CheckAppidExist请求参数结构体
-    public struct CheckAppidExistRequest: TCRequestModel {
+    public struct CheckAppidExistRequest: TCRequest {
         /// 业务的appid
         public let sdkAppid: String
 
@@ -39,7 +39,7 @@ extension Anicloud {
     }
 
     /// CheckAppidExist返回参数结构体
-    public struct CheckAppidExistResponse: TCResponseModel {
+    public struct CheckAppidExistResponse: TCResponse {
         /// appid是否存在
         public let exist: Bool
 

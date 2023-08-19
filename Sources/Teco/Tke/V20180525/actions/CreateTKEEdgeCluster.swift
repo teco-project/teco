@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// CreateTKEEdgeCluster请求参数结构体
-    public struct CreateTKEEdgeClusterRequest: TCRequestModel {
+    public struct CreateTKEEdgeClusterRequest: TCRequest {
         /// k8s版本号
         public let k8sVersion: String
 
@@ -104,7 +104,7 @@ extension Tke {
     }
 
     /// CreateTKEEdgeCluster返回参数结构体
-    public struct CreateTKEEdgeClusterResponse: TCResponseModel {
+    public struct CreateTKEEdgeClusterResponse: TCResponse {
         /// 边缘计算集群Id
         public let clusterId: String
 

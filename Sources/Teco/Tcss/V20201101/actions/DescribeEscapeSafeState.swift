@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeEscapeSafeState请求参数结构体
-    public struct DescribeEscapeSafeStateRequest: TCRequestModel {
+    public struct DescribeEscapeSafeStateRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeEscapeSafeState返回参数结构体
-    public struct DescribeEscapeSafeStateResponse: TCResponseModel {
+    public struct DescribeEscapeSafeStateResponse: TCResponse {
         /// Unsafe：存在风险，Safe：暂无风险,UnKnown:未知风险
         public let isSafe: String
 

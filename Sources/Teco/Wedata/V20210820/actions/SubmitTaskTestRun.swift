@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// SubmitTaskTestRun请求参数结构体
-    public struct SubmitTaskTestRunRequest: TCRequestModel {
+    public struct SubmitTaskTestRunRequest: TCRequest {
         public let taskIds: String
 
         public let projectId: String
@@ -65,7 +65,7 @@ extension Wedata {
     }
 
     /// SubmitTaskTestRun返回参数结构体
-    public struct SubmitTaskTestRunResponse: TCResponseModel {
+    public struct SubmitTaskTestRunResponse: TCResponse {
         public let jobId: Int64
 
         public let recordId: [Int64]

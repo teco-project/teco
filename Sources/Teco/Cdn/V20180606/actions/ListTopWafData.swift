@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdn {
     /// ListTopWafData请求参数结构体
-    public struct ListTopWafDataRequest: TCRequestModel {
+    public struct ListTopWafDataRequest: TCRequest {
         /// 查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间
         public let startTime: String
 
@@ -97,7 +97,7 @@ extension Cdn {
     }
 
     /// ListTopWafData返回参数结构体
-    public struct ListTopWafDataResponse: TCResponseModel {
+    public struct ListTopWafDataResponse: TCResponse {
         /// 攻击类型统计
         public let topTypeData: [ScdnTypeData]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// CreateSparkSessionBatchSQL请求参数结构体
-    public struct CreateSparkSessionBatchSQLRequest: TCRequestModel {
+    public struct CreateSparkSessionBatchSQLRequest: TCRequest {
         /// DLC Spark作业引擎名称
         public let dataEngineName: String
 
@@ -81,7 +81,7 @@ extension Dlc {
     }
 
     /// CreateSparkSessionBatchSQL返回参数结构体
-    public struct CreateSparkSessionBatchSQLResponse: TCResponseModel {
+    public struct CreateSparkSessionBatchSQLResponse: TCResponse {
         /// 批任务唯一标识
         public let batchId: String
 

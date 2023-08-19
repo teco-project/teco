@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// DeleteStreamLinkFlow请求参数结构体
-    public struct DeleteStreamLinkFlowRequest: TCRequestModel {
+    public struct DeleteStreamLinkFlowRequest: TCRequest {
         /// 传输流Id。
         public let flowId: String
 
@@ -34,7 +34,7 @@ extension Mps {
     }
 
     /// DeleteStreamLinkFlow返回参数结构体
-    public struct DeleteStreamLinkFlowResponse: TCResponseModel {
+    public struct DeleteStreamLinkFlowResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

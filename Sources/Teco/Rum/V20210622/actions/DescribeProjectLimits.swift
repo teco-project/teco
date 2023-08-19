@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// DescribeProjectLimits请求参数结构体
-    public struct DescribeProjectLimitsRequest: TCRequestModel {
+    public struct DescribeProjectLimitsRequest: TCRequest {
         /// 项目ID
         public let projectID: Int64
 
@@ -34,7 +34,7 @@ extension Rum {
     }
 
     /// DescribeProjectLimits返回参数结构体
-    public struct DescribeProjectLimitsResponse: TCResponseModel {
+    public struct DescribeProjectLimitsResponse: TCResponse {
         /// 上报率数组列表
         public let projectLimitSet: [ProjectLimit]
 

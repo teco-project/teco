@@ -20,7 +20,7 @@ import TecoCore
 
 extension Asr {
     /// VoicePrintDelete请求参数结构体
-    public struct VoicePrintDeleteRequest: TCRequestModel {
+    public struct VoicePrintDeleteRequest: TCRequest {
         /// 说话人id，说话人唯一标识
         public let voicePrintId: String
 
@@ -34,7 +34,7 @@ extension Asr {
     }
 
     /// VoicePrintDelete返回参数结构体
-    public struct VoicePrintDeleteResponse: TCResponseModel {
+    public struct VoicePrintDeleteResponse: TCResponse {
         /// 说话人基本信息
         public let data: VoicePrintBaseData
 

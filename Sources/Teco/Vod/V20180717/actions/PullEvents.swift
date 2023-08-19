@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// PullEvents请求参数结构体
-    public struct PullEventsRequest: TCRequestModel {
+    public struct PullEventsRequest: TCRequest {
         /// 保留字段，特殊用途时使用。
         public let extInfo: String?
 
@@ -39,7 +39,7 @@ extension Vod {
     }
 
     /// PullEvents返回参数结构体
-    public struct PullEventsResponse: TCResponseModel {
+    public struct PullEventsResponse: TCResponse {
         /// 事件列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eventSet: [EventContent]?

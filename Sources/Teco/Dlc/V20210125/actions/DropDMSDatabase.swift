@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// DropDMSDatabase请求参数结构体
-    public struct DropDMSDatabaseRequest: TCRequestModel {
+    public struct DropDMSDatabaseRequest: TCRequest {
         /// 数据库名称
         public let name: String
 
@@ -44,7 +44,7 @@ extension Dlc {
     }
 
     /// DropDMSDatabase返回参数结构体
-    public struct DropDMSDatabaseResponse: TCResponseModel {
+    public struct DropDMSDatabaseResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

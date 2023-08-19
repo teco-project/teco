@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cwp {
     /// DescribeIndexList请求参数结构体
-    public struct DescribeIndexListRequest: TCRequestModel {
+    public struct DescribeIndexListRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeIndexList返回参数结构体
-    public struct DescribeIndexListResponse: TCResponseModel {
+    public struct DescribeIndexListResponse: TCResponse {
         /// ES 索引信息
         public let data: String
 

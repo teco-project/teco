@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// CreateApiRateLimitRuleWithDetailResp请求参数结构体
-    public struct CreateApiRateLimitRuleWithDetailRespRequest: TCRequestModel {
+    public struct CreateApiRateLimitRuleWithDetailRespRequest: TCRequest {
         /// Api Id
         public let apiId: String
 
@@ -44,7 +44,7 @@ extension Tsf {
     }
 
     /// CreateApiRateLimitRuleWithDetailResp返回参数结构体
-    public struct CreateApiRateLimitRuleWithDetailRespResponse: TCResponseModel {
+    public struct CreateApiRateLimitRuleWithDetailRespResponse: TCResponse {
         /// 创建的规则 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: ApiRateLimitRule?

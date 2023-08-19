@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeLivePlayAuthKey请求参数结构体
-    public struct DescribeLivePlayAuthKeyRequest: TCRequestModel {
+    public struct DescribeLivePlayAuthKeyRequest: TCRequest {
         /// 域名。
         public let domainName: String
 
@@ -34,7 +34,7 @@ extension Live {
     }
 
     /// DescribeLivePlayAuthKey返回参数结构体
-    public struct DescribeLivePlayAuthKeyResponse: TCResponseModel {
+    public struct DescribeLivePlayAuthKeyResponse: TCResponse {
         /// 播放鉴权key信息。
         public let playAuthKeyInfo: PlayAuthKeyInfo
 

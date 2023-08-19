@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// ProcessMedia请求参数结构体
-    public struct ProcessMediaRequest: TCRequestModel {
+    public struct ProcessMediaRequest: TCRequest {
         /// 媒体处理的文件输入信息。
         public let inputInfo: MediaInputInfo
 
@@ -109,7 +109,7 @@ extension Mps {
     }
 
     /// ProcessMedia返回参数结构体
-    public struct ProcessMediaResponse: TCResponseModel {
+    public struct ProcessMediaResponse: TCResponse {
         /// 任务 ID。
         public let taskId: String
 

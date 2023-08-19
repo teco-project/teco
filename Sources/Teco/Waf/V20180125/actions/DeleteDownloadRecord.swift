@@ -20,7 +20,7 @@ import TecoCore
 
 extension Waf {
     /// DeleteDownloadRecord请求参数结构体
-    public struct DeleteDownloadRecordRequest: TCRequestModel {
+    public struct DeleteDownloadRecordRequest: TCRequest {
         /// 记录id
         public let flow: String
 
@@ -34,7 +34,7 @@ extension Waf {
     }
 
     /// DeleteDownloadRecord返回参数结构体
-    public struct DeleteDownloadRecordResponse: TCResponseModel {
+    public struct DeleteDownloadRecordResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

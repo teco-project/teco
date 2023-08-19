@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeScanSchedule请求参数结构体
-    public struct DescribeScanScheduleRequest: TCRequestModel {
+    public struct DescribeScanScheduleRequest: TCRequest {
         /// 任务id
         public let taskId: UInt64
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// DescribeScanSchedule返回参数结构体
-    public struct DescribeScanScheduleResponse: TCResponseModel {
+    public struct DescribeScanScheduleResponse: TCResponse {
         /// 检测进度
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let schedule: UInt64?

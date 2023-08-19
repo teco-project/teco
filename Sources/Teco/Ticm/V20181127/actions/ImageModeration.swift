@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ticm {
     /// ImageModeration请求参数结构体
-    public struct ImageModerationRequest: TCRequestModel {
+    public struct ImageModerationRequest: TCRequest {
         /// 本次调用支持的识别场景，可选值如下：
         /// 1. PORN，即色情识别
         /// 2. TERRORISM，即暴恐识别
@@ -65,7 +65,7 @@ extension Ticm {
     }
 
     /// ImageModeration返回参数结构体
-    public struct ImageModerationResponse: TCResponseModel {
+    public struct ImageModerationResponse: TCResponse {
         /// 识别场景的审核结论：
         /// PASS：正常
         /// REVIEW：疑似

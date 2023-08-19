@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// CreateUserToken请求参数结构体
-    public struct CreateUserTokenRequest: TCRequestModel {
+    public struct CreateUserTokenRequest: TCRequest {
         /// token过期时间，有效值是1~300秒
         public let second: Int64?
 
@@ -34,7 +34,7 @@ extension Iecp {
     }
 
     /// CreateUserToken返回参数结构体
-    public struct CreateUserTokenResponse: TCResponseModel {
+    public struct CreateUserTokenResponse: TCResponse {
         public let token: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

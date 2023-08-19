@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssl {
     /// HostCertificate请求参数结构体
-    public struct HostCertificateRequest: TCRequestModel {
+    public struct HostCertificateRequest: TCRequest {
         /// 证书ID
         public let certificateId: String
 
@@ -39,7 +39,7 @@ extension Ssl {
     }
 
     /// HostCertificate返回参数结构体
-    public struct HostCertificateResponse: TCResponseModel {
+    public struct HostCertificateResponse: TCResponse {
         /// 云资源配置详情
         public let certHostingInfo: CertHostingInfo
 

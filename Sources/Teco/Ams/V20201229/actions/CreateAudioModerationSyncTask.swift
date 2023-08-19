@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ams {
     /// CreateAudioModerationSyncTask请求参数结构体
-    public struct CreateAudioModerationSyncTaskRequest: TCRequestModel {
+    public struct CreateAudioModerationSyncTaskRequest: TCRequest {
         /// Biztype为策略的具体的编号，用于接口调度，在内容安全控制台中可配置。不同Biztype关联不同的业务场景与识别能力策略，调用前请确认正确的Biztype。Biztype仅为数字、字母与下划线的组合，长度为3-32个字符；调用时不传入Biztype代表采用默认的识别策略。
         public let bizType: String
 
@@ -62,7 +62,7 @@ extension Ams {
     }
 
     /// CreateAudioModerationSyncTask返回参数结构体
-    public struct CreateAudioModerationSyncTaskResponse: TCResponseModel {
+    public struct CreateAudioModerationSyncTaskResponse: TCResponse {
         /// 请求接口时传入的数据标识
         public let dataId: String
 

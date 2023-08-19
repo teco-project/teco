@@ -20,7 +20,7 @@ import TecoCore
 
 extension Antiddos {
     /// DescribeNewL7RulesErrHealth请求参数结构体
-    public struct DescribeNewL7RulesErrHealthRequest: TCRequestModel {
+    public struct DescribeNewL7RulesErrHealthRequest: TCRequest {
         /// DDoS防护子产品代号(bgpip表示高防IP)
         public let business: String
 
@@ -39,7 +39,7 @@ extension Antiddos {
     }
 
     /// DescribeNewL7RulesErrHealth返回参数结构体
-    public struct DescribeNewL7RulesErrHealthResponse: TCResponseModel {
+    public struct DescribeNewL7RulesErrHealthResponse: TCResponse {
         /// 异常规则列表，返回值说明: Key值为规则ID，Value值为异常IP及错误信息，多个IP用","分割
         public let errHealths: [KeyValue]
 

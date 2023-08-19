@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// DescribeProjectSecurityGroups请求参数结构体
-    public struct DescribeProjectSecurityGroupsRequest: TCRequestModel {
+    public struct DescribeProjectSecurityGroupsRequest: TCRequest {
         /// 项目ID，可通过控制台项目管理中查看
         public let projectId: Int64
 
@@ -34,7 +34,7 @@ extension Sqlserver {
     }
 
     /// DescribeProjectSecurityGroups返回参数结构体
-    public struct DescribeProjectSecurityGroupsResponse: TCResponseModel {
+    public struct DescribeProjectSecurityGroupsResponse: TCResponse {
         /// 安全组详情。
         public let securityGroupSet: [SecurityGroup]
 

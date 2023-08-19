@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiems {
     /// CreateService请求参数结构体
-    public struct CreateServiceRequest: TCRequestModel {
+    public struct CreateServiceRequest: TCRequest {
         /// 扩缩容配置
         public let scaler: Scaler
 
@@ -99,7 +99,7 @@ extension Tiems {
     }
 
     /// CreateService返回参数结构体
-    public struct CreateServiceResponse: TCResponseModel {
+    public struct CreateServiceResponse: TCResponse {
         /// 服务
         public let service: ModelService
 

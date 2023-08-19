@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cynosdb {
     /// OpenClusterReadOnlyInstanceGroupAccess请求参数结构体
-    public struct OpenClusterReadOnlyInstanceGroupAccessRequest: TCRequestModel {
+    public struct OpenClusterReadOnlyInstanceGroupAccessRequest: TCRequest {
         public init() {
         }
     }
 
     /// OpenClusterReadOnlyInstanceGroupAccess返回参数结构体
-    public struct OpenClusterReadOnlyInstanceGroupAccessResponse: TCResponseModel {
+    public struct OpenClusterReadOnlyInstanceGroupAccessResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

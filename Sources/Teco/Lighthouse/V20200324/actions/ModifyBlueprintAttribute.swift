@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// ModifyBlueprintAttribute请求参数结构体
-    public struct ModifyBlueprintAttributeRequest: TCRequestModel {
+    public struct ModifyBlueprintAttributeRequest: TCRequest {
         /// 镜像 ID。可通过[DescribeBlueprints](https://cloud.tencent.com/document/product/1207/47689)接口返回值中的BlueprintId获取。
         public let blueprintId: String
 
@@ -44,7 +44,7 @@ extension Lighthouse {
     }
 
     /// ModifyBlueprintAttribute返回参数结构体
-    public struct ModifyBlueprintAttributeResponse: TCResponseModel {
+    public struct ModifyBlueprintAttributeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// AcquireClusterAdminRole请求参数结构体
-    public struct AcquireClusterAdminRoleRequest: TCRequestModel {
+    public struct AcquireClusterAdminRoleRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Tke {
     }
 
     /// AcquireClusterAdminRole返回参数结构体
-    public struct AcquireClusterAdminRoleResponse: TCResponseModel {
+    public struct AcquireClusterAdminRoleResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

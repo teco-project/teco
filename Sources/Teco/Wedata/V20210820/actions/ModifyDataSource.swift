@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// ModifyDataSource请求参数结构体
-    public struct ModifyDataSourceRequest: TCRequestModel {
+    public struct ModifyDataSourceRequest: TCRequest {
         /// 数据源名称，在相同SpaceName下，数据源名称不能为空
         public let name: String
 
@@ -119,7 +119,7 @@ extension Wedata {
     }
 
     /// ModifyDataSource返回参数结构体
-    public struct ModifyDataSourceResponse: TCResponseModel {
+    public struct ModifyDataSourceResponse: TCResponse {
         /// 是否成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: Bool?

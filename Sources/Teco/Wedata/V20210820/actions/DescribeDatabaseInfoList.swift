@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeDatabaseInfoList请求参数结构体
-    public struct DescribeDatabaseInfoListRequest: TCRequestModel {
+    public struct DescribeDatabaseInfoListRequest: TCRequest {
         /// 过滤参数
         public let filters: [Filter]
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// DescribeDatabaseInfoList返回参数结构体
-    public struct DescribeDatabaseInfoListResponse: TCResponseModel {
+    public struct DescribeDatabaseInfoListResponse: TCResponse {
         /// 数据库列表
         public let databaseInfo: [DatabaseInfo]
 

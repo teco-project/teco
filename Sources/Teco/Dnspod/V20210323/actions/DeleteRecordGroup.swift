@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dnspod {
     /// DeleteRecordGroup请求参数结构体
-    public struct DeleteRecordGroupRequest: TCRequestModel {
+    public struct DeleteRecordGroupRequest: TCRequest {
         /// 域名
         public let domain: String
 
@@ -44,7 +44,7 @@ extension Dnspod {
     }
 
     /// DeleteRecordGroup返回参数结构体
-    public struct DeleteRecordGroupResponse: TCResponseModel {
+    public struct DeleteRecordGroupResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

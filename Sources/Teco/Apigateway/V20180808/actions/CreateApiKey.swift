@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// CreateApiKey请求参数结构体
-    public struct CreateApiKeyRequest: TCRequestModel {
+    public struct CreateApiKeyRequest: TCRequest {
         /// 用户自定义密钥名称。
         public let secretName: String
 
@@ -49,7 +49,7 @@ extension Apigateway {
     }
 
     /// CreateApiKey返回参数结构体
-    public struct CreateApiKeyResponse: TCResponseModel {
+    public struct CreateApiKeyResponse: TCResponse {
         /// 新增的密钥详情。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: ApiKey?

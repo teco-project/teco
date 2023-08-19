@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apcas {
     /// GetTaskDetail请求参数结构体
-    public struct GetTaskDetailRequest: TCRequestModel {
+    public struct GetTaskDetailRequest: TCRequest {
         /// 任务ID
         public let id: UInt64
 
@@ -34,7 +34,7 @@ extension Apcas {
     }
 
     /// GetTaskDetail返回参数结构体
-    public struct GetTaskDetailResponse: TCResponseModel {
+    public struct GetTaskDetailResponse: TCResponse {
         /// 画像洞察任务TAG详细数据列表
         public let taskDetailDataList: [TaskDetailData]
 

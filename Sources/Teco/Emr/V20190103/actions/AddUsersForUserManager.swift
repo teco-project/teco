@@ -20,7 +20,7 @@ import TecoCore
 
 extension Emr {
     /// AddUsersForUserManager请求参数结构体
-    public struct AddUsersForUserManagerRequest: TCRequestModel {
+    public struct AddUsersForUserManagerRequest: TCRequest {
         /// 集群字符串ID
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Emr {
     }
 
     /// AddUsersForUserManager返回参数结构体
-    public struct AddUsersForUserManagerResponse: TCResponseModel {
+    public struct AddUsersForUserManagerResponse: TCResponse {
         /// 添加成功的用户列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let successUserList: [String]?

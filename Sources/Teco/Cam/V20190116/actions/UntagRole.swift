@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// UntagRole请求参数结构体
-    public struct UntagRoleRequest: TCRequestModel {
+    public struct UntagRoleRequest: TCRequest {
         /// 标签键
         public let tagKeys: [String]
 
@@ -44,7 +44,7 @@ extension Cam {
     }
 
     /// UntagRole返回参数结构体
-    public struct UntagRoleResponse: TCResponseModel {
+    public struct UntagRoleResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

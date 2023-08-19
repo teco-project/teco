@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// DeletePolicy请求参数结构体
-    public struct DeletePolicyRequest: TCRequestModel {
+    public struct DeletePolicyRequest: TCRequest {
         /// 数组，数组成员是策略 id，支持批量删除策略
         public let policyId: [UInt64]
 
@@ -34,7 +34,7 @@ extension Cam {
     }
 
     /// DeletePolicy返回参数结构体
-    public struct DeletePolicyResponse: TCResponseModel {
+    public struct DeletePolicyResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

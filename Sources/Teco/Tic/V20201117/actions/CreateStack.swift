@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tic {
     /// CreateStack请求参数结构体
-    public struct CreateStackRequest: TCRequestModel {
+    public struct CreateStackRequest: TCRequest {
         /// 资源栈名称，不得超过60个字符
         public let stackName: String
 
@@ -49,7 +49,7 @@ extension Tic {
     }
 
     /// CreateStack返回参数结构体
-    public struct CreateStackResponse: TCResponseModel {
+    public struct CreateStackResponse: TCResponse {
         /// 创建得到的资源栈ID
         public let stackId: String
 

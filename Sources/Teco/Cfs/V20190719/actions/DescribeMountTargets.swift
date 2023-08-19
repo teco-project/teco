@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfs {
     /// DescribeMountTargets请求参数结构体
-    public struct DescribeMountTargetsRequest: TCRequestModel {
+    public struct DescribeMountTargetsRequest: TCRequest {
         /// 文件系统 ID
         public let fileSystemId: String
 
@@ -34,7 +34,7 @@ extension Cfs {
     }
 
     /// DescribeMountTargets返回参数结构体
-    public struct DescribeMountTargetsResponse: TCResponseModel {
+    public struct DescribeMountTargetsResponse: TCResponse {
         /// 挂载点详情
         public let mountTargets: [MountInfo]
 

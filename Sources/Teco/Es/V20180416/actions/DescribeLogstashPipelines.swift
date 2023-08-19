@@ -20,7 +20,7 @@ import TecoCore
 
 extension Es {
     /// DescribeLogstashPipelines请求参数结构体
-    public struct DescribeLogstashPipelinesRequest: TCRequestModel {
+    public struct DescribeLogstashPipelinesRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Es {
     }
 
     /// DescribeLogstashPipelines返回参数结构体
-    public struct DescribeLogstashPipelinesResponse: TCResponseModel {
+    public struct DescribeLogstashPipelinesResponse: TCResponse {
         /// 管道总数
         public let totalCount: UInt64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// DescribeAITaskResult请求参数结构体
-    public struct DescribeAITaskResultRequest: TCRequestModel {
+    public struct DescribeAITaskResultRequest: TCRequest {
         /// AI 任务 ID
         public let taskId: String
 
@@ -69,7 +69,7 @@ extension Iss {
     }
 
     /// DescribeAITaskResult返回参数结构体
-    public struct DescribeAITaskResultResponse: TCResponseModel {
+    public struct DescribeAITaskResultResponse: TCResponse {
         /// AI识别结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: AITaskResultResponse?

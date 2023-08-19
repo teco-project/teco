@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// ModifyEventConfig请求参数结构体
-    public struct ModifyEventConfigRequest: TCRequestModel {
+    public struct ModifyEventConfigRequest: TCRequest {
         /// 接收事件通知的方式。
         /// - PUSH：[HTTP 回调通知](https://cloud.tencent.com/document/product/266/33779)；
         /// - PULL：[基于消息队列的可靠通知](https://cloud.tencent.com/document/product/266/33779)。
@@ -57,7 +57,7 @@ extension Vod {
     }
 
     /// ModifyEventConfig返回参数结构体
-    public struct ModifyEventConfigResponse: TCResponseModel {
+    public struct ModifyEventConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

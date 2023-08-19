@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// ManageImageLifecycleGlobalPersonal请求参数结构体
-    public struct ManageImageLifecycleGlobalPersonalRequest: TCRequestModel {
+    public struct ManageImageLifecycleGlobalPersonalRequest: TCRequest {
         /// global_keep_last_days:全局保留最近几天的数据;global_keep_last_nums:全局保留最近多少个
         public let type: String
 
@@ -39,7 +39,7 @@ extension Tcr {
     }
 
     /// ManageImageLifecycleGlobalPersonal返回参数结构体
-    public struct ManageImageLifecycleGlobalPersonalResponse: TCResponseModel {
+    public struct ManageImageLifecycleGlobalPersonalResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

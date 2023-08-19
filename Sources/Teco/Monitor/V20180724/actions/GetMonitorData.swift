@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Monitor {
     /// GetMonitorData请求参数结构体
-    public struct GetMonitorDataRequest: TCRequestModel {
+    public struct GetMonitorDataRequest: TCRequest {
         /// 命名空间，如QCE/CVM。各个云产品的详细命名空间说明请参阅各个产品[监控指标](https://cloud.tencent.com/document/product/248/6140)文档
         public let namespace: String
 
@@ -67,7 +67,7 @@ extension Monitor {
     }
 
     /// GetMonitorData返回参数结构体
-    public struct GetMonitorDataResponse: TCResponseModel {
+    public struct GetMonitorDataResponse: TCResponse {
         /// 统计周期
         public let period: UInt64
 

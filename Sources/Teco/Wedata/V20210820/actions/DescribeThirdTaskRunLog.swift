@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeThirdTaskRunLog请求参数结构体
-    public struct DescribeThirdTaskRunLogRequest: TCRequestModel {
+    public struct DescribeThirdTaskRunLogRequest: TCRequest {
         /// 任务ID
         public let taskId: String
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// DescribeThirdTaskRunLog返回参数结构体
-    public struct DescribeThirdTaskRunLogResponse: TCResponseModel {
+    public struct DescribeThirdTaskRunLogResponse: TCResponse {
         /// 获取第三方运行日志
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: String?

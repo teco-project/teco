@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// StartGameServerSessionPlacement请求参数结构体
-    public struct StartGameServerSessionPlacementRequest: TCRequestModel {
+    public struct StartGameServerSessionPlacementRequest: TCRequest {
         /// 开始部署游戏服务器会话的唯一标识符，最大值48个ASCII字符，模式：[a-zA-Z0-9-]+
         public let placementId: String
 
@@ -69,7 +69,7 @@ extension Gse {
     }
 
     /// StartGameServerSessionPlacement返回参数结构体
-    public struct StartGameServerSessionPlacementResponse: TCResponseModel {
+    public struct StartGameServerSessionPlacementResponse: TCResponse {
         /// 游戏服务器会话放置
         public let gameServerSessionPlacement: GameServerSessionPlacement
 

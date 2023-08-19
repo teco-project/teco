@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// ModifyApplicationTriggerPersonal请求参数结构体
-    public struct ModifyApplicationTriggerPersonalRequest: TCRequestModel {
+    public struct ModifyApplicationTriggerPersonalRequest: TCRequest {
         /// 触发器关联的镜像仓库，library/test格式
         public let repoName: String?
 
@@ -84,7 +84,7 @@ extension Tcr {
     }
 
     /// ModifyApplicationTriggerPersonal返回参数结构体
-    public struct ModifyApplicationTriggerPersonalResponse: TCResponseModel {
+    public struct ModifyApplicationTriggerPersonalResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

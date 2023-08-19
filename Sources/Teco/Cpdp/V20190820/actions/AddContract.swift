@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// AddContract请求参数结构体
-    public struct AddContractRequest: TCRequestModel {
+    public struct AddContractRequest: TCRequest {
         /// 收单系统分配的开放ID
         public let openId: String
 
@@ -184,7 +184,7 @@ extension Cpdp {
     }
 
     /// AddContract返回参数结构体
-    public struct AddContractResponse: TCResponseModel {
+    public struct AddContractResponse: TCResponse {
         /// 业务系统返回消息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errMessage: String?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Batch {
     /// DescribeCpmOsInfo请求参数结构体
-    public struct DescribeCpmOsInfoRequest: TCRequestModel {
+    public struct DescribeCpmOsInfoRequest: TCRequest {
         /// 黑石设备类型代号。 可以从[DescribeDeviceClass](https://cloud.tencent.com/document/api/386/32911)查询设备类型列表。
         public let deviceClassCode: String?
 
@@ -34,7 +34,7 @@ extension Batch {
     }
 
     /// DescribeCpmOsInfo返回参数结构体
-    public struct DescribeCpmOsInfoResponse: TCResponseModel {
+    public struct DescribeCpmOsInfoResponse: TCResponse {
         /// 操作系统信息列表。
         public let osInfoSet: [OsInfo]
 

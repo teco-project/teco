@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sts {
     /// AssumeRoleWithWebIdentity请求参数结构体
-    public struct AssumeRoleWithWebIdentityRequest: TCRequestModel {
+    public struct AssumeRoleWithWebIdentityRequest: TCRequest {
         /// 身份提供商名称
         public let providerId: String
 
@@ -54,7 +54,7 @@ extension Sts {
     }
 
     /// AssumeRoleWithWebIdentity返回参数结构体
-    public struct AssumeRoleWithWebIdentityResponse: TCResponseModel {
+    public struct AssumeRoleWithWebIdentityResponse: TCResponse {
         /// 临时访问凭证过期时间(时间戳)
         public let expiredTime: UInt64
 

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cwp {
     /// DescribeHistoryService请求参数结构体
-    public struct DescribeHistoryServiceRequest: TCRequestModel {
+    public struct DescribeHistoryServiceRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeHistoryService返回参数结构体
-    public struct DescribeHistoryServiceResponse: TCResponseModel {
+    public struct DescribeHistoryServiceResponse: TCResponse {
         /// 1 可购买 2 只能升降配 3 只能跳到续费管理页
         public let buyStatus: UInt64
 

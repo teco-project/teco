@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// DescribeAssetSystems请求参数结构体
-    public struct DescribeAssetSystemsRequest: TCRequestModel {
+    public struct DescribeAssetSystemsRequest: TCRequest {
         /// 生成包支持的操作系统类型
         public let osType: String?
 
@@ -39,7 +39,7 @@ extension Gse {
     }
 
     /// DescribeAssetSystems返回参数结构体
-    public struct DescribeAssetSystemsResponse: TCResponseModel {
+    public struct DescribeAssetSystemsResponse: TCResponse {
         /// 生成包支持的操作系统类型列表
         public let assetSupportSys: [AssetSupportSys]
 

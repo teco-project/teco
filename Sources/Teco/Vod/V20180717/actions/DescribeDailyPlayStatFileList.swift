@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// DescribeDailyPlayStatFileList请求参数结构体
-    public struct DescribeDailyPlayStatFileListRequest: TCRequestModel {
+    public struct DescribeDailyPlayStatFileListRequest: TCRequest {
         /// 起始日期，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         public let startTime: String
 
@@ -44,7 +44,7 @@ extension Vod {
     }
 
     /// DescribeDailyPlayStatFileList返回参数结构体
-    public struct DescribeDailyPlayStatFileListResponse: TCResponseModel {
+    public struct DescribeDailyPlayStatFileListResponse: TCResponse {
         /// 播放统计文件列表。
         public let playStatFileSet: [PlayStatFileInfo]
 

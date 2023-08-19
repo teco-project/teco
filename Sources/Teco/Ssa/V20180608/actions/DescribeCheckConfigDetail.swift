@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssa {
     /// DescribeCheckConfigDetail请求参数结构体
-    public struct DescribeCheckConfigDetailRequest: TCRequestModel {
+    public struct DescribeCheckConfigDetailRequest: TCRequest {
         /// 检查项ID
         public let id: String
 
@@ -34,7 +34,7 @@ extension Ssa {
     }
 
     /// DescribeCheckConfigDetail返回参数结构体
-    public struct DescribeCheckConfigDetailResponse: TCResponseModel {
+    public struct DescribeCheckConfigDetailResponse: TCResponse {
         /// 检查项详情
         public let checkConfigDetail: CheckConfigDetail
 

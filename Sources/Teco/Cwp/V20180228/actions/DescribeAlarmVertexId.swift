@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeAlarmVertexId请求参数结构体
-    public struct DescribeAlarmVertexIdRequest: TCRequestModel {
+    public struct DescribeAlarmVertexIdRequest: TCRequest {
         /// 机器uuid
         public let uuid: String
 
@@ -44,7 +44,7 @@ extension Cwp {
     }
 
     /// DescribeAlarmVertexId返回参数结构体
-    public struct DescribeAlarmVertexIdResponse: TCResponseModel {
+    public struct DescribeAlarmVertexIdResponse: TCResponse {
         /// 告警点id列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alarmVertexIds: [String]?

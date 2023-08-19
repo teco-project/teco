@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// UpdateNotebookInstance请求参数结构体
-    public struct UpdateNotebookInstanceRequest: TCRequestModel {
+    public struct UpdateNotebookInstanceRequest: TCRequest {
         /// Notebook实例名称
         /// 规则：“^\[a-zA-Z0-9\](-\*\[a-zA-Z0-9\])\*$”
         public let notebookInstanceName: String
@@ -112,7 +112,7 @@ extension Tione {
     }
 
     /// UpdateNotebookInstance返回参数结构体
-    public struct UpdateNotebookInstanceResponse: TCResponseModel {
+    public struct UpdateNotebookInstanceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

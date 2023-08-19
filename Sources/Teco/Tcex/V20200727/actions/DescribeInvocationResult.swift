@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcex {
     /// DescribeInvocationResult请求参数结构体
-    public struct DescribeInvocationResultRequest: TCRequestModel {
+    public struct DescribeInvocationResultRequest: TCRequest {
         /// 调用id，为调用InvokeService接口返回的RequestId
         public let invokeId: String
 
@@ -34,7 +34,7 @@ extension Tcex {
     }
 
     /// DescribeInvocationResult返回参数结构体
-    public struct DescribeInvocationResultResponse: TCResponseModel {
+    public struct DescribeInvocationResultResponse: TCResponse {
         /// 服务的调用结果
         public let results: [AlgorithmResult]
 

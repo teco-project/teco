@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DescribeDatabases请求参数结构体
-    public struct DescribeDatabasesRequest: TCRequestModel {
+    public struct DescribeDatabasesRequest: TCRequest {
         /// 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceId: String
 
@@ -49,7 +49,7 @@ extension Cdb {
     }
 
     /// DescribeDatabases返回参数结构体
-    public struct DescribeDatabasesResponse: TCResponseModel {
+    public struct DescribeDatabasesResponse: TCResponse {
         /// 符合查询条件的实例总数。
         public let totalCount: Int64
 

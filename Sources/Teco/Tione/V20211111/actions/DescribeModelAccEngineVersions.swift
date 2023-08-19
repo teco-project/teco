@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tione {
     /// DescribeModelAccEngineVersions请求参数结构体
-    public struct DescribeModelAccEngineVersionsRequest: TCRequestModel {
+    public struct DescribeModelAccEngineVersionsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeModelAccEngineVersions返回参数结构体
-    public struct DescribeModelAccEngineVersionsResponse: TCResponseModel {
+    public struct DescribeModelAccEngineVersionsResponse: TCResponse {
         /// 模型加速版本列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let modelAccEngineVersions: [ModelAccEngineVersion]?

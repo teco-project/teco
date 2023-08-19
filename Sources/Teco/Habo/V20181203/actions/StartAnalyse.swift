@@ -20,7 +20,7 @@ import TecoCore
 
 extension Habo {
     /// StartAnalyse请求参数结构体
-    public struct StartAnalyseRequest: TCRequestModel {
+    public struct StartAnalyseRequest: TCRequest {
         /// 购买服务后获得的授权帐号，用于保证请求有效性
         public let pk: String
 
@@ -44,7 +44,7 @@ extension Habo {
     }
 
     /// StartAnalyse返回参数结构体
-    public struct StartAnalyseResponse: TCResponseModel {
+    public struct StartAnalyseResponse: TCResponse {
         /// 接口调用状态，1表示成功，非1表示失败
         public let status: Int64
 

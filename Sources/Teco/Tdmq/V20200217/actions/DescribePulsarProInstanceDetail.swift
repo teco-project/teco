@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// DescribePulsarProInstanceDetail请求参数结构体
-    public struct DescribePulsarProInstanceDetailRequest: TCRequestModel {
+    public struct DescribePulsarProInstanceDetailRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Tdmq {
     }
 
     /// DescribePulsarProInstanceDetail返回参数结构体
-    public struct DescribePulsarProInstanceDetailResponse: TCResponseModel {
+    public struct DescribePulsarProInstanceDetailResponse: TCResponse {
         /// 集群信息
         public let clusterInfo: PulsarProClusterInfo
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// DescribeLicenseUsageData请求参数结构体
-    public struct DescribeLicenseUsageDataRequest: TCRequestModel {
+    public struct DescribeLicenseUsageDataRequest: TCRequest {
         /// 起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#52)。
         public let startTime: String
 
@@ -50,7 +50,7 @@ extension Vod {
     }
 
     /// DescribeLicenseUsageData返回参数结构体
-    public struct DescribeLicenseUsageDataResponse: TCResponseModel {
+    public struct DescribeLicenseUsageDataResponse: TCResponse {
         /// License 查询次数统计数据，展示所查询 License 次数的明细数据。
         public let licenseUsageDataSet: [LicenseUsageDataItem]
 

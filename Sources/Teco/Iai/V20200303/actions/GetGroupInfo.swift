@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iai {
     /// GetGroupInfo请求参数结构体
-    public struct GetGroupInfoRequest: TCRequestModel {
+    public struct GetGroupInfoRequest: TCRequest {
         /// 人员库 ID，取值为创建人员库接口中的GroupId
         public let groupId: String
 
@@ -34,7 +34,7 @@ extension Iai {
     }
 
     /// GetGroupInfo返回参数结构体
-    public struct GetGroupInfoResponse: TCResponseModel {
+    public struct GetGroupInfoResponse: TCResponse {
         /// 人员库名称
         public let groupName: String
 

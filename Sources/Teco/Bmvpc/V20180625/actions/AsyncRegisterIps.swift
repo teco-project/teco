@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmvpc {
     /// AsyncRegisterIps请求参数结构体
-    public struct AsyncRegisterIpsRequest: TCRequestModel {
+    public struct AsyncRegisterIpsRequest: TCRequest {
         /// 私有网络的唯一ID。
         public let vpcId: String
 
@@ -44,7 +44,7 @@ extension Bmvpc {
     }
 
     /// AsyncRegisterIps返回参数结构体
-    public struct AsyncRegisterIpsResponse: TCResponseModel {
+    public struct AsyncRegisterIpsResponse: TCResponse {
         /// 任务ID。
         public let taskId: Int64
 

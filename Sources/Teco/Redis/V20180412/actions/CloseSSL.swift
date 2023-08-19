@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// CloseSSL请求参数结构体
-    public struct CloseSSLRequest: TCRequestModel {
+    public struct CloseSSLRequest: TCRequest {
         /// 实例ID。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Redis {
     }
 
     /// CloseSSL返回参数结构体
-    public struct CloseSSLResponse: TCResponseModel {
+    public struct CloseSSLResponse: TCResponse {
         /// 任务ID。
         public let taskId: Int64
 

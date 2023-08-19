@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ses {
     /// GetEmailTemplate请求参数结构体
-    public struct GetEmailTemplateRequest: TCRequestModel {
+    public struct GetEmailTemplateRequest: TCRequest {
         /// 模板ID
         public let templateID: UInt64
 
@@ -34,7 +34,7 @@ extension Ses {
     }
 
     /// GetEmailTemplate返回参数结构体
-    public struct GetEmailTemplateResponse: TCResponseModel {
+    public struct GetEmailTemplateResponse: TCResponse {
         /// 模板内容数据
         public let templateContent: TemplateContent
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Faceid {
     /// BankCard2EVerification请求参数结构体
-    public struct BankCard2EVerificationRequest: TCRequestModel {
+    public struct BankCard2EVerificationRequest: TCRequest {
         /// 姓名
         public let name: String
 
@@ -44,7 +44,7 @@ extension Faceid {
     }
 
     /// BankCard2EVerification返回参数结构体
-    public struct BankCard2EVerificationResponse: TCResponseModel {
+    public struct BankCard2EVerificationResponse: TCResponse {
         /// 认证结果码
         /// 计费结果码：
         ///   '0': '认证通过'

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cdb {
     /// DescribeCdbZoneConfig请求参数结构体
-    public struct DescribeCdbZoneConfigRequest: TCRequestModel {
+    public struct DescribeCdbZoneConfigRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeCdbZoneConfig返回参数结构体
-    public struct DescribeCdbZoneConfigResponse: TCResponseModel {
+    public struct DescribeCdbZoneConfigResponse: TCResponse {
         /// 售卖规格和地域信息集合
         public let dataResult: CdbZoneDataResult
 

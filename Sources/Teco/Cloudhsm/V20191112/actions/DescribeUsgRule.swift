@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cloudhsm {
     /// DescribeUsgRule请求参数结构体
-    public struct DescribeUsgRuleRequest: TCRequestModel {
+    public struct DescribeUsgRuleRequest: TCRequest {
         /// 根据安全组Id获取安全组详情
         public let sgIds: [String]
 
@@ -34,7 +34,7 @@ extension Cloudhsm {
     }
 
     /// DescribeUsgRule返回参数结构体
-    public struct DescribeUsgRuleResponse: TCResponseModel {
+    public struct DescribeUsgRuleResponse: TCResponse {
         /// 安全组详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sgRules: [UsgRuleDetail]?

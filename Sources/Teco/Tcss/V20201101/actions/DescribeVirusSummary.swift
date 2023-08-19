@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeVirusSummary请求参数结构体
-    public struct DescribeVirusSummaryRequest: TCRequestModel {
+    public struct DescribeVirusSummaryRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeVirusSummary返回参数结构体
-    public struct DescribeVirusSummaryResponse: TCResponseModel {
+    public struct DescribeVirusSummaryResponse: TCResponse {
         /// 最近的一次扫描任务id
         public let taskId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// DescribeBatchTask请求参数结构体
-    public struct DescribeBatchTaskRequest: TCRequestModel {
+    public struct DescribeBatchTaskRequest: TCRequest {
         /// 跑批任务ID
         public let batchTaskId: String
 
@@ -34,7 +34,7 @@ extension Tione {
     }
 
     /// DescribeBatchTask返回参数结构体
-    public struct DescribeBatchTaskResponse: TCResponseModel {
+    public struct DescribeBatchTaskResponse: TCResponse {
         /// 跑批任务详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let batchTaskDetail: BatchTaskDetail?

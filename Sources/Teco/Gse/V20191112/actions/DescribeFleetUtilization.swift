@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// DescribeFleetUtilization请求参数结构体
-    public struct DescribeFleetUtilizationRequest: TCRequestModel {
+    public struct DescribeFleetUtilizationRequest: TCRequest {
         /// 服务器舰队 Ids
         public let fleetIds: [String]
 
@@ -34,7 +34,7 @@ extension Gse {
     }
 
     /// DescribeFleetUtilization返回参数结构体
-    public struct DescribeFleetUtilizationResponse: TCResponseModel {
+    public struct DescribeFleetUtilizationResponse: TCResponse {
         /// 服务器舰队利用率
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fleetUtilization: [FleetUtilization]?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ciam {
     /// UpdateUserGroup请求参数结构体
-    public struct UpdateUserGroupRequest: TCRequestModel {
+    public struct UpdateUserGroupRequest: TCRequest {
         /// 用户组ID
         public let userGroupId: String
 
@@ -49,7 +49,7 @@ extension Ciam {
     }
 
     /// UpdateUserGroup返回参数结构体
-    public struct UpdateUserGroupResponse: TCResponseModel {
+    public struct UpdateUserGroupResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

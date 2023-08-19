@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// DeleteGateway请求参数结构体
-    public struct DeleteGatewayRequest: TCRequestModel {
+    public struct DeleteGatewayRequest: TCRequest {
         /// 网关索引ID（从获取网关列表接口ListGateways中获取）
         public let gatewayId: String
 
@@ -34,7 +34,7 @@ extension Iss {
     }
 
     /// DeleteGateway返回参数结构体
-    public struct DeleteGatewayResponse: TCResponseModel {
+    public struct DeleteGatewayResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

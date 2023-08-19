@@ -20,13 +20,13 @@ import TecoCore
 
 extension Ssm {
     /// GetRegions请求参数结构体
-    public struct GetRegionsRequest: TCRequestModel {
+    public struct GetRegionsRequest: TCRequest {
         public init() {
         }
     }
 
     /// GetRegions返回参数结构体
-    public struct GetRegionsResponse: TCResponseModel {
+    public struct GetRegionsResponse: TCResponse {
         /// region列表。
         public let regions: [String]
 

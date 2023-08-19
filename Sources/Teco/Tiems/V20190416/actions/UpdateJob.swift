@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiems {
     /// UpdateJob请求参数结构体
-    public struct UpdateJobRequest: TCRequestModel {
+    public struct UpdateJobRequest: TCRequest {
         /// 任务 Id
         public let jobId: String
 
@@ -44,7 +44,7 @@ extension Tiems {
     }
 
     /// UpdateJob返回参数结构体
-    public struct UpdateJobResponse: TCResponseModel {
+    public struct UpdateJobResponse: TCResponse {
         /// 任务
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let job: Job?

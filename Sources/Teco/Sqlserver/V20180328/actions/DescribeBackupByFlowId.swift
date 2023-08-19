@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Sqlserver {
     /// DescribeBackupByFlowId请求参数结构体
-    public struct DescribeBackupByFlowIdRequest: TCRequestModel {
+    public struct DescribeBackupByFlowIdRequest: TCRequest {
         /// 实例ID，格式如：mssql-3l3fgqn7
         public let instanceId: String
 
@@ -41,7 +41,7 @@ extension Sqlserver {
     }
 
     /// DescribeBackupByFlowId返回参数结构体
-    public struct DescribeBackupByFlowIdResponse: TCResponseModel {
+    public struct DescribeBackupByFlowIdResponse: TCResponse {
         /// 备份文件唯一标识，RestoreInstance接口会用到该字段，对于单库备份文件只返回第一条记录的备份文件唯一标识；单库备份文件需要通过DescribeBackupFiles接口获取全部记录的可回档的ID
         public let id: UInt64
 

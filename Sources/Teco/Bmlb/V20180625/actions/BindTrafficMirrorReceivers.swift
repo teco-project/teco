@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmlb {
     /// BindTrafficMirrorReceivers请求参数结构体
-    public struct BindTrafficMirrorReceiversRequest: TCRequestModel {
+    public struct BindTrafficMirrorReceiversRequest: TCRequest {
         /// 流量镜像实例ID。
         public let trafficMirrorId: String
 
@@ -39,7 +39,7 @@ extension Bmlb {
     }
 
     /// BindTrafficMirrorReceivers返回参数结构体
-    public struct BindTrafficMirrorReceiversResponse: TCResponseModel {
+    public struct BindTrafficMirrorReceiversResponse: TCResponse {
         /// 任务ID。该接口为异步任务，可根据本参数调用DescribeLoadBalancerTaskResult接口来查询任务操作结果。
         public let taskId: String
 

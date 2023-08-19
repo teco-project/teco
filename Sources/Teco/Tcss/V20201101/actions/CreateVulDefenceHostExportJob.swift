@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// CreateVulDefenceHostExportJob请求参数结构体
-    public struct CreateVulDefenceHostExportJobRequest: TCRequestModel {
+    public struct CreateVulDefenceHostExportJobRequest: TCRequest {
         /// 过滤条件。
         /// - Status- String - 是否必填：否 - 插件状态，正常：SUCCESS，异常：FAIL， NO_DEFENCE:未防御
         /// - KeyWords- string - 是否必填：否 - 主机名称/IP。
@@ -56,7 +56,7 @@ extension Tcss {
     }
 
     /// CreateVulDefenceHostExportJob返回参数结构体
-    public struct CreateVulDefenceHostExportJobResponse: TCResponseModel {
+    public struct CreateVulDefenceHostExportJobResponse: TCResponse {
         /// 导出任务ID，前端拿着任务ID查询任务进度
         public let jobId: String
 

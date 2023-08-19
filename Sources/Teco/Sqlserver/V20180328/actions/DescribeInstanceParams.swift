@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// DescribeInstanceParams请求参数结构体
-    public struct DescribeInstanceParamsRequest: TCRequestModel {
+    public struct DescribeInstanceParamsRequest: TCRequest {
         /// 实例 ID，格式如：mssql-dj5i29c5n，与云数据库控制台页面中显示的实例 ID 相同，可使用 DescribeDBInstances 接口获取，其值为输出参数中字段 InstanceId 的值。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Sqlserver {
     }
 
     /// DescribeInstanceParams返回参数结构体
-    public struct DescribeInstanceParamsResponse: TCResponseModel {
+    public struct DescribeInstanceParamsResponse: TCResponse {
         /// 实例的参数总数
         public let totalCount: Int64
 

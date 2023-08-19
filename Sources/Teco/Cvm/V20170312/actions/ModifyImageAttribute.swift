@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// ModifyImageAttribute请求参数结构体
-    public struct ModifyImageAttributeRequest: TCRequestModel {
+    public struct ModifyImageAttributeRequest: TCRequest {
         /// 镜像ID，形如`img-gvbnzy6f`。镜像ID可以通过如下方式获取：
         ///
         /// - 通过[DescribeImages](https://cloud.tencent.com/document/api/213/15715)接口返回的`ImageId`获取。
@@ -52,7 +52,7 @@ extension Cvm {
     }
 
     /// ModifyImageAttribute返回参数结构体
-    public struct ModifyImageAttributeResponse: TCResponseModel {
+    public struct ModifyImageAttributeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

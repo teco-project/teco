@@ -20,7 +20,7 @@ import TecoCore
 
 extension Privatedns {
     /// DescribeRequestData请求参数结构体
-    public struct DescribeRequestDataRequest: TCRequestModel {
+    public struct DescribeRequestDataRequest: TCRequest {
         /// 请求量统计起始时间，格式：2020-11-22 00:00:00
         public let timeRangeBegin: String
 
@@ -44,7 +44,7 @@ extension Privatedns {
     }
 
     /// DescribeRequestData返回参数结构体
-    public struct DescribeRequestDataResponse: TCResponseModel {
+    public struct DescribeRequestDataResponse: TCResponse {
         /// 请求量统计表
         public let data: [MetricData]
 

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cam {
     /// GetAccountSummary请求参数结构体
-    public struct GetAccountSummaryRequest: TCRequestModel {
+    public struct GetAccountSummaryRequest: TCRequest {
         public init() {
         }
     }
 
     /// GetAccountSummary返回参数结构体
-    public struct GetAccountSummaryResponse: TCResponseModel {
+    public struct GetAccountSummaryResponse: TCResponse {
         /// 策略数
         public let policies: UInt64
 

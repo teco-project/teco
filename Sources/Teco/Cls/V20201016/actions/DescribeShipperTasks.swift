@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// DescribeShipperTasks请求参数结构体
-    public struct DescribeShipperTasksRequest: TCRequestModel {
+    public struct DescribeShipperTasksRequest: TCRequest {
         /// 投递规则ID
         public let shipperId: String
 
@@ -44,7 +44,7 @@ extension Cls {
     }
 
     /// DescribeShipperTasks返回参数结构体
-    public struct DescribeShipperTasksResponse: TCResponseModel {
+    public struct DescribeShipperTasksResponse: TCResponse {
         /// 投递任务列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tasks: [ShipperTaskInfo]?

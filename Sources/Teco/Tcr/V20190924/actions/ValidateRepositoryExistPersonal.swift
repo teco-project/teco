@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// ValidateRepositoryExistPersonal请求参数结构体
-    public struct ValidateRepositoryExistPersonalRequest: TCRequestModel {
+    public struct ValidateRepositoryExistPersonalRequest: TCRequest {
         /// 仓库名称
         public let repoName: String
 
@@ -34,7 +34,7 @@ extension Tcr {
     }
 
     /// ValidateRepositoryExistPersonal返回参数结构体
-    public struct ValidateRepositoryExistPersonalResponse: TCResponseModel {
+    public struct ValidateRepositoryExistPersonalResponse: TCResponse {
         /// 验证个人版仓库是否存在返回信息
         public let data: RepoIsExistResp
 

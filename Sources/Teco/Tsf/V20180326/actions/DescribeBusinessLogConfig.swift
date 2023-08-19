@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DescribeBusinessLogConfig请求参数结构体
-    public struct DescribeBusinessLogConfigRequest: TCRequestModel {
+    public struct DescribeBusinessLogConfigRequest: TCRequest {
         /// 配置项ID
         public let configId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// DescribeBusinessLogConfig返回参数结构体
-    public struct DescribeBusinessLogConfigResponse: TCResponseModel {
+    public struct DescribeBusinessLogConfigResponse: TCResponse {
         /// 日志配置项
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: BusinessLogConfig?

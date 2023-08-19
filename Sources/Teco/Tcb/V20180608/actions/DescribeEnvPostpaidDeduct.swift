@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeEnvPostpaidDeduct请求参数结构体
-    public struct DescribeEnvPostpaidDeductRequest: TCRequestModel {
+    public struct DescribeEnvPostpaidDeductRequest: TCRequest {
         /// 资源方列表
         public let resourceTypes: [String]
 
@@ -49,7 +49,7 @@ extension Tcb {
     }
 
     /// DescribeEnvPostpaidDeduct返回参数结构体
-    public struct DescribeEnvPostpaidDeductResponse: TCResponseModel {
+    public struct DescribeEnvPostpaidDeductResponse: TCResponse {
         /// 指标抵扣详情列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let postPaidEnvDeductInfoList: [PostPaidEnvDeductInfo]?

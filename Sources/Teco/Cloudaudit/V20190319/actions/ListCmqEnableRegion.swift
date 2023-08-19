@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cloudaudit {
     /// ListCmqEnableRegion请求参数结构体
-    public struct ListCmqEnableRegionRequest: TCRequestModel {
+    public struct ListCmqEnableRegionRequest: TCRequest {
         /// 站点类型。zh表示中国区，en表示国际区。默认中国区。
         public let websiteType: String?
 
@@ -34,7 +34,7 @@ extension Cloudaudit {
     }
 
     /// ListCmqEnableRegion返回参数结构体
-    public struct ListCmqEnableRegionResponse: TCResponseModel {
+    public struct ListCmqEnableRegionResponse: TCResponse {
         /// 云审计支持的cmq的可用区
         public let enableRegions: [CmqRegionInfo]
 

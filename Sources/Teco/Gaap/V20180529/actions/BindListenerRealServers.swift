@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// BindListenerRealServers请求参数结构体
-    public struct BindListenerRealServersRequest: TCRequestModel {
+    public struct BindListenerRealServersRequest: TCRequest {
         /// 监听器ID
         public let listenerId: String
 
@@ -39,7 +39,7 @@ extension Gaap {
     }
 
     /// BindListenerRealServers返回参数结构体
-    public struct BindListenerRealServersResponse: TCResponseModel {
+    public struct BindListenerRealServersResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

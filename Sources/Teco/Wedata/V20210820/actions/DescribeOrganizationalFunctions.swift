@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeOrganizationalFunctions请求参数结构体
-    public struct DescribeOrganizationalFunctionsRequest: TCRequestModel {
+    public struct DescribeOrganizationalFunctionsRequest: TCRequest {
         /// 场景类型：开发、使用
         public let type: String
 
@@ -49,7 +49,7 @@ extension Wedata {
     }
 
     /// DescribeOrganizationalFunctions返回参数结构体
-    public struct DescribeOrganizationalFunctionsResponse: TCResponseModel {
+    public struct DescribeOrganizationalFunctionsResponse: TCResponse {
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: [OrganizationalFunction]?

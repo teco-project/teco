@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ocr {
     /// ClassifyDetectOCR请求参数结构体
-    public struct ClassifyDetectOCRRequest: TCRequestModel {
+    public struct ClassifyDetectOCRRequest: TCRequest {
         /// 图片的 Base64 值。
         /// 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
         /// 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
@@ -69,7 +69,7 @@ extension Ocr {
     }
 
     /// ClassifyDetectOCR返回参数结构体
-    public struct ClassifyDetectOCRResponse: TCResponseModel {
+    public struct ClassifyDetectOCRResponse: TCResponse {
         /// 智能卡证分类结果。当图片类型不支持分类识别或者识别出的类型不在请求参数DiscernType指定的范围内时，返回结果中的Type字段将为空字符串，Name字段将返回"其它"
         public let classifyDetectInfos: [ClassifyDetectInfo]
 

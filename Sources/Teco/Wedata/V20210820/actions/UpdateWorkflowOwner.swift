@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// UpdateWorkflowOwner请求参数结构体
-    public struct UpdateWorkflowOwnerRequest: TCRequestModel {
+    public struct UpdateWorkflowOwnerRequest: TCRequest {
         /// 项目Id
         public let projectId: String
 
@@ -49,7 +49,7 @@ extension Wedata {
     }
 
     /// UpdateWorkflowOwner返回参数结构体
-    public struct UpdateWorkflowOwnerResponse: TCResponseModel {
+    public struct UpdateWorkflowOwnerResponse: TCResponse {
         /// 响应数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: BatchOperationOpsDto?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// CheckTaskNameExist请求参数结构体
-    public struct CheckTaskNameExistRequest: TCRequestModel {
+    public struct CheckTaskNameExistRequest: TCRequest {
         /// 项目id/工作空间id
         public let projectId: String
 
@@ -44,7 +44,7 @@ extension Wedata {
     }
 
     /// CheckTaskNameExist返回参数结构体
-    public struct CheckTaskNameExistResponse: TCResponseModel {
+    public struct CheckTaskNameExistResponse: TCResponse {
         /// 结果
         public let data: Bool
 

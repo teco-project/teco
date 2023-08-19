@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// ExecuteMemberTransaction请求参数结构体
-    public struct ExecuteMemberTransactionRequest: TCRequestModel {
+    public struct ExecuteMemberTransactionRequest: TCRequest {
         /// 请求类型此接口固定填：MemberTransactionReq
         public let requestType: String
 
@@ -156,7 +156,7 @@ extension Cpdp {
     }
 
     /// ExecuteMemberTransaction返回参数结构体
-    public struct ExecuteMemberTransactionResponse: TCResponseModel {
+    public struct ExecuteMemberTransactionResponse: TCResponse {
         /// 请求类型
         public let requestType: String
 

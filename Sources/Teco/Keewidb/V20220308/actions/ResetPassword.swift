@@ -20,7 +20,7 @@ import TecoCore
 
 extension Keewidb {
     /// ResetPassword请求参数结构体
-    public struct ResetPasswordRequest: TCRequestModel {
+    public struct ResetPasswordRequest: TCRequest {
         /// 实例 ID。
         public let instanceId: String
 
@@ -55,7 +55,7 @@ extension Keewidb {
     }
 
     /// ResetPassword返回参数结构体
-    public struct ResetPasswordResponse: TCResponseModel {
+    public struct ResetPasswordResponse: TCResponse {
         /// 任务 ID。
         /// **说明：**修改密码时的任务ID，如果切换免密访问或者非免密码实例，则无需关注此返回值。
         public let taskId: Int64

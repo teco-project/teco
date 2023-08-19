@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gme {
     /// UpdateScanUsers请求参数结构体
-    public struct UpdateScanUsersRequest: TCRequestModel {
+    public struct UpdateScanUsersRequest: TCRequest {
         /// 应用ID
         public let bizId: UInt64
 
@@ -44,7 +44,7 @@ extension Gme {
     }
 
     /// UpdateScanUsers返回参数结构体
-    public struct UpdateScanUsersResponse: TCResponseModel {
+    public struct UpdateScanUsersResponse: TCResponse {
         /// 返回结果码
         public let errorCode: Int64
 

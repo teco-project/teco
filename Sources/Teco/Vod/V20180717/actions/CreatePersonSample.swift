@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// CreatePersonSample请求参数结构体
-    public struct CreatePersonSampleRequest: TCRequestModel {
+    public struct CreatePersonSampleRequest: TCRequest {
         /// 素材名称，长度限制：20 个字符。
         public let name: String
 
@@ -65,7 +65,7 @@ extension Vod {
     }
 
     /// CreatePersonSample返回参数结构体
-    public struct CreatePersonSampleResponse: TCResponseModel {
+    public struct CreatePersonSampleResponse: TCResponse {
         /// 素材信息。
         public let person: AiSamplePerson
 

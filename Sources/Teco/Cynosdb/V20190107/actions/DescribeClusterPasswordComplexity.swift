@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// DescribeClusterPasswordComplexity请求参数结构体
-    public struct DescribeClusterPasswordComplexityRequest: TCRequestModel {
+    public struct DescribeClusterPasswordComplexityRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Cynosdb {
     }
 
     /// DescribeClusterPasswordComplexity返回参数结构体
-    public struct DescribeClusterPasswordComplexityResponse: TCResponseModel {
+    public struct DescribeClusterPasswordComplexityResponse: TCResponse {
         /// 数据字典参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let validatePasswordDictionary: ParamInfo?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeStrategyExist请求参数结构体
-    public struct DescribeStrategyExistRequest: TCRequestModel {
+    public struct DescribeStrategyExistRequest: TCRequest {
         /// 策略名
         public let strategyName: String
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// DescribeStrategyExist返回参数结构体
-    public struct DescribeStrategyExistResponse: TCResponseModel {
+    public struct DescribeStrategyExistResponse: TCResponse {
         /// 策略是否存在, 1是 0否
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ifExist: UInt64?

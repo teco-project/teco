@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// RebootInstances请求参数结构体
-    public struct RebootInstancesRequest: TCRequestModel {
+    public struct RebootInstancesRequest: TCRequest {
         /// 待重启的实例ID列表。在单次请求的过程中，单个region下的请求实例数上限为100。
         public let instanceIdSet: [String]
 
@@ -52,7 +52,7 @@ extension Ecm {
     }
 
     /// RebootInstances返回参数结构体
-    public struct RebootInstancesResponse: TCResponseModel {
+    public struct RebootInstancesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

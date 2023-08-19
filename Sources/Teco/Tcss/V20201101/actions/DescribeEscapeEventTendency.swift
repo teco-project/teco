@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Tcss {
     /// DescribeEscapeEventTendency请求参数结构体
-    public struct DescribeEscapeEventTendencyRequest: TCRequestModel {
+    public struct DescribeEscapeEventTendencyRequest: TCRequest {
         /// 结束时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -47,7 +47,7 @@ extension Tcss {
     }
 
     /// DescribeEscapeEventTendency返回参数结构体
-    public struct DescribeEscapeEventTendencyResponse: TCResponseModel {
+    public struct DescribeEscapeEventTendencyResponse: TCResponse {
         /// 待处理逃逸事件趋势
         public let list: [EscapeEventTendencyInfo]
 

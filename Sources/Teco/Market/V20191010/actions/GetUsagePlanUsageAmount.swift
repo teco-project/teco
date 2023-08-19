@@ -20,7 +20,7 @@ import TecoCore
 
 extension Market {
     /// GetUsagePlanUsageAmount请求参数结构体
-    public struct GetUsagePlanUsageAmountRequest: TCRequestModel {
+    public struct GetUsagePlanUsageAmountRequest: TCRequest {
         /// 用于查询实例的Id
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Market {
     }
 
     /// GetUsagePlanUsageAmount返回参数结构体
-    public struct GetUsagePlanUsageAmountResponse: TCResponseModel {
+    public struct GetUsagePlanUsageAmountResponse: TCResponse {
         /// 最大调用量
         public let maxRequestNum: Int64
 

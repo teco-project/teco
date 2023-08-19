@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dts {
     /// DestroySyncJob请求参数结构体
-    public struct DestroySyncJobRequest: TCRequestModel {
+    public struct DestroySyncJobRequest: TCRequest {
         /// 同步任务id
         public let jobId: String
 
@@ -34,7 +34,7 @@ extension Dts {
     }
 
     /// DestroySyncJob返回参数结构体
-    public struct DestroySyncJobResponse: TCResponseModel {
+    public struct DestroySyncJobResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

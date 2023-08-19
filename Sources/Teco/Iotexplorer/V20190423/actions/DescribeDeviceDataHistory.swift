@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotexplorer {
     /// DescribeDeviceDataHistory请求参数结构体
-    public struct DescribeDeviceDataHistoryRequest: TCRequestModel {
+    public struct DescribeDeviceDataHistoryRequest: TCRequest {
         /// 区间开始时间（Unix 时间戳，毫秒级）
         public let minTime: UInt64
 
@@ -64,7 +64,7 @@ extension Iotexplorer {
     }
 
     /// DescribeDeviceDataHistory返回参数结构体
-    public struct DescribeDeviceDataHistoryResponse: TCResponseModel {
+    public struct DescribeDeviceDataHistoryResponse: TCResponse {
         /// 属性字段名称，对应数据模板中功能属性的标识符
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fieldName: String?

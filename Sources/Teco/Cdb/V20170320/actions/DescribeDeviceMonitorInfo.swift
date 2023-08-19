@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DescribeDeviceMonitorInfo请求参数结构体
-    public struct DescribeDeviceMonitorInfoRequest: TCRequestModel {
+    public struct DescribeDeviceMonitorInfoRequest: TCRequest {
         /// 实例ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例ID相同。
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Cdb {
     }
 
     /// DescribeDeviceMonitorInfo返回参数结构体
-    public struct DescribeDeviceMonitorInfoResponse: TCResponseModel {
+    public struct DescribeDeviceMonitorInfoResponse: TCResponse {
         /// 实例CPU监控数据
         public let cpu: DeviceCpuInfo
 

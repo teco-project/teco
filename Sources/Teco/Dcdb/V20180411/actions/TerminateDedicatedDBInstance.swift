@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dcdb {
     /// TerminateDedicatedDBInstance请求参数结构体
-    public struct TerminateDedicatedDBInstanceRequest: TCRequestModel {
+    public struct TerminateDedicatedDBInstanceRequest: TCRequest {
         /// 实例 Id，形如：dcdbt-ow728lmc。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Dcdb {
     }
 
     /// TerminateDedicatedDBInstance返回参数结构体
-    public struct TerminateDedicatedDBInstanceResponse: TCResponseModel {
+    public struct TerminateDedicatedDBInstanceResponse: TCResponse {
         /// 异步流程Id
         public let flowId: Int64
 

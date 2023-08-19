@@ -20,7 +20,7 @@ import TecoCore
 
 extension Captcha {
     /// DescribeCaptchaMiniDataSum请求参数结构体
-    public struct DescribeCaptchaMiniDataSumRequest: TCRequestModel {
+    public struct DescribeCaptchaMiniDataSumRequest: TCRequest {
         /// 验证码应用ID
         public let captchaAppId: Int64
 
@@ -44,7 +44,7 @@ extension Captcha {
     }
 
     /// DescribeCaptchaMiniDataSum返回参数结构体
-    public struct DescribeCaptchaMiniDataSumResponse: TCResponseModel {
+    public struct DescribeCaptchaMiniDataSumResponse: TCResponse {
         /// 请求总量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let getSum: Int64?

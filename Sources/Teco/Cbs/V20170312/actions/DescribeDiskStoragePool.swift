@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cbs {
     /// DescribeDiskStoragePool请求参数结构体
-    public struct DescribeDiskStoragePoolRequest: TCRequestModel {
+    public struct DescribeDiskStoragePoolRequest: TCRequest {
         /// 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](/document/product/362/15633)中的相关小节。
         public let limit: UInt64?
 
@@ -54,7 +54,7 @@ extension Cbs {
     }
 
     /// DescribeDiskStoragePool返回参数结构体
-    public struct DescribeDiskStoragePoolResponse: TCResponseModel {
+    public struct DescribeDiskStoragePoolResponse: TCResponse {
         /// 符合条件的独享集群的数量
         public let totalCount: UInt64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// ProcessMedia请求参数结构体
-    public struct ProcessMediaRequest: TCRequestModel {
+    public struct ProcessMediaRequest: TCRequest {
         /// 媒体文件 ID，即该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 [视频上传完成事件通知](/document/product/266/7830) 或 [云点播控制台](https://console.cloud.tencent.com/vod/media) 获取该字段。
         public let fileId: String
 
@@ -85,7 +85,7 @@ extension Vod {
     }
 
     /// ProcessMedia返回参数结构体
-    public struct ProcessMediaResponse: TCResponseModel {
+    public struct ProcessMediaResponse: TCResponse {
         /// 任务 ID
         public let taskId: String
 

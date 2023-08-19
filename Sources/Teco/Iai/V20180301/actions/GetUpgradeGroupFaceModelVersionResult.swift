@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iai {
     /// GetUpgradeGroupFaceModelVersionResult请求参数结构体
-    public struct GetUpgradeGroupFaceModelVersionResultRequest: TCRequestModel {
+    public struct GetUpgradeGroupFaceModelVersionResultRequest: TCRequest {
         /// 升级任务ID，用于查询、获取人员库升级的进度和结果。
         public let jobId: String
 
@@ -34,7 +34,7 @@ extension Iai {
     }
 
     /// GetUpgradeGroupFaceModelVersionResult返回参数结构体
-    public struct GetUpgradeGroupFaceModelVersionResultResponse: TCResponseModel {
+    public struct GetUpgradeGroupFaceModelVersionResultResponse: TCResponse {
         /// 人员升级任务预估结束时间。 StartTimestamp的值是自 Unix 纪元时间到人员查重任务预估结束的毫秒数。
         /// Unix 纪元时间是 1970 年 1 月 1 日星期四，协调世界时 (UTC) 00:00:00。
         /// 如果为0表示这个任务已经执行完毕。

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryFinancialDataUrl请求参数结构体
-    public struct QueryFinancialDataUrlRequest: TCRequestModel {
+    public struct QueryFinancialDataUrlRequest: TCRequest {
         /// 数据查询范围:结束时间 yyyy-MM-dd HH:mm:ss
         public let endTime: String
 
@@ -46,7 +46,7 @@ extension Cpdp {
     }
 
     /// QueryFinancialDataUrl返回参数结构体
-    public struct QueryFinancialDataUrlResponse: TCResponseModel {
+    public struct QueryFinancialDataUrlResponse: TCResponse {
         /// 下载链接
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cosUrl: String?

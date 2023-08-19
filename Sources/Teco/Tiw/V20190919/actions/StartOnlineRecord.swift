@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiw {
     /// StartOnlineRecord请求参数结构体
-    public struct StartOnlineRecordRequest: TCRequestModel {
+    public struct StartOnlineRecordRequest: TCRequest {
         /// 客户的SdkAppId
         public let sdkAppId: Int64
 
@@ -117,7 +117,7 @@ extension Tiw {
     }
 
     /// StartOnlineRecord返回参数结构体
-    public struct StartOnlineRecordResponse: TCResponseModel {
+    public struct StartOnlineRecordResponse: TCResponse {
         /// 录制任务Id
         public let taskId: String
 

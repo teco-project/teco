@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DeleteOfflineTask请求参数结构体
-    public struct DeleteOfflineTaskRequest: TCRequestModel {
+    public struct DeleteOfflineTaskRequest: TCRequest {
         /// 操作者name
         public let operatorName: String
 
@@ -49,7 +49,7 @@ extension Wedata {
     }
 
     /// DeleteOfflineTask返回参数结构体
-    public struct DeleteOfflineTaskResponse: TCResponseModel {
+    public struct DeleteOfflineTaskResponse: TCResponse {
         /// 结果
         public let data: Bool
 

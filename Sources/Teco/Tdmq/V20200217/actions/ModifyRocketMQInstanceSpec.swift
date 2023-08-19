@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// ModifyRocketMQInstanceSpec请求参数结构体
-    public struct ModifyRocketMQInstanceSpecRequest: TCRequestModel {
+    public struct ModifyRocketMQInstanceSpecRequest: TCRequest {
         /// 专享实例ID
         public let instanceId: String
 
@@ -53,7 +53,7 @@ extension Tdmq {
     }
 
     /// ModifyRocketMQInstanceSpec返回参数结构体
-    public struct ModifyRocketMQInstanceSpecResponse: TCResponseModel {
+    public struct ModifyRocketMQInstanceSpecResponse: TCResponse {
         /// 订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let orderId: String?

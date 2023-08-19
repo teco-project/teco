@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// CreateRoute请求参数结构体
-    public struct CreateRouteRequest: TCRequestModel {
+    public struct CreateRouteRequest: TCRequest {
         /// 实例唯一id
         public let instanceId: String
 
@@ -74,7 +74,7 @@ extension Ckafka {
     }
 
     /// CreateRoute返回参数结构体
-    public struct CreateRouteResponse: TCResponseModel {
+    public struct CreateRouteResponse: TCResponse {
         /// 返回结果
         public let result: JgwOperateResponse
 

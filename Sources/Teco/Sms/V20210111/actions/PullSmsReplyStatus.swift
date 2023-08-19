@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sms {
     /// PullSmsReplyStatus请求参数结构体
-    public struct PullSmsReplyStatusRequest: TCRequestModel {
+    public struct PullSmsReplyStatusRequest: TCRequest {
         /// 拉取最大条数，最多100条。
         public let limit: UInt64
 
@@ -39,7 +39,7 @@ extension Sms {
     }
 
     /// PullSmsReplyStatus返回参数结构体
-    public struct PullSmsReplyStatusResponse: TCResponseModel {
+    public struct PullSmsReplyStatusResponse: TCResponse {
         /// 回复状态响应集合。
         public let pullSmsReplyStatusSet: [PullSmsReplyStatus]
 

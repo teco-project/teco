@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// RegisterEventListener请求参数结构体
-    public struct RegisterEventListenerRequest: TCRequestModel {
+    public struct RegisterEventListenerRequest: TCRequest {
         /// 关键字，如果是任务，则传任务Id
         public let key: String
 
@@ -54,7 +54,7 @@ extension Wedata {
     }
 
     /// RegisterEventListener返回参数结构体
-    public struct RegisterEventListenerResponse: TCResponseModel {
+    public struct RegisterEventListenerResponse: TCResponse {
         /// 成功或者失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: BatchReturn?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// DescribeEnvironmentAttributes请求参数结构体
-    public struct DescribeEnvironmentAttributesRequest: TCRequestModel {
+    public struct DescribeEnvironmentAttributesRequest: TCRequest {
         /// 环境（命名空间）名称。
         public let environmentId: String
 
@@ -39,7 +39,7 @@ extension Tdmq {
     }
 
     /// DescribeEnvironmentAttributes返回参数结构体
-    public struct DescribeEnvironmentAttributesResponse: TCResponseModel {
+    public struct DescribeEnvironmentAttributesResponse: TCResponse {
         /// 未消费消息过期时间，单位：秒，最大1296000（15天）。
         public let msgTTL: UInt64
 

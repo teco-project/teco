@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeClusterKubeconfig请求参数结构体
-    public struct DescribeClusterKubeconfigRequest: TCRequestModel {
+    public struct DescribeClusterKubeconfigRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Tke {
     }
 
     /// DescribeClusterKubeconfig返回参数结构体
-    public struct DescribeClusterKubeconfigResponse: TCResponseModel {
+    public struct DescribeClusterKubeconfigResponse: TCResponse {
         /// 子账户kubeconfig文件，可用于直接访问集群kube-apiserver
         public let kubeconfig: String
 

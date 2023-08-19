@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// SetNodePoolNodeProtection请求参数结构体
-    public struct SetNodePoolNodeProtectionRequest: TCRequestModel {
+    public struct SetNodePoolNodeProtectionRequest: TCRequest {
         /// 集群id
         public let clusterId: String
 
@@ -49,7 +49,7 @@ extension Tke {
     }
 
     /// SetNodePoolNodeProtection返回参数结构体
-    public struct SetNodePoolNodeProtectionResponse: TCResponseModel {
+    public struct SetNodePoolNodeProtectionResponse: TCResponse {
         /// 成功设置的节点id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let succeedInstanceIds: [String]?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// CreateAuditLogFile请求参数结构体
-    public struct CreateAuditLogFileRequest: TCRequestModel {
+    public struct CreateAuditLogFileRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -67,7 +67,7 @@ extension Cynosdb {
     }
 
     /// CreateAuditLogFile返回参数结构体
-    public struct CreateAuditLogFileResponse: TCResponseModel {
+    public struct CreateAuditLogFileResponse: TCResponse {
         /// 审计日志文件名称。
         public let fileName: String
 

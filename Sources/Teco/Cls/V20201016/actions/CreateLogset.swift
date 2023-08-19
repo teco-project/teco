@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// CreateLogset请求参数结构体
-    public struct CreateLogsetRequest: TCRequestModel {
+    public struct CreateLogsetRequest: TCRequest {
         /// 日志集名字，不能重名
         public let logsetName: String
 
@@ -39,7 +39,7 @@ extension Cls {
     }
 
     /// CreateLogset返回参数结构体
-    public struct CreateLogsetResponse: TCResponseModel {
+    public struct CreateLogsetResponse: TCResponse {
         /// 日志集ID
         public let logsetId: String
 

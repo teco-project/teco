@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssm {
     /// UpdateDescription请求参数结构体
-    public struct UpdateDescriptionRequest: TCRequestModel {
+    public struct UpdateDescriptionRequest: TCRequest {
         /// 指定需要更新描述信息的凭据名。
         public let secretName: String
 
@@ -39,7 +39,7 @@ extension Ssm {
     }
 
     /// UpdateDescription返回参数结构体
-    public struct UpdateDescriptionResponse: TCResponseModel {
+    public struct UpdateDescriptionResponse: TCResponse {
         /// 凭据名称。
         public let secretName: String
 

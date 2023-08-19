@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trro {
     /// BatchDeleteDevices请求参数结构体
-    public struct BatchDeleteDevicesRequest: TCRequestModel {
+    public struct BatchDeleteDevicesRequest: TCRequest {
         /// 目标删除设备所属项目ID
         public let projectId: String
 
@@ -39,7 +39,7 @@ extension Trro {
     }
 
     /// BatchDeleteDevices返回参数结构体
-    public struct BatchDeleteDevicesResponse: TCResponseModel {
+    public struct BatchDeleteDevicesResponse: TCResponse {
         /// 删除失败的设备ID列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failedDeviceIds: [String]?

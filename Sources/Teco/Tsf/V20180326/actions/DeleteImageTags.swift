@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DeleteImageTags请求参数结构体
-    public struct DeleteImageTagsRequest: TCRequestModel {
+    public struct DeleteImageTagsRequest: TCRequest {
         /// 镜像版本数组
         public let imageTags: [DeleteImageTag]
 
@@ -39,7 +39,7 @@ extension Tsf {
     }
 
     /// DeleteImageTags返回参数结构体
-    public struct DeleteImageTagsResponse: TCResponseModel {
+    public struct DeleteImageTagsResponse: TCResponse {
         /// 批量删除操作是否成功。
         /// true：成功。
         /// false：失败。

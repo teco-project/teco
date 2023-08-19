@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cds {
     /// InquiryPriceDbauditInstance请求参数结构体
-    public struct InquiryPriceDbauditInstanceRequest: TCRequestModel {
+    public struct InquiryPriceDbauditInstanceRequest: TCRequest {
         /// 实例规格，取值范围： cdsaudit，cdsaudit_adv， cdsaudit_ent 分别为合规版，高级版，企业版
         public let instanceVersion: String
 
@@ -54,7 +54,7 @@ extension Cds {
     }
 
     /// InquiryPriceDbauditInstance返回参数结构体
-    public struct InquiryPriceDbauditInstanceResponse: TCResponseModel {
+    public struct InquiryPriceDbauditInstanceResponse: TCResponse {
         /// 总价，单位：元
         public let totalPrice: Float
 

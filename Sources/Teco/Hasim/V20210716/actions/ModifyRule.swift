@@ -20,7 +20,7 @@ import TecoCore
 
 extension Hasim {
     /// ModifyRule请求参数结构体
-    public struct ModifyRuleRequest: TCRequestModel {
+    public struct ModifyRuleRequest: TCRequest {
         /// 自动化规则名称
         public let name: String
 
@@ -99,7 +99,7 @@ extension Hasim {
     }
 
     /// ModifyRule返回参数结构体
-    public struct ModifyRuleResponse: TCResponseModel {
+    public struct ModifyRuleResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

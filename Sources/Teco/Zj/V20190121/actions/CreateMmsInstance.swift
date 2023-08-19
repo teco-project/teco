@@ -20,7 +20,7 @@ import TecoCore
 
 extension Zj {
     /// CreateMmsInstance请求参数结构体
-    public struct CreateMmsInstanceRequest: TCRequestModel {
+    public struct CreateMmsInstanceRequest: TCRequest {
         /// 商户证书
         public let license: String
 
@@ -74,7 +74,7 @@ extension Zj {
     }
 
     /// CreateMmsInstance返回参数结构体
-    public struct CreateMmsInstanceResponse: TCResponseModel {
+    public struct CreateMmsInstanceResponse: TCResponse {
         /// 创建样例返回信息
         public let data: CreateMmsInstanceResp
 

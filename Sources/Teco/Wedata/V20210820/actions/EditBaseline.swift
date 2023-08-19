@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// EditBaseline请求参数结构体
-    public struct EditBaselineRequest: TCRequestModel {
+    public struct EditBaselineRequest: TCRequest {
         /// 项目id
         public let projectId: String
 
@@ -98,7 +98,7 @@ extension Wedata {
     }
 
     /// EditBaseline返回参数结构体
-    public struct EditBaselineResponse: TCResponseModel {
+    public struct EditBaselineResponse: TCResponse {
         /// 1
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: BooleanResponse?

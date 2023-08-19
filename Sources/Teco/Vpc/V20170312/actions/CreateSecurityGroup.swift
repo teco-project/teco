@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CreateSecurityGroup请求参数结构体
-    public struct CreateSecurityGroupRequest: TCRequestModel {
+    public struct CreateSecurityGroupRequest: TCRequest {
         /// 安全组名称，可任意命名，但不得超过60个字符。
         public let groupName: String
 
@@ -49,7 +49,7 @@ extension Vpc {
     }
 
     /// CreateSecurityGroup返回参数结构体
-    public struct CreateSecurityGroupResponse: TCResponseModel {
+    public struct CreateSecurityGroupResponse: TCResponse {
         /// 安全组对象。
         public let securityGroup: SecurityGroup
 

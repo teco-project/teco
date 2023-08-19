@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cwp {
     /// DescribeBanStatus请求参数结构体
-    public struct DescribeBanStatusRequest: TCRequestModel {
+    public struct DescribeBanStatusRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeBanStatus返回参数结构体
-    public struct DescribeBanStatusResponse: TCResponseModel {
+    public struct DescribeBanStatusResponse: TCResponse {
         /// 阻断开关状态 0:关闭 1:开启
         public let status: UInt64
 

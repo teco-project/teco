@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// AddClusterInstances请求参数结构体
-    public struct AddClusterInstancesRequest: TCRequestModel {
+    public struct AddClusterInstancesRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -89,7 +89,7 @@ extension Tsf {
     }
 
     /// AddClusterInstances返回参数结构体
-    public struct AddClusterInstancesResponse: TCResponseModel {
+    public struct AddClusterInstancesResponse: TCResponse {
         /// 添加云主机的返回列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: AddInstanceResult?

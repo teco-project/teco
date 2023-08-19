@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// UpdateRecordPlan请求参数结构体
-    public struct UpdateRecordPlanRequest: TCRequestModel {
+    public struct UpdateRecordPlanRequest: TCRequest {
         /// 计划ID
         public let planId: String
 
@@ -39,7 +39,7 @@ extension Iss {
     }
 
     /// UpdateRecordPlan返回参数结构体
-    public struct UpdateRecordPlanResponse: TCResponseModel {
+    public struct UpdateRecordPlanResponse: TCResponse {
         /// 返回结果
         public let data: RecordPlanOptResponse
 

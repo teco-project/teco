@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// CreateSearchTemplate请求参数结构体
-    public struct CreateSearchTemplateRequest: TCRequestModel {
+    public struct CreateSearchTemplateRequest: TCRequest {
         /// 搜索模板
         public let searchTemplate: SearchTemplate
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// CreateSearchTemplate返回参数结构体
-    public struct CreateSearchTemplateResponse: TCResponseModel {
+    public struct CreateSearchTemplateResponse: TCResponse {
         /// 0：成功，非0：失败
         public let status: UInt64
 

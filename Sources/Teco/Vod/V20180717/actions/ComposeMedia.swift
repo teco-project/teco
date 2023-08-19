@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// ComposeMedia请求参数结构体
-    public struct ComposeMediaRequest: TCRequestModel {
+    public struct ComposeMediaRequest: TCRequest {
         /// 输入的媒体轨道列表，包括视频、音频、图片等素材组成的多个轨道信息，其中：
         /// - 输入的多个轨道在时间轴上和输出媒体文件的时间轴对齐；
         /// - 时间轴上相同时间点的各个轨道的素材进行重叠，视频或者图片按轨道顺序进行图像的叠加，轨道顺序高的素材叠加在上面，音频素材进行混音；
@@ -63,7 +63,7 @@ extension Vod {
     }
 
     /// ComposeMedia返回参数结构体
-    public struct ComposeMediaResponse: TCResponseModel {
+    public struct ComposeMediaResponse: TCResponse {
         /// 制作媒体文件的任务 ID，可以通过该 ID 查询制作任务（任务类型为 MakeMedia）的状态。
         public let taskId: String
 

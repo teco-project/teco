@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ccc {
     /// DescribeStaffStatusMetrics请求参数结构体
-    public struct DescribeStaffStatusMetricsRequest: TCRequestModel {
+    public struct DescribeStaffStatusMetricsRequest: TCRequest {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         public let sdkAppId: Int64
 
@@ -49,7 +49,7 @@ extension Ccc {
     }
 
     /// DescribeStaffStatusMetrics返回参数结构体
-    public struct DescribeStaffStatusMetricsResponse: TCResponseModel {
+    public struct DescribeStaffStatusMetricsResponse: TCResponse {
         /// 坐席状态实时信息
         public let metrics: [StaffStatusMetrics]
 

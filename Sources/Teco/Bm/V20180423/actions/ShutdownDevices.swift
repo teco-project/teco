@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// ShutdownDevices请求参数结构体
-    public struct ShutdownDevicesRequest: TCRequestModel {
+    public struct ShutdownDevicesRequest: TCRequest {
         /// 需要关闭的设备ID列表
         public let instanceIds: [String]
 
@@ -34,7 +34,7 @@ extension Bm {
     }
 
     /// ShutdownDevices返回参数结构体
-    public struct ShutdownDevicesResponse: TCResponseModel {
+    public struct ShutdownDevicesResponse: TCResponse {
         /// 异步任务ID
         public let taskId: UInt64
 

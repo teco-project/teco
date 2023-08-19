@@ -20,7 +20,7 @@ import TecoCore
 
 extension Teo {
     /// ModifyZoneStatus请求参数结构体
-    public struct ModifyZoneStatusRequest: TCRequestModel {
+    public struct ModifyZoneStatusRequest: TCRequest {
         /// 站点 ID。
         public let zoneId: String
 
@@ -41,7 +41,7 @@ extension Teo {
     }
 
     /// ModifyZoneStatus返回参数结构体
-    public struct ModifyZoneStatusResponse: TCResponseModel {
+    public struct ModifyZoneStatusResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// SetForwardAuth请求参数结构体
-    public struct SetForwardAuthRequest: TCRequestModel {
+    public struct SetForwardAuthRequest: TCRequest {
         /// 控制台Skey
         public let skey: String
 
@@ -39,7 +39,7 @@ extension Iotvideo {
     }
 
     /// SetForwardAuth返回参数结构体
-    public struct SetForwardAuthResponse: TCResponseModel {
+    public struct SetForwardAuthResponse: TCResponse {
         /// 腾讯云账号
         public let endpoint: String
 

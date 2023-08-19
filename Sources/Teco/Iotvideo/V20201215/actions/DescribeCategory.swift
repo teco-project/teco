@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// DescribeCategory请求参数结构体
-    public struct DescribeCategoryRequest: TCRequestModel {
+    public struct DescribeCategoryRequest: TCRequest {
         /// Category ID。
         public let id: Int64
 
@@ -34,7 +34,7 @@ extension Iotvideo {
     }
 
     /// DescribeCategory返回参数结构体
-    public struct DescribeCategoryResponse: TCResponseModel {
+    public struct DescribeCategoryResponse: TCResponse {
         /// Category详情
         public let data: ProductTemplate
 

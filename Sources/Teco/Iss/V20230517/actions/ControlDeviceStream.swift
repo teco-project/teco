@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// ControlDeviceStream请求参数结构体
-    public struct ControlDeviceStreamRequest: TCRequestModel {
+    public struct ControlDeviceStreamRequest: TCRequest {
         /// 通道 ID（从通道查询接口DescribeDeviceChannel中获取）
         public let channelId: String
 
@@ -51,7 +51,7 @@ extension Iss {
     }
 
     /// 获取开流地址返回数据
-    public struct ControlDeviceStreamResponse: TCResponseModel {
+    public struct ControlDeviceStreamResponse: TCResponse {
         private let data: Wrapped
 
         private struct Wrapped: Codable {

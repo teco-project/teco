@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// CreatePlugin请求参数结构体
-    public struct CreatePluginRequest: TCRequestModel {
+    public struct CreatePluginRequest: TCRequest {
         /// 用户自定义的插件名称。最长50个字符，最短2个字符，支持 a-z,A-Z,0-9,_, 必须字母开头，字母或者数字结尾。
         public let pluginName: String
 
@@ -54,7 +54,7 @@ extension Apigateway {
     }
 
     /// CreatePlugin返回参数结构体
-    public struct CreatePluginResponse: TCResponseModel {
+    public struct CreatePluginResponse: TCResponse {
         /// 新建的插件详情。
         public let result: Plugin
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeCloudBaseRunAllVpcs请求参数结构体
-    public struct DescribeCloudBaseRunAllVpcsRequest: TCRequestModel {
+    public struct DescribeCloudBaseRunAllVpcsRequest: TCRequest {
         /// 环境ID
         public let envId: String
 
@@ -34,7 +34,7 @@ extension Tcb {
     }
 
     /// DescribeCloudBaseRunAllVpcs返回参数结构体
-    public struct DescribeCloudBaseRunAllVpcsResponse: TCResponseModel {
+    public struct DescribeCloudBaseRunAllVpcsResponse: TCResponse {
         /// 所有vpcid
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vpcs: [String]?

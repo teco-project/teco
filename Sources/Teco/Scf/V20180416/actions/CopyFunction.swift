@@ -20,7 +20,7 @@ import TecoCore
 
 extension Scf {
     /// CopyFunction请求参数结构体
-    public struct CopyFunctionRequest: TCRequestModel {
+    public struct CopyFunctionRequest: TCRequest {
         /// 要复制的函数的名称
         public let functionName: String
 
@@ -74,7 +74,7 @@ extension Scf {
     }
 
     /// CopyFunction返回参数结构体
-    public struct CopyFunctionResponse: TCResponseModel {
+    public struct CopyFunctionResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

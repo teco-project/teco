@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// ModifyBaselineTaskAlarmStatus请求参数结构体
-    public struct ModifyBaselineTaskAlarmStatusRequest: TCRequestModel {
+    public struct ModifyBaselineTaskAlarmStatusRequest: TCRequest {
         /// 是否告警. 取值范围:
         /// - true: 开启告警;
         /// - false: 关闭告警
@@ -46,7 +46,7 @@ extension Wedata {
     }
 
     /// ModifyBaselineTaskAlarmStatus返回参数结构体
-    public struct ModifyBaselineTaskAlarmStatusResponse: TCResponseModel {
+    public struct ModifyBaselineTaskAlarmStatusResponse: TCResponse {
         /// 成功或失败
         public let data: Bool
 

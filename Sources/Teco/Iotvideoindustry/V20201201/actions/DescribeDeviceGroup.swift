@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// DescribeDeviceGroup请求参数结构体
-    public struct DescribeDeviceGroupRequest: TCRequestModel {
+    public struct DescribeDeviceGroupRequest: TCRequest {
         /// 设备唯一标识列表
         public let deviceIds: [String]?
 
@@ -34,7 +34,7 @@ extension Iotvideoindustry {
     }
 
     /// DescribeDeviceGroup返回参数结构体
-    public struct DescribeDeviceGroupResponse: TCResponseModel {
+    public struct DescribeDeviceGroupResponse: TCResponse {
         /// 设备所在分组信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let devGroups: [DevGroupInfo]?

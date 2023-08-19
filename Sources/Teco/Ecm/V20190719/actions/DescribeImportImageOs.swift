@@ -20,13 +20,13 @@ import TecoCore
 
 extension Ecm {
     /// DescribeImportImageOs请求参数结构体
-    public struct DescribeImportImageOsRequest: TCRequestModel {
+    public struct DescribeImportImageOsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeImportImageOs返回参数结构体
-    public struct DescribeImportImageOsResponse: TCResponseModel {
+    public struct DescribeImportImageOsResponse: TCResponse {
         /// 支持的导入镜像的操作系统类型
         public let importImageOsListSupported: ImageOsList
 

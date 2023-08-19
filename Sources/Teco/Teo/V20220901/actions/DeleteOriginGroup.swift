@@ -20,7 +20,7 @@ import TecoCore
 
 extension Teo {
     /// DeleteOriginGroup请求参数结构体
-    public struct DeleteOriginGroupRequest: TCRequestModel {
+    public struct DeleteOriginGroupRequest: TCRequest {
         /// 站点ID。
         public let zoneId: String
 
@@ -39,7 +39,7 @@ extension Teo {
     }
 
     /// DeleteOriginGroup返回参数结构体
-    public struct DeleteOriginGroupResponse: TCResponseModel {
+    public struct DeleteOriginGroupResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

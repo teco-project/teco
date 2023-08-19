@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiw {
     /// ModifyWhiteboardBucketConfig请求参数结构体
-    public struct ModifyWhiteboardBucketConfigRequest: TCRequestModel {
+    public struct ModifyWhiteboardBucketConfigRequest: TCRequest {
         /// 客户的SdkAppId
         public let sdkAppId: Int64
 
@@ -61,7 +61,7 @@ extension Tiw {
     }
 
     /// ModifyWhiteboardBucketConfig返回参数结构体
-    public struct ModifyWhiteboardBucketConfigResponse: TCResponseModel {
+    public struct ModifyWhiteboardBucketConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

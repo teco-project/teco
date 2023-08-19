@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssl {
     /// DescribeDeployedResources请求参数结构体
-    public struct DescribeDeployedResourcesRequest: TCRequestModel {
+    public struct DescribeDeployedResourcesRequest: TCRequest {
         /// 证书ID
         public let certificateIds: [String]
 
@@ -39,7 +39,7 @@ extension Ssl {
     }
 
     /// DescribeDeployedResources返回参数结构体
-    public struct DescribeDeployedResourcesResponse: TCResponseModel {
+    public struct DescribeDeployedResourcesResponse: TCResponse {
         /// 资源详情
         public let deployedResources: [DeployedResources]
 

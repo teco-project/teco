@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmvpc {
     /// DescribeNatSubnets请求参数结构体
-    public struct DescribeNatSubnetsRequest: TCRequestModel {
+    public struct DescribeNatSubnetsRequest: TCRequest {
         /// NAT网关ID，例如：nat-kdm476mp
         public let natId: String
 
@@ -39,7 +39,7 @@ extension Bmvpc {
     }
 
     /// DescribeNatSubnets返回参数结构体
-    public struct DescribeNatSubnetsResponse: TCResponseModel {
+    public struct DescribeNatSubnetsResponse: TCResponse {
         /// NAT子网信息
         public let natSubnetInfoSet: [NatSubnetInfo]
 

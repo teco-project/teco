@@ -20,7 +20,7 @@ import TecoCore
 
 extension Yunjing {
     /// DescribeMachineInfo请求参数结构体
-    public struct DescribeMachineInfoRequest: TCRequestModel {
+    public struct DescribeMachineInfoRequest: TCRequest {
         /// 云镜客户端唯一Uuid。
         public let uuid: String?
 
@@ -34,7 +34,7 @@ extension Yunjing {
     }
 
     /// DescribeMachineInfo返回参数结构体
-    public struct DescribeMachineInfoResponse: TCResponseModel {
+    public struct DescribeMachineInfoResponse: TCResponse {
         /// 机器ip。
         public let machineIp: String
 

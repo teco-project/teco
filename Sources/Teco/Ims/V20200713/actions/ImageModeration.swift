@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ims {
     /// ImageModeration请求参数结构体
-    public struct ImageModerationRequest: TCRequestModel {
+    public struct ImageModerationRequest: TCRequest {
         /// 该字段用于标识业务场景。您可以在内容安全控制台创建对应的ID，配置不同的内容审核策略，通过接口调用，默认不填为0，后端使用默认策略。 -- 该字段暂未开放。
         public let bizType: String?
 
@@ -69,7 +69,7 @@ extension Ims {
     }
 
     /// ImageModeration返回参数结构体
-    public struct ImageModerationResponse: TCResponseModel {
+    public struct ImageModerationResponse: TCResponse {
         /// 数据是否属于恶意类型。
         /// 0：正常，1：可疑；
         public let hitFlag: Int64

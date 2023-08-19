@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// StopDBImportJob请求参数结构体
-    public struct StopDBImportJobRequest: TCRequestModel {
+    public struct StopDBImportJobRequest: TCRequest {
         /// 异步任务的请求 ID。
         public let asyncRequestId: String
 
@@ -34,7 +34,7 @@ extension Cdb {
     }
 
     /// StopDBImportJob返回参数结构体
-    public struct StopDBImportJobResponse: TCResponseModel {
+    public struct StopDBImportJobResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ciam {
     /// DescribeUser请求参数结构体
-    public struct DescribeUserRequest: TCRequestModel {
+    public struct DescribeUserRequest: TCRequest {
         /// 用户目录ID
         public let userStoreId: String
 
@@ -54,7 +54,7 @@ extension Ciam {
     }
 
     /// DescribeUser返回参数结构体
-    public struct DescribeUserResponse: TCResponseModel {
+    public struct DescribeUserResponse: TCResponse {
         /// 总条数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let total: Int64?

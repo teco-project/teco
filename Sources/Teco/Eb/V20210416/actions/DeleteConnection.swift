@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eb {
     /// DeleteConnection请求参数结构体
-    public struct DeleteConnectionRequest: TCRequestModel {
+    public struct DeleteConnectionRequest: TCRequest {
         /// 连接器ID
         public let connectionId: String
 
@@ -39,7 +39,7 @@ extension Eb {
     }
 
     /// DeleteConnection返回参数结构体
-    public struct DeleteConnectionResponse: TCResponseModel {
+    public struct DeleteConnectionResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

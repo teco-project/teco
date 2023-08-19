@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// CreateVodDomain请求参数结构体
-    public struct CreateVodDomainRequest: TCRequestModel {
+    public struct CreateVodDomainRequest: TCRequest {
         /// 需要接入点播的加速域名。注意：不支持填写泛域名。
         public let domain: String
 
@@ -49,7 +49,7 @@ extension Vod {
     }
 
     /// CreateVodDomain返回参数结构体
-    public struct CreateVodDomainResponse: TCResponseModel {
+    public struct CreateVodDomainResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

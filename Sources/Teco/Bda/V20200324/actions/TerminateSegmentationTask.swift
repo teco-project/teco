@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bda {
     /// TerminateSegmentationTask请求参数结构体
-    public struct TerminateSegmentationTaskRequest: TCRequestModel {
+    public struct TerminateSegmentationTaskRequest: TCRequest {
         /// 在提交分割任务成功时返回的任务标识ID。
         public let taskID: String
 
@@ -34,7 +34,7 @@ extension Bda {
     }
 
     /// TerminateSegmentationTask返回参数结构体
-    public struct TerminateSegmentationTaskResponse: TCResponseModel {
+    public struct TerminateSegmentationTaskResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// CreateExportComplianceStatusListJob请求参数结构体
-    public struct CreateExportComplianceStatusListJobRequest: TCRequestModel {
+    public struct CreateExportComplianceStatusListJobRequest: TCRequest {
         /// 要导出信息的资产类型
         public let assetType: String
 
@@ -49,7 +49,7 @@ extension Tcss {
     }
 
     /// CreateExportComplianceStatusListJob返回参数结构体
-    public struct CreateExportComplianceStatusListJobResponse: TCResponseModel {
+    public struct CreateExportComplianceStatusListJobResponse: TCResponse {
         /// 返回创建的导出任务的ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let jobId: String?

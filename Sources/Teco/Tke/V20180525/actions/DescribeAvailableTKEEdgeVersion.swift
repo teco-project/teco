@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeAvailableTKEEdgeVersion请求参数结构体
-    public struct DescribeAvailableTKEEdgeVersionRequest: TCRequestModel {
+    public struct DescribeAvailableTKEEdgeVersionRequest: TCRequest {
         /// 填写ClusterId获取当前集群各个组件版本和最新版本
         public let clusterId: String?
 
@@ -34,7 +34,7 @@ extension Tke {
     }
 
     /// DescribeAvailableTKEEdgeVersion返回参数结构体
-    public struct DescribeAvailableTKEEdgeVersionResponse: TCResponseModel {
+    public struct DescribeAvailableTKEEdgeVersionResponse: TCResponse {
         /// 版本列表
         public let versions: [String]
 

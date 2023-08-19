@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mongodb {
     /// DescribeAsyncRequestInfo请求参数结构体
-    public struct DescribeAsyncRequestInfoRequest: TCRequestModel {
+    public struct DescribeAsyncRequestInfoRequest: TCRequest {
         /// 异步请求Id，涉及到异步流程的接口返回，如CreateBackupDBInstance
         public let asyncRequestId: String
 
@@ -34,7 +34,7 @@ extension Mongodb {
     }
 
     /// DescribeAsyncRequestInfo返回参数结构体
-    public struct DescribeAsyncRequestInfoResponse: TCResponseModel {
+    public struct DescribeAsyncRequestInfoResponse: TCResponse {
         /// 状态。返回参数有：initial-初始化、running-运行中、paused-任务执行失败，已暂停、undoed-任务执行失败，已回滚、failed-任务执行失败, 已终止、success-成功
         public let status: String
 

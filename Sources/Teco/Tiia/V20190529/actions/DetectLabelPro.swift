@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiia {
     /// DetectLabelPro请求参数结构体
-    public struct DetectLabelProRequest: TCRequestModel {
+    public struct DetectLabelProRequest: TCRequest {
         /// 图片 URL 地址。
         /// 图片限制：
         /// • 图片格式：PNG、JPG、JPEG、BMP。
@@ -51,7 +51,7 @@ extension Tiia {
     }
 
     /// DetectLabelPro返回参数结构体
-    public struct DetectLabelProResponse: TCResponseModel {
+    public struct DetectLabelProResponse: TCResponse {
         /// 返回标签数组。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let labels: [DetectLabelItem]?

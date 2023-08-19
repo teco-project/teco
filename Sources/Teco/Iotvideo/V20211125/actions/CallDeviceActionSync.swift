@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// CallDeviceActionSync请求参数结构体
-    public struct CallDeviceActionSyncRequest: TCRequestModel {
+    public struct CallDeviceActionSyncRequest: TCRequest {
         /// 产品Id
         public let productId: String
 
@@ -49,7 +49,7 @@ extension Iotvideo {
     }
 
     /// CallDeviceActionSync返回参数结构体
-    public struct CallDeviceActionSyncResponse: TCResponseModel {
+    public struct CallDeviceActionSyncResponse: TCResponse {
         /// 调用Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clientToken: String?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QuerySinglePaymentResult请求参数结构体
-    public struct QuerySinglePaymentResultRequest: TCRequestModel {
+    public struct QuerySinglePaymentResultRequest: TCRequest {
         /// 转账类型
         public let transferType: Int64
 
@@ -44,7 +44,7 @@ extension Cpdp {
     }
 
     /// QuerySinglePaymentResult返回参数结构体
-    public struct QuerySinglePaymentResultResponse: TCResponseModel {
+    public struct QuerySinglePaymentResultResponse: TCResponse {
         /// 错误码。响应成功："SUCCESS"，其他为不成功
         public let errCode: String
 

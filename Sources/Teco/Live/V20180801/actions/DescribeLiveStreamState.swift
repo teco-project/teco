@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeLiveStreamState请求参数结构体
-    public struct DescribeLiveStreamStateRequest: TCRequestModel {
+    public struct DescribeLiveStreamStateRequest: TCRequest {
         /// 推流路径，与推流和播放地址中的AppName保持一致，默认为 live。
         public let appName: String
 
@@ -44,7 +44,7 @@ extension Live {
     }
 
     /// DescribeLiveStreamState返回参数结构体
-    public struct DescribeLiveStreamStateResponse: TCResponseModel {
+    public struct DescribeLiveStreamStateResponse: TCResponse {
         /// 流状态，
         /// active：活跃，
         /// inactive：非活跃，

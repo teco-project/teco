@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// RedoTaskExecute请求参数结构体
-    public struct RedoTaskExecuteRequest: TCRequestModel {
+    public struct RedoTaskExecuteRequest: TCRequest {
         /// 任务批次ID
         public let batchId: String
 
@@ -44,7 +44,7 @@ extension Tsf {
     }
 
     /// RedoTaskExecute返回参数结构体
-    public struct RedoTaskExecuteResponse: TCResponseModel {
+    public struct RedoTaskExecuteResponse: TCResponse {
         /// 成功失败
         public let result: String
 

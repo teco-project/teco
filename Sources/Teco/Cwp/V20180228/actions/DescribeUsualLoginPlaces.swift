@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeUsualLoginPlaces请求参数结构体
-    public struct DescribeUsualLoginPlacesRequest: TCRequestModel {
+    public struct DescribeUsualLoginPlacesRequest: TCRequest {
         /// 主机安全客户端UUID
         public let uuid: String
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// DescribeUsualLoginPlaces返回参数结构体
-    public struct DescribeUsualLoginPlacesResponse: TCResponseModel {
+    public struct DescribeUsualLoginPlacesResponse: TCResponse {
         /// 常用登录地数组
         public let usualLoginPlaces: [UsualPlace]
 

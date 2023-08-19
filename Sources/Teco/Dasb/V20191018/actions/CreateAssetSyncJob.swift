@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dasb {
     /// CreateAssetSyncJob请求参数结构体
-    public struct CreateAssetSyncJobRequest: TCRequestModel {
+    public struct CreateAssetSyncJobRequest: TCRequest {
         /// 同步资产类别，1 - 主机资产, 2 - 数据库资产
         public let category: UInt64
 
@@ -34,7 +34,7 @@ extension Dasb {
     }
 
     /// CreateAssetSyncJob返回参数结构体
-    public struct CreateAssetSyncJobResponse: TCResponseModel {
+    public struct CreateAssetSyncJobResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dts {
     /// RecoverSyncJob请求参数结构体
-    public struct RecoverSyncJobRequest: TCRequestModel {
+    public struct RecoverSyncJobRequest: TCRequest {
         /// 同步实例id（即标识一个同步作业），形如sync-werwfs23
         public let jobId: String
 
@@ -34,7 +34,7 @@ extension Dts {
     }
 
     /// RecoverSyncJob返回参数结构体
-    public struct RecoverSyncJobResponse: TCResponseModel {
+    public struct RecoverSyncJobResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

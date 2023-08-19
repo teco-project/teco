@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tem {
     /// CreateServiceV2请求参数结构体
-    public struct CreateServiceV2Request: TCRequestModel {
+    public struct CreateServiceV2Request: TCRequest {
         /// 服务名
         public let serviceName: String
 
@@ -89,7 +89,7 @@ extension Tem {
     }
 
     /// CreateServiceV2返回参数结构体
-    public struct CreateServiceV2Response: TCResponseModel {
+    public struct CreateServiceV2Response: TCResponse {
         /// 服务code
         public let result: String
 

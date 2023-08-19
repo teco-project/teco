@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// CreateNotebookInstance请求参数结构体
-    public struct CreateNotebookInstanceRequest: TCRequestModel {
+    public struct CreateNotebookInstanceRequest: TCRequest {
         /// Notebook实例名称，不能超过63个字符
         /// 规则：“^\[a-zA-Z0-9\](-\*\[a-zA-Z0-9\])\*$”
         public let notebookInstanceName: String
@@ -110,7 +110,7 @@ extension Tione {
     }
 
     /// CreateNotebookInstance返回参数结构体
-    public struct CreateNotebookInstanceResponse: TCResponseModel {
+    public struct CreateNotebookInstanceResponse: TCResponse {
         /// Notebook实例名字
         public let notebookInstanceName: String
 

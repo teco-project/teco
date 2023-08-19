@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeTaskRunHistory请求参数结构体
-    public struct DescribeTaskRunHistoryRequest: TCRequestModel {
+    public struct DescribeTaskRunHistoryRequest: TCRequest {
         /// 项目id
         public let projectId: String
 
@@ -49,7 +49,7 @@ extension Wedata {
     }
 
     /// DescribeTaskRunHistory返回参数结构体
-    public struct DescribeTaskRunHistoryResponse: TCResponseModel {
+    public struct DescribeTaskRunHistoryResponse: TCResponse {
         /// 分页查询任务运行历史结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: InstanceOpsInfoPage?

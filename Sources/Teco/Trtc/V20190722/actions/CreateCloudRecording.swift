@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trtc {
     /// CreateCloudRecording请求参数结构体
-    public struct CreateCloudRecordingRequest: TCRequestModel {
+    public struct CreateCloudRecordingRequest: TCRequest {
         /// TRTC的[SdkAppId](https://cloud.tencent.com/document/product/647/46351#sdkappid)，和录制的房间所对应的SdkAppId相同。
         public let sdkAppId: UInt64
 
@@ -86,7 +86,7 @@ extension Trtc {
     }
 
     /// CreateCloudRecording返回参数结构体
-    public struct CreateCloudRecordingResponse: TCResponseModel {
+    public struct CreateCloudRecordingResponse: TCResponse {
         /// 云录制服务分配的任务 ID。任务 ID 是对一次录制生命周期过程的唯一标识，结束录制时会失去意义。任务 ID需要业务保存下来，作为下次针对这个录制任务操作的参数。
         public let taskId: String
 

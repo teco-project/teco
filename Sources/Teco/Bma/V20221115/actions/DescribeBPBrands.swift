@@ -20,13 +20,13 @@ import TecoCore
 
 extension Bma {
     /// DescribeBPBrands请求参数结构体
-    public struct DescribeBPBrandsRequest: TCRequestModel {
+    public struct DescribeBPBrandsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeBPBrands返回参数结构体
-    public struct DescribeBPBrandsResponse: TCResponseModel {
+    public struct DescribeBPBrandsResponse: TCResponse {
         /// 品牌信息
         public let brands: [BrandData]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mariadb {
     /// ResetAccountPassword请求参数结构体
-    public struct ResetAccountPasswordRequest: TCRequestModel {
+    public struct ResetAccountPasswordRequest: TCRequest {
         /// 实例 ID，形如：tdsql-ow728lmc，可以通过 DescribeDBInstances 查询实例详情获得。
         public let instanceId: String
 
@@ -49,7 +49,7 @@ extension Mariadb {
     }
 
     /// ResetAccountPassword返回参数结构体
-    public struct ResetAccountPasswordResponse: TCResponseModel {
+    public struct ResetAccountPasswordResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// DescribePrometheusZones请求参数结构体
-    public struct DescribePrometheusZonesRequest: TCRequestModel {
+    public struct DescribePrometheusZonesRequest: TCRequest {
         /// 地域 ID（RegionId 和 RegionName 只需要填一个）
         public let regionId: Int64?
 
@@ -39,7 +39,7 @@ extension Monitor {
     }
 
     /// DescribePrometheusZones返回参数结构体
-    public struct DescribePrometheusZonesResponse: TCResponseModel {
+    public struct DescribePrometheusZonesResponse: TCResponse {
         /// 区域列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let zoneSet: [PrometheusZoneItem]?

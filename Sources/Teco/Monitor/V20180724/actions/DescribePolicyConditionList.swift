@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// DescribePolicyConditionList请求参数结构体
-    public struct DescribePolicyConditionListRequest: TCRequestModel {
+    public struct DescribePolicyConditionListRequest: TCRequest {
         /// 固定值，为"monitor"
         public let module: String
 
@@ -34,7 +34,7 @@ extension Monitor {
     }
 
     /// DescribePolicyConditionList返回参数结构体
-    public struct DescribePolicyConditionListResponse: TCResponseModel {
+    public struct DescribePolicyConditionListResponse: TCResponse {
         /// 告警策略条件列表
         public let conditions: [DescribePolicyConditionListCondition]
 

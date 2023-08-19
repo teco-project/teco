@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CreateNetworkAcl请求参数结构体
-    public struct CreateNetworkAclRequest: TCRequestModel {
+    public struct CreateNetworkAclRequest: TCRequest {
         /// VPC实例ID。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/215/15778)接口返回值中的VpcId获取。
         public let vpcId: String
 
@@ -49,7 +49,7 @@ extension Vpc {
     }
 
     /// CreateNetworkAcl返回参数结构体
-    public struct CreateNetworkAclResponse: TCResponseModel {
+    public struct CreateNetworkAclResponse: TCResponse {
         /// 网络ACL实例。
         public let networkAcl: NetworkAcl
 

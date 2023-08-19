@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DiagnosePlus请求参数结构体
-    public struct DiagnosePlusRequest: TCRequestModel {
+    public struct DiagnosePlusRequest: TCRequest {
         /// 实例列表
         public let instances: [InstanceOpsDto]?
 
@@ -119,7 +119,7 @@ extension Wedata {
     }
 
     /// DiagnosePlus返回参数结构体
-    public struct DiagnosePlusResponse: TCResponseModel {
+    public struct DiagnosePlusResponse: TCResponse {
         /// 结果
         public let data: String
 

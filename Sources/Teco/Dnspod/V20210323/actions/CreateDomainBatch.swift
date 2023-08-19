@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dnspod {
     /// CreateDomainBatch请求参数结构体
-    public struct CreateDomainBatchRequest: TCRequestModel {
+    public struct CreateDomainBatchRequest: TCRequest {
         /// 域名数组
         public let domainList: [String]
 
@@ -39,7 +39,7 @@ extension Dnspod {
     }
 
     /// CreateDomainBatch返回参数结构体
-    public struct CreateDomainBatchResponse: TCResponseModel {
+    public struct CreateDomainBatchResponse: TCResponse {
         /// 批量添加域名信息
         public let detailList: [CreateDomainBatchDetail]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmeip {
     /// BindHosted请求参数结构体
-    public struct BindHostedRequest: TCRequestModel {
+    public struct BindHostedRequest: TCRequest {
         /// Eip实例ID，可通过DescribeBmEip 接口返回字段中的 eipId获取。Eip和EipId参数必须要填写一个。
         public let eipId: String
 
@@ -39,7 +39,7 @@ extension Bmeip {
     }
 
     /// BindHosted返回参数结构体
-    public struct BindHostedResponse: TCResponseModel {
+    public struct BindHostedResponse: TCResponse {
         /// 异步任务ID，可以通过EipBmQueryTask查询任务状态
         public let taskId: Int64
 

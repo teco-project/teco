@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// SendBatchMessages请求参数结构体
-    public struct SendBatchMessagesRequest: TCRequestModel {
+    public struct SendBatchMessagesRequest: TCRequest {
         /// 消息要发送的topic的名字, 这里尽量需要使用topic的全路径，即：tenant/namespace/topic。如果不指定，默认使用的是：public/default
         public let topic: String
 
@@ -74,7 +74,7 @@ extension Tdmq {
     }
 
     /// SendBatchMessages返回参数结构体
-    public struct SendBatchMessagesResponse: TCResponseModel {
+    public struct SendBatchMessagesResponse: TCResponse {
         /// 消息的唯一标识
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let messageId: String?

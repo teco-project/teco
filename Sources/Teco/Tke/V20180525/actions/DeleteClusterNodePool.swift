@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DeleteClusterNodePool请求参数结构体
-    public struct DeleteClusterNodePoolRequest: TCRequestModel {
+    public struct DeleteClusterNodePoolRequest: TCRequest {
         /// 节点池对应的 ClusterId
         public let clusterId: String
 
@@ -44,7 +44,7 @@ extension Tke {
     }
 
     /// DeleteClusterNodePool返回参数结构体
-    public struct DeleteClusterNodePoolResponse: TCResponseModel {
+    public struct DeleteClusterNodePoolResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

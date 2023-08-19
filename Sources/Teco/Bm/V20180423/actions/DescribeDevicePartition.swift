@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// DescribeDevicePartition请求参数结构体
-    public struct DescribeDevicePartitionRequest: TCRequestModel {
+    public struct DescribeDevicePartitionRequest: TCRequest {
         /// 物理机ID
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Bm {
     }
 
     /// DescribeDevicePartition返回参数结构体
-    public struct DescribeDevicePartitionResponse: TCResponseModel {
+    public struct DescribeDevicePartitionResponse: TCResponse {
         /// 物理机分区格式
         public let devicePartition: DevicePartition
 

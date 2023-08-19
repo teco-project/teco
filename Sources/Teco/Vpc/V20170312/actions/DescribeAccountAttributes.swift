@@ -20,13 +20,13 @@ import TecoCore
 
 extension Vpc {
     /// DescribeAccountAttributes请求参数结构体
-    public struct DescribeAccountAttributesRequest: TCRequestModel {
+    public struct DescribeAccountAttributesRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeAccountAttributes返回参数结构体
-    public struct DescribeAccountAttributesResponse: TCResponseModel {
+    public struct DescribeAccountAttributesResponse: TCResponse {
         /// 用户账号属性对象。
         public let accountAttributeSet: [AccountAttribute]
 

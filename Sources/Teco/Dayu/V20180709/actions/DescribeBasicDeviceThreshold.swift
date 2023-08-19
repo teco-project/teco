@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dayu {
     /// DescribeBasicDeviceThreshold请求参数结构体
-    public struct DescribeBasicDeviceThresholdRequest: TCRequestModel {
+    public struct DescribeBasicDeviceThresholdRequest: TCRequest {
         /// 查询的IP地址，取值如：1.1.1.1
         public let basicIp: String
 
@@ -64,7 +64,7 @@ extension Dayu {
     }
 
     /// DescribeBasicDeviceThreshold返回参数结构体
-    public struct DescribeBasicDeviceThresholdResponse: TCResponseModel {
+    public struct DescribeBasicDeviceThresholdResponse: TCResponse {
         /// 返回黑洞封堵值
         public let threshold: UInt64
 

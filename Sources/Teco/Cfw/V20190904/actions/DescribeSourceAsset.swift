@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// DescribeSourceAsset请求参数结构体
-    public struct DescribeSourceAssetRequest: TCRequestModel {
+    public struct DescribeSourceAssetRequest: TCRequest {
         /// 模糊查询
         public let fuzzySearch: String?
 
@@ -59,7 +59,7 @@ extension Cfw {
     }
 
     /// DescribeSourceAsset返回参数结构体
-    public struct DescribeSourceAssetResponse: TCResponseModel {
+    public struct DescribeSourceAssetResponse: TCResponse {
         /// 地域集合
         public let zoneList: [AssetZone]
 

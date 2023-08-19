@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cii {
     /// CreateAutoClassifyStructureTask请求参数结构体
-    public struct CreateAutoClassifyStructureTaskRequest: TCRequestModel {
+    public struct CreateAutoClassifyStructureTaskRequest: TCRequest {
         /// 服务类型
         /// Structured 仅结构化
         /// Underwrite 结构化+核保
@@ -66,7 +66,7 @@ extension Cii {
     }
 
     /// CreateAutoClassifyStructureTask返回参数结构体
-    public struct CreateAutoClassifyStructureTaskResponse: TCResponseModel {
+    public struct CreateAutoClassifyStructureTaskResponse: TCResponse {
         /// 创建的主任务号，用于查询结果
         public let mainTaskId: String
 

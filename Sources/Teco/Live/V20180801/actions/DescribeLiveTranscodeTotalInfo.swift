@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeLiveTranscodeTotalInfo请求参数结构体
-    public struct DescribeLiveTranscodeTotalInfoRequest: TCRequestModel {
+    public struct DescribeLiveTranscodeTotalInfoRequest: TCRequest {
         /// 结束时间点，接口查询支持两种时间格式：
         /// 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见IOS日期格式说明文档: https://cloud.tencent.com/document/product/266/11732#I
         /// 2）YYYY-MM-DD hh:mm:ss：使用此格式时，默认代表北京时间。
@@ -58,7 +58,7 @@ extension Live {
     }
 
     /// DescribeLiveTranscodeTotalInfo返回参数结构体
-    public struct DescribeLiveTranscodeTotalInfoResponse: TCResponseModel {
+    public struct DescribeLiveTranscodeTotalInfoResponse: TCResponse {
         /// 统计数据列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dataInfoList: [TranscodeTotalInfo]?

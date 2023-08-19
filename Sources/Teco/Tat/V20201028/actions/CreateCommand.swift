@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tat {
     /// CreateCommand请求参数结构体
-    public struct CreateCommandRequest: TCRequestModel {
+    public struct CreateCommandRequest: TCRequest {
         /// 命令名称。名称仅支持中文、英文、数字、下划线、分隔符"-"、小数点，最大长度不能超60个字节。
         public let commandName: String
 
@@ -99,7 +99,7 @@ extension Tat {
     }
 
     /// CreateCommand返回参数结构体
-    public struct CreateCommandResponse: TCResponseModel {
+    public struct CreateCommandResponse: TCResponse {
         /// 命令ID。
         public let commandId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Yunjing {
     /// DescribeVulInfo请求参数结构体
-    public struct DescribeVulInfoRequest: TCRequestModel {
+    public struct DescribeVulInfoRequest: TCRequest {
         /// 漏洞种类ID。
         public let vulId: UInt64
 
@@ -34,7 +34,7 @@ extension Yunjing {
     }
 
     /// DescribeVulInfo返回参数结构体
-    public struct DescribeVulInfoResponse: TCResponseModel {
+    public struct DescribeVulInfoResponse: TCResponse {
         /// 漏洞种类ID。
         public let vulId: UInt64
 

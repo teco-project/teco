@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// ModifyConfig请求参数结构体
-    public struct ModifyConfigRequest: TCRequestModel {
+    public struct ModifyConfigRequest: TCRequest {
         /// 采集规则配置ID
         public let configId: String
 
@@ -78,7 +78,7 @@ extension Cls {
     }
 
     /// ModifyConfig返回参数结构体
-    public struct ModifyConfigResponse: TCResponseModel {
+    public struct ModifyConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

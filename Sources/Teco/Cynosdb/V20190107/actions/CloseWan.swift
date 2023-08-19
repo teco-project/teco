@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// CloseWan请求参数结构体
-    public struct CloseWanRequest: TCRequestModel {
+    public struct CloseWanRequest: TCRequest {
         /// 实例组id
         public let instanceGrpId: String
 
@@ -34,7 +34,7 @@ extension Cynosdb {
     }
 
     /// CloseWan返回参数结构体
-    public struct CloseWanResponse: TCResponseModel {
+    public struct CloseWanResponse: TCResponse {
         /// 任务流ID
         public let flowId: Int64
 

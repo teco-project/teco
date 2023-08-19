@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryReconciliationFileApplyInfo请求参数结构体
-    public struct QueryReconciliationFileApplyInfoRequest: TCRequestModel {
+    public struct QueryReconciliationFileApplyInfoRequest: TCRequest {
         /// 申请对账文件的任务ID。
         public let applyFileId: String
 
@@ -43,7 +43,7 @@ extension Cpdp {
     }
 
     /// QueryReconciliationFileApplyInfo返回参数结构体
-    public struct QueryReconciliationFileApplyInfoResponse: TCResponseModel {
+    public struct QueryReconciliationFileApplyInfoResponse: TCResponse {
         /// 错误码。
         /// __SUCCESS__: 成功
         /// __其他__: 见附录-错误码表

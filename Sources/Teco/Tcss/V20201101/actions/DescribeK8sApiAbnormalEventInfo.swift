@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeK8sApiAbnormalEventInfo请求参数结构体
-    public struct DescribeK8sApiAbnormalEventInfoRequest: TCRequestModel {
+    public struct DescribeK8sApiAbnormalEventInfoRequest: TCRequest {
         /// 事件ID
         public let id: UInt64
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeK8sApiAbnormalEventInfo返回参数结构体
-    public struct DescribeK8sApiAbnormalEventInfoResponse: TCResponseModel {
+    public struct DescribeK8sApiAbnormalEventInfoResponse: TCResponse {
         /// 事件详情
         public let info: K8sApiAbnormalEventInfo
 

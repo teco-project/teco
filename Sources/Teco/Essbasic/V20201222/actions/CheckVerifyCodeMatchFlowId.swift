@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// CheckVerifyCodeMatchFlowId请求参数结构体
-    public struct CheckVerifyCodeMatchFlowIdRequest: TCRequestModel {
+    public struct CheckVerifyCodeMatchFlowIdRequest: TCRequest {
         /// 调用方信息
         public let caller: Caller
 
@@ -49,7 +49,7 @@ extension Essbasic {
     }
 
     /// CheckVerifyCodeMatchFlowId返回参数结构体
-    public struct CheckVerifyCodeMatchFlowIdResponse: TCResponseModel {
+    public struct CheckVerifyCodeMatchFlowIdResponse: TCResponse {
         /// true: 验证码正确，false: 验证码错误
         public let success: Bool
 

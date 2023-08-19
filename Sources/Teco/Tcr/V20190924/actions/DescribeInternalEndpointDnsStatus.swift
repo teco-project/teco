@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// DescribeInternalEndpointDnsStatus请求参数结构体
-    public struct DescribeInternalEndpointDnsStatusRequest: TCRequestModel {
+    public struct DescribeInternalEndpointDnsStatusRequest: TCRequest {
         /// vpc列表
         public let vpcSet: [VpcAndDomainInfo]
 
@@ -34,7 +34,7 @@ extension Tcr {
     }
 
     /// DescribeInternalEndpointDnsStatus返回参数结构体
-    public struct DescribeInternalEndpointDnsStatusResponse: TCResponseModel {
+    public struct DescribeInternalEndpointDnsStatusResponse: TCResponse {
         /// vpc私有域名解析状态列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vpcSet: [VpcPrivateDomainStatus]?

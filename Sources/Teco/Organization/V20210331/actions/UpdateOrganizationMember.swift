@@ -20,7 +20,7 @@ import TecoCore
 
 extension Organization {
     /// UpdateOrganizationMember请求参数结构体
-    public struct UpdateOrganizationMemberRequest: TCRequestModel {
+    public struct UpdateOrganizationMemberRequest: TCRequest {
         /// 成员Uin。
         public let memberUin: UInt64
 
@@ -65,7 +65,7 @@ extension Organization {
     }
 
     /// UpdateOrganizationMember返回参数结构体
-    public struct UpdateOrganizationMemberResponse: TCResponseModel {
+    public struct UpdateOrganizationMemberResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

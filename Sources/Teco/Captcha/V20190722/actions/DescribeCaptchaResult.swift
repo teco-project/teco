@@ -20,7 +20,7 @@ import TecoCore
 
 extension Captcha {
     /// DescribeCaptchaResult请求参数结构体
-    public struct DescribeCaptchaResultRequest: TCRequestModel {
+    public struct DescribeCaptchaResultRequest: TCRequest {
         /// 固定填值：9。可在控制台配置不同验证码类型。
         public let captchaType: UInt64
 
@@ -84,7 +84,7 @@ extension Captcha {
     }
 
     /// DescribeCaptchaResult返回参数结构体
-    public struct DescribeCaptchaResultResponse: TCResponseModel {
+    public struct DescribeCaptchaResultResponse: TCResponse {
         /// 1 OK 验证通过
         /// 7 captcha no match 传入的Randstr不合法，请检查Randstr是否与前端返回的Randstr一致
         /// 8 ticket expired 传入的Ticket已过期（Ticket有效期5分钟），请重新生成Ticket、Randstr进行校验

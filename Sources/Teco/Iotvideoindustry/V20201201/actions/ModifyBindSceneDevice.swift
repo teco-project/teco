@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// ModifyBindSceneDevice请求参数结构体
-    public struct ModifyBindSceneDeviceRequest: TCRequestModel {
+    public struct ModifyBindSceneDeviceRequest: TCRequest {
         /// 场景ID
         public let sceneId: Int64
 
@@ -44,7 +44,7 @@ extension Iotvideoindustry {
     }
 
     /// ModifyBindSceneDevice返回参数结构体
-    public struct ModifyBindSceneDeviceResponse: TCResponseModel {
+    public struct ModifyBindSceneDeviceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

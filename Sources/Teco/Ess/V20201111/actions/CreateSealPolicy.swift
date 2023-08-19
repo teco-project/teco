@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// CreateSealPolicy请求参数结构体
-    public struct CreateSealPolicyRequest: TCRequestModel {
+    public struct CreateSealPolicyRequest: TCRequest {
         /// 调用方用户信息，userId 必填
         public let `operator`: UserInfo
 
@@ -64,7 +64,7 @@ extension Ess {
     }
 
     /// CreateSealPolicy返回参数结构体
-    public struct CreateSealPolicyResponse: TCResponseModel {
+    public struct CreateSealPolicyResponse: TCResponse {
         /// 最终授权成功的。其他的跳过的是已经授权了的
         public let userIds: [String]
 

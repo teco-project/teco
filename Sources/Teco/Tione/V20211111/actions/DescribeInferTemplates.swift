@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tione {
     /// DescribeInferTemplates请求参数结构体
-    public struct DescribeInferTemplatesRequest: TCRequestModel {
+    public struct DescribeInferTemplatesRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeInferTemplates返回参数结构体
-    public struct DescribeInferTemplatesResponse: TCResponseModel {
+    public struct DescribeInferTemplatesResponse: TCResponse {
         /// 模板列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let frameworkTemplates: [InferTemplateGroup]?

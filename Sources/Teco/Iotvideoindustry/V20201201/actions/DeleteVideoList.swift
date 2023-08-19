@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// DeleteVideoList请求参数结构体
-    public struct DeleteVideoListRequest: TCRequestModel {
+    public struct DeleteVideoListRequest: TCRequest {
         /// 视频ID列表长度限制100内
         public let initIDs: [Int64]
 
@@ -34,7 +34,7 @@ extension Iotvideoindustry {
     }
 
     /// DeleteVideoList返回参数结构体
-    public struct DeleteVideoListResponse: TCResponseModel {
+    public struct DeleteVideoListResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

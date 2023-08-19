@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcm {
     /// CreateMesh请求参数结构体
-    public struct CreateMeshRequest: TCRequestModel {
+    public struct CreateMeshRequest: TCRequest {
         /// Mesh名称
         public let displayName: String
 
@@ -60,7 +60,7 @@ extension Tcm {
     }
 
     /// CreateMesh返回参数结构体
-    public struct CreateMeshResponse: TCResponseModel {
+    public struct CreateMeshResponse: TCResponse {
         /// 创建的Mesh的Id
         public let meshId: String
 

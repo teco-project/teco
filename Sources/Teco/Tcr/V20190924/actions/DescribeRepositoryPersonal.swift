@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// DescribeRepositoryPersonal请求参数结构体
-    public struct DescribeRepositoryPersonalRequest: TCRequestModel {
+    public struct DescribeRepositoryPersonalRequest: TCRequest {
         /// 仓库名字
         public let repoName: String
 
@@ -34,7 +34,7 @@ extension Tcr {
     }
 
     /// DescribeRepositoryPersonal返回参数结构体
-    public struct DescribeRepositoryPersonalResponse: TCResponseModel {
+    public struct DescribeRepositoryPersonalResponse: TCResponse {
         /// 仓库信息
         public let data: RepositoryInfoResp
 

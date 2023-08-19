@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dayu {
     /// CreateNetReturn请求参数结构体
-    public struct CreateNetReturnRequest: TCRequestModel {
+    public struct CreateNetReturnRequest: TCRequest {
         /// 大禹子产品代号（net表示高防IP专业版）
         public let business: String
 
@@ -39,7 +39,7 @@ extension Dayu {
     }
 
     /// CreateNetReturn返回参数结构体
-    public struct CreateNetReturnResponse: TCResponseModel {
+    public struct CreateNetReturnResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ciam {
     /// ListLogMessageByCondition请求参数结构体
-    public struct ListLogMessageByConditionRequest: TCRequestModel {
+    public struct ListLogMessageByConditionRequest: TCRequest {
         /// 用户池ID
         public let userStoreId: String
 
@@ -52,7 +52,7 @@ extension Ciam {
     }
 
     /// ListLogMessageByCondition返回参数结构体
-    public struct ListLogMessageByConditionResponse: TCResponseModel {
+    public struct ListLogMessageByConditionResponse: TCResponse {
         /// 总条数
         public let total: Int64
 

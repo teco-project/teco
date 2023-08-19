@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ame {
     /// DescribeKTVTopList请求参数结构体
-    public struct DescribeKTVTopListRequest: TCRequestModel {
+    public struct DescribeKTVTopListRequest: TCRequest {
         /// 榜单类型。默认Hot
         /// - Hot, 热歌榜。
         public let type: String?
@@ -42,7 +42,7 @@ extension Ame {
     }
 
     /// DescribeKTVTopList返回参数结构体
-    public struct DescribeKTVTopListResponse: TCResponseModel {
+    public struct DescribeKTVTopListResponse: TCResponse {
         /// 歌曲基础信息列表
         public let ktvMusicTopInfoSet: [KTVMusicTopInfo]
 

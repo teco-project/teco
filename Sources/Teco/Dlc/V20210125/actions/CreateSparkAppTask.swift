@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// CreateSparkAppTask请求参数结构体
-    public struct CreateSparkAppTaskRequest: TCRequestModel {
+    public struct CreateSparkAppTaskRequest: TCRequest {
         /// spark作业名
         public let jobName: String
 
@@ -39,7 +39,7 @@ extension Dlc {
     }
 
     /// CreateSparkAppTask返回参数结构体
-    public struct CreateSparkAppTaskResponse: TCResponseModel {
+    public struct CreateSparkAppTaskResponse: TCResponse {
         /// 批Id
         public let batchId: String
 

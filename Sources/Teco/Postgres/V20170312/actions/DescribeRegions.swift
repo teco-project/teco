@@ -20,13 +20,13 @@ import TecoCore
 
 extension Postgres {
     /// DescribeRegions请求参数结构体
-    public struct DescribeRegionsRequest: TCRequestModel {
+    public struct DescribeRegionsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeRegions返回参数结构体
-    public struct DescribeRegionsResponse: TCResponseModel {
+    public struct DescribeRegionsResponse: TCResponse {
         /// 返回的结果数量。
         public let totalCount: Int64
 

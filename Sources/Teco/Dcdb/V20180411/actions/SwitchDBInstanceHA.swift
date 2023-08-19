@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dcdb {
     /// SwitchDBInstanceHA请求参数结构体
-    public struct SwitchDBInstanceHARequest: TCRequestModel {
+    public struct SwitchDBInstanceHARequest: TCRequest {
         /// 实例Id，形如 tdsql-ow728lmc。
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Dcdb {
     }
 
     /// SwitchDBInstanceHA返回参数结构体
-    public struct SwitchDBInstanceHAResponse: TCResponseModel {
+    public struct SwitchDBInstanceHAResponse: TCResponse {
         /// 异步流程Id
         public let flowId: UInt64
 

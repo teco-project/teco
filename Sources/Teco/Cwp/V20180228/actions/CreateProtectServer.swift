@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// CreateProtectServer请求参数结构体
-    public struct CreateProtectServerRequest: TCRequestModel {
+    public struct CreateProtectServerRequest: TCRequest {
         /// 防护目录地址
         public let protectDir: String
 
@@ -39,7 +39,7 @@ extension Cwp {
     }
 
     /// CreateProtectServer返回参数结构体
-    public struct CreateProtectServerResponse: TCResponseModel {
+    public struct CreateProtectServerResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

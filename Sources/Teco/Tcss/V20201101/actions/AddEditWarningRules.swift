@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// AddEditWarningRules请求参数结构体
-    public struct AddEditWarningRulesRequest: TCRequestModel {
+    public struct AddEditWarningRulesRequest: TCRequest {
         /// 告警开关策略
         public let warningRules: [WarningRule]
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// AddEditWarningRules返回参数结构体
-    public struct AddEditWarningRulesResponse: TCResponseModel {
+    public struct AddEditWarningRulesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

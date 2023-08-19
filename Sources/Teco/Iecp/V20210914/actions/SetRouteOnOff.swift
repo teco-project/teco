@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// SetRouteOnOff请求参数结构体
-    public struct SetRouteOnOffRequest: TCRequestModel {
+    public struct SetRouteOnOffRequest: TCRequest {
         public let routeID: Int64
 
         /// on 或 off
@@ -38,7 +38,7 @@ extension Iecp {
     }
 
     /// SetRouteOnOff返回参数结构体
-    public struct SetRouteOnOffResponse: TCResponseModel {
+    public struct SetRouteOnOffResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

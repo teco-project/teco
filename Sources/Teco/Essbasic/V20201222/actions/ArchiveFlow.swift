@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// ArchiveFlow请求参数结构体
-    public struct ArchiveFlowRequest: TCRequestModel {
+    public struct ArchiveFlowRequest: TCRequest {
         /// 调用方信息
         public let caller: Caller
 
@@ -39,7 +39,7 @@ extension Essbasic {
     }
 
     /// ArchiveFlow返回参数结构体
-    public struct ArchiveFlowResponse: TCResponseModel {
+    public struct ArchiveFlowResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

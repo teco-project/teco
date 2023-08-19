@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mongodb {
     /// CreateBackupDBInstance请求参数结构体
-    public struct CreateBackupDBInstanceRequest: TCRequestModel {
+    public struct CreateBackupDBInstanceRequest: TCRequest {
         /// 实例 ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         public let instanceId: String
 
@@ -46,7 +46,7 @@ extension Mongodb {
     }
 
     /// CreateBackupDBInstance返回参数结构体
-    public struct CreateBackupDBInstanceResponse: TCResponseModel {
+    public struct CreateBackupDBInstanceResponse: TCResponse {
         /// 查询备份流程的状态。
         public let asyncRequestId: String
 

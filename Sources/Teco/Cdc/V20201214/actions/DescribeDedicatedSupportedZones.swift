@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdc {
     /// DescribeDedicatedSupportedZones请求参数结构体
-    public struct DescribeDedicatedSupportedZonesRequest: TCRequestModel {
+    public struct DescribeDedicatedSupportedZonesRequest: TCRequest {
         /// 传入region列表
         public let regions: [Int64]?
 
@@ -34,7 +34,7 @@ extension Cdc {
     }
 
     /// DescribeDedicatedSupportedZones返回参数结构体
-    public struct DescribeDedicatedSupportedZonesResponse: TCResponseModel {
+    public struct DescribeDedicatedSupportedZonesResponse: TCResponse {
         /// 支持的可用区列表
         public let zoneSet: [RegionZoneInfo]
 

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Vpc {
     /// DescribeNetworkAccountType请求参数结构体
-    public struct DescribeNetworkAccountTypeRequest: TCRequestModel {
+    public struct DescribeNetworkAccountTypeRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeNetworkAccountType返回参数结构体
-    public struct DescribeNetworkAccountTypeResponse: TCResponseModel {
+    public struct DescribeNetworkAccountTypeResponse: TCResponse {
         /// 用户账号的网络类型，STANDARD为标准用户，LEGACY为传统用户
         public let networkAccountType: String
 

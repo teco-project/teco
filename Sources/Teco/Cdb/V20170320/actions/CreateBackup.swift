@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// CreateBackup请求参数结构体
-    public struct CreateBackupRequest: TCRequestModel {
+    public struct CreateBackupRequest: TCRequest {
         /// 实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceId: String
 
@@ -50,7 +50,7 @@ extension Cdb {
     }
 
     /// CreateBackup返回参数结构体
-    public struct CreateBackupResponse: TCResponseModel {
+    public struct CreateBackupResponse: TCResponse {
         /// 备份任务 ID。
         public let backupId: UInt64
 

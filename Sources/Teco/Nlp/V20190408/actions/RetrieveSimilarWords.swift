@@ -20,7 +20,7 @@ import TecoCore
 
 extension Nlp {
     /// RetrieveSimilarWords请求参数结构体
-    public struct RetrieveSimilarWordsRequest: TCRequestModel {
+    public struct RetrieveSimilarWordsRequest: TCRequest {
         /// 输入的词语。（仅支持UTF-8格式，不超过10字符）
         public let text: String
 
@@ -39,7 +39,7 @@ extension Nlp {
     }
 
     /// RetrieveSimilarWords返回参数结构体
-    public struct RetrieveSimilarWordsResponse: TCResponseModel {
+    public struct RetrieveSimilarWordsResponse: TCResponse {
         /// 召回的相似词数组。
         public let wordList: [String]
 

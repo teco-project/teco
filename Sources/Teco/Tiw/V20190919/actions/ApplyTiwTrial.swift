@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tiw {
     /// ApplyTiwTrial请求参数结构体
-    public struct ApplyTiwTrialRequest: TCRequestModel {
+    public struct ApplyTiwTrialRequest: TCRequest {
         public init() {
         }
     }
 
     /// ApplyTiwTrial返回参数结构体
-    public struct ApplyTiwTrialResponse: TCResponseModel {
+    public struct ApplyTiwTrialResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

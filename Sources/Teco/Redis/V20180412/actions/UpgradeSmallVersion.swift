@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// UpgradeSmallVersion请求参数结构体
-    public struct UpgradeSmallVersionRequest: TCRequestModel {
+    public struct UpgradeSmallVersionRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -49,7 +49,7 @@ extension Redis {
     }
 
     /// UpgradeSmallVersion返回参数结构体
-    public struct UpgradeSmallVersionResponse: TCResponseModel {
+    public struct UpgradeSmallVersionResponse: TCResponse {
         /// 异步流程ID
         public let flowId: Int64
 

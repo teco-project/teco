@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// DescribeGrafanaConfig请求参数结构体
-    public struct DescribeGrafanaConfigRequest: TCRequestModel {
+    public struct DescribeGrafanaConfigRequest: TCRequest {
         /// Grafana 实例 ID，例如：grafana-12345678
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Monitor {
     }
 
     /// DescribeGrafanaConfig返回参数结构体
-    public struct DescribeGrafanaConfigResponse: TCResponseModel {
+    public struct DescribeGrafanaConfigResponse: TCResponse {
         /// JSON 编码后的字符串
         public let config: String
 

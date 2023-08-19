@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DescribeDBInstanceConfig请求参数结构体
-    public struct DescribeDBInstanceConfigRequest: TCRequestModel {
+    public struct DescribeDBInstanceConfigRequest: TCRequest {
         /// 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Cdb {
     }
 
     /// DescribeDBInstanceConfig返回参数结构体
-    public struct DescribeDBInstanceConfigResponse: TCResponseModel {
+    public struct DescribeDBInstanceConfigResponse: TCResponse {
         /// 主实例数据保护方式，可能的返回值：0 - 异步复制方式，1 - 半同步复制方式，2 - 强同步复制方式。
         public let protectMode: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Car {
     /// CreateSession请求参数结构体
-    public struct CreateSessionRequest: TCRequestModel {
+    public struct CreateSessionRequest: TCRequest {
         /// 唯一用户身份标识，由业务方自定义，平台不予理解。（可根据业务需要决定使用用户的唯一身份标识或是使用时间戳随机生成；在用户重连时应保持UserId不变）
         public let userId: String
 
@@ -73,7 +73,7 @@ extension Car {
     }
 
     /// CreateSession返回参数结构体
-    public struct CreateSessionResponse: TCResponseModel {
+    public struct CreateSessionResponse: TCResponse {
         /// 服务端session信息，返回给SDK
         public let serverSession: String
 

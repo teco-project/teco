@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// CreateWatermarkTemplate请求参数结构体
-    public struct CreateWatermarkTemplateRequest: TCRequestModel {
+    public struct CreateWatermarkTemplateRequest: TCRequest {
         /// 水印类型，可选值：
         /// - image：图片水印；
         /// - text：文字水印；
@@ -91,7 +91,7 @@ extension Mps {
     }
 
     /// CreateWatermarkTemplate返回参数结构体
-    public struct CreateWatermarkTemplateResponse: TCResponseModel {
+    public struct CreateWatermarkTemplateResponse: TCResponse {
         /// 水印模板唯一标识。
         public let definition: Int64
 

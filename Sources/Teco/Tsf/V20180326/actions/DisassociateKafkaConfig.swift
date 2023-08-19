@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DisassociateKafkaConfig请求参数结构体
-    public struct DisassociateKafkaConfigRequest: TCRequestModel {
+    public struct DisassociateKafkaConfigRequest: TCRequest {
         /// 配置项id
         public let configId: String
 
@@ -39,7 +39,7 @@ extension Tsf {
     }
 
     /// DisassociateKafkaConfig返回参数结构体
-    public struct DisassociateKafkaConfigResponse: TCResponseModel {
+    public struct DisassociateKafkaConfigResponse: TCResponse {
         /// 解除绑定是否成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

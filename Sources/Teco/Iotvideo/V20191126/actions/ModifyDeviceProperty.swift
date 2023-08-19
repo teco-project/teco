@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// ModifyDeviceProperty请求参数结构体
-    public struct ModifyDevicePropertyRequest: TCRequestModel {
+    public struct ModifyDevicePropertyRequest: TCRequest {
         /// 设备TID
         public let tid: String
 
@@ -54,7 +54,7 @@ extension Iotvideo {
     }
 
     /// ModifyDeviceProperty返回参数结构体
-    public struct ModifyDevicePropertyResponse: TCResponseModel {
+    public struct ModifyDevicePropertyResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

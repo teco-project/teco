@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cloudstudio {
     /// ModifyWorkspaceAttributes请求参数结构体
-    public struct ModifyWorkspaceAttributesRequest: TCRequestModel {
+    public struct ModifyWorkspaceAttributesRequest: TCRequest {
         /// 用户所属组
         public let cloudStudioSessionTeam: String
 
@@ -54,7 +54,7 @@ extension Cloudstudio {
     }
 
     /// ModifyWorkspaceAttributes返回参数结构体
-    public struct ModifyWorkspaceAttributesResponse: TCResponseModel {
+    public struct ModifyWorkspaceAttributesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

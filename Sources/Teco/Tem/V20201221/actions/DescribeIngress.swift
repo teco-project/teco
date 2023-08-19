@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tem {
     /// DescribeIngress请求参数结构体
-    public struct DescribeIngressRequest: TCRequestModel {
+    public struct DescribeIngressRequest: TCRequest {
         /// tem namespaceId
         public let namespaceId: String
 
@@ -49,7 +49,7 @@ extension Tem {
     }
 
     /// DescribeIngress返回参数结构体
-    public struct DescribeIngressResponse: TCResponseModel {
+    public struct DescribeIngressResponse: TCResponse {
         /// Ingress 规则配置
         public let result: IngressInfo
 

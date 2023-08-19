@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdwch {
     /// ActionAlterCkUser请求参数结构体
-    public struct ActionAlterCkUserRequest: TCRequestModel {
+    public struct ActionAlterCkUserRequest: TCRequest {
         /// 用户信息
         public let userInfo: CkUserAlterInfo
 
@@ -40,7 +40,7 @@ extension Cdwch {
     }
 
     /// ActionAlterCkUser返回参数结构体
-    public struct ActionAlterCkUserResponse: TCResponseModel {
+    public struct ActionAlterCkUserResponse: TCResponse {
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errMsg: String?

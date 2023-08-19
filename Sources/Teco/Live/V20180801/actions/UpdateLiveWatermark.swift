@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// UpdateLiveWatermark请求参数结构体
-    public struct UpdateLiveWatermarkRequest: TCRequestModel {
+    public struct UpdateLiveWatermarkRequest: TCRequest {
         /// 水印 ID。
         /// 在添加水印接口 [AddLiveWatermark](/document/product/267/30154) 调用返回值中获取水印 ID。
         public let watermarkId: Int64
@@ -78,7 +78,7 @@ extension Live {
     }
 
     /// UpdateLiveWatermark返回参数结构体
-    public struct UpdateLiveWatermarkResponse: TCResponseModel {
+    public struct UpdateLiveWatermarkResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeVulCountByDates请求参数结构体
-    public struct DescribeVulCountByDatesRequest: TCRequestModel {
+    public struct DescribeVulCountByDatesRequest: TCRequest {
         /// 需要查询最近几天的数据，需要都 -1后传入
         public let lastDays: [UInt64]?
 
@@ -44,7 +44,7 @@ extension Cwp {
     }
 
     /// DescribeVulCountByDates返回参数结构体
-    public struct DescribeVulCountByDatesResponse: TCResponseModel {
+    public struct DescribeVulCountByDatesResponse: TCResponse {
         /// 批量获得对应天数的漏洞数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vulCount: [UInt64]?

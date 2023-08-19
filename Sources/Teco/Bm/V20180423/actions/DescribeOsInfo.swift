@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// DescribeOsInfo请求参数结构体
-    public struct DescribeOsInfoRequest: TCRequestModel {
+    public struct DescribeOsInfoRequest: TCRequest {
         /// 设备类型代号。 可以从DescribeDeviceClass查询设备类型列表
         public let deviceClassCode: String?
 
@@ -34,7 +34,7 @@ extension Bm {
     }
 
     /// DescribeOsInfo返回参数结构体
-    public struct DescribeOsInfoResponse: TCResponseModel {
+    public struct DescribeOsInfoResponse: TCResponse {
         /// 操作系统信息列表
         public let osInfoSet: [OsInfo]
 

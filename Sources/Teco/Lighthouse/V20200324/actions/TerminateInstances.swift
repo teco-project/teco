@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// TerminateInstances请求参数结构体
-    public struct TerminateInstancesRequest: TCRequestModel {
+    public struct TerminateInstancesRequest: TCRequest {
         /// 实例ID列表。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
         public let instanceIds: [String]
 
@@ -34,7 +34,7 @@ extension Lighthouse {
     }
 
     /// TerminateInstances返回参数结构体
-    public struct TerminateInstancesResponse: TCResponseModel {
+    public struct TerminateInstancesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

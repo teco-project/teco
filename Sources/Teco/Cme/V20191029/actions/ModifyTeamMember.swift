@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cme {
     /// ModifyTeamMember请求参数结构体
-    public struct ModifyTeamMemberRequest: TCRequestModel {
+    public struct ModifyTeamMemberRequest: TCRequest {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
         public let platform: String
 
@@ -61,7 +61,7 @@ extension Cme {
     }
 
     /// ModifyTeamMember返回参数结构体
-    public struct ModifyTeamMemberResponse: TCResponseModel {
+    public struct ModifyTeamMemberResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

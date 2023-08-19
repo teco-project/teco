@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// CountOpsInstanceState请求参数结构体
-    public struct CountOpsInstanceStateRequest: TCRequestModel {
+    public struct CountOpsInstanceStateRequest: TCRequest {
         /// 任务id
         public let taskId: String
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// CountOpsInstanceState返回参数结构体
-    public struct CountOpsInstanceStateResponse: TCResponseModel {
+    public struct CountOpsInstanceStateResponse: TCResponse {
         /// 任务对应实例的状态统计
         public let data: TaskInstanceCountDto
 

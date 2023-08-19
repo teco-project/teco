@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// ResetAccountPassword请求参数结构体
-    public struct ResetAccountPasswordRequest: TCRequestModel {
+    public struct ResetAccountPasswordRequest: TCRequest {
         /// 数据库实例ID，形如mssql-njj2mtpl
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Sqlserver {
     }
 
     /// ResetAccountPassword返回参数结构体
-    public struct ResetAccountPasswordResponse: TCResponseModel {
+    public struct ResetAccountPasswordResponse: TCResponse {
         /// 修改帐号密码的异步任务流程ID
         public let flowId: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ump {
     /// DescribeCameras请求参数结构体
-    public struct DescribeCamerasRequest: TCRequestModel {
+    public struct DescribeCamerasRequest: TCRequest {
         /// 集团编码
         public let groupCode: String
 
@@ -39,7 +39,7 @@ extension Ump {
     }
 
     /// DescribeCameras返回参数结构体
-    public struct DescribeCamerasResponse: TCResponseModel {
+    public struct DescribeCamerasResponse: TCResponse {
         /// 摄像头列表
         public let cameras: [CameraZones]
 

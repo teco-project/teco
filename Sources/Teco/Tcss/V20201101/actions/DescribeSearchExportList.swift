@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeSearchExportList请求参数结构体
-    public struct DescribeSearchExportListRequest: TCRequestModel {
+    public struct DescribeSearchExportListRequest: TCRequest {
         /// ES查询条件JSON
         public let query: String
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeSearchExportList返回参数结构体
-    public struct DescribeSearchExportListResponse: TCResponseModel {
+    public struct DescribeSearchExportListResponse: TCResponse {
         /// 导出任务ID，前端拿着任务ID查询任务进度
         public let jobId: String
 

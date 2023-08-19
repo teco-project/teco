@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tbaas {
     /// ApplyUserCert请求参数结构体
-    public struct ApplyUserCertRequest: TCRequestModel {
+    public struct ApplyUserCertRequest: TCRequest {
         /// 模块名，固定字段：cert_mng
         public let module: String
 
@@ -74,7 +74,7 @@ extension Tbaas {
     }
 
     /// ApplyUserCert返回参数结构体
-    public struct ApplyUserCertResponse: TCResponseModel {
+    public struct ApplyUserCertResponse: TCResponse {
         /// 证书ID
         public let certId: UInt64
 

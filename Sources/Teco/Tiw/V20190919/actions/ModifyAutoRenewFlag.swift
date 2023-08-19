@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiw {
     /// ModifyAutoRenewFlag请求参数结构体
-    public struct ModifyAutoRenewFlagRequest: TCRequestModel {
+    public struct ModifyAutoRenewFlagRequest: TCRequest {
         /// 资源Id，从DescribeUserResources接口中获取Level=1的正式月功能费的SubProduct，一般为sp_tiw_package
         public let subProduct: String
 
@@ -44,7 +44,7 @@ extension Tiw {
     }
 
     /// ModifyAutoRenewFlag返回参数结构体
-    public struct ModifyAutoRenewFlagResponse: TCResponseModel {
+    public struct ModifyAutoRenewFlagResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

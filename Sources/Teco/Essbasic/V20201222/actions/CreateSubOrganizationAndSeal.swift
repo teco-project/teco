@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// CreateSubOrganizationAndSeal请求参数结构体
-    public struct CreateSubOrganizationAndSealRequest: TCRequestModel {
+    public struct CreateSubOrganizationAndSealRequest: TCRequest {
         /// 调用方信息
         public let caller: Caller
 
@@ -160,7 +160,7 @@ extension Essbasic {
     }
 
     /// CreateSubOrganizationAndSeal返回参数结构体
-    public struct CreateSubOrganizationAndSealResponse: TCResponseModel {
+    public struct CreateSubOrganizationAndSealResponse: TCResponse {
         /// 子机构在电子文件签署平台唯一标识
         public let subOrganizationId: String
 

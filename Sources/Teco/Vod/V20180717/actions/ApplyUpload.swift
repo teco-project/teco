@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Vod {
     /// ApplyUpload请求参数结构体
-    public struct ApplyUploadRequest: TCRequestModel {
+    public struct ApplyUploadRequest: TCRequest {
         /// 媒体类型，可选值请参考 [上传能力综述](/document/product/266/9760#.E6.96.87.E4.BB.B6.E7.B1.BB.E5.9E.8B)。
         public let mediaType: String
 
@@ -90,7 +90,7 @@ extension Vod {
     }
 
     /// ApplyUpload返回参数结构体
-    public struct ApplyUploadResponse: TCResponseModel {
+    public struct ApplyUploadResponse: TCResponse {
         /// 存储桶，用于上传接口 URL 的 bucket_name。
         public let storageBucket: String
 

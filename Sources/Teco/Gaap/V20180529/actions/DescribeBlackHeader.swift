@@ -20,13 +20,13 @@ import TecoCore
 
 extension Gaap {
     /// DescribeBlackHeader请求参数结构体
-    public struct DescribeBlackHeaderRequest: TCRequestModel {
+    public struct DescribeBlackHeaderRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeBlackHeader返回参数结构体
-    public struct DescribeBlackHeaderResponse: TCResponseModel {
+    public struct DescribeBlackHeaderResponse: TCResponse {
         /// 禁用的自定义header列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let blackHeaders: [String]?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wss {
     /// DeleteCert请求参数结构体
-    public struct DeleteCertRequest: TCRequestModel {
+    public struct DeleteCertRequest: TCRequest {
         /// 证书 ID，即通过 GetList 拿到的证书列表的 ID 字段。
         public let id: String
 
@@ -39,7 +39,7 @@ extension Wss {
     }
 
     /// DeleteCert返回参数结构体
-    public struct DeleteCertResponse: TCResponseModel {
+    public struct DeleteCertResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Emr {
     /// InquiryPriceCreateInstance请求参数结构体
-    public struct InquiryPriceCreateInstanceRequest: TCRequestModel {
+    public struct InquiryPriceCreateInstanceRequest: TCRequest {
         /// 购买实例的时间单位。取值范围：
         /// - s：表示秒。PayMode取值为0时，TimeUnit只能取值为s。
         /// - m：表示月份。PayMode取值为1时，TimeUnit只能取值为m。
@@ -138,7 +138,7 @@ extension Emr {
     }
 
     /// InquiryPriceCreateInstance返回参数结构体
-    public struct InquiryPriceCreateInstanceResponse: TCResponseModel {
+    public struct InquiryPriceCreateInstanceResponse: TCResponse {
         /// 原价，单位为元。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originalCost: Float?

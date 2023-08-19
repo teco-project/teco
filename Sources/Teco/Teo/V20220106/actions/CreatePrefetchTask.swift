@@ -20,7 +20,7 @@ import TecoCore
 
 extension Teo {
     /// CreatePrefetchTask请求参数结构体
-    public struct CreatePrefetchTaskRequest: TCRequestModel {
+    public struct CreatePrefetchTaskRequest: TCRequest {
         /// Zone ID
         public let zoneId: String
 
@@ -51,7 +51,7 @@ extension Teo {
     }
 
     /// CreatePrefetchTask返回参数结构体
-    public struct CreatePrefetchTaskResponse: TCResponseModel {
+    public struct CreatePrefetchTaskResponse: TCResponse {
         /// 任务ID
         public let jobId: String
 

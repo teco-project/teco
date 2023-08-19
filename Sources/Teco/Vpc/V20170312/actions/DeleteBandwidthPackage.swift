@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DeleteBandwidthPackage请求参数结构体
-    public struct DeleteBandwidthPackageRequest: TCRequestModel {
+    public struct DeleteBandwidthPackageRequest: TCRequest {
         /// 待删除带宽包唯一ID
         public let bandwidthPackageId: String
 
@@ -34,7 +34,7 @@ extension Vpc {
     }
 
     /// DeleteBandwidthPackage返回参数结构体
-    public struct DeleteBandwidthPackageResponse: TCResponseModel {
+    public struct DeleteBandwidthPackageResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

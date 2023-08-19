@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tci {
     /// CreateFace请求参数结构体
-    public struct CreateFaceRequest: TCRequestModel {
+    public struct CreateFaceRequest: TCRequest {
         /// 人员唯一标识符
         public let personId: String
 
@@ -49,7 +49,7 @@ extension Tci {
     }
 
     /// CreateFace返回参数结构体
-    public struct CreateFaceResponse: TCResponseModel {
+    public struct CreateFaceResponse: TCResponse {
         /// 人脸操作结果信息
         public let faceInfoSet: [FaceInfo]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Scf {
     /// PublishVersion请求参数结构体
-    public struct PublishVersionRequest: TCRequestModel {
+    public struct PublishVersionRequest: TCRequest {
         /// 发布函数的名称
         public let functionName: String
 
@@ -44,7 +44,7 @@ extension Scf {
     }
 
     /// PublishVersion返回参数结构体
-    public struct PublishVersionResponse: TCResponseModel {
+    public struct PublishVersionResponse: TCResponse {
         /// 函数的版本
         public let functionVersion: String
 

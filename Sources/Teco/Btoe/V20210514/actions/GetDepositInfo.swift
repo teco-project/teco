@@ -20,7 +20,7 @@ import TecoCore
 
 extension Btoe {
     /// GetDepositInfo请求参数结构体
-    public struct GetDepositInfoRequest: TCRequestModel {
+    public struct GetDepositInfoRequest: TCRequest {
         /// 存证编码
         public let evidenceId: String
 
@@ -34,7 +34,7 @@ extension Btoe {
     }
 
     /// GetDepositInfo返回参数结构体
-    public struct GetDepositInfoResponse: TCResponseModel {
+    public struct GetDepositInfoResponse: TCResponse {
         /// 存证编号
         public let evidenceId: String
 

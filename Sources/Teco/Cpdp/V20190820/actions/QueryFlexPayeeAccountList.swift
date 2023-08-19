@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryFlexPayeeAccountList请求参数结构体
-    public struct QueryFlexPayeeAccountListRequest: TCRequestModel {
+    public struct QueryFlexPayeeAccountListRequest: TCRequest {
         /// 账户属性信息
         public let propertyInfo: PayeeAccountPropertyInfo
 
@@ -58,7 +58,7 @@ extension Cpdp {
     }
 
     /// QueryFlexPayeeAccountList返回参数结构体
-    public struct QueryFlexPayeeAccountListResponse: TCResponseModel {
+    public struct QueryFlexPayeeAccountListResponse: TCResponse {
         /// 错误码。SUCCESS为成功，其他为失败
         public let errCode: String
 

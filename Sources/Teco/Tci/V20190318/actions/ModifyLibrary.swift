@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tci {
     /// ModifyLibrary请求参数结构体
-    public struct ModifyLibraryRequest: TCRequestModel {
+    public struct ModifyLibraryRequest: TCRequest {
         /// 人员库唯一标识符
         public let libraryId: String
 
@@ -39,7 +39,7 @@ extension Tci {
     }
 
     /// ModifyLibrary返回参数结构体
-    public struct ModifyLibraryResponse: TCResponseModel {
+    public struct ModifyLibraryResponse: TCResponse {
         /// 人员库唯一标识符
         public let libraryId: String
 

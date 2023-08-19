@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eb {
     /// DeleteEventBus请求参数结构体
-    public struct DeleteEventBusRequest: TCRequestModel {
+    public struct DeleteEventBusRequest: TCRequest {
         /// 事件集ID
         public let eventBusId: String
 
@@ -34,7 +34,7 @@ extension Eb {
     }
 
     /// DeleteEventBus返回参数结构体
-    public struct DeleteEventBusResponse: TCResponseModel {
+    public struct DeleteEventBusResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

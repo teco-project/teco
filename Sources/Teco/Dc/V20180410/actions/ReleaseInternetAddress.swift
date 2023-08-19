@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dc {
     /// ReleaseInternetAddress请求参数结构体
-    public struct ReleaseInternetAddressRequest: TCRequestModel {
+    public struct ReleaseInternetAddressRequest: TCRequest {
         /// 公网互联网地址ID
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Dc {
     }
 
     /// ReleaseInternetAddress返回参数结构体
-    public struct ReleaseInternetAddressResponse: TCResponseModel {
+    public struct ReleaseInternetAddressResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

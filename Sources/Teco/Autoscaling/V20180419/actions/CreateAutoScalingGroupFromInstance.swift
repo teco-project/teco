@@ -20,7 +20,7 @@ import TecoCore
 
 extension As {
     /// CreateAutoScalingGroupFromInstance请求参数结构体
-    public struct CreateAutoScalingGroupFromInstanceRequest: TCRequestModel {
+    public struct CreateAutoScalingGroupFromInstanceRequest: TCRequest {
         /// 伸缩组名称，在您账号中必须唯一。名称仅支持中文、英文、数字、下划线、分隔符"-"、小数点，最大长度不能超55个字节。
         public let autoScalingGroupName: String
 
@@ -59,7 +59,7 @@ extension As {
     }
 
     /// CreateAutoScalingGroupFromInstance返回参数结构体
-    public struct CreateAutoScalingGroupFromInstanceResponse: TCResponseModel {
+    public struct CreateAutoScalingGroupFromInstanceResponse: TCResponse {
         /// 伸缩组ID
         public let autoScalingGroupId: String
 

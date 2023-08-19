@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// CancelAuthorizationToken请求参数结构体
-    public struct CancelAuthorizationTokenRequest: TCRequestModel {
+    public struct CancelAuthorizationTokenRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Ckafka {
     }
 
     /// CancelAuthorizationToken返回参数结构体
-    public struct CancelAuthorizationTokenResponse: TCResponseModel {
+    public struct CancelAuthorizationTokenResponse: TCResponse {
         /// 0 成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Int64?

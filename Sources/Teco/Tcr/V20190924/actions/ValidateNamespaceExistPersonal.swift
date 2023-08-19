@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// ValidateNamespaceExistPersonal请求参数结构体
-    public struct ValidateNamespaceExistPersonalRequest: TCRequestModel {
+    public struct ValidateNamespaceExistPersonalRequest: TCRequest {
         /// 命名空间名称
         public let namespace: String
 
@@ -34,7 +34,7 @@ extension Tcr {
     }
 
     /// ValidateNamespaceExistPersonal返回参数结构体
-    public struct ValidateNamespaceExistPersonalResponse: TCResponseModel {
+    public struct ValidateNamespaceExistPersonalResponse: TCResponse {
         /// 验证命名空间是否存在返回信息
         public let data: NamespaceIsExistsResp
 

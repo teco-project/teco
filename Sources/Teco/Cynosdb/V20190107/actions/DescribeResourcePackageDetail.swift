@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// DescribeResourcePackageDetail请求参数结构体
-    public struct DescribeResourcePackageDetailRequest: TCRequestModel {
+    public struct DescribeResourcePackageDetailRequest: TCRequest {
         /// 资源包唯一ID
         public let packageId: String
 
@@ -59,7 +59,7 @@ extension Cynosdb {
     }
 
     /// DescribeResourcePackageDetail返回参数结构体
-    public struct DescribeResourcePackageDetailResponse: TCResponseModel {
+    public struct DescribeResourcePackageDetailResponse: TCResponse {
         /// 总使用明细数
         public let total: Int64
 

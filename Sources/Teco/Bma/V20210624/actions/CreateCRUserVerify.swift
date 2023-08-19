@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bma {
     /// CreateCRUserVerify请求参数结构体
-    public struct CreateCRUserVerifyRequest: TCRequestModel {
+    public struct CreateCRUserVerifyRequest: TCRequest {
         /// 用户真实姓名
         public let userName: String
 
@@ -54,7 +54,7 @@ extension Bma {
     }
 
     /// CreateCRUserVerify返回参数结构体
-    public struct CreateCRUserVerifyResponse: TCResponseModel {
+    public struct CreateCRUserVerifyResponse: TCResponse {
         /// 认证状态：0-认证成功 1-认证失败
         public let status: Int64
 

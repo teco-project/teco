@@ -20,7 +20,7 @@ import TecoCore
 
 extension Batch {
     /// SubmitJob请求参数结构体
-    public struct SubmitJobRequest: TCRequestModel {
+    public struct SubmitJobRequest: TCRequest {
         /// 作业所提交的位置信息。通过该参数可以指定作业关联CVM所属可用区等信息。
         public let placement: Placement
 
@@ -44,7 +44,7 @@ extension Batch {
     }
 
     /// SubmitJob返回参数结构体
-    public struct SubmitJobResponse: TCResponseModel {
+    public struct SubmitJobResponse: TCResponse {
         /// 当通过本接口来提交作业时会返回该参数，表示一个作业ID。返回作业ID列表并不代表作业解析/运行成功，可根据 DescribeJob 接口查询其状态。
         public let jobId: String
 

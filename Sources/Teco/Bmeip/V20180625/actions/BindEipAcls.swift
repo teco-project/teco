@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmeip {
     /// BindEipAcls请求参数结构体
-    public struct BindEipAclsRequest: TCRequestModel {
+    public struct BindEipAclsRequest: TCRequest {
         /// 待关联的 EIP 与 ACL关系列表
         public let eipIdAclIdList: [EipAclMap]
 
@@ -34,7 +34,7 @@ extension Bmeip {
     }
 
     /// BindEipAcls返回参数结构体
-    public struct BindEipAclsResponse: TCResponseModel {
+    public struct BindEipAclsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

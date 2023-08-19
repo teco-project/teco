@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecc {
     /// EHOCR请求参数结构体
-    public struct EHOCRRequest: TCRequestModel {
+    public struct EHOCRRequest: TCRequest {
         /// 图片所在的url或base64编码后的图像数据，依据InputType而定
         public let image: String
 
@@ -84,7 +84,7 @@ extension Ecc {
     }
 
     /// EHOCR返回参数结构体
-    public struct EHOCRResponse: TCResponseModel {
+    public struct EHOCRResponse: TCResponse {
         /// 接口返回数据
         public let data: CompostionContext
 

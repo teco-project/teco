@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// CreateAnonymousAccessToken请求参数结构体
-    public struct CreateAnonymousAccessTokenRequest: TCRequestModel {
+    public struct CreateAnonymousAccessTokenRequest: TCRequest {
         /// Token的TTL(time to alive)分钟数,最大值1440(即24小时)
         public let ttlMinutes: Int64
 
@@ -44,7 +44,7 @@ extension Iotvideo {
     }
 
     /// CreateAnonymousAccessToken返回参数结构体
-    public struct CreateAnonymousAccessTokenResponse: TCResponseModel {
+    public struct CreateAnonymousAccessTokenResponse: TCResponse {
         /// 终端用户在IoT Video上的唯一标识ID
         public let accessId: String
 

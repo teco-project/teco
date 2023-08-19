@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssm {
     /// EnableSecret请求参数结构体
-    public struct EnableSecretRequest: TCRequestModel {
+    public struct EnableSecretRequest: TCRequest {
         /// 指定启用凭据的名称。
         public let secretName: String
 
@@ -34,7 +34,7 @@ extension Ssm {
     }
 
     /// EnableSecret返回参数结构体
-    public struct EnableSecretResponse: TCResponseModel {
+    public struct EnableSecretResponse: TCResponse {
         /// 启用的凭据名称。
         public let secretName: String
 

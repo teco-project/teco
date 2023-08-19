@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mongodb {
     /// DescribeSecurityGroup请求参数结构体
-    public struct DescribeSecurityGroupRequest: TCRequestModel {
+    public struct DescribeSecurityGroupRequest: TCRequest {
         /// 实例 ID。例如：cmgo-p8vn****。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Mongodb {
     }
 
     /// DescribeSecurityGroup返回参数结构体
-    public struct DescribeSecurityGroupResponse: TCResponseModel {
+    public struct DescribeSecurityGroupResponse: TCResponse {
         /// 实例绑定的安全组信息。
         public let groups: [SecurityGroup]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeAssetHostDetail请求参数结构体
-    public struct DescribeAssetHostDetailRequest: TCRequestModel {
+    public struct DescribeAssetHostDetailRequest: TCRequest {
         /// 主机id
         public let hostId: String
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeAssetHostDetail返回参数结构体
-    public struct DescribeAssetHostDetailResponse: TCResponseModel {
+    public struct DescribeAssetHostDetailResponse: TCResponse {
         /// 容器安全uuid
         public let uuid: String
 

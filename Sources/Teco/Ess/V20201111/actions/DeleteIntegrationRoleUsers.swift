@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// DeleteIntegrationRoleUsers请求参数结构体
-    public struct DeleteIntegrationRoleUsersRequest: TCRequestModel {
+    public struct DeleteIntegrationRoleUsersRequest: TCRequest {
         /// 操作人信息，userId必填
         public let `operator`: UserInfo
 
@@ -49,7 +49,7 @@ extension Ess {
     }
 
     /// DeleteIntegrationRoleUsers返回参数结构体
-    public struct DeleteIntegrationRoleUsersResponse: TCResponseModel {
+    public struct DeleteIntegrationRoleUsersResponse: TCResponse {
         /// 角色id
         public let roleId: String
 

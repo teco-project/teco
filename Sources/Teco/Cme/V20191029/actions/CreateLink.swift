@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cme {
     /// CreateLink请求参数结构体
-    public struct CreateLinkRequest: TCRequestModel {
+    public struct CreateLinkRequest: TCRequest {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
         public let platform: String
 
@@ -73,7 +73,7 @@ extension Cme {
     }
 
     /// CreateLink返回参数结构体
-    public struct CreateLinkResponse: TCResponseModel {
+    public struct CreateLinkResponse: TCResponse {
         /// 新建链接的媒体 Id。
         public let materialId: String
 

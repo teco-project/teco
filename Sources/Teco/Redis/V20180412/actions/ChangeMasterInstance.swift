@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// ChangeMasterInstance请求参数结构体
-    public struct ChangeMasterInstanceRequest: TCRequestModel {
+    public struct ChangeMasterInstanceRequest: TCRequest {
         /// 复制组ID。创建复制组时，系统自动分配的 ID，是复制组的唯一标识。例如：crs-rpl-m3zt****，请登录[Redis 控制台](https://console.cloud.tencent.com/redis/replication)的全球复制组列表获取复制组 ID。
         public let groupId: String
 
@@ -46,7 +46,7 @@ extension Redis {
     }
 
     /// ChangeMasterInstance返回参数结构体
-    public struct ChangeMasterInstanceResponse: TCResponseModel {
+    public struct ChangeMasterInstanceResponse: TCResponse {
         /// 异步流程ID。
         public let taskId: Int64
 

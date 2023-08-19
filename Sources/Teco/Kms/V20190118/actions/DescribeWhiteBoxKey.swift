@@ -20,7 +20,7 @@ import TecoCore
 
 extension Kms {
     /// DescribeWhiteBoxKey请求参数结构体
-    public struct DescribeWhiteBoxKeyRequest: TCRequestModel {
+    public struct DescribeWhiteBoxKeyRequest: TCRequest {
         /// 白盒密钥的全局唯一标识符
         public let keyId: String
 
@@ -34,7 +34,7 @@ extension Kms {
     }
 
     /// DescribeWhiteBoxKey返回参数结构体
-    public struct DescribeWhiteBoxKeyResponse: TCResponseModel {
+    public struct DescribeWhiteBoxKeyResponse: TCResponse {
         /// 白盒密钥信息
         public let keyInfo: WhiteboxKeyInfo
 

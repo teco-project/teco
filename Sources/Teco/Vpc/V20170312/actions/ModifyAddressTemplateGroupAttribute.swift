@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// ModifyAddressTemplateGroupAttribute请求参数结构体
-    public struct ModifyAddressTemplateGroupAttributeRequest: TCRequestModel {
+    public struct ModifyAddressTemplateGroupAttributeRequest: TCRequest {
         /// IP地址模板集合实例ID，例如：ipmg-2uw6ujo6。
         public let addressTemplateGroupId: String
 
@@ -44,7 +44,7 @@ extension Vpc {
     }
 
     /// ModifyAddressTemplateGroupAttribute返回参数结构体
-    public struct ModifyAddressTemplateGroupAttributeResponse: TCResponseModel {
+    public struct ModifyAddressTemplateGroupAttributeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

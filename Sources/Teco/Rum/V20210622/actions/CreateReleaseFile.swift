@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// CreateReleaseFile请求参数结构体
-    public struct CreateReleaseFileRequest: TCRequestModel {
+    public struct CreateReleaseFileRequest: TCRequest {
         /// 项目 id
         public let projectID: Int64
 
@@ -39,7 +39,7 @@ extension Rum {
     }
 
     /// CreateReleaseFile返回参数结构体
-    public struct CreateReleaseFileResponse: TCResponseModel {
+    public struct CreateReleaseFileResponse: TCResponse {
         /// 调用结果
         public let msg: String
 

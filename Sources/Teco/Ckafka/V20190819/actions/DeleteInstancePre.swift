@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// DeleteInstancePre请求参数结构体
-    public struct DeleteInstancePreRequest: TCRequestModel {
+    public struct DeleteInstancePreRequest: TCRequest {
         /// 实例id
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Ckafka {
     }
 
     /// DeleteInstancePre返回参数结构体
-    public struct DeleteInstancePreResponse: TCResponseModel {
+    public struct DeleteInstancePreResponse: TCResponse {
         /// 返回结果
         public let result: CreateInstancePreResp
 

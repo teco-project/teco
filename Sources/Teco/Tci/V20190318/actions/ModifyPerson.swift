@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tci {
     /// ModifyPerson请求参数结构体
-    public struct ModifyPersonRequest: TCRequestModel {
+    public struct ModifyPersonRequest: TCRequest {
         /// 人员库唯一标识符
         public let libraryId: String
 
@@ -69,7 +69,7 @@ extension Tci {
     }
 
     /// ModifyPerson返回参数结构体
-    public struct ModifyPersonResponse: TCResponseModel {
+    public struct ModifyPersonResponse: TCResponse {
         /// 人脸信息
         public let faceInfoSet: [FaceInfo]
 

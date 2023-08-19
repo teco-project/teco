@@ -20,13 +20,13 @@ import TecoCore
 
 extension Ecm {
     /// DescribeInstanceTypeConfig请求参数结构体
-    public struct DescribeInstanceTypeConfigRequest: TCRequestModel {
+    public struct DescribeInstanceTypeConfigRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeInstanceTypeConfig返回参数结构体
-    public struct DescribeInstanceTypeConfigResponse: TCResponseModel {
+    public struct DescribeInstanceTypeConfigResponse: TCResponse {
         /// 总数
         public let totalCount: Int64
 

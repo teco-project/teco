@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cam {
     /// GetPolicy请求参数结构体
-    public struct GetPolicyRequest: TCRequestModel {
+    public struct GetPolicyRequest: TCRequest {
         /// 策略Id
         public let policyId: UInt64
 
@@ -36,7 +36,7 @@ extension Cam {
     }
 
     /// GetPolicy返回参数结构体
-    public struct GetPolicyResponse: TCResponseModel {
+    public struct GetPolicyResponse: TCResponse {
         /// 策略名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let policyName: String?

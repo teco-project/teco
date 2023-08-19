@@ -20,7 +20,7 @@ import TecoCore
 
 extension Goosefs {
     /// DescribeClusterRoles请求参数结构体
-    public struct DescribeClusterRolesRequest: TCRequestModel {
+    public struct DescribeClusterRolesRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Goosefs {
     }
 
     /// DescribeClusterRoles返回参数结构体
-    public struct DescribeClusterRolesResponse: TCResponseModel {
+    public struct DescribeClusterRolesResponse: TCResponse {
         /// 集群角色
         public let clusterRoles: [ClusterRole]
 

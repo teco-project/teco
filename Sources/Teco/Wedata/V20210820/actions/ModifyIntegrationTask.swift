@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// ModifyIntegrationTask请求参数结构体
-    public struct ModifyIntegrationTaskRequest: TCRequestModel {
+    public struct ModifyIntegrationTaskRequest: TCRequest {
         /// 任务信息
         public let taskInfo: IntegrationTaskInfo
 
@@ -44,7 +44,7 @@ extension Wedata {
     }
 
     /// ModifyIntegrationTask返回参数结构体
-    public struct ModifyIntegrationTaskResponse: TCResponseModel {
+    public struct ModifyIntegrationTaskResponse: TCResponse {
         /// 任务id
         public let taskId: String
 

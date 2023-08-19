@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// DeleteImages请求参数结构体
-    public struct DeleteImagesRequest: TCRequestModel {
+    public struct DeleteImagesRequest: TCRequest {
         /// 准备删除的镜像Id列表
         public let imageIds: [String]
 
@@ -44,7 +44,7 @@ extension Cvm {
     }
 
     /// DeleteImages返回参数结构体
-    public struct DeleteImagesResponse: TCResponseModel {
+    public struct DeleteImagesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

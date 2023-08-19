@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DeleteServiceTemplateGroup请求参数结构体
-    public struct DeleteServiceTemplateGroupRequest: TCRequestModel {
+    public struct DeleteServiceTemplateGroupRequest: TCRequest {
         /// 协议端口模板集合实例ID，例如：ppmg-n17uxvve。
         public let serviceTemplateGroupId: String
 
@@ -34,7 +34,7 @@ extension Vpc {
     }
 
     /// DeleteServiceTemplateGroup返回参数结构体
-    public struct DeleteServiceTemplateGroupResponse: TCResponseModel {
+    public struct DeleteServiceTemplateGroupResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

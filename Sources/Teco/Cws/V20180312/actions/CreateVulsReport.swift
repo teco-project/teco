@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cws {
     /// CreateVulsReport请求参数结构体
-    public struct CreateVulsReportRequest: TCRequestModel {
+    public struct CreateVulsReportRequest: TCRequest {
         /// 站点ID
         public let siteId: UInt64?
 
@@ -39,7 +39,7 @@ extension Cws {
     }
 
     /// CreateVulsReport返回参数结构体
-    public struct CreateVulsReportResponse: TCResponseModel {
+    public struct CreateVulsReportResponse: TCResponse {
         /// 报告下载地址
         public let reportFileUrl: String
 

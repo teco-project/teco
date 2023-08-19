@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cwp {
     /// DescribeBruteAttackRules请求参数结构体
-    public struct DescribeBruteAttackRulesRequest: TCRequestModel {
+    public struct DescribeBruteAttackRulesRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeBruteAttackRules返回参数结构体
-    public struct DescribeBruteAttackRulesResponse: TCResponseModel {
+    public struct DescribeBruteAttackRulesResponse: TCResponse {
         /// 爆破阻断规则列表
         public let rules: [BruteAttackRuleList]
 

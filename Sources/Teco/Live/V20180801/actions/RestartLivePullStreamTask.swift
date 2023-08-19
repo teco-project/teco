@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// RestartLivePullStreamTask请求参数结构体
-    public struct RestartLivePullStreamTaskRequest: TCRequestModel {
+    public struct RestartLivePullStreamTaskRequest: TCRequest {
         /// 任务 Id。
         public let taskId: String
 
@@ -39,7 +39,7 @@ extension Live {
     }
 
     /// RestartLivePullStreamTask返回参数结构体
-    public struct RestartLivePullStreamTaskResponse: TCResponseModel {
+    public struct RestartLivePullStreamTaskResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Zj {
     /// PushMmsContent请求参数结构体
-    public struct PushMmsContentRequest: TCRequestModel {
+    public struct PushMmsContentRequest: TCRequest {
         /// 商户证书
         public let license: String
 
@@ -59,7 +59,7 @@ extension Zj {
     }
 
     /// PushMmsContent返回参数结构体
-    public struct PushMmsContentResponse: TCResponseModel {
+    public struct PushMmsContentResponse: TCResponse {
         /// 推送短信返回信息
         public let data: PushMmsContentResp
 

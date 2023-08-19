@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DeleteRouteTable请求参数结构体
-    public struct DeleteRouteTableRequest: TCRequestModel {
+    public struct DeleteRouteTableRequest: TCRequest {
         /// 路由表实例ID，例如：rtb-azd4dt1c。
         public let routeTableId: String
 
@@ -34,7 +34,7 @@ extension Vpc {
     }
 
     /// DeleteRouteTable返回参数结构体
-    public struct DeleteRouteTableResponse: TCResponseModel {
+    public struct DeleteRouteTableResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

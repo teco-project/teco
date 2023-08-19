@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// DescribeConfigMapYamlError请求参数结构体
-    public struct DescribeConfigMapYamlErrorRequest: TCRequestModel {
+    public struct DescribeConfigMapYamlErrorRequest: TCRequest {
         /// yaml文件
         public let yaml: String
 
@@ -34,7 +34,7 @@ extension Iecp {
     }
 
     /// DescribeConfigMapYamlError返回参数结构体
-    public struct DescribeConfigMapYamlErrorResponse: TCResponseModel {
+    public struct DescribeConfigMapYamlErrorResponse: TCResponse {
         /// 校验是通过
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let checkPass: Bool?

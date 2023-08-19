@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// CreatePayRollToken请求参数结构体
-    public struct CreatePayRollTokenRequest: TCRequestModel {
+    public struct CreatePayRollTokenRequest: TCRequest {
         /// 用户在商户对应appid下的唯一标识
         public let openId: String
 
@@ -69,7 +69,7 @@ extension Cpdp {
     }
 
     /// CreatePayRollToken返回参数结构体
-    public struct CreatePayRollTokenResponse: TCResponseModel {
+    public struct CreatePayRollTokenResponse: TCResponse {
         /// Token有效时间，单位秒
         public let expireTime: Int64
 

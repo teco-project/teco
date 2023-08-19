@@ -20,7 +20,7 @@ import TecoCore
 
 extension Kms {
     /// CreateKey请求参数结构体
-    public struct CreateKeyRequest: TCRequestModel {
+    public struct CreateKeyRequest: TCRequest {
         /// 作为密钥更容易辨识，更容易被人看懂的别名， 不可为空，1-60个字母数字 - _ 的组合，首字符必须为字母或者数字。以 kms- 作为前缀的用于云产品使用，Alias 不可重复。
         public let alias: String
 
@@ -59,7 +59,7 @@ extension Kms {
     }
 
     /// CreateKey返回参数结构体
-    public struct CreateKeyResponse: TCResponseModel {
+    public struct CreateKeyResponse: TCResponse {
         /// CMK的全局唯一标识符
         public let keyId: String
 

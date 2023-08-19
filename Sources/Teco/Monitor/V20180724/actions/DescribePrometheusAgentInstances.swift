@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// DescribePrometheusAgentInstances请求参数结构体
-    public struct DescribePrometheusAgentInstancesRequest: TCRequestModel {
+    public struct DescribePrometheusAgentInstancesRequest: TCRequest {
         /// 集群id
         /// 可以是tke, eks, edge的集群id
         public let clusterId: String
@@ -35,7 +35,7 @@ extension Monitor {
     }
 
     /// DescribePrometheusAgentInstances返回参数结构体
-    public struct DescribePrometheusAgentInstancesResponse: TCResponseModel {
+    public struct DescribePrometheusAgentInstancesResponse: TCResponse {
         /// 关联该集群的实例列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instances: [String]?

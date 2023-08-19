@@ -20,7 +20,7 @@ import TecoCore
 
 extension Keewidb {
     /// DestroyPrepaidInstance请求参数结构体
-    public struct DestroyPrepaidInstanceRequest: TCRequestModel {
+    public struct DestroyPrepaidInstanceRequest: TCRequest {
         /// 实例 ID。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Keewidb {
     }
 
     /// DestroyPrepaidInstance返回参数结构体
-    public struct DestroyPrepaidInstanceResponse: TCResponseModel {
+    public struct DestroyPrepaidInstanceResponse: TCResponse {
         /// 交易ID。
         public let dealId: String
 

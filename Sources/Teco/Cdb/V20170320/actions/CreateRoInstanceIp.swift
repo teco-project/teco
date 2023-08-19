@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// CreateRoInstanceIp请求参数结构体
-    public struct CreateRoInstanceIpRequest: TCRequestModel {
+    public struct CreateRoInstanceIpRequest: TCRequest {
         /// 只读实例ID，格式如：cdbro-3i70uj0k，与云数据库控制台页面中显示的只读实例ID相同。
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Cdb {
     }
 
     /// CreateRoInstanceIp返回参数结构体
-    public struct CreateRoInstanceIpResponse: TCResponseModel {
+    public struct CreateRoInstanceIpResponse: TCResponse {
         /// 只读实例的私有网络的ID。
         public let roVpcId: Int64
 

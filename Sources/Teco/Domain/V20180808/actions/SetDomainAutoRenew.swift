@@ -20,7 +20,7 @@ import TecoCore
 
 extension Domain {
     /// SetDomainAutoRenew请求参数结构体
-    public struct SetDomainAutoRenewRequest: TCRequestModel {
+    public struct SetDomainAutoRenewRequest: TCRequest {
         /// 域名ID 例如：domain-123abc
         public let domainId: String
 
@@ -42,7 +42,7 @@ extension Domain {
     }
 
     /// SetDomainAutoRenew返回参数结构体
-    public struct SetDomainAutoRenewResponse: TCResponseModel {
+    public struct SetDomainAutoRenewResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiw {
     /// DescribeQualityMetrics请求参数结构体
-    public struct DescribeQualityMetricsRequest: TCRequestModel {
+    public struct DescribeQualityMetricsRequest: TCRequest {
         /// 白板应用的SdkAppId
         public let sdkAppId: Int64
 
@@ -65,7 +65,7 @@ extension Tiw {
     }
 
     /// DescribeQualityMetrics返回参数结构体
-    public struct DescribeQualityMetricsResponse: TCResponseModel {
+    public struct DescribeQualityMetricsResponse: TCResponse {
         /// 输入的查询指标
         public let metric: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bizlive {
     /// RegisterIM请求参数结构体
-    public struct RegisterIMRequest: TCRequestModel {
+    public struct RegisterIMRequest: TCRequest {
         /// 用户昵称
         public let nickname: String
 
@@ -49,7 +49,7 @@ extension Bizlive {
     }
 
     /// RegisterIM返回参数结构体
-    public struct RegisterIMResponse: TCResponseModel {
+    public struct RegisterIMResponse: TCResponse {
         /// 用来传递给插件的关键字段
         public let userKey: String
 

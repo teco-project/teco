@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// DescribeDatahubTask请求参数结构体
-    public struct DescribeDatahubTaskRequest: TCRequestModel {
+    public struct DescribeDatahubTaskRequest: TCRequest {
         /// 任务id
         public let taskId: String
 
@@ -34,7 +34,7 @@ extension Ckafka {
     }
 
     /// DescribeDatahubTask返回参数结构体
-    public struct DescribeDatahubTaskResponse: TCResponseModel {
+    public struct DescribeDatahubTaskResponse: TCResponse {
         /// 返回结果
         public let result: DescribeDatahubTaskRes
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeECMInstances请求参数结构体
-    public struct DescribeECMInstancesRequest: TCRequestModel {
+    public struct DescribeECMInstancesRequest: TCRequest {
         /// 集群id
         public let clusterID: String
 
@@ -40,7 +40,7 @@ extension Tke {
     }
 
     /// DescribeECMInstances返回参数结构体
-    public struct DescribeECMInstancesResponse: TCResponseModel {
+    public struct DescribeECMInstancesResponse: TCResponse {
         /// 返回的实例相关信息列表的长度
         public let totalCount: Int64
 

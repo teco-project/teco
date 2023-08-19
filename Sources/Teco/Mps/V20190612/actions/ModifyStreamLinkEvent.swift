@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// ModifyStreamLinkEvent请求参数结构体
-    public struct ModifyStreamLinkEventRequest: TCRequestModel {
+    public struct ModifyStreamLinkEventRequest: TCRequest {
         /// 媒体传输事件Event Id。
         public let eventId: String
 
@@ -44,7 +44,7 @@ extension Mps {
     }
 
     /// ModifyStreamLinkEvent返回参数结构体
-    public struct ModifyStreamLinkEventResponse: TCResponseModel {
+    public struct ModifyStreamLinkEventResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

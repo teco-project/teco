@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bi {
     /// CreateEmbedToken请求参数结构体
-    public struct CreateEmbedTokenRequest: TCRequestModel {
+    public struct CreateEmbedTokenRequest: TCRequest {
         /// 分享项目id，必选
         public let projectId: UInt64?
 
@@ -54,7 +54,7 @@ extension Bi {
     }
 
     /// CreateEmbedToken返回参数结构体
-    public struct CreateEmbedTokenResponse: TCResponseModel {
+    public struct CreateEmbedTokenResponse: TCResponse {
         /// 额外信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extra: String?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dayu {
     /// CreateBoundIP请求参数结构体
-    public struct CreateBoundIPRequest: TCRequestModel {
+    public struct CreateBoundIPRequest: TCRequest {
         /// 大禹子产品代号（bgp表示独享包；bgp-multip表示共享包）
         public let business: String
 
@@ -54,7 +54,7 @@ extension Dayu {
     }
 
     /// CreateBoundIP返回参数结构体
-    public struct CreateBoundIPResponse: TCResponseModel {
+    public struct CreateBoundIPResponse: TCResponse {
         /// 成功码
         public let success: SuccessCode
 

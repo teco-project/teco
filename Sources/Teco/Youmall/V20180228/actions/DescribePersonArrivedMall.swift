@@ -20,7 +20,7 @@ import TecoCore
 
 extension Youmall {
     /// DescribePersonArrivedMall请求参数结构体
-    public struct DescribePersonArrivedMallRequest: TCRequestModel {
+    public struct DescribePersonArrivedMallRequest: TCRequest {
         /// 卖场编码
         public let mallId: String
 
@@ -49,7 +49,7 @@ extension Youmall {
     }
 
     /// DescribePersonArrivedMall返回参数结构体
-    public struct DescribePersonArrivedMallResponse: TCResponseModel {
+    public struct DescribePersonArrivedMallResponse: TCResponse {
         /// 卖场系统编码
         public let mallId: String
 

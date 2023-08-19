@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdid {
     /// CreateTDid请求参数结构体
-    public struct CreateTDidRequest: TCRequestModel {
+    public struct CreateTDidRequest: TCRequest {
         /// 群组ID
         public let groupId: UInt64
 
@@ -44,7 +44,7 @@ extension Tdid {
     }
 
     /// CreateTDid返回参数结构体
-    public struct CreateTDidResponse: TCResponseModel {
+    public struct CreateTDidResponse: TCResponse {
         /// TDID
         public let did: String
 

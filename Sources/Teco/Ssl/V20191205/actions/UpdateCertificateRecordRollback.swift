@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssl {
     /// UpdateCertificateRecordRollback请求参数结构体
-    public struct UpdateCertificateRecordRollbackRequest: TCRequestModel {
+    public struct UpdateCertificateRecordRollbackRequest: TCRequest {
         /// 待重试部署记录ID
         public let deployRecordId: Int64?
 
@@ -34,7 +34,7 @@ extension Ssl {
     }
 
     /// UpdateCertificateRecordRollback返回参数结构体
-    public struct UpdateCertificateRecordRollbackResponse: TCResponseModel {
+    public struct UpdateCertificateRecordRollbackResponse: TCResponse {
         /// 回滚部署记录ID
         public let deployRecordId: Int64
 

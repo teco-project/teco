@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mongodb {
     /// ModifyDBInstanceSecurityGroup请求参数结构体
-    public struct ModifyDBInstanceSecurityGroupRequest: TCRequestModel {
+    public struct ModifyDBInstanceSecurityGroupRequest: TCRequest {
         /// 实例 ID。例如：cmgo-7pje****。
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Mongodb {
     }
 
     /// ModifyDBInstanceSecurityGroup返回参数结构体
-    public struct ModifyDBInstanceSecurityGroupResponse: TCResponseModel {
+    public struct ModifyDBInstanceSecurityGroupResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

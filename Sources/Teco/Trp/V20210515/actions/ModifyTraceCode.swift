@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trp {
     /// ModifyTraceCode请求参数结构体
-    public struct ModifyTraceCodeRequest: TCRequestModel {
+    public struct ModifyTraceCodeRequest: TCRequest {
         /// 二维码
         public let code: String
 
@@ -44,7 +44,7 @@ extension Trp {
     }
 
     /// ModifyTraceCode返回参数结构体
-    public struct ModifyTraceCodeResponse: TCResponseModel {
+    public struct ModifyTraceCodeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

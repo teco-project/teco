@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// DeleteScalingPolicy请求参数结构体
-    public struct DeleteScalingPolicyRequest: TCRequestModel {
+    public struct DeleteScalingPolicyRequest: TCRequest {
         /// 服务器舰队ID
         public let fleetId: String
 
@@ -39,7 +39,7 @@ extension Gse {
     }
 
     /// DeleteScalingPolicy返回参数结构体
-    public struct DeleteScalingPolicyResponse: TCResponseModel {
+    public struct DeleteScalingPolicyResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

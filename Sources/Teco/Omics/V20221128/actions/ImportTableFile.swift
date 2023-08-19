@@ -20,7 +20,7 @@ import TecoCore
 
 extension Omics {
     /// ImportTableFile请求参数结构体
-    public struct ImportTableFileRequest: TCRequestModel {
+    public struct ImportTableFileRequest: TCRequest {
         /// 表格关联的项目ID。
         public let projectId: String
 
@@ -54,7 +54,7 @@ extension Omics {
     }
 
     /// ImportTableFile返回参数结构体
-    public struct ImportTableFileResponse: TCResponseModel {
+    public struct ImportTableFileResponse: TCResponse {
         /// 表格ID。
         public let tableId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfs {
     /// ModifyFileSystemAutoScaleUpRule请求参数结构体
-    public struct ModifyFileSystemAutoScaleUpRuleRequest: TCRequestModel {
+    public struct ModifyFileSystemAutoScaleUpRuleRequest: TCRequest {
         /// 文件系统id
         public let fileSystemId: String
 
@@ -49,7 +49,7 @@ extension Cfs {
     }
 
     /// ModifyFileSystemAutoScaleUpRule返回参数结构体
-    public struct ModifyFileSystemAutoScaleUpRuleResponse: TCResponseModel {
+    public struct ModifyFileSystemAutoScaleUpRuleResponse: TCResponse {
         /// 文件系统id
         public let fileSystemId: String
 

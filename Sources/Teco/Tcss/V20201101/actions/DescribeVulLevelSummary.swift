@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeVulLevelSummary请求参数结构体
-    public struct DescribeVulLevelSummaryRequest: TCRequestModel {
+    public struct DescribeVulLevelSummaryRequest: TCRequest {
         /// 漏洞分类: SYSTEM:系统漏洞 WEB:web应用漏洞 EMERGENCY:应急漏洞
         public let categoryType: String
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeVulLevelSummary返回参数结构体
-    public struct DescribeVulLevelSummaryResponse: TCResponseModel {
+    public struct DescribeVulLevelSummaryResponse: TCResponse {
         /// 高危漏洞数
         public let highLevelVulCount: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DeleteLiveRecordTemplate请求参数结构体
-    public struct DeleteLiveRecordTemplateRequest: TCRequestModel {
+    public struct DeleteLiveRecordTemplateRequest: TCRequest {
         /// DescribeRecordTemplates接口获取到的模板 ID。
         public let templateId: Int64
 
@@ -34,7 +34,7 @@ extension Live {
     }
 
     /// DeleteLiveRecordTemplate返回参数结构体
-    public struct DeleteLiveRecordTemplateResponse: TCResponseModel {
+    public struct DeleteLiveRecordTemplateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

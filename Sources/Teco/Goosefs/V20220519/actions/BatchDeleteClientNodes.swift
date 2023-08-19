@@ -20,7 +20,7 @@ import TecoCore
 
 extension Goosefs {
     /// BatchDeleteClientNodes请求参数结构体
-    public struct BatchDeleteClientNodesRequest: TCRequestModel {
+    public struct BatchDeleteClientNodesRequest: TCRequest {
         /// 文件系统id
         public let fileSystemId: String
 
@@ -44,7 +44,7 @@ extension Goosefs {
     }
 
     /// BatchDeleteClientNodes返回参数结构体
-    public struct BatchDeleteClientNodesResponse: TCResponseModel {
+    public struct BatchDeleteClientNodesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

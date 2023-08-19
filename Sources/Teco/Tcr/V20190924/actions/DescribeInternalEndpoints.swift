@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// DescribeInternalEndpoints请求参数结构体
-    public struct DescribeInternalEndpointsRequest: TCRequestModel {
+    public struct DescribeInternalEndpointsRequest: TCRequest {
         /// 实例Id
         public let registryId: String
 
@@ -34,7 +34,7 @@ extension Tcr {
     }
 
     /// DescribeInternalEndpoints返回参数结构体
-    public struct DescribeInternalEndpointsResponse: TCResponseModel {
+    public struct DescribeInternalEndpointsResponse: TCResponse {
         /// 内网接入信息的列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accessVpcSet: [AccessVpc]?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// DescribeClusterDetail请求参数结构体
-    public struct DescribeClusterDetailRequest: TCRequestModel {
+    public struct DescribeClusterDetailRequest: TCRequest {
         /// 集群Id
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Cynosdb {
     }
 
     /// DescribeClusterDetail返回参数结构体
-    public struct DescribeClusterDetailResponse: TCResponseModel {
+    public struct DescribeClusterDetailResponse: TCResponse {
         /// 集群详细信息
         public let detail: CynosdbClusterDetail
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// CreateCloudReadOnlyDBInstances请求参数结构体
-    public struct CreateCloudReadOnlyDBInstancesRequest: TCRequestModel {
+    public struct CreateCloudReadOnlyDBInstancesRequest: TCRequest {
         /// 主实例ID，格式如：mssql-3l3fgqn7
         public let instanceId: String
 
@@ -149,7 +149,7 @@ extension Sqlserver {
     }
 
     /// CreateCloudReadOnlyDBInstances返回参数结构体
-    public struct CreateCloudReadOnlyDBInstancesResponse: TCResponseModel {
+    public struct CreateCloudReadOnlyDBInstancesResponse: TCResponse {
         /// 订单名称数组
         public let dealNames: [String]
 

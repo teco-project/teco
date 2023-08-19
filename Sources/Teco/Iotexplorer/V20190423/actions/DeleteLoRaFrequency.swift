@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotexplorer {
     /// DeleteLoRaFrequency请求参数结构体
-    public struct DeleteLoRaFrequencyRequest: TCRequestModel {
+    public struct DeleteLoRaFrequencyRequest: TCRequest {
         /// 频点唯一ID
         public let freqId: String?
 
@@ -34,7 +34,7 @@ extension Iotexplorer {
     }
 
     /// DeleteLoRaFrequency返回参数结构体
-    public struct DeleteLoRaFrequencyResponse: TCResponseModel {
+    public struct DeleteLoRaFrequencyResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eiam {
     /// ListAuthorizedApplicationsToOrgNode请求参数结构体
-    public struct ListAuthorizedApplicationsToOrgNodeRequest: TCRequestModel {
+    public struct ListAuthorizedApplicationsToOrgNodeRequest: TCRequest {
         /// 机构节点 Id 。
         public let orgNodeId: String
 
@@ -34,7 +34,7 @@ extension Eiam {
     }
 
     /// ListAuthorizedApplicationsToOrgNode返回参数结构体
-    public struct ListAuthorizedApplicationsToOrgNodeResponse: TCResponseModel {
+    public struct ListAuthorizedApplicationsToOrgNodeResponse: TCResponse {
         /// 机构节点拥有访问权限的应用 id 列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationIds: [String]?

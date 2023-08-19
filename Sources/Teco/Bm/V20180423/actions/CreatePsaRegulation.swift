@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// CreatePsaRegulation请求参数结构体
-    public struct CreatePsaRegulationRequest: TCRequestModel {
+    public struct CreatePsaRegulationRequest: TCRequest {
         /// 规则别名
         public let psaName: String
 
@@ -49,7 +49,7 @@ extension Bm {
     }
 
     /// CreatePsaRegulation返回参数结构体
-    public struct CreatePsaRegulationResponse: TCResponseModel {
+    public struct CreatePsaRegulationResponse: TCResponse {
         /// 创建的预授权规则ID
         public let psaId: String
 

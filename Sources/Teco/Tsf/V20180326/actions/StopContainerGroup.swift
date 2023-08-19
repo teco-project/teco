@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// StopContainerGroup请求参数结构体
-    public struct StopContainerGroupRequest: TCRequestModel {
+    public struct StopContainerGroupRequest: TCRequest {
         /// 部署组ID
         public let groupId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// StopContainerGroup返回参数结构体
-    public struct StopContainerGroupResponse: TCResponseModel {
+    public struct StopContainerGroupResponse: TCResponse {
         /// 停止操作是否成功。
         /// true：停止成功
         /// false：停止失败

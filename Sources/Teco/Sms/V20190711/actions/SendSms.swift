@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sms {
     /// SendSms请求参数结构体
-    public struct SendSmsRequest: TCRequestModel {
+    public struct SendSmsRequest: TCRequest {
         /// 下发手机号码，采用 e.164 标准，格式为+[国家或地区码][手机号]，单次请求最多支持200个手机号且要求全为境内手机号或全为境外手机号。
         /// 例如：+8613711112222， 其中前面有一个+号 ，86为国家码，13711112222为手机号。
         public let phoneNumberSet: [String]
@@ -70,7 +70,7 @@ extension Sms {
     }
 
     /// SendSms返回参数结构体
-    public struct SendSmsResponse: TCResponseModel {
+    public struct SendSmsResponse: TCResponse {
         /// 短信发送状态。
         public let sendStatusSet: [SendStatus]
 

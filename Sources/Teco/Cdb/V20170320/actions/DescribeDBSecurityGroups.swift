@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DescribeDBSecurityGroups请求参数结构体
-    public struct DescribeDBSecurityGroupsRequest: TCRequestModel {
+    public struct DescribeDBSecurityGroupsRequest: TCRequest {
         /// 实例ID，格式如：cdb-c1nl9rpv或者cdbro-c1nl9rpv，与云数据库控制台页面中显示的实例ID相同。
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Cdb {
     }
 
     /// DescribeDBSecurityGroups返回参数结构体
-    public struct DescribeDBSecurityGroupsResponse: TCResponseModel {
+    public struct DescribeDBSecurityGroupsResponse: TCResponse {
         /// 安全组详情。
         public let groups: [SecurityGroup]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// InquiryPriceUpgradeDBInstance请求参数结构体
-    public struct InquiryPriceUpgradeDBInstanceRequest: TCRequestModel {
+    public struct InquiryPriceUpgradeDBInstanceRequest: TCRequest {
         /// 实例的磁盘大小，单位GB
         public let storage: Int64
 
@@ -49,7 +49,7 @@ extension Postgres {
     }
 
     /// InquiryPriceUpgradeDBInstance返回参数结构体
-    public struct InquiryPriceUpgradeDBInstanceResponse: TCResponseModel {
+    public struct InquiryPriceUpgradeDBInstanceResponse: TCResponse {
         /// 刊例价费用
         public let originalPrice: Int64
 

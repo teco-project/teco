@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cloudhsm {
     /// InquiryPriceBuyVsm请求参数结构体
-    public struct InquiryPriceBuyVsmRequest: TCRequestModel {
+    public struct InquiryPriceBuyVsmRequest: TCRequest {
         /// 需购买实例的数量
         public let goodsNum: Int64
 
@@ -64,7 +64,7 @@ extension Cloudhsm {
     }
 
     /// InquiryPriceBuyVsm返回参数结构体
-    public struct InquiryPriceBuyVsmResponse: TCResponseModel {
+    public struct InquiryPriceBuyVsmResponse: TCResponse {
         /// 原始总金额，浮点型参数，精确到小数点后两位，如：2000.99
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCost: Float?

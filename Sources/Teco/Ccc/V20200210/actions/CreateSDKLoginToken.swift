@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ccc {
     /// CreateSDKLoginToken请求参数结构体
-    public struct CreateSDKLoginTokenRequest: TCRequestModel {
+    public struct CreateSDKLoginTokenRequest: TCRequest {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         public let sdkAppId: Int64
 
@@ -39,7 +39,7 @@ extension Ccc {
     }
 
     /// CreateSDKLoginToken返回参数结构体
-    public struct CreateSDKLoginTokenResponse: TCResponseModel {
+    public struct CreateSDKLoginTokenResponse: TCResponse {
         /// SDK 登录 Token。
         public let token: String
 

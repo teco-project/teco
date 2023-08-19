@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// DescribeSDKLog请求参数结构体
-    public struct DescribeSDKLogRequest: TCRequestModel {
+    public struct DescribeSDKLogRequest: TCRequest {
         /// 日志开始时间
         public let minTime: UInt64
 
@@ -58,7 +58,7 @@ extension Iotvideo {
     }
 
     /// DescribeSDKLog返回参数结构体
-    public struct DescribeSDKLogResponse: TCResponseModel {
+    public struct DescribeSDKLogResponse: TCResponse {
         /// 日志检索上下文
         public let context: String
 

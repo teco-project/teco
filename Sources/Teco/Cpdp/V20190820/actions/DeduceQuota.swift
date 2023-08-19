@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// DeduceQuota请求参数结构体
-    public struct DeduceQuotaRequest: TCRequestModel {
+    public struct DeduceQuotaRequest: TCRequest {
         /// 主播ID
         public let anchorId: String
 
@@ -44,7 +44,7 @@ extension Cpdp {
     }
 
     /// DeduceQuota返回参数结构体
-    public struct DeduceQuotaResponse: TCResponseModel {
+    public struct DeduceQuotaResponse: TCResponse {
         /// 错误码。响应成功："SUCCESS"，其他为不成功。
         public let errCode: String
 

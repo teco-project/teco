@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ump {
     /// CreateCameraAlerts请求参数结构体
-    public struct CreateCameraAlertsRequest: TCRequestModel {
+    public struct CreateCameraAlertsRequest: TCRequest {
         /// 告警信息列表
         public let alerts: [CreateCameraAlertAlert]?
 
@@ -34,7 +34,7 @@ extension Ump {
     }
 
     /// CreateCameraAlerts返回参数结构体
-    public struct CreateCameraAlertsResponse: TCResponseModel {
+    public struct CreateCameraAlertsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

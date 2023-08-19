@@ -20,7 +20,7 @@ import TecoCore
 
 extension Asr {
     /// DescribeTaskStatus请求参数结构体
-    public struct DescribeTaskStatusRequest: TCRequestModel {
+    public struct DescribeTaskStatusRequest: TCRequest {
         /// 从CreateRecTask接口获取的TaskId，用于获取任务状态与结果。
         public let taskId: UInt64
 
@@ -34,7 +34,7 @@ extension Asr {
     }
 
     /// DescribeTaskStatus返回参数结构体
-    public struct DescribeTaskStatusResponse: TCResponseModel {
+    public struct DescribeTaskStatusResponse: TCResponse {
         /// 录音文件识别的请求返回结果。
         public let data: TaskStatus
 

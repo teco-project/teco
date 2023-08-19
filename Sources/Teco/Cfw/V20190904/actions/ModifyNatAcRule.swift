@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// ModifyNatAcRule请求参数结构体
-    public struct ModifyNatAcRuleRequest: TCRequestModel {
+    public struct ModifyNatAcRuleRequest: TCRequest {
         /// 需要编辑的规则数组
         public let rules: [CreateNatRuleItem]
 
@@ -34,7 +34,7 @@ extension Cfw {
     }
 
     /// ModifyNatAcRule返回参数结构体
-    public struct ModifyNatAcRuleResponse: TCResponseModel {
+    public struct ModifyNatAcRuleResponse: TCResponse {
         /// 编辑成功后返回新策略ID列表
         public let ruleUuid: [Int64]
 

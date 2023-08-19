@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cii {
     /// DescribeUnderwriteTask请求参数结构体
-    public struct DescribeUnderwriteTaskRequest: TCRequestModel {
+    public struct DescribeUnderwriteTaskRequest: TCRequest {
         /// 任务ID
         public let underwriteTaskId: String?
 
@@ -34,7 +34,7 @@ extension Cii {
     }
 
     /// DescribeUnderwriteTask返回参数结构体
-    public struct DescribeUnderwriteTaskResponse: TCResponseModel {
+    public struct DescribeUnderwriteTaskResponse: TCResponse {
         /// 腾讯云主账号ID
         public let uin: String
 

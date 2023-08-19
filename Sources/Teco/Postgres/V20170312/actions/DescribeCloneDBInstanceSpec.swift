@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// DescribeCloneDBInstanceSpec请求参数结构体
-    public struct DescribeCloneDBInstanceSpecRequest: TCRequestModel {
+    public struct DescribeCloneDBInstanceSpecRequest: TCRequest {
         /// 实例ID。
         public let dbInstanceId: String
 
@@ -44,7 +44,7 @@ extension Postgres {
     }
 
     /// DescribeCloneDBInstanceSpec返回参数结构体
-    public struct DescribeCloneDBInstanceSpecResponse: TCResponseModel {
+    public struct DescribeCloneDBInstanceSpecResponse: TCResponse {
         /// 可购买的最小规格码。
         public let minSpecCode: String
 

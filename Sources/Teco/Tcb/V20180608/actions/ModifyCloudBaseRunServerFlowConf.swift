@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// ModifyCloudBaseRunServerFlowConf请求参数结构体
-    public struct ModifyCloudBaseRunServerFlowConfRequest: TCRequestModel {
+    public struct ModifyCloudBaseRunServerFlowConfRequest: TCRequest {
         /// 环境ID
         public let envId: String
 
@@ -54,7 +54,7 @@ extension Tcb {
     }
 
     /// ModifyCloudBaseRunServerFlowConf返回参数结构体
-    public struct ModifyCloudBaseRunServerFlowConfResponse: TCResponseModel {
+    public struct ModifyCloudBaseRunServerFlowConfResponse: TCResponse {
         /// 返回结果，succ代表成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: String?

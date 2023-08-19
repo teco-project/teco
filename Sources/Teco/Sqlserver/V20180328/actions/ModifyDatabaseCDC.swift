@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// ModifyDatabaseCDC请求参数结构体
-    public struct ModifyDatabaseCDCRequest: TCRequestModel {
+    public struct ModifyDatabaseCDCRequest: TCRequest {
         /// 数据库名数组
         public let dbNames: [String]
 
@@ -44,7 +44,7 @@ extension Sqlserver {
     }
 
     /// ModifyDatabaseCDC返回参数结构体
-    public struct ModifyDatabaseCDCResponse: TCResponseModel {
+    public struct ModifyDatabaseCDCResponse: TCResponse {
         /// 流程ID
         public let flowId: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DescribeGatewayMonitorOverview请求参数结构体
-    public struct DescribeGatewayMonitorOverviewRequest: TCRequestModel {
+    public struct DescribeGatewayMonitorOverviewRequest: TCRequest {
         /// 网关部署组ID
         public let gatewayDeployGroupId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// DescribeGatewayMonitorOverview返回参数结构体
-    public struct DescribeGatewayMonitorOverviewResponse: TCResponseModel {
+    public struct DescribeGatewayMonitorOverviewResponse: TCResponse {
         /// 监控概览对象
         public let result: MonitorOverview
 

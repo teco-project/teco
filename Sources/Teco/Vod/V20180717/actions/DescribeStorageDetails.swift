@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// DescribeStorageDetails请求参数结构体
-    public struct DescribeStorageDetailsRequest: TCRequestModel {
+    public struct DescribeStorageDetailsRequest: TCRequest {
         /// 起始时间，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#52)。
         public let startTime: String
 
@@ -82,7 +82,7 @@ extension Vod {
     }
 
     /// DescribeStorageDetails返回参数结构体
-    public struct DescribeStorageDetailsResponse: TCResponseModel {
+    public struct DescribeStorageDetailsResponse: TCResponse {
         /// 存储统计数据，每5分钟或每天一条数据。
         public let data: [StatDataItem]
 

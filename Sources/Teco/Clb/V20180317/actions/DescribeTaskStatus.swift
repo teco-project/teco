@@ -20,7 +20,7 @@ import TecoCore
 
 extension Clb {
     /// DescribeTaskStatus请求参数结构体
-    public struct DescribeTaskStatusRequest: TCRequestModel {
+    public struct DescribeTaskStatusRequest: TCRequest {
         /// 请求ID，即接口返回的 RequestId 参数。
         public let taskId: String?
 
@@ -40,7 +40,7 @@ extension Clb {
     }
 
     /// DescribeTaskStatus返回参数结构体
-    public struct DescribeTaskStatusResponse: TCResponseModel {
+    public struct DescribeTaskStatusResponse: TCResponse {
         /// 任务的当前状态。 0：成功，1：失败，2：进行中。
         public let status: Int64
 

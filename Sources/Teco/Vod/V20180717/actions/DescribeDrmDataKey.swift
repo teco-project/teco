@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// DescribeDrmDataKey请求参数结构体
-    public struct DescribeDrmDataKeyRequest: TCRequestModel {
+    public struct DescribeDrmDataKeyRequest: TCRequest {
         /// 加密后的数据密钥列表，最大支持10个。
         public let edkList: [String]
 
@@ -39,7 +39,7 @@ extension Vod {
     }
 
     /// DescribeDrmDataKey返回参数结构体
-    public struct DescribeDrmDataKeyResponse: TCResponseModel {
+    public struct DescribeDrmDataKeyResponse: TCResponse {
         /// 密钥列表，包含加密的数据密钥。
         public let keyList: [SimpleAesEdkPair]
 

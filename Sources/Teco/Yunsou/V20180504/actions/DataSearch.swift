@@ -20,7 +20,7 @@ import TecoCore
 
 extension Yunsou {
     /// DataSearch请求参数结构体
-    public struct DataSearchRequest: TCRequestModel {
+    public struct DataSearchRequest: TCRequest {
         /// 云搜的业务ID，用以表明当前数据请求的业务
         public let resourceId: UInt64
 
@@ -144,7 +144,7 @@ extension Yunsou {
     }
 
     /// DataSearch返回参数结构体
-    public struct DataSearchResponse: TCResponseModel {
+    public struct DataSearchResponse: TCResponse {
         /// 数据返回信息
         public let retMsg: String
 

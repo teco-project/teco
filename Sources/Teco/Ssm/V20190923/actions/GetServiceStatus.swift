@@ -20,13 +20,13 @@ import TecoCore
 
 extension Ssm {
     /// GetServiceStatus请求参数结构体
-    public struct GetServiceStatusRequest: TCRequestModel {
+    public struct GetServiceStatusRequest: TCRequest {
         public init() {
         }
     }
 
     /// GetServiceStatus返回参数结构体
-    public struct GetServiceStatusResponse: TCResponseModel {
+    public struct GetServiceStatusResponse: TCResponse {
         /// true表示服务已开通，false 表示服务尚未开通。
         public let serviceEnabled: Bool
 

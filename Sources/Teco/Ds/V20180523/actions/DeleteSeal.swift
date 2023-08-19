@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ds {
     /// DeleteSeal请求参数结构体
-    public struct DeleteSealRequest: TCRequestModel {
+    public struct DeleteSealRequest: TCRequest {
         /// 模块名SealMng
         public let module: String
 
@@ -49,7 +49,7 @@ extension Ds {
     }
 
     /// DeleteSeal返回参数结构体
-    public struct DeleteSealResponse: TCResponseModel {
+    public struct DeleteSealResponse: TCResponse {
         /// 签章ID
         public let sealResId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// DescribeRollbackTimeRange请求参数结构体
-    public struct DescribeRollbackTimeRangeRequest: TCRequestModel {
+    public struct DescribeRollbackTimeRangeRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Cynosdb {
     }
 
     /// DescribeRollbackTimeRange返回参数结构体
-    public struct DescribeRollbackTimeRangeResponse: TCResponseModel {
+    public struct DescribeRollbackTimeRangeResponse: TCResponse {
         /// 有效回归时间范围开始时间点（已废弃）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeRangeStart: String?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// DescribeInstancesDeniedActions请求参数结构体
-    public struct DescribeInstancesDeniedActionsRequest: TCRequestModel {
+    public struct DescribeInstancesDeniedActionsRequest: TCRequest {
         public let instanceIdSet: [String]
 
         public init(instanceIdSet: [String]) {
@@ -33,7 +33,7 @@ extension Ecm {
     }
 
     /// DescribeInstancesDeniedActions返回参数结构体
-    public struct DescribeInstancesDeniedActionsResponse: TCResponseModel {
+    public struct DescribeInstancesDeniedActionsResponse: TCResponse {
         /// 实例对应的禁止操作
         public let instanceOperatorSet: [InstanceOperator]
 

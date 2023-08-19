@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// CreateIotDataType请求参数结构体
-    public struct CreateIotDataTypeRequest: TCRequestModel {
+    public struct CreateIotDataTypeRequest: TCRequest {
         /// 用户自定义数据类型，json格式的字符串
         public let iotDataType: String
 
@@ -34,7 +34,7 @@ extension Iotvideo {
     }
 
     /// CreateIotDataType返回参数结构体
-    public struct CreateIotDataTypeResponse: TCResponseModel {
+    public struct CreateIotDataTypeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

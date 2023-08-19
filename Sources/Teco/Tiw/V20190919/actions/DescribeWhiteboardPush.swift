@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiw {
     /// DescribeWhiteboardPush请求参数结构体
-    public struct DescribeWhiteboardPushRequest: TCRequestModel {
+    public struct DescribeWhiteboardPushRequest: TCRequest {
         /// 客户的SdkAppId
         public let sdkAppId: Int64
 
@@ -39,7 +39,7 @@ extension Tiw {
     }
 
     /// DescribeWhiteboardPush返回参数结构体
-    public struct DescribeWhiteboardPushResponse: TCResponseModel {
+    public struct DescribeWhiteboardPushResponse: TCResponse {
         /// 推流结束原因，
         /// - AUTO: 房间内长时间没有音视频上行及白板操作导致自动停止推流
         /// - USER_CALL: 主动调用了停止推流接口

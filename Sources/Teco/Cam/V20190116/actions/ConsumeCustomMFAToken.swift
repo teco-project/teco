@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// ConsumeCustomMFAToken请求参数结构体
-    public struct ConsumeCustomMFATokenRequest: TCRequestModel {
+    public struct ConsumeCustomMFATokenRequest: TCRequest {
         /// 自定义多因子验证Token
         public let mfaToken: String
 
@@ -34,7 +34,7 @@ extension Cam {
     }
 
     /// ConsumeCustomMFAToken返回参数结构体
-    public struct ConsumeCustomMFATokenResponse: TCResponseModel {
+    public struct ConsumeCustomMFATokenResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

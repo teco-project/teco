@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// ChannelBatchCancelFlows请求参数结构体
-    public struct ChannelBatchCancelFlowsRequest: TCRequestModel {
+    public struct ChannelBatchCancelFlowsRequest: TCRequest {
         /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
 
@@ -67,7 +67,7 @@ extension Essbasic {
     }
 
     /// ChannelBatchCancelFlows返回参数结构体
-    public struct ChannelBatchCancelFlowsResponse: TCResponseModel {
+    public struct ChannelBatchCancelFlowsResponse: TCResponse {
         /// 签署流程批量撤销失败原因，错误信息与流程Id一一对应，成功为“”,失败则对应失败消息
         public let failMessages: [String]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// ModifyGroupDomainConfig请求参数结构体
-    public struct ModifyGroupDomainConfigRequest: TCRequestModel {
+    public struct ModifyGroupDomainConfigRequest: TCRequest {
         /// 通道组ID。
         public let groupId: String
 
@@ -44,7 +44,7 @@ extension Gaap {
     }
 
     /// ModifyGroupDomainConfig返回参数结构体
-    public struct ModifyGroupDomainConfigResponse: TCResponseModel {
+    public struct ModifyGroupDomainConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Yinsuda {
     /// ApplyChorus请求参数结构体
-    public struct ApplyChorusRequest: TCRequestModel {
+    public struct ApplyChorusRequest: TCRequest {
         /// 应用名称。
         public let appName: String
 
@@ -59,7 +59,7 @@ extension Yinsuda {
     }
 
     /// ApplyChorus返回参数结构体
-    public struct ApplyChorusResponse: TCResponseModel {
+    public struct ApplyChorusResponse: TCResponse {
         /// 合唱 Token。
         public let chorusToken: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// UpgradeCDBProxyVersion请求参数结构体
-    public struct UpgradeCDBProxyVersionRequest: TCRequestModel {
+    public struct UpgradeCDBProxyVersionRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -54,7 +54,7 @@ extension Cdb {
     }
 
     /// UpgradeCDBProxyVersion返回参数结构体
-    public struct UpgradeCDBProxyVersionResponse: TCResponseModel {
+    public struct UpgradeCDBProxyVersionResponse: TCResponse {
         /// 异步处理ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let asyncRequestId: String?

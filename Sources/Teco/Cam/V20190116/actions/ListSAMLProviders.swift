@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cam {
     /// ListSAMLProviders请求参数结构体
-    public struct ListSAMLProvidersRequest: TCRequestModel {
+    public struct ListSAMLProvidersRequest: TCRequest {
         public init() {
         }
     }
 
     /// ListSAMLProviders返回参数结构体
-    public struct ListSAMLProvidersResponse: TCResponseModel {
+    public struct ListSAMLProvidersResponse: TCResponse {
         /// SAML身份提供商总数
         public let totalCount: Int64
 

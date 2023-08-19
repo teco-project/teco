@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcbr {
     /// DescribeCloudRunServerDetail请求参数结构体
-    public struct DescribeCloudRunServerDetailRequest: TCRequestModel {
+    public struct DescribeCloudRunServerDetailRequest: TCRequest {
         /// 环境Id
         public let envId: String
 
@@ -39,7 +39,7 @@ extension Tcbr {
     }
 
     /// DescribeCloudRunServerDetail返回参数结构体
-    public struct DescribeCloudRunServerDetailResponse: TCResponseModel {
+    public struct DescribeCloudRunServerDetailResponse: TCResponse {
         /// 服务基本信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let baseInfo: ServerBaseInfo?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeStreamPlayInfoList请求参数结构体
-    public struct DescribeStreamPlayInfoListRequest: TCRequestModel {
+    public struct DescribeStreamPlayInfoListRequest: TCRequest {
         /// 起始时间点，接口查询支持两种时间格式：
         /// 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见IOS日期格式说明文档: https://cloud.tencent.com/document/product/266/11732#I
         /// 2）yyyy-MM-dd HH:mm:ss：使用此格式时，默认代表北京时间。
@@ -68,7 +68,7 @@ extension Live {
     }
 
     /// DescribeStreamPlayInfoList返回参数结构体
-    public struct DescribeStreamPlayInfoListResponse: TCResponseModel {
+    public struct DescribeStreamPlayInfoListResponse: TCResponse {
         /// 统计信息列表，时间粒度是1分钟。
         public let dataInfoList: [DayStreamPlayInfo]
 

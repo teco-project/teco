@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeSecLogKafkaUIN请求参数结构体
-    public struct DescribeSecLogKafkaUINRequest: TCRequestModel {
+    public struct DescribeSecLogKafkaUINRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeSecLogKafkaUIN返回参数结构体
-    public struct DescribeSecLogKafkaUINResponse: TCResponseModel {
+    public struct DescribeSecLogKafkaUINResponse: TCResponse {
         /// 目标UIN
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dstUIN: String?

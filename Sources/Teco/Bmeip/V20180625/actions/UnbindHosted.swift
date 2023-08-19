@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmeip {
     /// UnbindHosted请求参数结构体
-    public struct UnbindHostedRequest: TCRequestModel {
+    public struct UnbindHostedRequest: TCRequest {
         /// 托管机器实例ID
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Bmeip {
     }
 
     /// UnbindHosted返回参数结构体
-    public struct UnbindHostedResponse: TCResponseModel {
+    public struct UnbindHostedResponse: TCResponse {
         /// 异步任务ID，可以通过EipBmQueryTask查询任务状态
         public let taskId: UInt64
 

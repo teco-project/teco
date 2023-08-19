@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// CreateStreamLinkFlow请求参数结构体
-    public struct CreateStreamLinkFlowRequest: TCRequestModel {
+    public struct CreateStreamLinkFlowRequest: TCRequest {
         /// 流名称。
         public let flowName: String
 
@@ -49,7 +49,7 @@ extension Mps {
     }
 
     /// CreateStreamLinkFlow返回参数结构体
-    public struct CreateStreamLinkFlowResponse: TCResponseModel {
+    public struct CreateStreamLinkFlowResponse: TCResponse {
         /// 创建的Flow信息。
         public let info: DescribeFlow
 

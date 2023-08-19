@@ -20,7 +20,7 @@ import TecoCore
 
 extension Nlp {
     /// SentenceCorrection请求参数结构体
-    public struct SentenceCorrectionRequest: TCRequestModel {
+    public struct SentenceCorrectionRequest: TCRequest {
         /// 待纠错的句子列表。可以以数组方式在一次请求中填写多个待纠错的句子。文本统一使用utf-8格式编码，每个中文句子的长度不超过150字符，每个英文句子的长度不超过100个单词，且数组长度需小于30，即句子总数需少于30句。
         public let textList: [String]
 
@@ -34,7 +34,7 @@ extension Nlp {
     }
 
     /// SentenceCorrection返回参数结构体
-    public struct SentenceCorrectionResponse: TCResponseModel {
+    public struct SentenceCorrectionResponse: TCResponse {
         /// 纠错结果列表。
         /// （注意仅展示错误句子的纠错结果，若句子无错则不展示，若全部待纠错句子都被认为无错，则可能返回数组为空）
         public let correctionList: [CorrectionItem]

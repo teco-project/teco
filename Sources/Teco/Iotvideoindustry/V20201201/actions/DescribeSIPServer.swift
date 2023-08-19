@@ -20,13 +20,13 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// DescribeSIPServer请求参数结构体
-    public struct DescribeSIPServerRequest: TCRequestModel {
+    public struct DescribeSIPServerRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeSIPServer返回参数结构体
-    public struct DescribeSIPServerResponse: TCResponseModel {
+    public struct DescribeSIPServerResponse: TCResponse {
         /// SIP服务器相关配置项
         public let data: ServerConfiguration
 

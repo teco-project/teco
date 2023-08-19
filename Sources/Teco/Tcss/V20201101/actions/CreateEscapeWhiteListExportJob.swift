@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// CreateEscapeWhiteListExportJob请求参数结构体
-    public struct CreateEscapeWhiteListExportJobRequest: TCRequestModel {
+    public struct CreateEscapeWhiteListExportJobRequest: TCRequest {
         /// 过滤条件。
         /// - EventType- String - 是否必填：否 - 加白事件类型，ESCAPE_CGROUPS：利用cgroup机制逃逸，ESCAPE_TAMPER_SENSITIVE_FILE：篡改敏感文件逃逸， ESCAPE_DOCKER_API：访问Docker API接口逃逸，ESCAPE_VUL_OCCURRED：逃逸漏洞利用，MOUNT_SENSITIVE_PTAH：敏感路径挂载，PRIVILEGE_CONTAINER_START：特权容器， PRIVILEGE：程序提权逃逸
         /// - ImageName- string - 是否必填：否 - 镜像名称。
@@ -57,7 +57,7 @@ extension Tcss {
     }
 
     /// CreateEscapeWhiteListExportJob返回参数结构体
-    public struct CreateEscapeWhiteListExportJobResponse: TCResponseModel {
+    public struct CreateEscapeWhiteListExportJobResponse: TCResponse {
         /// 导出任务ID，前端拿着任务ID查询任务进度
         public let jobId: String
 

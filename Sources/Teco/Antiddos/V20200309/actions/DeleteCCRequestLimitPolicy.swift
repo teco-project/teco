@@ -20,7 +20,7 @@ import TecoCore
 
 extension Antiddos {
     /// DeleteCCRequestLimitPolicy请求参数结构体
-    public struct DeleteCCRequestLimitPolicyRequest: TCRequestModel {
+    public struct DeleteCCRequestLimitPolicyRequest: TCRequest {
         /// 实例Id
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Antiddos {
     }
 
     /// DeleteCCRequestLimitPolicy返回参数结构体
-    public struct DeleteCCRequestLimitPolicyResponse: TCResponseModel {
+    public struct DeleteCCRequestLimitPolicyResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

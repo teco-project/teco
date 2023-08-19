@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// DescribePeakBaseOverview请求参数结构体
-    public struct DescribePeakBaseOverviewRequest: TCRequestModel {
+    public struct DescribePeakBaseOverviewRequest: TCRequest {
         /// 开始时间（xxxx-xx-xx）如2019-08-14，默认为一周之前的日期，不应与当前日期间隔超过90天。
         public let startTime: String?
 
@@ -39,7 +39,7 @@ extension Ecm {
     }
 
     /// DescribePeakBaseOverview返回参数结构体
-    public struct DescribePeakBaseOverviewResponse: TCResponseModel {
+    public struct DescribePeakBaseOverviewResponse: TCResponse {
         /// 基础峰值列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let peakFamilyInfoSet: [PeakFamilyInfo]?

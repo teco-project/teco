@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ModifyBaselineWeakPassword请求参数结构体
-    public struct ModifyBaselineWeakPasswordRequest: TCRequestModel {
+    public struct ModifyBaselineWeakPasswordRequest: TCRequest {
         public let data: [BaselineWeakPassword]
 
         public init(data: [BaselineWeakPassword]) {
@@ -33,7 +33,7 @@ extension Cwp {
     }
 
     /// ModifyBaselineWeakPassword返回参数结构体
-    public struct ModifyBaselineWeakPasswordResponse: TCResponseModel {
+    public struct ModifyBaselineWeakPasswordResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

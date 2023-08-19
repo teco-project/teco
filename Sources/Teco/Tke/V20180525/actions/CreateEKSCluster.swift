@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// CreateEKSCluster请求参数结构体
-    public struct CreateEKSClusterRequest: TCRequestModel {
+    public struct CreateEKSClusterRequest: TCRequest {
         /// k8s版本号。可为1.18.4 1.20.6。
         public let k8sVersion: String
 
@@ -84,7 +84,7 @@ extension Tke {
     }
 
     /// CreateEKSCluster返回参数结构体
-    public struct CreateEKSClusterResponse: TCResponseModel {
+    public struct CreateEKSClusterResponse: TCResponse {
         /// 弹性集群Id
         public let clusterId: String
 

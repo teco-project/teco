@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// DescribeAllClass请求参数结构体
-    public struct DescribeAllClassRequest: TCRequestModel {
+    public struct DescribeAllClassRequest: TCRequest {
         /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
         public let subAppId: UInt64?
 
@@ -34,7 +34,7 @@ extension Vod {
     }
 
     /// DescribeAllClass返回参数结构体
-    public struct DescribeAllClassResponse: TCResponseModel {
+    public struct DescribeAllClassResponse: TCResponse {
         /// 分类信息集合
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let classInfoSet: [MediaClassInfo]?

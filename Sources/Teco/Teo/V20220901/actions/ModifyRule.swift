@@ -20,7 +20,7 @@ import TecoCore
 
 extension Teo {
     /// ModifyRule请求参数结构体
-    public struct ModifyRuleRequest: TCRequestModel {
+    public struct ModifyRuleRequest: TCRequest {
         /// 站点 ID。
         public let zoneId: String
 
@@ -61,7 +61,7 @@ extension Teo {
     }
 
     /// ModifyRule返回参数结构体
-    public struct ModifyRuleResponse: TCResponseModel {
+    public struct ModifyRuleResponse: TCResponse {
         /// 规则 ID。
         public let ruleId: String
 

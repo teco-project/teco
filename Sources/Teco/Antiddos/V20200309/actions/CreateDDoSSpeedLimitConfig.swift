@@ -20,7 +20,7 @@ import TecoCore
 
 extension Antiddos {
     /// CreateDDoSSpeedLimitConfig请求参数结构体
-    public struct CreateDDoSSpeedLimitConfigRequest: TCRequestModel {
+    public struct CreateDDoSSpeedLimitConfigRequest: TCRequest {
         /// 资源实例ID
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Antiddos {
     }
 
     /// CreateDDoSSpeedLimitConfig返回参数结构体
-    public struct CreateDDoSSpeedLimitConfigResponse: TCResponseModel {
+    public struct CreateDDoSSpeedLimitConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

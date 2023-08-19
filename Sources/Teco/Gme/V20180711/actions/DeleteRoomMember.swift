@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gme {
     /// DeleteRoomMember请求参数结构体
-    public struct DeleteRoomMemberRequest: TCRequestModel {
+    public struct DeleteRoomMemberRequest: TCRequest {
         /// 要操作的房间id
         public let roomId: String
 
@@ -49,7 +49,7 @@ extension Gme {
     }
 
     /// DeleteRoomMember返回参数结构体
-    public struct DeleteRoomMemberResponse: TCResponseModel {
+    public struct DeleteRoomMemberResponse: TCResponse {
         /// 剔除房间或成员的操作结果
         public let deleteResult: DeleteResult
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// SignFlow请求参数结构体
-    public struct SignFlowRequest: TCRequestModel {
+    public struct SignFlowRequest: TCRequest {
         /// 调用方信息
         public let caller: Caller
 
@@ -80,7 +80,7 @@ extension Essbasic {
     }
 
     /// SignFlow返回参数结构体
-    public struct SignFlowResponse: TCResponseModel {
+    public struct SignFlowResponse: TCResponse {
         /// 签署任务状态。签署成功 - SUCCESS、提交审核 - REVIEW
         public let status: String
 

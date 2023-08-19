@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// ProcessMediaByUrl请求参数结构体
-    public struct ProcessMediaByUrlRequest: TCRequestModel {
+    public struct ProcessMediaByUrlRequest: TCRequest {
         /// API 已经_不再维护_。推荐使用的替代 API 请参考接口描述。
         public let inputInfo: MediaInputInfo?
 
@@ -79,7 +79,7 @@ extension Vod {
     }
 
     /// ProcessMediaByUrl返回参数结构体
-    public struct ProcessMediaByUrlResponse: TCResponseModel {
+    public struct ProcessMediaByUrlResponse: TCResponse {
         /// 任务 ID
         public let taskId: String
 

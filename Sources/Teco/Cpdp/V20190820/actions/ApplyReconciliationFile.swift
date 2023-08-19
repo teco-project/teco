@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// ApplyReconciliationFile请求参数结构体
-    public struct ApplyReconciliationFileRequest: TCRequestModel {
+    public struct ApplyReconciliationFileRequest: TCRequest {
         /// 申请的文件类型。
         /// __CZ__：充值文件
         /// __TX__：提现文件
@@ -58,7 +58,7 @@ extension Cpdp {
     }
 
     /// ApplyReconciliationFile返回参数结构体
-    public struct ApplyReconciliationFileResponse: TCResponseModel {
+    public struct ApplyReconciliationFileResponse: TCResponse {
         /// 错误码。
         /// __SUCCESS__: 成功
         /// __其他__: 见附录-错误码表

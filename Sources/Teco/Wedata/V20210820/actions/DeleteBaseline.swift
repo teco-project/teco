@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DeleteBaseline请求参数结构体
-    public struct DeleteBaselineRequest: TCRequestModel {
+    public struct DeleteBaselineRequest: TCRequest {
         /// 基线id
         public let baselineId: String
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// DeleteBaseline返回参数结构体
-    public struct DeleteBaselineResponse: TCResponseModel {
+    public struct DeleteBaselineResponse: TCResponse {
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: BooleanResponse?

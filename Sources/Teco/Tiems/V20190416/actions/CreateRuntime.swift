@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiems {
     /// CreateRuntime请求参数结构体
-    public struct CreateRuntimeRequest: TCRequestModel {
+    public struct CreateRuntimeRequest: TCRequest {
         /// 全局唯一的运行环境名称
         public let name: String
 
@@ -54,7 +54,7 @@ extension Tiems {
     }
 
     /// CreateRuntime返回参数结构体
-    public struct CreateRuntimeResponse: TCResponseModel {
+    public struct CreateRuntimeResponse: TCResponse {
         /// 运行环境
         public let runtime: Runtime
 

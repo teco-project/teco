@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// AttachPlugin请求参数结构体
-    public struct AttachPluginRequest: TCRequestModel {
+    public struct AttachPluginRequest: TCRequest {
         /// 绑定的API网关插件ID。
         public let pluginId: String
 
@@ -49,7 +49,7 @@ extension Apigateway {
     }
 
     /// AttachPlugin返回参数结构体
-    public struct AttachPluginResponse: TCResponseModel {
+    public struct AttachPluginResponse: TCResponse {
         /// 绑定操作是否成功。
         public let result: Bool
 

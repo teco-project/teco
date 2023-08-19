@@ -20,7 +20,7 @@ import TecoCore
 
 extension Hasim {
     /// DescribeTactic请求参数结构体
-    public struct DescribeTacticRequest: TCRequestModel {
+    public struct DescribeTacticRequest: TCRequest {
         /// 策略ID
         public let tacticID: Int64
 
@@ -34,7 +34,7 @@ extension Hasim {
     }
 
     /// DescribeTactic返回参数结构体
-    public struct DescribeTacticResponse: TCResponseModel {
+    public struct DescribeTacticResponse: TCResponse {
         /// 策略信息
         public let data: Tactic
 

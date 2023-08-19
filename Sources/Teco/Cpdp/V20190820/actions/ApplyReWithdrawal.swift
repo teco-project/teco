@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// ApplyReWithdrawal请求参数结构体
-    public struct ApplyReWithdrawalRequest: TCRequestModel {
+    public struct ApplyReWithdrawalRequest: TCRequest {
         /// 聚鑫业务类型
         public let businessType: UInt64
 
@@ -63,7 +63,7 @@ extension Cpdp {
     }
 
     /// ApplyReWithdrawal返回参数结构体
-    public struct ApplyReWithdrawalResponse: TCResponseModel {
+    public struct ApplyReWithdrawalResponse: TCResponse {
         /// 重新提现业务订单号
         public let withdrawOrderId: String
 

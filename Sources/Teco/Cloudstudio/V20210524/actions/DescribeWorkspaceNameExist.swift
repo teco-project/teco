@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cloudstudio {
     /// DescribeWorkspaceNameExist请求参数结构体
-    public struct DescribeWorkspaceNameExistRequest: TCRequestModel {
+    public struct DescribeWorkspaceNameExistRequest: TCRequest {
         /// 用户所属组
         public let cloudStudioSessionTeam: String
 
@@ -44,7 +44,7 @@ extension Cloudstudio {
     }
 
     /// DescribeWorkspaceNameExist返回参数结构体
-    public struct DescribeWorkspaceNameExistResponse: TCResponseModel {
+    public struct DescribeWorkspaceNameExistResponse: TCResponse {
         /// 工作空间信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: WorkspaceInfoDTO?

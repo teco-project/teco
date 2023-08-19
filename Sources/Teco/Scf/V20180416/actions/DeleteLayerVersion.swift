@@ -20,7 +20,7 @@ import TecoCore
 
 extension Scf {
     /// DeleteLayerVersion请求参数结构体
-    public struct DeleteLayerVersionRequest: TCRequestModel {
+    public struct DeleteLayerVersionRequest: TCRequest {
         /// 层名称
         public let layerName: String
 
@@ -39,7 +39,7 @@ extension Scf {
     }
 
     /// DeleteLayerVersion返回参数结构体
-    public struct DeleteLayerVersionResponse: TCResponseModel {
+    public struct DeleteLayerVersionResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

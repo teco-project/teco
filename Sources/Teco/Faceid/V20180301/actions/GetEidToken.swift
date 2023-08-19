@@ -20,7 +20,7 @@ import TecoCore
 
 extension Faceid {
     /// GetEidToken请求参数结构体
-    public struct GetEidTokenRequest: TCRequestModel {
+    public struct GetEidTokenRequest: TCRequest {
         /// EID商户id，字段长度最长50位。
         public let merchantId: String
 
@@ -65,7 +65,7 @@ extension Faceid {
     }
 
     /// GetEidToken返回参数结构体
-    public struct GetEidTokenResponse: TCResponseModel {
+    public struct GetEidTokenResponse: TCResponse {
         /// 一次核身流程的标识，有效时间为600秒；
         /// 完成核身后，可用该标识获取验证结果信息。
         public let eidToken: String

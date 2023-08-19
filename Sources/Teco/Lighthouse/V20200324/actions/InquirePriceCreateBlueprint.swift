@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// InquirePriceCreateBlueprint请求参数结构体
-    public struct InquirePriceCreateBlueprintRequest: TCRequestModel {
+    public struct InquirePriceCreateBlueprintRequest: TCRequest {
         /// 自定义镜像的个数。默认值为1。
         public let blueprintCount: Int64?
 
@@ -34,7 +34,7 @@ extension Lighthouse {
     }
 
     /// InquirePriceCreateBlueprint返回参数结构体
-    public struct InquirePriceCreateBlueprintResponse: TCResponseModel {
+    public struct InquirePriceCreateBlueprintResponse: TCResponse {
         /// 自定义镜像的价格参数。
         public let blueprintPrice: BlueprintPrice
 

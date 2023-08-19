@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Vpc {
     /// ModifyAddressesBandwidth请求参数结构体
-    public struct ModifyAddressesBandwidthRequest: TCRequestModel {
+    public struct ModifyAddressesBandwidthRequest: TCRequest {
         /// EIP唯一标识ID列表，形如'eip-xxxx'
         public let addressIds: [String]
 
@@ -57,7 +57,7 @@ extension Vpc {
     }
 
     /// ModifyAddressesBandwidth返回参数结构体
-    public struct ModifyAddressesBandwidthResponse: TCResponseModel {
+    public struct ModifyAddressesBandwidthResponse: TCResponse {
         /// 异步任务TaskId。可以使用[DescribeTaskResult](https://cloud.tencent.com/document/api/215/36271)接口查询任务状态。
         public let taskId: String
 

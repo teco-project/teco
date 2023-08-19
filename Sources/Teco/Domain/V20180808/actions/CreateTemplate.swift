@@ -20,7 +20,7 @@ import TecoCore
 
 extension Domain {
     /// CreateTemplate请求参数结构体
-    public struct CreateTemplateRequest: TCRequestModel {
+    public struct CreateTemplateRequest: TCRequest {
         /// 联系人信息
         public let contactInfo: ContactInfo
 
@@ -39,7 +39,7 @@ extension Domain {
     }
 
     /// CreateTemplate返回参数结构体
-    public struct CreateTemplateResponse: TCResponseModel {
+    public struct CreateTemplateResponse: TCResponse {
         /// 模板信息
         public let template: TemplateInfo
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// ControlDeviceData请求参数结构体
-    public struct ControlDeviceDataRequest: TCRequestModel {
+    public struct ControlDeviceDataRequest: TCRequest {
         /// 产品ID
         public let productId: String
 
@@ -54,7 +54,7 @@ extension Iotvideo {
     }
 
     /// ControlDeviceData返回参数结构体
-    public struct ControlDeviceDataResponse: TCResponseModel {
+    public struct ControlDeviceDataResponse: TCResponse {
         /// 返回信息
         public let data: String
 

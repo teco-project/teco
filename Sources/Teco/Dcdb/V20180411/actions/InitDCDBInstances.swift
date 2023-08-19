@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dcdb {
     /// InitDCDBInstances请求参数结构体
-    public struct InitDCDBInstancesRequest: TCRequestModel {
+    public struct InitDCDBInstancesRequest: TCRequest {
         /// 待初始化的实例ID列表，形如：dcdbt-ow728lmc，可以通过 DescribeDCDBInstances 查询实例详情获得。
         public let instanceIds: [String]
 
@@ -39,7 +39,7 @@ extension Dcdb {
     }
 
     /// InitDCDBInstances返回参数结构体
-    public struct InitDCDBInstancesResponse: TCResponseModel {
+    public struct InitDCDBInstancesResponse: TCResponse {
         /// 异步任务ID，可通过 DescribeFlow 查询任务状态。
         public let flowIds: [UInt64]
 

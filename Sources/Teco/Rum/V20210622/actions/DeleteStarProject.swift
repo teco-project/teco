@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// DeleteStarProject请求参数结构体
-    public struct DeleteStarProjectRequest: TCRequestModel {
+    public struct DeleteStarProjectRequest: TCRequest {
         /// 实例ID：taw-123
         public let instanceID: String
 
@@ -39,7 +39,7 @@ extension Rum {
     }
 
     /// DeleteStarProject返回参数结构体
-    public struct DeleteStarProjectResponse: TCResponseModel {
+    public struct DeleteStarProjectResponse: TCResponse {
         /// 返回消息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let msg: String?

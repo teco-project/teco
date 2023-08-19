@@ -20,7 +20,7 @@ import TecoCore
 
 extension Organization {
     /// CreateOrganizationMemberPolicy请求参数结构体
-    public struct CreateOrganizationMemberPolicyRequest: TCRequestModel {
+    public struct CreateOrganizationMemberPolicyRequest: TCRequest {
         /// 成员Uin。
         public let memberUin: Int64
 
@@ -49,7 +49,7 @@ extension Organization {
     }
 
     /// CreateOrganizationMemberPolicy返回参数结构体
-    public struct CreateOrganizationMemberPolicyResponse: TCResponseModel {
+    public struct CreateOrganizationMemberPolicyResponse: TCResponse {
         /// 策略ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let policyId: Int64?

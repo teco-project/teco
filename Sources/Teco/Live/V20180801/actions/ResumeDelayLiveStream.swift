@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// ResumeDelayLiveStream请求参数结构体
-    public struct ResumeDelayLiveStreamRequest: TCRequestModel {
+    public struct ResumeDelayLiveStreamRequest: TCRequest {
         /// 推流路径，与推流和播放地址中的AppName保持一致，默认为live。
         public let appName: String
 
@@ -44,7 +44,7 @@ extension Live {
     }
 
     /// ResumeDelayLiveStream返回参数结构体
-    public struct ResumeDelayLiveStreamResponse: TCResponseModel {
+    public struct ResumeDelayLiveStreamResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

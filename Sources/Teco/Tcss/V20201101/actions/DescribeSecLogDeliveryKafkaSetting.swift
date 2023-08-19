@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeSecLogDeliveryKafkaSetting请求参数结构体
-    public struct DescribeSecLogDeliveryKafkaSettingRequest: TCRequestModel {
+    public struct DescribeSecLogDeliveryKafkaSettingRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeSecLogDeliveryKafkaSetting返回参数结构体
-    public struct DescribeSecLogDeliveryKafkaSettingResponse: TCResponseModel {
+    public struct DescribeSecLogDeliveryKafkaSettingResponse: TCResponse {
         /// 消息队列实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceID: String?

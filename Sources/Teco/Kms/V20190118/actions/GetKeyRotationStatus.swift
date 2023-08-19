@@ -20,7 +20,7 @@ import TecoCore
 
 extension Kms {
     /// GetKeyRotationStatus请求参数结构体
-    public struct GetKeyRotationStatusRequest: TCRequestModel {
+    public struct GetKeyRotationStatusRequest: TCRequest {
         /// CMK唯一标识符
         public let keyId: String
 
@@ -34,7 +34,7 @@ extension Kms {
     }
 
     /// GetKeyRotationStatus返回参数结构体
-    public struct GetKeyRotationStatusResponse: TCResponseModel {
+    public struct GetKeyRotationStatusResponse: TCResponse {
         /// 密钥轮换是否开启
         public let keyRotationEnabled: Bool
 

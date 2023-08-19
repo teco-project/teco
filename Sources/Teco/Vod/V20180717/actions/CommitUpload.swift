@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// CommitUpload请求参数结构体
-    public struct CommitUploadRequest: TCRequestModel {
+    public struct CommitUploadRequest: TCRequest {
         /// 点播会话，取申请上传接口的返回值 VodSessionKey。
         public let vodSessionKey: String
 
@@ -39,7 +39,7 @@ extension Vod {
     }
 
     /// CommitUpload返回参数结构体
-    public struct CommitUploadResponse: TCResponseModel {
+    public struct CommitUploadResponse: TCResponse {
         /// 媒体文件的唯一标识。
         public let fileId: String
 

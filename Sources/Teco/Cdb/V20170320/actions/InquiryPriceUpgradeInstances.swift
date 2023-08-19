@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// InquiryPriceUpgradeInstances请求参数结构体
-    public struct InquiryPriceUpgradeInstancesRequest: TCRequestModel {
+    public struct InquiryPriceUpgradeInstancesRequest: TCRequest {
         /// 实例 ID，格式如：cdb-c1nl9rpv 或者 cdbro-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
         public let instanceId: String
 
@@ -64,7 +64,7 @@ extension Cdb {
     }
 
     /// InquiryPriceUpgradeInstances返回参数结构体
-    public struct InquiryPriceUpgradeInstancesResponse: TCResponseModel {
+    public struct InquiryPriceUpgradeInstancesResponse: TCResponse {
         /// 实例价格，单位：分（人民币）。
         public let price: Int64
 

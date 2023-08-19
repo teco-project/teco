@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// BindRelateAccReUnionPay请求参数结构体
-    public struct BindRelateAccReUnionPayRequest: TCRequestModel {
+    public struct BindRelateAccReUnionPayRequest: TCRequest {
         /// String(22)，商户号（签约客户号）
         public let mrchCode: String
 
@@ -59,7 +59,7 @@ extension Cpdp {
     }
 
     /// BindRelateAccReUnionPay返回参数结构体
-    public struct BindRelateAccReUnionPayResponse: TCResponseModel {
+    public struct BindRelateAccReUnionPayResponse: TCResponse {
         /// STRING(52)，见证系统流水号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let frontSeqNo: String?

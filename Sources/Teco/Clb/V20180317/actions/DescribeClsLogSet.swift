@@ -20,13 +20,13 @@ import TecoCore
 
 extension Clb {
     /// DescribeClsLogSet请求参数结构体
-    public struct DescribeClsLogSetRequest: TCRequestModel {
+    public struct DescribeClsLogSetRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeClsLogSet返回参数结构体
-    public struct DescribeClsLogSetResponse: TCResponseModel {
+    public struct DescribeClsLogSetResponse: TCResponse {
         /// 日志集的 ID。
         public let logsetId: String
 

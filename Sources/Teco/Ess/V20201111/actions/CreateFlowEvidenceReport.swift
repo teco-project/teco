@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// CreateFlowEvidenceReport请求参数结构体
-    public struct CreateFlowEvidenceReportRequest: TCRequestModel {
+    public struct CreateFlowEvidenceReportRequest: TCRequest {
         /// 调用方用户信息，userId 必填
         public let `operator`: UserInfo
 
@@ -44,7 +44,7 @@ extension Ess {
     }
 
     /// CreateFlowEvidenceReport返回参数结构体
-    public struct CreateFlowEvidenceReportResponse: TCResponseModel {
+    public struct CreateFlowEvidenceReportResponse: TCResponse {
         /// 出证报告 ID，用于查询出证报告DescribeFlowEvidenceReport接口时用到
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reportId: String?

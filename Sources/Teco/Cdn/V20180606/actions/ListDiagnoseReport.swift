@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdn {
     /// ListDiagnoseReport请求参数结构体
-    public struct ListDiagnoseReportRequest: TCRequestModel {
+    public struct ListDiagnoseReportRequest: TCRequest {
         /// 用于搜索诊断URL的关键字，不填时返回用户所有的诊断任务。
         public let keyWords: String?
 
@@ -44,7 +44,7 @@ extension Cdn {
     }
 
     /// ListDiagnoseReport返回参数结构体
-    public struct ListDiagnoseReportResponse: TCResponseModel {
+    public struct ListDiagnoseReportResponse: TCResponse {
         /// 诊断信息。
         public let data: [DiagnoseInfo]
 

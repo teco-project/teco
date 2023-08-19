@@ -20,7 +20,7 @@ import TecoCore
 
 extension Csip {
     /// CreateRiskCenterScanTask请求参数结构体
-    public struct CreateRiskCenterScanTaskRequest: TCRequestModel {
+    public struct CreateRiskCenterScanTaskRequest: TCRequest {
         /// 任务名称
         public let taskName: String
 
@@ -74,7 +74,7 @@ extension Csip {
     }
 
     /// CreateRiskCenterScanTask返回参数结构体
-    public struct CreateRiskCenterScanTaskResponse: TCResponseModel {
+    public struct CreateRiskCenterScanTaskResponse: TCResponse {
         /// 任务id
         public let taskId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tbaas {
     /// InvokeChainMakerContract请求参数结构体
-    public struct InvokeChainMakerContractRequest: TCRequestModel {
+    public struct InvokeChainMakerContractRequest: TCRequest {
         /// 网络ID，可在区块链网络详情或列表中获取
         public let clusterId: String
 
@@ -59,7 +59,7 @@ extension Tbaas {
     }
 
     /// InvokeChainMakerContract返回参数结构体
-    public struct InvokeChainMakerContractResponse: TCResponseModel {
+    public struct InvokeChainMakerContractResponse: TCResponse {
         /// 交易结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: ChainMakerContractResult?

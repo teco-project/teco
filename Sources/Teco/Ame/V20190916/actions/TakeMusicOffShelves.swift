@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ame {
     /// TakeMusicOffShelves请求参数结构体
-    public struct TakeMusicOffShelvesRequest: TCRequestModel {
+    public struct TakeMusicOffShelvesRequest: TCRequest {
         /// 资源方下架必传结构
         public let takeMusicOffShelves: [TakeMusicOffShelves]
 
@@ -34,7 +34,7 @@ extension Ame {
     }
 
     /// TakeMusicOffShelves返回参数结构体
-    public struct TakeMusicOffShelvesResponse: TCResponseModel {
+    public struct TakeMusicOffShelvesResponse: TCResponse {
         /// 返回成功数量
         public let successNum: Int64
 

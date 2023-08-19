@@ -20,7 +20,7 @@ import TecoCore
 
 extension Antiddos {
     /// ModifyDomainUsrName请求参数结构体
-    public struct ModifyDomainUsrNameRequest: TCRequestModel {
+    public struct ModifyDomainUsrNameRequest: TCRequest {
         /// 用户CNAME
         public let domainName: String
 
@@ -39,7 +39,7 @@ extension Antiddos {
     }
 
     /// ModifyDomainUsrName返回参数结构体
-    public struct ModifyDomainUsrNameResponse: TCResponseModel {
+    public struct ModifyDomainUsrNameResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

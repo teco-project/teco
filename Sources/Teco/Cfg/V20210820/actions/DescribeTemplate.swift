@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfg {
     /// DescribeTemplate请求参数结构体
-    public struct DescribeTemplateRequest: TCRequestModel {
+    public struct DescribeTemplateRequest: TCRequest {
         /// 经验库ID
         public let templateId: Int64
 
@@ -34,7 +34,7 @@ extension Cfg {
     }
 
     /// DescribeTemplate返回参数结构体
-    public struct DescribeTemplateResponse: TCResponseModel {
+    public struct DescribeTemplateResponse: TCResponse {
         /// 经验库详情
         public let template: Template
 

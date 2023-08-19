@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcaplusdb {
     /// CreateTableGroup请求参数结构体
-    public struct CreateTableGroupRequest: TCRequestModel {
+    public struct CreateTableGroupRequest: TCRequest {
         /// 表格组所属集群ID
         public let clusterId: String
 
@@ -49,7 +49,7 @@ extension Tcaplusdb {
     }
 
     /// CreateTableGroup返回参数结构体
-    public struct CreateTableGroupResponse: TCResponseModel {
+    public struct CreateTableGroupResponse: TCResponse {
         /// 创建成功的表格组ID
         public let tableGroupId: String
 

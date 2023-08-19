@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// CreateRepository请求参数结构体
-    public struct CreateRepositoryRequest: TCRequestModel {
+    public struct CreateRepositoryRequest: TCRequest {
         /// 仓库名称
         public let repositoryName: String
 
@@ -59,7 +59,7 @@ extension Tsf {
     }
 
     /// CreateRepository返回参数结构体
-    public struct CreateRepositoryResponse: TCResponseModel {
+    public struct CreateRepositoryResponse: TCResponse {
         /// 创建仓库是否成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DeleteDataSources请求参数结构体
-    public struct DeleteDataSourcesRequest: TCRequestModel {
+    public struct DeleteDataSourcesRequest: TCRequest {
         /// id列表
         public let ids: [UInt64]
 
@@ -34,7 +34,7 @@ extension Wedata {
     }
 
     /// DeleteDataSources返回参数结构体
-    public struct DeleteDataSourcesResponse: TCResponseModel {
+    public struct DeleteDataSourcesResponse: TCResponse {
         /// 是否删除成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: Bool?

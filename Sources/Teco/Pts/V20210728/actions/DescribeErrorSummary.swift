@@ -20,7 +20,7 @@ import TecoCore
 
 extension Pts {
     /// DescribeErrorSummary请求参数结构体
-    public struct DescribeErrorSummaryRequest: TCRequestModel {
+    public struct DescribeErrorSummaryRequest: TCRequest {
         /// 任务ID
         public let jobId: String
 
@@ -49,7 +49,7 @@ extension Pts {
     }
 
     /// DescribeErrorSummary返回参数结构体
-    public struct DescribeErrorSummaryResponse: TCResponseModel {
+    public struct DescribeErrorSummaryResponse: TCResponse {
         /// 错误汇总信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorSummarySet: [ErrorSummary]?

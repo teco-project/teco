@@ -20,13 +20,13 @@ import TecoCore
 
 extension Intlpartnersmgt {
     /// QueryDirectCustomersCredit请求参数结构体
-    public struct QueryDirectCustomersCreditRequest: TCRequestModel {
+    public struct QueryDirectCustomersCreditRequest: TCRequest {
         public init() {
         }
     }
 
     /// QueryDirectCustomersCredit返回参数结构体
-    public struct QueryDirectCustomersCreditResponse: TCResponseModel {
+    public struct QueryDirectCustomersCreditResponse: TCResponse {
         /// 直接子客信息列表
         public let data: [QueryDirectCustomersCreditData]
 

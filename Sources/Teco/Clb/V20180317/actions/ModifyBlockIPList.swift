@@ -20,7 +20,7 @@ import TecoCore
 
 extension Clb {
     /// ModifyBlockIPList请求参数结构体
-    public struct ModifyBlockIPListRequest: TCRequestModel {
+    public struct ModifyBlockIPListRequest: TCRequest {
         /// 负载均衡实例ID
         public let loadBalancerIds: [String]
 
@@ -65,7 +65,7 @@ extension Clb {
     }
 
     /// ModifyBlockIPList返回参数结构体
-    public struct ModifyBlockIPListResponse: TCResponseModel {
+    public struct ModifyBlockIPListResponse: TCResponse {
         /// 异步任务的ID
         public let jodId: String
 

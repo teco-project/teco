@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdid {
     /// GetAuthorityIssuer请求参数结构体
-    public struct GetAuthorityIssuerRequest: TCRequestModel {
+    public struct GetAuthorityIssuerRequest: TCRequest {
         /// tdid
         public let did: String
 
@@ -34,7 +34,7 @@ extension Tdid {
     }
 
     /// GetAuthorityIssuer返回参数结构体
-    public struct GetAuthorityIssuerResponse: TCResponseModel {
+    public struct GetAuthorityIssuerResponse: TCResponse {
         /// 名称
         public let name: String
 

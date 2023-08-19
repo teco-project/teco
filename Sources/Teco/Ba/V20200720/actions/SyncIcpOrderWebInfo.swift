@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ba {
     /// SyncIcpOrderWebInfo请求参数结构体
-    public struct SyncIcpOrderWebInfoRequest: TCRequestModel {
+    public struct SyncIcpOrderWebInfoRequest: TCRequest {
         /// 备案ICP订单号
         public let icpOrderId: String
 
@@ -54,7 +54,7 @@ extension Ba {
     }
 
     /// SyncIcpOrderWebInfo返回参数结构体
-    public struct SyncIcpOrderWebInfoResponse: TCResponseModel {
+    public struct SyncIcpOrderWebInfoResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

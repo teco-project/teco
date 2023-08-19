@@ -20,7 +20,7 @@ import TecoCore
 
 extension Btoe {
     /// CreateDocDeposit请求参数结构体
-    public struct CreateDocDepositRequest: TCRequestModel {
+    public struct CreateDocDepositRequest: TCRequest {
         /// 存证名称(长度最大30)
         public let evidenceName: String
 
@@ -64,7 +64,7 @@ extension Btoe {
     }
 
     /// CreateDocDeposit返回参数结构体
-    public struct CreateDocDepositResponse: TCResponseModel {
+    public struct CreateDocDepositResponse: TCResponse {
         /// 业务ID 透传 长度最大不超过64
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let businessId: String?

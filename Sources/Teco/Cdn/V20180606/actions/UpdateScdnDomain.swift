@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdn {
     /// UpdateScdnDomain请求参数结构体
-    public struct UpdateScdnDomainRequest: TCRequestModel {
+    public struct UpdateScdnDomainRequest: TCRequest {
         /// 域名
         public let domain: String
 
@@ -59,7 +59,7 @@ extension Cdn {
     }
 
     /// UpdateScdnDomain返回参数结构体
-    public struct UpdateScdnDomainResponse: TCResponseModel {
+    public struct UpdateScdnDomainResponse: TCResponse {
         /// 提交结果，Success表示成功
         public let result: String
 

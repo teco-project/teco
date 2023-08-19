@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeClusterSummary请求参数结构体
-    public struct DescribeClusterSummaryRequest: TCRequestModel {
+    public struct DescribeClusterSummaryRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeClusterSummary返回参数结构体
-    public struct DescribeClusterSummaryResponse: TCResponseModel {
+    public struct DescribeClusterSummaryResponse: TCResponse {
         /// 集群总数
         public let totalCount: UInt64
 

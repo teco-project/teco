@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// DescribeGCJobs请求参数结构体
-    public struct DescribeGCJobsRequest: TCRequestModel {
+    public struct DescribeGCJobsRequest: TCRequest {
         /// 实例 Id
         public let registryId: String
 
@@ -34,7 +34,7 @@ extension Tcr {
     }
 
     /// DescribeGCJobs返回参数结构体
-    public struct DescribeGCJobsResponse: TCResponseModel {
+    public struct DescribeGCJobsResponse: TCResponse {
         /// GC Job 列表
         public let jobs: [GCJobInfo]
 

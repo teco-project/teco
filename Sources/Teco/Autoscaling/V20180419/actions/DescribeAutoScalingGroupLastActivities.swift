@@ -20,7 +20,7 @@ import TecoCore
 
 extension As {
     /// DescribeAutoScalingGroupLastActivities请求参数结构体
-    public struct DescribeAutoScalingGroupLastActivitiesRequest: TCRequestModel {
+    public struct DescribeAutoScalingGroupLastActivitiesRequest: TCRequest {
         /// 伸缩组ID列表
         public let autoScalingGroupIds: [String]
 
@@ -34,7 +34,7 @@ extension As {
     }
 
     /// DescribeAutoScalingGroupLastActivities返回参数结构体
-    public struct DescribeAutoScalingGroupLastActivitiesResponse: TCResponseModel {
+    public struct DescribeAutoScalingGroupLastActivitiesResponse: TCResponse {
         /// 符合条件的伸缩活动信息集合。说明：伸缩组伸缩活动不存在的则不返回，如传50个伸缩组ID，返回45条数据，说明其中有5个伸缩组伸缩活动不存在。
         public let activitySet: [Activity]
 

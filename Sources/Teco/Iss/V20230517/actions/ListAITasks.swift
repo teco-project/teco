@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// ListAITasks请求参数结构体
-    public struct ListAITasksRequest: TCRequestModel {
+    public struct ListAITasksRequest: TCRequest {
         /// 是否包含通道列表。"true"代表包含通道列表，"false"代表不包含通道列表，默认为 false
         public let isContainChannelList: Bool?
 
@@ -49,7 +49,7 @@ extension Iss {
     }
 
     /// ListAITasks返回参数结构体
-    public struct ListAITasksResponse: TCResponseModel {
+    public struct ListAITasksResponse: TCResponse {
         /// AI 任务数量
         public let totalCount: UInt64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// CommonServiceAPI请求参数结构体
-    public struct CommonServiceAPIRequest: TCRequestModel {
+    public struct CommonServiceAPIRequest: TCRequest {
         /// Service名，需要转发访问的接口名
         public let service: String
 
@@ -44,7 +44,7 @@ extension Tcb {
     }
 
     /// CommonServiceAPI返回参数结构体
-    public struct CommonServiceAPIResponse: TCResponseModel {
+    public struct CommonServiceAPIResponse: TCResponse {
         /// json格式response
         public let jsonResp: String
 

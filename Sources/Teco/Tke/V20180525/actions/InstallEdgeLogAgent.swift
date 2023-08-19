@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// InstallEdgeLogAgent请求参数结构体
-    public struct InstallEdgeLogAgentRequest: TCRequestModel {
+    public struct InstallEdgeLogAgentRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Tke {
     }
 
     /// InstallEdgeLogAgent返回参数结构体
-    public struct InstallEdgeLogAgentResponse: TCResponseModel {
+    public struct InstallEdgeLogAgentResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

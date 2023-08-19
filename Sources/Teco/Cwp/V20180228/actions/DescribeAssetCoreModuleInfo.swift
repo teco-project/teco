@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeAssetCoreModuleInfo请求参数结构体
-    public struct DescribeAssetCoreModuleInfoRequest: TCRequestModel {
+    public struct DescribeAssetCoreModuleInfoRequest: TCRequest {
         /// 服务器Quuid
         public let quuid: String
 
@@ -44,7 +44,7 @@ extension Cwp {
     }
 
     /// DescribeAssetCoreModuleInfo返回参数结构体
-    public struct DescribeAssetCoreModuleInfoResponse: TCResponseModel {
+    public struct DescribeAssetCoreModuleInfoResponse: TCResponse {
         /// 内核模块详情
         public let module: AssetCoreModuleDetail
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ump {
     /// ModifyMultiBizConfig请求参数结构体
-    public struct ModifyMultiBizConfigRequest: TCRequestModel {
+    public struct ModifyMultiBizConfigRequest: TCRequest {
         /// 集团编码
         public let groupCode: String
 
@@ -54,7 +54,7 @@ extension Ump {
     }
 
     /// ModifyMultiBizConfig返回参数结构体
-    public struct ModifyMultiBizConfigResponse: TCResponseModel {
+    public struct ModifyMultiBizConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfs {
     /// DescribeCfsRules请求参数结构体
-    public struct DescribeCfsRulesRequest: TCRequestModel {
+    public struct DescribeCfsRulesRequest: TCRequest {
         /// 权限组 ID
         public let pGroupId: String
 
@@ -34,7 +34,7 @@ extension Cfs {
     }
 
     /// DescribeCfsRules返回参数结构体
-    public struct DescribeCfsRulesResponse: TCResponseModel {
+    public struct DescribeCfsRulesResponse: TCResponse {
         /// 权限组规则列表
         public let ruleList: [PGroupRuleInfo]
 

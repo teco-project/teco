@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dcdb {
     /// CreateDedicatedClusterDCDBInstance请求参数结构体
-    public struct CreateDedicatedClusterDCDBInstanceRequest: TCRequestModel {
+    public struct CreateDedicatedClusterDCDBInstanceRequest: TCRequest {
         /// 分配实例个数
         public let goodsNum: Int64
 
@@ -174,7 +174,7 @@ extension Dcdb {
     }
 
     /// CreateDedicatedClusterDCDBInstance返回参数结构体
-    public struct CreateDedicatedClusterDCDBInstanceResponse: TCResponseModel {
+    public struct CreateDedicatedClusterDCDBInstanceResponse: TCResponse {
         /// 分配资源ID数组
         public let instanceIds: [String]
 

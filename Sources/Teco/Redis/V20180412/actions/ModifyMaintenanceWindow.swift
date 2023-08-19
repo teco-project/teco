@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// ModifyMaintenanceWindow请求参数结构体
-    public struct ModifyMaintenanceWindowRequest: TCRequestModel {
+    public struct ModifyMaintenanceWindowRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Redis {
     }
 
     /// ModifyMaintenanceWindow返回参数结构体
-    public struct ModifyMaintenanceWindowResponse: TCResponseModel {
+    public struct ModifyMaintenanceWindowResponse: TCResponse {
         /// 修改状态：success 或者 failed
         public let status: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iai {
     /// CreateGroup请求参数结构体
-    public struct CreateGroupRequest: TCRequestModel {
+    public struct CreateGroupRequest: TCRequest {
         /// 人员库名称，[1,60]个字符，可修改，不可重复。
         public let groupName: String
 
@@ -68,7 +68,7 @@ extension Iai {
     }
 
     /// CreateGroup返回参数结构体
-    public struct CreateGroupResponse: TCResponseModel {
+    public struct CreateGroupResponse: TCResponse {
         /// 人脸识别所用的算法模型版本。
         public let faceModelVersion: String
 

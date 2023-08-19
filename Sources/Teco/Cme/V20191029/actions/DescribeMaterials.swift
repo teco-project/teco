@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cme {
     /// DescribeMaterials请求参数结构体
-    public struct DescribeMaterialsRequest: TCRequestModel {
+    public struct DescribeMaterialsRequest: TCRequest {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
         public let platform: String
 
@@ -51,7 +51,7 @@ extension Cme {
     }
 
     /// DescribeMaterials返回参数结构体
-    public struct DescribeMaterialsResponse: TCResponseModel {
+    public struct DescribeMaterialsResponse: TCResponse {
         /// 媒体列表信息。
         public let materialInfoSet: [MaterialInfo]
 

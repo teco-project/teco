@@ -20,7 +20,7 @@ import TecoCore
 
 extension Pts {
     /// StartJob请求参数结构体
-    public struct StartJobRequest: TCRequestModel {
+    public struct StartJobRequest: TCRequest {
         /// 场景ID
         public let scenarioId: String
 
@@ -54,7 +54,7 @@ extension Pts {
     }
 
     /// StartJob返回参数结构体
-    public struct StartJobResponse: TCResponseModel {
+    public struct StartJobResponse: TCResponse {
         /// 任务ID
         public let jobId: String
 

@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Pts {
     /// DescribeNormalLogs请求参数结构体
-    public struct DescribeNormalLogsRequest: TCRequestModel {
+    public struct DescribeNormalLogsRequest: TCRequest {
         /// 压测项目ID
         public let projectId: String
 
@@ -92,7 +92,7 @@ extension Pts {
     }
 
     /// DescribeNormalLogs返回参数结构体
-    public struct DescribeNormalLogsResponse: TCResponseModel {
+    public struct DescribeNormalLogsResponse: TCResponse {
         /// 日志上下文，加载更多日志时使用，透传上次返回的Context值，获取后续的日志内容。过期时间1小时
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let context: String?

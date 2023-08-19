@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// DeleteLogExport请求参数结构体
-    public struct DeleteLogExportRequest: TCRequestModel {
+    public struct DeleteLogExportRequest: TCRequest {
         /// 项目ID
         public let id: Int64
 
@@ -39,7 +39,7 @@ extension Rum {
     }
 
     /// DeleteLogExport返回参数结构体
-    public struct DeleteLogExportResponse: TCResponseModel {
+    public struct DeleteLogExportResponse: TCResponse {
         /// 是否成功，成功则为success；失败则直接返回Error，不返回该参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let msg: String?

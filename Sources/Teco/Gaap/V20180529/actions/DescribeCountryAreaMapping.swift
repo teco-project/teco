@@ -20,13 +20,13 @@ import TecoCore
 
 extension Gaap {
     /// DescribeCountryAreaMapping请求参数结构体
-    public struct DescribeCountryAreaMappingRequest: TCRequestModel {
+    public struct DescribeCountryAreaMappingRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeCountryAreaMapping返回参数结构体
-    public struct DescribeCountryAreaMappingResponse: TCResponseModel {
+    public struct DescribeCountryAreaMappingResponse: TCResponse {
         /// 国家地区编码映射表。
         public let countryAreaMappingList: [CountryAreaMap]
 

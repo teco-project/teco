@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// CloneInstances请求参数结构体
-    public struct CloneInstancesRequest: TCRequestModel {
+    public struct CloneInstancesRequest: TCRequest {
         /// 指定待克隆的源实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         public let instanceId: String
 
@@ -145,7 +145,7 @@ extension Redis {
     }
 
     /// CloneInstances返回参数结构体
-    public struct CloneInstancesResponse: TCResponseModel {
+    public struct CloneInstancesResponse: TCResponse {
         /// 请求任务 ID。
         public let dealId: String
 

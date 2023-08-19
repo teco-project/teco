@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cr {
     /// DescribeTaskStatus请求参数结构体
-    public struct DescribeTaskStatusRequest: TCRequestModel {
+    public struct DescribeTaskStatusRequest: TCRequest {
         /// 模块名，本接口取值：Task
         public let module: String
 
@@ -49,7 +49,7 @@ extension Cr {
     }
 
     /// DescribeTaskStatus返回参数结构体
-    public struct DescribeTaskStatusResponse: TCResponseModel {
+    public struct DescribeTaskStatusResponse: TCResponse {
         /// 任务结果：
         ///
         /// - 处理中："Uploading Data."

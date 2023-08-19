@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// ModifyProxyRwSplit请求参数结构体
-    public struct ModifyProxyRwSplitRequest: TCRequestModel {
+    public struct ModifyProxyRwSplitRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -108,7 +108,7 @@ extension Cynosdb {
     }
 
     /// ModifyProxyRwSplit返回参数结构体
-    public struct ModifyProxyRwSplitResponse: TCResponseModel {
+    public struct ModifyProxyRwSplitResponse: TCResponse {
         /// 异步FlowId
         public let flowId: Int64
 

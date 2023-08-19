@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotexplorer {
     /// ModifyLoRaGateway请求参数结构体
-    public struct ModifyLoRaGatewayRequest: TCRequestModel {
+    public struct ModifyLoRaGatewayRequest: TCRequest {
         /// 描述信息
         public let description: String
 
@@ -69,7 +69,7 @@ extension Iotexplorer {
     }
 
     /// ModifyLoRaGateway返回参数结构体
-    public struct ModifyLoRaGatewayResponse: TCResponseModel {
+    public struct ModifyLoRaGatewayResponse: TCResponse {
         /// 返回网关数据
         public let gateway: LoRaGatewayItem
 

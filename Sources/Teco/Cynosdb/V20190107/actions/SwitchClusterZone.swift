@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// SwitchClusterZone请求参数结构体
-    public struct SwitchClusterZoneRequest: TCRequestModel {
+    public struct SwitchClusterZoneRequest: TCRequest {
         /// 集群Id
         public let clusterId: String
 
@@ -49,7 +49,7 @@ extension Cynosdb {
     }
 
     /// SwitchClusterZone返回参数结构体
-    public struct SwitchClusterZoneResponse: TCResponseModel {
+    public struct SwitchClusterZoneResponse: TCResponse {
         /// 异步FlowId
         public let flowId: Int64
 

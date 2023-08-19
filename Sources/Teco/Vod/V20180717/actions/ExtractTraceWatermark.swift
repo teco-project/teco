@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// ExtractTraceWatermark请求参数结构体
-    public struct ExtractTraceWatermarkRequest: TCRequestModel {
+    public struct ExtractTraceWatermarkRequest: TCRequest {
         /// 需要提取水印的媒体 URL。
         public let url: String
 
@@ -65,7 +65,7 @@ extension Vod {
     }
 
     /// ExtractTraceWatermark返回参数结构体
-    public struct ExtractTraceWatermarkResponse: TCResponseModel {
+    public struct ExtractTraceWatermarkResponse: TCResponse {
         /// 任务 ID。
         public let taskId: String
 

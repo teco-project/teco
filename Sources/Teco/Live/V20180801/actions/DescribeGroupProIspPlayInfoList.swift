@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeGroupProIspPlayInfoList请求参数结构体
-    public struct DescribeGroupProIspPlayInfoListRequest: TCRequestModel {
+    public struct DescribeGroupProIspPlayInfoListRequest: TCRequest {
         /// 起始时间点，格式为yyyy-mm-dd HH:MM:SS。
         public let startTime: String
 
@@ -60,7 +60,7 @@ extension Live {
     }
 
     /// DescribeGroupProIspPlayInfoList返回参数结构体
-    public struct DescribeGroupProIspPlayInfoListResponse: TCResponseModel {
+    public struct DescribeGroupProIspPlayInfoListResponse: TCResponse {
         /// 数据内容。
         public let dataInfoList: [GroupProIspDataInfo]
 

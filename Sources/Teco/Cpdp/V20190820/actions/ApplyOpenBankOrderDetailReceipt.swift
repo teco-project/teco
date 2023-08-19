@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// ApplyOpenBankOrderDetailReceipt请求参数结构体
-    public struct ApplyOpenBankOrderDetailReceiptRequest: TCRequestModel {
+    public struct ApplyOpenBankOrderDetailReceiptRequest: TCRequest {
         /// 外部回单申请编号
         public let outApplyId: String
 
@@ -67,7 +67,7 @@ extension Cpdp {
     }
 
     /// ApplyOpenBankOrderDetailReceipt返回参数结构体
-    public struct ApplyOpenBankOrderDetailReceiptResponse: TCResponseModel {
+    public struct ApplyOpenBankOrderDetailReceiptResponse: TCResponse {
         /// 错误码。
         public let errCode: String
 

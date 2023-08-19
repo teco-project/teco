@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rkp {
     /// GetOpenId请求参数结构体
-    public struct GetOpenIdRequest: TCRequestModel {
+    public struct GetOpenIdRequest: TCRequest {
         /// dev临时token，通过sdk接口获取
         public let deviceToken: String
 
@@ -54,7 +54,7 @@ extension Rkp {
     }
 
     /// GetOpenId返回参数结构体
-    public struct GetOpenIdResponse: TCResponseModel {
+    public struct GetOpenIdResponse: TCResponse {
         /// 设备ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let openId: String?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ape {
     /// CreateOrderAndPay请求参数结构体
-    public struct CreateOrderAndPayRequest: TCRequestModel {
+    public struct CreateOrderAndPayRequest: TCRequest {
         /// 图片ID
         public let imageId: UInt64
 
@@ -44,7 +44,7 @@ extension Ape {
     }
 
     /// CreateOrderAndPay返回参数结构体
-    public struct CreateOrderAndPayResponse: TCResponseModel {
+    public struct CreateOrderAndPayResponse: TCResponse {
         /// 订单ID
         public let orderId: String
 

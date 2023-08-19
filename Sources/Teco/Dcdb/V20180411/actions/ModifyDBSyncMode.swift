@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dcdb {
     /// ModifyDBSyncMode请求参数结构体
-    public struct ModifyDBSyncModeRequest: TCRequestModel {
+    public struct ModifyDBSyncModeRequest: TCRequest {
         /// 待修改同步模式的实例ID。形如：dcdbt-ow728lmc。
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Dcdb {
     }
 
     /// ModifyDBSyncMode返回参数结构体
-    public struct ModifyDBSyncModeResponse: TCResponseModel {
+    public struct ModifyDBSyncModeResponse: TCResponse {
         /// 异步任务Id，可通过 DescribeFlow 查询任务状态。
         public let flowId: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dayu {
     /// DescribeIPProductInfo请求参数结构体
-    public struct DescribeIPProductInfoRequest: TCRequestModel {
+    public struct DescribeIPProductInfoRequest: TCRequest {
         /// 大禹子产品代号（bgp表示独享包；bgp-multip表示共享包）
         public let business: String
 
@@ -39,7 +39,7 @@ extension Dayu {
     }
 
     /// DescribeIPProductInfo返回参数结构体
-    public struct DescribeIPProductInfoResponse: TCResponseModel {
+    public struct DescribeIPProductInfoResponse: TCResponse {
         /// 云产品信息列表，如果没有查询到则返回空数组，值说明如下：
         /// Key为ProductName时，value表示云产品实例的名称；
         /// Key为ProductInstanceId时，value表示云产品实例的ID；

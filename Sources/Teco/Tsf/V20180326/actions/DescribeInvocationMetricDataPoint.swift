@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DescribeInvocationMetricDataPoint请求参数结构体
-    public struct DescribeInvocationMetricDataPointRequest: TCRequestModel {
+    public struct DescribeInvocationMetricDataPointRequest: TCRequest {
         /// 开始时间
         public let startTime: String
 
@@ -54,7 +54,7 @@ extension Tsf {
     }
 
     /// DescribeInvocationMetricDataPoint返回参数结构体
-    public struct DescribeInvocationMetricDataPointResponse: TCResponseModel {
+    public struct DescribeInvocationMetricDataPointResponse: TCResponse {
         /// 单值指标列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: [MetricDataSingleValue]?

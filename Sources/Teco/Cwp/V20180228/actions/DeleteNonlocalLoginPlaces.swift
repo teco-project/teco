@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DeleteNonlocalLoginPlaces请求参数结构体
-    public struct DeleteNonlocalLoginPlacesRequest: TCRequestModel {
+    public struct DeleteNonlocalLoginPlacesRequest: TCRequest {
         /// 删除异地登录事件的方式，可选值："Ids"、"Ip"、"All"，默认为Ids
         public let delType: String?
 
@@ -49,7 +49,7 @@ extension Cwp {
     }
 
     /// DeleteNonlocalLoginPlaces返回参数结构体
-    public struct DeleteNonlocalLoginPlacesResponse: TCResponseModel {
+    public struct DeleteNonlocalLoginPlacesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

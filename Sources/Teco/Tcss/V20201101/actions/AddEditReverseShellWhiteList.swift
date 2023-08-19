@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// AddEditReverseShellWhiteList请求参数结构体
-    public struct AddEditReverseShellWhiteListRequest: TCRequestModel {
+    public struct AddEditReverseShellWhiteListRequest: TCRequest {
         /// 增加或编辑白名单信息。新增白名单时WhiteListInfo.id为空，编辑白名单WhiteListInfo.id不能为空。
         public let whiteListInfo: ReverseShellWhiteListInfo
 
@@ -39,7 +39,7 @@ extension Tcss {
     }
 
     /// AddEditReverseShellWhiteList返回参数结构体
-    public struct AddEditReverseShellWhiteListResponse: TCResponseModel {
+    public struct AddEditReverseShellWhiteListResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trtc {
     /// StartPublishCdnStream请求参数结构体
-    public struct StartPublishCdnStreamRequest: TCRequestModel {
+    public struct StartPublishCdnStreamRequest: TCRequest {
         /// TRTC的[SdkAppId](https://cloud.tencent.com/document/product/647/46351#sdkappid)，和转推的房间所对应的SdkAppId相同。
         public let sdkAppId: UInt64
 
@@ -84,7 +84,7 @@ extension Trtc {
     }
 
     /// StartPublishCdnStream返回参数结构体
-    public struct StartPublishCdnStreamResponse: TCResponseModel {
+    public struct StartPublishCdnStreamResponse: TCResponse {
         /// 用于唯一标识转推任务，由腾讯云服务端生成，后续更新和停止请求都需要携带TaskiD参数。
         public let taskId: String
 

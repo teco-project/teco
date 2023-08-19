@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeAssetImageRegistryRegistryDetail请求参数结构体
-    public struct DescribeAssetImageRegistryRegistryDetailRequest: TCRequestModel {
+    public struct DescribeAssetImageRegistryRegistryDetailRequest: TCRequest {
         /// 仓库唯一id
         public let registryId: Int64
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeAssetImageRegistryRegistryDetail返回参数结构体
-    public struct DescribeAssetImageRegistryRegistryDetailResponse: TCResponseModel {
+    public struct DescribeAssetImageRegistryRegistryDetailResponse: TCResponse {
         /// 仓库名
         public let name: String
 

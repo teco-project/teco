@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// ModifyProxiesProject请求参数结构体
-    public struct ModifyProxiesProjectRequest: TCRequestModel {
+    public struct ModifyProxiesProjectRequest: TCRequest {
         /// 需要修改到的项目ID。
         public let projectId: Int64
 
@@ -50,7 +50,7 @@ extension Gaap {
     }
 
     /// ModifyProxiesProject返回参数结构体
-    public struct ModifyProxiesProjectResponse: TCResponseModel {
+    public struct ModifyProxiesProjectResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

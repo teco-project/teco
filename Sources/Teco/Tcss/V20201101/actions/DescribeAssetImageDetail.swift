@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeAssetImageDetail请求参数结构体
-    public struct DescribeAssetImageDetailRequest: TCRequestModel {
+    public struct DescribeAssetImageDetailRequest: TCRequest {
         /// 镜像id
         public let imageID: String
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeAssetImageDetail返回参数结构体
-    public struct DescribeAssetImageDetailResponse: TCResponseModel {
+    public struct DescribeAssetImageDetailResponse: TCResponse {
         /// 镜像ID
         public let imageID: String
 

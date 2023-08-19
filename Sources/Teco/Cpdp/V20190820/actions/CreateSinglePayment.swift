@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// CreateSinglePayment请求参数结构体
-    public struct CreateSinglePaymentRequest: TCRequestModel {
+    public struct CreateSinglePaymentRequest: TCRequest {
         /// 转账类型
         /// 1 微信企业付款
         /// 2 支付宝转账
@@ -77,7 +77,7 @@ extension Cpdp {
     }
 
     /// CreateSinglePayment返回参数结构体
-    public struct CreateSinglePaymentResponse: TCResponseModel {
+    public struct CreateSinglePaymentResponse: TCResponse {
         /// 错误码
         public let errCode: String
 

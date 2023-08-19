@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// CreateApiGroup请求参数结构体
-    public struct CreateApiGroupRequest: TCRequestModel {
+    public struct CreateApiGroupRequest: TCRequest {
         /// 分组名称, 不能包含中文
         public let groupName: String
 
@@ -79,7 +79,7 @@ extension Tsf {
     }
 
     /// CreateApiGroup返回参数结构体
-    public struct CreateApiGroupResponse: TCResponseModel {
+    public struct CreateApiGroupResponse: TCResponse {
         /// API分组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: String?

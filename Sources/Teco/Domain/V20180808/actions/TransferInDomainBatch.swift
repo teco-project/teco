@@ -20,7 +20,7 @@ import TecoCore
 
 extension Domain {
     /// TransferInDomainBatch请求参数结构体
-    public struct TransferInDomainBatchRequest: TCRequestModel {
+    public struct TransferInDomainBatchRequest: TCRequest {
         /// 转入的域名名称数组。
         public let domains: [String]
 
@@ -88,7 +88,7 @@ extension Domain {
     }
 
     /// TransferInDomainBatch返回参数结构体
-    public struct TransferInDomainBatchResponse: TCResponseModel {
+    public struct TransferInDomainBatchResponse: TCResponse {
         /// 日志ID
         public let logId: UInt64
 

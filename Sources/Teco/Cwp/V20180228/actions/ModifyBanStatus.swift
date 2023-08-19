@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ModifyBanStatus请求参数结构体
-    public struct ModifyBanStatusRequest: TCRequestModel {
+    public struct ModifyBanStatusRequest: TCRequest {
         /// 阻断状态 0:关闭 1:开启
         public let status: UInt64
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// ModifyBanStatus返回参数结构体
-    public struct ModifyBanStatusResponse: TCResponseModel {
+    public struct ModifyBanStatusResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

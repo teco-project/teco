@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotcloud {
     /// ResetDeviceState请求参数结构体
-    public struct ResetDeviceStateRequest: TCRequestModel {
+    public struct ResetDeviceStateRequest: TCRequest {
         /// 产品ID
         public let productId: String
 
@@ -39,7 +39,7 @@ extension Iotcloud {
     }
 
     /// ResetDeviceState返回参数结构体
-    public struct ResetDeviceStateResponse: TCResponseModel {
+    public struct ResetDeviceStateResponse: TCResponse {
         /// 批量重置设备成功数
         public let successCount: UInt64
 

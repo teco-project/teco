@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// CheckProxyCreate请求参数结构体
-    public struct CheckProxyCreateRequest: TCRequestModel {
+    public struct CheckProxyCreateRequest: TCRequest {
         /// 通道的接入(加速)区域。取值可通过接口DescribeAccessRegionsByDestRegion获取到
         public let accessRegion: String
 
@@ -74,7 +74,7 @@ extension Gaap {
     }
 
     /// CheckProxyCreate返回参数结构体
-    public struct CheckProxyCreateResponse: TCResponseModel {
+    public struct CheckProxyCreateResponse: TCResponse {
         /// 查询能否创建给定配置的通道，1可以创建，0不可创建。
         public let checkFlag: UInt64
 

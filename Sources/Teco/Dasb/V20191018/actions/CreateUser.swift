@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Dasb {
     /// CreateUser请求参数结构体
-    public struct CreateUserRequest: TCRequestModel {
+    public struct CreateUserRequest: TCRequest {
         /// 用户名, 3-20个字符, 必须以英文字母开头，且不能包含字母、数字、.、_、-以外的字符
         public let userName: String
 
@@ -89,7 +89,7 @@ extension Dasb {
     }
 
     /// CreateUser返回参数结构体
-    public struct CreateUserResponse: TCResponseModel {
+    public struct CreateUserResponse: TCResponse {
         /// 新建用户的ID
         public let id: UInt64
 

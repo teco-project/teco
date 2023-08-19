@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssa {
     /// DescribeAssetDetail请求参数结构体
-    public struct DescribeAssetDetailRequest: TCRequestModel {
+    public struct DescribeAssetDetailRequest: TCRequest {
         /// 查询过滤参数
         public let params: String
 
@@ -34,7 +34,7 @@ extension Ssa {
     }
 
     /// DescribeAssetDetail返回参数结构体
-    public struct DescribeAssetDetailResponse: TCResponseModel {
+    public struct DescribeAssetDetailResponse: TCResponse {
         /// 资产详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: AssetDetail?

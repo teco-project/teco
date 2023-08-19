@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// DescribeRulesByRuleIds请求参数结构体
-    public struct DescribeRulesByRuleIdsRequest: TCRequestModel {
+    public struct DescribeRulesByRuleIdsRequest: TCRequest {
         /// 规则ID列表。最多支持10个规则。
         public let ruleIds: [String]
 
@@ -34,7 +34,7 @@ extension Gaap {
     }
 
     /// DescribeRulesByRuleIds返回参数结构体
-    public struct DescribeRulesByRuleIdsResponse: TCResponseModel {
+    public struct DescribeRulesByRuleIdsResponse: TCResponse {
         /// 返回的规则总个数。
         public let totalCount: UInt64
 

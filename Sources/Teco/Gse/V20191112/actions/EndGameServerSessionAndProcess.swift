@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// EndGameServerSessionAndProcess请求参数结构体
-    public struct EndGameServerSessionAndProcessRequest: TCRequestModel {
+    public struct EndGameServerSessionAndProcessRequest: TCRequest {
         /// 游戏服务器会话ID，如果传入游戏服务器会话ID，结束对应进程以及游戏服务器会话和玩家会话。
         public let gameServerSessionId: String?
 
@@ -44,7 +44,7 @@ extension Gse {
     }
 
     /// EndGameServerSessionAndProcess返回参数结构体
-    public struct EndGameServerSessionAndProcessResponse: TCResponseModel {
+    public struct EndGameServerSessionAndProcessResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

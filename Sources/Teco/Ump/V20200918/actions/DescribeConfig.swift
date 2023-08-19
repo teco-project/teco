@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ump {
     /// DescribeConfig请求参数结构体
-    public struct DescribeConfigRequest: TCRequestModel {
+    public struct DescribeConfigRequest: TCRequest {
         /// 会话ID
         public let sessionId: String
 
@@ -64,7 +64,7 @@ extension Ump {
     }
 
     /// DescribeConfig返回参数结构体
-    public struct DescribeConfigResponse: TCResponseModel {
+    public struct DescribeConfigResponse: TCResponse {
         /// 会话ID
         public let sessionId: String
 

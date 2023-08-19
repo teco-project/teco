@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cwp {
     /// DescribeWebPageServiceInfo请求参数结构体
-    public struct DescribeWebPageServiceInfoRequest: TCRequestModel {
+    public struct DescribeWebPageServiceInfoRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeWebPageServiceInfo返回参数结构体
-    public struct DescribeWebPageServiceInfoResponse: TCResponseModel {
+    public struct DescribeWebPageServiceInfoResponse: TCResponse {
         /// 是否已购服务：true-是，false-否
         public let status: Bool
 

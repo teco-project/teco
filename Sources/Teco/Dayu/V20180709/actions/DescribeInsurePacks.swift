@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dayu {
     /// DescribeInsurePacks请求参数结构体
-    public struct DescribeInsurePacksRequest: TCRequestModel {
+    public struct DescribeInsurePacksRequest: TCRequest {
         /// 可选字段，保险包套餐ID，当要获取指定ID（例如insure-000000xe）的保险包套餐时请填写此字段；
         public let idList: [String]?
 
@@ -34,7 +34,7 @@ extension Dayu {
     }
 
     /// DescribeInsurePacks返回参数结构体
-    public struct DescribeInsurePacksResponse: TCResponseModel {
+    public struct DescribeInsurePacksResponse: TCResponse {
         /// 保险包套餐列表
         public let insurePacks: [KeyValueRecord]
 

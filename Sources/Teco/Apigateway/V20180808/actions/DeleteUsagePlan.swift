@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// DeleteUsagePlan请求参数结构体
-    public struct DeleteUsagePlanRequest: TCRequestModel {
+    public struct DeleteUsagePlanRequest: TCRequest {
         /// 待删除的使用计划唯一 ID。
         public let usagePlanId: String
 
@@ -34,7 +34,7 @@ extension Apigateway {
     }
 
     /// DeleteUsagePlan返回参数结构体
-    public struct DeleteUsagePlanResponse: TCResponseModel {
+    public struct DeleteUsagePlanResponse: TCResponse {
         /// 删除操作是否成功。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

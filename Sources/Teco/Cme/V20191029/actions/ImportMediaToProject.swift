@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cme {
     /// ImportMediaToProject请求参数结构体
-    public struct ImportMediaToProjectRequest: TCRequestModel {
+    public struct ImportMediaToProjectRequest: TCRequest {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
         public let platform: String
 
@@ -76,7 +76,7 @@ extension Cme {
     }
 
     /// ImportMediaToProject返回参数结构体
-    public struct ImportMediaToProjectResponse: TCResponseModel {
+    public struct ImportMediaToProjectResponse: TCResponse {
         /// 媒体 Id。
         public let materialId: String
 

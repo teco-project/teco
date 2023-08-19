@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmlb {
     /// DescribeDevicesBindInfo请求参数结构体
-    public struct DescribeDevicesBindInfoRequest: TCRequestModel {
+    public struct DescribeDevicesBindInfoRequest: TCRequest {
         /// 黑石私有网络唯一ID。
         public let vpcId: String
 
@@ -39,7 +39,7 @@ extension Bmlb {
     }
 
     /// DescribeDevicesBindInfo返回参数结构体
-    public struct DescribeDevicesBindInfoResponse: TCResponseModel {
+    public struct DescribeDevicesBindInfoResponse: TCResponse {
         /// 返回的负载均衡绑定信息。
         public let loadBalancerSet: [DevicesBindInfoLoadBalancer]
 

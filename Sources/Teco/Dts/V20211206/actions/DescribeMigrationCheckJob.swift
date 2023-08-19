@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dts {
     /// DescribeMigrationCheckJob请求参数结构体
-    public struct DescribeMigrationCheckJobRequest: TCRequestModel {
+    public struct DescribeMigrationCheckJobRequest: TCRequest {
         /// 任务id
         public let jobId: String
 
@@ -34,7 +34,7 @@ extension Dts {
     }
 
     /// DescribeMigrationCheckJob返回参数结构体
-    public struct DescribeMigrationCheckJobResponse: TCResponseModel {
+    public struct DescribeMigrationCheckJobResponse: TCResponse {
         /// 校验任务执行状态，如：notStarted(未开始)、running(校验中)、failed(校验任务失败)、success(任务成功)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?

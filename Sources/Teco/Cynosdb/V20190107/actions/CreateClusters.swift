@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// CreateClusters请求参数结构体
-    public struct CreateClustersRequest: TCRequestModel {
+    public struct CreateClustersRequest: TCRequest {
         /// 可用区
         public let zone: String
 
@@ -256,7 +256,7 @@ extension Cynosdb {
     }
 
     /// CreateClusters返回参数结构体
-    public struct CreateClustersResponse: TCResponseModel {
+    public struct CreateClustersResponse: TCResponse {
         /// 冻结流水ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tranId: String?

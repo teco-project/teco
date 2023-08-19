@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cme {
     /// ParseEvent请求参数结构体
-    public struct ParseEventRequest: TCRequestModel {
+    public struct ParseEventRequest: TCRequest {
         /// 平台名称，指定访问的平台。
         public let platform: String
 
@@ -39,7 +39,7 @@ extension Cme {
     }
 
     /// ParseEvent返回参数结构体
-    public struct ParseEventResponse: TCResponseModel {
+    public struct ParseEventResponse: TCResponse {
         /// 事件内容。
         public let eventContent: EventContent
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// ModifyAssetImageScanStop请求参数结构体
-    public struct ModifyAssetImageScanStopRequest: TCRequestModel {
+    public struct ModifyAssetImageScanStopRequest: TCRequest {
         /// 任务id；任务id，镜像id和根据过滤条件筛选三选一。
         public let taskID: String?
 
@@ -49,7 +49,7 @@ extension Tcss {
     }
 
     /// ModifyAssetImageScanStop返回参数结构体
-    public struct ModifyAssetImageScanStopResponse: TCResponseModel {
+    public struct ModifyAssetImageScanStopResponse: TCResponse {
         /// 停止状态
         public let status: String
 

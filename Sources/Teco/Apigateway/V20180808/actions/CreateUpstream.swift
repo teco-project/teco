@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// CreateUpstream请求参数结构体
-    public struct CreateUpstreamRequest: TCRequestModel {
+    public struct CreateUpstreamRequest: TCRequest {
         /// 后端协议，取值范围：HTTP, HTTPS
         public let scheme: String
 
@@ -89,7 +89,7 @@ extension Apigateway {
     }
 
     /// CreateUpstream返回参数结构体
-    public struct CreateUpstreamResponse: TCResponseModel {
+    public struct CreateUpstreamResponse: TCResponse {
         /// 创建返回的唯一ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let upstreamId: String?

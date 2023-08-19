@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotexplorer {
     /// ModifyFenceBind请求参数结构体
-    public struct ModifyFenceBindRequest: TCRequestModel {
+    public struct ModifyFenceBindRequest: TCRequest {
         /// 围栏Id
         public let fenceId: Int64
 
@@ -39,7 +39,7 @@ extension Iotexplorer {
     }
 
     /// ModifyFenceBind返回参数结构体
-    public struct ModifyFenceBindResponse: TCResponseModel {
+    public struct ModifyFenceBindResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

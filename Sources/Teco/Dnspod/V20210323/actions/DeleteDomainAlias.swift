@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dnspod {
     /// DeleteDomainAlias请求参数结构体
-    public struct DeleteDomainAliasRequest: TCRequestModel {
+    public struct DeleteDomainAliasRequest: TCRequest {
         /// 域名别名ID。可以通过接口DescribeDomainAliasList查到所有的域名别名列表以及对应的ID
         public let domainAliasId: Int64
 
@@ -44,7 +44,7 @@ extension Dnspod {
     }
 
     /// DeleteDomainAlias返回参数结构体
-    public struct DeleteDomainAliasResponse: TCResponseModel {
+    public struct DeleteDomainAliasResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

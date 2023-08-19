@@ -20,7 +20,7 @@ import TecoCore
 
 extension Drm {
     /// CreateEncryptKeys请求参数结构体
-    public struct CreateEncryptKeysRequest: TCRequestModel {
+    public struct CreateEncryptKeysRequest: TCRequest {
         /// 使用的DRM方案类型，接口取值WIDEVINE、FAIRPLAY、NORMALAES。
         public let drmType: String
 
@@ -49,7 +49,7 @@ extension Drm {
     }
 
     /// CreateEncryptKeys返回参数结构体
-    public struct CreateEncryptKeysResponse: TCResponseModel {
+    public struct CreateEncryptKeysResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// DescribeForwardRule请求参数结构体
-    public struct DescribeForwardRuleRequest: TCRequestModel {
+    public struct DescribeForwardRuleRequest: TCRequest {
         /// 产品ID
         public let productID: String
 
@@ -49,7 +49,7 @@ extension Iotvideo {
     }
 
     /// DescribeForwardRule返回参数结构体
-    public struct DescribeForwardRuleResponse: TCResponseModel {
+    public struct DescribeForwardRuleResponse: TCResponse {
         /// 腾讯云账号
         public let endpoint: String
 

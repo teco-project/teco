@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mongodb {
     /// DescribeSpecInfo请求参数结构体
-    public struct DescribeSpecInfoRequest: TCRequestModel {
+    public struct DescribeSpecInfoRequest: TCRequest {
         /// 可用区
         public let zone: String?
 
@@ -34,7 +34,7 @@ extension Mongodb {
     }
 
     /// DescribeSpecInfo返回参数结构体
-    public struct DescribeSpecInfoResponse: TCResponseModel {
+    public struct DescribeSpecInfoResponse: TCResponse {
         /// 实例售卖规格信息列表
         public let specInfoList: [SpecificationInfo]
 

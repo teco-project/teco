@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// DescribeFlowEvidenceReport请求参数结构体
-    public struct DescribeFlowEvidenceReportRequest: TCRequestModel {
+    public struct DescribeFlowEvidenceReportRequest: TCRequest {
         /// 调用方用户信息，userId 必填
         public let `operator`: UserInfo
 
@@ -44,7 +44,7 @@ extension Ess {
     }
 
     /// DescribeFlowEvidenceReport返回参数结构体
-    public struct DescribeFlowEvidenceReportResponse: TCResponseModel {
+    public struct DescribeFlowEvidenceReportResponse: TCResponse {
         /// 出证报告PDF的下载 URL
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reportUrl: String?

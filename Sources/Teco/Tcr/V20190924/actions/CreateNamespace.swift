@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// CreateNamespace请求参数结构体
-    public struct CreateNamespaceRequest: TCRequestModel {
+    public struct CreateNamespaceRequest: TCRequest {
         /// 实例ID
         public let registryId: String
 
@@ -69,7 +69,7 @@ extension Tcr {
     }
 
     /// CreateNamespace返回参数结构体
-    public struct CreateNamespaceResponse: TCResponseModel {
+    public struct CreateNamespaceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

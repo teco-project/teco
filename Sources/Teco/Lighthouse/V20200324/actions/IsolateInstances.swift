@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// IsolateInstances请求参数结构体
-    public struct IsolateInstancesRequest: TCRequestModel {
+    public struct IsolateInstancesRequest: TCRequest {
         /// 实例ID列表。一个或多个待操作的实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。每次请求退还实例和数据盘数量总计上限为20。
         public let instanceIds: [String]
 
@@ -42,7 +42,7 @@ extension Lighthouse {
     }
 
     /// IsolateInstances返回参数结构体
-    public struct IsolateInstancesResponse: TCResponseModel {
+    public struct IsolateInstancesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmvpc {
     /// DeleteHostedInterfaces请求参数结构体
-    public struct DeleteHostedInterfacesRequest: TCRequestModel {
+    public struct DeleteHostedInterfacesRequest: TCRequest {
         /// 物理机ID
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Bmvpc {
     }
 
     /// DeleteHostedInterfaces返回参数结构体
-    public struct DeleteHostedInterfacesResponse: TCResponseModel {
+    public struct DeleteHostedInterfacesResponse: TCResponse {
         /// 异步任务ID
         public let taskId: UInt64
 

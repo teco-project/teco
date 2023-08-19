@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ams {
     /// CreateAudioModerationTask请求参数结构体
-    public struct CreateAudioModerationTaskRequest: TCRequestModel {
+    public struct CreateAudioModerationTaskRequest: TCRequest {
         /// 业务类型, 定义 模版策略，输出存储配置。如果没有BizType，可以先参考 【创建业务配置】接口进行创建
         public let bizType: String?
 
@@ -54,7 +54,7 @@ extension Ams {
     }
 
     /// CreateAudioModerationTask返回参数结构体
-    public struct CreateAudioModerationTaskResponse: TCResponseModel {
+    public struct CreateAudioModerationTaskResponse: TCResponse {
         /// 任务创建结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let results: [TaskResult]?

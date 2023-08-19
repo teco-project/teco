@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeRealTimeTaskInstanceNodeInfo请求参数结构体
-    public struct DescribeRealTimeTaskInstanceNodeInfoRequest: TCRequestModel {
+    public struct DescribeRealTimeTaskInstanceNodeInfoRequest: TCRequest {
         /// 实时任务id
         public let taskId: String
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// DescribeRealTimeTaskInstanceNodeInfo返回参数结构体
-    public struct DescribeRealTimeTaskInstanceNodeInfoResponse: TCResponseModel {
+    public struct DescribeRealTimeTaskInstanceNodeInfoResponse: TCResponse {
         /// 实时任务实例节点相关信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let realTimeTaskInstanceNodeInfo: RealTimeTaskInstanceNodeInfo?

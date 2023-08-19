@@ -20,7 +20,7 @@ import TecoCore
 
 extension Yunjing {
     /// InquiryPriceOpenProVersionPrepaid请求参数结构体
-    public struct InquiryPriceOpenProVersionPrepaidRequest: TCRequestModel {
+    public struct InquiryPriceOpenProVersionPrepaidRequest: TCRequest {
         /// 预付费模式(包年包月)参数设置。
         public let chargePrepaid: ChargePrepaid
 
@@ -39,7 +39,7 @@ extension Yunjing {
     }
 
     /// InquiryPriceOpenProVersionPrepaid返回参数结构体
-    public struct InquiryPriceOpenProVersionPrepaidResponse: TCResponseModel {
+    public struct InquiryPriceOpenProVersionPrepaidResponse: TCResponse {
         /// 预支费用的原价，单位：元。
         public let originalPrice: Float
 

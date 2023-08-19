@@ -20,7 +20,7 @@ import TecoCore
 
 extension Faceid {
     /// PhoneVerification请求参数结构体
-    public struct PhoneVerificationRequest: TCRequestModel {
+    public struct PhoneVerificationRequest: TCRequest {
         /// 身份证号
         public let idCard: String
 
@@ -59,7 +59,7 @@ extension Faceid {
     }
 
     /// PhoneVerification返回参数结构体
-    public struct PhoneVerificationResponse: TCResponseModel {
+    public struct PhoneVerificationResponse: TCResponse {
         /// 认证结果码:
         /// 收费结果码
         /// 0: 三要素信息一致

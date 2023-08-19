@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cwp {
     /// DescribeWebPageProtectStat请求参数结构体
-    public struct DescribeWebPageProtectStatRequest: TCRequestModel {
+    public struct DescribeWebPageProtectStatRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeWebPageProtectStat返回参数结构体
-    public struct DescribeWebPageProtectStatResponse: TCResponseModel {
+    public struct DescribeWebPageProtectStatResponse: TCResponse {
         /// 文件篡改信息
         public let fileTamperNum: [ProtectStat]
 

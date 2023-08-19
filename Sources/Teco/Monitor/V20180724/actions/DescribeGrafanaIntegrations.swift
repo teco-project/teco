@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// DescribeGrafanaIntegrations请求参数结构体
-    public struct DescribeGrafanaIntegrationsRequest: TCRequestModel {
+    public struct DescribeGrafanaIntegrationsRequest: TCRequest {
         /// 实例 ID
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Monitor {
     }
 
     /// DescribeGrafanaIntegrations返回参数结构体
-    public struct DescribeGrafanaIntegrationsResponse: TCResponseModel {
+    public struct DescribeGrafanaIntegrationsResponse: TCResponse {
         /// 集成数组
         public let integrationSet: [GrafanaIntegrationConfig]
 

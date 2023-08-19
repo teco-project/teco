@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// ModifyInstanceReadOnly请求参数结构体
-    public struct ModifyInstanceReadOnlyRequest: TCRequestModel {
+    public struct ModifyInstanceReadOnlyRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Redis {
     }
 
     /// ModifyInstanceReadOnly返回参数结构体
-    public struct ModifyInstanceReadOnlyResponse: TCResponseModel {
+    public struct ModifyInstanceReadOnlyResponse: TCResponse {
         /// 任务ID
         public let taskId: Int64
 

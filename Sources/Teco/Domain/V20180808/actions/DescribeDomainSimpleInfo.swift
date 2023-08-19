@@ -20,7 +20,7 @@ import TecoCore
 
 extension Domain {
     /// DescribeDomainSimpleInfo请求参数结构体
-    public struct DescribeDomainSimpleInfoRequest: TCRequestModel {
+    public struct DescribeDomainSimpleInfoRequest: TCRequest {
         /// 域名
         public let domainName: String
 
@@ -34,7 +34,7 @@ extension Domain {
     }
 
     /// DescribeDomainSimpleInfo返回参数结构体
-    public struct DescribeDomainSimpleInfoResponse: TCResponseModel {
+    public struct DescribeDomainSimpleInfoResponse: TCResponse {
         /// 域名信息
         public let domainInfo: DomainSimpleInfo
 

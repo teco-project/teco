@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mongodb {
     /// ResetDBInstancePassword请求参数结构体
-    public struct ResetDBInstancePasswordRequest: TCRequestModel {
+    public struct ResetDBInstancePasswordRequest: TCRequest {
         /// 实例Id
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Mongodb {
     }
 
     /// ResetDBInstancePassword返回参数结构体
-    public struct ResetDBInstancePasswordResponse: TCResponseModel {
+    public struct ResetDBInstancePasswordResponse: TCResponse {
         /// 异步请求Id，用户查询该流程的运行状态
         public let asyncRequestId: String
 

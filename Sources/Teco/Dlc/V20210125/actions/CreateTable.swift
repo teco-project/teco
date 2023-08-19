@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// CreateTable请求参数结构体
-    public struct CreateTableRequest: TCRequestModel {
+    public struct CreateTableRequest: TCRequest {
         /// 数据表配置信息
         public let tableInfo: TableInfo
 
@@ -34,7 +34,7 @@ extension Dlc {
     }
 
     /// CreateTable返回参数结构体
-    public struct CreateTableResponse: TCResponseModel {
+    public struct CreateTableResponse: TCResponse {
         /// 生成的建表执行语句对象。
         public let execution: Execution
 

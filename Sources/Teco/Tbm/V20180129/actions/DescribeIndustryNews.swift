@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Tbm {
     /// DescribeIndustryNews请求参数结构体
-    public struct DescribeIndustryNewsRequest: TCRequestModel {
+    public struct DescribeIndustryNewsRequest: TCRequest {
         /// 行业ID
         public let industryId: String
 
@@ -67,7 +67,7 @@ extension Tbm {
     }
 
     /// DescribeIndustryNews返回参数结构体
-    public struct DescribeIndustryNewsResponse: TCResponseModel {
+    public struct DescribeIndustryNewsResponse: TCResponse {
         /// 总计文章数量
         public let newsCount: UInt64
 

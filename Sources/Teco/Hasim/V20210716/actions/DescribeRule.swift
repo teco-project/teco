@@ -20,7 +20,7 @@ import TecoCore
 
 extension Hasim {
     /// DescribeRule请求参数结构体
-    public struct DescribeRuleRequest: TCRequestModel {
+    public struct DescribeRuleRequest: TCRequest {
         /// 自动化规则ID
         public let ruleID: Int64
 
@@ -34,7 +34,7 @@ extension Hasim {
     }
 
     /// DescribeRule返回参数结构体
-    public struct DescribeRuleResponse: TCResponseModel {
+    public struct DescribeRuleResponse: TCResponse {
         /// 策略信息
         public let data: RuleDetail
 

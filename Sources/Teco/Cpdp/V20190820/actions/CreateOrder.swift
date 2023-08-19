@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// CreateOrder请求参数结构体
-    public struct CreateOrderRequest: TCRequestModel {
+    public struct CreateOrderRequest: TCRequest {
         /// 渠道编号。ZSB2B：招商银行B2B。
         public let channelCode: String
 
@@ -59,7 +59,7 @@ extension Cpdp {
     }
 
     /// CreateOrder返回参数结构体
-    public struct CreateOrderResponse: TCResponseModel {
+    public struct CreateOrderResponse: TCResponse {
         /// 进件成功后返给商户方的AppId。
         public let merchantAppId: String
 

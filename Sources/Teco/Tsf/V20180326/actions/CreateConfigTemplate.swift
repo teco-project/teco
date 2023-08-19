@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// CreateConfigTemplate请求参数结构体
-    public struct CreateConfigTemplateRequest: TCRequestModel {
+    public struct CreateConfigTemplateRequest: TCRequest {
         /// 配置模板名称
         public let configTemplateName: String
 
@@ -53,7 +53,7 @@ extension Tsf {
     }
 
     /// CreateConfigTemplate返回参数结构体
-    public struct CreateConfigTemplateResponse: TCResponseModel {
+    public struct CreateConfigTemplateResponse: TCResponse {
         /// true：创建成功；false：创建失败
         public let result: Bool
 

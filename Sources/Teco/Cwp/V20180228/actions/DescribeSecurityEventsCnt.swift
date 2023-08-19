@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cwp {
     /// DescribeSecurityEventsCnt请求参数结构体
-    public struct DescribeSecurityEventsCntRequest: TCRequestModel {
+    public struct DescribeSecurityEventsCntRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeSecurityEventsCnt返回参数结构体
-    public struct DescribeSecurityEventsCntResponse: TCResponseModel {
+    public struct DescribeSecurityEventsCntResponse: TCResponse {
         /// 木马文件相关风险事件
         public let malware: SecurityEventInfo
 

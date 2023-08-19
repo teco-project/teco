@@ -20,7 +20,7 @@ import TecoCore
 
 extension Asw {
     /// StartExecution请求参数结构体
-    public struct StartExecutionRequest: TCRequestModel {
+    public struct StartExecutionRequest: TCRequest {
         /// 状态机资源名
         public let stateMachineResourceName: String
 
@@ -44,7 +44,7 @@ extension Asw {
     }
 
     /// StartExecution返回参数结构体
-    public struct StartExecutionResponse: TCResponseModel {
+    public struct StartExecutionResponse: TCResponse {
         /// 执行资源名
         public let executionResourceName: String
 

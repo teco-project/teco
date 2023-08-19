@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// DescribeGroupMemberList请求参数结构体
-    public struct DescribeGroupMemberListRequest: TCRequestModel {
+    public struct DescribeGroupMemberListRequest: TCRequest {
         /// 群组ID
         public let groupId: String
 
@@ -49,7 +49,7 @@ extension Lcic {
     }
 
     /// DescribeGroupMemberList返回参数结构体
-    public struct DescribeGroupMemberListResponse: TCResponseModel {
+    public struct DescribeGroupMemberListResponse: TCResponse {
         /// 符合查询条件总条数
         public let total: UInt64
 

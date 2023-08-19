@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// DescribeBlueprintInstances请求参数结构体
-    public struct DescribeBlueprintInstancesRequest: TCRequestModel {
+    public struct DescribeBlueprintInstancesRequest: TCRequest {
         /// 实例 ID 列表，当前最多支持 1 个。
         public let instanceIds: [String]
 
@@ -34,7 +34,7 @@ extension Lighthouse {
     }
 
     /// DescribeBlueprintInstances返回参数结构体
-    public struct DescribeBlueprintInstancesResponse: TCResponseModel {
+    public struct DescribeBlueprintInstancesResponse: TCResponse {
         /// 符合条件的镜像实例数量。
         public let totalCount: Int64
 

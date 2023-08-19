@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CheckAssistantCidr请求参数结构体
-    public struct CheckAssistantCidrRequest: TCRequestModel {
+    public struct CheckAssistantCidrRequest: TCRequest {
         /// `VPC`实例`ID`。形如：`vpc-6v2ht8q5`
         public let vpcId: String
 
@@ -44,7 +44,7 @@ extension Vpc {
     }
 
     /// CheckAssistantCidr返回参数结构体
-    public struct CheckAssistantCidrResponse: TCResponseModel {
+    public struct CheckAssistantCidrResponse: TCResponse {
         /// 冲突资源信息数组。
         public let conflictSourceSet: [ConflictSource]
 

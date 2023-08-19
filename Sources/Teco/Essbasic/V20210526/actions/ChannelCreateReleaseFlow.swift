@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// ChannelCreateReleaseFlow请求参数结构体
-    public struct ChannelCreateReleaseFlowRequest: TCRequestModel {
+    public struct ChannelCreateReleaseFlowRequest: TCRequest {
         /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
 
@@ -79,7 +79,7 @@ extension Essbasic {
     }
 
     /// ChannelCreateReleaseFlow返回参数结构体
-    public struct ChannelCreateReleaseFlowResponse: TCResponseModel {
+    public struct ChannelCreateReleaseFlowResponse: TCResponse {
         /// 解除协议流程编号
         public let flowId: String
 

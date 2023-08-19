@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// DescribeTrainingTaskPods请求参数结构体
-    public struct DescribeTrainingTaskPodsRequest: TCRequestModel {
+    public struct DescribeTrainingTaskPodsRequest: TCRequest {
         /// 训练任务ID
         public let id: String
 
@@ -34,7 +34,7 @@ extension Tione {
     }
 
     /// DescribeTrainingTaskPods返回参数结构体
-    public struct DescribeTrainingTaskPodsResponse: TCResponseModel {
+    public struct DescribeTrainingTaskPodsResponse: TCResponse {
         /// pod名称列表
         public let podNames: [String]
 

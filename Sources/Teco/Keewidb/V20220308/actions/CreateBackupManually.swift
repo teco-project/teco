@@ -20,7 +20,7 @@ import TecoCore
 
 extension Keewidb {
     /// CreateBackupManually请求参数结构体
-    public struct CreateBackupManuallyRequest: TCRequestModel {
+    public struct CreateBackupManuallyRequest: TCRequest {
         /// 待操作的实例 ID，可通过 DescribeInstance接口返回值中的 InstanceId 获取。
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Keewidb {
     }
 
     /// CreateBackupManually返回参数结构体
-    public struct CreateBackupManuallyResponse: TCResponseModel {
+    public struct CreateBackupManuallyResponse: TCResponse {
         /// 任务 ID。
         public let taskId: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeTaskScript请求参数结构体
-    public struct DescribeTaskScriptRequest: TCRequestModel {
+    public struct DescribeTaskScriptRequest: TCRequest {
         /// 项目Id
         public let projectId: String
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// DescribeTaskScript返回参数结构体
-    public struct DescribeTaskScriptResponse: TCResponseModel {
+    public struct DescribeTaskScriptResponse: TCResponse {
         /// 任务脚本内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: TaskScriptContent?

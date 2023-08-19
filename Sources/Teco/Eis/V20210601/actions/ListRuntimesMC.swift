@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eis {
     /// ListRuntimesMC请求参数结构体
-    public struct ListRuntimesMCRequest: TCRequestModel {
+    public struct ListRuntimesMCRequest: TCRequest {
         /// 环境运行类型：0:运行时类型、1:api类型
         public let runtimeClass: Int64?
 
@@ -39,7 +39,7 @@ extension Eis {
     }
 
     /// ListRuntimesMC返回参数结构体
-    public struct ListRuntimesMCResponse: TCResponseModel {
+    public struct ListRuntimesMCResponse: TCResponse {
         /// 运行时列表
         public let runtimes: [RuntimeMC]
 

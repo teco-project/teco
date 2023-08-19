@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ump {
     /// DescribeMultiBizBaseImage请求参数结构体
-    public struct DescribeMultiBizBaseImageRequest: TCRequestModel {
+    public struct DescribeMultiBizBaseImageRequest: TCRequest {
         /// 集团编码
         public let groupCode: String
 
@@ -49,7 +49,7 @@ extension Ump {
     }
 
     /// DescribeMultiBizBaseImage返回参数结构体
-    public struct DescribeMultiBizBaseImageResponse: TCResponseModel {
+    public struct DescribeMultiBizBaseImageResponse: TCResponse {
         /// cos 临时 url
         public let imageUrl: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bma {
     /// UpdateCRWork请求参数结构体
-    public struct UpdateCRWorkRequest: TCRequestModel {
+    public struct UpdateCRWorkRequest: TCRequest {
         /// 作品ID
         public let workId: Int64
 
@@ -49,7 +49,7 @@ extension Bma {
     }
 
     /// UpdateCRWork返回参数结构体
-    public struct UpdateCRWorkResponse: TCResponseModel {
+    public struct UpdateCRWorkResponse: TCResponse {
         /// 作品ID
         public let workId: Int64
 

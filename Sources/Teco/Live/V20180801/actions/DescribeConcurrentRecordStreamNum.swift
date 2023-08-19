@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeConcurrentRecordStreamNum请求参数结构体
-    public struct DescribeConcurrentRecordStreamNumRequest: TCRequestModel {
+    public struct DescribeConcurrentRecordStreamNumRequest: TCRequest {
         /// 直播类型，SlowLive：慢直播。
         /// NormalLive：普通直播。
         public let liveType: String
@@ -61,7 +61,7 @@ extension Live {
     }
 
     /// DescribeConcurrentRecordStreamNum返回参数结构体
-    public struct DescribeConcurrentRecordStreamNumResponse: TCResponseModel {
+    public struct DescribeConcurrentRecordStreamNumResponse: TCResponse {
         /// 统计信息列表。
         public let dataInfoList: [ConcurrentRecordStreamNum]
 

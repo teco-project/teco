@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcaplusdb {
     /// ModifyCensorship请求参数结构体
-    public struct ModifyCensorshipRequest: TCRequestModel {
+    public struct ModifyCensorshipRequest: TCRequest {
         /// 集群id
         public let clusterId: String
 
@@ -44,7 +44,7 @@ extension Tcaplusdb {
     }
 
     /// ModifyCensorship返回参数结构体
-    public struct ModifyCensorshipResponse: TCResponseModel {
+    public struct ModifyCensorshipResponse: TCResponse {
         /// 集群id
         public let clusterId: String
 

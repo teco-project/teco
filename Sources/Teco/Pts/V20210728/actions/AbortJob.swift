@@ -20,7 +20,7 @@ import TecoCore
 
 extension Pts {
     /// AbortJob请求参数结构体
-    public struct AbortJobRequest: TCRequestModel {
+    public struct AbortJobRequest: TCRequest {
         /// 任务ID
         public let jobId: String
 
@@ -49,7 +49,7 @@ extension Pts {
     }
 
     /// AbortJob返回参数结构体
-    public struct AbortJobResponse: TCResponseModel {
+    public struct AbortJobResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

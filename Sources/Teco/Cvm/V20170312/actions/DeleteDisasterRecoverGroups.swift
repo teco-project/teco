@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// DeleteDisasterRecoverGroups请求参数结构体
-    public struct DeleteDisasterRecoverGroupsRequest: TCRequestModel {
+    public struct DeleteDisasterRecoverGroupsRequest: TCRequest {
         /// 分散置放群组ID列表，可通过[DescribeDisasterRecoverGroups](https://cloud.tencent.com/document/api/213/17810)接口获取。每次请求允许操作的分散置放群组数量上限是100。
         public let disasterRecoverGroupIds: [String]
 
@@ -34,7 +34,7 @@ extension Cvm {
     }
 
     /// DeleteDisasterRecoverGroups返回参数结构体
-    public struct DeleteDisasterRecoverGroupsResponse: TCResponseModel {
+    public struct DeleteDisasterRecoverGroupsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

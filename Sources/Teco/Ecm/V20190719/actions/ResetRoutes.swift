@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// ResetRoutes请求参数结构体
-    public struct ResetRoutesRequest: TCRequestModel {
+    public struct ResetRoutesRequest: TCRequest {
         /// 路由表实例ID，例如：rtb-azd4dt1c。
         public let routeTableId: String
 
@@ -44,7 +44,7 @@ extension Ecm {
     }
 
     /// ResetRoutes返回参数结构体
-    public struct ResetRoutesResponse: TCResponseModel {
+    public struct ResetRoutesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

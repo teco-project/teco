@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// SendSignInnerVerifyCode请求参数结构体
-    public struct SendSignInnerVerifyCodeRequest: TCRequestModel {
+    public struct SendSignInnerVerifyCodeRequest: TCRequest {
         /// 调用方信息
         public let caller: Caller
 
@@ -69,7 +69,7 @@ extension Essbasic {
     }
 
     /// SendSignInnerVerifyCode返回参数结构体
-    public struct SendSignInnerVerifyCodeResponse: TCResponseModel {
+    public struct SendSignInnerVerifyCodeResponse: TCResponse {
         /// true: 验证码正确，false: 验证码错误
         public let result: Bool
 

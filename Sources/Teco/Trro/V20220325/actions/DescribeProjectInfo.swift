@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Trro {
     /// DescribeProjectInfo请求参数结构体
-    public struct DescribeProjectInfoRequest: TCRequestModel {
+    public struct DescribeProjectInfoRequest: TCRequest {
         /// 目标项目ID
         public let projectId: String?
 
@@ -36,7 +36,7 @@ extension Trro {
     }
 
     /// DescribeProjectInfo返回参数结构体
-    public struct DescribeProjectInfoResponse: TCResponseModel {
+    public struct DescribeProjectInfoResponse: TCResponse {
         /// 项目名称
         public let projectName: String
 

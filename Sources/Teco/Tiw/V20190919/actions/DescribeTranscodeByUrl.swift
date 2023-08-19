@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiw {
     /// DescribeTranscodeByUrl请求参数结构体
-    public struct DescribeTranscodeByUrlRequest: TCRequestModel {
+    public struct DescribeTranscodeByUrlRequest: TCRequest {
         /// 客户的SdkAppId
         public let sdkAppId: Int64
 
@@ -39,7 +39,7 @@ extension Tiw {
     }
 
     /// DescribeTranscodeByUrl返回参数结构体
-    public struct DescribeTranscodeByUrlResponse: TCResponseModel {
+    public struct DescribeTranscodeByUrlResponse: TCResponse {
         /// 转码的当前进度,取值范围为0~100
         public let progress: Int64
 

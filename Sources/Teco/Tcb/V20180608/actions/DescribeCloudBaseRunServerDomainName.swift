@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeCloudBaseRunServerDomainName请求参数结构体
-    public struct DescribeCloudBaseRunServerDomainNameRequest: TCRequestModel {
+    public struct DescribeCloudBaseRunServerDomainNameRequest: TCRequest {
         /// 服务名
         public let serverName: String
 
@@ -49,7 +49,7 @@ extension Tcb {
     }
 
     /// DescribeCloudBaseRunServerDomainName返回参数结构体
-    public struct DescribeCloudBaseRunServerDomainNameResponse: TCResponseModel {
+    public struct DescribeCloudBaseRunServerDomainNameResponse: TCResponse {
         /// 公网服务域名
         public let publicDomain: String
 

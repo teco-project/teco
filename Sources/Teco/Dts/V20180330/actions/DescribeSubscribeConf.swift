@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dts {
     /// DescribeSubscribeConf请求参数结构体
-    public struct DescribeSubscribeConfRequest: TCRequestModel {
+    public struct DescribeSubscribeConfRequest: TCRequest {
         /// 订阅实例ID
         public let subscribeId: String
 
@@ -34,7 +34,7 @@ extension Dts {
     }
 
     /// DescribeSubscribeConf返回参数结构体
-    public struct DescribeSubscribeConfResponse: TCResponseModel {
+    public struct DescribeSubscribeConfResponse: TCResponse {
         /// 订阅实例ID
         public let subscribeId: String
 

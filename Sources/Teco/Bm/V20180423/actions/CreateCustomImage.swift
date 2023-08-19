@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// CreateCustomImage请求参数结构体
-    public struct CreateCustomImageRequest: TCRequestModel {
+    public struct CreateCustomImageRequest: TCRequest {
         /// 用于制作镜像的物理机ID
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Bm {
     }
 
     /// CreateCustomImage返回参数结构体
-    public struct CreateCustomImageResponse: TCResponseModel {
+    public struct CreateCustomImageResponse: TCResponse {
         /// 黑石异步任务ID
         public let taskId: UInt64
 

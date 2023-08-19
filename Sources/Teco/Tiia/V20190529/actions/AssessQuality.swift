@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiia {
     /// AssessQuality请求参数结构体
-    public struct AssessQualityRequest: TCRequestModel {
+    public struct AssessQualityRequest: TCRequest {
         /// 图片URL地址。
         /// 图片限制：
         /// • 图片格式：PNG、JPG、JPEG。
@@ -47,7 +47,7 @@ extension Tiia {
     }
 
     /// AssessQuality返回参数结构体
-    public struct AssessQualityResponse: TCResponseModel {
+    public struct AssessQualityResponse: TCResponse {
         /// 取值为TRUE或FALSE，TRUE为长图，FALSE为正常图，长图定义为长宽比大于等于3或小于等于1/3的图片。
         public let longImage: Bool
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Chdfs {
     /// CreateAccessRules请求参数结构体
-    public struct CreateAccessRulesRequest: TCRequestModel {
+    public struct CreateAccessRulesRequest: TCRequest {
         /// 多个权限规则，上限为10
         public let accessRules: [AccessRule]
 
@@ -39,7 +39,7 @@ extension Chdfs {
     }
 
     /// CreateAccessRules返回参数结构体
-    public struct CreateAccessRulesResponse: TCResponseModel {
+    public struct CreateAccessRulesResponse: TCResponse {
         /// 权限规则列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accessRules: [AccessRule]?

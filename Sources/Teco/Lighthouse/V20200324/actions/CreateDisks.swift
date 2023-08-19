@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// CreateDisks请求参数结构体
-    public struct CreateDisksRequest: TCRequestModel {
+    public struct CreateDisksRequest: TCRequest {
         /// 可用区。可通过[DescribeZones](https://cloud.tencent.com/document/product/1207/57513)返回值中的Zone获取。
         public let zone: String
 
@@ -74,7 +74,7 @@ extension Lighthouse {
     }
 
     /// CreateDisks返回参数结构体
-    public struct CreateDisksResponse: TCResponseModel {
+    public struct CreateDisksResponse: TCResponse {
         /// 当通过本接口来创建云硬盘时会返回该参数，表示一个或多个云硬盘ID。返回云硬盘ID列表并不代表云硬盘创建成功。
         ///
         /// 可根据 [DescribeDisks](https://cloud.tencent.com/document/product/1207/66093) 接口查询返回的DiskSet中对应云硬盘的ID的状态来判断创建是否完成；如果云硬盘状态由“PENDING”变为“UNATTACHED”或“ATTACHED”，则为创建成功。

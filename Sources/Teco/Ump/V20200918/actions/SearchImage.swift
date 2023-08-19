@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ump {
     /// SearchImage请求参数结构体
-    public struct SearchImageRequest: TCRequestModel {
+    public struct SearchImageRequest: TCRequest {
         /// 集团编码
         public let groupCode: String
 
@@ -49,7 +49,7 @@ extension Ump {
     }
 
     /// SearchImage返回参数结构体
-    public struct SearchImageResponse: TCResponseModel {
+    public struct SearchImageResponse: TCResponse {
         /// face id
         public let faceId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// UpdateAndPublishNetworkFirewallPolicyYamlDetail请求参数结构体
-    public struct UpdateAndPublishNetworkFirewallPolicyYamlDetailRequest: TCRequestModel {
+    public struct UpdateAndPublishNetworkFirewallPolicyYamlDetailRequest: TCRequest {
         /// 集群Id
         public let clusterId: String
 
@@ -49,7 +49,7 @@ extension Tcss {
     }
 
     /// UpdateAndPublishNetworkFirewallPolicyYamlDetail返回参数结构体
-    public struct UpdateAndPublishNetworkFirewallPolicyYamlDetailResponse: TCResponseModel {
+    public struct UpdateAndPublishNetworkFirewallPolicyYamlDetailResponse: TCResponse {
         /// 返回创建的任务的ID，为0表示创建失败。
         public let taskId: UInt64
 

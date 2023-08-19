@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// DescribeReadOnlyGroupDetails请求参数结构体
-    public struct DescribeReadOnlyGroupDetailsRequest: TCRequestModel {
+    public struct DescribeReadOnlyGroupDetailsRequest: TCRequest {
         /// 主实例ID，格式如：mssql-3l3fgqn7
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Sqlserver {
     }
 
     /// DescribeReadOnlyGroupDetails返回参数结构体
-    public struct DescribeReadOnlyGroupDetailsResponse: TCResponseModel {
+    public struct DescribeReadOnlyGroupDetailsResponse: TCResponse {
         /// 只读组ID
         public let readOnlyGroupId: String
 

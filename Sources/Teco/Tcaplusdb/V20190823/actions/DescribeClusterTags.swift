@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcaplusdb {
     /// DescribeClusterTags请求参数结构体
-    public struct DescribeClusterTagsRequest: TCRequestModel {
+    public struct DescribeClusterTagsRequest: TCRequest {
         /// 集群ID列表
         public let clusterIds: [String]
 
@@ -34,7 +34,7 @@ extension Tcaplusdb {
     }
 
     /// DescribeClusterTags返回参数结构体
-    public struct DescribeClusterTagsResponse: TCResponseModel {
+    public struct DescribeClusterTagsResponse: TCResponse {
         /// 集群标签信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rows: [TagsInfoOfCluster]?

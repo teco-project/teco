@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cr {
     /// DescribeBotFlow请求参数结构体
-    public struct DescribeBotFlowRequest: TCRequestModel {
+    public struct DescribeBotFlowRequest: TCRequest {
         /// 模块名。默认值（固定）：AiApi
         public let module: String
 
@@ -39,7 +39,7 @@ extension Cr {
     }
 
     /// DescribeBotFlow返回参数结构体
-    public struct DescribeBotFlowResponse: TCResponseModel {
+    public struct DescribeBotFlowResponse: TCResponse {
         /// 机器人对话流列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let botFlowList: [BotFlow]?

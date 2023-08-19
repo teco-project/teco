@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// ManageTask请求参数结构体
-    public struct ManageTaskRequest: TCRequestModel {
+    public struct ManageTaskRequest: TCRequest {
         /// 视频处理的任务 ID。
         public let taskId: String
 
@@ -45,7 +45,7 @@ extension Vod {
     }
 
     /// ManageTask返回参数结构体
-    public struct ManageTaskResponse: TCResponseModel {
+    public struct ManageTaskResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

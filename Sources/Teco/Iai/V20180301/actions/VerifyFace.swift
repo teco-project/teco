@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iai {
     /// VerifyFace请求参数结构体
-    public struct VerifyFaceRequest: TCRequestModel {
+    public struct VerifyFaceRequest: TCRequest {
         /// 待验证的人员ID。人员ID具体信息请参考人员库管理相关接口。
         public let personId: String
 
@@ -68,7 +68,7 @@ extension Iai {
     }
 
     /// VerifyFace返回参数结构体
-    public struct VerifyFaceResponse: TCResponseModel {
+    public struct VerifyFaceResponse: TCResponse {
         /// 给定的人脸图片与 PersonId 对应人脸的相似度。若 PersonId 下有多张人脸（Face），返回相似度最大的分数。
         ///
         /// 不同算法版本返回的相似度分数不同。

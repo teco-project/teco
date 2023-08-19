@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// DeleteRecordBackupPlan请求参数结构体
-    public struct DeleteRecordBackupPlanRequest: TCRequestModel {
+    public struct DeleteRecordBackupPlanRequest: TCRequest {
         /// 录像上云计划ID（从查询录像上云计划列表接口ListRecordBackupPlans中获取）
         public let planId: String
 
@@ -34,7 +34,7 @@ extension Iss {
     }
 
     /// DeleteRecordBackupPlan返回参数结构体
-    public struct DeleteRecordBackupPlanResponse: TCResponseModel {
+    public struct DeleteRecordBackupPlanResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

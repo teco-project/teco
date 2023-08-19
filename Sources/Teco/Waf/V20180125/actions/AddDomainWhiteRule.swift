@@ -20,7 +20,7 @@ import TecoCore
 
 extension Waf {
     /// AddDomainWhiteRule请求参数结构体
-    public struct AddDomainWhiteRuleRequest: TCRequestModel {
+    public struct AddDomainWhiteRuleRequest: TCRequest {
         /// 需要添加的域名
         public let domain: String?
 
@@ -54,7 +54,7 @@ extension Waf {
     }
 
     /// AddDomainWhiteRule返回参数结构体
-    public struct AddDomainWhiteRuleResponse: TCResponseModel {
+    public struct AddDomainWhiteRuleResponse: TCResponse {
         /// 规则id
         public let id: UInt64
 

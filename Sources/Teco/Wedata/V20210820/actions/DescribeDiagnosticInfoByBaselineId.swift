@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeDiagnosticInfoByBaselineId请求参数结构体
-    public struct DescribeDiagnosticInfoByBaselineIdRequest: TCRequestModel {
+    public struct DescribeDiagnosticInfoByBaselineIdRequest: TCRequest {
         /// 基线id
         public let baselineId: String
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// DescribeDiagnosticInfoByBaselineId返回参数结构体
-    public struct DescribeDiagnosticInfoByBaselineIdResponse: TCResponseModel {
+    public struct DescribeDiagnosticInfoByBaselineIdResponse: TCResponse {
         /// 基线任务dag
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: DescribeDiagnosticInfoResponse?

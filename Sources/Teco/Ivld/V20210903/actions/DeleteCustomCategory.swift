@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ivld {
     /// DeleteCustomCategory请求参数结构体
-    public struct DeleteCustomCategoryRequest: TCRequestModel {
+    public struct DeleteCustomCategoryRequest: TCRequest {
         /// 自定义分类ID
         public let categoryId: String
 
@@ -34,7 +34,7 @@ extension Ivld {
     }
 
     /// DeleteCustomCategory返回参数结构体
-    public struct DeleteCustomCategoryResponse: TCResponseModel {
+    public struct DeleteCustomCategoryResponse: TCResponse {
         /// 123
         public let categoryId: String
 

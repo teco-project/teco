@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wav {
     /// CreateChannelCode请求参数结构体
-    public struct CreateChannelCodeRequest: TCRequestModel {
+    public struct CreateChannelCodeRequest: TCRequest {
         /// 欢迎语类型:0普通欢迎语,1渠道欢迎语
         public let type: Int64
 
@@ -89,7 +89,7 @@ extension Wav {
     }
 
     /// CreateChannelCode返回参数结构体
-    public struct CreateChannelCodeResponse: TCResponseModel {
+    public struct CreateChannelCodeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// DeleteSAMLProvider请求参数结构体
-    public struct DeleteSAMLProviderRequest: TCRequestModel {
+    public struct DeleteSAMLProviderRequest: TCRequest {
         /// SAML身份提供商名称
         public let name: String
 
@@ -34,7 +34,7 @@ extension Cam {
     }
 
     /// DeleteSAMLProvider返回参数结构体
-    public struct DeleteSAMLProviderResponse: TCResponseModel {
+    public struct DeleteSAMLProviderResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

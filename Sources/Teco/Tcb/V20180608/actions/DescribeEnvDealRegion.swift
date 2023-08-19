@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeEnvDealRegion请求参数结构体
-    public struct DescribeEnvDealRegionRequest: TCRequestModel {
+    public struct DescribeEnvDealRegionRequest: TCRequest {
         /// 环境ID
         public let envId: String
 
@@ -61,7 +61,7 @@ extension Tcb {
     }
 
     /// DescribeEnvDealRegion返回参数结构体
-    public struct DescribeEnvDealRegionResponse: TCResponseModel {
+    public struct DescribeEnvDealRegionResponse: TCResponse {
         /// 下单region
         public let region: String
 

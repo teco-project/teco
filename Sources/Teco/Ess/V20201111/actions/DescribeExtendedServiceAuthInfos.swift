@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// DescribeExtendedServiceAuthInfos请求参数结构体
-    public struct DescribeExtendedServiceAuthInfosRequest: TCRequestModel {
+    public struct DescribeExtendedServiceAuthInfosRequest: TCRequest {
         /// 操作人信息
         public let `operator`: UserInfo
 
@@ -49,7 +49,7 @@ extension Ess {
     }
 
     /// DescribeExtendedServiceAuthInfos返回参数结构体
-    public struct DescribeExtendedServiceAuthInfosResponse: TCResponseModel {
+    public struct DescribeExtendedServiceAuthInfosResponse: TCResponse {
         /// 授权服务信息列表
         public let authInfoList: [ExtendAuthInfo]
 

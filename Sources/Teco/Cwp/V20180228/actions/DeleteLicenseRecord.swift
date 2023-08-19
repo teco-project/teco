@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DeleteLicenseRecord请求参数结构体
-    public struct DeleteLicenseRecordRequest: TCRequestModel {
+    public struct DeleteLicenseRecordRequest: TCRequest {
         /// 授权ID ,可以用授权订单列表获取.
         public let licenseId: UInt64
 
@@ -44,7 +44,7 @@ extension Cwp {
     }
 
     /// DeleteLicenseRecord返回参数结构体
-    public struct DeleteLicenseRecordResponse: TCResponseModel {
+    public struct DeleteLicenseRecordResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

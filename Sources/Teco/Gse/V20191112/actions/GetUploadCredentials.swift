@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// GetUploadCredentials请求参数结构体
-    public struct GetUploadCredentialsRequest: TCRequestModel {
+    public struct GetUploadCredentialsRequest: TCRequest {
         /// 生成包所在地域，详见产品支持的 [地域列表](https://cloud.tencent.com/document/api/1165/42053#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8)
         public let assetRegion: String
 
@@ -39,7 +39,7 @@ extension Gse {
     }
 
     /// GetUploadCredentials返回参数结构体
-    public struct GetUploadCredentialsResponse: TCResponseModel {
+    public struct GetUploadCredentialsResponse: TCResponse {
         /// 上传文件授权信息Auth
         public let bucketAuth: String
 

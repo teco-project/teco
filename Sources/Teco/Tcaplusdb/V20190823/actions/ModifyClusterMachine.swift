@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcaplusdb {
     /// ModifyClusterMachine请求参数结构体
-    public struct ModifyClusterMachineRequest: TCRequestModel {
+    public struct ModifyClusterMachineRequest: TCRequest {
         /// 集群id
         public let clusterId: String
 
@@ -49,7 +49,7 @@ extension Tcaplusdb {
     }
 
     /// ModifyClusterMachine返回参数结构体
-    public struct ModifyClusterMachineResponse: TCResponseModel {
+    public struct ModifyClusterMachineResponse: TCResponse {
         /// 集群id
         public let clusterId: String
 

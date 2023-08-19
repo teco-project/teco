@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// CheckDuplicateRuleName请求参数结构体
-    public struct CheckDuplicateRuleNameRequest: TCRequestModel {
+    public struct CheckDuplicateRuleNameRequest: TCRequest {
         /// 项目Id
         public let projectId: String?
 
@@ -49,7 +49,7 @@ extension Wedata {
     }
 
     /// CheckDuplicateRuleName返回参数结构体
-    public struct CheckDuplicateRuleNameResponse: TCResponseModel {
+    public struct CheckDuplicateRuleNameResponse: TCResponse {
         /// 规则名称是否重复
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: Bool?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tci {
     /// DescribeAITaskResult请求参数结构体
-    public struct DescribeAITaskResultRequest: TCRequestModel {
+    public struct DescribeAITaskResultRequest: TCRequest {
         /// 任务唯一标识符。在URL方式时提交请求后会返回一个任务标识符，后续查询该url的结果时使用这个标识符进行查询。
         public let taskId: Int64
 
@@ -44,7 +44,7 @@ extension Tci {
     }
 
     /// DescribeAITaskResult返回参数结构体
-    public struct DescribeAITaskResultResponse: TCResponseModel {
+    public struct DescribeAITaskResultResponse: TCResponse {
         /// 音频分析结果
         public let audioResult: StandardAudioResult
 

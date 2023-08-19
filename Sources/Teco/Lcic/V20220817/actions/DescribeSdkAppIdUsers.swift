@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// DescribeSdkAppIdUsers请求参数结构体
-    public struct DescribeSdkAppIdUsersRequest: TCRequestModel {
+    public struct DescribeSdkAppIdUsersRequest: TCRequest {
         /// 应用ID
         public let sdkAppId: UInt64
 
@@ -44,7 +44,7 @@ extension Lcic {
     }
 
     /// DescribeSdkAppIdUsers返回参数结构体
-    public struct DescribeSdkAppIdUsersResponse: TCResponseModel {
+    public struct DescribeSdkAppIdUsersResponse: TCResponse {
         /// 用户总数
         public let total: UInt64
 

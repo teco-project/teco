@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ExportProtectDirList请求参数结构体
-    public struct ExportProtectDirListRequest: TCRequestModel {
+    public struct ExportProtectDirListRequest: TCRequest {
         /// DirName 网站名称
         /// DirPath 网站防护目录地址
         public let filters: [AssetFilters]?
@@ -45,7 +45,7 @@ extension Cwp {
     }
 
     /// ExportProtectDirList返回参数结构体
-    public struct ExportProtectDirListResponse: TCResponseModel {
+    public struct ExportProtectDirListResponse: TCResponse {
         /// 任务ID,需要到接口“异步导出任务”ExportTasks获取DownloadUrl下载地址
         public let taskId: String
 

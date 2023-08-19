@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// CreateListener请求参数结构体
-    public struct CreateListenerRequest: TCRequestModel {
+    public struct CreateListenerRequest: TCRequest {
         /// 负载均衡实例 ID
         public let loadBalancerId: String
 
@@ -75,7 +75,7 @@ extension Ecm {
     }
 
     /// CreateListener返回参数结构体
-    public struct CreateListenerResponse: TCResponseModel {
+    public struct CreateListenerResponse: TCResponse {
         /// 创建的监听器的唯一标识数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let listenerIds: [String]?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeRuleDataSources请求参数结构体
-    public struct DescribeRuleDataSourcesRequest: TCRequestModel {
+    public struct DescribeRuleDataSourcesRequest: TCRequest {
         /// 项目Id
         public let projectId: String?
 
@@ -44,7 +44,7 @@ extension Wedata {
     }
 
     /// DescribeRuleDataSources返回参数结构体
-    public struct DescribeRuleDataSourcesResponse: TCResponseModel {
+    public struct DescribeRuleDataSourcesResponse: TCResponse {
         /// 数据源列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [DatabaseInfo]?

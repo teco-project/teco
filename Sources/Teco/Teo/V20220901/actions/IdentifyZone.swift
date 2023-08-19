@@ -20,7 +20,7 @@ import TecoCore
 
 extension Teo {
     /// IdentifyZone请求参数结构体
-    public struct IdentifyZoneRequest: TCRequestModel {
+    public struct IdentifyZoneRequest: TCRequest {
         /// 站点名称。
         public let zoneName: String
 
@@ -39,7 +39,7 @@ extension Teo {
     }
 
     /// IdentifyZone返回参数结构体
-    public struct IdentifyZoneResponse: TCResponseModel {
+    public struct IdentifyZoneResponse: TCResponse {
         /// 站点归属校验：Dns校验信息。
         public let ascription: AscriptionInfo
 

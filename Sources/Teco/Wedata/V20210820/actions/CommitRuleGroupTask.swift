@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// CommitRuleGroupTask请求参数结构体
-    public struct CommitRuleGroupTaskRequest: TCRequestModel {
+    public struct CommitRuleGroupTaskRequest: TCRequest {
         /// 规则组ID
         public let ruleGroupId: UInt64?
 
@@ -59,7 +59,7 @@ extension Wedata {
     }
 
     /// CommitRuleGroupTask返回参数结构体
-    public struct CommitRuleGroupTaskResponse: TCResponseModel {
+    public struct CommitRuleGroupTaskResponse: TCResponse {
         /// 规则组执行id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: RuleGroupExecResult?

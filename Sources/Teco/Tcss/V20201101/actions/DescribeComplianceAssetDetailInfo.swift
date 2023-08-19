@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeComplianceAssetDetailInfo请求参数结构体
-    public struct DescribeComplianceAssetDetailInfoRequest: TCRequestModel {
+    public struct DescribeComplianceAssetDetailInfoRequest: TCRequest {
         /// 客户资产ID。
         public let customerAssetId: UInt64
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeComplianceAssetDetailInfo返回参数结构体
-    public struct DescribeComplianceAssetDetailInfoResponse: TCResponseModel {
+    public struct DescribeComplianceAssetDetailInfoResponse: TCResponse {
         /// 某资产的详情。
         public let assetDetailInfo: ComplianceAssetDetailInfo
 

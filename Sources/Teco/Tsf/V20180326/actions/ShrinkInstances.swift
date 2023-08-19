@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// ShrinkInstances请求参数结构体
-    public struct ShrinkInstancesRequest: TCRequestModel {
+    public struct ShrinkInstancesRequest: TCRequest {
         /// 部署组ID
         public let groupId: String
 
@@ -39,7 +39,7 @@ extension Tsf {
     }
 
     /// ShrinkInstances返回参数结构体
-    public struct ShrinkInstancesResponse: TCResponseModel {
+    public struct ShrinkInstancesResponse: TCResponse {
         /// 任务ID
         public let result: TaskId
 

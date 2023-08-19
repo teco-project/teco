@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// CreateFleet请求参数结构体
-    public struct CreateFleetRequest: TCRequestModel {
+    public struct CreateFleetRequest: TCRequest {
         /// 生成包 Id
         public let assetId: String?
 
@@ -114,7 +114,7 @@ extension Gse {
     }
 
     /// CreateFleet返回参数结构体
-    public struct CreateFleetResponse: TCResponseModel {
+    public struct CreateFleetResponse: TCResponse {
         /// 服务器舰队属性
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fleetAttributes: FleetAttributes?

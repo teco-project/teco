@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ms {
     /// DescribeEncryptPlan请求参数结构体
-    public struct DescribeEncryptPlanRequest: TCRequestModel {
+    public struct DescribeEncryptPlanRequest: TCRequest {
         /// 平台类型  1.android加固   2.ios源码混淆  3.sdk加固  4.applet小程序加固
         public let platformType: Int64
 
@@ -59,7 +59,7 @@ extension Ms {
     }
 
     /// DescribeEncryptPlan返回参数结构体
-    public struct DescribeEncryptPlanResponse: TCResponseModel {
+    public struct DescribeEncryptPlanResponse: TCResponse {
         /// 平台类型整型值
         public let platformType: Int64
 

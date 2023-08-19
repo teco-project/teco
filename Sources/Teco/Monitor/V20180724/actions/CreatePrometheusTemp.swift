@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// CreatePrometheusTemp请求参数结构体
-    public struct CreatePrometheusTempRequest: TCRequestModel {
+    public struct CreatePrometheusTempRequest: TCRequest {
         /// 模板设置
         public let template: PrometheusTemp
 
@@ -34,7 +34,7 @@ extension Monitor {
     }
 
     /// CreatePrometheusTemp返回参数结构体
-    public struct CreatePrometheusTempResponse: TCResponseModel {
+    public struct CreatePrometheusTempResponse: TCResponse {
         /// 模板Id
         public let templateId: String
 

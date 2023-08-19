@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Dayu {
     /// DescribeDDoSAttackIPRegionMap请求参数结构体
-    public struct DescribeDDoSAttackIPRegionMapRequest: TCRequestModel {
+    public struct DescribeDDoSAttackIPRegionMapRequest: TCRequest {
         /// 大禹子产品代号（shield表示棋牌；bgpip表示高防IP；bgp表示高防包；bgp-multip表示多ip高防包；net表示高防IP专业版）
         public let business: String
 
@@ -62,7 +62,7 @@ extension Dayu {
     }
 
     /// DescribeDDoSAttackIPRegionMap返回参数结构体
-    public struct DescribeDDoSAttackIPRegionMapResponse: TCResponseModel {
+    public struct DescribeDDoSAttackIPRegionMapResponse: TCResponse {
         /// 全球地域分布数据
         public let nationCount: [KeyValueRecord]
 

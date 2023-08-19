@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// DescribeDBInstancesAttribute请求参数结构体
-    public struct DescribeDBInstancesAttributeRequest: TCRequestModel {
+    public struct DescribeDBInstancesAttributeRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Sqlserver {
     }
 
     /// DescribeDBInstancesAttribute返回参数结构体
-    public struct DescribeDBInstancesAttributeResponse: TCResponseModel {
+    public struct DescribeDBInstancesAttributeResponse: TCResponse {
         /// 实例ID
         public let instanceId: String
 

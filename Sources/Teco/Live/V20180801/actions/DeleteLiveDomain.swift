@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DeleteLiveDomain请求参数结构体
-    public struct DeleteLiveDomainRequest: TCRequestModel {
+    public struct DeleteLiveDomainRequest: TCRequest {
         /// 要删除的域名
         public let domainName: String
 
@@ -39,7 +39,7 @@ extension Live {
     }
 
     /// DeleteLiveDomain返回参数结构体
-    public struct DeleteLiveDomainResponse: TCResponseModel {
+    public struct DeleteLiveDomainResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

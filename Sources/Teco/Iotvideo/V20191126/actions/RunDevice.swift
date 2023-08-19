@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// RunDevice请求参数结构体
-    public struct RunDeviceRequest: TCRequestModel {
+    public struct RunDeviceRequest: TCRequest {
         /// TID列表 ≤100
         public let tids: [String]
 
@@ -34,7 +34,7 @@ extension Iotvideo {
     }
 
     /// RunDevice返回参数结构体
-    public struct RunDeviceResponse: TCResponseModel {
+    public struct RunDeviceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

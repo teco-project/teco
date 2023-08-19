@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dc {
     /// ApplyInternetAddress请求参数结构体
-    public struct ApplyInternetAddressRequest: TCRequestModel {
+    public struct ApplyInternetAddressRequest: TCRequest {
         /// CIDR地址掩码长度
         public let maskLen: Int64
 
@@ -48,7 +48,7 @@ extension Dc {
     }
 
     /// ApplyInternetAddress返回参数结构体
-    public struct ApplyInternetAddressResponse: TCResponseModel {
+    public struct ApplyInternetAddressResponse: TCResponse {
         /// 互联网公网地址ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?

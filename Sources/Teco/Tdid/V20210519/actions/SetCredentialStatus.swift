@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdid {
     /// SetCredentialStatus请求参数结构体
-    public struct SetCredentialStatusRequest: TCRequestModel {
+    public struct SetCredentialStatusRequest: TCRequest {
         /// 凭证状态
         public let credentialStatus: CredentialStatus
 
@@ -34,7 +34,7 @@ extension Tdid {
     }
 
     /// SetCredentialStatus返回参数结构体
-    public struct SetCredentialStatusResponse: TCResponseModel {
+    public struct SetCredentialStatusResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

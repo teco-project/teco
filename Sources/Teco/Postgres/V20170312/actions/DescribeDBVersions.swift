@@ -20,13 +20,13 @@ import TecoCore
 
 extension Postgres {
     /// DescribeDBVersions请求参数结构体
-    public struct DescribeDBVersionsRequest: TCRequestModel {
+    public struct DescribeDBVersionsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeDBVersions返回参数结构体
-    public struct DescribeDBVersionsResponse: TCResponseModel {
+    public struct DescribeDBVersionsResponse: TCResponse {
         /// 数据库版本号信息列表
         public let versionSet: [Version]
 

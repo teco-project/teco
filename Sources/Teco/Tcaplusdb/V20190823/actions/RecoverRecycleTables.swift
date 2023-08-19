@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcaplusdb {
     /// RecoverRecycleTables请求参数结构体
-    public struct RecoverRecycleTablesRequest: TCRequestModel {
+    public struct RecoverRecycleTablesRequest: TCRequest {
         /// 表所在集群ID
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Tcaplusdb {
     }
 
     /// RecoverRecycleTables返回参数结构体
-    public struct RecoverRecycleTablesResponse: TCResponseModel {
+    public struct RecoverRecycleTablesResponse: TCResponse {
         /// 恢复表结果数量
         public let totalCount: UInt64
 

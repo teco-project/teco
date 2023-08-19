@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// DescribeInstanceVncUrl请求参数结构体
-    public struct DescribeInstanceVncUrlRequest: TCRequestModel {
+    public struct DescribeInstanceVncUrlRequest: TCRequest {
         /// 实例 ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Lighthouse {
     }
 
     /// DescribeInstanceVncUrl返回参数结构体
-    public struct DescribeInstanceVncUrlResponse: TCResponseModel {
+    public struct DescribeInstanceVncUrlResponse: TCResponse {
         /// 实例的管理终端地址。
         public let instanceVncUrl: String
 

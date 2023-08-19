@@ -20,13 +20,13 @@ import TecoCore
 
 extension Vrs {
     /// GetTrainingText请求参数结构体
-    public struct GetTrainingTextRequest: TCRequestModel {
+    public struct GetTrainingTextRequest: TCRequest {
         public init() {
         }
     }
 
     /// GetTrainingText返回参数结构体
-    public struct GetTrainingTextResponse: TCResponseModel {
+    public struct GetTrainingTextResponse: TCResponse {
         /// 文本列表
         public let data: TrainingTexts
 

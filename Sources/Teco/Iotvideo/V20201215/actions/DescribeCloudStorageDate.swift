@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// DescribeCloudStorageDate请求参数结构体
-    public struct DescribeCloudStorageDateRequest: TCRequestModel {
+    public struct DescribeCloudStorageDateRequest: TCRequest {
         /// 产品ID
         public let productId: String
 
@@ -44,7 +44,7 @@ extension Iotvideo {
     }
 
     /// DescribeCloudStorageDate返回参数结构体
-    public struct DescribeCloudStorageDateResponse: TCResponseModel {
+    public struct DescribeCloudStorageDateResponse: TCResponse {
         /// 云存日期数组，["2021-01-05","2021-01-06"]
         public let data: [String]
 

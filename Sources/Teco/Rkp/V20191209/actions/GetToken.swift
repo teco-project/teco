@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rkp {
     /// GetToken请求参数结构体
-    public struct GetTokenRequest: TCRequestModel {
+    public struct GetTokenRequest: TCRequest {
         /// 业务ID
         public let businessId: Int64
 
@@ -59,7 +59,7 @@ extension Rkp {
     }
 
     /// GetToken返回参数结构体
-    public struct GetTokenResponse: TCResponseModel {
+    public struct GetTokenResponse: TCResponse {
         /// 返回token
         public let token: String
 

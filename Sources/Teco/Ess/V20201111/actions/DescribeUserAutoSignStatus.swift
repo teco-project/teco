@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// DescribeUserAutoSignStatus请求参数结构体
-    public struct DescribeUserAutoSignStatusRequest: TCRequestModel {
+    public struct DescribeUserAutoSignStatusRequest: TCRequest {
         /// 操作人信息，UserId必填
         public let `operator`: UserInfo
 
@@ -50,7 +50,7 @@ extension Ess {
     }
 
     /// DescribeUserAutoSignStatus返回参数结构体
-    public struct DescribeUserAutoSignStatusResponse: TCResponseModel {
+    public struct DescribeUserAutoSignStatusResponse: TCResponse {
         /// 查询用户是否已开通自动签
         public let isOpen: Bool
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeLivePullStreamTaskStatus请求参数结构体
-    public struct DescribeLivePullStreamTaskStatusRequest: TCRequestModel {
+    public struct DescribeLivePullStreamTaskStatusRequest: TCRequest {
         /// 任务 ID。
         public let taskId: String
 
@@ -34,7 +34,7 @@ extension Live {
     }
 
     /// DescribeLivePullStreamTaskStatus返回参数结构体
-    public struct DescribeLivePullStreamTaskStatusResponse: TCResponseModel {
+    public struct DescribeLivePullStreamTaskStatusResponse: TCResponse {
         /// 任务状态信息。
         public let taskStatusInfo: TaskStatusInfo
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotexplorer {
     /// CallDeviceActionSync请求参数结构体
-    public struct CallDeviceActionSyncRequest: TCRequestModel {
+    public struct CallDeviceActionSyncRequest: TCRequest {
         /// 产品Id
         public let productId: String
 
@@ -49,7 +49,7 @@ extension Iotexplorer {
     }
 
     /// CallDeviceActionSync返回参数结构体
-    public struct CallDeviceActionSyncResponse: TCResponseModel {
+    public struct CallDeviceActionSyncResponse: TCResponse {
         /// 调用Id
         public let clientToken: String
 

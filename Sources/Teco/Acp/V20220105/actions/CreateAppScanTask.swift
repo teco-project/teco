@@ -20,7 +20,7 @@ import TecoCore
 
 extension Acp {
     /// CreateAppScanTask请求参数结构体
-    public struct CreateAppScanTaskRequest: TCRequestModel {
+    public struct CreateAppScanTaskRequest: TCRequest {
         /// 任务类型, 0:基础版, 1:专家版, 2:本地化
         public let taskType: Int64
 
@@ -124,7 +124,7 @@ extension Acp {
     }
 
     /// CreateAppScanTask返回参数结构体
-    public struct CreateAppScanTaskResponse: TCResponseModel {
+    public struct CreateAppScanTaskResponse: TCResponse {
         /// 返回值, 0:成功, 其他值请查看“返回值”定义
         public let result: Int64
 

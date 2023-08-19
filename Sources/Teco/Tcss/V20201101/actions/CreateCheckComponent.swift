@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// CreateCheckComponent请求参数结构体
-    public struct CreateCheckComponentRequest: TCRequestModel {
+    public struct CreateCheckComponentRequest: TCRequest {
         /// 要安装的集群列表信息
         public let clusterInfoList: [ClusterCreateComponentItem]
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// CreateCheckComponent返回参数结构体
-    public struct CreateCheckComponentResponse: TCResponseModel {
+    public struct CreateCheckComponentResponse: TCResponse {
         /// "InstallSucc"表示安装成功，"InstallFailed"表示安装失败
         public let installResult: String
 

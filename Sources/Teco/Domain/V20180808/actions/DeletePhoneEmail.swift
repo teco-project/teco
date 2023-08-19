@@ -20,7 +20,7 @@ import TecoCore
 
 extension Domain {
     /// DeletePhoneEmail请求参数结构体
-    public struct DeletePhoneEmailRequest: TCRequestModel {
+    public struct DeletePhoneEmailRequest: TCRequest {
         /// 手机或者邮箱
         public let code: String
 
@@ -39,7 +39,7 @@ extension Domain {
     }
 
     /// DeletePhoneEmail返回参数结构体
-    public struct DeletePhoneEmailResponse: TCResponseModel {
+    public struct DeletePhoneEmailResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

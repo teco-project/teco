@@ -20,7 +20,7 @@ import TecoCore
 
 extension Yinsuda {
     /// DescribeUserInfo请求参数结构体
-    public struct DescribeUserInfoRequest: TCRequestModel {
+    public struct DescribeUserInfoRequest: TCRequest {
         /// 应用名称。
         public let appName: String
 
@@ -39,7 +39,7 @@ extension Yinsuda {
     }
 
     /// DescribeUserInfo返回参数结构体
-    public struct DescribeUserInfoResponse: TCResponseModel {
+    public struct DescribeUserInfoResponse: TCResponse {
         /// 用户信息。
         public let userInfo: UserInfo
 

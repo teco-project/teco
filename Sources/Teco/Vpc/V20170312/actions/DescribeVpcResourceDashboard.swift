@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DescribeVpcResourceDashboard请求参数结构体
-    public struct DescribeVpcResourceDashboardRequest: TCRequestModel {
+    public struct DescribeVpcResourceDashboardRequest: TCRequest {
         /// Vpc实例ID，例如：vpc-f1xjkw1b。
         public let vpcIds: [String]
 
@@ -34,7 +34,7 @@ extension Vpc {
     }
 
     /// DescribeVpcResourceDashboard返回参数结构体
-    public struct DescribeVpcResourceDashboardResponse: TCResponseModel {
+    public struct DescribeVpcResourceDashboardResponse: TCResponse {
         /// 资源对象列表。
         public let resourceDashboardSet: [ResourceDashboard]
 

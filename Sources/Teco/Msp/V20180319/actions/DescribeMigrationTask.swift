@@ -20,7 +20,7 @@ import TecoCore
 
 extension Msp {
     /// DescribeMigrationTask请求参数结构体
-    public struct DescribeMigrationTaskRequest: TCRequestModel {
+    public struct DescribeMigrationTaskRequest: TCRequest {
         /// 任务ID，例如msp-jitoh33n
         public let taskId: String
 
@@ -34,7 +34,7 @@ extension Msp {
     }
 
     /// DescribeMigrationTask返回参数结构体
-    public struct DescribeMigrationTaskResponse: TCResponseModel {
+    public struct DescribeMigrationTaskResponse: TCResponse {
         /// 迁移详情列表
         public let taskStatus: [TaskStatus]
 

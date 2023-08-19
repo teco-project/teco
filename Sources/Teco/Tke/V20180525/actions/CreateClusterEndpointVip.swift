@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// CreateClusterEndpointVip请求参数结构体
-    public struct CreateClusterEndpointVipRequest: TCRequestModel {
+    public struct CreateClusterEndpointVipRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Tke {
     }
 
     /// CreateClusterEndpointVip返回参数结构体
-    public struct CreateClusterEndpointVipResponse: TCResponseModel {
+    public struct CreateClusterEndpointVipResponse: TCResponse {
         /// 请求任务的FlowId
         public let requestFlowId: Int64
 

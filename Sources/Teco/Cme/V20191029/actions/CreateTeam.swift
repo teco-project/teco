@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cme {
     /// CreateTeam请求参数结构体
-    public struct CreateTeamRequest: TCRequestModel {
+    public struct CreateTeamRequest: TCRequest {
         /// 平台名称，指定访问的平台。
         public let platform: String
 
@@ -54,7 +54,7 @@ extension Cme {
     }
 
     /// CreateTeam返回参数结构体
-    public struct CreateTeamResponse: TCResponseModel {
+    public struct CreateTeamResponse: TCResponse {
         /// 创建的团队 ID。
         public let teamId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// RefundMemberTransaction请求参数结构体
-    public struct RefundMemberTransactionRequest: TCRequestModel {
+    public struct RefundMemberTransactionRequest: TCRequest {
         /// 转出见证子账户的户名
         public let outSubAccountName: String
 
@@ -150,7 +150,7 @@ extension Cpdp {
     }
 
     /// RefundMemberTransaction返回参数结构体
-    public struct RefundMemberTransactionResponse: TCResponseModel {
+    public struct RefundMemberTransactionResponse: TCResponse {
         /// 请求类型
         public let requestType: String
 

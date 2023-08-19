@@ -20,13 +20,13 @@ import TecoCore
 
 extension Iecp {
     /// DescribeEdgeDefaultVpc请求参数结构体
-    public struct DescribeEdgeDefaultVpcRequest: TCRequestModel {
+    public struct DescribeEdgeDefaultVpcRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeEdgeDefaultVpc返回参数结构体
-    public struct DescribeEdgeDefaultVpcResponse: TCResponseModel {
+    public struct DescribeEdgeDefaultVpcResponse: TCResponse {
         /// 私有网络ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vpcId: String?

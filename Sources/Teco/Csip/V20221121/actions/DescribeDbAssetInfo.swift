@@ -20,7 +20,7 @@ import TecoCore
 
 extension Csip {
     /// DescribeDbAssetInfo请求参数结构体
-    public struct DescribeDbAssetInfoRequest: TCRequestModel {
+    public struct DescribeDbAssetInfoRequest: TCRequest {
         /// 资产id
         public let assetId: String
 
@@ -34,7 +34,7 @@ extension Csip {
     }
 
     /// DescribeDbAssetInfo返回参数结构体
-    public struct DescribeDbAssetInfoResponse: TCResponseModel {
+    public struct DescribeDbAssetInfoResponse: TCResponse {
         /// db资产详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: DbAssetInfo?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Aiart {
     /// TextToImage请求参数结构体
-    public struct TextToImageRequest: TCRequestModel {
+    public struct TextToImageRequest: TCRequest {
         /// 文本描述。
         /// 算法将根据输入的文本智能生成与之相关的图像。建议详细描述画面主体、细节、场景等，文本描述越丰富，生成效果越精美。
         /// 不能为空，推荐使用中文。最多可传256个 utf-8 字符。
@@ -75,7 +75,7 @@ extension Aiart {
     }
 
     /// TextToImage返回参数结构体
-    public struct TextToImageResponse: TCResponseModel {
+    public struct TextToImageResponse: TCResponse {
         /// 根据入参 RspImgType 填入不同，返回不同的内容。
         /// 如果传入 base64 则返回生成图 Base64 编码。
         /// 如果传入 url 则返回的生成图 URL , 有效期1小时，请及时保存。

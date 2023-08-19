@@ -20,7 +20,7 @@ import TecoCore
 
 extension Oceanus {
     /// DescribeTreeResources请求参数结构体
-    public struct DescribeTreeResourcesRequest: TCRequestModel {
+    public struct DescribeTreeResourcesRequest: TCRequest {
         /// 工作空间 SerialId
         public let workSpaceId: String?
 
@@ -34,7 +34,7 @@ extension Oceanus {
     }
 
     /// DescribeTreeResources返回参数结构体
-    public struct DescribeTreeResourcesResponse: TCResponseModel {
+    public struct DescribeTreeResourcesResponse: TCResponse {
         /// 父节点ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let parentId: String?

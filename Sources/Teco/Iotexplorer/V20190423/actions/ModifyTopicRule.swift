@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotexplorer {
     /// ModifyTopicRule请求参数结构体
-    public struct ModifyTopicRuleRequest: TCRequestModel {
+    public struct ModifyTopicRuleRequest: TCRequest {
         /// 规则名称
         public let ruleName: String
 
@@ -39,7 +39,7 @@ extension Iotexplorer {
     }
 
     /// ModifyTopicRule返回参数结构体
-    public struct ModifyTopicRuleResponse: TCResponseModel {
+    public struct ModifyTopicRuleResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

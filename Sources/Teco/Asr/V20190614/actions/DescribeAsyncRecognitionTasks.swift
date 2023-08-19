@@ -20,13 +20,13 @@ import TecoCore
 
 extension Asr {
     /// DescribeAsyncRecognitionTasks请求参数结构体
-    public struct DescribeAsyncRecognitionTasksRequest: TCRequestModel {
+    public struct DescribeAsyncRecognitionTasksRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeAsyncRecognitionTasks返回参数结构体
-    public struct DescribeAsyncRecognitionTasksResponse: TCResponseModel {
+    public struct DescribeAsyncRecognitionTasksResponse: TCResponse {
         /// 任务列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: AsyncRecognitionTasks?

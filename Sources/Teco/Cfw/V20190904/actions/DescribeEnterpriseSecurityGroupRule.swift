@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// DescribeEnterpriseSecurityGroupRule请求参数结构体
-    public struct DescribeEnterpriseSecurityGroupRuleRequest: TCRequestModel {
+    public struct DescribeEnterpriseSecurityGroupRuleRequest: TCRequest {
         /// 分页查询时，显示的当前页的页码。
         ///
         /// 默认值为1。
@@ -107,7 +107,7 @@ extension Cfw {
     }
 
     /// DescribeEnterpriseSecurityGroupRule返回参数结构体
-    public struct DescribeEnterpriseSecurityGroupRuleResponse: TCResponseModel {
+    public struct DescribeEnterpriseSecurityGroupRuleResponse: TCResponse {
         /// 分页查询时，显示的当前页的页码。
         public let pageNo: String
 

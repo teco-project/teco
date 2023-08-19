@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeSecLogAlertMsg请求参数结构体
-    public struct DescribeSecLogAlertMsgRequest: TCRequestModel {
+    public struct DescribeSecLogAlertMsgRequest: TCRequest {
         /// 告警类型
         /// 日志储量告警: log_reserve_full
         /// 日志存储时间告警: log_save_day_limit
@@ -39,7 +39,7 @@ extension Tcss {
     }
 
     /// DescribeSecLogAlertMsg返回参数结构体
-    public struct DescribeSecLogAlertMsgResponse: TCResponseModel {
+    public struct DescribeSecLogAlertMsgResponse: TCResponse {
         /// 告警消息队列
         public let list: [SecLogAlertMsgInfo]
 

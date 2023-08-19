@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cdn {
     /// ListClsTopicDomains请求参数结构体
-    public struct ListClsTopicDomainsRequest: TCRequestModel {
+    public struct ListClsTopicDomainsRequest: TCRequest {
         /// 日志集ID
         public let logsetId: String
 
@@ -46,7 +46,7 @@ extension Cdn {
     }
 
     /// ListClsTopicDomains返回参数结构体
-    public struct ListClsTopicDomainsResponse: TCResponseModel {
+    public struct ListClsTopicDomainsResponse: TCResponse {
         /// 开发者ID
         public let appId: UInt64
 

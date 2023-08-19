@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// InquirePriceCreateInstances请求参数结构体
-    public struct InquirePriceCreateInstancesRequest: TCRequestModel {
+    public struct InquirePriceCreateInstancesRequest: TCRequest {
         /// 实例的套餐 ID。
         public let bundleId: String
 
@@ -49,7 +49,7 @@ extension Lighthouse {
     }
 
     /// InquirePriceCreateInstances返回参数结构体
-    public struct InquirePriceCreateInstancesResponse: TCResponseModel {
+    public struct InquirePriceCreateInstancesResponse: TCResponse {
         /// 询价信息。
         public let price: Price
 

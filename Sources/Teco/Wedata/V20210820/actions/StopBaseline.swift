@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// StopBaseline请求参数结构体
-    public struct StopBaselineRequest: TCRequestModel {
+    public struct StopBaselineRequest: TCRequest {
         /// 1
         public let baselineId: String
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// StopBaseline返回参数结构体
-    public struct StopBaselineResponse: TCResponseModel {
+    public struct StopBaselineResponse: TCResponse {
         /// 是否操作成功描述
         public let data: BooleanResponse
 

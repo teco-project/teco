@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeVirusManualScanEstimateTimeout请求参数结构体
-    public struct DescribeVirusManualScanEstimateTimeoutRequest: TCRequestModel {
+    public struct DescribeVirusManualScanEstimateTimeoutRequest: TCRequest {
         /// 扫描范围0容器1主机节点
         public let scanRangeType: UInt64
 
@@ -44,7 +44,7 @@ extension Tcss {
     }
 
     /// DescribeVirusManualScanEstimateTimeout返回参数结构体
-    public struct DescribeVirusManualScanEstimateTimeoutResponse: TCResponseModel {
+    public struct DescribeVirusManualScanEstimateTimeoutResponse: TCResponse {
         /// 预估超时时间(h)
         public let timeout: Float
 

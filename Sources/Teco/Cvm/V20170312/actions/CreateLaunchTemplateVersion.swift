@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// CreateLaunchTemplateVersion请求参数结构体
-    public struct CreateLaunchTemplateVersionRequest: TCRequestModel {
+    public struct CreateLaunchTemplateVersionRequest: TCRequest {
         /// 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目，所属宿主机（在专用宿主机上创建子机时指定）等属性。
         public let placement: Placement
 
@@ -207,7 +207,7 @@ extension Cvm {
     }
 
     /// CreateLaunchTemplateVersion返回参数结构体
-    public struct CreateLaunchTemplateVersionResponse: TCResponseModel {
+    public struct CreateLaunchTemplateVersionResponse: TCResponse {
         /// 新创建的实例启动模板版本号。
         public let launchTemplateVersionNumber: Int64
 

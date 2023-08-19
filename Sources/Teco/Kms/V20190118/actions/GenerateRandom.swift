@@ -20,7 +20,7 @@ import TecoCore
 
 extension Kms {
     /// GenerateRandom请求参数结构体
-    public struct GenerateRandomRequest: TCRequestModel {
+    public struct GenerateRandomRequest: TCRequest {
         /// 生成的随机数的长度。最小值为1， 最大值为1024。
         public let numberOfBytes: UInt64
 
@@ -34,7 +34,7 @@ extension Kms {
     }
 
     /// GenerateRandom返回参数结构体
-    public struct GenerateRandomResponse: TCResponseModel {
+    public struct GenerateRandomResponse: TCResponse {
         /// 生成的随机数的明文，该明文使用base64编码，用户需要使用base64解码得到明文。
         public let plaintext: String
 

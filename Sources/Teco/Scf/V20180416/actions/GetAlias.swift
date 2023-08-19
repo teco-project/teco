@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Scf {
     /// GetAlias请求参数结构体
-    public struct GetAliasRequest: TCRequestModel {
+    public struct GetAliasRequest: TCRequest {
         /// 函数名称
         public let functionName: String
 
@@ -46,7 +46,7 @@ extension Scf {
     }
 
     /// GetAlias返回参数结构体
-    public struct GetAliasResponse: TCResponseModel {
+    public struct GetAliasResponse: TCResponse {
         /// 别名指向的主版本
         public let functionVersion: String
 

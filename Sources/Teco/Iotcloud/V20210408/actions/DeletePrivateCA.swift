@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotcloud {
     /// DeletePrivateCA请求参数结构体
-    public struct DeletePrivateCARequest: TCRequestModel {
+    public struct DeletePrivateCARequest: TCRequest {
         /// 私有CA证书名称
         public let certName: String
 
@@ -34,7 +34,7 @@ extension Iotcloud {
     }
 
     /// DeletePrivateCA返回参数结构体
-    public struct DeletePrivateCAResponse: TCResponseModel {
+    public struct DeletePrivateCAResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

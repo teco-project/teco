@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// DescribeRealServerStatistics请求参数结构体
-    public struct DescribeRealServerStatisticsRequest: TCRequestModel {
+    public struct DescribeRealServerStatisticsRequest: TCRequest {
         /// 源站ID
         public let realServerId: String
 
@@ -64,7 +64,7 @@ extension Gaap {
     }
 
     /// DescribeRealServerStatistics返回参数结构体
-    public struct DescribeRealServerStatisticsResponse: TCResponseModel {
+    public struct DescribeRealServerStatisticsResponse: TCResponse {
         /// 指定监听器的源站状态统计数据
         public let statisticsData: [StatisticsDataInfo]
 

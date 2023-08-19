@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Ses {
     /// GetStatisticsReport请求参数结构体
-    public struct GetStatisticsReportRequest: TCRequestModel {
+    public struct GetStatisticsReportRequest: TCRequest {
         /// 开始日期
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -57,7 +57,7 @@ extension Ses {
     }
 
     /// GetStatisticsReport返回参数结构体
-    public struct GetStatisticsReportResponse: TCResponseModel {
+    public struct GetStatisticsReportResponse: TCResponse {
         /// 发信统计报告，按天
         public let dailyVolumes: [Volume]
 

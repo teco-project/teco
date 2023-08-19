@@ -20,7 +20,7 @@ import TecoCore
 
 extension Waf {
     /// DescribeAccessHistogram请求参数结构体
-    public struct DescribeAccessHistogramRequest: TCRequestModel {
+    public struct DescribeAccessHistogramRequest: TCRequest {
         /// 老版本查询的日志主题ID，新版本传空字符串即可
         public let topicId: String
 
@@ -54,7 +54,7 @@ extension Waf {
     }
 
     /// DescribeAccessHistogram返回参数结构体
-    public struct DescribeAccessHistogramResponse: TCResponseModel {
+    public struct DescribeAccessHistogramResponse: TCResponse {
         /// 柱状图间隔时间差，单位ms
         public let interval: Int64
 

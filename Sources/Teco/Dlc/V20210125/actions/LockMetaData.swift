@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// LockMetaData请求参数结构体
-    public struct LockMetaDataRequest: TCRequestModel {
+    public struct LockMetaDataRequest: TCRequest {
         /// 加锁内容
         public let lockComponentList: [LockComponentInfo]
 
@@ -54,7 +54,7 @@ extension Dlc {
     }
 
     /// LockMetaData返回参数结构体
-    public struct LockMetaDataResponse: TCResponseModel {
+    public struct LockMetaDataResponse: TCResponse {
         /// 锁id
         public let lockId: Int64
 

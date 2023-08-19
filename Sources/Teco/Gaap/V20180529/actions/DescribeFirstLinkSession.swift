@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// DescribeFirstLinkSession请求参数结构体
-    public struct DescribeFirstLinkSessionRequest: TCRequestModel {
+    public struct DescribeFirstLinkSessionRequest: TCRequest {
         /// 单次加速唯一会话Id
         public let sessionId: String
 
@@ -34,7 +34,7 @@ extension Gaap {
     }
 
     /// DescribeFirstLinkSession返回参数结构体
-    public struct DescribeFirstLinkSessionResponse: TCResponseModel {
+    public struct DescribeFirstLinkSessionResponse: TCResponse {
         /// 会话状态，具体如下：
         /// 1： 加速中；
         /// 0： 非加速中。

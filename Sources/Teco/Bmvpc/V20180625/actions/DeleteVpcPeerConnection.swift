@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmvpc {
     /// DeleteVpcPeerConnection请求参数结构体
-    public struct DeleteVpcPeerConnectionRequest: TCRequestModel {
+    public struct DeleteVpcPeerConnectionRequest: TCRequest {
         /// 黑石对等连接实例ID
         public let vpcPeerConnectionId: String
 
@@ -34,7 +34,7 @@ extension Bmvpc {
     }
 
     /// DeleteVpcPeerConnection返回参数结构体
-    public struct DeleteVpcPeerConnectionResponse: TCResponseModel {
+    public struct DeleteVpcPeerConnectionResponse: TCResponse {
         /// 任务ID
         public let taskId: UInt64
 

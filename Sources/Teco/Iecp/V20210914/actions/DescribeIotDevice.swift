@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// DescribeIotDevice请求参数结构体
-    public struct DescribeIotDeviceRequest: TCRequestModel {
+    public struct DescribeIotDeviceRequest: TCRequest {
         /// 设备id，传0值表示此参数无效
         public let deviceId: Int64?
 
@@ -42,7 +42,7 @@ extension Iecp {
     }
 
     /// DescribeIotDevice返回参数结构体
-    public struct DescribeIotDeviceResponse: TCResponseModel {
+    public struct DescribeIotDeviceResponse: TCResponse {
         /// 设备id
         public let id: Int64
 

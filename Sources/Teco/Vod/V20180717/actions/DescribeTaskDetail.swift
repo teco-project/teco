@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// DescribeTaskDetail请求参数结构体
-    public struct DescribeTaskDetailRequest: TCRequestModel {
+    public struct DescribeTaskDetailRequest: TCRequest {
         /// 视频处理任务的任务 ID。
         public let taskId: String
 
@@ -39,7 +39,7 @@ extension Vod {
     }
 
     /// DescribeTaskDetail返回参数结构体
-    public struct DescribeTaskDetailResponse: TCResponseModel {
+    public struct DescribeTaskDetailResponse: TCResponse {
         /// 任务类型，取值：
         /// - Procedure：视频处理任务；
         /// - EditMedia：视频编辑任务；

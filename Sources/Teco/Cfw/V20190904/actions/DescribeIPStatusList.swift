@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// DescribeIPStatusList请求参数结构体
-    public struct DescribeIPStatusListRequest: TCRequestModel {
+    public struct DescribeIPStatusListRequest: TCRequest {
         /// 资产Id
         public let ipList: [String]
 
@@ -34,7 +34,7 @@ extension Cfw {
     }
 
     /// DescribeIPStatusList返回参数结构体
-    public struct DescribeIPStatusListResponse: TCResponseModel {
+    public struct DescribeIPStatusListResponse: TCResponse {
         /// ip状态信息
         public let statusList: [IPDefendStatus]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Waf {
     /// DescribeCustomWhiteRule请求参数结构体
-    public struct DescribeCustomWhiteRuleRequest: TCRequestModel {
+    public struct DescribeCustomWhiteRuleRequest: TCRequest {
         /// 域名
         public let domain: String
 
@@ -59,7 +59,7 @@ extension Waf {
     }
 
     /// DescribeCustomWhiteRule返回参数结构体
-    public struct DescribeCustomWhiteRuleResponse: TCResponseModel {
+    public struct DescribeCustomWhiteRuleResponse: TCResponse {
         /// 规则详情
         public let ruleList: [DescribeCustomRulesRspRuleListItem]
 

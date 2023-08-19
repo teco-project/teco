@@ -20,7 +20,7 @@ import TecoCore
 
 extension Asr {
     /// SentenceRecognition请求参数结构体
-    public struct SentenceRecognitionRequest: TCRequestModel {
+    public struct SentenceRecognitionRequest: TCRequest {
         /// 引擎模型类型。
         /// 电话场景：
         /// • 8k_zh：中文电话通用；
@@ -172,7 +172,7 @@ extension Asr {
     }
 
     /// SentenceRecognition返回参数结构体
-    public struct SentenceRecognitionResponse: TCResponseModel {
+    public struct SentenceRecognitionResponse: TCResponse {
         /// 识别结果。
         public let result: String
 

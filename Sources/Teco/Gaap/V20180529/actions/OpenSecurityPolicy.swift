@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// OpenSecurityPolicy请求参数结构体
-    public struct OpenSecurityPolicyRequest: TCRequestModel {
+    public struct OpenSecurityPolicyRequest: TCRequest {
         /// 需开启安全策略的通道ID
         public let proxyId: String?
 
@@ -39,7 +39,7 @@ extension Gaap {
     }
 
     /// OpenSecurityPolicy返回参数结构体
-    public struct OpenSecurityPolicyResponse: TCResponseModel {
+    public struct OpenSecurityPolicyResponse: TCResponse {
         /// 异步流程ID，可以通过DescribeAsyncTaskStatus接口查询流程运行状态
         public let taskId: String
 

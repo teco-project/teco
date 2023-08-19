@@ -20,7 +20,7 @@ import TecoCore
 
 extension Antiddos {
     /// DescribeL7RulesBySSLCertId请求参数结构体
-    public struct DescribeL7RulesBySSLCertIdRequest: TCRequestModel {
+    public struct DescribeL7RulesBySSLCertIdRequest: TCRequest {
         /// 域名状态，可取bindable, binded, opened, closed, all，all表示全部状态
         public let status: String
 
@@ -39,7 +39,7 @@ extension Antiddos {
     }
 
     /// DescribeL7RulesBySSLCertId返回参数结构体
-    public struct DescribeL7RulesBySSLCertIdResponse: TCResponseModel {
+    public struct DescribeL7RulesBySSLCertIdResponse: TCResponse {
         /// 证书规则集合
         public let certSet: [CertIdInsL7Rules]
 

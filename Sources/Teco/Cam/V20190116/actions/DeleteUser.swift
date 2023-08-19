@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// DeleteUser请求参数结构体
-    public struct DeleteUserRequest: TCRequestModel {
+    public struct DeleteUserRequest: TCRequest {
         /// 子用户用户名
         public let name: String
 
@@ -39,7 +39,7 @@ extension Cam {
     }
 
     /// DeleteUser返回参数结构体
-    public struct DeleteUserResponse: TCResponseModel {
+    public struct DeleteUserResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

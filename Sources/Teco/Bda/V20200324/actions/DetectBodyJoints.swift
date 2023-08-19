@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bda {
     /// DetectBodyJoints请求参数结构体
-    public struct DetectBodyJointsRequest: TCRequestModel {
+    public struct DetectBodyJointsRequest: TCRequest {
         /// 图片 base64 数据，base64 编码后大小不可超过5M。
         /// 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         public let image: String?
@@ -51,7 +51,7 @@ extension Bda {
     }
 
     /// DetectBodyJoints返回参数结构体
-    public struct DetectBodyJointsResponse: TCResponseModel {
+    public struct DetectBodyJointsResponse: TCResponse {
         /// 图中检测出的人体框和人体关键点， 包含14个人体关键点的坐标，建议根据人体框置信度筛选出合格的人体；
         public let bodyJointsResults: [BodyJointsResult]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeClusterReleaseDetails请求参数结构体
-    public struct DescribeClusterReleaseDetailsRequest: TCRequestModel {
+    public struct DescribeClusterReleaseDetailsRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -49,7 +49,7 @@ extension Tke {
     }
 
     /// DescribeClusterReleaseDetails返回参数结构体
-    public struct DescribeClusterReleaseDetailsResponse: TCResponseModel {
+    public struct DescribeClusterReleaseDetailsResponse: TCResponse {
         /// 应用详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let release: ReleaseDetails?

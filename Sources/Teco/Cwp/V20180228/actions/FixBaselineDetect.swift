@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// FixBaselineDetect请求参数结构体
-    public struct FixBaselineDetectRequest: TCRequestModel {
+    public struct FixBaselineDetectRequest: TCRequest {
         /// 主机Id
         public let hostId: String
 
@@ -44,7 +44,7 @@ extension Cwp {
     }
 
     /// FixBaselineDetect返回参数结构体
-    public struct FixBaselineDetectResponse: TCResponseModel {
+    public struct FixBaselineDetectResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

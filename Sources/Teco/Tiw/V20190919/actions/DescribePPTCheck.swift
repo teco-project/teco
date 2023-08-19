@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiw {
     /// DescribePPTCheck请求参数结构体
-    public struct DescribePPTCheckRequest: TCRequestModel {
+    public struct DescribePPTCheckRequest: TCRequest {
         /// 客户的SdkAppId
         public let sdkAppId: Int64
 
@@ -39,7 +39,7 @@ extension Tiw {
     }
 
     /// DescribePPTCheck返回参数结构体
-    public struct DescribePPTCheckResponse: TCResponseModel {
+    public struct DescribePPTCheckResponse: TCResponse {
         /// 任务的唯一标识Id
         public let taskId: String
 

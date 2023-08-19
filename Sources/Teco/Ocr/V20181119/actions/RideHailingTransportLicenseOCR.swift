@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ocr {
     /// RideHailingTransportLicenseOCR请求参数结构体
-    public struct RideHailingTransportLicenseOCRRequest: TCRequestModel {
+    public struct RideHailingTransportLicenseOCRRequest: TCRequest {
         /// 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
         /// 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         public let imageBase64: String?
@@ -41,7 +41,7 @@ extension Ocr {
     }
 
     /// RideHailingTransportLicenseOCR返回参数结构体
-    public struct RideHailingTransportLicenseOCRResponse: TCResponseModel {
+    public struct RideHailingTransportLicenseOCRResponse: TCResponse {
         /// 交运管许可字号。
         public let operationLicenseNumber: String
 

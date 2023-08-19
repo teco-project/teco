@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// DescribeInstanceMonitorTookDist请求参数结构体
-    public struct DescribeInstanceMonitorTookDistRequest: TCRequestModel {
+    public struct DescribeInstanceMonitorTookDistRequest: TCRequest {
         /// 实例Id
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Redis {
     }
 
     /// DescribeInstanceMonitorTookDist返回参数结构体
-    public struct DescribeInstanceMonitorTookDistResponse: TCResponseModel {
+    public struct DescribeInstanceMonitorTookDistResponse: TCResponse {
         /// 时延分布信息
         public let data: [DelayDistribution]
 

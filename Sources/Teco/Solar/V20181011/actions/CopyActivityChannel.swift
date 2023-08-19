@@ -20,7 +20,7 @@ import TecoCore
 
 extension Solar {
     /// CopyActivityChannel请求参数结构体
-    public struct CopyActivityChannelRequest: TCRequestModel {
+    public struct CopyActivityChannelRequest: TCRequest {
         /// 活动ID
         public let activityId: String
 
@@ -44,7 +44,7 @@ extension Solar {
     }
 
     /// CopyActivityChannel返回参数结构体
-    public struct CopyActivityChannelResponse: TCResponseModel {
+    public struct CopyActivityChannelResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

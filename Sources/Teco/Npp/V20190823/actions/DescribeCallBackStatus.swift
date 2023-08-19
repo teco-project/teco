@@ -20,7 +20,7 @@ import TecoCore
 
 extension Npp {
     /// DescribeCallBackStatus请求参数结构体
-    public struct DescribeCallBackStatusRequest: TCRequestModel {
+    public struct DescribeCallBackStatusRequest: TCRequest {
         /// 业务appid
         public let bizAppId: String
 
@@ -54,7 +54,7 @@ extension Npp {
     }
 
     /// DescribeCallBackStatus返回参数结构体
-    public struct DescribeCallBackStatusResponse: TCResponseModel {
+    public struct DescribeCallBackStatusResponse: TCResponse {
         /// 错误码
         public let errorCode: String
 

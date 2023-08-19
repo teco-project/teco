@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// CreateFlowByFiles请求参数结构体
-    public struct CreateFlowByFilesRequest: TCRequestModel {
+    public struct CreateFlowByFilesRequest: TCRequest {
         /// 调用方信息
         public let caller: Caller
 
@@ -49,7 +49,7 @@ extension Essbasic {
     }
 
     /// CreateFlowByFiles返回参数结构体
-    public struct CreateFlowByFilesResponse: TCResponseModel {
+    public struct CreateFlowByFilesResponse: TCResponse {
         /// 流程ID
         public let flowId: String
 

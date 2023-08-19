@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dbbrain {
     /// ModifyDiagDBInstanceConf请求参数结构体
-    public struct ModifyDiagDBInstanceConfRequest: TCRequestModel {
+    public struct ModifyDiagDBInstanceConfRequest: TCRequest {
         /// 巡检开关。
         public let instanceConfs: InstanceConfs
 
@@ -49,7 +49,7 @@ extension Dbbrain {
     }
 
     /// ModifyDiagDBInstanceConf返回参数结构体
-    public struct ModifyDiagDBInstanceConfResponse: TCResponseModel {
+    public struct ModifyDiagDBInstanceConfResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// UpdateFleetCapacity请求参数结构体
-    public struct UpdateFleetCapacityRequest: TCRequestModel {
+    public struct UpdateFleetCapacityRequest: TCRequest {
         /// 服务器舰队ID
         public let fleetId: String
 
@@ -54,7 +54,7 @@ extension Gse {
     }
 
     /// UpdateFleetCapacity返回参数结构体
-    public struct UpdateFleetCapacityResponse: TCResponseModel {
+    public struct UpdateFleetCapacityResponse: TCResponse {
         /// 服务器舰队ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fleetId: String?

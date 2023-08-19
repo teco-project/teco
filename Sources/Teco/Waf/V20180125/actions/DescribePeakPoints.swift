@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Waf {
     /// DescribePeakPoints请求参数结构体
-    public struct DescribePeakPointsRequest: TCRequestModel {
+    public struct DescribePeakPointsRequest: TCRequest {
         /// 查询起始时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -80,7 +80,7 @@ extension Waf {
     }
 
     /// DescribePeakPoints返回参数结构体
-    public struct DescribePeakPointsResponse: TCResponseModel {
+    public struct DescribePeakPointsResponse: TCResponse {
         /// 数据点
         public let points: [PeakPointsItem]
 

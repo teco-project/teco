@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// ModifyInstancesVpcAttribute请求参数结构体
-    public struct ModifyInstancesVpcAttributeRequest: TCRequestModel {
+    public struct ModifyInstancesVpcAttributeRequest: TCRequest {
         /// 待操作的实例ID数组。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。
         public let instanceIds: [String]
 
@@ -53,7 +53,7 @@ extension Cvm {
     }
 
     /// ModifyInstancesVpcAttribute返回参数结构体
-    public struct ModifyInstancesVpcAttributeResponse: TCResponseModel {
+    public struct ModifyInstancesVpcAttributeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

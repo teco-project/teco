@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// DeleteQualityInspectTemplate请求参数结构体
-    public struct DeleteQualityInspectTemplateRequest: TCRequestModel {
+    public struct DeleteQualityInspectTemplateRequest: TCRequest {
         /// 音画质检测模板号。
         public let definition: UInt64
 
@@ -39,7 +39,7 @@ extension Vod {
     }
 
     /// DeleteQualityInspectTemplate返回参数结构体
-    public struct DeleteQualityInspectTemplateResponse: TCResponseModel {
+    public struct DeleteQualityInspectTemplateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

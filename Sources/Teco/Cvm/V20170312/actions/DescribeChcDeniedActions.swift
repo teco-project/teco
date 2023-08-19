@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// DescribeChcDeniedActions请求参数结构体
-    public struct DescribeChcDeniedActionsRequest: TCRequestModel {
+    public struct DescribeChcDeniedActionsRequest: TCRequest {
         /// CHC物理服务器实例id
         public let chcIds: [String]
 
@@ -34,7 +34,7 @@ extension Cvm {
     }
 
     /// DescribeChcDeniedActions返回参数结构体
-    public struct DescribeChcDeniedActionsResponse: TCResponseModel {
+    public struct DescribeChcDeniedActionsResponse: TCResponse {
         /// CHC实例禁止操作信息
         public let chcHostDeniedActionSet: [ChcHostDeniedActions]
 

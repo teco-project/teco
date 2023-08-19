@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// DescribeBindUsr请求参数结构体
-    public struct DescribeBindUsrRequest: TCRequestModel {
+    public struct DescribeBindUsrRequest: TCRequest {
         /// 设备TID
         public let tid: String
 
@@ -39,7 +39,7 @@ extension Iotvideo {
     }
 
     /// DescribeBindUsr返回参数结构体
-    public struct DescribeBindUsrResponse: TCResponseModel {
+    public struct DescribeBindUsrResponse: TCResponse {
         /// 具有绑定关系的终端用户信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [BindUsrInfo]?

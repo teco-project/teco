@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeScreenShotSheetNumList请求参数结构体
-    public struct DescribeScreenShotSheetNumListRequest: TCRequestModel {
+    public struct DescribeScreenShotSheetNumListRequest: TCRequest {
         /// 起始时间点，接口查询支持两种时间格式：
         /// 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见IOS日期格式说明文档: https://cloud.tencent.com/document/product/266/11732#I
         /// 2）YYYY-MM-DD hh:mm:ss：使用此格式时，默认代表北京时间。
@@ -59,7 +59,7 @@ extension Live {
     }
 
     /// DescribeScreenShotSheetNumList返回参数结构体
-    public struct DescribeScreenShotSheetNumListResponse: TCResponseModel {
+    public struct DescribeScreenShotSheetNumListResponse: TCResponse {
         /// 数据信息列表。
         public let dataInfoList: [TimeValue]
 

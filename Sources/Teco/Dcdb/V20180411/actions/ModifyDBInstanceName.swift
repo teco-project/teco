@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dcdb {
     /// ModifyDBInstanceName请求参数结构体
-    public struct ModifyDBInstanceNameRequest: TCRequestModel {
+    public struct ModifyDBInstanceNameRequest: TCRequest {
         /// 实例ID，形如tdsql-hdaprz0v
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Dcdb {
     }
 
     /// ModifyDBInstanceName返回参数结构体
-    public struct ModifyDBInstanceNameResponse: TCResponseModel {
+    public struct ModifyDBInstanceNameResponse: TCResponse {
         /// 实例ID
         public let instanceId: String
 

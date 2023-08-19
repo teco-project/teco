@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Dayu {
     /// CreateUnblockIp请求参数结构体
-    public struct CreateUnblockIpRequest: TCRequestModel {
+    public struct CreateUnblockIpRequest: TCRequest {
         /// IP
         public let ip: String
 
@@ -41,7 +41,7 @@ extension Dayu {
     }
 
     /// CreateUnblockIp返回参数结构体
-    public struct CreateUnblockIpResponse: TCResponseModel {
+    public struct CreateUnblockIpResponse: TCResponse {
         /// IP
         public let ip: String
 

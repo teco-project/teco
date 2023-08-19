@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cbs {
     /// ModifyDiskAttributes请求参数结构体
-    public struct ModifyDiskAttributesRequest: TCRequestModel {
+    public struct ModifyDiskAttributesRequest: TCRequest {
         /// 一个或多个待操作的云硬盘ID。如果传入多个云盘ID，仅支持所有云盘修改为同一属性。
         public let diskIds: [String]
 
@@ -71,7 +71,7 @@ extension Cbs {
     }
 
     /// ModifyDiskAttributes返回参数结构体
-    public struct ModifyDiskAttributesResponse: TCResponseModel {
+    public struct ModifyDiskAttributesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

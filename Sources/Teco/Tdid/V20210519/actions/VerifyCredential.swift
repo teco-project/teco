@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdid {
     /// VerifyCredential请求参数结构体
-    public struct VerifyCredentialRequest: TCRequestModel {
+    public struct VerifyCredentialRequest: TCRequest {
         /// 参数集合
         public let functionArg: VerifyFunctionArg
 
@@ -34,7 +34,7 @@ extension Tdid {
     }
 
     /// VerifyCredential返回参数结构体
-    public struct VerifyCredentialResponse: TCResponseModel {
+    public struct VerifyCredentialResponse: TCResponse {
         /// 是否验证成功
         public let result: Bool
 

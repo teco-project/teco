@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mongodb {
     /// AssignProject请求参数结构体
-    public struct AssignProjectRequest: TCRequestModel {
+    public struct AssignProjectRequest: TCRequest {
         /// 实例ID列表，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
         public let instanceIds: [String]
 
@@ -39,7 +39,7 @@ extension Mongodb {
     }
 
     /// AssignProject返回参数结构体
-    public struct AssignProjectResponse: TCResponseModel {
+    public struct AssignProjectResponse: TCResponse {
         /// 返回的异步任务ID列表
         public let flowIds: [UInt64]
 

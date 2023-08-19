@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// ListPolicies请求参数结构体
-    public struct ListPoliciesRequest: TCRequestModel {
+    public struct ListPoliciesRequest: TCRequest {
         /// 每页数量，默认值是 20，必须大于 0 且小于或等于 200
         public let rp: UInt64?
 
@@ -49,7 +49,7 @@ extension Cam {
     }
 
     /// ListPolicies返回参数结构体
-    public struct ListPoliciesResponse: TCResponseModel {
+    public struct ListPoliciesResponse: TCResponse {
         /// 策略总数
         public let totalNum: UInt64
 

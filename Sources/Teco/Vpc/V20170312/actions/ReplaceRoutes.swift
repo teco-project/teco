@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// ReplaceRoutes请求参数结构体
-    public struct ReplaceRoutesRequest: TCRequestModel {
+    public struct ReplaceRoutesRequest: TCRequest {
         /// 路由表实例ID，例如：rtb-azd4dt1c。
         public let routeTableId: String
 
@@ -39,7 +39,7 @@ extension Vpc {
     }
 
     /// ReplaceRoutes返回参数结构体
-    public struct ReplaceRoutesResponse: TCResponseModel {
+    public struct ReplaceRoutesResponse: TCResponse {
         /// 原路由策略信息。
         public let oldRouteSet: [Route]
 

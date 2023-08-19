@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rkp {
     /// QueryDevAndRisk请求参数结构体
-    public struct QueryDevAndRiskRequest: TCRequestModel {
+    public struct QueryDevAndRiskRequest: TCRequest {
         /// 设备类型 0表示Android， 1表示IOS
         public let devType: Int64
 
@@ -149,7 +149,7 @@ extension Rkp {
     }
 
     /// QueryDevAndRisk返回参数结构体
-    public struct QueryDevAndRiskResponse: TCResponseModel {
+    public struct QueryDevAndRiskResponse: TCResponse {
         /// 是否查得
         public let found: Int64
 

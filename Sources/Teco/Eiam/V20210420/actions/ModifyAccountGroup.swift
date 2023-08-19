@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eiam {
     /// ModifyAccountGroup请求参数结构体
-    public struct ModifyAccountGroupRequest: TCRequestModel {
+    public struct ModifyAccountGroupRequest: TCRequest {
         /// 账号组ID。
         public let accountGroupId: String
 
@@ -44,7 +44,7 @@ extension Eiam {
     }
 
     /// ModifyAccountGroup返回参数结构体
-    public struct ModifyAccountGroupResponse: TCResponseModel {
+    public struct ModifyAccountGroupResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

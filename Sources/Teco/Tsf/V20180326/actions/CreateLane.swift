@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// CreateLane请求参数结构体
-    public struct CreateLaneRequest: TCRequestModel {
+    public struct CreateLaneRequest: TCRequest {
         /// 泳道名称
         public let laneName: String
 
@@ -48,7 +48,7 @@ extension Tsf {
     }
 
     /// CreateLane返回参数结构体
-    public struct CreateLaneResponse: TCResponseModel {
+    public struct CreateLaneResponse: TCResponse {
         /// 泳道ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: String?

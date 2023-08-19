@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeCloudBaseBuildService请求参数结构体
-    public struct DescribeCloudBaseBuildServiceRequest: TCRequestModel {
+    public struct DescribeCloudBaseBuildServiceRequest: TCRequest {
         /// 环境id
         public let envId: String
 
@@ -54,7 +54,7 @@ extension Tcb {
     }
 
     /// DescribeCloudBaseBuildService返回参数结构体
-    public struct DescribeCloudBaseBuildServiceResponse: TCResponseModel {
+    public struct DescribeCloudBaseBuildServiceResponse: TCResponse {
         /// 上传url
         public let uploadUrl: String
 

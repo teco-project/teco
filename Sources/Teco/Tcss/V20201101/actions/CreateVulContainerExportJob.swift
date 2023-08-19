@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// CreateVulContainerExportJob请求参数结构体
-    public struct CreateVulContainerExportJobRequest: TCRequestModel {
+    public struct CreateVulContainerExportJobRequest: TCRequest {
         /// 漏洞PocID
         public let pocID: String
 
@@ -52,7 +52,7 @@ extension Tcss {
     }
 
     /// CreateVulContainerExportJob返回参数结构体
-    public struct CreateVulContainerExportJobResponse: TCResponseModel {
+    public struct CreateVulContainerExportJobResponse: TCResponse {
         /// 导出任务ID，前端拿着任务ID查询任务进度
         public let jobId: String
 

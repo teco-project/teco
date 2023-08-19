@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dayu {
     /// DescribeResIpList请求参数结构体
-    public struct DescribeResIpListRequest: TCRequestModel {
+    public struct DescribeResIpListRequest: TCRequest {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
         public let business: String
 
@@ -39,7 +39,7 @@ extension Dayu {
     }
 
     /// DescribeResIpList返回参数结构体
-    public struct DescribeResIpListResponse: TCResponseModel {
+    public struct DescribeResIpListResponse: TCResponse {
         /// 资源的IP列表
         public let resource: [ResourceIp]
 

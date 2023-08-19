@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// BindApiGroup请求参数结构体
-    public struct BindApiGroupRequest: TCRequestModel {
+    public struct BindApiGroupRequest: TCRequest {
         /// 分组绑定网关列表
         public let groupGatewayList: [GatewayGroupIds]
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// BindApiGroup返回参数结构体
-    public struct BindApiGroupResponse: TCResponseModel {
+    public struct BindApiGroupResponse: TCResponse {
         /// 返回结果，成功失败
         public let result: Bool
 

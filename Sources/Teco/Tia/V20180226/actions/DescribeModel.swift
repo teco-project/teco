@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tia {
     /// DescribeModel请求参数结构体
-    public struct DescribeModelRequest: TCRequestModel {
+    public struct DescribeModelRequest: TCRequest {
         /// 模型名称
         public let name: String
 
@@ -44,7 +44,7 @@ extension Tia {
     }
 
     /// DescribeModel返回参数结构体
-    public struct DescribeModelResponse: TCResponseModel {
+    public struct DescribeModelResponse: TCResponse {
         /// 模型信息
         public let model: Model
 

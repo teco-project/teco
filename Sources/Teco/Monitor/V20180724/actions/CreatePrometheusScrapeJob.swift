@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// CreatePrometheusScrapeJob请求参数结构体
-    public struct CreatePrometheusScrapeJobRequest: TCRequestModel {
+    public struct CreatePrometheusScrapeJobRequest: TCRequest {
         /// Prometheus 实例 ID，例如：prom-abcd1234
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Monitor {
     }
 
     /// CreatePrometheusScrapeJob返回参数结构体
-    public struct CreatePrometheusScrapeJobResponse: TCResponseModel {
+    public struct CreatePrometheusScrapeJobResponse: TCResponse {
         /// 成功创建抓取任务 Id
         public let jobId: String
 

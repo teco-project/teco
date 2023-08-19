@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// ModifyProject请求参数结构体
-    public struct ModifyProjectRequest: TCRequestModel {
+    public struct ModifyProjectRequest: TCRequest {
         /// 项目 id
         public let id: UInt64
 
@@ -74,7 +74,7 @@ extension Rum {
     }
 
     /// ModifyProject返回参数结构体
-    public struct ModifyProjectResponse: TCResponseModel {
+    public struct ModifyProjectResponse: TCResponse {
         /// 操作信息
         public let msg: String
 

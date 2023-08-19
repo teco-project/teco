@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// ModifySecurityPolicy请求参数结构体
-    public struct ModifySecurityPolicyRequest: TCRequestModel {
+    public struct ModifySecurityPolicyRequest: TCRequest {
         /// 实例的Id
         public let registryId: String
 
@@ -49,7 +49,7 @@ extension Tcr {
     }
 
     /// ModifySecurityPolicy返回参数结构体
-    public struct ModifySecurityPolicyResponse: TCResponseModel {
+    public struct ModifySecurityPolicyResponse: TCResponse {
         /// 实例Id
         public let registryId: String
 

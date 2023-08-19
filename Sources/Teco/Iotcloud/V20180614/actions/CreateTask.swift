@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotcloud {
     /// CreateTask请求参数结构体
-    public struct CreateTaskRequest: TCRequestModel {
+    public struct CreateTaskRequest: TCRequest {
         /// 任务类型，取值为 “UpdateShadow” 或者 “PublishMessage”
         public let taskType: String
 
@@ -59,7 +59,7 @@ extension Iotcloud {
     }
 
     /// CreateTask返回参数结构体
-    public struct CreateTaskResponse: TCResponseModel {
+    public struct CreateTaskResponse: TCResponse {
         /// 创建的任务ID
         public let taskId: String
 

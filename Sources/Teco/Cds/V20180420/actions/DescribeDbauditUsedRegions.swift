@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cds {
     /// DescribeDbauditUsedRegions请求参数结构体
-    public struct DescribeDbauditUsedRegionsRequest: TCRequestModel {
+    public struct DescribeDbauditUsedRegionsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeDbauditUsedRegions返回参数结构体
-    public struct DescribeDbauditUsedRegionsResponse: TCResponseModel {
+    public struct DescribeDbauditUsedRegionsResponse: TCResponse {
         /// 可售卖地域信息列表
         public let regionSet: [RegionInfo]
 

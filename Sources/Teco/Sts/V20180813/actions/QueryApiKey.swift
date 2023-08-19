@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sts {
     /// QueryApiKey请求参数结构体
-    public struct QueryApiKeyRequest: TCRequestModel {
+    public struct QueryApiKeyRequest: TCRequest {
         /// 待查询的账号(不填默认查当前账号)
         public let targetUin: UInt64?
 
@@ -34,7 +34,7 @@ extension Sts {
     }
 
     /// QueryApiKey返回参数结构体
-    public struct QueryApiKeyResponse: TCResponseModel {
+    public struct QueryApiKeyResponse: TCResponse {
         /// 密钥ID列表
         public let idKeys: [ApiKey]
 

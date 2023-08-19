@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// ListAccessKeys请求参数结构体
-    public struct ListAccessKeysRequest: TCRequestModel {
+    public struct ListAccessKeysRequest: TCRequest {
         /// 指定用户Uin，不填默认列出当前用户访问密钥
         public let targetUin: UInt64?
 
@@ -34,7 +34,7 @@ extension Cam {
     }
 
     /// ListAccessKeys返回参数结构体
-    public struct ListAccessKeysResponse: TCResponseModel {
+    public struct ListAccessKeysResponse: TCResponse {
         /// 访问密钥列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accessKeys: [AccessKey]?

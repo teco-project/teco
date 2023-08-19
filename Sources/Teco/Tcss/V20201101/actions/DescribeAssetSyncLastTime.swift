@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeAssetSyncLastTime请求参数结构体
-    public struct DescribeAssetSyncLastTimeRequest: TCRequestModel {
+    public struct DescribeAssetSyncLastTimeRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeAssetSyncLastTime返回参数结构体
-    public struct DescribeAssetSyncLastTimeResponse: TCResponseModel {
+    public struct DescribeAssetSyncLastTimeResponse: TCResponse {
         /// 资产最近同步时间
         public let assetSyncLastTime: String
 

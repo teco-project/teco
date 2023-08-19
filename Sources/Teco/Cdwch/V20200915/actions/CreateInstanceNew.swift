@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdwch {
     /// CreateInstanceNew请求参数结构体
-    public struct CreateInstanceNewRequest: TCRequestModel {
+    public struct CreateInstanceNewRequest: TCRequest {
         /// 可用区
         public let zone: String
 
@@ -99,7 +99,7 @@ extension Cdwch {
     }
 
     /// CreateInstanceNew返回参数结构体
-    public struct CreateInstanceNewResponse: TCResponseModel {
+    public struct CreateInstanceNewResponse: TCResponse {
         /// 流程ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowId: String?

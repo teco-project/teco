@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// ModifyLoadBalancerAttributes请求参数结构体
-    public struct ModifyLoadBalancerAttributesRequest: TCRequestModel {
+    public struct ModifyLoadBalancerAttributesRequest: TCRequest {
         /// 负载均衡的唯一ID
         public let loadBalancerId: String
 
@@ -49,7 +49,7 @@ extension Ecm {
     }
 
     /// ModifyLoadBalancerAttributes返回参数结构体
-    public struct ModifyLoadBalancerAttributesResponse: TCResponseModel {
+    public struct ModifyLoadBalancerAttributesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

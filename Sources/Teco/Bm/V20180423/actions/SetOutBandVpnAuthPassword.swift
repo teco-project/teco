@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// SetOutBandVpnAuthPassword请求参数结构体
-    public struct SetOutBandVpnAuthPasswordRequest: TCRequestModel {
+    public struct SetOutBandVpnAuthPasswordRequest: TCRequest {
         /// 设置的Vpn认证密码
         public let password: String
 
@@ -39,7 +39,7 @@ extension Bm {
     }
 
     /// SetOutBandVpnAuthPassword返回参数结构体
-    public struct SetOutBandVpnAuthPasswordResponse: TCResponseModel {
+    public struct SetOutBandVpnAuthPasswordResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cloudhsm {
     /// GetVsmMonitorInfo请求参数结构体
-    public struct GetVsmMonitorInfoRequest: TCRequestModel {
+    public struct GetVsmMonitorInfoRequest: TCRequest {
         /// 资源Id
         public let resourceId: String
 
@@ -39,7 +39,7 @@ extension Cloudhsm {
     }
 
     /// GetVsmMonitorInfo返回参数结构体
-    public struct GetVsmMonitorInfoResponse: TCResponseModel {
+    public struct GetVsmMonitorInfoResponse: TCResponse {
         /// VSM监控信息
         public let monitorInfo: [String]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mrs {
     /// TextToObject请求参数结构体
-    public struct TextToObjectRequest: TCRequestModel {
+    public struct TextToObjectRequest: TCRequest {
         /// 报告文本
         public let text: String
 
@@ -58,7 +58,7 @@ extension Mrs {
     }
 
     /// TextToObject返回参数结构体
-    public struct TextToObjectResponse: TCResponseModel {
+    public struct TextToObjectResponse: TCResponse {
         /// 报告结构化结果
         public let template: Template
 

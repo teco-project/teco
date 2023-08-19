@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// CreateFileConfig请求参数结构体
-    public struct CreateFileConfigRequest: TCRequestModel {
+    public struct CreateFileConfigRequest: TCRequest {
         /// 配置项名称
         public let configName: String
 
@@ -83,7 +83,7 @@ extension Tsf {
     }
 
     /// CreateFileConfig返回参数结构体
-    public struct CreateFileConfigResponse: TCResponseModel {
+    public struct CreateFileConfigResponse: TCResponse {
         /// true：创建成功；false：创建失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

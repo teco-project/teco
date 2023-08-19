@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sms {
     /// DescribeSmsTemplateList请求参数结构体
-    public struct DescribeSmsTemplateListRequest: TCRequestModel {
+    public struct DescribeSmsTemplateListRequest: TCRequest {
         /// 模板 ID 数组。
         public let templateIdSet: [UInt64]
 
@@ -41,7 +41,7 @@ extension Sms {
     }
 
     /// DescribeSmsTemplateList返回参数结构体
-    public struct DescribeSmsTemplateListResponse: TCResponseModel {
+    public struct DescribeSmsTemplateListResponse: TCResponse {
         /// 获取短信模板信息响应
         public let describeTemplateStatusSet: [DescribeTemplateListStatus]
 

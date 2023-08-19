@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dasb {
     /// DeleteCmdTemplates请求参数结构体
-    public struct DeleteCmdTemplatesRequest: TCRequestModel {
+    public struct DeleteCmdTemplatesRequest: TCRequest {
         /// 待删除的ID集合
         public let idSet: [UInt64]
 
@@ -34,7 +34,7 @@ extension Dasb {
     }
 
     /// DeleteCmdTemplates返回参数结构体
-    public struct DeleteCmdTemplatesResponse: TCResponseModel {
+    public struct DeleteCmdTemplatesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

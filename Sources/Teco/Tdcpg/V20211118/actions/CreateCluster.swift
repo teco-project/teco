@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdcpg {
     /// CreateCluster请求参数结构体
-    public struct CreateClusterRequest: TCRequestModel {
+    public struct CreateClusterRequest: TCRequest {
         /// 可用区
         public let zone: String
 
@@ -131,7 +131,7 @@ extension Tdcpg {
     }
 
     /// CreateCluster返回参数结构体
-    public struct CreateClusterResponse: TCResponseModel {
+    public struct CreateClusterResponse: TCResponse {
         /// 订单号
         public let dealNameSet: [String]
 

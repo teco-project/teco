@@ -20,7 +20,7 @@ import TecoCore
 
 extension Chdfs {
     /// DescribeAccessGroups请求参数结构体
-    public struct DescribeAccessGroupsRequest: TCRequestModel {
+    public struct DescribeAccessGroupsRequest: TCRequest {
         /// VPC网络ID
         /// 备注：入参只能指定VpcId和OwnerUin的其中一个
         public let vpcId: String?
@@ -40,7 +40,7 @@ extension Chdfs {
     }
 
     /// DescribeAccessGroups返回参数结构体
-    public struct DescribeAccessGroupsResponse: TCResponseModel {
+    public struct DescribeAccessGroupsResponse: TCResponse {
         /// 权限组列表
         public let accessGroups: [AccessGroup]
 

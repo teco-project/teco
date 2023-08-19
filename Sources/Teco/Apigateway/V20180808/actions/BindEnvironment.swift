@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// BindEnvironment请求参数结构体
-    public struct BindEnvironmentRequest: TCRequestModel {
+    public struct BindEnvironmentRequest: TCRequest {
         /// 待绑定的使用计划唯一 ID 列表。
         public let usagePlanIds: [String]
 
@@ -54,7 +54,7 @@ extension Apigateway {
     }
 
     /// BindEnvironment返回参数结构体
-    public struct BindEnvironmentResponse: TCResponseModel {
+    public struct BindEnvironmentResponse: TCResponse {
         /// 绑定操作是否成功。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

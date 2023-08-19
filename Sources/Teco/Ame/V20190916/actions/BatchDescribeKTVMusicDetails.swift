@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ame {
     /// BatchDescribeKTVMusicDetails请求参数结构体
-    public struct BatchDescribeKTVMusicDetailsRequest: TCRequestModel {
+    public struct BatchDescribeKTVMusicDetailsRequest: TCRequest {
         /// 歌曲Id列表，注：列表最大长度为50
         public let musicIds: [String]
 
@@ -34,7 +34,7 @@ extension Ame {
     }
 
     /// BatchDescribeKTVMusicDetails返回参数结构体
-    public struct BatchDescribeKTVMusicDetailsResponse: TCResponseModel {
+    public struct BatchDescribeKTVMusicDetailsResponse: TCResponse {
         /// 歌曲详情列表信息
         public let ktvMusicDetailInfoSet: [KTVMusicDetailInfo]
 

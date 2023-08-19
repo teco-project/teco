@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// DescribeApplicationVisualization请求参数结构体
-    public struct DescribeApplicationVisualizationRequest: TCRequestModel {
+    public struct DescribeApplicationVisualizationRequest: TCRequest {
         /// 应用模板ID
         public let applicationId: UInt64
 
@@ -34,7 +34,7 @@ extension Iecp {
     }
 
     /// DescribeApplicationVisualization返回参数结构体
-    public struct DescribeApplicationVisualizationResponse: TCResponseModel {
+    public struct DescribeApplicationVisualizationResponse: TCResponse {
         /// 基本信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let basicInfo: ApplicationBasicInfo?

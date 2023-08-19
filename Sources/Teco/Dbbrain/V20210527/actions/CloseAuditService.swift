@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dbbrain {
     /// CloseAuditService请求参数结构体
-    public struct CloseAuditServiceRequest: TCRequestModel {
+    public struct CloseAuditServiceRequest: TCRequest {
         /// 服务产品类型，支持值包括： "dcdb" - 云数据库 Tdsql， "mariadb" - 云数据库 MariaDB。
         public let product: String
 
@@ -44,7 +44,7 @@ extension Dbbrain {
     }
 
     /// CloseAuditService返回参数结构体
-    public struct CloseAuditServiceResponse: TCResponseModel {
+    public struct CloseAuditServiceResponse: TCResponse {
         /// 0-关闭审计成功，非0关闭审计失败。
         public let taskId: Int64
 

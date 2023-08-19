@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// UpdateBucketCORSOpt请求参数结构体
-    public struct UpdateBucketCORSOptRequest: TCRequestModel {
+    public struct UpdateBucketCORSOptRequest: TCRequest {
         /// 允许的访问来源;具体参见 [cos文档](https://cloud.tencent.com/document/product/436/8279)
         public let allowedOrigins: [String]
 
@@ -54,7 +54,7 @@ extension Gse {
     }
 
     /// UpdateBucketCORSOpt返回参数结构体
-    public struct UpdateBucketCORSOptResponse: TCResponseModel {
+    public struct UpdateBucketCORSOptResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

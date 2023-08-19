@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// DescribeSparkSessionBatchSqlLog请求参数结构体
-    public struct DescribeSparkSessionBatchSqlLogRequest: TCRequestModel {
+    public struct DescribeSparkSessionBatchSqlLogRequest: TCRequest {
         /// SparkSQL唯一标识
         public let batchId: String
 
@@ -34,7 +34,7 @@ extension Dlc {
     }
 
     /// DescribeSparkSessionBatchSqlLog返回参数结构体
-    public struct DescribeSparkSessionBatchSqlLogResponse: TCResponseModel {
+    public struct DescribeSparkSessionBatchSqlLogResponse: TCResponse {
         /// 状态：0：初始化、1：成功、2：失败、3：取消、4：异常；
         public let state: UInt64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DescribeParamTemplateInfo请求参数结构体
-    public struct DescribeParamTemplateInfoRequest: TCRequestModel {
+    public struct DescribeParamTemplateInfoRequest: TCRequest {
         /// 参数模板 ID。
         public let templateId: Int64
 
@@ -34,7 +34,7 @@ extension Cdb {
     }
 
     /// DescribeParamTemplateInfo返回参数结构体
-    public struct DescribeParamTemplateInfoResponse: TCResponseModel {
+    public struct DescribeParamTemplateInfoResponse: TCResponse {
         /// 参数模板 ID。
         public let templateId: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trp {
     /// CreateCorporationOrder请求参数结构体
-    public struct CreateCorporationOrderRequest: TCRequestModel {
+    public struct CreateCorporationOrderRequest: TCRequest {
         /// 企业名称
         public let corpName: String
 
@@ -74,7 +74,7 @@ extension Trp {
     }
 
     /// CreateCorporationOrder返回参数结构体
-    public struct CreateCorporationOrderResponse: TCResponseModel {
+    public struct CreateCorporationOrderResponse: TCResponse {
         /// 企业ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let corpId: UInt64?

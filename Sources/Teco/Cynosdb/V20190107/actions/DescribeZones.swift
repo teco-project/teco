@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// DescribeZones请求参数结构体
-    public struct DescribeZonesRequest: TCRequestModel {
+    public struct DescribeZonesRequest: TCRequest {
         /// 是否包含虚拟区
         public let includeVirtualZones: Bool?
 
@@ -39,7 +39,7 @@ extension Cynosdb {
     }
 
     /// DescribeZones返回参数结构体
-    public struct DescribeZonesResponse: TCResponseModel {
+    public struct DescribeZonesResponse: TCResponse {
         /// 地域信息
         public let regionSet: [SaleRegion]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// UpdateClusterVersion请求参数结构体
-    public struct UpdateClusterVersionRequest: TCRequestModel {
+    public struct UpdateClusterVersionRequest: TCRequest {
         /// 集群 Id
         public let clusterId: String
 
@@ -54,7 +54,7 @@ extension Tke {
     }
 
     /// UpdateClusterVersion返回参数结构体
-    public struct UpdateClusterVersionResponse: TCResponseModel {
+    public struct UpdateClusterVersionResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

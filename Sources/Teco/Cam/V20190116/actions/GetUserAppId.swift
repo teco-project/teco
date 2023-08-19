@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cam {
     /// GetUserAppId请求参数结构体
-    public struct GetUserAppIdRequest: TCRequestModel {
+    public struct GetUserAppIdRequest: TCRequest {
         public init() {
         }
     }
 
     /// GetUserAppId返回参数结构体
-    public struct GetUserAppIdResponse: TCResponseModel {
+    public struct GetUserAppIdResponse: TCResponse {
         /// 当前账号Uin
         public let uin: String
 

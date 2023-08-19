@@ -20,7 +20,7 @@ import TecoCore
 
 extension Keewidb {
     /// ModifyConnectionConfig请求参数结构体
-    public struct ModifyConnectionConfigRequest: TCRequestModel {
+    public struct ModifyConnectionConfigRequest: TCRequest {
         /// 实例 ID，如：kee-6ubh****。
         public let instanceId: String
 
@@ -50,7 +50,7 @@ extension Keewidb {
     }
 
     /// ModifyConnectionConfig返回参数结构体
-    public struct ModifyConnectionConfigResponse: TCResponseModel {
+    public struct ModifyConnectionConfigResponse: TCResponse {
         /// 任务 ID。
         public let taskId: Int64
 

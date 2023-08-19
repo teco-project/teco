@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DeleteTimeWindow请求参数结构体
-    public struct DeleteTimeWindowRequest: TCRequestModel {
+    public struct DeleteTimeWindowRequest: TCRequest {
         /// 实例 ID，格式如：cdb-c1nl9rpv 或者 cdbro-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Cdb {
     }
 
     /// DeleteTimeWindow返回参数结构体
-    public struct DeleteTimeWindowResponse: TCResponseModel {
+    public struct DeleteTimeWindowResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

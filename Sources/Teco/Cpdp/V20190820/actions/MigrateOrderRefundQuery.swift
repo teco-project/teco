@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// MigrateOrderRefundQuery请求参数结构体
-    public struct MigrateOrderRefundQueryRequest: TCRequestModel {
+    public struct MigrateOrderRefundQueryRequest: TCRequest {
         /// 商户号
         public let merchantId: String
 
@@ -54,7 +54,7 @@ extension Cpdp {
     }
 
     /// MigrateOrderRefundQuery返回参数结构体
-    public struct MigrateOrderRefundQueryResponse: TCResponseModel {
+    public struct MigrateOrderRefundQueryResponse: TCResponse {
         /// 请求成功状态
         public let isSuccess: Bool
 

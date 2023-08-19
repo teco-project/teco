@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// DeleteReviewTemplate请求参数结构体
-    public struct DeleteReviewTemplateRequest: TCRequestModel {
+    public struct DeleteReviewTemplateRequest: TCRequest {
         /// 审核模板唯一标识。
         public let definition: Int64
 
@@ -39,7 +39,7 @@ extension Vod {
     }
 
     /// DeleteReviewTemplate返回参数结构体
-    public struct DeleteReviewTemplateResponse: TCResponseModel {
+    public struct DeleteReviewTemplateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

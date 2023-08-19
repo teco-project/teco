@@ -20,7 +20,7 @@ import TecoCore
 
 extension Soe {
     /// TransmitOralProcess请求参数结构体
-    public struct TransmitOralProcessRequest: TCRequestModel {
+    public struct TransmitOralProcessRequest: TCRequest {
         /// 流式数据包的序号，从1开始，当IsEnd字段为1后后续序号无意义，当IsLongLifeSession不为1且为非流式模式时无意义。
         /// 注意：序号上限为3000，不能超过上限。
         public let seqId: Int64
@@ -82,7 +82,7 @@ extension Soe {
     }
 
     /// TransmitOralProcess返回参数结构体
-    public struct TransmitOralProcessResponse: TCResponseModel {
+    public struct TransmitOralProcessResponse: TCResponse {
         /// 发音精准度，取值范围[-1, 100]，当取-1时指完全不匹配，当为句子模式时，是所有已识别单词准确度的加权平均值，在reftext中但未识别出来的词不计入分数中。当为流式模式且请求中IsEnd未置1时，取值无意义。
         public let pronAccuracy: Float
 

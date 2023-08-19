@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiia {
     /// DetectEnvelope请求参数结构体
-    public struct DetectEnvelopeRequest: TCRequestModel {
+    public struct DetectEnvelopeRequest: TCRequest {
         /// 图片的URL地址。图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。
         /// 非腾讯云存储的Url速度和稳定性可能受一定影响。
         /// 图片大小的限制为4M，图片像素的限制为4k。
@@ -43,7 +43,7 @@ extension Tiia {
     }
 
     /// DetectEnvelope返回参数结构体
-    public struct DetectEnvelopeResponse: TCResponseModel {
+    public struct DetectEnvelopeResponse: TCResponse {
         /// 一级标签结果数组。识别是否文件封。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let firstTags: [ImageTag]?

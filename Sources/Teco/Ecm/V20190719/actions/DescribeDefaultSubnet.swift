@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// DescribeDefaultSubnet请求参数结构体
-    public struct DescribeDefaultSubnetRequest: TCRequestModel {
+    public struct DescribeDefaultSubnetRequest: TCRequest {
         /// ECM地域
         public let ecmRegion: String
 
@@ -39,7 +39,7 @@ extension Ecm {
     }
 
     /// DescribeDefaultSubnet返回参数结构体
-    public struct DescribeDefaultSubnetResponse: TCResponseModel {
+    public struct DescribeDefaultSubnetResponse: TCResponse {
         /// 默认子网信息，若无子网，则为空数据。
         public let subnet: Subnet
 

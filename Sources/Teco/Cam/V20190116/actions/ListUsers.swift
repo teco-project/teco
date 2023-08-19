@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cam {
     /// ListUsers请求参数结构体
-    public struct ListUsersRequest: TCRequestModel {
+    public struct ListUsersRequest: TCRequest {
         public init() {
         }
     }
 
     /// ListUsers返回参数结构体
-    public struct ListUsersResponse: TCResponseModel {
+    public struct ListUsersResponse: TCResponse {
         /// 子用户信息
         public let data: [SubAccountInfo]
 

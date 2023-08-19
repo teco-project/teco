@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// PublishCmqMsg请求参数结构体
-    public struct PublishCmqMsgRequest: TCRequestModel {
+    public struct PublishCmqMsgRequest: TCRequest {
         /// 主题名
         public let topicName: String
 
@@ -44,7 +44,7 @@ extension Tdmq {
     }
 
     /// PublishCmqMsg返回参数结构体
-    public struct PublishCmqMsgResponse: TCResponseModel {
+    public struct PublishCmqMsgResponse: TCResponse {
         /// true表示发送成功
         public let result: Bool
 

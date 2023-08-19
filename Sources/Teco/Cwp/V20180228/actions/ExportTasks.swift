@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ExportTasks请求参数结构体
-    public struct ExportTasksRequest: TCRequestModel {
+    public struct ExportTasksRequest: TCRequest {
         /// 任务ID
         public let taskId: String
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// ExportTasks返回参数结构体
-    public struct ExportTasksResponse: TCResponseModel {
+    public struct ExportTasksResponse: TCResponse {
         /// PENDING：正在生成下载链接，FINISHED：下载链接已生成，ERROR：网络异常等异常情况
         public let status: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Oceanus {
     /// StopJobs请求参数结构体
-    public struct StopJobsRequest: TCRequestModel {
+    public struct StopJobsRequest: TCRequest {
         /// 批量停止作业的描述信息
         public let stopJobDescriptions: [StopJobDescription]
 
@@ -39,7 +39,7 @@ extension Oceanus {
     }
 
     /// StopJobs返回参数结构体
-    public struct StopJobsResponse: TCResponseModel {
+    public struct StopJobsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

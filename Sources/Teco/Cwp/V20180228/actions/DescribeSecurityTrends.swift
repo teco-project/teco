@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cwp {
     /// DescribeSecurityTrends请求参数结构体
-    public struct DescribeSecurityTrendsRequest: TCRequestModel {
+    public struct DescribeSecurityTrendsRequest: TCRequest {
         /// 开始时间，如：2021-07-10
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -47,7 +47,7 @@ extension Cwp {
     }
 
     /// DescribeSecurityTrends返回参数结构体
-    public struct DescribeSecurityTrendsResponse: TCResponseModel {
+    public struct DescribeSecurityTrendsResponse: TCResponse {
         /// 木马事件统计数据数组。
         public let malwares: [SecurityTrend]
 

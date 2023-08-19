@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// GenerateSignedVideoURL请求参数结构体
-    public struct GenerateSignedVideoURLRequest: TCRequestModel {
+    public struct GenerateSignedVideoURLRequest: TCRequest {
         /// 视频播放原始URL地址
         public let videoURL: String
 
@@ -39,7 +39,7 @@ extension Iotvideo {
     }
 
     /// GenerateSignedVideoURL返回参数结构体
-    public struct GenerateSignedVideoURLResponse: TCResponseModel {
+    public struct GenerateSignedVideoURLResponse: TCResponse {
         /// 视频防盗链播放URL
         public let signedVideoURL: String
 

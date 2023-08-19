@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmvpc {
     /// DeleteVpnGateway请求参数结构体
-    public struct DeleteVpnGatewayRequest: TCRequestModel {
+    public struct DeleteVpnGatewayRequest: TCRequest {
         /// VPN网关实例ID。
         public let vpnGatewayId: String
 
@@ -34,7 +34,7 @@ extension Bmvpc {
     }
 
     /// DeleteVpnGateway返回参数结构体
-    public struct DeleteVpnGatewayResponse: TCResponseModel {
+    public struct DeleteVpnGatewayResponse: TCResponse {
         /// 任务ID
         public let taskId: UInt64
 

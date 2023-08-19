@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// ProcessMediaByProcedure请求参数结构体
-    public struct ProcessMediaByProcedureRequest: TCRequestModel {
+    public struct ProcessMediaByProcedureRequest: TCRequest {
         /// 媒体文件 ID。
         public let fileId: String
 
@@ -69,7 +69,7 @@ extension Vod {
     }
 
     /// ProcessMediaByProcedure返回参数结构体
-    public struct ProcessMediaByProcedureResponse: TCResponseModel {
+    public struct ProcessMediaByProcedureResponse: TCResponse {
         /// 任务类型为 Procedure 的任务 ID，当入参 ProcedureName 对应的任务流模板指定了 MediaProcessTask、AiAnalysisTask、AiRecognitionTask 中的一个或多个时发起该任务。
         public let taskId: String
 

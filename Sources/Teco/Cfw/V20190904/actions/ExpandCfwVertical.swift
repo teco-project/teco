@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// ExpandCfwVertical请求参数结构体
-    public struct ExpandCfwVerticalRequest: TCRequestModel {
+    public struct ExpandCfwVerticalRequest: TCRequest {
         /// nat：nat防火墙，ew：东西向防火墙
         public let fwType: String
 
@@ -44,7 +44,7 @@ extension Cfw {
     }
 
     /// ExpandCfwVertical返回参数结构体
-    public struct ExpandCfwVerticalResponse: TCResponseModel {
+    public struct ExpandCfwVerticalResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

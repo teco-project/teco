@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// DescribeImageFilterPersonal请求参数结构体
-    public struct DescribeImageFilterPersonalRequest: TCRequestModel {
+    public struct DescribeImageFilterPersonalRequest: TCRequest {
         /// 仓库名称
         public let repoName: String
 
@@ -39,7 +39,7 @@ extension Tcr {
     }
 
     /// DescribeImageFilterPersonal返回参数结构体
-    public struct DescribeImageFilterPersonalResponse: TCResponseModel {
+    public struct DescribeImageFilterPersonalResponse: TCResponse {
         /// 返回tag镜像内容相同的tag列表
         public let data: SameImagesResp
 

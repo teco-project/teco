@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssm {
     /// UpdateRotationStatus请求参数结构体
-    public struct UpdateRotationStatusRequest: TCRequestModel {
+    public struct UpdateRotationStatusRequest: TCRequest {
         /// 云产品凭据名称。
         public let secretName: String
 
@@ -52,7 +52,7 @@ extension Ssm {
     }
 
     /// UpdateRotationStatus返回参数结构体
-    public struct UpdateRotationStatusResponse: TCResponseModel {
+    public struct UpdateRotationStatusResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

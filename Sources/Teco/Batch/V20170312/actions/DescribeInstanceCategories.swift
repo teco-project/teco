@@ -20,13 +20,13 @@ import TecoCore
 
 extension Batch {
     /// DescribeInstanceCategories请求参数结构体
-    public struct DescribeInstanceCategoriesRequest: TCRequestModel {
+    public struct DescribeInstanceCategoriesRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeInstanceCategories返回参数结构体
-    public struct DescribeInstanceCategoriesResponse: TCResponseModel {
+    public struct DescribeInstanceCategoriesResponse: TCResponse {
         /// CVM实例分类列表
         public let instanceCategorySet: [InstanceCategoryItem]
 

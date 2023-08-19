@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// ModifyEnvironmentAttributes请求参数结构体
-    public struct ModifyEnvironmentAttributesRequest: TCRequestModel {
+    public struct ModifyEnvironmentAttributesRequest: TCRequest {
         /// 命名空间名称。
         public let environmentId: String
 
@@ -59,7 +59,7 @@ extension Tdmq {
     }
 
     /// ModifyEnvironmentAttributes返回参数结构体
-    public struct ModifyEnvironmentAttributesResponse: TCResponseModel {
+    public struct ModifyEnvironmentAttributesResponse: TCResponse {
         /// 命名空间名称。
         public let environmentId: String
 

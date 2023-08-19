@@ -20,7 +20,7 @@ import TecoCore
 
 extension Nlp {
     /// TextWriting请求参数结构体
-    public struct TextWritingRequest: TCRequestModel {
+    public struct TextWritingRequest: TCRequest {
         /// 待续写的句子，文本统一使用utf-8格式编码，长度不超过200字符。
         public let text: String
 
@@ -65,7 +65,7 @@ extension Nlp {
     }
 
     /// TextWriting返回参数结构体
-    public struct TextWritingResponse: TCResponseModel {
+    public struct TextWritingResponse: TCResponse {
         /// 续写结果列表。
         public let writingList: [Writing]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DescribeSubnets请求参数结构体
-    public struct DescribeSubnetsRequest: TCRequestModel {
+    public struct DescribeSubnetsRequest: TCRequest {
         /// 子网实例ID查询。形如：subnet-pxir56ns。每次请求的实例的上限为100。参数不支持同时指定SubnetIds和Filters。
         public let subnetIds: [String]?
 
@@ -62,7 +62,7 @@ extension Vpc {
     }
 
     /// DescribeSubnets返回参数结构体
-    public struct DescribeSubnetsResponse: TCResponseModel {
+    public struct DescribeSubnetsResponse: TCResponse {
         /// 符合条件的实例数量。
         public let totalCount: UInt64
 

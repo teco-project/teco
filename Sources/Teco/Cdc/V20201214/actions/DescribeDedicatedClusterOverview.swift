@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdc {
     /// DescribeDedicatedClusterOverview请求参数结构体
-    public struct DescribeDedicatedClusterOverviewRequest: TCRequestModel {
+    public struct DescribeDedicatedClusterOverviewRequest: TCRequest {
         /// 集群id
         public let dedicatedClusterId: String
 
@@ -34,7 +34,7 @@ extension Cdc {
     }
 
     /// DescribeDedicatedClusterOverview返回参数结构体
-    public struct DescribeDedicatedClusterOverviewResponse: TCResponseModel {
+    public struct DescribeDedicatedClusterOverviewResponse: TCResponse {
         /// 云服务器数量
         public let cvmCount: UInt64
 

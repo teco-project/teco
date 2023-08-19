@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tmt {
     /// LanguageDetect请求参数结构体
-    public struct LanguageDetectRequest: TCRequestModel {
+    public struct LanguageDetectRequest: TCRequest {
         /// 待识别的文本，文本统一使用utf-8格式编码，非utf-8格式编码字符会翻译失败。单次请求的文本长度需要低于2000。
         public let text: String
 
@@ -39,7 +39,7 @@ extension Tmt {
     }
 
     /// LanguageDetect返回参数结构体
-    public struct LanguageDetectResponse: TCResponseModel {
+    public struct LanguageDetectResponse: TCResponse {
         /// 识别出的语言种类，参考语言列表
         /// - zh : 中文
         /// - en : 英文

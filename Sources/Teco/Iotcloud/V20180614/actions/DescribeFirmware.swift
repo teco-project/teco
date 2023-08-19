@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotcloud {
     /// DescribeFirmware请求参数结构体
-    public struct DescribeFirmwareRequest: TCRequestModel {
+    public struct DescribeFirmwareRequest: TCRequest {
         /// 产品ID
         public let productID: String
 
@@ -39,7 +39,7 @@ extension Iotcloud {
     }
 
     /// DescribeFirmware返回参数结构体
-    public struct DescribeFirmwareResponse: TCResponseModel {
+    public struct DescribeFirmwareResponse: TCResponse {
         /// 固件版本号
         public let version: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// DescribeGroup请求参数结构体
-    public struct DescribeGroupRequest: TCRequestModel {
+    public struct DescribeGroupRequest: TCRequest {
         /// 群组ID
         public let groupId: String
 
@@ -39,7 +39,7 @@ extension Lcic {
     }
 
     /// DescribeGroup返回参数结构体
-    public struct DescribeGroupResponse: TCResponseModel {
+    public struct DescribeGroupResponse: TCResponse {
         /// 群组ID
         public let groupId: String
 

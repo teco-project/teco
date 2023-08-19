@@ -20,7 +20,7 @@ import TecoCore
 
 extension Domain {
     /// BatchModifyDomainInfo请求参数结构体
-    public struct BatchModifyDomainInfoRequest: TCRequestModel {
+    public struct BatchModifyDomainInfoRequest: TCRequest {
         /// 批量修改的域名。
         public let domains: [String]
 
@@ -46,7 +46,7 @@ extension Domain {
     }
 
     /// BatchModifyDomainInfo返回参数结构体
-    public struct BatchModifyDomainInfoResponse: TCResponseModel {
+    public struct BatchModifyDomainInfoResponse: TCResponse {
         /// 日志ID
         public let logId: Int64
 

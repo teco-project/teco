@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Eb {
     /// GetEventBus请求参数结构体
-    public struct GetEventBusRequest: TCRequestModel {
+    public struct GetEventBusRequest: TCRequest {
         /// 事件集ID
         public let eventBusId: String
 
@@ -36,7 +36,7 @@ extension Eb {
     }
 
     /// GetEventBus返回参数结构体
-    public struct GetEventBusResponse: TCResponseModel {
+    public struct GetEventBusResponse: TCResponse {
         /// 更新时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected

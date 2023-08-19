@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// ModifyPullStreamConfig请求参数结构体
-    public struct ModifyPullStreamConfigRequest: TCRequestModel {
+    public struct ModifyPullStreamConfigRequest: TCRequest {
         /// 配置 ID。
         /// 获取来源：
         /// 1. 创建拉流配置接口CreatePullStreamConfig返回的配置 ID。
@@ -94,7 +94,7 @@ extension Live {
     }
 
     /// ModifyPullStreamConfig返回参数结构体
-    public struct ModifyPullStreamConfigResponse: TCResponseModel {
+    public struct ModifyPullStreamConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

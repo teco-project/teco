@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tem {
     /// DeleteIngress请求参数结构体
-    public struct DeleteIngressRequest: TCRequestModel {
+    public struct DeleteIngressRequest: TCRequest {
         /// 环境ID
         public let environmentId: String
 
@@ -49,7 +49,7 @@ extension Tem {
     }
 
     /// DeleteIngress返回参数结构体
-    public struct DeleteIngressResponse: TCResponseModel {
+    public struct DeleteIngressResponse: TCResponse {
         /// 是否删除成功
         public let result: Bool
 

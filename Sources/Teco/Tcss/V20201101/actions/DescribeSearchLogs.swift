@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeSearchLogs请求参数结构体
-    public struct DescribeSearchLogsRequest: TCRequestModel {
+    public struct DescribeSearchLogsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeSearchLogs返回参数结构体
-    public struct DescribeSearchLogsResponse: TCResponseModel {
+    public struct DescribeSearchLogsResponse: TCResponse {
         /// 历史搜索记录 保留最新的10条
         public let data: [String]
 

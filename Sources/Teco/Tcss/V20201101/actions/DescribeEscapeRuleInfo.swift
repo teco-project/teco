@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeEscapeRuleInfo请求参数结构体
-    public struct DescribeEscapeRuleInfoRequest: TCRequestModel {
+    public struct DescribeEscapeRuleInfoRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeEscapeRuleInfo返回参数结构体
-    public struct DescribeEscapeRuleInfoResponse: TCResponseModel {
+    public struct DescribeEscapeRuleInfoResponse: TCResponse {
         /// 规则信息
         public let ruleSet: [EscapeRule]
 

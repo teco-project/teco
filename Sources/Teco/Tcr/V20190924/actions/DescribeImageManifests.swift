@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// DescribeImageManifests请求参数结构体
-    public struct DescribeImageManifestsRequest: TCRequestModel {
+    public struct DescribeImageManifestsRequest: TCRequest {
         /// 实例ID
         public let registryId: String
 
@@ -49,7 +49,7 @@ extension Tcr {
     }
 
     /// DescribeImageManifests返回参数结构体
-    public struct DescribeImageManifestsResponse: TCResponseModel {
+    public struct DescribeImageManifestsResponse: TCResponse {
         /// 镜像的Manifest信息
         public let manifest: String
 

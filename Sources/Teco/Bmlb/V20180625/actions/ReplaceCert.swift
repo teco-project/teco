@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmlb {
     /// ReplaceCert请求参数结构体
-    public struct ReplaceCertRequest: TCRequestModel {
+    public struct ReplaceCertRequest: TCRequest {
         /// 要被替换的证书ID
         public let oldCertId: String
 
@@ -54,7 +54,7 @@ extension Bmlb {
     }
 
     /// ReplaceCert返回参数结构体
-    public struct ReplaceCertResponse: TCResponseModel {
+    public struct ReplaceCertResponse: TCResponse {
         /// 新证书ID。
         public let newCertId: String
 

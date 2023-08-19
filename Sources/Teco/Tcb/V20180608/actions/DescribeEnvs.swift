@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeEnvs请求参数结构体
-    public struct DescribeEnvsRequest: TCRequestModel {
+    public struct DescribeEnvsRequest: TCRequest {
         /// 环境ID，如果传了这个参数则只返回该环境的相关信息
         public let envId: String?
 
@@ -45,7 +45,7 @@ extension Tcb {
     }
 
     /// DescribeEnvs返回参数结构体
-    public struct DescribeEnvsResponse: TCResponseModel {
+    public struct DescribeEnvsResponse: TCResponse {
         /// 环境信息列表
         public let envList: [EnvInfo]
 

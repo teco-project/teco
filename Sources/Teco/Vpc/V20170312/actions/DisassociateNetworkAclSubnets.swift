@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DisassociateNetworkAclSubnets请求参数结构体
-    public struct DisassociateNetworkAclSubnetsRequest: TCRequestModel {
+    public struct DisassociateNetworkAclSubnetsRequest: TCRequest {
         /// 网络ACL实例ID。例如：acl-12345678。
         public let networkAclId: String
 
@@ -39,7 +39,7 @@ extension Vpc {
     }
 
     /// DisassociateNetworkAclSubnets返回参数结构体
-    public struct DisassociateNetworkAclSubnetsResponse: TCResponseModel {
+    public struct DisassociateNetworkAclSubnetsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

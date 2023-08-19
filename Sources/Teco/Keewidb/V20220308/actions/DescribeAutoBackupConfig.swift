@@ -20,7 +20,7 @@ import TecoCore
 
 extension Keewidb {
     /// DescribeAutoBackupConfig请求参数结构体
-    public struct DescribeAutoBackupConfigRequest: TCRequestModel {
+    public struct DescribeAutoBackupConfigRequest: TCRequest {
         /// 实例 ID。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Keewidb {
     }
 
     /// DescribeAutoBackupConfig返回参数结构体
-    public struct DescribeAutoBackupConfigResponse: TCResponseModel {
+    public struct DescribeAutoBackupConfigResponse: TCResponse {
         /// 自动备份的周期。包括：Monday，Tuesday，Wednesday，Thursday，Friday，Saturday，Sunday。
         public let weekDays: [String]
 

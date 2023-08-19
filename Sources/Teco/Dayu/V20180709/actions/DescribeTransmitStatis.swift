@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Dayu {
     /// DescribeTransmitStatis请求参数结构体
-    public struct DescribeTransmitStatisRequest: TCRequestModel {
+    public struct DescribeTransmitStatisRequest: TCRequest {
         /// 大禹子产品代号（bgpip表示高防IP；net表示高防IP专业版；bgp表示独享包；bgp-multip表示共享包）
         public let business: String
 
@@ -74,7 +74,7 @@ extension Dayu {
     }
 
     /// DescribeTransmitStatis返回参数结构体
-    public struct DescribeTransmitStatisResponse: TCResponseModel {
+    public struct DescribeTransmitStatisResponse: TCResponse {
         /// 当MetricName=traffic时，表示入流量带宽，单位bps；
         /// 当MetricName=pkg时，表示入包速率，单位pps；
         public let inDataList: [Float]

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Csip {
     /// DescribeScanReportList请求参数结构体
-    public struct DescribeScanReportListRequest: TCRequestModel {
+    public struct DescribeScanReportListRequest: TCRequest {
         /// 列表过滤条件
         public let filter: Filter?
 
@@ -34,7 +34,7 @@ extension Csip {
     }
 
     /// DescribeScanReportList返回参数结构体
-    public struct DescribeScanReportListResponse: TCResponseModel {
+    public struct DescribeScanReportListResponse: TCResponse {
         /// 总条数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?

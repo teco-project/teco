@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Antiddos {
     /// DescribeBizMonitorTrend请求参数结构体
-    public struct DescribeBizMonitorTrendRequest: TCRequestModel {
+    public struct DescribeBizMonitorTrendRequest: TCRequest {
         /// DDoS防护子产品代号（bgpip表示高防IP）
         public let business: String
 
@@ -67,7 +67,7 @@ extension Antiddos {
     }
 
     /// DescribeBizMonitorTrend返回参数结构体
-    public struct DescribeBizMonitorTrendResponse: TCResponseModel {
+    public struct DescribeBizMonitorTrendResponse: TCResponse {
         /// 曲线图各个时间点的值
         public let dataList: [Float]
 

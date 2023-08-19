@@ -20,7 +20,7 @@ import TecoCore
 
 extension Yinsuda {
     /// RechargeLiveVip请求参数结构体
-    public struct RechargeLiveVipRequest: TCRequestModel {
+    public struct RechargeLiveVipRequest: TCRequest {
         /// 应用名称。
         public let appName: String
 
@@ -71,7 +71,7 @@ extension Yinsuda {
     }
 
     /// RechargeLiveVip返回参数结构体
-    public struct RechargeLiveVipResponse: TCResponseModel {
+    public struct RechargeLiveVipResponse: TCResponse {
         /// 直播会员信息。
         public let liveVipUserInfo: LiveVipUserInfo
 

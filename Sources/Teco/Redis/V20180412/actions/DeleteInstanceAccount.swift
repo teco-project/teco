@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// DeleteInstanceAccount请求参数结构体
-    public struct DeleteInstanceAccountRequest: TCRequestModel {
+    public struct DeleteInstanceAccountRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Redis {
     }
 
     /// DeleteInstanceAccount返回参数结构体
-    public struct DeleteInstanceAccountResponse: TCResponseModel {
+    public struct DeleteInstanceAccountResponse: TCResponse {
         /// 任务ID
         public let taskId: Int64
 

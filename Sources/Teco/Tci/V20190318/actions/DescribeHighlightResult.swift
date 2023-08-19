@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tci {
     /// DescribeHighlightResult请求参数结构体
-    public struct DescribeHighlightResultRequest: TCRequestModel {
+    public struct DescribeHighlightResultRequest: TCRequest {
         /// 精彩集锦任务唯一id。在URL方式时提交请求后会返回一个JobId，后续查询该url的结果时使用这个JobId进行查询。
         public let jobId: Int64
 
@@ -34,7 +34,7 @@ extension Tci {
     }
 
     /// DescribeHighlightResult返回参数结构体
-    public struct DescribeHighlightResultResponse: TCResponseModel {
+    public struct DescribeHighlightResultResponse: TCResponse {
         /// 精彩集锦详细信息。
         public let highlightsInfo: [HighlightsInfomation]
 

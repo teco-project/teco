@@ -20,7 +20,7 @@ import TecoCore
 
 extension Kms {
     /// ImportKeyMaterial请求参数结构体
-    public struct ImportKeyMaterialRequest: TCRequestModel {
+    public struct ImportKeyMaterialRequest: TCRequest {
         /// 使用GetParametersForImport 返回的PublicKey加密后的密钥材料base64编码。对于国密版本region的KMS，导入的密钥材料长度要求为 128 bit，FIPS版本region的KMS， 导入的密钥材料长度要求为 256 bit。
         public let encryptedKeyMaterial: String
 
@@ -49,7 +49,7 @@ extension Kms {
     }
 
     /// ImportKeyMaterial返回参数结构体
-    public struct ImportKeyMaterialResponse: TCResponseModel {
+    public struct ImportKeyMaterialResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

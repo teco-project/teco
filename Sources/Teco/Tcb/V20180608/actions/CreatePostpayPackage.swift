@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// CreatePostpayPackage请求参数结构体
-    public struct CreatePostpayPackageRequest: TCRequestModel {
+    public struct CreatePostpayPackageRequest: TCRequest {
         /// 环境ID，需要系统自动创建环境时，此字段不传
         public let envId: String?
 
@@ -95,7 +95,7 @@ extension Tcb {
     }
 
     /// CreatePostpayPackage返回参数结构体
-    public struct CreatePostpayPackageResponse: TCResponseModel {
+    public struct CreatePostpayPackageResponse: TCResponse {
         /// 后付费订单号
         public let tranId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// ReleaseWanAddress请求参数结构体
-    public struct ReleaseWanAddressRequest: TCRequestModel {
+    public struct ReleaseWanAddressRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Redis {
     }
 
     /// ReleaseWanAddress返回参数结构体
-    public struct ReleaseWanAddressResponse: TCResponseModel {
+    public struct ReleaseWanAddressResponse: TCResponse {
         /// 异步流程ID
         public let flowId: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Asw {
     /// DescribeExecution请求参数结构体
-    public struct DescribeExecutionRequest: TCRequestModel {
+    public struct DescribeExecutionRequest: TCRequest {
         /// 执行资源名
         public let executionResourceName: String
 
@@ -34,7 +34,7 @@ extension Asw {
     }
 
     /// DescribeExecution返回参数结构体
-    public struct DescribeExecutionResponse: TCResponseModel {
+    public struct DescribeExecutionResponse: TCResponse {
         /// 执行资源名
         public let executionResourceName: String
 

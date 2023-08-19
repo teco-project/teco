@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// UpdateRowFilter请求参数结构体
-    public struct UpdateRowFilterRequest: TCRequestModel {
+    public struct UpdateRowFilterRequest: TCRequest {
         /// 行过滤策略的id，此值可以通过DescribeUserInfo或者DescribeWorkGroupInfo接口获取
         public let policyId: Int64
 
@@ -39,7 +39,7 @@ extension Dlc {
     }
 
     /// UpdateRowFilter返回参数结构体
-    public struct UpdateRowFilterResponse: TCResponseModel {
+    public struct UpdateRowFilterResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// UpdateSSOAccount请求参数结构体
-    public struct UpdateSSOAccountRequest: TCRequestModel {
+    public struct UpdateSSOAccountRequest: TCRequest {
         /// Grafana 实例 ID，例如：grafana-abcdefgh
         public let instanceId: String
 
@@ -49,7 +49,7 @@ extension Monitor {
     }
 
     /// UpdateSSOAccount返回参数结构体
-    public struct UpdateSSOAccountResponse: TCResponseModel {
+    public struct UpdateSSOAccountResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

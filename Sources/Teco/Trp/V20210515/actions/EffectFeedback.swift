@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trp {
     /// EffectFeedback请求参数结构体
-    public struct EffectFeedbackRequest: TCRequestModel {
+    public struct EffectFeedbackRequest: TCRequest {
         /// 业务加密入参。
         public let businessSecurityData: InputEncryptData
 
@@ -34,7 +34,7 @@ extension Trp {
     }
 
     /// EffectFeedback返回参数结构体
-    public struct EffectFeedbackResponse: TCResponseModel {
+    public struct EffectFeedbackResponse: TCResponse {
         /// 业务出参。
         public let data: OutputAuthorizedTransfer
 

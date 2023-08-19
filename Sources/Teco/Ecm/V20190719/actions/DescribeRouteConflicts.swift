@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// DescribeRouteConflicts请求参数结构体
-    public struct DescribeRouteConflictsRequest: TCRequestModel {
+    public struct DescribeRouteConflictsRequest: TCRequest {
         /// 路由表实例ID，例如：rtb-azd4dt1c。
         public let routeTableId: String
 
@@ -39,7 +39,7 @@ extension Ecm {
     }
 
     /// DescribeRouteConflicts返回参数结构体
-    public struct DescribeRouteConflictsResponse: TCResponseModel {
+    public struct DescribeRouteConflictsResponse: TCResponse {
         /// 路由策略冲突列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let routeConflictSet: [RouteConflict]?

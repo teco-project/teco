@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// DescribeResourcesByTag请求参数结构体
-    public struct DescribeResourcesByTagRequest: TCRequestModel {
+    public struct DescribeResourcesByTagRequest: TCRequest {
         /// 标签键。
         public let tagKey: String
 
@@ -48,7 +48,7 @@ extension Gaap {
     }
 
     /// DescribeResourcesByTag返回参数结构体
-    public struct DescribeResourcesByTagResponse: TCResponseModel {
+    public struct DescribeResourcesByTagResponse: TCResponse {
         /// 资源总数
         public let totalCount: Int64
 

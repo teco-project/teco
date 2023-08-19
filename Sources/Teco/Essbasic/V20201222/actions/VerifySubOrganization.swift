@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// VerifySubOrganization请求参数结构体
-    public struct VerifySubOrganizationRequest: TCRequestModel {
+    public struct VerifySubOrganizationRequest: TCRequest {
         /// 调用方信息，该接口SubOrganizationId必填
         public let caller: Caller
 
@@ -39,7 +39,7 @@ extension Essbasic {
     }
 
     /// VerifySubOrganization返回参数结构体
-    public struct VerifySubOrganizationResponse: TCResponseModel {
+    public struct VerifySubOrganizationResponse: TCResponse {
         /// 子机构ID
         public let subOrganizationId: String
 

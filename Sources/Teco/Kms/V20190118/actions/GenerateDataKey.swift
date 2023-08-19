@@ -20,7 +20,7 @@ import TecoCore
 
 extension Kms {
     /// GenerateDataKey请求参数结构体
-    public struct GenerateDataKeyRequest: TCRequestModel {
+    public struct GenerateDataKeyRequest: TCRequest {
         /// CMK全局唯一标识符
         public let keyId: String
 
@@ -59,7 +59,7 @@ extension Kms {
     }
 
     /// GenerateDataKey返回参数结构体
-    public struct GenerateDataKeyResponse: TCResponseModel {
+    public struct GenerateDataKeyResponse: TCResponse {
         /// CMK的全局唯一标识
         public let keyId: String
 

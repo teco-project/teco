@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tem {
     /// ModifyConfigData请求参数结构体
-    public struct ModifyConfigDataRequest: TCRequestModel {
+    public struct ModifyConfigDataRequest: TCRequest {
         /// 环境 ID
         public let environmentId: String
 
@@ -49,7 +49,7 @@ extension Tem {
     }
 
     /// ModifyConfigData返回参数结构体
-    public struct ModifyConfigDataResponse: TCResponseModel {
+    public struct ModifyConfigDataResponse: TCResponse {
         /// 编辑是否成功
         public let result: Bool
 

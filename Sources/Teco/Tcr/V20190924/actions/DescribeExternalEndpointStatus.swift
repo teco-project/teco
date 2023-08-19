@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// DescribeExternalEndpointStatus请求参数结构体
-    public struct DescribeExternalEndpointStatusRequest: TCRequestModel {
+    public struct DescribeExternalEndpointStatusRequest: TCRequest {
         /// 实例Id
         public let registryId: String
 
@@ -34,7 +34,7 @@ extension Tcr {
     }
 
     /// DescribeExternalEndpointStatus返回参数结构体
-    public struct DescribeExternalEndpointStatusResponse: TCResponseModel {
+    public struct DescribeExternalEndpointStatusResponse: TCResponse {
         /// 开启公网访问状态，开启中（Opening）、已开启（Opened）、关闭（Closed）
         public let status: String
 

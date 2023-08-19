@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Dasb {
     /// CreateAcl请求参数结构体
-    public struct CreateAclRequest: TCRequestModel {
+    public struct CreateAclRequest: TCRequest {
         /// 权限名称，最大32字符，不能包含空白字符
         public let name: String
 
@@ -169,7 +169,7 @@ extension Dasb {
     }
 
     /// CreateAcl返回参数结构体
-    public struct CreateAclResponse: TCResponseModel {
+    public struct CreateAclResponse: TCResponse {
         /// 新建成功的访问权限ID
         public let id: UInt64
 

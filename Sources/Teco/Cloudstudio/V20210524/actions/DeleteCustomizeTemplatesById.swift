@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cloudstudio {
     /// DeleteCustomizeTemplatesById请求参数结构体
-    public struct DeleteCustomizeTemplatesByIdRequest: TCRequestModel {
+    public struct DeleteCustomizeTemplatesByIdRequest: TCRequest {
         /// 用户所属组
         public let cloudStudioSessionTeam: String
 
@@ -39,7 +39,7 @@ extension Cloudstudio {
     }
 
     /// DeleteCustomizeTemplatesById返回参数结构体
-    public struct DeleteCustomizeTemplatesByIdResponse: TCResponseModel {
+    public struct DeleteCustomizeTemplatesByIdResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ModifyOrderAttribute请求参数结构体
-    public struct ModifyOrderAttributeRequest: TCRequestModel {
+    public struct ModifyOrderAttributeRequest: TCRequest {
         /// 授权类型 0 专业版-按量计费, 1专业版-包年包月 , 2 旗舰版-包年包月
         public let licenseType: UInt64
 
@@ -49,7 +49,7 @@ extension Cwp {
     }
 
     /// ModifyOrderAttribute返回参数结构体
-    public struct ModifyOrderAttributeResponse: TCResponseModel {
+    public struct ModifyOrderAttributeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Chdfs {
     /// DescribeAccessRules请求参数结构体
-    public struct DescribeAccessRulesRequest: TCRequestModel {
+    public struct DescribeAccessRulesRequest: TCRequest {
         /// 权限组ID
         public let accessGroupId: String
 
@@ -34,7 +34,7 @@ extension Chdfs {
     }
 
     /// DescribeAccessRules返回参数结构体
-    public struct DescribeAccessRulesResponse: TCResponseModel {
+    public struct DescribeAccessRulesResponse: TCResponse {
         /// 权限规则列表
         public let accessRules: [AccessRule]
 

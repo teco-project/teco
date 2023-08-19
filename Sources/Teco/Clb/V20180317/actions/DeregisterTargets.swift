@@ -20,7 +20,7 @@ import TecoCore
 
 extension Clb {
     /// DeregisterTargets请求参数结构体
-    public struct DeregisterTargetsRequest: TCRequestModel {
+    public struct DeregisterTargetsRequest: TCRequest {
         /// 负载均衡实例 ID，格式如 lb-12345678。
         public let loadBalancerId: String
 
@@ -59,7 +59,7 @@ extension Clb {
     }
 
     /// DeregisterTargets返回参数结构体
-    public struct DeregisterTargetsResponse: TCResponseModel {
+    public struct DeregisterTargetsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

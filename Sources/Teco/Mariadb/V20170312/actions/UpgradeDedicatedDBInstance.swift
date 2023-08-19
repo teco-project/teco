@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mariadb {
     /// UpgradeDedicatedDBInstance请求参数结构体
-    public struct UpgradeDedicatedDBInstanceRequest: TCRequestModel {
+    public struct UpgradeDedicatedDBInstanceRequest: TCRequest {
         /// 待升级的实例ID。形如：tdsql-ow728lmc，可以通过 DescribeDBInstances 查询实例获得。
         public let instanceId: String
 
@@ -61,7 +61,7 @@ extension Mariadb {
     }
 
     /// UpgradeDedicatedDBInstance返回参数结构体
-    public struct UpgradeDedicatedDBInstanceResponse: TCResponseModel {
+    public struct UpgradeDedicatedDBInstanceResponse: TCResponse {
         /// 异步流程Id
         public let flowId: Int64
 

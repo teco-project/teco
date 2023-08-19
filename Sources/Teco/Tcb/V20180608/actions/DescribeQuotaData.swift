@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeQuotaData请求参数结构体
-    public struct DescribeQuotaDataRequest: TCRequestModel {
+    public struct DescribeQuotaDataRequest: TCRequest {
         /// 环境ID
         public let envId: String
 
@@ -71,7 +71,7 @@ extension Tcb {
     }
 
     /// DescribeQuotaData返回参数结构体
-    public struct DescribeQuotaDataResponse: TCResponseModel {
+    public struct DescribeQuotaDataResponse: TCResponse {
         /// 指标名
         public let metricName: String
 

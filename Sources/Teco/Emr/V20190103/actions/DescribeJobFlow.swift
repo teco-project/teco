@@ -20,7 +20,7 @@ import TecoCore
 
 extension Emr {
     /// DescribeJobFlow请求参数结构体
-    public struct DescribeJobFlowRequest: TCRequestModel {
+    public struct DescribeJobFlowRequest: TCRequest {
         /// 流程任务Id，RunJobFlow接口返回的值。
         public let jobFlowId: Int64
 
@@ -34,7 +34,7 @@ extension Emr {
     }
 
     /// DescribeJobFlow返回参数结构体
-    public struct DescribeJobFlowResponse: TCResponseModel {
+    public struct DescribeJobFlowResponse: TCResponse {
         /// 流程任务状态，可以为以下值：
         /// JobFlowInit，流程任务初始化。
         /// JobFlowResourceApplied，资源申请中，通常为JobFlow需要新建集群时的状态。

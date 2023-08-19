@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// CreateGroup请求参数结构体
-    public struct CreateGroupRequest: TCRequestModel {
+    public struct CreateGroupRequest: TCRequest {
         /// 部署组所属的应用ID
         public let applicationId: String
 
@@ -64,7 +64,7 @@ extension Tsf {
     }
 
     /// CreateGroup返回参数结构体
-    public struct CreateGroupResponse: TCResponseModel {
+    public struct CreateGroupResponse: TCResponse {
         /// groupId， null表示创建失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: String?

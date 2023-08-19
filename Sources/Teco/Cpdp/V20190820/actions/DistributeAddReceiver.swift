@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// DistributeAddReceiver请求参数结构体
-    public struct DistributeAddReceiverRequest: TCRequestModel {
+    public struct DistributeAddReceiverRequest: TCRequest {
         /// 使用门店OpenId
         public let openId: String
 
@@ -54,7 +54,7 @@ extension Cpdp {
     }
 
     /// DistributeAddReceiver返回参数结构体
-    public struct DistributeAddReceiverResponse: TCResponseModel {
+    public struct DistributeAddReceiverResponse: TCResponse {
         /// 业务系统返回消息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errMessage: String?

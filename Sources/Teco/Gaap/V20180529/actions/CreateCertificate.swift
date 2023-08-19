@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// CreateCertificate请求参数结构体
-    public struct CreateCertificateRequest: TCRequestModel {
+    public struct CreateCertificateRequest: TCRequest {
         /// 证书类型。其中：
         /// 0，表示基础认证配置；
         /// 1，表示客户端CA证书；
@@ -56,7 +56,7 @@ extension Gaap {
     }
 
     /// CreateCertificate返回参数结构体
-    public struct CreateCertificateResponse: TCResponseModel {
+    public struct CreateCertificateResponse: TCResponse {
         /// 证书ID
         public let certificateId: String
 

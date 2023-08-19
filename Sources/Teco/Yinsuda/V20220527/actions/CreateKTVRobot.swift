@@ -20,7 +20,7 @@ import TecoCore
 
 extension Yinsuda {
     /// CreateKTVRobot请求参数结构体
-    public struct CreateKTVRobotRequest: TCRequestModel {
+    public struct CreateKTVRobotRequest: TCRequest {
         /// 应用名称。
         public let appName: String
 
@@ -55,7 +55,7 @@ extension Yinsuda {
     }
 
     /// CreateKTVRobot返回参数结构体
-    public struct CreateKTVRobotResponse: TCResponseModel {
+    public struct CreateKTVRobotResponse: TCResponse {
         /// 机器人Id。
         public let robotId: String
 

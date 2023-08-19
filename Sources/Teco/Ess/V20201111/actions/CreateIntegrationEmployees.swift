@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// CreateIntegrationEmployees请求参数结构体
-    public struct CreateIntegrationEmployeesRequest: TCRequestModel {
+    public struct CreateIntegrationEmployeesRequest: TCRequest {
         /// 操作人信息，userId必填
         public let `operator`: UserInfo
 
@@ -46,7 +46,7 @@ extension Ess {
     }
 
     /// CreateIntegrationEmployees返回参数结构体
-    public struct CreateIntegrationEmployeesResponse: TCResponseModel {
+    public struct CreateIntegrationEmployeesResponse: TCResponse {
         /// 创建员工的结果
         public let createEmployeeResult: CreateStaffResult
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// CreateCloudBaseRunServerVersion请求参数结构体
-    public struct CreateCloudBaseRunServerVersionRequest: TCRequestModel {
+    public struct CreateCloudBaseRunServerVersionRequest: TCRequest {
         /// 环境ID
         public let envId: String
 
@@ -249,7 +249,7 @@ extension Tcb {
     }
 
     /// CreateCloudBaseRunServerVersion返回参数结构体
-    public struct CreateCloudBaseRunServerVersionResponse: TCResponseModel {
+    public struct CreateCloudBaseRunServerVersionResponse: TCResponse {
         /// 状态(creating/succ)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: String?

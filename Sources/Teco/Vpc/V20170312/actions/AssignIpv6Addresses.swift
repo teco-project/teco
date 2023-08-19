@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// AssignIpv6Addresses请求参数结构体
-    public struct AssignIpv6AddressesRequest: TCRequestModel {
+    public struct AssignIpv6AddressesRequest: TCRequest {
         /// 弹性网卡实例`ID`，形如：`eni-m6dyj72l`。
         public let networkInterfaceId: String
 
@@ -44,7 +44,7 @@ extension Vpc {
     }
 
     /// AssignIpv6Addresses返回参数结构体
-    public struct AssignIpv6AddressesResponse: TCResponseModel {
+    public struct AssignIpv6AddressesResponse: TCResponse {
         /// 分配给弹性网卡的`IPv6`地址列表。
         public let ipv6AddressSet: [Ipv6Address]
 

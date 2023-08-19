@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeClusterAuthenticationOptions请求参数结构体
-    public struct DescribeClusterAuthenticationOptionsRequest: TCRequestModel {
+    public struct DescribeClusterAuthenticationOptionsRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Tke {
     }
 
     /// DescribeClusterAuthenticationOptions返回参数结构体
-    public struct DescribeClusterAuthenticationOptionsResponse: TCResponseModel {
+    public struct DescribeClusterAuthenticationOptionsResponse: TCResponse {
         /// ServiceAccount认证配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceAccounts: ServiceAccountAuthenticationOptions?

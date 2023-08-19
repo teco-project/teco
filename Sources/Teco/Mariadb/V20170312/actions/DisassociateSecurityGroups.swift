@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mariadb {
     /// DisassociateSecurityGroups请求参数结构体
-    public struct DisassociateSecurityGroupsRequest: TCRequestModel {
+    public struct DisassociateSecurityGroupsRequest: TCRequest {
         /// 数据库引擎名称，本接口取值：mariadb。
         public let product: String
 
@@ -44,7 +44,7 @@ extension Mariadb {
     }
 
     /// DisassociateSecurityGroups返回参数结构体
-    public struct DisassociateSecurityGroupsResponse: TCResponseModel {
+    public struct DisassociateSecurityGroupsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

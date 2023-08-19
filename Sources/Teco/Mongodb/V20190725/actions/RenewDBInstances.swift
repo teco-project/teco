@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mongodb {
     /// RenewDBInstances请求参数结构体
-    public struct RenewDBInstancesRequest: TCRequestModel {
+    public struct RenewDBInstancesRequest: TCRequest {
         /// 一个或多个待操作的实例ID。可通过DescribeInstances接口返回值中的InstanceId获取。每次请求批量实例的上限为100。
         public let instanceIds: [String]
 
@@ -39,7 +39,7 @@ extension Mongodb {
     }
 
     /// RenewDBInstances返回参数结构体
-    public struct RenewDBInstancesResponse: TCResponseModel {
+    public struct RenewDBInstancesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

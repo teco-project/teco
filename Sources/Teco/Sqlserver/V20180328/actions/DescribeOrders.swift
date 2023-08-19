@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// DescribeOrders请求参数结构体
-    public struct DescribeOrdersRequest: TCRequestModel {
+    public struct DescribeOrdersRequest: TCRequest {
         /// 订单数组。发货时会返回订单名字，利用该订单名字调用DescribeOrders接口查询发货情况
         public let dealNames: [String]
 
@@ -34,7 +34,7 @@ extension Sqlserver {
     }
 
     /// DescribeOrders返回参数结构体
-    public struct DescribeOrdersResponse: TCResponseModel {
+    public struct DescribeOrdersResponse: TCResponse {
         /// 订单信息数组
         public let deals: [DealInfo]
 

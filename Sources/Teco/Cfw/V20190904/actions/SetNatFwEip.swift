@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// SetNatFwEip请求参数结构体
-    public struct SetNatFwEipRequest: TCRequestModel {
+    public struct SetNatFwEipRequest: TCRequest {
         /// bind：绑定eip；unbind：解绑eip；newAdd：新增防火墙弹性公网ip
         public let operationType: String
 
@@ -44,7 +44,7 @@ extension Cfw {
     }
 
     /// SetNatFwEip返回参数结构体
-    public struct SetNatFwEipResponse: TCResponseModel {
+    public struct SetNatFwEipResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

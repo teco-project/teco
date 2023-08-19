@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfs {
     /// UpdateCfsFileSystemPGroup请求参数结构体
-    public struct UpdateCfsFileSystemPGroupRequest: TCRequestModel {
+    public struct UpdateCfsFileSystemPGroupRequest: TCRequest {
         /// 权限组 ID
         public let pGroupId: String
 
@@ -39,7 +39,7 @@ extension Cfs {
     }
 
     /// UpdateCfsFileSystemPGroup返回参数结构体
-    public struct UpdateCfsFileSystemPGroupResponse: TCResponseModel {
+    public struct UpdateCfsFileSystemPGroupResponse: TCResponse {
         /// 权限组 ID
         public let pGroupId: String
 

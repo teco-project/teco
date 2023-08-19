@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// ModifySecLogCleanSettingInfo请求参数结构体
-    public struct ModifySecLogCleanSettingInfoRequest: TCRequestModel {
+    public struct ModifySecLogCleanSettingInfoRequest: TCRequest {
         /// 触发清理的储量底线(50-99)
         public let reservesLimit: UInt64
 
@@ -44,7 +44,7 @@ extension Tcss {
     }
 
     /// ModifySecLogCleanSettingInfo返回参数结构体
-    public struct ModifySecLogCleanSettingInfoResponse: TCResponseModel {
+    public struct ModifySecLogCleanSettingInfoResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// CreateHTTPListener请求参数结构体
-    public struct CreateHTTPListenerRequest: TCRequestModel {
+    public struct CreateHTTPListenerRequest: TCRequest {
         /// 监听器名称
         public let listenerName: String
 
@@ -49,7 +49,7 @@ extension Gaap {
     }
 
     /// CreateHTTPListener返回参数结构体
-    public struct CreateHTTPListenerResponse: TCResponseModel {
+    public struct CreateHTTPListenerResponse: TCResponse {
         /// 创建的监听器ID
         public let listenerId: String
 

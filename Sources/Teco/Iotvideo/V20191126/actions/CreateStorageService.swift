@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// CreateStorageService请求参数结构体
-    public struct CreateStorageServiceRequest: TCRequestModel {
+    public struct CreateStorageServiceRequest: TCRequest {
         /// 云存套餐ID：
         /// yc1m3d ： 全时3天存储月套餐。
         /// yc1m7d ： 全时7天存储月套餐。
@@ -78,7 +78,7 @@ extension Iotvideo {
     }
 
     /// CreateStorageService返回参数结构体
-    public struct CreateStorageServiceResponse: TCResponseModel {
+    public struct CreateStorageServiceResponse: TCResponse {
         /// 标志是否为续订
         public let isRenew: Bool
 

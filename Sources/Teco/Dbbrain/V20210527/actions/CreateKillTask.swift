@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dbbrain {
     /// CreateKillTask请求参数结构体
-    public struct CreateKillTaskRequest: TCRequestModel {
+    public struct CreateKillTaskRequest: TCRequest {
         /// kill会话任务的关联实例ID。
         public let instanceId: String
 
@@ -74,7 +74,7 @@ extension Dbbrain {
     }
 
     /// CreateKillTask返回参数结构体
-    public struct CreateKillTaskResponse: TCResponseModel {
+    public struct CreateKillTaskResponse: TCResponse {
         /// kill会话任务创建成功返回1
         public let status: Int64
 

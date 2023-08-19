@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mna {
     /// DeleteQos请求参数结构体
-    public struct DeleteQosRequest: TCRequestModel {
+    public struct DeleteQosRequest: TCRequest {
         /// 单次加速唯一 Id
         public let sessionId: String
 
@@ -34,7 +34,7 @@ extension Mna {
     }
 
     /// DeleteQos返回参数结构体
-    public struct DeleteQosResponse: TCResponseModel {
+    public struct DeleteQosResponse: TCResponse {
         /// 单次加速唯一 Id
         public let sessionId: String
 

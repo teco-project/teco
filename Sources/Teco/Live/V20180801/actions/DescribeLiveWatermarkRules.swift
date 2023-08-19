@@ -20,13 +20,13 @@ import TecoCore
 
 extension Live {
     /// DescribeLiveWatermarkRules请求参数结构体
-    public struct DescribeLiveWatermarkRulesRequest: TCRequestModel {
+    public struct DescribeLiveWatermarkRulesRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeLiveWatermarkRules返回参数结构体
-    public struct DescribeLiveWatermarkRulesResponse: TCResponseModel {
+    public struct DescribeLiveWatermarkRulesResponse: TCResponse {
         /// 水印规则列表。
         public let rules: [RuleInfo]
 

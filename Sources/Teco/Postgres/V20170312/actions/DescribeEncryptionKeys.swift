@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// DescribeEncryptionKeys请求参数结构体
-    public struct DescribeEncryptionKeysRequest: TCRequestModel {
+    public struct DescribeEncryptionKeysRequest: TCRequest {
         /// 实例ID。
         public let dbInstanceId: String
 
@@ -34,7 +34,7 @@ extension Postgres {
     }
 
     /// DescribeEncryptionKeys返回参数结构体
-    public struct DescribeEncryptionKeysResponse: TCResponseModel {
+    public struct DescribeEncryptionKeysResponse: TCResponse {
         /// 实例密钥信息列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let encryptionKeys: [EncryptionKey]?

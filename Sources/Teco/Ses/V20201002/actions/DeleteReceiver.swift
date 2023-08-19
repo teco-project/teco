@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ses {
     /// DeleteReceiver请求参数结构体
-    public struct DeleteReceiverRequest: TCRequestModel {
+    public struct DeleteReceiverRequest: TCRequest {
         /// 收件人列表id，创建收件人列表时会返回
         public let receiverId: UInt64
 
@@ -34,7 +34,7 @@ extension Ses {
     }
 
     /// DeleteReceiver返回参数结构体
-    public struct DeleteReceiverResponse: TCResponseModel {
+    public struct DeleteReceiverResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

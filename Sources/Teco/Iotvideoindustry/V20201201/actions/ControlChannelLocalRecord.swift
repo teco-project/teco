@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// ControlChannelLocalRecord请求参数结构体
-    public struct ControlChannelLocalRecordRequest: TCRequestModel {
+    public struct ControlChannelLocalRecordRequest: TCRequest {
         /// 设备唯一标识
         public let deviceId: String
 
@@ -54,7 +54,7 @@ extension Iotvideoindustry {
     }
 
     /// ControlChannelLocalRecord返回参数结构体
-    public struct ControlChannelLocalRecordResponse: TCResponseModel {
+    public struct ControlChannelLocalRecordResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

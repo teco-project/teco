@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// RenewDBInstance请求参数结构体
-    public struct RenewDBInstanceRequest: TCRequestModel {
+    public struct RenewDBInstanceRequest: TCRequest {
         /// 实例ID，形如mssql-j8kv137v
         public let instanceId: String
 
@@ -54,7 +54,7 @@ extension Sqlserver {
     }
 
     /// RenewDBInstance返回参数结构体
-    public struct RenewDBInstanceResponse: TCResponseModel {
+    public struct RenewDBInstanceResponse: TCResponse {
         /// 订单名称
         public let dealName: String
 

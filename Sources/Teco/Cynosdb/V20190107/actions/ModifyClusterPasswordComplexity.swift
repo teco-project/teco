@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// ModifyClusterPasswordComplexity请求参数结构体
-    public struct ModifyClusterPasswordComplexityRequest: TCRequestModel {
+    public struct ModifyClusterPasswordComplexityRequest: TCRequest {
         /// 集群id
         public let clusterId: String
 
@@ -64,7 +64,7 @@ extension Cynosdb {
     }
 
     /// ModifyClusterPasswordComplexity返回参数结构体
-    public struct ModifyClusterPasswordComplexityResponse: TCResponseModel {
+    public struct ModifyClusterPasswordComplexityResponse: TCResponse {
         /// 任务流ID
         public let flowId: Int64
 

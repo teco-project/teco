@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// UpdateRoleConsoleLogin请求参数结构体
-    public struct UpdateRoleConsoleLoginRequest: TCRequestModel {
+    public struct UpdateRoleConsoleLoginRequest: TCRequest {
         /// 是否可登录，可登录：1，不可登录：0
         public let consoleLogin: Int64
 
@@ -44,7 +44,7 @@ extension Cam {
     }
 
     /// UpdateRoleConsoleLogin返回参数结构体
-    public struct UpdateRoleConsoleLoginResponse: TCResponseModel {
+    public struct UpdateRoleConsoleLoginResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

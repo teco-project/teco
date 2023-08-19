@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// DescribeResourcesByDealName请求参数结构体
-    public struct DescribeResourcesByDealNameRequest: TCRequestModel {
+    public struct DescribeResourcesByDealNameRequest: TCRequest {
         /// 计费订单ID（如果计费还没回调业务发货，可能出现错误码InvalidParameterValue.DealNameNotFound，这种情况需要业务重试DescribeResourcesByDealName接口直到成功）
         public let dealName: String?
 
@@ -39,7 +39,7 @@ extension Cynosdb {
     }
 
     /// DescribeResourcesByDealName返回参数结构体
-    public struct DescribeResourcesByDealNameResponse: TCResponseModel {
+    public struct DescribeResourcesByDealNameResponse: TCResponse {
         /// 计费资源id信息数组
         public let billingResourceInfos: [BillingResourceInfo]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeWorkflowListByProjectId请求参数结构体
-    public struct DescribeWorkflowListByProjectIdRequest: TCRequestModel {
+    public struct DescribeWorkflowListByProjectIdRequest: TCRequest {
         /// 项目id
         public let projectId: String
 
@@ -34,7 +34,7 @@ extension Wedata {
     }
 
     /// DescribeWorkflowListByProjectId返回参数结构体
-    public struct DescribeWorkflowListByProjectIdResponse: TCResponseModel {
+    public struct DescribeWorkflowListByProjectIdResponse: TCResponse {
         /// 根据项目id获取项目下所有工作流列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [WorkflowCanvasOpsDto]?

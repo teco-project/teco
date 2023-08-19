@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ExportLicenseDetail请求参数结构体
-    public struct ExportLicenseDetailRequest: TCRequestModel {
+    public struct ExportLicenseDetailRequest: TCRequest {
         /// 多个条件筛选时 LicenseStatus,DeadlineStatus,ResourceId,Keywords 取交集
         /// - LicenseType  授权类型, 0 专业版-按量计费, 1专业版-包年包月 , 2 旗舰版-包年包月
         /// - ResourceId 资源ID
@@ -51,7 +51,7 @@ extension Cwp {
     }
 
     /// ExportLicenseDetail返回参数结构体
-    public struct ExportLicenseDetailResponse: TCResponseModel {
+    public struct ExportLicenseDetailResponse: TCResponse {
         /// 下载地址,该字段废弃
         public let downloadUrl: String
 

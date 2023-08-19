@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// DeleteParamTemplate请求参数结构体
-    public struct DeleteParamTemplateRequest: TCRequestModel {
+    public struct DeleteParamTemplateRequest: TCRequest {
         /// 参数模板ID
         public let templateId: Int64
 
@@ -34,7 +34,7 @@ extension Cynosdb {
     }
 
     /// DeleteParamTemplate返回参数结构体
-    public struct DeleteParamTemplateResponse: TCResponseModel {
+    public struct DeleteParamTemplateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryOpenBankDownLoadUrl请求参数结构体
-    public struct QueryOpenBankDownLoadUrlRequest: TCRequestModel {
+    public struct QueryOpenBankDownLoadUrlRequest: TCRequest {
         /// 渠道商户号，外部接入平台方入驻云企付平台后下发。
         /// EBANK_PAYMENT支付方式下，填写渠道商户号；
         /// SAFT_ISV支付方式下，填写渠道子商户号。
@@ -67,7 +67,7 @@ extension Cpdp {
     }
 
     /// QueryOpenBankDownLoadUrl返回参数结构体
-    public struct QueryOpenBankDownLoadUrlResponse: TCResponseModel {
+    public struct QueryOpenBankDownLoadUrlResponse: TCResponse {
         /// 业务系统返回码，SUCCESS表示成功，其他表示失败。
         public let errCode: String
 

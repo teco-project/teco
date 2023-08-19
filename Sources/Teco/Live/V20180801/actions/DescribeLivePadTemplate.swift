@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeLivePadTemplate请求参数结构体
-    public struct DescribeLivePadTemplateRequest: TCRequestModel {
+    public struct DescribeLivePadTemplateRequest: TCRequest {
         /// 模板id。
         public let templateId: UInt64
 
@@ -34,7 +34,7 @@ extension Live {
     }
 
     /// DescribeLivePadTemplate返回参数结构体
-    public struct DescribeLivePadTemplateResponse: TCResponseModel {
+    public struct DescribeLivePadTemplateResponse: TCResponse {
         /// 直播垫片模板信息。
         public let template: PadTemplate
 

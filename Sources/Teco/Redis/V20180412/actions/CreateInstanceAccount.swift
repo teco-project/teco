@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// CreateInstanceAccount请求参数结构体
-    public struct CreateInstanceAccountRequest: TCRequestModel {
+    public struct CreateInstanceAccountRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -65,7 +65,7 @@ extension Redis {
     }
 
     /// CreateInstanceAccount返回参数结构体
-    public struct CreateInstanceAccountResponse: TCResponseModel {
+    public struct CreateInstanceAccountResponse: TCResponse {
         /// 任务ID
         public let taskId: Int64
 

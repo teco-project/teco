@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tat {
     /// ModifyInvoker请求参数结构体
-    public struct ModifyInvokerRequest: TCRequestModel {
+    public struct ModifyInvokerRequest: TCRequest {
         /// 待修改的执行器ID。
         public let invokerId: String
 
@@ -69,7 +69,7 @@ extension Tat {
     }
 
     /// ModifyInvoker返回参数结构体
-    public struct ModifyInvokerResponse: TCResponseModel {
+    public struct ModifyInvokerResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

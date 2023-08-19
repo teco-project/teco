@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Organization {
     /// GetOrganizationMember请求参数结构体
-    public struct GetOrganizationMemberRequest: TCRequestModel {
+    public struct GetOrganizationMemberRequest: TCRequest {
         /// 组织成员UIN
         public let memberUin: UInt64
 
@@ -36,7 +36,7 @@ extension Organization {
     }
 
     /// GetOrganizationMember返回参数结构体
-    public struct GetOrganizationMemberResponse: TCResponseModel {
+    public struct GetOrganizationMemberResponse: TCResponse {
         /// 组织成员UIN
         public let uin: UInt64
 

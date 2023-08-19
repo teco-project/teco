@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// ResetInstancesPassword请求参数结构体
-    public struct ResetInstancesPasswordRequest: TCRequestModel {
+    public struct ResetInstancesPasswordRequest: TCRequest {
         /// 实例 ID 列表。每次请求批量实例的上限为 100。
         public let instanceIds: [String]
 
@@ -58,7 +58,7 @@ extension Lighthouse {
     }
 
     /// ResetInstancesPassword返回参数结构体
-    public struct ResetInstancesPasswordResponse: TCResponseModel {
+    public struct ResetInstancesPasswordResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

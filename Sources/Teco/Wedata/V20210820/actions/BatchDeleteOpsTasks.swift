@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// BatchDeleteOpsTasks请求参数结构体
-    public struct BatchDeleteOpsTasksRequest: TCRequestModel {
+    public struct BatchDeleteOpsTasksRequest: TCRequest {
         /// 批量删除的任务TaskId
         public let taskIdList: [String]
 
@@ -51,7 +51,7 @@ extension Wedata {
     }
 
     /// BatchDeleteOpsTasks返回参数结构体
-    public struct BatchDeleteOpsTasksResponse: TCResponseModel {
+    public struct BatchDeleteOpsTasksResponse: TCResponse {
         /// 返回批量操作成功个数、失败个数、操作总数
         public let data: BatchOperationOpsDto?
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ft {
     /// FaceCartoonPic请求参数结构体
-    public struct FaceCartoonPicRequest: TCRequestModel {
+    public struct FaceCartoonPicRequest: TCRequest {
         /// 图片 base64 数据，base64 编码后大小不可超过5M。
         /// 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         public let image: String?
@@ -54,7 +54,7 @@ extension Ft {
     }
 
     /// FaceCartoonPic返回参数结构体
-    public struct FaceCartoonPicResponse: TCResponseModel {
+    public struct FaceCartoonPicResponse: TCResponse {
         /// 结果图片Base64信息。
         public let resultImage: String
 

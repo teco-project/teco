@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// CancelCommonMixStream请求参数结构体
-    public struct CancelCommonMixStreamRequest: TCRequestModel {
+    public struct CancelCommonMixStreamRequest: TCRequest {
         /// 混流会话（申请混流开始到取消混流结束）标识 ID。
         /// 该值与CreateCommonMixStream中的MixStreamSessionId保持一致。
         public let mixStreamSessionId: String
@@ -35,7 +35,7 @@ extension Live {
     }
 
     /// CancelCommonMixStream返回参数结构体
-    public struct CancelCommonMixStreamResponse: TCResponseModel {
+    public struct CancelCommonMixStreamResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

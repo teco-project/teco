@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CreateNetDetect请求参数结构体
-    public struct CreateNetDetectRequest: TCRequestModel {
+    public struct CreateNetDetectRequest: TCRequest {
         /// `VPC`实例`ID`。形如：`vpc-12345678`。
         public let vpcId: String
 
@@ -78,7 +78,7 @@ extension Vpc {
     }
 
     /// CreateNetDetect返回参数结构体
-    public struct CreateNetDetectResponse: TCResponseModel {
+    public struct CreateNetDetectResponse: TCResponse {
         /// 网络探测（NetDetect）对象。
         public let netDetect: NetDetect
 

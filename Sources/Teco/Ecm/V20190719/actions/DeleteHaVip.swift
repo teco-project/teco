@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// DeleteHaVip请求参数结构体
-    public struct DeleteHaVipRequest: TCRequestModel {
+    public struct DeleteHaVipRequest: TCRequest {
         /// HAVIP唯一ID，形如：havip-9o233uri。
         public let haVipId: String
 
@@ -34,7 +34,7 @@ extension Ecm {
     }
 
     /// DeleteHaVip返回参数结构体
-    public struct DeleteHaVipResponse: TCResponseModel {
+    public struct DeleteHaVipResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

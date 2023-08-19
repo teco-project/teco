@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// DescribeMigrationDatabases请求参数结构体
-    public struct DescribeMigrationDatabasesRequest: TCRequestModel {
+    public struct DescribeMigrationDatabasesRequest: TCRequest {
         /// 迁移源实例的ID，格式如：mssql-si2823jyl
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Sqlserver {
     }
 
     /// DescribeMigrationDatabases返回参数结构体
-    public struct DescribeMigrationDatabasesResponse: TCResponseModel {
+    public struct DescribeMigrationDatabasesResponse: TCResponse {
         /// 数据库数量
         public let amount: Int64
 

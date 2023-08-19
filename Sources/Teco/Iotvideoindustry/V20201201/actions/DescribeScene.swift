@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// DescribeScene请求参数结构体
-    public struct DescribeSceneRequest: TCRequestModel {
+    public struct DescribeSceneRequest: TCRequest {
         /// 场景ID
         public let intId: Int64
 
@@ -34,7 +34,7 @@ extension Iotvideoindustry {
     }
 
     /// DescribeScene返回参数结构体
-    public struct DescribeSceneResponse: TCResponseModel {
+    public struct DescribeSceneResponse: TCResponse {
         /// 场景ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let intId: Int64?

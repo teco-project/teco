@@ -20,13 +20,13 @@ import TecoCore
 
 extension Ivld {
     /// QueryCallback请求参数结构体
-    public struct QueryCallbackRequest: TCRequestModel {
+    public struct QueryCallbackRequest: TCRequest {
         public init() {
         }
     }
 
     /// QueryCallback返回参数结构体
-    public struct QueryCallbackResponse: TCResponseModel {
+    public struct QueryCallbackResponse: TCResponse {
         /// 任务分析完成后回调地址
         public let taskFinishNotifyURL: String
 

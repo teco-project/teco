@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// CloseProxies请求参数结构体
-    public struct CloseProxiesRequest: TCRequestModel {
+    public struct CloseProxiesRequest: TCRequest {
         /// （旧参数，请切换到ProxyIds）通道的实例ID。
         public let instanceIds: [String]?
 
@@ -45,7 +45,7 @@ extension Gaap {
     }
 
     /// CloseProxies返回参数结构体
-    public struct CloseProxiesResponse: TCResponseModel {
+    public struct CloseProxiesResponse: TCResponse {
         /// 非运行状态下的通道实例ID列表，不可开启。
         public let invalidStatusInstanceSet: [String]
 

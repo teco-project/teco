@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// ModifyModelService请求参数结构体
-    public struct ModifyModelServiceRequest: TCRequestModel {
+    public struct ModifyModelServiceRequest: TCRequest {
         /// 服务id
         public let serviceId: String
 
@@ -157,7 +157,7 @@ extension Tione {
     }
 
     /// ModifyModelService返回参数结构体
-    public struct ModifyModelServiceResponse: TCResponseModel {
+    public struct ModifyModelServiceResponse: TCResponse {
         /// 生成的模型服务
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let service: Service?

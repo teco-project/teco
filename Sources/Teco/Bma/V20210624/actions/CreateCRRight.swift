@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bma {
     /// CreateCRRight请求参数结构体
-    public struct CreateCRRightRequest: TCRequestModel {
+    public struct CreateCRRightRequest: TCRequest {
         /// 作品ID
         public let workId: Int64
 
@@ -119,7 +119,7 @@ extension Bma {
     }
 
     /// CreateCRRight返回参数结构体
-    public struct CreateCRRightResponse: TCResponseModel {
+    public struct CreateCRRightResponse: TCResponse {
         /// 侵权ID
         public let tortId: Int64
 

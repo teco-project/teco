@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// InquiryPriceCreateDBInstances请求参数结构体
-    public struct InquiryPriceCreateDBInstancesRequest: TCRequestModel {
+    public struct InquiryPriceCreateDBInstancesRequest: TCRequest {
         /// 可用区ID。该参数可以通过调用 DescribeZones 接口的返回值中的Zone字段来获取。
         public let zone: String
 
@@ -78,7 +78,7 @@ extension Postgres {
     }
 
     /// InquiryPriceCreateDBInstances返回参数结构体
-    public struct InquiryPriceCreateDBInstancesResponse: TCResponseModel {
+    public struct InquiryPriceCreateDBInstancesResponse: TCResponse {
         /// 刊例价，单位：分
         public let originalPrice: UInt64
 

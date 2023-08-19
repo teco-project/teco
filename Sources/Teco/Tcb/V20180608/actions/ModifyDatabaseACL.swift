@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// ModifyDatabaseACL请求参数结构体
-    public struct ModifyDatabaseACLRequest: TCRequestModel {
+    public struct ModifyDatabaseACLRequest: TCRequest {
         /// 环境ID
         public let envId: String
 
@@ -48,7 +48,7 @@ extension Tcb {
     }
 
     /// ModifyDatabaseACL返回参数结构体
-    public struct ModifyDatabaseACLResponse: TCResponseModel {
+    public struct ModifyDatabaseACLResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

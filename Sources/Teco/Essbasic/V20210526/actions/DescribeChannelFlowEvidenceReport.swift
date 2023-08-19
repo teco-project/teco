@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// DescribeChannelFlowEvidenceReport请求参数结构体
-    public struct DescribeChannelFlowEvidenceReportRequest: TCRequestModel {
+    public struct DescribeChannelFlowEvidenceReportRequest: TCRequest {
         /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填
         public let agent: Agent
 
@@ -50,7 +50,7 @@ extension Essbasic {
     }
 
     /// DescribeChannelFlowEvidenceReport返回参数结构体
-    public struct DescribeChannelFlowEvidenceReportResponse: TCResponseModel {
+    public struct DescribeChannelFlowEvidenceReportResponse: TCResponse {
         /// 出证报告下载 URL
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reportUrl: String?

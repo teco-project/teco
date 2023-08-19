@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trp {
     /// ModifyTraceDataRanks请求参数结构体
-    public struct ModifyTraceDataRanksRequest: TCRequestModel {
+    public struct ModifyTraceDataRanksRequest: TCRequest {
         /// 企业ID
         public let corpId: UInt64?
 
@@ -49,7 +49,7 @@ extension Trp {
     }
 
     /// ModifyTraceDataRanks返回参数结构体
-    public struct ModifyTraceDataRanksResponse: TCResponseModel {
+    public struct ModifyTraceDataRanksResponse: TCResponse {
         /// 批次ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let batchId: String?

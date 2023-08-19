@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeRiskSyscallEventsExport请求参数结构体
-    public struct DescribeRiskSyscallEventsExportRequest: TCRequestModel {
+    public struct DescribeRiskSyscallEventsExportRequest: TCRequest {
         /// 需要返回的数量，默认为10，最大值为100
         public let limit: UInt64?
 
@@ -59,7 +59,7 @@ extension Tcss {
     }
 
     /// DescribeRiskSyscallEventsExport返回参数结构体
-    public struct DescribeRiskSyscallEventsExportResponse: TCResponseModel {
+    public struct DescribeRiskSyscallEventsExportResponse: TCResponse {
         /// Excel下载地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let downloadUrl: String?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iai {
     /// SearchFacesReturnsByGroup请求参数结构体
-    public struct SearchFacesReturnsByGroupRequest: TCRequestModel {
+    public struct SearchFacesReturnsByGroupRequest: TCRequest {
         /// 希望搜索的人员库列表，上限60个。数组元素取值为创建人员库接口中的GroupId。
         /// 不可同时搜索不同算法模型版本（FaceModelVersion）的人员库。
         public let groupIds: [String]
@@ -99,7 +99,7 @@ extension Iai {
     }
 
     /// SearchFacesReturnsByGroup返回参数结构体
-    public struct SearchFacesReturnsByGroupResponse: TCResponseModel {
+    public struct SearchFacesReturnsByGroupResponse: TCResponse {
         /// 搜索的人员库中包含的人脸数。
         public let faceNum: UInt64
 

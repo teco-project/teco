@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ExportScanTaskDetails请求参数结构体
-    public struct ExportScanTaskDetailsRequest: TCRequestModel {
+    public struct ExportScanTaskDetailsRequest: TCRequest {
         /// 本次检测的任务id（不同于出参的导出本次检测Excel的任务Id）
         public let taskId: UInt64
 
@@ -44,7 +44,7 @@ extension Cwp {
     }
 
     /// ExportScanTaskDetails返回参数结构体
-    public struct ExportScanTaskDetailsResponse: TCResponseModel {
+    public struct ExportScanTaskDetailsResponse: TCResponse {
         /// 任务ID,需要到接口“异步导出任务”ExportTasks获取DownloadUrl下载地址(不同于入参的本次检测任务id)
         public let taskId: String
 

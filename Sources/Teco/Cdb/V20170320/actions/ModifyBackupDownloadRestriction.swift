@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// ModifyBackupDownloadRestriction请求参数结构体
-    public struct ModifyBackupDownloadRestrictionRequest: TCRequestModel {
+    public struct ModifyBackupDownloadRestrictionRequest: TCRequest {
         /// NoLimit 不限制,内外网都可以下载； LimitOnlyIntranet 仅内网可下载； Customize 用户自定义vpc:ip可下载。 只有该值为 Customize 时，才可以设置 LimitVpc 和 LimitIp 。
         public let limitType: String
 
@@ -54,7 +54,7 @@ extension Cdb {
     }
 
     /// ModifyBackupDownloadRestriction返回参数结构体
-    public struct ModifyBackupDownloadRestrictionResponse: TCResponseModel {
+    public struct ModifyBackupDownloadRestrictionResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

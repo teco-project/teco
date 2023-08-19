@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ExportVulDetectionReport请求参数结构体
-    public struct ExportVulDetectionReportRequest: TCRequestModel {
+    public struct ExportVulDetectionReportRequest: TCRequest {
         /// 漏洞扫描任务id（不同于出参的导出检测报告的任务Id）
         public let taskId: UInt64
 
@@ -49,7 +49,7 @@ extension Cwp {
     }
 
     /// ExportVulDetectionReport返回参数结构体
-    public struct ExportVulDetectionReportResponse: TCResponseModel {
+    public struct ExportVulDetectionReportResponse: TCResponse {
         /// 导出文件下载链接地址
         public let downloadUrl: String
 

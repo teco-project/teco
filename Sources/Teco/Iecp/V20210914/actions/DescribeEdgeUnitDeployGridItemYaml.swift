@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// DescribeEdgeUnitDeployGridItemYaml请求参数结构体
-    public struct DescribeEdgeUnitDeployGridItemYamlRequest: TCRequestModel {
+    public struct DescribeEdgeUnitDeployGridItemYamlRequest: TCRequest {
         /// IECP边缘单元ID
         public let edgeUnitId: UInt64
 
@@ -49,7 +49,7 @@ extension Iecp {
     }
 
     /// DescribeEdgeUnitDeployGridItemYaml返回参数结构体
-    public struct DescribeEdgeUnitDeployGridItemYamlResponse: TCResponseModel {
+    public struct DescribeEdgeUnitDeployGridItemYamlResponse: TCResponse {
         /// yaml，base64编码字符串
         public let yaml: String
 

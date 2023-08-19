@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// CreateEmbedWebUrl请求参数结构体
-    public struct CreateEmbedWebUrlRequest: TCRequestModel {
+    public struct CreateEmbedWebUrlRequest: TCRequest {
         /// 操作者信息
         public let `operator`: UserInfo
 
@@ -83,7 +83,7 @@ extension Ess {
     }
 
     /// CreateEmbedWebUrl返回参数结构体
-    public struct CreateEmbedWebUrlResponse: TCResponseModel {
+    public struct CreateEmbedWebUrlResponse: TCResponse {
         /// 嵌入的web链接，有效期：5分钟
         /// EmbedType=PREVIEW_CC_FLOW，该url为h5链接
         public let webUrl: String

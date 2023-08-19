@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// CreatePublicConfigWithDetailResp请求参数结构体
-    public struct CreatePublicConfigWithDetailRespRequest: TCRequestModel {
+    public struct CreatePublicConfigWithDetailRespRequest: TCRequest {
         /// 配置项名称
         public let configName: String
 
@@ -63,7 +63,7 @@ extension Tsf {
     }
 
     /// CreatePublicConfigWithDetailResp返回参数结构体
-    public struct CreatePublicConfigWithDetailRespResponse: TCResponseModel {
+    public struct CreatePublicConfigWithDetailRespResponse: TCResponse {
         /// 公共配置项 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Config?

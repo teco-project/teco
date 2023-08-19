@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// ModifyDBInstanceSecurityGroups请求参数结构体
-    public struct ModifyDBInstanceSecurityGroupsRequest: TCRequestModel {
+    public struct ModifyDBInstanceSecurityGroupsRequest: TCRequest {
         /// 实例或只读组要绑定的安全组列表。
         /// 安全组信息可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/api/215/15808) 的返回值中的sgId字段来查询。
         public let securityGroupIdSet: [String]
@@ -45,7 +45,7 @@ extension Postgres {
     }
 
     /// ModifyDBInstanceSecurityGroups返回参数结构体
-    public struct ModifyDBInstanceSecurityGroupsResponse: TCResponseModel {
+    public struct ModifyDBInstanceSecurityGroupsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

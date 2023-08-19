@@ -20,7 +20,7 @@ import TecoCore
 
 extension Oceanus {
     /// CreateJob请求参数结构体
-    public struct CreateJobRequest: TCRequestModel {
+    public struct CreateJobRequest: TCRequest {
         /// 作业名称，允许输入长度小于等于50个字符的中文、英文、数字、-（横线）、_（下划线）、.（点），且符号必须半角字符。注意作业名不能和现有作业同名
         public let name: String
 
@@ -79,7 +79,7 @@ extension Oceanus {
     }
 
     /// CreateJob返回参数结构体
-    public struct CreateJobResponse: TCResponseModel {
+    public struct CreateJobResponse: TCResponse {
         /// 作业Id
         public let jobId: String
 

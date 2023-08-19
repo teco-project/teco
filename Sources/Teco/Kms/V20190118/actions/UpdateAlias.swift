@@ -20,7 +20,7 @@ import TecoCore
 
 extension Kms {
     /// UpdateAlias请求参数结构体
-    public struct UpdateAliasRequest: TCRequestModel {
+    public struct UpdateAliasRequest: TCRequest {
         /// 新的别名，1-60个字符或数字的组合
         public let alias: String
 
@@ -39,7 +39,7 @@ extension Kms {
     }
 
     /// UpdateAlias返回参数结构体
-    public struct UpdateAliasResponse: TCResponseModel {
+    public struct UpdateAliasResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

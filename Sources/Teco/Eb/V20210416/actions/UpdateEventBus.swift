@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eb {
     /// UpdateEventBus请求参数结构体
-    public struct UpdateEventBusRequest: TCRequestModel {
+    public struct UpdateEventBusRequest: TCRequest {
         /// 事件集ID
         public let eventBusId: String
 
@@ -59,7 +59,7 @@ extension Eb {
     }
 
     /// UpdateEventBus返回参数结构体
-    public struct UpdateEventBusResponse: TCResponseModel {
+    public struct UpdateEventBusResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

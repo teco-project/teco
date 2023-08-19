@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// JoinGameServerSessionBatch请求参数结构体
-    public struct JoinGameServerSessionBatchRequest: TCRequestModel {
+    public struct JoinGameServerSessionBatchRequest: TCRequest {
         /// 游戏服务器会话ID，最小长度1个ASCII字符，最大长度不超过256个ASCII字符
         public let gameServerSessionId: String
 
@@ -44,7 +44,7 @@ extension Gse {
     }
 
     /// JoinGameServerSessionBatch返回参数结构体
-    public struct JoinGameServerSessionBatchResponse: TCResponseModel {
+    public struct JoinGameServerSessionBatchResponse: TCResponse {
         /// 玩家会话列表，最大25组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let playerSessions: [PlayerSession]?

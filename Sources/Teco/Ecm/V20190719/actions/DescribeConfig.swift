@@ -20,13 +20,13 @@ import TecoCore
 
 extension Ecm {
     /// DescribeConfig请求参数结构体
-    public struct DescribeConfigRequest: TCRequestModel {
+    public struct DescribeConfigRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeConfig返回参数结构体
-    public struct DescribeConfigResponse: TCResponseModel {
+    public struct DescribeConfigResponse: TCResponse {
         /// 网络带宽硬盘大小的范围信息。
         public let networkStorageRange: NetworkStorageRange
 

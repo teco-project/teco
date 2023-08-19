@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssl {
     /// DescribeCertificate请求参数结构体
-    public struct DescribeCertificateRequest: TCRequestModel {
+    public struct DescribeCertificateRequest: TCRequest {
         /// 证书 ID。
         public let certificateId: String
 
@@ -34,7 +34,7 @@ extension Ssl {
     }
 
     /// DescribeCertificate返回参数结构体
-    public struct DescribeCertificateResponse: TCResponseModel {
+    public struct DescribeCertificateResponse: TCResponse {
         /// 用户 UIN。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ownerUin: String?

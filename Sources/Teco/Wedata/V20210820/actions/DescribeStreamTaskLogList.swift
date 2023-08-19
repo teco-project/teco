@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeStreamTaskLogList请求参数结构体
-    public struct DescribeStreamTaskLogListRequest: TCRequestModel {
+    public struct DescribeStreamTaskLogListRequest: TCRequest {
         /// 项目ID
         public let projectId: String
 
@@ -74,7 +74,7 @@ extension Wedata {
     }
 
     /// DescribeStreamTaskLogList返回参数结构体
-    public struct DescribeStreamTaskLogListResponse: TCResponseModel {
+    public struct DescribeStreamTaskLogListResponse: TCResponse {
         /// 是否是全量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let listOver: Bool?

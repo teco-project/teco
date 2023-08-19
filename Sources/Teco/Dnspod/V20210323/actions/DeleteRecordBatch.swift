@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dnspod {
     /// DeleteRecordBatch请求参数结构体
-    public struct DeleteRecordBatchRequest: TCRequestModel {
+    public struct DeleteRecordBatchRequest: TCRequest {
         /// 解析记录 ID 数组
         public let recordIdList: [UInt64]
 
@@ -34,7 +34,7 @@ extension Dnspod {
     }
 
     /// DeleteRecordBatch返回参数结构体
-    public struct DeleteRecordBatchResponse: TCResponseModel {
+    public struct DeleteRecordBatchResponse: TCResponse {
         /// 批量任务 ID
         public let jobId: UInt64
 

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tiems {
     /// DescribeRuntimes请求参数结构体
-    public struct DescribeRuntimesRequest: TCRequestModel {
+    public struct DescribeRuntimesRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeRuntimes返回参数结构体
-    public struct DescribeRuntimesResponse: TCResponseModel {
+    public struct DescribeRuntimesResponse: TCResponse {
         /// TIEMS支持的运行环境列表
         public let runtimes: [Runtime]
 

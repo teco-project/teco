@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eiam {
     /// CreateAccountGroup请求参数结构体
-    public struct CreateAccountGroupRequest: TCRequestModel {
+    public struct CreateAccountGroupRequest: TCRequest {
         /// 应用ID。
         public let applicationId: String
 
@@ -44,7 +44,7 @@ extension Eiam {
     }
 
     /// CreateAccountGroup返回参数结构体
-    public struct CreateAccountGroupResponse: TCResponseModel {
+    public struct CreateAccountGroupResponse: TCResponse {
         /// 账号组ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accountGroupId: String?

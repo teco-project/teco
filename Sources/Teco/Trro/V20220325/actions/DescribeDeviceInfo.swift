@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Trro {
     /// DescribeDeviceInfo请求参数结构体
-    public struct DescribeDeviceInfoRequest: TCRequestModel {
+    public struct DescribeDeviceInfoRequest: TCRequest {
         /// 目标设备所属项目ID
         public let projectId: String
 
@@ -41,7 +41,7 @@ extension Trro {
     }
 
     /// DescribeDeviceInfo返回参数结构体
-    public struct DescribeDeviceInfoResponse: TCResponseModel {
+    public struct DescribeDeviceInfoResponse: TCResponse {
         /// 设备名称
         public let deviceName: String
 

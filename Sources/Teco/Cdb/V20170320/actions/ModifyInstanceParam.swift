@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// ModifyInstanceParam请求参数结构体
-    public struct ModifyInstanceParamRequest: TCRequestModel {
+    public struct ModifyInstanceParamRequest: TCRequest {
         /// 实例短 ID 列表。
         public let instanceIds: [String]
 
@@ -59,7 +59,7 @@ extension Cdb {
     }
 
     /// ModifyInstanceParam返回参数结构体
-    public struct ModifyInstanceParamResponse: TCResponseModel {
+    public struct ModifyInstanceParamResponse: TCResponse {
         /// 异步任务 ID，可用于查询任务进度。
         public let asyncRequestId: String
 

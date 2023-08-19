@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// DescribeDomainErrorPageInfoByIds请求参数结构体
-    public struct DescribeDomainErrorPageInfoByIdsRequest: TCRequestModel {
+    public struct DescribeDomainErrorPageInfoByIdsRequest: TCRequest {
         /// 定制错误ID列表,最多支持10个
         public let errorPageIds: [String]
 
@@ -34,7 +34,7 @@ extension Gaap {
     }
 
     /// DescribeDomainErrorPageInfoByIds返回参数结构体
-    public struct DescribeDomainErrorPageInfoByIdsResponse: TCResponseModel {
+    public struct DescribeDomainErrorPageInfoByIdsResponse: TCResponse {
         /// 定制错误响应配置集
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorPageSet: [DomainErrorPageInfo]?

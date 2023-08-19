@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tem {
     /// CreateEnvironment请求参数结构体
-    public struct CreateEnvironmentRequest: TCRequestModel {
+    public struct CreateEnvironmentRequest: TCRequest {
         /// 环境名称
         public let environmentName: String
 
@@ -99,7 +99,7 @@ extension Tem {
     }
 
     /// CreateEnvironment返回参数结构体
-    public struct CreateEnvironmentResponse: TCResponseModel {
+    public struct CreateEnvironmentResponse: TCResponse {
         /// 成功时为环境ID，失败为null
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: String?

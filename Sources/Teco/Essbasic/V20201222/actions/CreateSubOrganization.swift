@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// CreateSubOrganization请求参数结构体
-    public struct CreateSubOrganizationRequest: TCRequestModel {
+    public struct CreateSubOrganizationRequest: TCRequest {
         /// 调用方信息
         public let caller: Caller
 
@@ -139,7 +139,7 @@ extension Essbasic {
     }
 
     /// CreateSubOrganization返回参数结构体
-    public struct CreateSubOrganizationResponse: TCResponseModel {
+    public struct CreateSubOrganizationResponse: TCResponse {
         /// 子机构ID
         public let subOrganizationId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dts {
     /// SkipSyncCheckItem请求参数结构体
-    public struct SkipSyncCheckItemRequest: TCRequestModel {
+    public struct SkipSyncCheckItemRequest: TCRequest {
         /// 任务id，如：sync-4ddgid2
         public let jobId: String
 
@@ -39,7 +39,7 @@ extension Dts {
     }
 
     /// SkipSyncCheckItem返回参数结构体
-    public struct SkipSyncCheckItemResponse: TCResponseModel {
+    public struct SkipSyncCheckItemResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

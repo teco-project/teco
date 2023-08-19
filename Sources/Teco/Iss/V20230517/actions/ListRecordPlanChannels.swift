@@ -20,13 +20,13 @@ import TecoCore
 
 extension Iss {
     /// ListRecordPlanChannels请求参数结构体
-    public struct ListRecordPlanChannelsRequest: TCRequestModel {
+    public struct ListRecordPlanChannelsRequest: TCRequest {
         public init() {
         }
     }
 
     /// 用户下所有实时上云计划中的通道id列表返回数据
-    public struct ListRecordPlanChannelsResponse: TCResponseModel {
+    public struct ListRecordPlanChannelsResponse: TCResponse {
         private let data: Wrapped
 
         private struct Wrapped: Codable {

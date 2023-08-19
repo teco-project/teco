@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dcdb {
     /// UpgradeDedicatedDCDBInstance请求参数结构体
-    public struct UpgradeDedicatedDCDBInstanceRequest: TCRequestModel {
+    public struct UpgradeDedicatedDCDBInstanceRequest: TCRequest {
         /// 升级类型，取值为ADD，SPLIT和EXPAND。ADD-添加分片；SPLIT-切分某个分片；EXPAND-垂直扩容某个分片
         public let upgradeType: String
 
@@ -69,7 +69,7 @@ extension Dcdb {
     }
 
     /// UpgradeDedicatedDCDBInstance返回参数结构体
-    public struct UpgradeDedicatedDCDBInstanceResponse: TCResponseModel {
+    public struct UpgradeDedicatedDCDBInstanceResponse: TCResponse {
         /// 异步任务流程ID
         public let flowId: Int64
 

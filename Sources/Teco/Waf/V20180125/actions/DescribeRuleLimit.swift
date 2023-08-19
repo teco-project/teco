@@ -20,7 +20,7 @@ import TecoCore
 
 extension Waf {
     /// DescribeRuleLimit请求参数结构体
-    public struct DescribeRuleLimitRequest: TCRequestModel {
+    public struct DescribeRuleLimitRequest: TCRequest {
         /// 域名
         public let domain: String
 
@@ -34,7 +34,7 @@ extension Waf {
     }
 
     /// DescribeRuleLimit返回参数结构体
-    public struct DescribeRuleLimitResponse: TCResponseModel {
+    public struct DescribeRuleLimitResponse: TCResponse {
         /// waf模块的规格
         public let res: WafRuleLimit
 

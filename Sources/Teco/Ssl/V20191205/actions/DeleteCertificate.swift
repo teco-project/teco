@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssl {
     /// DeleteCertificate请求参数结构体
-    public struct DeleteCertificateRequest: TCRequestModel {
+    public struct DeleteCertificateRequest: TCRequest {
         /// 证书 ID。
         public let certificateId: String
 
@@ -34,7 +34,7 @@ extension Ssl {
     }
 
     /// DeleteCertificate返回参数结构体
-    public struct DeleteCertificateResponse: TCResponseModel {
+    public struct DeleteCertificateResponse: TCResponse {
         /// 删除结果（true：删除成功，false：删除失败）
         public let deleteResult: Bool
 

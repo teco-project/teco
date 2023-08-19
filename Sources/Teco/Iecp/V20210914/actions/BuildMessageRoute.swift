@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// BuildMessageRoute请求参数结构体
-    public struct BuildMessageRouteRequest: TCRequestModel {
+    public struct BuildMessageRouteRequest: TCRequest {
         /// 路由名字
         public let routeName: String
 
@@ -68,7 +68,7 @@ extension Iecp {
     }
 
     /// BuildMessageRoute返回参数结构体
-    public struct BuildMessageRouteResponse: TCResponseModel {
+    public struct BuildMessageRouteResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

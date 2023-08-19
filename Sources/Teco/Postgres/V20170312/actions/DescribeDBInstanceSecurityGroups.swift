@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// DescribeDBInstanceSecurityGroups请求参数结构体
-    public struct DescribeDBInstanceSecurityGroupsRequest: TCRequestModel {
+    public struct DescribeDBInstanceSecurityGroupsRequest: TCRequest {
         /// 实例ID，DBInstanceId和ReadOnlyGroupId至少传一个；如果都传，忽略ReadOnlyGroupId
         public let dbInstanceId: String?
 
@@ -39,7 +39,7 @@ extension Postgres {
     }
 
     /// DescribeDBInstanceSecurityGroups返回参数结构体
-    public struct DescribeDBInstanceSecurityGroupsResponse: TCResponseModel {
+    public struct DescribeDBInstanceSecurityGroupsResponse: TCResponse {
         /// 安全组信息数组
         public let securityGroupSet: [SecurityGroup]
 

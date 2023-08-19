@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeImageRiskSummary请求参数结构体
-    public struct DescribeImageRiskSummaryRequest: TCRequestModel {
+    public struct DescribeImageRiskSummaryRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeImageRiskSummary返回参数结构体
-    public struct DescribeImageRiskSummaryResponse: TCResponseModel {
+    public struct DescribeImageRiskSummaryResponse: TCResponse {
         /// 安全漏洞
         public let vulnerabilityCnt: [RunTimeRiskInfo]
 

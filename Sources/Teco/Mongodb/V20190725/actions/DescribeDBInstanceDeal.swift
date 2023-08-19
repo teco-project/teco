@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mongodb {
     /// DescribeDBInstanceDeal请求参数结构体
-    public struct DescribeDBInstanceDealRequest: TCRequestModel {
+    public struct DescribeDBInstanceDealRequest: TCRequest {
         /// 订单ID，通过CreateDBInstance等接口返回
         public let dealId: String
 
@@ -34,7 +34,7 @@ extension Mongodb {
     }
 
     /// DescribeDBInstanceDeal返回参数结构体
-    public struct DescribeDBInstanceDealResponse: TCResponseModel {
+    public struct DescribeDBInstanceDealResponse: TCResponse {
         /// 订单状态，1：未支付，2：已支付，3：发货中，4：发货成功，5：发货失败，6：退款，7：订单关闭，8：超时未支付关闭。
         public let status: Int64
 

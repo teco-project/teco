@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tag {
     /// AddResourceTag请求参数结构体
-    public struct AddResourceTagRequest: TCRequestModel {
+    public struct AddResourceTagRequest: TCRequest {
         /// 需要绑定的标签键，取值规范参考：https://cloud.tencent.com/document/product/651/13354
         public let tagKey: String
 
@@ -44,7 +44,7 @@ extension Tag {
     }
 
     /// AddResourceTag返回参数结构体
-    public struct AddResourceTagResponse: TCResponseModel {
+    public struct AddResourceTagResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

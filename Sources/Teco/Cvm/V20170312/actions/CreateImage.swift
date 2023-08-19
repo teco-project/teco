@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// CreateImage请求参数结构体
-    public struct CreateImageRequest: TCRequestModel {
+    public struct CreateImageRequest: TCRequest {
         /// 镜像名称
         public let imageName: String
 
@@ -85,7 +85,7 @@ extension Cvm {
     }
 
     /// CreateImage返回参数结构体
-    public struct CreateImageResponse: TCResponseModel {
+    public struct CreateImageResponse: TCResponse {
         /// 镜像ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let imageId: String?

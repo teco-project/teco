@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// DescribeCfwEips请求参数结构体
-    public struct DescribeCfwEipsRequest: TCRequestModel {
+    public struct DescribeCfwEipsRequest: TCRequest {
         /// 1：cfw接入模式，目前仅支持接入模式实例
         public let mode: UInt64
 
@@ -44,7 +44,7 @@ extension Cfw {
     }
 
     /// DescribeCfwEips返回参数结构体
-    public struct DescribeCfwEipsResponse: TCResponseModel {
+    public struct DescribeCfwEipsResponse: TCResponse {
         /// 返回值信息
         public let natFwEipList: [NatFwEipsInfo]
 

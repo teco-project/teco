@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cbs {
     /// DescribeDiskConfigQuota请求参数结构体
-    public struct DescribeDiskConfigQuotaRequest: TCRequestModel {
+    public struct DescribeDiskConfigQuotaRequest: TCRequest {
         /// 查询类别，取值范围。
         ///
         /// - INQUIRY_CBS_CONFIG：查询云盘配置列表
@@ -83,7 +83,7 @@ extension Cbs {
     }
 
     /// DescribeDiskConfigQuota返回参数结构体
-    public struct DescribeDiskConfigQuotaResponse: TCResponseModel {
+    public struct DescribeDiskConfigQuotaResponse: TCResponse {
         /// 云盘配置列表。
         public let diskConfigSet: [DiskConfig]
 

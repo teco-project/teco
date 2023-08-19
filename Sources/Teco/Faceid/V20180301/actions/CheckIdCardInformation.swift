@@ -20,7 +20,7 @@ import TecoCore
 
 extension Faceid {
     /// CheckIdCardInformation请求参数结构体
-    public struct CheckIdCardInformationRequest: TCRequestModel {
+    public struct CheckIdCardInformationRequest: TCRequest {
         /// 身份证人像面的 Base64 值
         /// 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
         /// 支持的图片大小：所下载图片经Base64编码后不超过 7M。
@@ -69,7 +69,7 @@ extension Faceid {
     }
 
     /// CheckIdCardInformation返回参数结构体
-    public struct CheckIdCardInformationResponse: TCResponseModel {
+    public struct CheckIdCardInformationResponse: TCResponse {
         /// 相似度，取值范围 [0.00, 100.00]。推荐相似度大于等于70时可判断为同一人，可根据具体场景自行调整阈值（阈值70的误通过率为千分之一，阈值80的误通过率是万分之一）
         public let sim: Float
 

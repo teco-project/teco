@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bda {
     /// DescribeSegmentationTask请求参数结构体
-    public struct DescribeSegmentationTaskRequest: TCRequestModel {
+    public struct DescribeSegmentationTaskRequest: TCRequest {
         /// 在提交分割任务成功时返回的任务标识ID。
         public let taskID: String
 
@@ -34,7 +34,7 @@ extension Bda {
     }
 
     /// DescribeSegmentationTask返回参数结构体
-    public struct DescribeSegmentationTaskResponse: TCResponseModel {
+    public struct DescribeSegmentationTaskResponse: TCResponse {
         /// 当前任务状态：
         /// QUEUING 排队中
         /// PROCESSING 处理中

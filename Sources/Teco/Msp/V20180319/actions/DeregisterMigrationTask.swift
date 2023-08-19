@@ -20,7 +20,7 @@ import TecoCore
 
 extension Msp {
     /// DeregisterMigrationTask请求参数结构体
-    public struct DeregisterMigrationTaskRequest: TCRequestModel {
+    public struct DeregisterMigrationTaskRequest: TCRequest {
         /// 任务ID
         public let taskId: String
 
@@ -34,7 +34,7 @@ extension Msp {
     }
 
     /// DeregisterMigrationTask返回参数结构体
-    public struct DeregisterMigrationTaskResponse: TCResponseModel {
+    public struct DeregisterMigrationTaskResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

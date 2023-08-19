@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ie {
     /// CreateMediaQualityRestorationTask请求参数结构体
-    public struct CreateMediaQualityRestorationTaskRequest: TCRequestModel {
+    public struct CreateMediaQualityRestorationTaskRequest: TCRequest {
         /// 源文件地址。
         public let downInfo: DownInfo
 
@@ -54,7 +54,7 @@ extension Ie {
     }
 
     /// CreateMediaQualityRestorationTask返回参数结构体
-    public struct CreateMediaQualityRestorationTaskResponse: TCResponseModel {
+    public struct CreateMediaQualityRestorationTaskResponse: TCResponse {
         /// 画质重生任务ID，可以通过该ID查询任务状态。
         public let taskId: String
 

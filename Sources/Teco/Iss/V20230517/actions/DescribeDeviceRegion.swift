@@ -20,13 +20,13 @@ import TecoCore
 
 extension Iss {
     /// DescribeDeviceRegion请求参数结构体
-    public struct DescribeDeviceRegionRequest: TCRequestModel {
+    public struct DescribeDeviceRegionRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeDeviceRegion返回参数结构体
-    public struct DescribeDeviceRegionResponse: TCResponseModel {
+    public struct DescribeDeviceRegionResponse: TCResponse {
         /// 返回数据
         public let data: [DescribeDeviceRegion]
 

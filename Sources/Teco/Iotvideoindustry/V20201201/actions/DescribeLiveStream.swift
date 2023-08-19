@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// DescribeLiveStream请求参数结构体
-    public struct DescribeLiveStreamRequest: TCRequestModel {
+    public struct DescribeLiveStreamRequest: TCRequest {
         /// 频道ID
         public let liveChannelId: String
 
@@ -39,7 +39,7 @@ extension Iotvideoindustry {
     }
 
     /// DescribeLiveStream返回参数结构体
-    public struct DescribeLiveStreamResponse: TCResponseModel {
+    public struct DescribeLiveStreamResponse: TCResponse {
         /// 拉流地址，只有在推流情况下才有
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: StreamAddress?

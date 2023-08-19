@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// DescribeAllNamespaces请求参数结构体
-    public struct DescribeAllNamespacesRequest: TCRequestModel {
+    public struct DescribeAllNamespacesRequest: TCRequest {
         /// 根据使用场景过滤 目前仅有"ST_ALARM"=告警类型
         public let sceneType: String
 
@@ -49,7 +49,7 @@ extension Monitor {
     }
 
     /// DescribeAllNamespaces返回参数结构体
-    public struct DescribeAllNamespacesResponse: TCResponseModel {
+    public struct DescribeAllNamespacesResponse: TCResponse {
         /// 云产品的告警策略类型，已废弃
         public let qceNamespaces: CommonNamespace
 

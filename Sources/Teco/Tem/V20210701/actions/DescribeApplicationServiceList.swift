@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tem {
     /// DescribeApplicationServiceList请求参数结构体
-    public struct DescribeApplicationServiceListRequest: TCRequestModel {
+    public struct DescribeApplicationServiceListRequest: TCRequest {
         /// namespace id
         public let environmentId: String
 
@@ -44,7 +44,7 @@ extension Tem {
     }
 
     /// DescribeApplicationServiceList返回参数结构体
-    public struct DescribeApplicationServiceListResponse: TCResponseModel {
+    public struct DescribeApplicationServiceListResponse: TCResponse {
         /// 应用 EKS Service 列表
         public let result: EksService
 

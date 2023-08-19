@@ -20,13 +20,13 @@ import TecoCore
 
 extension Yunjing {
     /// DescribeOverviewStatistics请求参数结构体
-    public struct DescribeOverviewStatisticsRequest: TCRequestModel {
+    public struct DescribeOverviewStatisticsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeOverviewStatistics返回参数结构体
-    public struct DescribeOverviewStatisticsResponse: TCResponseModel {
+    public struct DescribeOverviewStatisticsResponse: TCResponse {
         /// 服务器在线数。
         public let onlineMachineNum: UInt64
 

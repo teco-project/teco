@@ -20,7 +20,7 @@ import TecoCore
 
 extension Solar {
     /// ReplenishProjectStock请求参数结构体
-    public struct ReplenishProjectStockRequest: TCRequestModel {
+    public struct ReplenishProjectStockRequest: TCRequest {
         /// 项目id
         public let subProjectId: String
 
@@ -54,7 +54,7 @@ extension Solar {
     }
 
     /// ReplenishProjectStock返回参数结构体
-    public struct ReplenishProjectStockResponse: TCResponseModel {
+    public struct ReplenishProjectStockResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

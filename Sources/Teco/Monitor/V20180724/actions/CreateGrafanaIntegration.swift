@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// CreateGrafanaIntegration请求参数结构体
-    public struct CreateGrafanaIntegrationRequest: TCRequestModel {
+    public struct CreateGrafanaIntegrationRequest: TCRequest {
         /// Grafana 实例 ID，例如：grafana-abcdefgh
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Monitor {
     }
 
     /// CreateGrafanaIntegration返回参数结构体
-    public struct CreateGrafanaIntegrationResponse: TCResponseModel {
+    public struct CreateGrafanaIntegrationResponse: TCResponse {
         /// 集成 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let integrationId: String?

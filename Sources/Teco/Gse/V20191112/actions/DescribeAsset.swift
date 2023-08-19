@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// DescribeAsset请求参数结构体
-    public struct DescribeAssetRequest: TCRequestModel {
+    public struct DescribeAssetRequest: TCRequest {
         /// 生成包ID
         public let assetId: String
 
@@ -34,7 +34,7 @@ extension Gse {
     }
 
     /// DescribeAsset返回参数结构体
-    public struct DescribeAssetResponse: TCResponseModel {
+    public struct DescribeAssetResponse: TCResponse {
         /// 生成包信息
         public let asset: Asset
 

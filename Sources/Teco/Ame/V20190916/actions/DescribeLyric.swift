@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ame {
     /// DescribeLyric请求参数结构体
-    public struct DescribeLyricRequest: TCRequestModel {
+    public struct DescribeLyricRequest: TCRequest {
         /// 歌曲ID
         public let itemId: String
 
@@ -41,7 +41,7 @@ extension Ame {
     }
 
     /// DescribeLyric返回参数结构体
-    public struct DescribeLyricResponse: TCResponseModel {
+    public struct DescribeLyricResponse: TCResponse {
         /// 歌词或者波形图详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lyric: Lyric?

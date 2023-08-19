@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// ModifyBindPlanLiveChannel请求参数结构体
-    public struct ModifyBindPlanLiveChannelRequest: TCRequestModel {
+    public struct ModifyBindPlanLiveChannelRequest: TCRequest {
         /// 直播录制计划ID
         public let planId: String
 
@@ -44,7 +44,7 @@ extension Iotvideoindustry {
     }
 
     /// ModifyBindPlanLiveChannel返回参数结构体
-    public struct ModifyBindPlanLiveChannelResponse: TCResponseModel {
+    public struct ModifyBindPlanLiveChannelResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Es {
     /// UpdateInstance请求参数结构体
-    public struct UpdateInstanceRequest: TCRequestModel {
+    public struct UpdateInstanceRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -228,7 +228,7 @@ extension Es {
     }
 
     /// UpdateInstance返回参数结构体
-    public struct UpdateInstanceResponse: TCResponseModel {
+    public struct UpdateInstanceResponse: TCResponse {
         /// 订单号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dealName: String?

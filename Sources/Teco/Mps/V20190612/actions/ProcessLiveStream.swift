@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// ProcessLiveStream请求参数结构体
-    public struct ProcessLiveStreamRequest: TCRequestModel {
+    public struct ProcessLiveStreamRequest: TCRequest {
         /// 直播流 URL（必须是直播文件地址，支持 rtmp，hls 和 flv 等）。
         public let url: String
 
@@ -79,7 +79,7 @@ extension Mps {
     }
 
     /// ProcessLiveStream返回参数结构体
-    public struct ProcessLiveStreamResponse: TCResponseModel {
+    public struct ProcessLiveStreamResponse: TCResponse {
         /// 任务 ID
         public let taskId: String
 

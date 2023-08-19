@@ -20,13 +20,13 @@ import TecoCore
 
 extension Teo {
     /// DescribeAvailablePlans请求参数结构体
-    public struct DescribeAvailablePlansRequest: TCRequestModel {
+    public struct DescribeAvailablePlansRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeAvailablePlans返回参数结构体
-    public struct DescribeAvailablePlansResponse: TCResponseModel {
+    public struct DescribeAvailablePlansResponse: TCResponse {
         /// 当前账户可购买套餐类型及相关信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let planInfo: [PlanInfo]?

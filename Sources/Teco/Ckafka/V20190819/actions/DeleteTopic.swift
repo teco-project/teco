@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// DeleteTopic请求参数结构体
-    public struct DeleteTopicRequest: TCRequestModel {
+    public struct DeleteTopicRequest: TCRequest {
         /// ckafka 实例Id
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Ckafka {
     }
 
     /// DeleteTopic返回参数结构体
-    public struct DeleteTopicResponse: TCResponseModel {
+    public struct DeleteTopicResponse: TCResponse {
         /// 返回的结果集
         public let result: JgwOperateResponse
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeDownloadFile请求参数结构体
-    public struct DescribeDownloadFileRequest: TCRequestModel {
+    public struct DescribeDownloadFileRequest: TCRequest {
         /// 代码uri，格式如：extension://abcdefhhxxx.zip，对应 DescribeExtensionUploadInfo 接口的返回值
         public let codeUri: String
 
@@ -34,7 +34,7 @@ extension Tcb {
     }
 
     /// DescribeDownloadFile返回参数结构体
-    public struct DescribeDownloadFileResponse: TCResponseModel {
+    public struct DescribeDownloadFileResponse: TCResponse {
         /// 文件路径，该字段已废弃
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let filePath: String?

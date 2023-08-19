@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// ChannelCreateConvertTaskApi请求参数结构体
-    public struct ChannelCreateConvertTaskApiRequest: TCRequestModel {
+    public struct ChannelCreateConvertTaskApiRequest: TCRequest {
         /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
 
@@ -67,7 +67,7 @@ extension Essbasic {
     }
 
     /// ChannelCreateConvertTaskApi返回参数结构体
-    public struct ChannelCreateConvertTaskApiResponse: TCResponseModel {
+    public struct ChannelCreateConvertTaskApiResponse: TCResponse {
         /// 任务id
         public let taskId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// InquiryPriceRenewInstances请求参数结构体
-    public struct InquiryPriceRenewInstancesRequest: TCRequestModel {
+    public struct InquiryPriceRenewInstancesRequest: TCRequest {
         /// 一个或多个待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。每次请求批量实例的上限为100。
         public let instanceIds: [String]
 
@@ -59,7 +59,7 @@ extension Cvm {
     }
 
     /// InquiryPriceRenewInstances返回参数结构体
-    public struct InquiryPriceRenewInstancesResponse: TCResponseModel {
+    public struct InquiryPriceRenewInstancesResponse: TCResponse {
         /// 该参数表示对应配置实例的价格。
         public let price: Price
 

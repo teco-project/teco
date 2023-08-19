@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeSchedulerRunTimeInstanceCntByStatus请求参数结构体
-    public struct DescribeSchedulerRunTimeInstanceCntByStatusRequest: TCRequestModel {
+    public struct DescribeSchedulerRunTimeInstanceCntByStatusRequest: TCRequest {
         /// 项目ID
         public let projectId: String
 
@@ -54,7 +54,7 @@ extension Wedata {
     }
 
     /// DescribeSchedulerRunTimeInstanceCntByStatus返回参数结构体
-    public struct DescribeSchedulerRunTimeInstanceCntByStatusResponse: TCResponseModel {
+    public struct DescribeSchedulerRunTimeInstanceCntByStatusResponse: TCResponse {
         /// 响应数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [RuntimeInstanceCntTop]?

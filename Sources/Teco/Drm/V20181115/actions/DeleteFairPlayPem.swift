@@ -20,7 +20,7 @@ import TecoCore
 
 extension Drm {
     /// DeleteFairPlayPem请求参数结构体
-    public struct DeleteFairPlayPemRequest: TCRequestModel {
+    public struct DeleteFairPlayPemRequest: TCRequest {
         /// 委托者Id,适用于托管自身证书的客户。普通客户无需填该字段。
         public let bailorId: UInt64?
 
@@ -40,7 +40,7 @@ extension Drm {
     }
 
     /// DeleteFairPlayPem返回参数结构体
-    public struct DeleteFairPlayPemResponse: TCResponseModel {
+    public struct DeleteFairPlayPemResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

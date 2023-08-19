@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// CreateResourcePath请求参数结构体
-    public struct CreateResourcePathRequest: TCRequestModel {
+    public struct CreateResourcePathRequest: TCRequest {
         /// 文件夹名称，如 aaa
         public let name: String
 
@@ -44,7 +44,7 @@ extension Wedata {
     }
 
     /// CreateResourcePath返回参数结构体
-    public struct CreateResourcePathResponse: TCResponseModel {
+    public struct CreateResourcePathResponse: TCResponse {
         /// 新建成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: Bool?

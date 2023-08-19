@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tem {
     /// DescribeLogConfig请求参数结构体
-    public struct DescribeLogConfigRequest: TCRequestModel {
+    public struct DescribeLogConfigRequest: TCRequest {
         /// 环境 ID
         public let environmentId: String
 
@@ -44,7 +44,7 @@ extension Tem {
     }
 
     /// DescribeLogConfig返回参数结构体
-    public struct DescribeLogConfigResponse: TCResponseModel {
+    public struct DescribeLogConfigResponse: TCResponse {
         /// 配置
         public let result: LogConfig
 

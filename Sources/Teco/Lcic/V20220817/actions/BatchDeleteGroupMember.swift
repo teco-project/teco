@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// BatchDeleteGroupMember请求参数结构体
-    public struct BatchDeleteGroupMemberRequest: TCRequestModel {
+    public struct BatchDeleteGroupMemberRequest: TCRequest {
         /// 待添加群组ID列表，最大值100
         public let groupIds: [String]
 
@@ -44,7 +44,7 @@ extension Lcic {
     }
 
     /// BatchDeleteGroupMember返回参数结构体
-    public struct BatchDeleteGroupMemberResponse: TCResponseModel {
+    public struct BatchDeleteGroupMemberResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

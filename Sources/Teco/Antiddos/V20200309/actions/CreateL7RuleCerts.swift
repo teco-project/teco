@@ -20,7 +20,7 @@ import TecoCore
 
 extension Antiddos {
     /// CreateL7RuleCerts请求参数结构体
-    public struct CreateL7RuleCertsRequest: TCRequestModel {
+    public struct CreateL7RuleCertsRequest: TCRequest {
         /// SSL证书ID
         public let certId: String
 
@@ -39,7 +39,7 @@ extension Antiddos {
     }
 
     /// CreateL7RuleCerts返回参数结构体
-    public struct CreateL7RuleCertsResponse: TCResponseModel {
+    public struct CreateL7RuleCertsResponse: TCResponse {
         /// 成功码
         public let success: SuccessCode
 

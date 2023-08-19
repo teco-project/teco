@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tiw {
     /// DescribeWhiteboardPushSearch请求参数结构体
-    public struct DescribeWhiteboardPushSearchRequest: TCRequestModel {
+    public struct DescribeWhiteboardPushSearchRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeWhiteboardPushSearch返回参数结构体
-    public struct DescribeWhiteboardPushSearchResponse: TCResponseModel {
+    public struct DescribeWhiteboardPushSearchResponse: TCResponse {
         /// 推流任务搜索结果集合
         public let whiteboardPushTaskSet: [WhiteboardPushTaskSearchResult]
 

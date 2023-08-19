@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// AddFlexFundingAccount请求参数结构体
-    public struct AddFlexFundingAccountRequest: TCRequestModel {
+    public struct AddFlexFundingAccountRequest: TCRequest {
         /// 资金账户类型
         /// PINGAN_BANK:平安银行
         public let fundingAccountType: String
@@ -69,7 +69,7 @@ extension Cpdp {
     }
 
     /// AddFlexFundingAccount返回参数结构体
-    public struct AddFlexFundingAccountResponse: TCResponseModel {
+    public struct AddFlexFundingAccountResponse: TCResponse {
         /// 错误码。SUCCESS为成功，其他为失败
         public let errCode: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeScanTaskDetails请求参数结构体
-    public struct DescribeScanTaskDetailsRequest: TCRequestModel {
+    public struct DescribeScanTaskDetailsRequest: TCRequest {
         /// 模块类型 当前提供 Malware 木马 , Vul 漏洞 , Baseline 基线
         public let moduleType: String
 
@@ -54,7 +54,7 @@ extension Cwp {
     }
 
     /// DescribeScanTaskDetails返回参数结构体
-    public struct DescribeScanTaskDetailsResponse: TCResponseModel {
+    public struct DescribeScanTaskDetailsResponse: TCResponse {
         /// 扫描任务信息列表
         public let scanTaskDetailList: [ScanTaskDetails]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// DescribeZoneInstanceConfigInfos请求参数结构体
-    public struct DescribeZoneInstanceConfigInfosRequest: TCRequestModel {
+    public struct DescribeZoneInstanceConfigInfosRequest: TCRequest {
         /// - **zone**
         ///
         /// 按照【**可用区**】进行过滤。可用区形如：ap-guangzhou-1。
@@ -76,7 +76,7 @@ extension Cvm {
     }
 
     /// DescribeZoneInstanceConfigInfos返回参数结构体
-    public struct DescribeZoneInstanceConfigInfosResponse: TCResponseModel {
+    public struct DescribeZoneInstanceConfigInfosResponse: TCResponse {
         /// 可用区机型配置列表。
         public let instanceTypeQuotaSet: [InstanceTypeQuotaItem]
 

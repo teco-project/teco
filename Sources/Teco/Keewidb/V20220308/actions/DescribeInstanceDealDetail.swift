@@ -20,7 +20,7 @@ import TecoCore
 
 extension Keewidb {
     /// DescribeInstanceDealDetail请求参数结构体
-    public struct DescribeInstanceDealDetailRequest: TCRequestModel {
+    public struct DescribeInstanceDealDetailRequest: TCRequest {
         /// 订单交易ID数组，即 [CreateInstances](https://cloud.tencent.com/document/api/1520/86207) 的输出参数DealId。
         public let dealIds: [String]
 
@@ -34,7 +34,7 @@ extension Keewidb {
     }
 
     /// DescribeInstanceDealDetail返回参数结构体
-    public struct DescribeInstanceDealDetailResponse: TCResponseModel {
+    public struct DescribeInstanceDealDetailResponse: TCResponse {
         /// 订单详细信息
         public let dealDetails: [TradeDealDetail]
 

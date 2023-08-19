@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmlb {
     /// DeleteTrafficMirror请求参数结构体
-    public struct DeleteTrafficMirrorRequest: TCRequestModel {
+    public struct DeleteTrafficMirrorRequest: TCRequest {
         /// 流量镜像实例ID数组，可以批量删除，每次删除上限为20
         public let trafficMirrorIds: [String]
 
@@ -34,7 +34,7 @@ extension Bmlb {
     }
 
     /// DeleteTrafficMirror返回参数结构体
-    public struct DeleteTrafficMirrorResponse: TCResponseModel {
+    public struct DeleteTrafficMirrorResponse: TCResponse {
         /// 任务ID。该接口为异步任务，可根据本参数调用DescribeLoadBalancerTaskResult接口来查询任务操作结果。
         public let taskId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// DeleteBackup请求参数结构体
-    public struct DeleteBackupRequest: TCRequestModel {
+    public struct DeleteBackupRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -44,7 +44,7 @@ extension Cynosdb {
     }
 
     /// DeleteBackup返回参数结构体
-    public struct DeleteBackupResponse: TCResponseModel {
+    public struct DeleteBackupResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

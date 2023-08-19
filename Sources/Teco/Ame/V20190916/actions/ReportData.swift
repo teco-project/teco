@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ame {
     /// ReportData请求参数结构体
-    public struct ReportDataRequest: TCRequestModel {
+    public struct ReportDataRequest: TCRequest {
         /// 上报数据
         /// 注:reportData为客户端压缩后的上报数据进行16进制转换的字符串数据
         /// 压缩说明：
@@ -46,7 +46,7 @@ extension Ame {
     }
 
     /// ReportData返回参数结构体
-    public struct ReportDataResponse: TCResponseModel {
+    public struct ReportDataResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

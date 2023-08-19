@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// ModifyVodDomainAccelerateConfig请求参数结构体
-    public struct ModifyVodDomainAccelerateConfigRequest: TCRequestModel {
+    public struct ModifyVodDomainAccelerateConfigRequest: TCRequest {
         /// 需要设置加速配置的域名。
         public let domain: String
 
@@ -56,7 +56,7 @@ extension Vod {
     }
 
     /// ModifyVodDomainAccelerateConfig返回参数结构体
-    public struct ModifyVodDomainAccelerateConfigResponse: TCResponseModel {
+    public struct ModifyVodDomainAccelerateConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

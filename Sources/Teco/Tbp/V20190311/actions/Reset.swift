@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tbp {
     /// Reset请求参数结构体
-    public struct ResetRequest: TCRequestModel {
+    public struct ResetRequest: TCRequest {
         /// 机器人标识
         public let botId: String
 
@@ -49,7 +49,7 @@ extension Tbp {
     }
 
     /// Reset返回参数结构体
-    public struct ResetResponse: TCResponseModel {
+    public struct ResetResponse: TCResponse {
         /// 当前会话状态。取值:"start"/"continue"/"complete"
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dialogStatus: String?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DescribeFlowLastBatchState请求参数结构体
-    public struct DescribeFlowLastBatchStateRequest: TCRequestModel {
+    public struct DescribeFlowLastBatchStateRequest: TCRequest {
         /// 工作流 ID
         public let flowId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// DescribeFlowLastBatchState返回参数结构体
-    public struct DescribeFlowLastBatchStateResponse: TCResponseModel {
+    public struct DescribeFlowLastBatchStateResponse: TCResponse {
         /// 工作流批次最新状态
         public let result: TaskFlowLastBatchState
 

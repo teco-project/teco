@@ -20,7 +20,7 @@ import TecoCore
 
 extension Afc {
     /// TransportGeneralInterface请求参数结构体
-    public struct TransportGeneralInterfaceRequest: TCRequestModel {
+    public struct TransportGeneralInterfaceRequest: TCRequest {
         /// 业务入参
         public let businessSecurityData: TransportGeneralInterfaceInput?
 
@@ -34,7 +34,7 @@ extension Afc {
     }
 
     /// TransportGeneralInterface返回参数结构体
-    public struct TransportGeneralInterfaceResponse: TCResponseModel {
+    public struct TransportGeneralInterfaceResponse: TCResponse {
         /// 业务出参
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: TransportGeneralInterfaceOutput?

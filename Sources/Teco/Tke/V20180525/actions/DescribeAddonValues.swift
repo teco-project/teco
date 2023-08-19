@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeAddonValues请求参数结构体
-    public struct DescribeAddonValuesRequest: TCRequestModel {
+    public struct DescribeAddonValuesRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Tke {
     }
 
     /// DescribeAddonValues返回参数结构体
-    public struct DescribeAddonValuesResponse: TCResponseModel {
+    public struct DescribeAddonValuesResponse: TCResponse {
         /// 参数列表，如果addon已安装，会使用已设置的的参数做渲染，是一个json格式的字符串
         public let values: String
 

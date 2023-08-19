@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ses {
     /// UpdateEmailTemplate请求参数结构体
-    public struct UpdateEmailTemplateRequest: TCRequestModel {
+    public struct UpdateEmailTemplateRequest: TCRequest {
         /// 模板内容
         public let templateContent: TemplateContent
 
@@ -44,7 +44,7 @@ extension Ses {
     }
 
     /// UpdateEmailTemplate返回参数结构体
-    public struct UpdateEmailTemplateResponse: TCResponseModel {
+    public struct UpdateEmailTemplateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

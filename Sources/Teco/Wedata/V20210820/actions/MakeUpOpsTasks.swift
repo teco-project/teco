@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// MakeUpOpsTasks请求参数结构体
-    public struct MakeUpOpsTasksRequest: TCRequestModel {
+    public struct MakeUpOpsTasksRequest: TCRequest {
         /// 补录的当前任务的taskId数组
         public let taskIdList: [String]
 
@@ -54,7 +54,7 @@ extension Wedata {
     }
 
     /// MakeUpOpsTasks返回参数结构体
-    public struct MakeUpOpsTasksResponse: TCResponseModel {
+    public struct MakeUpOpsTasksResponse: TCResponse {
         /// 返回批量操作成功个数、失败个数、操作总数
         public let data: BatchOperationOpsDto
 

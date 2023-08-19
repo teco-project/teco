@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cmq {
     /// CreateSubscribe请求参数结构体
-    public struct CreateSubscribeRequest: TCRequestModel {
+    public struct CreateSubscribeRequest: TCRequest {
         /// 主题名字，在单个地域同一帐号下唯一。主题名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线（-）。
         public let topicName: String
 
@@ -69,7 +69,7 @@ extension Cmq {
     }
 
     /// CreateSubscribe返回参数结构体
-    public struct CreateSubscribeResponse: TCResponseModel {
+    public struct CreateSubscribeResponse: TCResponse {
         /// SubscriptionId
         public let subscriptionId: String
 

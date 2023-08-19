@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiw {
     /// DescribeOnlineRecordCallback请求参数结构体
-    public struct DescribeOnlineRecordCallbackRequest: TCRequestModel {
+    public struct DescribeOnlineRecordCallbackRequest: TCRequest {
         /// 应用的SdkAppId
         public let sdkAppId: Int64
 
@@ -34,7 +34,7 @@ extension Tiw {
     }
 
     /// DescribeOnlineRecordCallback返回参数结构体
-    public struct DescribeOnlineRecordCallbackResponse: TCResponseModel {
+    public struct DescribeOnlineRecordCallbackResponse: TCResponse {
         /// 实时录制事件回调地址，如果未设置回调地址，该字段为空字符串
         public let callback: String
 

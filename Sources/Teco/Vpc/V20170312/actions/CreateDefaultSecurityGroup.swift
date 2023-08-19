@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CreateDefaultSecurityGroup请求参数结构体
-    public struct CreateDefaultSecurityGroupRequest: TCRequestModel {
+    public struct CreateDefaultSecurityGroupRequest: TCRequest {
         /// 项目ID，默认0。可在qcloud控制台项目管理页面查询到。
         public let projectId: String?
 
@@ -34,7 +34,7 @@ extension Vpc {
     }
 
     /// CreateDefaultSecurityGroup返回参数结构体
-    public struct CreateDefaultSecurityGroupResponse: TCResponseModel {
+    public struct CreateDefaultSecurityGroupResponse: TCResponse {
         /// 安全组对象。
         public let securityGroup: SecurityGroup
 

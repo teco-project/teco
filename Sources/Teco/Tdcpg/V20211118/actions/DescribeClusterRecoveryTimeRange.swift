@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdcpg {
     /// DescribeClusterRecoveryTimeRange请求参数结构体
-    public struct DescribeClusterRecoveryTimeRangeRequest: TCRequestModel {
+    public struct DescribeClusterRecoveryTimeRangeRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Tdcpg {
     }
 
     /// DescribeClusterRecoveryTimeRange返回参数结构体
-    public struct DescribeClusterRecoveryTimeRangeResponse: TCResponseModel {
+    public struct DescribeClusterRecoveryTimeRangeResponse: TCResponse {
         /// 可回档时间范围列表
         public let availableRecoveryTimeRangeSet: [AvailableRecoveryTimeRange]
 

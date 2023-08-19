@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// DescribeFleetRelatedResources请求参数结构体
-    public struct DescribeFleetRelatedResourcesRequest: TCRequestModel {
+    public struct DescribeFleetRelatedResourcesRequest: TCRequest {
         /// 服务器舰队 Id
         public let fleetId: String
 
@@ -34,7 +34,7 @@ extension Gse {
     }
 
     /// DescribeFleetRelatedResources返回参数结构体
-    public struct DescribeFleetRelatedResourcesResponse: TCResponseModel {
+    public struct DescribeFleetRelatedResourcesResponse: TCResponse {
         /// 与服务器舰队关联的资源信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resources: [FleetRelatedResource]?

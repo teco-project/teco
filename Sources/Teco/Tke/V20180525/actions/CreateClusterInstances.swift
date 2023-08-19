@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// CreateClusterInstances请求参数结构体
-    public struct CreateClusterInstancesRequest: TCRequestModel {
+    public struct CreateClusterInstancesRequest: TCRequest {
         /// 集群 ID，请填写 查询集群列表 接口中返回的 clusterId 字段
         public let clusterId: String
 
@@ -49,7 +49,7 @@ extension Tke {
     }
 
     /// CreateClusterInstances返回参数结构体
-    public struct CreateClusterInstancesResponse: TCResponseModel {
+    public struct CreateClusterInstancesResponse: TCResponse {
         /// 节点实例ID
         public let instanceIdSet: [String]
 

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Sqlserver {
     /// DescribeZones请求参数结构体
-    public struct DescribeZonesRequest: TCRequestModel {
+    public struct DescribeZonesRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeZones返回参数结构体
-    public struct DescribeZonesResponse: TCResponseModel {
+    public struct DescribeZonesResponse: TCResponse {
         /// 返回多少个可用区信息
         public let totalCount: Int64
 

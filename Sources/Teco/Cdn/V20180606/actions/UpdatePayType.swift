@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdn {
     /// UpdatePayType请求参数结构体
-    public struct UpdatePayTypeRequest: TCRequestModel {
+    public struct UpdatePayTypeRequest: TCRequest {
         /// 计费区域，mainland或overseas。
         public let area: String
 
@@ -39,7 +39,7 @@ extension Cdn {
     }
 
     /// UpdatePayType返回参数结构体
-    public struct UpdatePayTypeResponse: TCResponseModel {
+    public struct UpdatePayTypeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

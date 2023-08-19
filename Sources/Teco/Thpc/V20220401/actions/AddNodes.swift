@@ -20,7 +20,7 @@ import TecoCore
 
 extension Thpc {
     /// AddNodes请求参数结构体
-    public struct AddNodesRequest: TCRequestModel {
+    public struct AddNodesRequest: TCRequest {
         /// 集群中实例所在的位置。
         public let placement: Placement
 
@@ -145,7 +145,7 @@ extension Thpc {
     }
 
     /// AddNodes返回参数结构体
-    public struct AddNodesResponse: TCResponseModel {
+    public struct AddNodesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

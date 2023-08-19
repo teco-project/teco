@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// DescribePresetList请求参数结构体
-    public struct DescribePresetListRequest: TCRequestModel {
+    public struct DescribePresetListRequest: TCRequest {
         /// 视频通道唯一标识
         public let channelId: String
 
@@ -39,7 +39,7 @@ extension Iotvideoindustry {
     }
 
     /// DescribePresetList返回参数结构体
-    public struct DescribePresetListResponse: TCResponseModel {
+    public struct DescribePresetListResponse: TCResponse {
         /// 预置列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [PresetItem]?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// DescribeChartDownloadInfo请求参数结构体
-    public struct DescribeChartDownloadInfoRequest: TCRequestModel {
+    public struct DescribeChartDownloadInfoRequest: TCRequest {
         /// 实例ID
         public let registryId: String
 
@@ -49,7 +49,7 @@ extension Tcr {
     }
 
     /// DescribeChartDownloadInfo返回参数结构体
-    public struct DescribeChartDownloadInfoResponse: TCResponseModel {
+    public struct DescribeChartDownloadInfoResponse: TCResponse {
         /// 用于下载的url的预签名地址
         public let preSignedDownloadURL: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Chdfs {
     /// DeleteLifeCycleRules请求参数结构体
-    public struct DeleteLifeCycleRulesRequest: TCRequestModel {
+    public struct DeleteLifeCycleRulesRequest: TCRequest {
         /// 多个生命周期规则ID，上限为10
         public let lifeCycleRuleIds: [UInt64]
 
@@ -34,7 +34,7 @@ extension Chdfs {
     }
 
     /// DeleteLifeCycleRules返回参数结构体
-    public struct DeleteLifeCycleRulesResponse: TCResponseModel {
+    public struct DeleteLifeCycleRulesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeReverseShellWhiteListDetail请求参数结构体
-    public struct DescribeReverseShellWhiteListDetailRequest: TCRequestModel {
+    public struct DescribeReverseShellWhiteListDetailRequest: TCRequest {
         /// 白名单id
         public let whiteListId: String
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeReverseShellWhiteListDetail返回参数结构体
-    public struct DescribeReverseShellWhiteListDetailResponse: TCResponseModel {
+    public struct DescribeReverseShellWhiteListDetailResponse: TCResponse {
         /// 事件基本信息
         public let whiteListDetailInfo: ReverseShellWhiteListInfo
 

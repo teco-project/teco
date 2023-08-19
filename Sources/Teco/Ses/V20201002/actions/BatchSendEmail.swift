@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ses {
     /// BatchSendEmail请求参数结构体
-    public struct BatchSendEmailRequest: TCRequestModel {
+    public struct BatchSendEmailRequest: TCRequest {
         /// 发信邮件地址。请填写发件人邮箱地址，例如：noreply@mail.qcloud.com。如需填写发件人说明，请按照
         /// 发信人 &lt;邮件地址&gt; 的方式填写，例如：
         /// 腾讯云团队 &lt;noreply@mail.qcloud.com&gt;
@@ -91,7 +91,7 @@ extension Ses {
     }
 
     /// BatchSendEmail返回参数结构体
-    public struct BatchSendEmailResponse: TCResponseModel {
+    public struct BatchSendEmailResponse: TCResponse {
         /// 发送任务ID
         public let taskId: UInt64
 

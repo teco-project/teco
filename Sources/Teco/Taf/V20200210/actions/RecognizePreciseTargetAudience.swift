@@ -20,7 +20,7 @@ import TecoCore
 
 extension Taf {
     /// RecognizePreciseTargetAudience请求参数结构体
-    public struct RecognizePreciseTargetAudienceRequest: TCRequestModel {
+    public struct RecognizePreciseTargetAudienceRequest: TCRequest {
         /// 业务数据
         public let bspData: InputRecognizeTargetAudience
 
@@ -34,7 +34,7 @@ extension Taf {
     }
 
     /// RecognizePreciseTargetAudience返回参数结构体
-    public struct RecognizePreciseTargetAudienceResponse: TCResponseModel {
+    public struct RecognizePreciseTargetAudienceResponse: TCResponse {
         /// 回包数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: OutputRecognizeTargetAudience?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cat {
     /// DescribeNodes请求参数结构体
-    public struct DescribeNodesRequest: TCRequestModel {
+    public struct DescribeNodesRequest: TCRequest {
         /// 节点类型
         /// - 1 = IDC
         /// - 2 = LastMile
@@ -73,7 +73,7 @@ extension Cat {
     }
 
     /// DescribeNodes返回参数结构体
-    public struct DescribeNodesResponse: TCResponseModel {
+    public struct DescribeNodesResponse: TCResponse {
         /// 节点列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeSet: [NodeDefineExt]?

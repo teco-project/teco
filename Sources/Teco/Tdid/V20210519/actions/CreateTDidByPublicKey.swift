@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdid {
     /// CreateTDidByPublicKey请求参数结构体
-    public struct CreateTDidByPublicKeyRequest: TCRequestModel {
+    public struct CreateTDidByPublicKeyRequest: TCRequest {
         /// 网络ID
         public let clusterId: String
 
@@ -49,7 +49,7 @@ extension Tdid {
     }
 
     /// CreateTDidByPublicKey返回参数结构体
-    public struct CreateTDidByPublicKeyResponse: TCResponseModel {
+    public struct CreateTDidByPublicKeyResponse: TCResponse {
         /// did具体信息
         public let did: String
 

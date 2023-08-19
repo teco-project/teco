@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// ForbidLiveStream请求参数结构体
-    public struct ForbidLiveStreamRequest: TCRequestModel {
+    public struct ForbidLiveStreamRequest: TCRequest {
         /// 推流路径，与推流和播放地址中的AppName保持一致，默认为 live。
         public let appName: String
 
@@ -59,7 +59,7 @@ extension Live {
     }
 
     /// ForbidLiveStream返回参数结构体
-    public struct ForbidLiveStreamResponse: TCResponseModel {
+    public struct ForbidLiveStreamResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

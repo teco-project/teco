@@ -20,7 +20,7 @@ import TecoCore
 
 extension Solar {
     /// DescribeResourceTemplateHeaders请求参数结构体
-    public struct DescribeResourceTemplateHeadersRequest: TCRequestModel {
+    public struct DescribeResourceTemplateHeadersRequest: TCRequest {
         /// 微信公众号appId
         public let wxAppId: String?
 
@@ -34,7 +34,7 @@ extension Solar {
     }
 
     /// DescribeResourceTemplateHeaders返回参数结构体
-    public struct DescribeResourceTemplateHeadersResponse: TCResponseModel {
+    public struct DescribeResourceTemplateHeadersResponse: TCResponse {
         /// 记录条数
         public let totalCount: UInt64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// RestartDBInstance请求参数结构体
-    public struct RestartDBInstanceRequest: TCRequestModel {
+    public struct RestartDBInstanceRequest: TCRequest {
         /// 数据库实例ID，形如mssql-njj2mtpl
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Sqlserver {
     }
 
     /// RestartDBInstance返回参数结构体
-    public struct RestartDBInstanceResponse: TCResponseModel {
+    public struct RestartDBInstanceResponse: TCResponse {
         /// 异步任务流程ID
         public let flowId: UInt64
 

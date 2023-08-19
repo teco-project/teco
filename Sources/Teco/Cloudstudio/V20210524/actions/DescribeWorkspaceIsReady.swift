@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cloudstudio {
     /// DescribeWorkspaceIsReady请求参数结构体
-    public struct DescribeWorkspaceIsReadyRequest: TCRequestModel {
+    public struct DescribeWorkspaceIsReadyRequest: TCRequest {
         /// 工作空间 spaceKey
         public let spaceKey: String
 
@@ -34,7 +34,7 @@ extension Cloudstudio {
     }
 
     /// DescribeWorkspaceIsReady返回参数结构体
-    public struct DescribeWorkspaceIsReadyResponse: TCResponseModel {
+    public struct DescribeWorkspaceIsReadyResponse: TCResponse {
         /// 工作空间是否就绪
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: Bool?

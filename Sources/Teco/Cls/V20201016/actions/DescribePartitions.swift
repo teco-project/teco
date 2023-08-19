@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// DescribePartitions请求参数结构体
-    public struct DescribePartitionsRequest: TCRequestModel {
+    public struct DescribePartitionsRequest: TCRequest {
         /// 日志主题ID
         public let topicId: String
 
@@ -34,7 +34,7 @@ extension Cls {
     }
 
     /// DescribePartitions返回参数结构体
-    public struct DescribePartitionsResponse: TCResponseModel {
+    public struct DescribePartitionsResponse: TCResponse {
         /// 分区列表
         public let partitions: [PartitionInfo]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CheckDefaultSubnet请求参数结构体
-    public struct CheckDefaultSubnetRequest: TCRequestModel {
+    public struct CheckDefaultSubnetRequest: TCRequest {
         /// 子网所在的可用区ID，不同子网选择不同可用区可以做跨可用区灾备。
         public let zone: String?
 
@@ -34,7 +34,7 @@ extension Vpc {
     }
 
     /// CheckDefaultSubnet返回参数结构体
-    public struct CheckDefaultSubnetResponse: TCResponseModel {
+    public struct CheckDefaultSubnetResponse: TCResponse {
         /// 检查结果。true为可以创建默认子网，false为不可以创建默认子网。
         public let result: Bool
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Antiddos {
     /// DescribeNewL7Rules请求参数结构体
-    public struct DescribeNewL7RulesRequest: TCRequestModel {
+    public struct DescribeNewL7RulesRequest: TCRequest {
         /// DDoS防护子产品代号（bgpip表示高防IP）
         public let business: String
 
@@ -74,7 +74,7 @@ extension Antiddos {
     }
 
     /// DescribeNewL7Rules返回参数结构体
-    public struct DescribeNewL7RulesResponse: TCResponseModel {
+    public struct DescribeNewL7RulesResponse: TCResponse {
         /// 转发规则列表
         public let rules: [NewL7RuleEntry]
 

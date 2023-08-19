@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// ModifySecLogDeliveryClsSetting请求参数结构体
-    public struct ModifySecLogDeliveryClsSettingRequest: TCRequestModel {
+    public struct ModifySecLogDeliveryClsSettingRequest: TCRequest {
         /// 日志信息
         public let list: [SecLogDeliveryClsSettingInfo]
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// ModifySecLogDeliveryClsSetting返回参数结构体
-    public struct ModifySecLogDeliveryClsSettingResponse: TCResponseModel {
+    public struct ModifySecLogDeliveryClsSettingResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

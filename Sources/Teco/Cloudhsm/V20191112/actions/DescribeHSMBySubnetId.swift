@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cloudhsm {
     /// DescribeHSMBySubnetId请求参数结构体
-    public struct DescribeHSMBySubnetIdRequest: TCRequestModel {
+    public struct DescribeHSMBySubnetIdRequest: TCRequest {
         /// Subnet标识符
         public let subnetId: String
 
@@ -34,7 +34,7 @@ extension Cloudhsm {
     }
 
     /// DescribeHSMBySubnetId返回参数结构体
-    public struct DescribeHSMBySubnetIdResponse: TCResponseModel {
+    public struct DescribeHSMBySubnetIdResponse: TCResponse {
         /// HSM数量
         public let totalCount: Int64
 

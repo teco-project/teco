@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// CreateAnchor请求参数结构体
-    public struct CreateAnchorRequest: TCRequestModel {
+    public struct CreateAnchorRequest: TCRequest {
         /// 主播业务ID，唯一
         public let anchorUid: String
 
@@ -76,7 +76,7 @@ extension Cpdp {
     }
 
     /// CreateAnchor返回参数结构体
-    public struct CreateAnchorResponse: TCResponseModel {
+    public struct CreateAnchorResponse: TCResponse {
         /// 主播ID
         public let anchorId: String
 

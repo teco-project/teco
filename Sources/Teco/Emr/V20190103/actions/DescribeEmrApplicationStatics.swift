@@ -20,7 +20,7 @@ import TecoCore
 
 extension Emr {
     /// DescribeEmrApplicationStatics请求参数结构体
-    public struct DescribeEmrApplicationStaticsRequest: TCRequestModel {
+    public struct DescribeEmrApplicationStaticsRequest: TCRequest {
         /// 集群id
         public let instanceId: String
 
@@ -84,7 +84,7 @@ extension Emr {
     }
 
     /// DescribeEmrApplicationStatics返回参数结构体
-    public struct DescribeEmrApplicationStaticsResponse: TCResponseModel {
+    public struct DescribeEmrApplicationStaticsResponse: TCResponse {
         /// 作业统计信息
         public let statics: [ApplicationStatics]
 

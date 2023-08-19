@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// ModifyDockerContainer请求参数结构体
-    public struct ModifyDockerContainerRequest: TCRequestModel {
+    public struct ModifyDockerContainerRequest: TCRequest {
         /// 实例ID。
         public let instanceId: String
 
@@ -70,7 +70,7 @@ extension Lighthouse {
     }
 
     /// ModifyDockerContainer返回参数结构体
-    public struct ModifyDockerContainerResponse: TCResponseModel {
+    public struct ModifyDockerContainerResponse: TCResponse {
         /// Docker活动ID。
         public let dockerActivityId: String
 

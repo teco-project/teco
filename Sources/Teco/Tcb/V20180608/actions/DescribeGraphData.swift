@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeGraphData请求参数结构体
-    public struct DescribeGraphDataRequest: TCRequestModel {
+    public struct DescribeGraphDataRequest: TCRequest {
         /// 环境ID
         public let envId: String
 
@@ -78,7 +78,7 @@ extension Tcb {
     }
 
     /// DescribeGraphData返回参数结构体
-    public struct DescribeGraphDataResponse: TCResponseModel {
+    public struct DescribeGraphDataResponse: TCResponse {
         /// 开始时间, 会根据数据的统计周期进行取整.
         public let startTime: String
 

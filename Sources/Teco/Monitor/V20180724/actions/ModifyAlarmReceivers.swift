@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// ModifyAlarmReceivers请求参数结构体
-    public struct ModifyAlarmReceiversRequest: TCRequestModel {
+    public struct ModifyAlarmReceiversRequest: TCRequest {
         /// 需要修改接收人的策略组Id
         public let groupId: Int64
 
@@ -44,7 +44,7 @@ extension Monitor {
     }
 
     /// ModifyAlarmReceivers返回参数结构体
-    public struct ModifyAlarmReceiversResponse: TCResponseModel {
+    public struct ModifyAlarmReceiversResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

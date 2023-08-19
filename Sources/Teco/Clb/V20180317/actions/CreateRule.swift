@@ -20,7 +20,7 @@ import TecoCore
 
 extension Clb {
     /// CreateRule请求参数结构体
-    public struct CreateRuleRequest: TCRequestModel {
+    public struct CreateRuleRequest: TCRequest {
         /// 负载均衡实例 ID。
         public let loadBalancerId: String
 
@@ -44,7 +44,7 @@ extension Clb {
     }
 
     /// CreateRule返回参数结构体
-    public struct CreateRuleResponse: TCResponseModel {
+    public struct CreateRuleResponse: TCResponse {
         /// 创建的转发规则的唯一标识数组。
         public let locationIds: [String]
 

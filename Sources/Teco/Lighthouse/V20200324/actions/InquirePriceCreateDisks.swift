@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// InquirePriceCreateDisks请求参数结构体
-    public struct InquirePriceCreateDisksRequest: TCRequestModel {
+    public struct InquirePriceCreateDisksRequest: TCRequest {
         /// 云硬盘大小, 单位: GB。
         public let diskSize: Int64
 
@@ -54,7 +54,7 @@ extension Lighthouse {
     }
 
     /// InquirePriceCreateDisks返回参数结构体
-    public struct InquirePriceCreateDisksResponse: TCResponseModel {
+    public struct InquirePriceCreateDisksResponse: TCResponse {
         /// 云硬盘价格。
         public let diskPrice: DiskPrice
 

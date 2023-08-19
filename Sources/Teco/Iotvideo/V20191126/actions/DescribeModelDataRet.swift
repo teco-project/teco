@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// DescribeModelDataRet请求参数结构体
-    public struct DescribeModelDataRetRequest: TCRequestModel {
+    public struct DescribeModelDataRetRequest: TCRequest {
         /// 任务ID
         public let taskId: String
 
@@ -34,7 +34,7 @@ extension Iotvideo {
     }
 
     /// DescribeModelDataRet返回参数结构体
-    public struct DescribeModelDataRetResponse: TCResponseModel {
+    public struct DescribeModelDataRetResponse: TCResponse {
         /// 设备响应结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: String?

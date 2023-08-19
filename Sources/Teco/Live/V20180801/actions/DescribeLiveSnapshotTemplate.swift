@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeLiveSnapshotTemplate请求参数结构体
-    public struct DescribeLiveSnapshotTemplateRequest: TCRequestModel {
+    public struct DescribeLiveSnapshotTemplateRequest: TCRequest {
         /// 模板 ID。
         /// 调用 [CreateLiveSnapshotTemplate](/document/product/267/32624) 时返回的模板 ID。
         public let templateId: Int64
@@ -35,7 +35,7 @@ extension Live {
     }
 
     /// DescribeLiveSnapshotTemplate返回参数结构体
-    public struct DescribeLiveSnapshotTemplateResponse: TCResponseModel {
+    public struct DescribeLiveSnapshotTemplateResponse: TCResponse {
         /// 截图模板信息。
         public let template: SnapshotTemplateInfo
 

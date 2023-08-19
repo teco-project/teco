@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// ModifyCustomAccount请求参数结构体
-    public struct ModifyCustomAccountRequest: TCRequestModel {
+    public struct ModifyCustomAccountRequest: TCRequest {
         /// 实例Id
         public let registryId: String
 
@@ -64,7 +64,7 @@ extension Tcr {
     }
 
     /// ModifyCustomAccount返回参数结构体
-    public struct ModifyCustomAccountResponse: TCResponseModel {
+    public struct ModifyCustomAccountResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

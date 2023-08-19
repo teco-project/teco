@@ -20,7 +20,7 @@ import TecoCore
 
 extension Yunjing {
     /// RescanImpactedHost请求参数结构体
-    public struct RescanImpactedHostRequest: TCRequestModel {
+    public struct RescanImpactedHostRequest: TCRequest {
         /// 漏洞ID。
         public let id: UInt64
 
@@ -34,7 +34,7 @@ extension Yunjing {
     }
 
     /// RescanImpactedHost返回参数结构体
-    public struct RescanImpactedHostResponse: TCResponseModel {
+    public struct RescanImpactedHostResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

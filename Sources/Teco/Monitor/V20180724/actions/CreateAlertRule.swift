@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// CreateAlertRule请求参数结构体
-    public struct CreateAlertRuleRequest: TCRequestModel {
+    public struct CreateAlertRuleRequest: TCRequest {
         /// Prometheus 实例 ID，例如：prom-abcd1234
         public let instanceId: String
 
@@ -78,7 +78,7 @@ extension Monitor {
     }
 
     /// CreateAlertRule返回参数结构体
-    public struct CreateAlertRuleResponse: TCResponseModel {
+    public struct CreateAlertRuleResponse: TCResponse {
         /// 规则 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleId: String?

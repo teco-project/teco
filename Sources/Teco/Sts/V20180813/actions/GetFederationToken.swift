@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sts {
     /// GetFederationToken请求参数结构体
-    public struct GetFederationTokenRequest: TCRequestModel {
+    public struct GetFederationTokenRequest: TCRequest {
         /// 您可以自定义调用方英文名称，由字母组成。
         public let name: String
 
@@ -48,7 +48,7 @@ extension Sts {
     }
 
     /// GetFederationToken返回参数结构体
-    public struct GetFederationTokenResponse: TCResponseModel {
+    public struct GetFederationTokenResponse: TCResponse {
         /// 临时访问凭证
         public let credentials: Credentials
 

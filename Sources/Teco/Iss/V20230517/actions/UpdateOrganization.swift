@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// UpdateOrganization请求参数结构体
-    public struct UpdateOrganizationRequest: TCRequestModel {
+    public struct UpdateOrganizationRequest: TCRequest {
         /// 组织ID（从查询组织接口DescribeOrganization中获取）
         public let organizationId: String
 
@@ -39,7 +39,7 @@ extension Iss {
     }
 
     /// UpdateOrganization返回参数结构体
-    public struct UpdateOrganizationResponse: TCResponseModel {
+    public struct UpdateOrganizationResponse: TCResponse {
         /// 返回结果
         public let data: UpdateOrgResponse
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiw {
     /// DescribeOnlineRecord请求参数结构体
-    public struct DescribeOnlineRecordRequest: TCRequestModel {
+    public struct DescribeOnlineRecordRequest: TCRequest {
         /// 客户的SdkAppId
         public let sdkAppId: Int64
 
@@ -39,7 +39,7 @@ extension Tiw {
     }
 
     /// DescribeOnlineRecord返回参数结构体
-    public struct DescribeOnlineRecordResponse: TCResponseModel {
+    public struct DescribeOnlineRecordResponse: TCResponse {
         /// 录制结束原因，
         /// - AUTO: 房间内长时间没有音视频上行及白板操作导致自动停止录制
         /// - USER_CALL: 主动调用了停止录制接口

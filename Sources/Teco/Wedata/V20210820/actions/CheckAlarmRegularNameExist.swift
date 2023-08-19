@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// CheckAlarmRegularNameExist请求参数结构体
-    public struct CheckAlarmRegularNameExistRequest: TCRequestModel {
+    public struct CheckAlarmRegularNameExistRequest: TCRequest {
         /// 项目名称
         public let projectId: String
 
@@ -62,7 +62,7 @@ extension Wedata {
     }
 
     /// CheckAlarmRegularNameExist返回参数结构体
-    public struct CheckAlarmRegularNameExistResponse: TCResponseModel {
+    public struct CheckAlarmRegularNameExistResponse: TCResponse {
         /// 是否重名
         public let data: Bool
 

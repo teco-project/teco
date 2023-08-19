@@ -20,13 +20,13 @@ import TecoCore
 
 extension Ses {
     /// ListEmailIdentities请求参数结构体
-    public struct ListEmailIdentitiesRequest: TCRequestModel {
+    public struct ListEmailIdentitiesRequest: TCRequest {
         public init() {
         }
     }
 
     /// ListEmailIdentities返回参数结构体
-    public struct ListEmailIdentitiesResponse: TCResponseModel {
+    public struct ListEmailIdentitiesResponse: TCResponse {
         /// 发信域名列表
         public let emailIdentities: [EmailIdentity]
 

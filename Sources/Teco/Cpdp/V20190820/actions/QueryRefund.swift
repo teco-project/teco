@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryRefund请求参数结构体
-    public struct QueryRefundRequest: TCRequestModel {
+    public struct QueryRefundRequest: TCRequest {
         /// 用户ID，长度不小于5位，仅支持字母和数字的组合。
         public let userId: String
 
@@ -63,7 +63,7 @@ extension Cpdp {
     }
 
     /// QueryRefund返回参数结构体
-    public struct QueryRefundResponse: TCResponseModel {
+    public struct QueryRefundResponse: TCResponse {
         /// 退款状态码，退款提交成功后返回  1：退款中；  2：退款成功；  3：退款失败。
         public let state: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CheckNetDetectState请求参数结构体
-    public struct CheckNetDetectStateRequest: TCRequestModel {
+    public struct CheckNetDetectStateRequest: TCRequest {
         /// 探测目的IPv4地址数组，最多两个。
         public let detectDestinationIp: [String]
 
@@ -78,7 +78,7 @@ extension Vpc {
     }
 
     /// CheckNetDetectState返回参数结构体
-    public struct CheckNetDetectStateResponse: TCResponseModel {
+    public struct CheckNetDetectStateResponse: TCResponse {
         /// 网络探测验证结果对象数组。
         public let netDetectIpStateSet: [NetDetectIpState]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DetachNetworkInterface请求参数结构体
-    public struct DetachNetworkInterfaceRequest: TCRequestModel {
+    public struct DetachNetworkInterfaceRequest: TCRequest {
         /// 弹性网卡实例ID，例如：eni-m6dyj72l。
         public let networkInterfaceId: String
 
@@ -39,7 +39,7 @@ extension Vpc {
     }
 
     /// DetachNetworkInterface返回参数结构体
-    public struct DetachNetworkInterfaceResponse: TCResponseModel {
+    public struct DetachNetworkInterfaceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CreateIp6Translators请求参数结构体
-    public struct CreateIp6TranslatorsRequest: TCRequestModel {
+    public struct CreateIp6TranslatorsRequest: TCRequest {
         /// 转换实例名称
         public let ip6TranslatorName: String?
 
@@ -44,7 +44,7 @@ extension Vpc {
     }
 
     /// CreateIp6Translators返回参数结构体
-    public struct CreateIp6TranslatorsResponse: TCResponseModel {
+    public struct CreateIp6TranslatorsResponse: TCResponse {
         /// 转换实例的唯一ID数组，形如"ip6-xxxxxxxx"
         public let ip6TranslatorSet: [String]
 

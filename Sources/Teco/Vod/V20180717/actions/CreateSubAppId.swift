@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// CreateSubAppId请求参数结构体
-    public struct CreateSubAppIdRequest: TCRequestModel {
+    public struct CreateSubAppIdRequest: TCRequest {
         /// 子应用名称，长度限制：40个字符。
         public let name: String
 
@@ -39,7 +39,7 @@ extension Vod {
     }
 
     /// CreateSubAppId返回参数结构体
-    public struct CreateSubAppIdResponse: TCResponseModel {
+    public struct CreateSubAppIdResponse: TCResponse {
         /// 新创建的子应用 ID。
         public let subAppId: UInt64
 

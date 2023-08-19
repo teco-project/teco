@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// CreateDBImportJob请求参数结构体
-    public struct CreateDBImportJobRequest: TCRequestModel {
+    public struct CreateDBImportJobRequest: TCRequest {
         /// 实例的 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceId: String
 
@@ -59,7 +59,7 @@ extension Cdb {
     }
 
     /// CreateDBImportJob返回参数结构体
-    public struct CreateDBImportJobResponse: TCResponseModel {
+    public struct CreateDBImportJobResponse: TCResponse {
         /// 异步任务的请求 ID，可使用此 ID 查询异步任务的执行结果。
         public let asyncRequestId: String
 

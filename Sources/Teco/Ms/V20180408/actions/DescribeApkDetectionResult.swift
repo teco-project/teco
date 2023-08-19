@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ms {
     /// DescribeApkDetectionResult请求参数结构体
-    public struct DescribeApkDetectionResultRequest: TCRequestModel {
+    public struct DescribeApkDetectionResultRequest: TCRequest {
         /// 软件包的下载链接
         public let apkUrl: String
 
@@ -39,7 +39,7 @@ extension Ms {
     }
 
     /// DescribeApkDetectionResult返回参数结构体
-    public struct DescribeApkDetectionResultResponse: TCResponseModel {
+    public struct DescribeApkDetectionResultResponse: TCResponse {
         /// 响应结果，ok表示正常，error表示错误
         public let result: String
 

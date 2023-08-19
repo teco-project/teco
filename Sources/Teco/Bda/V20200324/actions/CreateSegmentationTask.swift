@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bda {
     /// CreateSegmentationTask请求参数结构体
-    public struct CreateSegmentationTaskRequest: TCRequestModel {
+    public struct CreateSegmentationTaskRequest: TCRequest {
         /// 需要分割的视频URL，可外网访问。
         public let videoUrl: String
 
@@ -46,7 +46,7 @@ extension Bda {
     }
 
     /// CreateSegmentationTask返回参数结构体
-    public struct CreateSegmentationTaskResponse: TCResponseModel {
+    public struct CreateSegmentationTaskResponse: TCResponse {
         /// 任务标识ID,可以用与追溯任务状态，查看任务结果
         public let taskID: String
 

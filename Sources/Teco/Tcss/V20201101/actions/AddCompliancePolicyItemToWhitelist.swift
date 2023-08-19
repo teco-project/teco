@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// AddCompliancePolicyItemToWhitelist请求参数结构体
-    public struct AddCompliancePolicyItemToWhitelistRequest: TCRequestModel {
+    public struct AddCompliancePolicyItemToWhitelistRequest: TCRequest {
         /// 要忽略的检测项的ID的列表
         public let customerPolicyItemIdSet: [UInt64]
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// AddCompliancePolicyItemToWhitelist返回参数结构体
-    public struct AddCompliancePolicyItemToWhitelistResponse: TCResponseModel {
+    public struct AddCompliancePolicyItemToWhitelistResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

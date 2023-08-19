@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiw {
     /// DescribeVideoGenerationTaskCallback请求参数结构体
-    public struct DescribeVideoGenerationTaskCallbackRequest: TCRequestModel {
+    public struct DescribeVideoGenerationTaskCallbackRequest: TCRequest {
         /// 应用的SdkAppId
         public let sdkAppId: Int64
 
@@ -34,7 +34,7 @@ extension Tiw {
     }
 
     /// DescribeVideoGenerationTaskCallback返回参数结构体
-    public struct DescribeVideoGenerationTaskCallbackResponse: TCResponseModel {
+    public struct DescribeVideoGenerationTaskCallbackResponse: TCResponse {
         /// 录制视频生成回调地址
         public let callback: String
 

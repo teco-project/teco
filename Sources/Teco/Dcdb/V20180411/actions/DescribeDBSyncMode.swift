@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dcdb {
     /// DescribeDBSyncMode请求参数结构体
-    public struct DescribeDBSyncModeRequest: TCRequestModel {
+    public struct DescribeDBSyncModeRequest: TCRequest {
         /// 待修改同步模式的实例ID。形如：dcdbt-ow728lmc。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Dcdb {
     }
 
     /// DescribeDBSyncMode返回参数结构体
-    public struct DescribeDBSyncModeResponse: TCResponseModel {
+    public struct DescribeDBSyncModeResponse: TCResponse {
         /// 同步模式：0 异步，1 强同步， 2 强同步可退化
         public let syncMode: Int64
 

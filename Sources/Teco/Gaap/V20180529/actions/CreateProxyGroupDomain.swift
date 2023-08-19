@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// CreateProxyGroupDomain请求参数结构体
-    public struct CreateProxyGroupDomainRequest: TCRequestModel {
+    public struct CreateProxyGroupDomainRequest: TCRequest {
         /// 需要开启域名的通道组ID。
         public let groupId: String
 
@@ -34,7 +34,7 @@ extension Gaap {
     }
 
     /// CreateProxyGroupDomain返回参数结构体
-    public struct CreateProxyGroupDomainResponse: TCResponseModel {
+    public struct CreateProxyGroupDomainResponse: TCResponse {
         /// 通道组ID。
         public let groupId: String
 

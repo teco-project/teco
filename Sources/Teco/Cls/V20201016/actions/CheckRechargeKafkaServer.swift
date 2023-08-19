@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// CheckRechargeKafkaServer请求参数结构体
-    public struct CheckRechargeKafkaServerRequest: TCRequestModel {
+    public struct CheckRechargeKafkaServerRequest: TCRequest {
         /// 导入Kafka类型，0: 腾讯云CKafka，1: 用户自建Kafka
         public let kafkaType: UInt64
 
@@ -54,7 +54,7 @@ extension Cls {
     }
 
     /// CheckRechargeKafkaServer返回参数结构体
-    public struct CheckRechargeKafkaServerResponse: TCResponseModel {
+    public struct CheckRechargeKafkaServerResponse: TCResponse {
         /// Kafka集群可访问状态，0：可正常访问 ...
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?

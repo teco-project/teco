@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// CreateNotebookLifecycleScript请求参数结构体
-    public struct CreateNotebookLifecycleScriptRequest: TCRequestModel {
+    public struct CreateNotebookLifecycleScriptRequest: TCRequest {
         /// Notebook生命周期脚本名称
         public let notebookLifecycleScriptsName: String
 
@@ -46,7 +46,7 @@ extension Tione {
     }
 
     /// CreateNotebookLifecycleScript返回参数结构体
-    public struct CreateNotebookLifecycleScriptResponse: TCResponseModel {
+    public struct CreateNotebookLifecycleScriptResponse: TCResponse {
         /// 生命周期脚本名称
         public let notebookLifecycleScriptsName: String
 

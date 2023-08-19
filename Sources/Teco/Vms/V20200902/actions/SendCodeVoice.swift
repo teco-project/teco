@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vms {
     /// SendCodeVoice请求参数结构体
-    public struct SendCodeVoiceRequest: TCRequestModel {
+    public struct SendCodeVoiceRequest: TCRequest {
         /// 验证码，仅支持填写数字，实际播报语音时，会自动在数字前补充语音文本"您的验证码是"。
         public let codeMessage: String
 
@@ -55,7 +55,7 @@ extension Vms {
     }
 
     /// SendCodeVoice返回参数结构体
-    public struct SendCodeVoiceResponse: TCResponseModel {
+    public struct SendCodeVoiceResponse: TCResponse {
         /// 语音验证码发送状态。
         public let sendStatus: SendStatus
 

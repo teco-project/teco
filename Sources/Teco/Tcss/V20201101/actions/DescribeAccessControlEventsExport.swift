@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeAccessControlEventsExport请求参数结构体
-    public struct DescribeAccessControlEventsExportRequest: TCRequestModel {
+    public struct DescribeAccessControlEventsExportRequest: TCRequest {
         /// 需要返回的数量，默认为10，最大值为100
         public let limit: UInt64?
 
@@ -59,7 +59,7 @@ extension Tcss {
     }
 
     /// DescribeAccessControlEventsExport返回参数结构体
-    public struct DescribeAccessControlEventsExportResponse: TCResponseModel {
+    public struct DescribeAccessControlEventsExportResponse: TCResponse {
         /// execle下载地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let downloadUrl: String?

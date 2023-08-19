@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cr {
     /// QueryBotList请求参数结构体
-    public struct QueryBotListRequest: TCRequestModel {
+    public struct QueryBotListRequest: TCRequest {
         /// 模块名：AiApi
         public let module: String
 
@@ -39,7 +39,7 @@ extension Cr {
     }
 
     /// QueryBotList返回参数结构体
-    public struct QueryBotListResponse: TCResponseModel {
+    public struct QueryBotListResponse: TCResponse {
         /// 任务列表。
         public let botList: [BotInfo]
 

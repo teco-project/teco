@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// DescribeCmqQueueDetail请求参数结构体
-    public struct DescribeCmqQueueDetailRequest: TCRequestModel {
+    public struct DescribeCmqQueueDetailRequest: TCRequest {
         /// 精确匹配QueueName
         public let queueName: String
 
@@ -34,7 +34,7 @@ extension Tdmq {
     }
 
     /// DescribeCmqQueueDetail返回参数结构体
-    public struct DescribeCmqQueueDetailResponse: TCResponseModel {
+    public struct DescribeCmqQueueDetailResponse: TCResponse {
         /// 队列详情列表。
         public let queueDescribe: CmqQueue
 

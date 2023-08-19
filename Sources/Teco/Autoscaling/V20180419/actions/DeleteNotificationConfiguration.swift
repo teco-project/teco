@@ -20,7 +20,7 @@ import TecoCore
 
 extension As {
     /// DeleteNotificationConfiguration请求参数结构体
-    public struct DeleteNotificationConfigurationRequest: TCRequestModel {
+    public struct DeleteNotificationConfigurationRequest: TCRequest {
         /// 待删除的通知ID。
         public let autoScalingNotificationId: String?
 
@@ -34,7 +34,7 @@ extension As {
     }
 
     /// DeleteNotificationConfiguration返回参数结构体
-    public struct DeleteNotificationConfigurationResponse: TCResponseModel {
+    public struct DeleteNotificationConfigurationResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

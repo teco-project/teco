@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dnspod {
     /// DescribeDomainPurview请求参数结构体
-    public struct DescribeDomainPurviewRequest: TCRequestModel {
+    public struct DescribeDomainPurviewRequest: TCRequest {
         /// 域名
         public let domain: String
 
@@ -39,7 +39,7 @@ extension Dnspod {
     }
 
     /// DescribeDomainPurview返回参数结构体
-    public struct DescribeDomainPurviewResponse: TCResponseModel {
+    public struct DescribeDomainPurviewResponse: TCResponse {
         /// 域名权限列表
         public let purviewList: [PurviewInfo]
 

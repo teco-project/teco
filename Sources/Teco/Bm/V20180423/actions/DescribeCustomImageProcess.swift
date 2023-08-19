@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// DescribeCustomImageProcess请求参数结构体
-    public struct DescribeCustomImageProcessRequest: TCRequestModel {
+    public struct DescribeCustomImageProcessRequest: TCRequest {
         /// 镜像ID
         public let imageId: String
 
@@ -34,7 +34,7 @@ extension Bm {
     }
 
     /// DescribeCustomImageProcess返回参数结构体
-    public struct DescribeCustomImageProcessResponse: TCResponseModel {
+    public struct DescribeCustomImageProcessResponse: TCResponse {
         /// 镜像制作进度
         public let customImageProcessSet: [CustomImageProcess]
 

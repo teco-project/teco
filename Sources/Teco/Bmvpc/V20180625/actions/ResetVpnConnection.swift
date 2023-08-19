@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmvpc {
     /// ResetVpnConnection请求参数结构体
-    public struct ResetVpnConnectionRequest: TCRequestModel {
+    public struct ResetVpnConnectionRequest: TCRequest {
         /// VPC唯一ID
         public let vpcId: String
 
@@ -39,7 +39,7 @@ extension Bmvpc {
     }
 
     /// ResetVpnConnection返回参数结构体
-    public struct ResetVpnConnectionResponse: TCResponseModel {
+    public struct ResetVpnConnectionResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

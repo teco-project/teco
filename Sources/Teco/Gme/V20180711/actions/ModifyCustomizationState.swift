@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gme {
     /// ModifyCustomizationState请求参数结构体
-    public struct ModifyCustomizationStateRequest: TCRequestModel {
+    public struct ModifyCustomizationStateRequest: TCRequest {
         /// 模型ID
         public let modelId: String
 
@@ -44,7 +44,7 @@ extension Gme {
     }
 
     /// ModifyCustomizationState返回参数结构体
-    public struct ModifyCustomizationStateResponse: TCResponseModel {
+    public struct ModifyCustomizationStateResponse: TCResponse {
         /// 模型ID
         public let modelId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeNetworkFirewallClusterRefreshStatus请求参数结构体
-    public struct DescribeNetworkFirewallClusterRefreshStatusRequest: TCRequestModel {
+    public struct DescribeNetworkFirewallClusterRefreshStatusRequest: TCRequest {
         /// 任务ID
         public let taskId: UInt64
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeNetworkFirewallClusterRefreshStatus返回参数结构体
-    public struct DescribeNetworkFirewallClusterRefreshStatusResponse: TCResponseModel {
+    public struct DescribeNetworkFirewallClusterRefreshStatusResponse: TCResponse {
         /// 任务状态，可能为：Task_Running,Task_Succ,Task_Error,Task_NoExist
         public let taskStatus: String
 

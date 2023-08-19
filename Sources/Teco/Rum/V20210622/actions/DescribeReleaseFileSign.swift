@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// DescribeReleaseFileSign请求参数结构体
-    public struct DescribeReleaseFileSignRequest: TCRequestModel {
+    public struct DescribeReleaseFileSignRequest: TCRequest {
         /// 超时时间，不填默认是 5 分钟
         public let timeout: Int64?
 
@@ -39,7 +39,7 @@ extension Rum {
     }
 
     /// DescribeReleaseFileSign返回参数结构体
-    public struct DescribeReleaseFileSignResponse: TCResponseModel {
+    public struct DescribeReleaseFileSignResponse: TCResponse {
         /// 临时密钥key
         public let secretKey: String
 

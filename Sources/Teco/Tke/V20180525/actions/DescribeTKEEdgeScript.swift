@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeTKEEdgeScript请求参数结构体
-    public struct DescribeTKEEdgeScriptRequest: TCRequestModel {
+    public struct DescribeTKEEdgeScriptRequest: TCRequest {
         /// 集群id
         public let clusterId: String
 
@@ -54,7 +54,7 @@ extension Tke {
     }
 
     /// DescribeTKEEdgeScript返回参数结构体
-    public struct DescribeTKEEdgeScriptResponse: TCResponseModel {
+    public struct DescribeTKEEdgeScriptResponse: TCResponse {
         /// 下载链接
         public let link: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeExternalClusterSpec请求参数结构体
-    public struct DescribeExternalClusterSpecRequest: TCRequestModel {
+    public struct DescribeExternalClusterSpecRequest: TCRequest {
         /// 注册集群ID
         public let clusterId: String
 
@@ -44,7 +44,7 @@ extension Tke {
     }
 
     /// DescribeExternalClusterSpec返回参数结构体
-    public struct DescribeExternalClusterSpecResponse: TCResponseModel {
+    public struct DescribeExternalClusterSpecResponse: TCResponse {
         /// 导入第三方集群YAML定义
         public let spec: String
 

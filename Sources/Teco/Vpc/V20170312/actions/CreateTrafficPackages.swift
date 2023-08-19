@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CreateTrafficPackages请求参数结构体
-    public struct CreateTrafficPackagesRequest: TCRequestModel {
+    public struct CreateTrafficPackagesRequest: TCRequest {
         /// 流量包规格。可选值:
         /// - 10: 10GB流量，有效期一个月
         /// - 50: 50GB流量，有效期一个月
@@ -53,7 +53,7 @@ extension Vpc {
     }
 
     /// CreateTrafficPackages返回参数结构体
-    public struct CreateTrafficPackagesResponse: TCResponseModel {
+    public struct CreateTrafficPackagesResponse: TCResponse {
         /// 创建的流量包ID列表。
         public let trafficPackageSet: [String]
 

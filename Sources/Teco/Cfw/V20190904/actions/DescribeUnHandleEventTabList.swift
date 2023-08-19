@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// DescribeUnHandleEventTabList请求参数结构体
-    public struct DescribeUnHandleEventTabListRequest: TCRequestModel {
+    public struct DescribeUnHandleEventTabListRequest: TCRequest {
         /// 开始时间
         public let startTime: String
 
@@ -44,7 +44,7 @@ extension Cfw {
     }
 
     /// DescribeUnHandleEventTabList返回参数结构体
-    public struct DescribeUnHandleEventTabListResponse: TCResponseModel {
+    public struct DescribeUnHandleEventTabListResponse: TCResponse {
         /// 租户伪攻击链未处置事件
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: UnHandleEvent?

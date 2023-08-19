@@ -20,7 +20,7 @@ import TecoCore
 
 extension Domain {
     /// RenewDomainBatch请求参数结构体
-    public struct RenewDomainBatchRequest: TCRequestModel {
+    public struct RenewDomainBatchRequest: TCRequest {
         /// 域名续费的年限。
         public let period: Int64
 
@@ -72,7 +72,7 @@ extension Domain {
     }
 
     /// RenewDomainBatch返回参数结构体
-    public struct RenewDomainBatchResponse: TCResponseModel {
+    public struct RenewDomainBatchResponse: TCResponse {
         /// 操作日志ID。
         public let logId: Int64
 

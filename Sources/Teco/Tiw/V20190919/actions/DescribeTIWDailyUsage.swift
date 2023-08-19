@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Tiw {
     /// DescribeTIWDailyUsage请求参数结构体
-    public struct DescribeTIWDailyUsageRequest: TCRequestModel {
+    public struct DescribeTIWDailyUsageRequest: TCRequest {
         /// 互动白板应用SdkAppId
         public let sdkAppId: Int64
 
@@ -63,7 +63,7 @@ extension Tiw {
     }
 
     /// DescribeTIWDailyUsage返回参数结构体
-    public struct DescribeTIWDailyUsageResponse: TCResponseModel {
+    public struct DescribeTIWDailyUsageResponse: TCResponse {
         /// 指定区间指定产品的用量汇总
         public let usages: [UsageDataItem]
 

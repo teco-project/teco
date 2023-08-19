@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cynosdb {
     /// DescribeProxySpecs请求参数结构体
-    public struct DescribeProxySpecsRequest: TCRequestModel {
+    public struct DescribeProxySpecsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeProxySpecs返回参数结构体
-    public struct DescribeProxySpecsResponse: TCResponseModel {
+    public struct DescribeProxySpecsResponse: TCResponse {
         /// 数据库代理规格列表
         public let proxySpecs: [ProxySpec]
 

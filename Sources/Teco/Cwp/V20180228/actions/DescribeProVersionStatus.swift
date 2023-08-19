@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeProVersionStatus请求参数结构体
-    public struct DescribeProVersionStatusRequest: TCRequestModel {
+    public struct DescribeProVersionStatusRequest: TCRequest {
         /// 主机安全客户端UUID、填写"all"表示所有主机。
         public let uuid: String
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// DescribeProVersionStatus返回参数结构体
-    public struct DescribeProVersionStatusResponse: TCResponseModel {
+    public struct DescribeProVersionStatusResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

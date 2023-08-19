@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// ModifyDisasterRecoverGroupAttribute请求参数结构体
-    public struct ModifyDisasterRecoverGroupAttributeRequest: TCRequestModel {
+    public struct ModifyDisasterRecoverGroupAttributeRequest: TCRequest {
         /// 分散置放群组ID，可使用[DescribeDisasterRecoverGroups](https://cloud.tencent.com/document/api/213/17810)接口获取。
         public let disasterRecoverGroupId: String
 
@@ -39,7 +39,7 @@ extension Cvm {
     }
 
     /// ModifyDisasterRecoverGroupAttribute返回参数结构体
-    public struct ModifyDisasterRecoverGroupAttributeResponse: TCResponseModel {
+    public struct ModifyDisasterRecoverGroupAttributeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ciam {
     /// CreateUserGroup请求参数结构体
-    public struct CreateUserGroupRequest: TCRequestModel {
+    public struct CreateUserGroupRequest: TCRequest {
         /// 用户组名称
         public let displayName: String
 
@@ -44,7 +44,7 @@ extension Ciam {
     }
 
     /// CreateUserGroup返回参数结构体
-    public struct CreateUserGroupResponse: TCResponseModel {
+    public struct CreateUserGroupResponse: TCResponse {
         /// 用户组ID
         public let userGroupId: String?
 

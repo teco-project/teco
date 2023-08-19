@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdwch {
     /// DescribeSpec请求参数结构体
-    public struct DescribeSpecRequest: TCRequestModel {
+    public struct DescribeSpecRequest: TCRequest {
         /// 地域信息，例如"ap-guangzhou-1"
         public let zone: String
 
@@ -44,7 +44,7 @@ extension Cdwch {
     }
 
     /// DescribeSpec返回参数结构体
-    public struct DescribeSpecResponse: TCResponseModel {
+    public struct DescribeSpecResponse: TCResponse {
         /// zookeeper节点规格描述
         public let commonSpec: [ResourceSpec]
 

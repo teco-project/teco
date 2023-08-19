@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bpaas {
     /// OutApproveBpaasApplication请求参数结构体
-    public struct OutApproveBpaasApplicationRequest: TCRequestModel {
+    public struct OutApproveBpaasApplicationRequest: TCRequest {
         /// 状态  1:通过  2:拒绝
         public let status: UInt64
 
@@ -44,7 +44,7 @@ extension Bpaas {
     }
 
     /// OutApproveBpaasApplication返回参数结构体
-    public struct OutApproveBpaasApplicationResponse: TCResponseModel {
+    public struct OutApproveBpaasApplicationResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

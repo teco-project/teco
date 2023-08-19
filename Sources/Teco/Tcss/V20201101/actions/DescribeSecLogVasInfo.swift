@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeSecLogVasInfo请求参数结构体
-    public struct DescribeSecLogVasInfoRequest: TCRequestModel {
+    public struct DescribeSecLogVasInfoRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeSecLogVasInfo返回参数结构体
-    public struct DescribeSecLogVasInfoResponse: TCResponseModel {
+    public struct DescribeSecLogVasInfoResponse: TCResponse {
         /// 购买状态
         /// 待购: Pending
         /// 已购: Normal

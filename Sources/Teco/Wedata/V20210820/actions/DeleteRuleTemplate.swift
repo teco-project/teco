@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DeleteRuleTemplate请求参数结构体
-    public struct DeleteRuleTemplateRequest: TCRequestModel {
+    public struct DeleteRuleTemplateRequest: TCRequest {
         /// 项目Id
         public let projectId: String?
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// DeleteRuleTemplate返回参数结构体
-    public struct DeleteRuleTemplateResponse: TCResponseModel {
+    public struct DeleteRuleTemplateResponse: TCResponse {
         /// 删除成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: Bool?

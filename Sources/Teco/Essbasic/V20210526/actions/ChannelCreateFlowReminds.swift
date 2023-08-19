@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// ChannelCreateFlowReminds请求参数结构体
-    public struct ChannelCreateFlowRemindsRequest: TCRequestModel {
+    public struct ChannelCreateFlowRemindsRequest: TCRequest {
         /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
 
@@ -39,7 +39,7 @@ extension Essbasic {
     }
 
     /// ChannelCreateFlowReminds返回参数结构体
-    public struct ChannelCreateFlowRemindsResponse: TCResponseModel {
+    public struct ChannelCreateFlowRemindsResponse: TCResponse {
         /// 合同催办详情信息
         public let remindFlowRecords: [RemindFlowRecords]
 

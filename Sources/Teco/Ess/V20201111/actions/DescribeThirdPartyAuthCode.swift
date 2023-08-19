@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// DescribeThirdPartyAuthCode请求参数结构体
-    public struct DescribeThirdPartyAuthCodeRequest: TCRequestModel {
+    public struct DescribeThirdPartyAuthCodeRequest: TCRequest {
         /// 电子签小程序跳转客户小程序时携带的授权查看码
         public let authCode: String
 
@@ -44,7 +44,7 @@ extension Ess {
     }
 
     /// DescribeThirdPartyAuthCode返回参数结构体
-    public struct DescribeThirdPartyAuthCodeResponse: TCResponseModel {
+    public struct DescribeThirdPartyAuthCodeResponse: TCResponse {
         /// 用户是否实名，VERIFIED 为实名，UNVERIFIED 未实名
         public let verifyStatus: String
 

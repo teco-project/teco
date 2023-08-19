@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// BatchRegister请求参数结构体
-    public struct BatchRegisterRequest: TCRequestModel {
+    public struct BatchRegisterRequest: TCRequest {
         /// 批量注册用户信息列表
         public let users: [BatchUserRequest]
 
@@ -34,7 +34,7 @@ extension Lcic {
     }
 
     /// BatchRegister返回参数结构体
-    public struct BatchRegisterResponse: TCResponseModel {
+    public struct BatchRegisterResponse: TCResponse {
         /// 注册成功的用户列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let users: [BatchUserInfo]?

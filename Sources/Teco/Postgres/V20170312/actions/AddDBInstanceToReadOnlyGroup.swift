@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// AddDBInstanceToReadOnlyGroup请求参数结构体
-    public struct AddDBInstanceToReadOnlyGroupRequest: TCRequestModel {
+    public struct AddDBInstanceToReadOnlyGroupRequest: TCRequest {
         /// 实例ID
         public let dbInstanceId: String
 
@@ -39,7 +39,7 @@ extension Postgres {
     }
 
     /// AddDBInstanceToReadOnlyGroup返回参数结构体
-    public struct AddDBInstanceToReadOnlyGroupResponse: TCResponseModel {
+    public struct AddDBInstanceToReadOnlyGroupResponse: TCResponse {
         /// 流程ID
         public let flowId: Int64
 

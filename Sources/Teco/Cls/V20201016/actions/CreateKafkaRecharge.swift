@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// CreateKafkaRecharge请求参数结构体
-    public struct CreateKafkaRechargeRequest: TCRequestModel {
+    public struct CreateKafkaRechargeRequest: TCRequest {
         /// 导入CLS目标topic ID
         public let topicId: String
 
@@ -84,7 +84,7 @@ extension Cls {
     }
 
     /// CreateKafkaRecharge返回参数结构体
-    public struct CreateKafkaRechargeResponse: TCResponseModel {
+    public struct CreateKafkaRechargeResponse: TCResponse {
         /// Kafka导入配置ID
         public let id: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bizlive {
     /// CreateSession请求参数结构体
-    public struct CreateSessionRequest: TCRequestModel {
+    public struct CreateSessionRequest: TCRequest {
         /// 客户端session信息，从JSSDK请求中获得
         public let clientSession: String
 
@@ -64,7 +64,7 @@ extension Bizlive {
     }
 
     /// CreateSession返回参数结构体
-    public struct CreateSessionResponse: TCResponseModel {
+    public struct CreateSessionResponse: TCResponse {
         /// 服务端session信息，返回给JSSDK
         public let serverSession: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// ApplyOutwardOrder请求参数结构体
-    public struct ApplyOutwardOrderRequest: TCRequestModel {
+    public struct ApplyOutwardOrderRequest: TCRequest {
         /// 对接方汇出指令编号
         public let transactionId: String
 
@@ -131,7 +131,7 @@ extension Cpdp {
     }
 
     /// ApplyOutwardOrder返回参数结构体
-    public struct ApplyOutwardOrderResponse: TCResponseModel {
+    public struct ApplyOutwardOrderResponse: TCResponse {
         /// 汇出指令申请
         public let result: ApplyOutwardOrderResult
 

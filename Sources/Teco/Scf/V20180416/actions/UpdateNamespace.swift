@@ -20,7 +20,7 @@ import TecoCore
 
 extension Scf {
     /// UpdateNamespace请求参数结构体
-    public struct UpdateNamespaceRequest: TCRequestModel {
+    public struct UpdateNamespaceRequest: TCRequest {
         /// 命名空间名称
         public let namespace: String
 
@@ -39,7 +39,7 @@ extension Scf {
     }
 
     /// UpdateNamespace返回参数结构体
-    public struct UpdateNamespaceResponse: TCResponseModel {
+    public struct UpdateNamespaceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

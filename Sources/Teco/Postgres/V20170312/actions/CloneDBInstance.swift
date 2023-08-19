@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// CloneDBInstance请求参数结构体
-    public struct CloneDBInstanceRequest: TCRequestModel {
+    public struct CloneDBInstanceRequest: TCRequest {
         /// 克隆的源实例ID。
         public let dbInstanceId: String
 
@@ -144,7 +144,7 @@ extension Postgres {
     }
 
     /// CloneDBInstance返回参数结构体
-    public struct CloneDBInstanceResponse: TCResponseModel {
+    public struct CloneDBInstanceResponse: TCResponse {
         /// 订单号。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dealName: String?

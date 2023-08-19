@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// CreateFlowsByTemplates请求参数结构体
-    public struct CreateFlowsByTemplatesRequest: TCRequestModel {
+    public struct CreateFlowsByTemplatesRequest: TCRequest {
         /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 均必填。
         public let agent: Agent
 
@@ -64,7 +64,7 @@ extension Essbasic {
     }
 
     /// CreateFlowsByTemplates返回参数结构体
-    public struct CreateFlowsByTemplatesResponse: TCResponseModel {
+    public struct CreateFlowsByTemplatesResponse: TCResponse {
         /// 多个合同ID
         public let flowIds: [String]
 

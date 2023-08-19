@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// ApplyPayerInfo请求参数结构体
-    public struct ApplyPayerInfoRequest: TCRequestModel {
+    public struct ApplyPayerInfoRequest: TCRequest {
         /// 付款人ID
         public let payerId: String
 
@@ -79,7 +79,7 @@ extension Cpdp {
     }
 
     /// ApplyPayerInfo返回参数结构体
-    public struct ApplyPayerInfoResponse: TCResponseModel {
+    public struct ApplyPayerInfoResponse: TCResponse {
         /// 付款人申请结果
         public let result: ApplyPayerinfoResult
 

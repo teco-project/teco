@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eiam {
     /// CreateAppAccount请求参数结构体
-    public struct CreateAppAccountRequest: TCRequestModel {
+    public struct CreateAppAccountRequest: TCRequest {
         /// 应用ID
         public let applicationId: String
 
@@ -49,7 +49,7 @@ extension Eiam {
     }
 
     /// CreateAppAccount返回参数结构体
-    public struct CreateAppAccountResponse: TCResponseModel {
+    public struct CreateAppAccountResponse: TCResponse {
         /// 账号ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accountId: String?

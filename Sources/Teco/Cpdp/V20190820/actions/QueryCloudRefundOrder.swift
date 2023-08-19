@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryCloudRefundOrder请求参数结构体
-    public struct QueryCloudRefundOrderRequest: TCRequestModel {
+    public struct QueryCloudRefundOrderRequest: TCRequest {
         /// 米大师分配的支付主MidasAppId
         public let midasAppId: String
 
@@ -52,7 +52,7 @@ extension Cpdp {
     }
 
     /// QueryCloudRefundOrder返回参数结构体
-    public struct QueryCloudRefundOrderResponse: TCResponseModel {
+    public struct QueryCloudRefundOrderResponse: TCResponse {
         /// 该笔退款订单对应的UnifiedOrder下单时传入的OutTradeNo
         public let outTradeNo: String
 

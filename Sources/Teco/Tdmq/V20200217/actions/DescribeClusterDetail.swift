@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// DescribeClusterDetail请求参数结构体
-    public struct DescribeClusterDetailRequest: TCRequestModel {
+    public struct DescribeClusterDetailRequest: TCRequest {
         /// 集群的ID
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Tdmq {
     }
 
     /// DescribeClusterDetail返回参数结构体
-    public struct DescribeClusterDetailResponse: TCResponseModel {
+    public struct DescribeClusterDetailResponse: TCResponse {
         /// 集群的详细信息
         public let clusterSet: Cluster
 

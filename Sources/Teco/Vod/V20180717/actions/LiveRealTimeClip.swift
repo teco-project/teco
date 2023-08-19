@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// LiveRealTimeClip请求参数结构体
-    public struct LiveRealTimeClipRequest: TCRequestModel {
+    public struct LiveRealTimeClipRequest: TCRequest {
         /// 推流直播码。
         public let streamId: String
 
@@ -104,7 +104,7 @@ extension Vod {
     }
 
     /// LiveRealTimeClip返回参数结构体
-    public struct LiveRealTimeClipResponse: TCResponseModel {
+    public struct LiveRealTimeClipResponse: TCResponse {
         /// 剪辑后的视频播放 URL。
         public let url: String
 

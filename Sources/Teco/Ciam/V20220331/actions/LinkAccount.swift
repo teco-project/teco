@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ciam {
     /// LinkAccount请求参数结构体
-    public struct LinkAccountRequest: TCRequestModel {
+    public struct LinkAccountRequest: TCRequest {
         /// 用户目录ID
         public let userStoreId: String
 
@@ -54,7 +54,7 @@ extension Ciam {
     }
 
     /// LinkAccount返回参数结构体
-    public struct LinkAccountResponse: TCResponseModel {
+    public struct LinkAccountResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Captcha {
     /// DescribeCaptchaUserAllAppId请求参数结构体
-    public struct DescribeCaptchaUserAllAppIdRequest: TCRequestModel {
+    public struct DescribeCaptchaUserAllAppIdRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeCaptchaUserAllAppId返回参数结构体
-    public struct DescribeCaptchaUserAllAppIdResponse: TCResponseModel {
+    public struct DescribeCaptchaUserAllAppIdResponse: TCResponse {
         /// 用户注册的所有Appid和应用名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [CaptchaUserAllAppId]?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tag {
     /// AttachResourcesTag请求参数结构体
-    public struct AttachResourcesTagRequest: TCRequestModel {
+    public struct AttachResourcesTagRequest: TCRequest {
         /// 业务的英文简称，即资源六段式第三段。资源六段式的描述方式参考：https://cloud.tencent.com/document/product/651/89122
         public let serviceType: String
 
@@ -59,7 +59,7 @@ extension Tag {
     }
 
     /// AttachResourcesTag返回参数结构体
-    public struct AttachResourcesTagResponse: TCResponseModel {
+    public struct AttachResourcesTagResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

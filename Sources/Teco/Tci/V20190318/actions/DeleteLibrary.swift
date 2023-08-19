@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tci {
     /// DeleteLibrary请求参数结构体
-    public struct DeleteLibraryRequest: TCRequestModel {
+    public struct DeleteLibraryRequest: TCRequest {
         /// 人员库唯一标识符
         public let libraryId: String
 
@@ -34,7 +34,7 @@ extension Tci {
     }
 
     /// DeleteLibrary返回参数结构体
-    public struct DeleteLibraryResponse: TCResponseModel {
+    public struct DeleteLibraryResponse: TCResponse {
         /// 人员库唯一标识符
         public let libraryId: String
 

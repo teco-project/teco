@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// UnbindApiApp请求参数结构体
-    public struct UnbindApiAppRequest: TCRequestModel {
+    public struct UnbindApiAppRequest: TCRequest {
         /// 待绑定的应用唯一 ID 。
         public let apiAppId: String
 
@@ -49,7 +49,7 @@ extension Apigateway {
     }
 
     /// UnbindApiApp返回参数结构体
-    public struct UnbindApiAppResponse: TCResponseModel {
+    public struct UnbindApiAppResponse: TCResponse {
         /// 解除绑定操作是否成功。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

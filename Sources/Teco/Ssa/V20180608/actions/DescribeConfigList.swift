@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssa {
     /// DescribeConfigList请求参数结构体
-    public struct DescribeConfigListRequest: TCRequestModel {
+    public struct DescribeConfigListRequest: TCRequest {
         /// 搜索过滤条件
         public let filter: String?
 
@@ -34,7 +34,7 @@ extension Ssa {
     }
 
     /// DescribeConfigList返回参数结构体
-    public struct DescribeConfigListResponse: TCResponseModel {
+    public struct DescribeConfigListResponse: TCResponse {
         /// 检查项列表
         public let data: [DataCheck]
 

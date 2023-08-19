@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// RemoveChcDeployVpc请求参数结构体
-    public struct RemoveChcDeployVpcRequest: TCRequestModel {
+    public struct RemoveChcDeployVpcRequest: TCRequest {
         /// CHC物理服务器Id。
         public let chcIds: [String]
 
@@ -34,7 +34,7 @@ extension Cvm {
     }
 
     /// RemoveChcDeployVpc返回参数结构体
-    public struct RemoveChcDeployVpcResponse: TCResponseModel {
+    public struct RemoveChcDeployVpcResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

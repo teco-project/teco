@@ -20,7 +20,7 @@ import TecoCore
 
 extension Waf {
     /// UpsertIpAccessControl请求参数结构体
-    public struct UpsertIpAccessControlRequest: TCRequestModel {
+    public struct UpsertIpAccessControlRequest: TCRequest {
         /// 域名
         public let domain: String
 
@@ -49,7 +49,7 @@ extension Waf {
     }
 
     /// UpsertIpAccessControl返回参数结构体
-    public struct UpsertIpAccessControlResponse: TCResponseModel {
+    public struct UpsertIpAccessControlResponse: TCResponse {
         /// 添加或修改失败的条目
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failedItems: String?

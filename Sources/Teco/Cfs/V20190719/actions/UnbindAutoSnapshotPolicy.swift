@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfs {
     /// UnbindAutoSnapshotPolicy请求参数结构体
-    public struct UnbindAutoSnapshotPolicyRequest: TCRequestModel {
+    public struct UnbindAutoSnapshotPolicyRequest: TCRequest {
         /// 需要解绑的文件系统ID列表，用"," 分割
         public let fileSystemIds: String
 
@@ -39,7 +39,7 @@ extension Cfs {
     }
 
     /// UnbindAutoSnapshotPolicy返回参数结构体
-    public struct UnbindAutoSnapshotPolicyResponse: TCResponseModel {
+    public struct UnbindAutoSnapshotPolicyResponse: TCResponse {
         /// 快照策略ID
         public let autoSnapshotPolicyId: String
 

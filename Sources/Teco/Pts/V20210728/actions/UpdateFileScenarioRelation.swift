@@ -20,7 +20,7 @@ import TecoCore
 
 extension Pts {
     /// UpdateFileScenarioRelation请求参数结构体
-    public struct UpdateFileScenarioRelationRequest: TCRequestModel {
+    public struct UpdateFileScenarioRelationRequest: TCRequest {
         /// 文件 ID
         public let fileId: String
 
@@ -44,7 +44,7 @@ extension Pts {
     }
 
     /// UpdateFileScenarioRelation返回参数结构体
-    public struct UpdateFileScenarioRelationResponse: TCResponseModel {
+    public struct UpdateFileScenarioRelationResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ccc {
     /// DescribeTelSession请求参数结构体
-    public struct DescribeTelSessionRequest: TCRequestModel {
+    public struct DescribeTelSessionRequest: TCRequest {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         public let sdkAppId: Int64
 
@@ -39,7 +39,7 @@ extension Ccc {
     }
 
     /// DescribeTelSession返回参数结构体
-    public struct DescribeTelSessionResponse: TCResponseModel {
+    public struct DescribeTelSessionResponse: TCResponse {
         /// 会话信息
         public let session: PSTNSession
 

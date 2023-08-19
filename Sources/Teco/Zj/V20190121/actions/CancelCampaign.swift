@@ -20,7 +20,7 @@ import TecoCore
 
 extension Zj {
     /// CancelCampaign请求参数结构体
-    public struct CancelCampaignRequest: TCRequestModel {
+    public struct CancelCampaignRequest: TCRequest {
         /// 商户证书
         public let license: String
 
@@ -39,7 +39,7 @@ extension Zj {
     }
 
     /// CancelCampaign返回参数结构体
-    public struct CancelCampaignResponse: TCResponseModel {
+    public struct CancelCampaignResponse: TCResponse {
         /// 处理结果
         public let data: CancelActivityData
 

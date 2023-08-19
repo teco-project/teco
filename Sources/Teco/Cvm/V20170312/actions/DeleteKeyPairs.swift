@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// DeleteKeyPairs请求参数结构体
-    public struct DeleteKeyPairsRequest: TCRequestModel {
+    public struct DeleteKeyPairsRequest: TCRequest {
         /// 一个或多个待操作的密钥对ID。每次请求批量密钥对的上限为100。
         ///
         /// 可以通过以下方式获取可用的密钥ID：
@@ -39,7 +39,7 @@ extension Cvm {
     }
 
     /// DeleteKeyPairs返回参数结构体
-    public struct DeleteKeyPairsResponse: TCResponseModel {
+    public struct DeleteKeyPairsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

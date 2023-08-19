@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DescribeBackupConfig请求参数结构体
-    public struct DescribeBackupConfigRequest: TCRequestModel {
+    public struct DescribeBackupConfigRequest: TCRequest {
         /// 实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Cdb {
     }
 
     /// DescribeBackupConfig返回参数结构体
-    public struct DescribeBackupConfigResponse: TCResponseModel {
+    public struct DescribeBackupConfigResponse: TCResponse {
         /// 自动备份开始的最早时间点，单位为时刻。例如，2 - 凌晨 2:00。（该字段已废弃，建议使用 BackupTimeWindow 字段）
         public let startTimeMin: Int64
 

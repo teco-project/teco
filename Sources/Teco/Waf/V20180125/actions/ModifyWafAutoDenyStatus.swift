@@ -20,7 +20,7 @@ import TecoCore
 
 extension Waf {
     /// ModifyWafAutoDenyStatus请求参数结构体
-    public struct ModifyWafAutoDenyStatusRequest: TCRequestModel {
+    public struct ModifyWafAutoDenyStatusRequest: TCRequest {
         /// WAF 自动封禁配置项
         public let wafAutoDenyDetails: AutoDenyDetail
 
@@ -34,7 +34,7 @@ extension Waf {
     }
 
     /// ModifyWafAutoDenyStatus返回参数结构体
-    public struct ModifyWafAutoDenyStatusResponse: TCResponseModel {
+    public struct ModifyWafAutoDenyStatusResponse: TCResponse {
         /// WAF 自动封禁配置项
         public let wafAutoDenyDetails: AutoDenyDetail
 

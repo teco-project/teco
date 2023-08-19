@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// AddAITask请求参数结构体
-    public struct AddAITaskRequest: TCRequestModel {
+    public struct AddAITaskRequest: TCRequest {
         /// AI 任务名称。仅支持中文、英文、数字、_、-，长度不超过32个字符
         public let name: String
 
@@ -59,7 +59,7 @@ extension Iss {
     }
 
     /// AddAITask返回参数结构体
-    public struct AddAITaskResponse: TCResponseModel {
+    public struct AddAITaskResponse: TCResponse {
         /// AI任务信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: AITaskInfo?

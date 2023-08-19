@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// DescribeCatalogSignComponents请求参数结构体
-    public struct DescribeCatalogSignComponentsRequest: TCRequestModel {
+    public struct DescribeCatalogSignComponentsRequest: TCRequest {
         /// 调用方信息
         public let caller: Caller
 
@@ -39,7 +39,7 @@ extension Essbasic {
     }
 
     /// DescribeCatalogSignComponents返回参数结构体
-    public struct DescribeCatalogSignComponentsResponse: TCResponseModel {
+    public struct DescribeCatalogSignComponentsResponse: TCResponse {
         /// 签署区列表
         public let signComponents: [CatalogComponents]
 

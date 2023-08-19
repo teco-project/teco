@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// DescribeInstanceLoginKeyPairAttribute请求参数结构体
-    public struct DescribeInstanceLoginKeyPairAttributeRequest: TCRequestModel {
+    public struct DescribeInstanceLoginKeyPairAttributeRequest: TCRequest {
         /// 实例ID。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Lighthouse {
     }
 
     /// DescribeInstanceLoginKeyPairAttribute返回参数结构体
-    public struct DescribeInstanceLoginKeyPairAttributeResponse: TCResponseModel {
+    public struct DescribeInstanceLoginKeyPairAttributeResponse: TCResponse {
         /// 是否允许使用默认密钥对登录，YES：允许登录 NO：禁止登录。
         public let permitLogin: String
 

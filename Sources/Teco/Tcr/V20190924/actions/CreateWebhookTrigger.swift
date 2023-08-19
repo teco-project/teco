@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// CreateWebhookTrigger请求参数结构体
-    public struct CreateWebhookTriggerRequest: TCRequestModel {
+    public struct CreateWebhookTriggerRequest: TCRequest {
         /// 实例 Id
         public let registryId: String
 
@@ -44,7 +44,7 @@ extension Tcr {
     }
 
     /// CreateWebhookTrigger返回参数结构体
-    public struct CreateWebhookTriggerResponse: TCResponseModel {
+    public struct CreateWebhookTriggerResponse: TCResponse {
         /// 新建的触发器
         public let trigger: WebhookTrigger
 

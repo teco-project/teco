@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// DescribeModelServiceHotUpdated请求参数结构体
-    public struct DescribeModelServiceHotUpdatedRequest: TCRequestModel {
+    public struct DescribeModelServiceHotUpdatedRequest: TCRequest {
         /// 镜像信息，配置服务运行所需的镜像地址等信息
         public let imageInfo: ImageInfo
 
@@ -44,7 +44,7 @@ extension Tione {
     }
 
     /// DescribeModelServiceHotUpdated返回参数结构体
-    public struct DescribeModelServiceHotUpdatedResponse: TCResponseModel {
+    public struct DescribeModelServiceHotUpdatedResponse: TCResponse {
         /// 模型加速标志位.Allowed 允许模型加速. Forbidden 禁止模型加速
         public let modelTurboFlag: String?
 

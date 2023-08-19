@@ -20,7 +20,7 @@ import TecoCore
 
 extension Antiddos {
     /// ModifyDDoSBlackWhiteIpList请求参数结构体
-    public struct ModifyDDoSBlackWhiteIpListRequest: TCRequestModel {
+    public struct ModifyDDoSBlackWhiteIpListRequest: TCRequest {
         /// 资源Id
         public let instanceId: String
 
@@ -54,7 +54,7 @@ extension Antiddos {
     }
 
     /// ModifyDDoSBlackWhiteIpList返回参数结构体
-    public struct ModifyDDoSBlackWhiteIpListResponse: TCResponseModel {
+    public struct ModifyDDoSBlackWhiteIpListResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

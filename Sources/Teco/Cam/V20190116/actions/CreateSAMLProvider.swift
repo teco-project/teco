@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// CreateSAMLProvider请求参数结构体
-    public struct CreateSAMLProviderRequest: TCRequestModel {
+    public struct CreateSAMLProviderRequest: TCRequest {
         /// SAML身份提供商名称
         public let name: String
 
@@ -44,7 +44,7 @@ extension Cam {
     }
 
     /// CreateSAMLProvider返回参数结构体
-    public struct CreateSAMLProviderResponse: TCResponseModel {
+    public struct CreateSAMLProviderResponse: TCResponse {
         /// SAML身份提供商资源描述符
         public let providerArn: String
 

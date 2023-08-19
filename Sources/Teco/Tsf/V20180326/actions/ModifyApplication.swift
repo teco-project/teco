@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// ModifyApplication请求参数结构体
-    public struct ModifyApplicationRequest: TCRequestModel {
+    public struct ModifyApplicationRequest: TCRequest {
         /// 应用ID
         public let applicationId: String
 
@@ -54,7 +54,7 @@ extension Tsf {
     }
 
     /// ModifyApplication返回参数结构体
-    public struct ModifyApplicationResponse: TCResponseModel {
+    public struct ModifyApplicationResponse: TCResponse {
         /// true/false
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

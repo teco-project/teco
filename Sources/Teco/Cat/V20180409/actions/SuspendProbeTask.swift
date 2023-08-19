@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cat {
     /// SuspendProbeTask请求参数结构体
-    public struct SuspendProbeTaskRequest: TCRequestModel {
+    public struct SuspendProbeTaskRequest: TCRequest {
         /// 任务 ID
         public let taskIds: [String]
 
@@ -34,7 +34,7 @@ extension Cat {
     }
 
     /// SuspendProbeTask返回参数结构体
-    public struct SuspendProbeTaskResponse: TCResponseModel {
+    public struct SuspendProbeTaskResponse: TCResponse {
         /// 任务总量
         public let total: Int64
 

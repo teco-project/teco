@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sms {
     /// AddSmsSign请求参数结构体
-    public struct AddSmsSignRequest: TCRequestModel {
+    public struct AddSmsSignRequest: TCRequest {
         /// 签名名称。
         /// 注：不能重复申请已通过或待审核的签名。
         public let signName: String
@@ -93,7 +93,7 @@ extension Sms {
     }
 
     /// AddSmsSign返回参数结构体
-    public struct AddSmsSignResponse: TCResponseModel {
+    public struct AddSmsSignResponse: TCResponse {
         /// 添加签名响应
         public let addSignStatus: AddSignStatus
 

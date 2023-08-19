@@ -20,7 +20,7 @@ import TecoCore
 
 extension Waf {
     /// DescribeDomainDetailsSaas请求参数结构体
-    public struct DescribeDomainDetailsSaasRequest: TCRequestModel {
+    public struct DescribeDomainDetailsSaasRequest: TCRequest {
         /// 域名
         public let domain: String
 
@@ -44,7 +44,7 @@ extension Waf {
     }
 
     /// DescribeDomainDetailsSaas返回参数结构体
-    public struct DescribeDomainDetailsSaasResponse: TCResponseModel {
+    public struct DescribeDomainDetailsSaasResponse: TCResponse {
         /// 域名详情
         public let domainsPartInfo: DomainsPartInfo
 

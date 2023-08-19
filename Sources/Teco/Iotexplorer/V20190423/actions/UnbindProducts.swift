@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotexplorer {
     /// UnbindProducts请求参数结构体
-    public struct UnbindProductsRequest: TCRequestModel {
+    public struct UnbindProductsRequest: TCRequest {
         /// 网关产品ID
         public let gatewayProductId: String
 
@@ -39,7 +39,7 @@ extension Iotexplorer {
     }
 
     /// UnbindProducts返回参数结构体
-    public struct UnbindProductsResponse: TCResponseModel {
+    public struct UnbindProductsResponse: TCResponse {
         /// 绑定了待解绑的LoRa产品下的设备的网关设备列表
         public let gatewayDeviceNames: [String]
 

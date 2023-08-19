@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeTaskByCycleReport请求参数结构体
-    public struct DescribeTaskByCycleReportRequest: TCRequestModel {
+    public struct DescribeTaskByCycleReportRequest: TCRequest {
         /// 项目id
         public let projectId: String
 
@@ -49,7 +49,7 @@ extension Wedata {
     }
 
     /// DescribeTaskByCycleReport返回参数结构体
-    public struct DescribeTaskByCycleReportResponse: TCResponseModel {
+    public struct DescribeTaskByCycleReportResponse: TCResponse {
         /// 任务周期增长趋势统计
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [TaskByStatus]?

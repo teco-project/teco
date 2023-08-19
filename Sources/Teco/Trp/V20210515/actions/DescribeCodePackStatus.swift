@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trp {
     /// DescribeCodePackStatus请求参数结构体
-    public struct DescribeCodePackStatusRequest: TCRequestModel {
+    public struct DescribeCodePackStatusRequest: TCRequest {
         /// 码包ID
         public let packId: String
 
@@ -39,7 +39,7 @@ extension Trp {
     }
 
     /// DescribeCodePackStatus返回参数结构体
-    public struct DescribeCodePackStatusResponse: TCResponseModel {
+    public struct DescribeCodePackStatusResponse: TCResponse {
         /// 码包状态 init: 初始化, pending: 执行中, done: 完成, error: 失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?

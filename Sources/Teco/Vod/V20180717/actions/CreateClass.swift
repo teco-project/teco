@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// CreateClass请求参数结构体
-    public struct CreateClassRequest: TCRequestModel {
+    public struct CreateClassRequest: TCRequest {
         /// 父类 ID，一级分类填写 -1。
         public let parentId: Int64
 
@@ -44,7 +44,7 @@ extension Vod {
     }
 
     /// CreateClass返回参数结构体
-    public struct CreateClassResponse: TCResponseModel {
+    public struct CreateClassResponse: TCResponse {
         /// 分类 ID
         public let classId: UInt64
 

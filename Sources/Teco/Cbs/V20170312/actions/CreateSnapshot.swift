@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cbs {
     /// CreateSnapshot请求参数结构体
-    public struct CreateSnapshotRequest: TCRequestModel {
+    public struct CreateSnapshotRequest: TCRequest {
         /// 需要创建快照的云硬盘ID，可通过[DescribeDisks](/document/product/362/16315)接口查询。
         public let diskId: String
 
@@ -59,7 +59,7 @@ extension Cbs {
     }
 
     /// CreateSnapshot返回参数结构体
-    public struct CreateSnapshotResponse: TCResponseModel {
+    public struct CreateSnapshotResponse: TCResponse {
         /// 新创建的快照ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let snapshotId: String?

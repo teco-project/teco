@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// DescribeCatalogApprovers请求参数结构体
-    public struct DescribeCatalogApproversRequest: TCRequestModel {
+    public struct DescribeCatalogApproversRequest: TCRequest {
         /// 调用方信息
         public let caller: Caller
 
@@ -44,7 +44,7 @@ extension Essbasic {
     }
 
     /// DescribeCatalogApprovers返回参数结构体
-    public struct DescribeCatalogApproversResponse: TCResponseModel {
+    public struct DescribeCatalogApproversResponse: TCResponse {
         /// 参与者列表
         public let approvers: [CatalogApprovers]
 

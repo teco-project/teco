@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryMerchantBalance请求参数结构体
-    public struct QueryMerchantBalanceRequest: TCRequestModel {
+    public struct QueryMerchantBalanceRequest: TCRequest {
         /// 余额币种
         public let currency: String
 
@@ -39,7 +39,7 @@ extension Cpdp {
     }
 
     /// QueryMerchantBalance返回参数结构体
-    public struct QueryMerchantBalanceResponse: TCResponseModel {
+    public struct QueryMerchantBalanceResponse: TCResponse {
         /// 对接方账户余额查询结果
         public let result: QueryMerchantBalanceResult
 

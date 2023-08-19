@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// ModifyPathRewrite请求参数结构体
-    public struct ModifyPathRewriteRequest: TCRequestModel {
+    public struct ModifyPathRewriteRequest: TCRequest {
         /// 路径重写规则ID
         public let pathRewriteId: String
 
@@ -54,7 +54,7 @@ extension Tsf {
     }
 
     /// ModifyPathRewrite返回参数结构体
-    public struct ModifyPathRewriteResponse: TCResponseModel {
+    public struct ModifyPathRewriteResponse: TCResponse {
         /// true/false
         public let result: Bool
 

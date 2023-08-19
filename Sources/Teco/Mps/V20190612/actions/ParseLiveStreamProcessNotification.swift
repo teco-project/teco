@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// ParseLiveStreamProcessNotification请求参数结构体
-    public struct ParseLiveStreamProcessNotificationRequest: TCRequestModel {
+    public struct ParseLiveStreamProcessNotificationRequest: TCRequest {
         /// 从 CMQ 获取到的直播流事件通知内容。
         public let content: String
 
@@ -34,7 +34,7 @@ extension Mps {
     }
 
     /// ParseLiveStreamProcessNotification返回参数结构体
-    public struct ParseLiveStreamProcessNotificationResponse: TCResponseModel {
+    public struct ParseLiveStreamProcessNotificationResponse: TCResponse {
         /// 直播流处理结果类型，包含：
         /// - AiReviewResult：内容审核结果；
         /// - AiRecognitionResult：内容识别结果；

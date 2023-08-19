@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// DeleteGrafanaInstance请求参数结构体
-    public struct DeleteGrafanaInstanceRequest: TCRequestModel {
+    public struct DeleteGrafanaInstanceRequest: TCRequest {
         /// 实例名数组
         public let instanceIDs: [String]
 
@@ -34,7 +34,7 @@ extension Monitor {
     }
 
     /// DeleteGrafanaInstance返回参数结构体
-    public struct DeleteGrafanaInstanceResponse: TCResponseModel {
+    public struct DeleteGrafanaInstanceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

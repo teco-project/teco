@@ -22,13 +22,13 @@ import TecoDateHelpers
 
 extension Cws {
     /// DescribeConfig请求参数结构体
-    public struct DescribeConfigRequest: TCRequestModel {
+    public struct DescribeConfigRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeConfig返回参数结构体
-    public struct DescribeConfigResponse: TCResponseModel {
+    public struct DescribeConfigResponse: TCResponse {
         /// 漏洞告警通知等级，4位分别代表：高危、中危、低危、提示。
         public let noticeLevel: String
 

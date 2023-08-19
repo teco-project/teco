@@ -20,13 +20,13 @@ import TecoCore
 
 extension Gaap {
     /// DescribeCustomHeader请求参数结构体
-    public struct DescribeCustomHeaderRequest: TCRequestModel {
+    public struct DescribeCustomHeaderRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeCustomHeader返回参数结构体
-    public struct DescribeCustomHeaderResponse: TCResponseModel {
+    public struct DescribeCustomHeaderResponse: TCResponse {
         /// 规则id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleId: String?

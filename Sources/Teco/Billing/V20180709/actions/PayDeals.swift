@@ -20,7 +20,7 @@ import TecoCore
 
 extension Billing {
     /// PayDeals请求参数结构体
-    public struct PayDealsRequest: TCRequestModel {
+    public struct PayDealsRequest: TCRequest {
         /// 需要支付的一个或者多个子订单号，与BigDealIds字段两者必须且仅传一个参数
         public let orderIds: [String]?
 
@@ -49,7 +49,7 @@ extension Billing {
     }
 
     /// PayDeals返回参数结构体
-    public struct PayDealsResponse: TCResponseModel {
+    public struct PayDealsResponse: TCResponse {
         /// 此次操作支付成功的子订单号数组
         public let orderIds: [String]
 

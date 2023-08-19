@@ -20,7 +20,7 @@ import TecoCore
 
 extension Yunjing {
     /// ModifyProVersionRenewFlag请求参数结构体
-    public struct ModifyProVersionRenewFlagRequest: TCRequestModel {
+    public struct ModifyProVersionRenewFlagRequest: TCRequest {
         /// 自动续费标识。取值范围：
         /// - NOTIFY_AND_AUTO_RENEW：通知过期且自动续费
         /// - NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费
@@ -42,7 +42,7 @@ extension Yunjing {
     }
 
     /// ModifyProVersionRenewFlag返回参数结构体
-    public struct ModifyProVersionRenewFlagResponse: TCResponseModel {
+    public struct ModifyProVersionRenewFlagResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// CreateWorkflow请求参数结构体
-    public struct CreateWorkflowRequest: TCRequestModel {
+    public struct CreateWorkflowRequest: TCRequest {
         /// 工作流名称，最多128字符。同一个用户该名称唯一。
         public let workflowName: String
 
@@ -80,7 +80,7 @@ extension Mps {
     }
 
     /// CreateWorkflow返回参数结构体
-    public struct CreateWorkflowResponse: TCResponseModel {
+    public struct CreateWorkflowResponse: TCResponse {
         /// 工作流 ID。
         public let workflowId: Int64
 

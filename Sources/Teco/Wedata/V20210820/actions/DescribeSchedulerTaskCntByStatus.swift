@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeSchedulerTaskCntByStatus请求参数结构体
-    public struct DescribeSchedulerTaskCntByStatusRequest: TCRequestModel {
+    public struct DescribeSchedulerTaskCntByStatusRequest: TCRequest {
         /// 1
         public let taskType: UInt64?
 
@@ -44,7 +44,7 @@ extension Wedata {
     }
 
     /// DescribeSchedulerTaskCntByStatus返回参数结构体
-    public struct DescribeSchedulerTaskCntByStatusResponse: TCResponseModel {
+    public struct DescribeSchedulerTaskCntByStatusResponse: TCResponse {
         /// 统计结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [ScreenTaskInfo]?

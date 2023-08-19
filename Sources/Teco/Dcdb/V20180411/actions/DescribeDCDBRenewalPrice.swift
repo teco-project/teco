@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dcdb {
     /// DescribeDCDBRenewalPrice请求参数结构体
-    public struct DescribeDCDBRenewalPriceRequest: TCRequestModel {
+    public struct DescribeDCDBRenewalPriceRequest: TCRequest {
         /// 待续费的实例ID。形如：dcdbt-ow728lmc，可以通过 DescribeDCDBInstances 查询实例详情获得。
         public let instanceId: String
 
@@ -46,7 +46,7 @@ extension Dcdb {
     }
 
     /// DescribeDCDBRenewalPrice返回参数结构体
-    public struct DescribeDCDBRenewalPriceResponse: TCResponseModel {
+    public struct DescribeDCDBRenewalPriceResponse: TCResponse {
         /// 原价
         /// * 单位：默认为分，若请求参数带有AmountUnit，参考AmountUnit描述
         /// * 币种：国内站为人民币，国际站为美元

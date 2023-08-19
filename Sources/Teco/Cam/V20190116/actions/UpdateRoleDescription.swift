@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// UpdateRoleDescription请求参数结构体
-    public struct UpdateRoleDescriptionRequest: TCRequestModel {
+    public struct UpdateRoleDescriptionRequest: TCRequest {
         /// 角色描述
         public let description: String
 
@@ -44,7 +44,7 @@ extension Cam {
     }
 
     /// UpdateRoleDescription返回参数结构体
-    public struct UpdateRoleDescriptionResponse: TCResponseModel {
+    public struct UpdateRoleDescriptionResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

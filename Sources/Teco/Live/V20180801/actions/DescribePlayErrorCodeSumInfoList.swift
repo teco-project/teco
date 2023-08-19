@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribePlayErrorCodeSumInfoList请求参数结构体
-    public struct DescribePlayErrorCodeSumInfoListRequest: TCRequestModel {
+    public struct DescribePlayErrorCodeSumInfoListRequest: TCRequest {
         /// 起始时间点，北京时间。
         /// 格式：yyyy-mm-dd HH:MM:SS。
         public let startTime: String
@@ -72,7 +72,7 @@ extension Live {
     }
 
     /// DescribePlayErrorCodeSumInfoList返回参数结构体
-    public struct DescribePlayErrorCodeSumInfoListResponse: TCResponseModel {
+    public struct DescribePlayErrorCodeSumInfoListResponse: TCResponse {
         /// 分省份分运营商错误码为2或3或4或5开头的状态码数据信息。
         public let proIspInfoList: [ProIspPlayCodeDataInfo]
 

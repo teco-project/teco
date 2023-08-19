@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tem {
     /// StopApplication请求参数结构体
-    public struct StopApplicationRequest: TCRequestModel {
+    public struct StopApplicationRequest: TCRequest {
         /// 服务id
         public let applicationId: String
 
@@ -44,7 +44,7 @@ extension Tem {
     }
 
     /// StopApplication返回参数结构体
-    public struct StopApplicationResponse: TCResponseModel {
+    public struct StopApplicationResponse: TCResponse {
         /// 返回结果
         public let result: Bool
 

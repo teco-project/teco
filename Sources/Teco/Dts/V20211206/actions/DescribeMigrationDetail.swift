@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dts {
     /// DescribeMigrationDetail请求参数结构体
-    public struct DescribeMigrationDetailRequest: TCRequestModel {
+    public struct DescribeMigrationDetailRequest: TCRequest {
         /// 数据迁移任务ID
         public let jobId: String
 
@@ -34,7 +34,7 @@ extension Dts {
     }
 
     /// DescribeMigrationDetail返回参数结构体
-    public struct DescribeMigrationDetailResponse: TCResponseModel {
+    public struct DescribeMigrationDetailResponse: TCResponse {
         /// 数据迁移任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let jobId: String?

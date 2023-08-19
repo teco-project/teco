@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Dlc {
     /// AlterDMSTable请求参数结构体
-    public struct AlterDMSTableRequest: TCRequestModel {
+    public struct AlterDMSTableRequest: TCRequest {
         /// 当前名称
         public let currentName: String
 
@@ -130,7 +130,7 @@ extension Dlc {
     }
 
     /// AlterDMSTable返回参数结构体
-    public struct AlterDMSTableResponse: TCResponseModel {
+    public struct AlterDMSTableResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

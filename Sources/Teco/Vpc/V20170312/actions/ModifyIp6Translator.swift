@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// ModifyIp6Translator请求参数结构体
-    public struct ModifyIp6TranslatorRequest: TCRequestModel {
+    public struct ModifyIp6TranslatorRequest: TCRequest {
         /// IPV6转换实例唯一ID，形如ip6-xxxxxxxxx
         public let ip6TranslatorId: String
 
@@ -39,7 +39,7 @@ extension Vpc {
     }
 
     /// ModifyIp6Translator返回参数结构体
-    public struct ModifyIp6TranslatorResponse: TCResponseModel {
+    public struct ModifyIp6TranslatorResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

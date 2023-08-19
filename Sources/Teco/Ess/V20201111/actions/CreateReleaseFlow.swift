@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// CreateReleaseFlow请求参数结构体
-    public struct CreateReleaseFlowRequest: TCRequestModel {
+    public struct CreateReleaseFlowRequest: TCRequest {
         /// 调用方用户信息，userId 必填
         public let `operator`: UserInfo
 
@@ -61,7 +61,7 @@ extension Ess {
     }
 
     /// CreateReleaseFlow返回参数结构体
-    public struct CreateReleaseFlowResponse: TCResponseModel {
+    public struct CreateReleaseFlowResponse: TCResponse {
         /// 解除协议流程编号
         public let flowId: String
 

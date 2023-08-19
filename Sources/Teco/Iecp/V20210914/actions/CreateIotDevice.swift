@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// CreateIotDevice请求参数结构体
-    public struct CreateIotDeviceRequest: TCRequestModel {
+    public struct CreateIotDeviceRequest: TCRequest {
         /// 设备名称
         public let deviceName: String
 
@@ -48,7 +48,7 @@ extension Iecp {
     }
 
     /// CreateIotDevice返回参数结构体
-    public struct CreateIotDeviceResponse: TCResponseModel {
+    public struct CreateIotDeviceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

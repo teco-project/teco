@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mongodb {
     /// TerminateDBInstance请求参数结构体
-    public struct TerminateDBInstanceRequest: TCRequestModel {
+    public struct TerminateDBInstanceRequest: TCRequest {
         /// 实例ID，格式如：cmgo-p8vnipr5。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Mongodb {
     }
 
     /// TerminateDBInstance返回参数结构体
-    public struct TerminateDBInstanceResponse: TCResponseModel {
+    public struct TerminateDBInstanceResponse: TCResponse {
         /// 订单ID，表示注销实例成功
         public let asyncRequestId: String
 

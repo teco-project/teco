@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// AddUserDevice请求参数结构体
-    public struct AddUserDeviceRequest: TCRequestModel {
+    public struct AddUserDeviceRequest: TCRequest {
         /// 设备名称，仅支持中文、英文、数字、_、-，长度不超过32个字符；（设备名称无需全局唯一，可以重复）
         public let name: String
 
@@ -94,7 +94,7 @@ extension Iss {
     }
 
     /// AddUserDevice返回参数结构体
-    public struct AddUserDeviceResponse: TCResponseModel {
+    public struct AddUserDeviceResponse: TCResponse {
         /// 增加设备返回数据
         public let data: AddDeviceResponse
 

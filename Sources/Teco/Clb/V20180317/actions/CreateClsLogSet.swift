@@ -20,7 +20,7 @@ import TecoCore
 
 extension Clb {
     /// CreateClsLogSet请求参数结构体
-    public struct CreateClsLogSetRequest: TCRequestModel {
+    public struct CreateClsLogSetRequest: TCRequest {
         /// 日志集的名字，不能和cls其他日志集重名。不填默认为clb_logset。
         public let logsetName: String?
 
@@ -44,7 +44,7 @@ extension Clb {
     }
 
     /// CreateClsLogSet返回参数结构体
-    public struct CreateClsLogSetResponse: TCResponseModel {
+    public struct CreateClsLogSetResponse: TCResponse {
         /// 日志集的 ID。
         public let logsetId: String
 

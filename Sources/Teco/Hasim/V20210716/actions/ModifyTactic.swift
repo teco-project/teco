@@ -20,7 +20,7 @@ import TecoCore
 
 extension Hasim {
     /// ModifyTactic请求参数结构体
-    public struct ModifyTacticRequest: TCRequestModel {
+    public struct ModifyTacticRequest: TCRequest {
         /// 策略名称
         public let name: String
 
@@ -124,7 +124,7 @@ extension Hasim {
     }
 
     /// ModifyTactic返回参数结构体
-    public struct ModifyTacticResponse: TCResponseModel {
+    public struct ModifyTacticResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

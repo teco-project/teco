@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// ModifyClsTopic请求参数结构体
-    public struct ModifyClsTopicRequest: TCRequestModel {
+    public struct ModifyClsTopicRequest: TCRequest {
         /// 环境ID
         public let envId: String
 
@@ -39,7 +39,7 @@ extension Tcb {
     }
 
     /// ModifyClsTopic返回参数结构体
-    public struct ModifyClsTopicResponse: TCResponseModel {
+    public struct ModifyClsTopicResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

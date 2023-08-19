@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dnspod {
     /// CreateDomainAlias请求参数结构体
-    public struct CreateDomainAliasRequest: TCRequestModel {
+    public struct CreateDomainAliasRequest: TCRequest {
         /// 域名别名
         public let domainAlias: String
 
@@ -44,7 +44,7 @@ extension Dnspod {
     }
 
     /// CreateDomainAlias返回参数结构体
-    public struct CreateDomainAliasResponse: TCResponseModel {
+    public struct CreateDomainAliasResponse: TCResponse {
         /// 域名别名ID
         public let domainAliasId: Int64
 

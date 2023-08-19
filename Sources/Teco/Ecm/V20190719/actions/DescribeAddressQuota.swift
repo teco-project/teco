@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// DescribeAddressQuota请求参数结构体
-    public struct DescribeAddressQuotaRequest: TCRequestModel {
+    public struct DescribeAddressQuotaRequest: TCRequest {
         /// ECM 地域
         public let ecmRegion: String
 
@@ -34,7 +34,7 @@ extension Ecm {
     }
 
     /// DescribeAddressQuota返回参数结构体
-    public struct DescribeAddressQuotaResponse: TCResponseModel {
+    public struct DescribeAddressQuotaResponse: TCResponse {
         /// 账户 EIP 配额信息。
         public let quotaSet: [EipQuota]
 

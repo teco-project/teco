@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tmt {
     /// FileTranslate请求参数结构体
-    public struct FileTranslateRequest: TCRequestModel {
+    public struct FileTranslateRequest: TCRequest {
         /// 源语言，支持
         /// zh:简体中文
         /// zh-HK：繁体中文
@@ -101,7 +101,7 @@ extension Tmt {
     }
 
     /// FileTranslate返回参数结构体
-    public struct FileTranslateResponse: TCResponseModel {
+    public struct FileTranslateResponse: TCResponse {
         /// 文件翻译的请求返回结果，包含结果查询需要的TaskId
         public let data: Task
 

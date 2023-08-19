@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryReconciliationDocument请求参数结构体
-    public struct QueryReconciliationDocumentRequest: TCRequestModel {
+    public struct QueryReconciliationDocumentRequest: TCRequest {
         /// String(22)，商户号
         public let mrchCode: String
 
@@ -54,7 +54,7 @@ extension Cpdp {
     }
 
     /// QueryReconciliationDocument返回参数结构体
-    public struct QueryReconciliationDocumentResponse: TCResponseModel {
+    public struct QueryReconciliationDocumentResponse: TCResponse {
         /// String(20)，返回码
         public let txnReturnCode: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// CreateResourcePackage请求参数结构体
-    public struct CreateResourcePackageRequest: TCRequestModel {
+    public struct CreateResourcePackageRequest: TCRequest {
         /// 实例类型
         public let instanceType: String
 
@@ -71,7 +71,7 @@ extension Cynosdb {
     }
 
     /// CreateResourcePackage返回参数结构体
-    public struct CreateResourcePackageResponse: TCResponseModel {
+    public struct CreateResourcePackageResponse: TCResponse {
         /// 付费总订单号
         public let bigDealIds: [String]
 

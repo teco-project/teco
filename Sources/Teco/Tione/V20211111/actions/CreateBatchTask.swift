@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// CreateBatchTask请求参数结构体
-    public struct CreateBatchTaskRequest: TCRequestModel {
+    public struct CreateBatchTaskRequest: TCRequest {
         /// 跑批任务名称，不超过60个字符，仅支持中英文、数字、下划线"_"、短横"-"，只能以中英文、数字开头
         public let batchTaskName: String
 
@@ -124,7 +124,7 @@ extension Tione {
     }
 
     /// CreateBatchTask返回参数结构体
-    public struct CreateBatchTaskResponse: TCResponseModel {
+    public struct CreateBatchTaskResponse: TCResponse {
         /// 跑批任务ID
         public let batchTaskId: String
 

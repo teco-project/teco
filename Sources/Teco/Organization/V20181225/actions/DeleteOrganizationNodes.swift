@@ -20,7 +20,7 @@ import TecoCore
 
 extension Organization {
     /// DeleteOrganizationNodes请求参数结构体
-    public struct DeleteOrganizationNodesRequest: TCRequestModel {
+    public struct DeleteOrganizationNodesRequest: TCRequest {
         /// 组织单元ID列表
         public let nodeIds: [UInt64]
 
@@ -34,7 +34,7 @@ extension Organization {
     }
 
     /// DeleteOrganizationNodes返回参数结构体
-    public struct DeleteOrganizationNodesResponse: TCResponseModel {
+    public struct DeleteOrganizationNodesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

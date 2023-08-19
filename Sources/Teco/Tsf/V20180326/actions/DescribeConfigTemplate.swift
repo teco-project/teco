@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DescribeConfigTemplate请求参数结构体
-    public struct DescribeConfigTemplateRequest: TCRequestModel {
+    public struct DescribeConfigTemplateRequest: TCRequest {
         public let configTemplateId: String
 
         public init(configTemplateId: String) {
@@ -33,7 +33,7 @@ extension Tsf {
     }
 
     /// DescribeConfigTemplate返回参数结构体
-    public struct DescribeConfigTemplateResponse: TCResponseModel {
+    public struct DescribeConfigTemplateResponse: TCResponse {
         /// Result
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: ConfigTemplate?

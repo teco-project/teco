@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// CreateBatchModelAccTasks请求参数结构体
-    public struct CreateBatchModelAccTasksRequest: TCRequestModel {
+    public struct CreateBatchModelAccTasksRequest: TCRequest {
         /// 模型加速任务名称
         public let modelAccTaskName: String
 
@@ -64,7 +64,7 @@ extension Tione {
     }
 
     /// CreateBatchModelAccTasks返回参数结构体
-    public struct CreateBatchModelAccTasksResponse: TCResponseModel {
+    public struct CreateBatchModelAccTasksResponse: TCResponse {
         /// 模型优化任务ID列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let modelAccTaskIds: [String]?

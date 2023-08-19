@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// CreateEdgeUnitCloud请求参数结构体
-    public struct CreateEdgeUnitCloudRequest: TCRequestModel {
+    public struct CreateEdgeUnitCloudRequest: TCRequest {
         /// 集群名称，长度小于32
         public let name: String
 
@@ -64,7 +64,7 @@ extension Iecp {
     }
 
     /// CreateEdgeUnitCloud返回参数结构体
-    public struct CreateEdgeUnitCloudResponse: TCResponseModel {
+    public struct CreateEdgeUnitCloudResponse: TCResponse {
         /// tke集群ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?

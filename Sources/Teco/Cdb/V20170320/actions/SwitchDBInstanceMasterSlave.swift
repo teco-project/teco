@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// SwitchDBInstanceMasterSlave请求参数结构体
-    public struct SwitchDBInstanceMasterSlaveRequest: TCRequestModel {
+    public struct SwitchDBInstanceMasterSlaveRequest: TCRequest {
         /// 实例 ID。
         public let instanceId: String
 
@@ -49,7 +49,7 @@ extension Cdb {
     }
 
     /// SwitchDBInstanceMasterSlave返回参数结构体
-    public struct SwitchDBInstanceMasterSlaveResponse: TCResponseModel {
+    public struct SwitchDBInstanceMasterSlaveResponse: TCResponse {
         /// 异步任务 ID。
         public let asyncRequestId: String
 

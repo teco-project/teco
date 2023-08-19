@@ -20,7 +20,7 @@ import TecoCore
 
 extension Antiddos {
     /// CreateSchedulingDomain请求参数结构体
-    public struct CreateSchedulingDomainRequest: TCRequestModel {
+    public struct CreateSchedulingDomainRequest: TCRequest {
         /// 代表是否混合云本地化的产品。
         /// hybrid: 宙斯盾本地化
         /// 不填写：其他
@@ -36,7 +36,7 @@ extension Antiddos {
     }
 
     /// CreateSchedulingDomain返回参数结构体
-    public struct CreateSchedulingDomainResponse: TCResponseModel {
+    public struct CreateSchedulingDomainResponse: TCResponse {
         /// 新创建的域名
         public let domain: String
 

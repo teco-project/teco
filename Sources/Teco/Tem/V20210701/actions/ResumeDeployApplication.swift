@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tem {
     /// ResumeDeployApplication请求参数结构体
-    public struct ResumeDeployApplicationRequest: TCRequestModel {
+    public struct ResumeDeployApplicationRequest: TCRequest {
         /// 需要开始下一批次的服务id
         public let applicationId: String?
 
@@ -39,7 +39,7 @@ extension Tem {
     }
 
     /// ResumeDeployApplication返回参数结构体
-    public struct ResumeDeployApplicationResponse: TCResponseModel {
+    public struct ResumeDeployApplicationResponse: TCResponse {
         /// 是否成功
         public let result: Bool
 

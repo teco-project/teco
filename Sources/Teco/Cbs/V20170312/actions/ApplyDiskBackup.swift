@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cbs {
     /// ApplyDiskBackup请求参数结构体
-    public struct ApplyDiskBackupRequest: TCRequestModel {
+    public struct ApplyDiskBackupRequest: TCRequest {
         /// 云硬盘备份点ID，可通过 DescribeDiskBackups 查询。
         public let diskBackupId: String
 
@@ -39,7 +39,7 @@ extension Cbs {
     }
 
     /// ApplyDiskBackup返回参数结构体
-    public struct ApplyDiskBackupResponse: TCResponseModel {
+    public struct ApplyDiskBackupResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

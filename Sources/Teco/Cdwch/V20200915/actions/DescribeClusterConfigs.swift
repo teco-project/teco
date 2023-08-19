@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdwch {
     /// DescribeClusterConfigs请求参数结构体
-    public struct DescribeClusterConfigsRequest: TCRequestModel {
+    public struct DescribeClusterConfigsRequest: TCRequest {
         /// 集群实例ID
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Cdwch {
     }
 
     /// DescribeClusterConfigs返回参数结构体
-    public struct DescribeClusterConfigsResponse: TCResponseModel {
+    public struct DescribeClusterConfigsResponse: TCResponse {
         /// 返回实例的配置文件相关的信息
         public let clusterConfList: [ClusterConfigsInfoFromEMR]
 

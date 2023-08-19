@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// DeleteConfig请求参数结构体
-    public struct DeleteConfigRequest: TCRequestModel {
+    public struct DeleteConfigRequest: TCRequest {
         /// 采集规则配置ID
         public let configId: String
 
@@ -34,7 +34,7 @@ extension Cls {
     }
 
     /// DeleteConfig返回参数结构体
-    public struct DeleteConfigResponse: TCResponseModel {
+    public struct DeleteConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

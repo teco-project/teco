@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trro {
     /// DescribeSessionStatisticsByInterval请求参数结构体
-    public struct DescribeSessionStatisticsByIntervalRequest: TCRequestModel {
+    public struct DescribeSessionStatisticsByIntervalRequest: TCRequest {
         /// 项目ID
         public let projectId: String
 
@@ -54,7 +54,7 @@ extension Trro {
     }
 
     /// DescribeSessionStatisticsByInterval返回参数结构体
-    public struct DescribeSessionStatisticsByIntervalResponse: TCResponseModel {
+    public struct DescribeSessionStatisticsByIntervalResponse: TCResponse {
         /// 各时间段的会话统计数据
         public let sessionStatistics: [SessionIntervalStatistic]
 

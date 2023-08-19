@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotexplorer {
     /// DescribeDeviceBindGateway请求参数结构体
-    public struct DescribeDeviceBindGatewayRequest: TCRequestModel {
+    public struct DescribeDeviceBindGatewayRequest: TCRequest {
         /// 产品Id
         public let productId: String
 
@@ -39,7 +39,7 @@ extension Iotexplorer {
     }
 
     /// DescribeDeviceBindGateway返回参数结构体
-    public struct DescribeDeviceBindGatewayResponse: TCResponseModel {
+    public struct DescribeDeviceBindGatewayResponse: TCResponse {
         /// 网关产品ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gatewayProductId: String?

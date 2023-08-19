@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CreateSnapshotPolicies请求参数结构体
-    public struct CreateSnapshotPoliciesRequest: TCRequestModel {
+    public struct CreateSnapshotPoliciesRequest: TCRequest {
         /// 快照策略详情。
         public let snapshotPolicies: [SnapshotPolicy]
 
@@ -34,7 +34,7 @@ extension Vpc {
     }
 
     /// CreateSnapshotPolicies返回参数结构体
-    public struct CreateSnapshotPoliciesResponse: TCResponseModel {
+    public struct CreateSnapshotPoliciesResponse: TCResponse {
         /// 快照策略。
         public let snapshotPolicies: [SnapshotPolicy]
 

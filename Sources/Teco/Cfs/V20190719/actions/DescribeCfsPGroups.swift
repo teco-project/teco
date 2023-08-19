@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cfs {
     /// DescribeCfsPGroups请求参数结构体
-    public struct DescribeCfsPGroupsRequest: TCRequestModel {
+    public struct DescribeCfsPGroupsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeCfsPGroups返回参数结构体
-    public struct DescribeCfsPGroupsResponse: TCResponseModel {
+    public struct DescribeCfsPGroupsResponse: TCResponse {
         /// 权限组信息列表
         public let pGroupList: [PGroupInfo]
 

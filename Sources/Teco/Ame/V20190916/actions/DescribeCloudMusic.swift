@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ame {
     /// DescribeCloudMusic请求参数结构体
-    public struct DescribeCloudMusicRequest: TCRequestModel {
+    public struct DescribeCloudMusicRequest: TCRequest {
         /// 歌曲Id
         public let musicId: String
 
@@ -44,7 +44,7 @@ extension Ame {
     }
 
     /// DescribeCloudMusic返回参数结构体
-    public struct DescribeCloudMusicResponse: TCResponseModel {
+    public struct DescribeCloudMusicResponse: TCResponse {
         /// 歌曲Id
         public let musicId: String
 

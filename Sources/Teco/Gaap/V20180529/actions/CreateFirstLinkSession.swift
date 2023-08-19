@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// CreateFirstLinkSession请求参数结构体
-    public struct CreateFirstLinkSessionRequest: TCRequestModel {
+    public struct CreateFirstLinkSessionRequest: TCRequest {
         /// 模版ID
         public let templateId: String
 
@@ -54,7 +54,7 @@ extension Gaap {
     }
 
     /// CreateFirstLinkSession返回参数结构体
-    public struct CreateFirstLinkSessionResponse: TCResponseModel {
+    public struct CreateFirstLinkSessionResponse: TCResponse {
         /// 加速成功时返回，单次加速唯一会话Id。。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sessionId: String?

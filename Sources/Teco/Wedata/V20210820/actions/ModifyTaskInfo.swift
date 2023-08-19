@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// ModifyTaskInfo请求参数结构体
-    public struct ModifyTaskInfoRequest: TCRequestModel {
+    public struct ModifyTaskInfoRequest: TCRequest {
         /// 项目Id
         public let projectId: String
 
@@ -174,7 +174,7 @@ extension Wedata {
     }
 
     /// ModifyTaskInfo返回参数结构体
-    public struct ModifyTaskInfoResponse: TCResponseModel {
+    public struct ModifyTaskInfoResponse: TCResponse {
         /// 执行结果
         public let data: Bool
 

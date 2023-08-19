@@ -20,7 +20,7 @@ import TecoCore
 
 extension Waf {
     /// CreateAccessExport请求参数结构体
-    public struct CreateAccessExportRequest: TCRequestModel {
+    public struct CreateAccessExportRequest: TCRequest {
         /// 客户要查询的日志主题ID，每个客户都有对应的一个主题
         public let topicId: String
 
@@ -64,7 +64,7 @@ extension Waf {
     }
 
     /// CreateAccessExport返回参数结构体
-    public struct CreateAccessExportResponse: TCResponseModel {
+    public struct CreateAccessExportResponse: TCResponse {
         /// 日志导出ID。
         public let exportId: String
 

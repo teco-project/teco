@@ -20,7 +20,7 @@ import TecoCore
 
 extension Domain {
     /// CreateDomainBatch请求参数结构体
-    public struct CreateDomainBatchRequest: TCRequestModel {
+    public struct CreateDomainBatchRequest: TCRequest {
         /// 模板ID。详情请查看：[获取模板列表](https://cloud.tencent.com/document/product/242/48940)
         public let templateId: String
 
@@ -86,7 +86,7 @@ extension Domain {
     }
 
     /// CreateDomainBatch返回参数结构体
-    public struct CreateDomainBatchResponse: TCResponseModel {
+    public struct CreateDomainBatchResponse: TCResponse {
         /// 批量日志ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logId: Int64?

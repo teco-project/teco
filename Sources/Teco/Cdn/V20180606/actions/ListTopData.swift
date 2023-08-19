@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cdn {
     /// ListTopData请求参数结构体
-    public struct ListTopDataRequest: TCRequestModel {
+    public struct ListTopDataRequest: TCRequest {
         /// 查询起始时间：yyyy-MM-dd HH:mm:ss
         /// 仅支持按分钟粒度的数据查询，按入参抹去秒位作为起始时间，如 StartTime为2018-09-04 10:40:23，返回数据的起始时间为2018-09-04 10:40:00
         /// 仅支持 90 天内数据查询
@@ -126,7 +126,7 @@ extension Cdn {
     }
 
     /// ListTopData返回参数结构体
-    public struct ListTopDataResponse: TCResponseModel {
+    public struct ListTopDataResponse: TCResponse {
         /// 各个资源的Top 访问数据详情。
         public let data: [TopData]
 

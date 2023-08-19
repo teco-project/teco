@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// GetPrometheusAgentManagementCommand请求参数结构体
-    public struct GetPrometheusAgentManagementCommandRequest: TCRequestModel {
+    public struct GetPrometheusAgentManagementCommandRequest: TCRequest {
         /// Prometheus 实例 ID
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Monitor {
     }
 
     /// GetPrometheusAgentManagementCommand返回参数结构体
-    public struct GetPrometheusAgentManagementCommandResponse: TCResponseModel {
+    public struct GetPrometheusAgentManagementCommandResponse: TCResponse {
         /// Agent 管理命令
         public let command: ManagementCommand
 

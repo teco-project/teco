@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// SetNatFwDnatRule请求参数结构体
-    public struct SetNatFwDnatRuleRequest: TCRequestModel {
+    public struct SetNatFwDnatRuleRequest: TCRequest {
         /// 0：cfw新增模式，1：cfw接入模式。
         public let mode: UInt64
 
@@ -59,7 +59,7 @@ extension Cfw {
     }
 
     /// SetNatFwDnatRule返回参数结构体
-    public struct SetNatFwDnatRuleResponse: TCResponseModel {
+    public struct SetNatFwDnatRuleResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

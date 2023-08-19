@@ -20,7 +20,7 @@ import TecoCore
 
 extension Keewidb {
     /// DescribeInstanceReplicas请求参数结构体
-    public struct DescribeInstanceReplicasRequest: TCRequestModel {
+    public struct DescribeInstanceReplicasRequest: TCRequest {
         /// 实例 ID，如：kee-6ubh****。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Keewidb {
     }
 
     /// DescribeInstanceReplicas返回参数结构体
-    public struct DescribeInstanceReplicasResponse: TCResponseModel {
+    public struct DescribeInstanceReplicasResponse: TCResponse {
         /// 实例所有节点数量，包括主节点、副本节点。
         public let totalCount: Int64
 

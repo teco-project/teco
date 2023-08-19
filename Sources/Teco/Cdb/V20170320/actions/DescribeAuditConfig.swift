@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DescribeAuditConfig请求参数结构体
-    public struct DescribeAuditConfigRequest: TCRequestModel {
+    public struct DescribeAuditConfigRequest: TCRequest {
         /// 实例 ID，格式如：cdb-c1nl9rpv 或者 cdbro-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Cdb {
     }
 
     /// DescribeAuditConfig返回参数结构体
-    public struct DescribeAuditConfigResponse: TCResponseModel {
+    public struct DescribeAuditConfigResponse: TCResponse {
         /// 审计日志保存时长。目前支持的值包括：[0，7，30，180，365，1095，1825]。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logExpireDay: Int64?

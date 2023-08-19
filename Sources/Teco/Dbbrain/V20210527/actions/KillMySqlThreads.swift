@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dbbrain {
     /// KillMySqlThreads请求参数结构体
-    public struct KillMySqlThreadsRequest: TCRequestModel {
+    public struct KillMySqlThreadsRequest: TCRequest {
         /// 实例ID。
         public let instanceId: String
 
@@ -59,7 +59,7 @@ extension Dbbrain {
     }
 
     /// KillMySqlThreads返回参数结构体
-    public struct KillMySqlThreadsResponse: TCResponseModel {
+    public struct KillMySqlThreadsResponse: TCResponse {
         /// kill完成的sql会话ID列表。
         public let threads: [Int64]
 

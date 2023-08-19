@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CreateVpnGateway请求参数结构体
-    public struct CreateVpnGatewayRequest: TCRequestModel {
+    public struct CreateVpnGatewayRequest: TCRequest {
         /// VPC实例ID。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/215/15778)接口返回值中的VpcId获取。
         public let vpcId: String
 
@@ -79,7 +79,7 @@ extension Vpc {
     }
 
     /// CreateVpnGateway返回参数结构体
-    public struct CreateVpnGatewayResponse: TCResponseModel {
+    public struct CreateVpnGatewayResponse: TCResponse {
         /// VPN网关对象
         public let vpnGateway: VpnGateway
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// DeleteSparkApp请求参数结构体
-    public struct DeleteSparkAppRequest: TCRequestModel {
+    public struct DeleteSparkAppRequest: TCRequest {
         /// spark作业名
         public let appName: String
 
@@ -34,7 +34,7 @@ extension Dlc {
     }
 
     /// DeleteSparkApp返回参数结构体
-    public struct DeleteSparkAppResponse: TCResponseModel {
+    public struct DeleteSparkAppResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

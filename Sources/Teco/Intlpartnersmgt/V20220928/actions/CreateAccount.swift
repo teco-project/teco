@@ -20,7 +20,7 @@ import TecoCore
 
 extension Intlpartnersmgt {
     /// CreateAccount请求参数结构体
-    public struct CreateAccountRequest: TCRequestModel {
+    public struct CreateAccountRequest: TCRequest {
         /// 新建客户的账户类型标识。本接口取值为：personal或company
         public let accountType: String
 
@@ -73,7 +73,7 @@ extension Intlpartnersmgt {
     }
 
     /// CreateAccount返回参数结构体
-    public struct CreateAccountResponse: TCResponseModel {
+    public struct CreateAccountResponse: TCResponse {
         /// 账号的uin
         public let uin: String
 

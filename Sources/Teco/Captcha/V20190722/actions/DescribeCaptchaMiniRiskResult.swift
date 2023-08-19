@@ -20,7 +20,7 @@ import TecoCore
 
 extension Captcha {
     /// DescribeCaptchaMiniRiskResult请求参数结构体
-    public struct DescribeCaptchaMiniRiskResultRequest: TCRequestModel {
+    public struct DescribeCaptchaMiniRiskResultRequest: TCRequest {
         /// 固定填值：9（滑块验证码）
         public let captchaType: UInt64
 
@@ -84,7 +84,7 @@ extension Captcha {
     }
 
     /// DescribeCaptchaMiniRiskResult返回参数结构体
-    public struct DescribeCaptchaMiniRiskResultResponse: TCResponseModel {
+    public struct DescribeCaptchaMiniRiskResultResponse: TCResponse {
         /// 1 ticket verification succeeded 票据验证成功
         /// 7 CaptchaAppId does not match 票据与验证码应用APPID不匹配
         /// 8 ticket expired 票据超时

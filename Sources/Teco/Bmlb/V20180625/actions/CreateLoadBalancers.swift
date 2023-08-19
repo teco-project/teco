@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmlb {
     /// CreateLoadBalancers请求参数结构体
-    public struct CreateLoadBalancersRequest: TCRequestModel {
+    public struct CreateLoadBalancersRequest: TCRequest {
         /// 黑石负载均衡实例所属的私有网络ID。
         public let vpcId: String
 
@@ -84,7 +84,7 @@ extension Bmlb {
     }
 
     /// CreateLoadBalancers返回参数结构体
-    public struct CreateLoadBalancersResponse: TCResponseModel {
+    public struct CreateLoadBalancersResponse: TCResponse {
         /// 创建的黑石负载均衡实例ID。
         public let loadBalancerIds: [String]
 

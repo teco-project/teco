@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DeleteRoutes请求参数结构体
-    public struct DeleteRoutesRequest: TCRequestModel {
+    public struct DeleteRoutesRequest: TCRequest {
         /// 路由表实例ID。
         public let routeTableId: String
 
@@ -39,7 +39,7 @@ extension Vpc {
     }
 
     /// DeleteRoutes返回参数结构体
-    public struct DeleteRoutesResponse: TCResponseModel {
+    public struct DeleteRoutesResponse: TCResponse {
         /// 已删除的路由策略详情。
         public let routeSet: [Route]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// GetCustomMFATokenInfo请求参数结构体
-    public struct GetCustomMFATokenInfoRequest: TCRequestModel {
+    public struct GetCustomMFATokenInfoRequest: TCRequest {
         /// 自定义多因子验证Token
         public let mfaToken: String
 
@@ -34,7 +34,7 @@ extension Cam {
     }
 
     /// GetCustomMFATokenInfo返回参数结构体
-    public struct GetCustomMFATokenInfoResponse: TCResponseModel {
+    public struct GetCustomMFATokenInfoResponse: TCResponse {
         /// 自定义多因子验证Token对应的帐号Id
         public let uin: UInt64
 

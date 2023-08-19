@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// EnableGatewayFlowMonitor请求参数结构体
-    public struct EnableGatewayFlowMonitorRequest: TCRequestModel {
+    public struct EnableGatewayFlowMonitorRequest: TCRequest {
         /// 网关实例ID，目前我们支持的网关实例有，
         /// 专线网关实例ID，形如，`dcg-ltjahce6`；
         /// Nat网关实例ID，形如，`nat-ltjahce6`；
@@ -37,7 +37,7 @@ extension Vpc {
     }
 
     /// EnableGatewayFlowMonitor返回参数结构体
-    public struct EnableGatewayFlowMonitorResponse: TCResponseModel {
+    public struct EnableGatewayFlowMonitorResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

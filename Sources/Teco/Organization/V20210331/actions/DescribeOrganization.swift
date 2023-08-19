@@ -20,7 +20,7 @@ import TecoCore
 
 extension Organization {
     /// DescribeOrganization请求参数结构体
-    public struct DescribeOrganizationRequest: TCRequestModel {
+    public struct DescribeOrganizationRequest: TCRequest {
         /// 国际站：en，国内站：zh
         public let lang: String?
 
@@ -39,7 +39,7 @@ extension Organization {
     }
 
     /// DescribeOrganization返回参数结构体
-    public struct DescribeOrganizationResponse: TCResponseModel {
+    public struct DescribeOrganizationResponse: TCResponse {
         /// 企业组织ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let orgId: Int64?

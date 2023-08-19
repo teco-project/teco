@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eiam {
     /// CreateUserGroup请求参数结构体
-    public struct CreateUserGroupRequest: TCRequestModel {
+    public struct CreateUserGroupRequest: TCRequest {
         /// 用户组昵称，长度限制：64个字符。 DisplayName是唯一的。
         public let displayName: String
 
@@ -39,7 +39,7 @@ extension Eiam {
     }
 
     /// CreateUserGroup返回参数结构体
-    public struct CreateUserGroupResponse: TCResponseModel {
+    public struct CreateUserGroupResponse: TCResponse {
         /// 用户组ID，是用户组的全局唯一标识。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userGroupId: String?

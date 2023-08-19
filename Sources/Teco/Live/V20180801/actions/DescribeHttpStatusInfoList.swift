@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeHttpStatusInfoList请求参数结构体
-    public struct DescribeHttpStatusInfoListRequest: TCRequestModel {
+    public struct DescribeHttpStatusInfoListRequest: TCRequest {
         /// 起始时间，北京时间，
         /// 格式：yyyy-mm-dd HH:MM:SS。
         public let startTime: String
@@ -47,7 +47,7 @@ extension Live {
     }
 
     /// DescribeHttpStatusInfoList返回参数结构体
-    public struct DescribeHttpStatusInfoListResponse: TCResponseModel {
+    public struct DescribeHttpStatusInfoListResponse: TCResponse {
         /// 播放状态码列表。
         public let dataInfoList: [HttpStatusData]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// DescribeOperationResult请求参数结构体
-    public struct DescribeOperationResultRequest: TCRequestModel {
+    public struct DescribeOperationResultRequest: TCRequest {
         /// 异步任务ID
         public let taskId: UInt64
 
@@ -34,7 +34,7 @@ extension Bm {
     }
 
     /// DescribeOperationResult返回参数结构体
-    public struct DescribeOperationResultResponse: TCResponseModel {
+    public struct DescribeOperationResultResponse: TCResponse {
         /// 任务的整体状态，取值如下：
         ///
         /// 1：成功

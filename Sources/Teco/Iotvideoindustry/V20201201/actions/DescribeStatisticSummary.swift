@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// DescribeStatisticSummary请求参数结构体
-    public struct DescribeStatisticSummaryRequest: TCRequestModel {
+    public struct DescribeStatisticSummaryRequest: TCRequest {
         /// 指定日期。格式【YYYY-MM-DD】
         public let date: String
 
@@ -34,7 +34,7 @@ extension Iotvideoindustry {
     }
 
     /// DescribeStatisticSummary返回参数结构体
-    public struct DescribeStatisticSummaryResponse: TCResponseModel {
+    public struct DescribeStatisticSummaryResponse: TCResponse {
         /// 录制设备总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordingDevice: UInt64?

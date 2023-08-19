@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cwp {
     /// DescribeWarningList请求参数结构体
-    public struct DescribeWarningListRequest: TCRequestModel {
+    public struct DescribeWarningListRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeWarningList返回参数结构体
-    public struct DescribeWarningListResponse: TCResponseModel {
+    public struct DescribeWarningListResponse: TCResponse {
         /// 获取告警列表
         public let warningInfoList: [WarningInfoObj]
 

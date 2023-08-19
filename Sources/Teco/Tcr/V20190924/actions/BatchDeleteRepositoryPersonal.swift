@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// BatchDeleteRepositoryPersonal请求参数结构体
-    public struct BatchDeleteRepositoryPersonalRequest: TCRequestModel {
+    public struct BatchDeleteRepositoryPersonalRequest: TCRequest {
         /// 仓库名称数组
         public let repoNames: [String]
 
@@ -34,7 +34,7 @@ extension Tcr {
     }
 
     /// BatchDeleteRepositoryPersonal返回参数结构体
-    public struct BatchDeleteRepositoryPersonalResponse: TCResponseModel {
+    public struct BatchDeleteRepositoryPersonalResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

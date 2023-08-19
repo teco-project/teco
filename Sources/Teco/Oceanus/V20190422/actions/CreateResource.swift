@@ -20,7 +20,7 @@ import TecoCore
 
 extension Oceanus {
     /// CreateResource请求参数结构体
-    public struct CreateResourceRequest: TCRequestModel {
+    public struct CreateResourceRequest: TCRequest {
         /// 资源位置
         public let resourceLoc: ResourceLoc
 
@@ -64,7 +64,7 @@ extension Oceanus {
     }
 
     /// CreateResource返回参数结构体
-    public struct CreateResourceResponse: TCResponseModel {
+    public struct CreateResourceResponse: TCResponse {
         /// 资源ID
         public let resourceId: String
 

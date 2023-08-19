@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssl {
     /// CreateCertificateByPackage请求参数结构体
-    public struct CreateCertificateByPackageRequest: TCRequestModel {
+    public struct CreateCertificateByPackageRequest: TCRequest {
         /// 证书产品PID。
         public let productPid: UInt64
 
@@ -114,7 +114,7 @@ extension Ssl {
     }
 
     /// CreateCertificateByPackage返回参数结构体
-    public struct CreateCertificateByPackageResponse: TCResponseModel {
+    public struct CreateCertificateByPackageResponse: TCResponse {
         /// 证书ID。
         public let certificateId: String
 

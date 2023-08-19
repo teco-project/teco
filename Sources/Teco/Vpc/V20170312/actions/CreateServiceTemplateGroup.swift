@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CreateServiceTemplateGroup请求参数结构体
-    public struct CreateServiceTemplateGroupRequest: TCRequestModel {
+    public struct CreateServiceTemplateGroupRequest: TCRequest {
         /// 协议端口模板集合名称。
         public let serviceTemplateGroupName: String
 
@@ -39,7 +39,7 @@ extension Vpc {
     }
 
     /// CreateServiceTemplateGroup返回参数结构体
-    public struct CreateServiceTemplateGroupResponse: TCResponseModel {
+    public struct CreateServiceTemplateGroupResponse: TCResponse {
         /// 协议端口模板集合对象。
         public let serviceTemplateGroup: ServiceTemplateGroup
 

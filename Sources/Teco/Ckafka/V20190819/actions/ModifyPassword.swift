@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// ModifyPassword请求参数结构体
-    public struct ModifyPasswordRequest: TCRequestModel {
+    public struct ModifyPasswordRequest: TCRequest {
         /// 实例Id
         public let instanceId: String
 
@@ -49,7 +49,7 @@ extension Ckafka {
     }
 
     /// ModifyPassword返回参数结构体
-    public struct ModifyPasswordResponse: TCResponseModel {
+    public struct ModifyPasswordResponse: TCResponse {
         /// 返回结果
         public let result: JgwOperateResponse
 

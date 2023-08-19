@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// ModifyAssetImageRegistryScanStop请求参数结构体
-    public struct ModifyAssetImageRegistryScanStopRequest: TCRequestModel {
+    public struct ModifyAssetImageRegistryScanStopRequest: TCRequest {
         /// 是否扫描全部镜像
         public let all: Bool?
 
@@ -64,7 +64,7 @@ extension Tcss {
     }
 
     /// ModifyAssetImageRegistryScanStop返回参数结构体
-    public struct ModifyAssetImageRegistryScanStopResponse: TCResponseModel {
+    public struct ModifyAssetImageRegistryScanStopResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

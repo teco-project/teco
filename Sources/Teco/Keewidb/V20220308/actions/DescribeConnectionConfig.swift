@@ -20,7 +20,7 @@ import TecoCore
 
 extension Keewidb {
     /// DescribeConnectionConfig请求参数结构体
-    public struct DescribeConnectionConfigRequest: TCRequestModel {
+    public struct DescribeConnectionConfigRequest: TCRequest {
         /// 实例 ID，如：kee-6ubh****。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Keewidb {
     }
 
     /// DescribeConnectionConfig返回参数结构体
-    public struct DescribeConnectionConfigResponse: TCResponseModel {
+    public struct DescribeConnectionConfigResponse: TCResponse {
         /// 单分片入流量带宽限制，单位：MB。
         public let inNetLimit: Int64
 

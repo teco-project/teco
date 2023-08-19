@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DescribeRoGroups请求参数结构体
-    public struct DescribeRoGroupsRequest: TCRequestModel {
+    public struct DescribeRoGroupsRequest: TCRequest {
         /// 实例ID，格式如：cdb-c1nl9rpv或者cdb-c1nl9rpv，与云数据库控制台页面中显示的实例ID相同。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Cdb {
     }
 
     /// DescribeRoGroups返回参数结构体
-    public struct DescribeRoGroupsResponse: TCResponseModel {
+    public struct DescribeRoGroupsResponse: TCResponse {
         /// RO组信息数组，一个实例可关联多个RO组。
         public let roGroups: [RoGroup]
 

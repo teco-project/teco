@@ -20,7 +20,7 @@ import TecoCore
 
 extension Waf {
     /// AddCustomRule请求参数结构体
-    public struct AddCustomRuleRequest: TCRequestModel {
+    public struct AddCustomRuleRequest: TCRequest {
         /// 规则名称
         public let name: String
 
@@ -79,7 +79,7 @@ extension Waf {
     }
 
     /// AddCustomRule返回参数结构体
-    public struct AddCustomRuleResponse: TCResponseModel {
+    public struct AddCustomRuleResponse: TCResponse {
         /// 操作的状态码，如果所有的资源操作成功则返回的是成功的状态码，如果有资源操作失败则需要解析Message的内容来查看哪个资源失败
         public let success: ResponseCode
 

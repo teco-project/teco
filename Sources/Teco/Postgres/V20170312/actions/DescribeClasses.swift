@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// DescribeClasses请求参数结构体
-    public struct DescribeClassesRequest: TCRequestModel {
+    public struct DescribeClassesRequest: TCRequest {
         /// 可用区ID。可以通过接口DescribeZones获取。
         public let zone: String
 
@@ -46,7 +46,7 @@ extension Postgres {
     }
 
     /// DescribeClasses返回参数结构体
-    public struct DescribeClassesResponse: TCResponseModel {
+    public struct DescribeClassesResponse: TCResponse {
         /// 数据库规格列表
         public let classInfoSet: [ClassInfo]
 

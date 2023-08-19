@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apcas {
     /// QueryCallStat请求参数结构体
-    public struct QueryCallStatRequest: TCRequestModel {
+    public struct QueryCallStatRequest: TCRequest {
         /// 请求类型 1:人群特征洞察统计 2:购车意向预测统计
         public let type: UInt64
 
@@ -44,7 +44,7 @@ extension Apcas {
     }
 
     /// QueryCallStat返回参数结构体
-    public struct QueryCallStatResponse: TCResponseModel {
+    public struct QueryCallStatResponse: TCResponse {
         /// 调用量数组
         public let callSet: [CallStatItem]
 

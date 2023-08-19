@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ump {
     /// CreateMultiBizAlert请求参数结构体
-    public struct CreateMultiBizAlertRequest: TCRequestModel {
+    public struct CreateMultiBizAlertRequest: TCRequest {
         /// 集团编码
         public let groupCode: String
 
@@ -72,7 +72,7 @@ extension Ump {
     }
 
     /// CreateMultiBizAlert返回参数结构体
-    public struct CreateMultiBizAlertResponse: TCResponseModel {
+    public struct CreateMultiBizAlertResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

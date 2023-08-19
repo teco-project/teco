@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DeleteVpnGatewaySslServer请求参数结构体
-    public struct DeleteVpnGatewaySslServerRequest: TCRequestModel {
+    public struct DeleteVpnGatewaySslServerRequest: TCRequest {
         /// SSL-VPN-SERVER 实例ID。
         public let sslVpnServerId: String
 
@@ -34,7 +34,7 @@ extension Vpc {
     }
 
     /// DeleteVpnGatewaySslServer返回参数结构体
-    public struct DeleteVpnGatewaySslServerResponse: TCResponseModel {
+    public struct DeleteVpnGatewaySslServerResponse: TCResponse {
         /// 异步任务ID。
         public let taskId: UInt64
 

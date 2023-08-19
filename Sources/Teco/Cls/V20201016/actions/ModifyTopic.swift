@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// ModifyTopic请求参数结构体
-    public struct ModifyTopicRequest: TCRequestModel {
+    public struct ModifyTopicRequest: TCRequest {
         /// 日志主题ID
         public let topicId: String
 
@@ -80,7 +80,7 @@ extension Cls {
     }
 
     /// ModifyTopic返回参数结构体
-    public struct ModifyTopicResponse: TCResponseModel {
+    public struct ModifyTopicResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

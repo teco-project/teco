@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ocr {
     /// VerifyOfdVatInvoiceOCR请求参数结构体
-    public struct VerifyOfdVatInvoiceOCRRequest: TCRequestModel {
+    public struct VerifyOfdVatInvoiceOCRRequest: TCRequest {
         /// OFD文件的 Url 地址。
         public let ofdFileUrl: String?
 
@@ -40,7 +40,7 @@ extension Ocr {
     }
 
     /// VerifyOfdVatInvoiceOCR返回参数结构体
-    public struct VerifyOfdVatInvoiceOCRResponse: TCResponseModel {
+    public struct VerifyOfdVatInvoiceOCRResponse: TCResponse {
         /// 发票类型
         /// 026:增值税电子普通发票
         /// 028:增值税电子专用发票

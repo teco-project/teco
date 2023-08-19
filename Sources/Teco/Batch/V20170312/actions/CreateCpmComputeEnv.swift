@@ -20,7 +20,7 @@ import TecoCore
 
 extension Batch {
     /// CreateCpmComputeEnv请求参数结构体
-    public struct CreateCpmComputeEnvRequest: TCRequestModel {
+    public struct CreateCpmComputeEnvRequest: TCRequest {
         /// 计算环境信息
         public let computeEnv: NamedCpmComputeEnv
 
@@ -44,7 +44,7 @@ extension Batch {
     }
 
     /// CreateCpmComputeEnv返回参数结构体
-    public struct CreateCpmComputeEnvResponse: TCResponseModel {
+    public struct CreateCpmComputeEnvResponse: TCResponse {
         /// 计算环境ID
         public let envId: String
 

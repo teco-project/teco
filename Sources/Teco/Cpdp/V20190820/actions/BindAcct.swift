@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// BindAcct请求参数结构体
-    public struct BindAcctRequest: TCRequestModel {
+    public struct BindAcctRequest: TCRequest {
         /// 聚鑫分配的支付主MidasAppId
         public let midasAppId: String
 
@@ -133,7 +133,7 @@ extension Cpdp {
     }
 
     /// BindAcct返回参数结构体
-    public struct BindAcctResponse: TCResponseModel {
+    public struct BindAcctResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cii {
     /// CreateUnderwriteTaskById请求参数结构体
-    public struct CreateUnderwriteTaskByIdRequest: TCRequestModel {
+    public struct CreateUnderwriteTaskByIdRequest: TCRequest {
         /// 主任务ID数组，
         public let mainTaskIds: [String]
 
@@ -39,7 +39,7 @@ extension Cii {
     }
 
     /// CreateUnderwriteTaskById返回参数结构体
-    public struct CreateUnderwriteTaskByIdResponse: TCResponseModel {
+    public struct CreateUnderwriteTaskByIdResponse: TCResponse {
         /// 核保任务ID数据
         public let underwriteTaskIds: [String]
 

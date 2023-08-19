@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// DescribeFaceIdPhotos请求参数结构体
-    public struct DescribeFaceIdPhotosRequest: TCRequestModel {
+    public struct DescribeFaceIdPhotosRequest: TCRequest {
         /// 调用方信息
         public let caller: Caller
 
@@ -44,7 +44,7 @@ extension Essbasic {
     }
 
     /// DescribeFaceIdPhotos返回参数结构体
-    public struct DescribeFaceIdPhotosResponse: TCResponseModel {
+    public struct DescribeFaceIdPhotosResponse: TCResponse {
         /// 照片信息列表
         public let photos: [FaceIdPhoto]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// RerunScheduleInstances请求参数结构体
-    public struct RerunScheduleInstancesRequest: TCRequestModel {
+    public struct RerunScheduleInstancesRequest: TCRequest {
         /// 实例列表
         public let instances: [InstanceOpsDto]?
 
@@ -119,7 +119,7 @@ extension Wedata {
     }
 
     /// RerunScheduleInstances返回参数结构体
-    public struct RerunScheduleInstancesResponse: TCResponseModel {
+    public struct RerunScheduleInstancesResponse: TCResponse {
         /// 结果
         public let data: BatchOperateResultOpsDto
 

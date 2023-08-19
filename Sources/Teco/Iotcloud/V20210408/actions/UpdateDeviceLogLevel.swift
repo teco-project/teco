@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotcloud {
     /// UpdateDeviceLogLevel请求参数结构体
-    public struct UpdateDeviceLogLevelRequest: TCRequestModel {
+    public struct UpdateDeviceLogLevelRequest: TCRequest {
         /// 产品ID
         public let productId: String
 
@@ -44,7 +44,7 @@ extension Iotcloud {
     }
 
     /// UpdateDeviceLogLevel返回参数结构体
-    public struct UpdateDeviceLogLevelResponse: TCResponseModel {
+    public struct UpdateDeviceLogLevelResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

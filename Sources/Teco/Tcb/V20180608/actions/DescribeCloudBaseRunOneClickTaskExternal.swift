@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeCloudBaseRunOneClickTaskExternal请求参数结构体
-    public struct DescribeCloudBaseRunOneClickTaskExternalRequest: TCRequestModel {
+    public struct DescribeCloudBaseRunOneClickTaskExternalRequest: TCRequest {
         /// 外部任务Id 最长64字节
         public let externalId: String
 
@@ -34,7 +34,7 @@ extension Tcb {
     }
 
     /// DescribeCloudBaseRunOneClickTaskExternal返回参数结构体
-    public struct DescribeCloudBaseRunOneClickTaskExternalResponse: TCResponseModel {
+    public struct DescribeCloudBaseRunOneClickTaskExternalResponse: TCResponse {
         /// 外部任务Id
         public let externalId: String
 

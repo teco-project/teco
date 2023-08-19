@@ -20,7 +20,7 @@ import TecoCore
 
 extension Scf {
     /// GetReservedConcurrencyConfig请求参数结构体
-    public struct GetReservedConcurrencyConfigRequest: TCRequestModel {
+    public struct GetReservedConcurrencyConfigRequest: TCRequest {
         /// 需要获取最大独占配额详情的函数名称。
         public let functionName: String
 
@@ -39,7 +39,7 @@ extension Scf {
     }
 
     /// GetReservedConcurrencyConfig返回参数结构体
-    public struct GetReservedConcurrencyConfigResponse: TCResponseModel {
+    public struct GetReservedConcurrencyConfigResponse: TCResponse {
         /// 该函数的最大独占配额。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reservedMem: UInt64?

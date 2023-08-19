@@ -20,13 +20,13 @@ import TecoCore
 
 extension Billing {
     /// DescribeAccountBalance请求参数结构体
-    public struct DescribeAccountBalanceRequest: TCRequestModel {
+    public struct DescribeAccountBalanceRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeAccountBalance返回参数结构体
-    public struct DescribeAccountBalanceResponse: TCResponseModel {
+    public struct DescribeAccountBalanceResponse: TCResponse {
         /// 接口做过变更,为兼容老接口,本字段与RealBalance相同,为当前真实可用余额,单位 分
         public let balance: Int64
 

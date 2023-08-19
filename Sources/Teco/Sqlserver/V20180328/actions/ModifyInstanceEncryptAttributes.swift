@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// ModifyInstanceEncryptAttributes请求参数结构体
-    public struct ModifyInstanceEncryptAttributesRequest: TCRequestModel {
+    public struct ModifyInstanceEncryptAttributesRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Sqlserver {
     }
 
     /// ModifyInstanceEncryptAttributes返回参数结构体
-    public struct ModifyInstanceEncryptAttributesResponse: TCResponseModel {
+    public struct ModifyInstanceEncryptAttributesResponse: TCResponse {
         /// 任务流ID
         public let flowId: Int64
 

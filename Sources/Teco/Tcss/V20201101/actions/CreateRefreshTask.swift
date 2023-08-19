@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// CreateRefreshTask请求参数结构体
-    public struct CreateRefreshTaskRequest: TCRequestModel {
+    public struct CreateRefreshTaskRequest: TCRequest {
         public init() {
         }
     }
 
     /// CreateRefreshTask返回参数结构体
-    public struct CreateRefreshTaskResponse: TCResponseModel {
+    public struct CreateRefreshTaskResponse: TCResponse {
         /// 返回创建的集群检查任务的ID，为0表示创建失败。
         public let taskId: UInt64
 

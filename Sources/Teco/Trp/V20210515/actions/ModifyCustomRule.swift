@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trp {
     /// ModifyCustomRule请求参数结构体
-    public struct ModifyCustomRuleRequest: TCRequestModel {
+    public struct ModifyCustomRuleRequest: TCRequest {
         /// 码规则ID
         public let customId: String
 
@@ -54,7 +54,7 @@ extension Trp {
     }
 
     /// ModifyCustomRule返回参数结构体
-    public struct ModifyCustomRuleResponse: TCResponseModel {
+    public struct ModifyCustomRuleResponse: TCResponse {
         /// 码规则ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let customId: String?

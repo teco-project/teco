@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iot {
     /// AssociateSubDeviceToGatewayProduct请求参数结构体
-    public struct AssociateSubDeviceToGatewayProductRequest: TCRequestModel {
+    public struct AssociateSubDeviceToGatewayProductRequest: TCRequest {
         /// 子设备产品Id
         public let subDeviceProductId: String
 
@@ -39,7 +39,7 @@ extension Iot {
     }
 
     /// AssociateSubDeviceToGatewayProduct返回参数结构体
-    public struct AssociateSubDeviceToGatewayProductResponse: TCResponseModel {
+    public struct AssociateSubDeviceToGatewayProductResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

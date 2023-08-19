@@ -20,7 +20,7 @@ import TecoCore
 
 extension Antiddos {
     /// DescribeBasicDeviceStatus请求参数结构体
-    public struct DescribeBasicDeviceStatusRequest: TCRequestModel {
+    public struct DescribeBasicDeviceStatusRequest: TCRequest {
         /// IP 资源列表
         public let ipList: [String]?
 
@@ -44,7 +44,7 @@ extension Antiddos {
     }
 
     /// DescribeBasicDeviceStatus返回参数结构体
-    public struct DescribeBasicDeviceStatusResponse: TCResponseModel {
+    public struct DescribeBasicDeviceStatusResponse: TCResponse {
         /// 返回资源及状态，状态码：
         /// 1 - 封堵状态
         /// 2 - 正常状态

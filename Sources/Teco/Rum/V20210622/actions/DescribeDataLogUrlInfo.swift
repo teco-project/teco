@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// DescribeDataLogUrlInfo请求参数结构体
-    public struct DescribeDataLogUrlInfoRequest: TCRequestModel {
+    public struct DescribeDataLogUrlInfoRequest: TCRequest {
         /// 项目ID
         public let id: Int64
 
@@ -44,7 +44,7 @@ extension Rum {
     }
 
     /// DescribeDataLogUrlInfo返回参数结构体
-    public struct DescribeDataLogUrlInfoResponse: TCResponseModel {
+    public struct DescribeDataLogUrlInfoResponse: TCResponse {
         /// 返回字符串
         public let result: String
 

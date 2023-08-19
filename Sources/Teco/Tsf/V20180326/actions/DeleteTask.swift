@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DeleteTask请求参数结构体
-    public struct DeleteTaskRequest: TCRequestModel {
+    public struct DeleteTaskRequest: TCRequest {
         /// 任务ID
         public let taskId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// DeleteTask返回参数结构体
-    public struct DeleteTaskResponse: TCResponseModel {
+    public struct DeleteTaskResponse: TCResponse {
         /// 删除成功or失败
         public let result: Bool
 

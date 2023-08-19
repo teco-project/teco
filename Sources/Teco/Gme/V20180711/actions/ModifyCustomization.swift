@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gme {
     /// ModifyCustomization请求参数结构体
-    public struct ModifyCustomizationRequest: TCRequestModel {
+    public struct ModifyCustomizationRequest: TCRequest {
         /// 应用 ID，登录控制台创建应用得到的AppID
         public let bizId: Int64
 
@@ -44,7 +44,7 @@ extension Gme {
     }
 
     /// ModifyCustomization返回参数结构体
-    public struct ModifyCustomizationResponse: TCResponseModel {
+    public struct ModifyCustomizationResponse: TCResponse {
         /// 返回值。0为成功，非0为失败。
         public let errorCode: Int64
 

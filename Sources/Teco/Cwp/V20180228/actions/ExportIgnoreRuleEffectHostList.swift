@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ExportIgnoreRuleEffectHostList请求参数结构体
-    public struct ExportIgnoreRuleEffectHostListRequest: TCRequestModel {
+    public struct ExportIgnoreRuleEffectHostListRequest: TCRequest {
         /// 检测项id
         public let ruleId: UInt64
 
@@ -40,7 +40,7 @@ extension Cwp {
     }
 
     /// ExportIgnoreRuleEffectHostList返回参数结构体
-    public struct ExportIgnoreRuleEffectHostListResponse: TCResponseModel {
+    public struct ExportIgnoreRuleEffectHostListResponse: TCResponse {
         /// 该参数已废弃
         public let downloadUrl: String
 

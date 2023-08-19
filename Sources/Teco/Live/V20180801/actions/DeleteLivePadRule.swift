@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DeleteLivePadRule请求参数结构体
-    public struct DeleteLivePadRuleRequest: TCRequestModel {
+    public struct DeleteLivePadRuleRequest: TCRequest {
         /// 推流域名。
         /// 域名+AppName+StreamName唯一标识单个转码规则，如需删除需要强匹配，例如AppName为空也需要传空字符串进行强匹配。
         public let domainName: String
@@ -52,7 +52,7 @@ extension Live {
     }
 
     /// DeleteLivePadRule返回参数结构体
-    public struct DeleteLivePadRuleResponse: TCResponseModel {
+    public struct DeleteLivePadRuleResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryExceedingInfo请求参数结构体
-    public struct QueryExceedingInfoRequest: TCRequestModel {
+    public struct QueryExceedingInfoRequest: TCRequest {
         /// 超额日期。格式为yyyy-MM-dd。
         public let timeStr: String
 
@@ -44,7 +44,7 @@ extension Cpdp {
     }
 
     /// QueryExceedingInfo返回参数结构体
-    public struct QueryExceedingInfoResponse: TCResponseModel {
+    public struct QueryExceedingInfoResponse: TCResponse {
         /// 错误码。
         public let errCode: String
 

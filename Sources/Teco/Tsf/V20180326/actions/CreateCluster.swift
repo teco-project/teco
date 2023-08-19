@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// CreateCluster请求参数结构体
-    public struct CreateClusterRequest: TCRequestModel {
+    public struct CreateClusterRequest: TCRequest {
         /// 集群名称
         public let clusterName: String
 
@@ -108,7 +108,7 @@ extension Tsf {
     }
 
     /// CreateCluster返回参数结构体
-    public struct CreateClusterResponse: TCResponseModel {
+    public struct CreateClusterResponse: TCResponse {
         /// 集群ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: String?

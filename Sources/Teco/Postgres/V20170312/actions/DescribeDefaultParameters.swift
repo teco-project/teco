@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// DescribeDefaultParameters请求参数结构体
-    public struct DescribeDefaultParametersRequest: TCRequestModel {
+    public struct DescribeDefaultParametersRequest: TCRequest {
         /// 数据库版本，大版本号，例如11，12，13
         public let dbMajorVersion: String
 
@@ -39,7 +39,7 @@ extension Postgres {
     }
 
     /// DescribeDefaultParameters返回参数结构体
-    public struct DescribeDefaultParametersResponse: TCResponseModel {
+    public struct DescribeDefaultParametersResponse: TCResponse {
         /// 参数个数
         public let totalCount: Int64
 

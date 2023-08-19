@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tse {
     /// DeleteEngine请求参数结构体
-    public struct DeleteEngineRequest: TCRequestModel {
+    public struct DeleteEngineRequest: TCRequest {
         /// 引擎实例 ID
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Tse {
     }
 
     /// DeleteEngine返回参数结构体
-    public struct DeleteEngineResponse: TCResponseModel {
+    public struct DeleteEngineResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

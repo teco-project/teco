@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// CreateRouteTable请求参数结构体
-    public struct CreateRouteTableRequest: TCRequestModel {
+    public struct CreateRouteTableRequest: TCRequest {
         /// 待操作的VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
         public let vpcId: String
 
@@ -44,7 +44,7 @@ extension Ecm {
     }
 
     /// CreateRouteTable返回参数结构体
-    public struct CreateRouteTableResponse: TCResponseModel {
+    public struct CreateRouteTableResponse: TCResponse {
         /// 路由表对象
         public let routeTable: RouteTable
 

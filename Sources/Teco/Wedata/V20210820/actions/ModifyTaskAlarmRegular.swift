@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// ModifyTaskAlarmRegular请求参数结构体
-    public struct ModifyTaskAlarmRegularRequest: TCRequestModel {
+    public struct ModifyTaskAlarmRegularRequest: TCRequest {
         /// 主键ID
         public let id: String
 
@@ -44,7 +44,7 @@ extension Wedata {
     }
 
     /// ModifyTaskAlarmRegular返回参数结构体
-    public struct ModifyTaskAlarmRegularResponse: TCResponseModel {
+    public struct ModifyTaskAlarmRegularResponse: TCResponse {
         /// 判断是否修改成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: Bool?

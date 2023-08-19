@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// DeleteDataset请求参数结构体
-    public struct DeleteDatasetRequest: TCRequestModel {
+    public struct DeleteDatasetRequest: TCRequest {
         /// 数据集id
         public let datasetId: String
 
@@ -39,7 +39,7 @@ extension Tione {
     }
 
     /// DeleteDataset返回参数结构体
-    public struct DeleteDatasetResponse: TCResponseModel {
+    public struct DeleteDatasetResponse: TCResponse {
         /// 删除的datasetId
         public let datasetId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// DeleteImage请求参数结构体
-    public struct DeleteImageRequest: TCRequestModel {
+    public struct DeleteImageRequest: TCRequest {
         /// 实例Id
         public let registryId: String
 
@@ -49,7 +49,7 @@ extension Tcr {
     }
 
     /// DeleteImage返回参数结构体
-    public struct DeleteImageResponse: TCResponseModel {
+    public struct DeleteImageResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

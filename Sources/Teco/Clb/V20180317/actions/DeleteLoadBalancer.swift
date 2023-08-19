@@ -20,7 +20,7 @@ import TecoCore
 
 extension Clb {
     /// DeleteLoadBalancer请求参数结构体
-    public struct DeleteLoadBalancerRequest: TCRequestModel {
+    public struct DeleteLoadBalancerRequest: TCRequest {
         /// 要删除的负载均衡实例 ID数组，数组大小最大支持20。
         public let loadBalancerIds: [String]
 
@@ -34,7 +34,7 @@ extension Clb {
     }
 
     /// DeleteLoadBalancer返回参数结构体
-    public struct DeleteLoadBalancerResponse: TCResponseModel {
+    public struct DeleteLoadBalancerResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

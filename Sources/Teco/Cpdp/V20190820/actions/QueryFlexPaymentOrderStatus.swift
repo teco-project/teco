@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryFlexPaymentOrderStatus请求参数结构体
-    public struct QueryFlexPaymentOrderStatusRequest: TCRequestModel {
+    public struct QueryFlexPaymentOrderStatusRequest: TCRequest {
         /// 外部订单ID
         public let outOrderId: String?
 
@@ -48,7 +48,7 @@ extension Cpdp {
     }
 
     /// QueryFlexPaymentOrderStatus返回参数结构体
-    public struct QueryFlexPaymentOrderStatusResponse: TCResponseModel {
+    public struct QueryFlexPaymentOrderStatusResponse: TCResponse {
         /// 错误码。SUCCESS为成功，其他为失败
         public let errCode: String
 

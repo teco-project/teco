@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryFlexWechatAuthResult请求参数结构体
-    public struct QueryFlexWechatAuthResultRequest: TCRequestModel {
+    public struct QueryFlexWechatAuthResultRequest: TCRequest {
         /// 商户核身单号
         public let authNo: String
 
@@ -42,7 +42,7 @@ extension Cpdp {
     }
 
     /// QueryFlexWechatAuthResult返回参数结构体
-    public struct QueryFlexWechatAuthResultResponse: TCResponseModel {
+    public struct QueryFlexWechatAuthResultResponse: TCResponse {
         /// 错误码。SUCCESS为成功，其他为失败
         public let errCode: String
 

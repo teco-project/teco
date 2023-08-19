@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcb {
     /// CheckTcbService请求参数结构体
-    public struct CheckTcbServiceRequest: TCRequestModel {
+    public struct CheckTcbServiceRequest: TCRequest {
         public init() {
         }
     }
 
     /// CheckTcbService返回参数结构体
-    public struct CheckTcbServiceResponse: TCResponseModel {
+    public struct CheckTcbServiceResponse: TCResponse {
         /// true表示已开通
         public let initialized: Bool
 

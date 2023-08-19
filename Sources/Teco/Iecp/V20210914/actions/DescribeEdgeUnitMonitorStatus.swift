@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// DescribeEdgeUnitMonitorStatus请求参数结构体
-    public struct DescribeEdgeUnitMonitorStatusRequest: TCRequestModel {
+    public struct DescribeEdgeUnitMonitorStatusRequest: TCRequest {
         /// IECP边缘单元ID
         public let edgeUnitId: UInt64
 
@@ -34,7 +34,7 @@ extension Iecp {
     }
 
     /// DescribeEdgeUnitMonitorStatus返回参数结构体
-    public struct DescribeEdgeUnitMonitorStatusResponse: TCResponseModel {
+    public struct DescribeEdgeUnitMonitorStatusResponse: TCResponse {
         /// 监控状态描述：
         /// "running" 单元监控正常运行
         /// "deploying" 单元监控部署中

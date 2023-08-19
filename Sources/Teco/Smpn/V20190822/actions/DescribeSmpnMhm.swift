@@ -20,7 +20,7 @@ import TecoCore
 
 extension Smpn {
     /// DescribeSmpnMhm请求参数结构体
-    public struct DescribeSmpnMhmRequest: TCRequestModel {
+    public struct DescribeSmpnMhmRequest: TCRequest {
         /// 号码营销监控请求内容
         public let requestData: MHMRequest
 
@@ -39,7 +39,7 @@ extension Smpn {
     }
 
     /// DescribeSmpnMhm返回参数结构体
-    public struct DescribeSmpnMhmResponse: TCResponseModel {
+    public struct DescribeSmpnMhmResponse: TCResponse {
         /// 号码营销监控回应内容
         public let responseData: MHMResponse
 

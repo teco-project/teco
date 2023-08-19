@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tts {
     /// CreateTtsTask请求参数结构体
-    public struct CreateTtsTaskRequest: TCRequestModel {
+    public struct CreateTtsTaskRequest: TCRequest {
         /// 合成语音的源文本，按UTF-8编码统一计算，最多支持10万字符
         public let text: String
 
@@ -97,7 +97,7 @@ extension Tts {
     }
 
     /// CreateTtsTask返回参数结构体
-    public struct CreateTtsTaskResponse: TCResponseModel {
+    public struct CreateTtsTaskResponse: TCResponse {
         /// 任务 id
         public let data: CreateTtsTaskRespData
 

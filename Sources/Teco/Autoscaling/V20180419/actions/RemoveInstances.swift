@@ -20,7 +20,7 @@ import TecoCore
 
 extension As {
     /// RemoveInstances请求参数结构体
-    public struct RemoveInstancesRequest: TCRequestModel {
+    public struct RemoveInstancesRequest: TCRequest {
         /// 伸缩组ID
         public let autoScalingGroupId: String
 
@@ -39,7 +39,7 @@ extension As {
     }
 
     /// RemoveInstances返回参数结构体
-    public struct RemoveInstancesResponse: TCResponseModel {
+    public struct RemoveInstancesResponse: TCResponse {
         /// 伸缩活动ID
         public let activityId: String
 

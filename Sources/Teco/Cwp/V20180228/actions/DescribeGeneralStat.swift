@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeGeneralStat请求参数结构体
-    public struct DescribeGeneralStatRequest: TCRequestModel {
+    public struct DescribeGeneralStatRequest: TCRequest {
         /// 云主机类型。
         /// - CVM：表示腾讯云服务器
         /// - BM:  表示黑石物理机
@@ -44,7 +44,7 @@ extension Cwp {
     }
 
     /// DescribeGeneralStat返回参数结构体
-    public struct DescribeGeneralStatResponse: TCResponseModel {
+    public struct DescribeGeneralStatResponse: TCResponse {
         /// 云主机总数
         public let machinesAll: UInt64
 

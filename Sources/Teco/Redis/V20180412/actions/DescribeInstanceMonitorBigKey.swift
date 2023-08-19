@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// DescribeInstanceMonitorBigKey请求参数结构体
-    public struct DescribeInstanceMonitorBigKeyRequest: TCRequestModel {
+    public struct DescribeInstanceMonitorBigKeyRequest: TCRequest {
         /// 实例Id
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Redis {
     }
 
     /// DescribeInstanceMonitorBigKey返回参数结构体
-    public struct DescribeInstanceMonitorBigKeyResponse: TCResponseModel {
+    public struct DescribeInstanceMonitorBigKeyResponse: TCResponse {
         /// 大Key详细信息
         public let data: [BigKeyInfo]
 

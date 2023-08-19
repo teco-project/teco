@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// CreateLivePullStreamTask请求参数结构体
-    public struct CreateLivePullStreamTaskRequest: TCRequestModel {
+    public struct CreateLivePullStreamTaskRequest: TCRequest {
         /// 拉流源的类型：
         /// PullLivePushLive -直播，
         /// PullVodPushLive -点播，
@@ -207,7 +207,7 @@ extension Live {
     }
 
     /// CreateLivePullStreamTask返回参数结构体
-    public struct CreateLivePullStreamTaskResponse: TCResponseModel {
+    public struct CreateLivePullStreamTaskResponse: TCResponse {
         /// 任务 Id 。
         public let taskId: String
 

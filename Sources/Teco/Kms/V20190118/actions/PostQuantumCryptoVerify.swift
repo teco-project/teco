@@ -20,7 +20,7 @@ import TecoCore
 
 extension Kms {
     /// PostQuantumCryptoVerify请求参数结构体
-    public struct PostQuantumCryptoVerifyRequest: TCRequestModel {
+    public struct PostQuantumCryptoVerifyRequest: TCRequest {
         /// 密钥的唯一标识
         public let keyId: String
 
@@ -44,7 +44,7 @@ extension Kms {
     }
 
     /// PostQuantumCryptoVerify返回参数结构体
-    public struct PostQuantumCryptoVerifyResponse: TCResponseModel {
+    public struct PostQuantumCryptoVerifyResponse: TCResponse {
         /// 签名是否有效。true：签名有效，false：签名无效。
         public let signatureValid: Bool
 

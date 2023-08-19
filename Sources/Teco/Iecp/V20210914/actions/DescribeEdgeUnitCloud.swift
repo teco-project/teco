@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// DescribeEdgeUnitCloud请求参数结构体
-    public struct DescribeEdgeUnitCloudRequest: TCRequestModel {
+    public struct DescribeEdgeUnitCloudRequest: TCRequest {
         /// 边缘集群ID
         public let edgeUnitId: UInt64
 
@@ -34,7 +34,7 @@ extension Iecp {
     }
 
     /// DescribeEdgeUnitCloud返回参数结构体
-    public struct DescribeEdgeUnitCloudResponse: TCResponseModel {
+    public struct DescribeEdgeUnitCloudResponse: TCResponse {
         /// 边缘集群名称
         public let name: String
 

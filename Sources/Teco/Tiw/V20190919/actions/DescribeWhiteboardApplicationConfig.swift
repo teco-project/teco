@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiw {
     /// DescribeWhiteboardApplicationConfig请求参数结构体
-    public struct DescribeWhiteboardApplicationConfigRequest: TCRequestModel {
+    public struct DescribeWhiteboardApplicationConfigRequest: TCRequest {
         /// 客户的SdkAppId
         public let sdkAppId: Int64
 
@@ -46,7 +46,7 @@ extension Tiw {
     }
 
     /// DescribeWhiteboardApplicationConfig返回参数结构体
-    public struct DescribeWhiteboardApplicationConfigResponse: TCResponseModel {
+    public struct DescribeWhiteboardApplicationConfigResponse: TCResponse {
         /// 客户的SdkAppId
         public let sdkAppId: Int64
 

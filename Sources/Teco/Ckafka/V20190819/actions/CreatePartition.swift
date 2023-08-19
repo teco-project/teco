@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// CreatePartition请求参数结构体
-    public struct CreatePartitionRequest: TCRequestModel {
+    public struct CreatePartitionRequest: TCRequest {
         /// 实例Id
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Ckafka {
     }
 
     /// CreatePartition返回参数结构体
-    public struct CreatePartitionResponse: TCResponseModel {
+    public struct CreatePartitionResponse: TCResponse {
         /// 返回的结果集
         public let result: JgwOperateResponse
 

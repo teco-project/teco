@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeDependTasksNew请求参数结构体
-    public struct DescribeDependTasksNewRequest: TCRequestModel {
+    public struct DescribeDependTasksNewRequest: TCRequest {
         /// 任务Id
         public let taskId: String
 
@@ -54,7 +54,7 @@ extension Wedata {
     }
 
     /// DescribeDependTasksNew返回参数结构体
-    public struct DescribeDependTasksNewResponse: TCResponseModel {
+    public struct DescribeDependTasksNewResponse: TCResponse {
         /// 画布任务和链接信息
         public let data: CanvasInfo
 

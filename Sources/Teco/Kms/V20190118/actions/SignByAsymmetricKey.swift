@@ -20,7 +20,7 @@ import TecoCore
 
 extension Kms {
     /// SignByAsymmetricKey请求参数结构体
-    public struct SignByAsymmetricKeyRequest: TCRequestModel {
+    public struct SignByAsymmetricKeyRequest: TCRequest {
         /// 签名算法，支持的算法：SM2DSA，ECC_P256_R1，RSA_PSS_SHA_256，RSA_PKCS1_SHA_256 等。更多支持的算法可通过 ListAlgorithms 接口进行查询。
         public let algorithm: String
 
@@ -49,7 +49,7 @@ extension Kms {
     }
 
     /// SignByAsymmetricKey返回参数结构体
-    public struct SignByAsymmetricKeyResponse: TCResponseModel {
+    public struct SignByAsymmetricKeyResponse: TCResponse {
         /// 签名，Base64编码
         public let signature: String
 

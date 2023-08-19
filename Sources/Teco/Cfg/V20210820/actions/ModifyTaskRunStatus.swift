@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfg {
     /// ModifyTaskRunStatus请求参数结构体
-    public struct ModifyTaskRunStatusRequest: TCRequestModel {
+    public struct ModifyTaskRunStatusRequest: TCRequest {
         /// 任务ID
         public let taskId: Int64
 
@@ -49,7 +49,7 @@ extension Cfg {
     }
 
     /// ModifyTaskRunStatus返回参数结构体
-    public struct ModifyTaskRunStatusResponse: TCResponseModel {
+    public struct ModifyTaskRunStatusResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

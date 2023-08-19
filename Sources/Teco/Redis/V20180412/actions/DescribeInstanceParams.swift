@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// DescribeInstanceParams请求参数结构体
-    public struct DescribeInstanceParamsRequest: TCRequestModel {
+    public struct DescribeInstanceParamsRequest: TCRequest {
         /// 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Redis {
     }
 
     /// DescribeInstanceParams返回参数结构体
-    public struct DescribeInstanceParamsResponse: TCResponseModel {
+    public struct DescribeInstanceParamsResponse: TCResponse {
         /// 参数列表总数量。
         public let totalCount: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tci {
     /// DescribeImageTaskStatistic请求参数结构体
-    public struct DescribeImageTaskStatisticRequest: TCRequestModel {
+    public struct DescribeImageTaskStatisticRequest: TCRequest {
         /// 图像任务标识符
         public let jobId: Int64
 
@@ -34,7 +34,7 @@ extension Tci {
     }
 
     /// DescribeImageTaskStatistic返回参数结构体
-    public struct DescribeImageTaskStatisticResponse: TCResponseModel {
+    public struct DescribeImageTaskStatisticResponse: TCResponse {
         /// 任务统计信息
         public let statistic: ImageTaskStatistic
 

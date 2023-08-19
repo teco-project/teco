@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// DescribeImageLifecyclePersonal请求参数结构体
-    public struct DescribeImageLifecyclePersonalRequest: TCRequestModel {
+    public struct DescribeImageLifecyclePersonalRequest: TCRequest {
         /// 仓库名称
         public let repoName: String
 
@@ -34,7 +34,7 @@ extension Tcr {
     }
 
     /// DescribeImageLifecyclePersonal返回参数结构体
-    public struct DescribeImageLifecyclePersonalResponse: TCResponseModel {
+    public struct DescribeImageLifecyclePersonalResponse: TCResponse {
         /// 自动删除策略信息
         public let data: AutoDelStrategyInfoResp
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// OperateApplicationTcrBinding请求参数结构体
-    public struct OperateApplicationTcrBindingRequest: TCRequestModel {
+    public struct OperateApplicationTcrBindingRequest: TCRequest {
         /// bind 或 unbind
         public let command: String?
 
@@ -44,7 +44,7 @@ extension Tsf {
     }
 
     /// OperateApplicationTcrBinding返回参数结构体
-    public struct OperateApplicationTcrBindingResponse: TCResponseModel {
+    public struct OperateApplicationTcrBindingResponse: TCResponse {
         /// 是否成功
         public let result: Bool
 

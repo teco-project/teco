@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dnspod {
     /// ModifySnapshotConfig请求参数结构体
-    public struct ModifySnapshotConfigRequest: TCRequestModel {
+    public struct ModifySnapshotConfigRequest: TCRequest {
         /// 域名
         public let domain: String
 
@@ -44,7 +44,7 @@ extension Dnspod {
     }
 
     /// ModifySnapshotConfig返回参数结构体
-    public struct ModifySnapshotConfigResponse: TCResponseModel {
+    public struct ModifySnapshotConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dasb {
     /// CreateDeviceGroup请求参数结构体
-    public struct CreateDeviceGroupRequest: TCRequestModel {
+    public struct CreateDeviceGroupRequest: TCRequest {
         /// 资产组名，最大长度32字符
         public let name: String
 
@@ -39,7 +39,7 @@ extension Dasb {
     }
 
     /// CreateDeviceGroup返回参数结构体
-    public struct CreateDeviceGroupResponse: TCResponseModel {
+    public struct CreateDeviceGroupResponse: TCResponse {
         /// 新建成功的资产组ID
         public let id: UInt64
 

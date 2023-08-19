@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// CreateInstances请求参数结构体
-    public struct CreateInstancesRequest: TCRequestModel {
+    public struct CreateInstancesRequest: TCRequest {
         /// 套餐ID。可以通过调用 [查询套餐](https://cloud.tencent.com/document/api/1207/47575) 接口获取。
         public let bundleId: String
 
@@ -88,7 +88,7 @@ extension Lighthouse {
     }
 
     /// CreateInstances返回参数结构体
-    public struct CreateInstancesResponse: TCResponseModel {
+    public struct CreateInstancesResponse: TCResponse {
         /// 当通过本接口来创建实例时会返回该参数，表示一个或多个实例ID。返回实例ID列表并不代表实例创建成功。
         ///
         /// 可根据 DescribeInstances 接口查询返回的InstancesSet中对应实例的ID的状态来判断创建是否完成；如果实例状态由“启动中”变为“运行中”，则为创建成功。

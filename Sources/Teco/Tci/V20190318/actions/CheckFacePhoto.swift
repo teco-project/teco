@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tci {
     /// CheckFacePhoto请求参数结构体
-    public struct CheckFacePhotoRequest: TCRequestModel {
+    public struct CheckFacePhotoRequest: TCRequest {
         /// 输入分析对象内容
         public let fileContent: String
 
@@ -39,7 +39,7 @@ extension Tci {
     }
 
     /// CheckFacePhoto返回参数结构体
-    public struct CheckFacePhotoResponse: TCResponseModel {
+    public struct CheckFacePhotoResponse: TCResponse {
         /// 人脸检查结果，0：通过检查，1：图片模糊
         public let checkResult: Int64
 

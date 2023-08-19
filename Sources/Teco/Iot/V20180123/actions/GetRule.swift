@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iot {
     /// GetRule请求参数结构体
-    public struct GetRuleRequest: TCRequestModel {
+    public struct GetRuleRequest: TCRequest {
         /// 规则Id
         public let ruleId: String
 
@@ -34,7 +34,7 @@ extension Iot {
     }
 
     /// GetRule返回参数结构体
-    public struct GetRuleResponse: TCResponseModel {
+    public struct GetRuleResponse: TCResponse {
         /// 规则
         public let rule: Rule
 

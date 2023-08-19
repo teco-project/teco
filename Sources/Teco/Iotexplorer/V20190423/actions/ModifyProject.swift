@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotexplorer {
     /// ModifyProject请求参数结构体
-    public struct ModifyProjectRequest: TCRequestModel {
+    public struct ModifyProjectRequest: TCRequest {
         /// 项目ID
         public let projectId: String
 
@@ -44,7 +44,7 @@ extension Iotexplorer {
     }
 
     /// ModifyProject返回参数结构体
-    public struct ModifyProjectResponse: TCResponseModel {
+    public struct ModifyProjectResponse: TCResponse {
         /// 项目详情
         public let project: ProjectEntry
 

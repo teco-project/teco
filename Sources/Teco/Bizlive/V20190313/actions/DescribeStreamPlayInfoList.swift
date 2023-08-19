@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bizlive {
     /// DescribeStreamPlayInfoList请求参数结构体
-    public struct DescribeStreamPlayInfoListRequest: TCRequestModel {
+    public struct DescribeStreamPlayInfoListRequest: TCRequest {
         /// 结束时间，北京时间，格式：2019-04-28 10:36:00
         /// 结束时间 和 开始时间  必须在同一天内。
         public let endTime: String
@@ -52,7 +52,7 @@ extension Bizlive {
     }
 
     /// DescribeStreamPlayInfoList返回参数结构体
-    public struct DescribeStreamPlayInfoListResponse: TCResponseModel {
+    public struct DescribeStreamPlayInfoListResponse: TCResponse {
         /// 统计信息列表。
         public let dataInfoList: [DayStreamPlayInfo]
 

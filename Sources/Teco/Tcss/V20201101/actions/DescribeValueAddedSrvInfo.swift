@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeValueAddedSrvInfo请求参数结构体
-    public struct DescribeValueAddedSrvInfoRequest: TCRequestModel {
+    public struct DescribeValueAddedSrvInfoRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeValueAddedSrvInfo返回参数结构体
-    public struct DescribeValueAddedSrvInfoResponse: TCResponseModel {
+    public struct DescribeValueAddedSrvInfoResponse: TCResponse {
         /// 仓库镜像未授权数量
         public let registryImageCnt: UInt64
 

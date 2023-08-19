@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tse {
     /// DescribeCloudNativeAPIGatewayPorts请求参数结构体
-    public struct DescribeCloudNativeAPIGatewayPortsRequest: TCRequestModel {
+    public struct DescribeCloudNativeAPIGatewayPortsRequest: TCRequest {
         /// 云原生API网关实例ID
         public let gatewayId: String
 
@@ -34,7 +34,7 @@ extension Tse {
     }
 
     /// DescribeCloudNativeAPIGatewayPorts返回参数结构体
-    public struct DescribeCloudNativeAPIGatewayPortsResponse: TCResponseModel {
+    public struct DescribeCloudNativeAPIGatewayPortsResponse: TCResponse {
         /// 云原生API网关实例协议端口列表响应结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: DescribeGatewayInstancePortResult?

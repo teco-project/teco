@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ds {
     /// CreateContractByUpload请求参数结构体
-    public struct CreateContractByUploadRequest: TCRequestModel {
+    public struct CreateContractByUploadRequest: TCRequest {
         /// 模块名ContractMng
         public let module: String
 
@@ -69,7 +69,7 @@ extension Ds {
     }
 
     /// CreateContractByUpload返回参数结构体
-    public struct CreateContractByUploadResponse: TCResponseModel {
+    public struct CreateContractByUploadResponse: TCResponse {
         /// 任务ID
         public let taskId: Int64
 

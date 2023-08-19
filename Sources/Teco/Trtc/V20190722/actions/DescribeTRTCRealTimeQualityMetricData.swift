@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trtc {
     /// DescribeTRTCRealTimeQualityMetricData请求参数结构体
-    public struct DescribeTRTCRealTimeQualityMetricDataRequest: TCRequestModel {
+    public struct DescribeTRTCRealTimeQualityMetricDataRequest: TCRequest {
         /// 用户SdkAppId（如：1400xxxxxx）
         public let sdkAppId: String
 
@@ -49,7 +49,7 @@ extension Trtc {
     }
 
     /// DescribeTRTCRealTimeQualityMetricData返回参数结构体
-    public struct DescribeTRTCRealTimeQualityMetricDataResponse: TCResponseModel {
+    public struct DescribeTRTCRealTimeQualityMetricDataResponse: TCResponse {
         /// TRTC监控数据出参
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: TRTCDataResp?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trtc {
     /// DescribeCloudRecording请求参数结构体
-    public struct DescribeCloudRecordingRequest: TCRequestModel {
+    public struct DescribeCloudRecordingRequest: TCRequest {
         /// TRTC的SDKAppId，和录制的房间所对应的SDKAppId相同。
         public let sdkAppId: UInt64
 
@@ -39,7 +39,7 @@ extension Trtc {
     }
 
     /// DescribeCloudRecording返回参数结构体
-    public struct DescribeCloudRecordingResponse: TCResponseModel {
+    public struct DescribeCloudRecordingResponse: TCResponse {
         /// 录制任务的唯一Id。
         public let taskId: String
 

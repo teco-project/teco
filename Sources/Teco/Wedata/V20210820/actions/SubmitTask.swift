@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// SubmitTask请求参数结构体
-    public struct SubmitTaskRequest: TCRequestModel {
+    public struct SubmitTaskRequest: TCRequest {
         /// 项目Id
         public let projectId: String
 
@@ -49,7 +49,7 @@ extension Wedata {
     }
 
     /// SubmitTask返回参数结构体
-    public struct SubmitTaskResponse: TCResponseModel {
+    public struct SubmitTaskResponse: TCResponse {
         /// 成功或者失败
         public let data: Bool
 

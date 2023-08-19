@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeAbnormalProcessRulesExport请求参数结构体
-    public struct DescribeAbnormalProcessRulesExportRequest: TCRequestModel {
+    public struct DescribeAbnormalProcessRulesExportRequest: TCRequest {
         /// 导出字段
         public let exportField: [String]
 
@@ -59,7 +59,7 @@ extension Tcss {
     }
 
     /// DescribeAbnormalProcessRulesExport返回参数结构体
-    public struct DescribeAbnormalProcessRulesExportResponse: TCResponseModel {
+    public struct DescribeAbnormalProcessRulesExportResponse: TCResponse {
         /// execle下载地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let downloadUrl: String?

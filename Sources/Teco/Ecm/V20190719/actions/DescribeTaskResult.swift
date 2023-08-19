@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// DescribeTaskResult请求参数结构体
-    public struct DescribeTaskResultRequest: TCRequestModel {
+    public struct DescribeTaskResultRequest: TCRequest {
         /// ECM 地域
         public let ecmRegion: String
 
@@ -39,7 +39,7 @@ extension Ecm {
     }
 
     /// DescribeTaskResult返回参数结构体
-    public struct DescribeTaskResultResponse: TCResponseModel {
+    public struct DescribeTaskResultResponse: TCResponse {
         /// 异步任务ID。
         public let taskId: String
 

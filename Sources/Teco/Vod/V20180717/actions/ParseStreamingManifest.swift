@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// ParseStreamingManifest请求参数结构体
-    public struct ParseStreamingManifestRequest: TCRequestModel {
+    public struct ParseStreamingManifestRequest: TCRequest {
         /// 待解析的索引文件内容。
         public let mediaManifestContent: String
 
@@ -41,7 +41,7 @@ extension Vod {
     }
 
     /// ParseStreamingManifest返回参数结构体
-    public struct ParseStreamingManifestResponse: TCResponseModel {
+    public struct ParseStreamingManifestResponse: TCResponse {
         /// 分片文件列表。
         public let mediaSegmentSet: [String]
 

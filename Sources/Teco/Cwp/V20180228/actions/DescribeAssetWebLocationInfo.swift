@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeAssetWebLocationInfo请求参数结构体
-    public struct DescribeAssetWebLocationInfoRequest: TCRequestModel {
+    public struct DescribeAssetWebLocationInfoRequest: TCRequest {
         /// 服务器Quuid
         public let quuid: String
 
@@ -44,7 +44,7 @@ extension Cwp {
     }
 
     /// DescribeAssetWebLocationInfo返回参数结构体
-    public struct DescribeAssetWebLocationInfoResponse: TCResponseModel {
+    public struct DescribeAssetWebLocationInfoResponse: TCResponse {
         /// 站点信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let webLocation: AssetWebLocationInfo?

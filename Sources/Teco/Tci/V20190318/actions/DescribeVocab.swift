@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tci {
     /// DescribeVocab请求参数结构体
-    public struct DescribeVocabRequest: TCRequestModel {
+    public struct DescribeVocabRequest: TCRequest {
         /// 要查询词汇的词汇库名
         public let vocabLibName: String
 
@@ -34,7 +34,7 @@ extension Tci {
     }
 
     /// DescribeVocab返回参数结构体
-    public struct DescribeVocabResponse: TCResponseModel {
+    public struct DescribeVocabResponse: TCResponse {
         /// 词汇列表
         public let vocabNameSet: [String]
 

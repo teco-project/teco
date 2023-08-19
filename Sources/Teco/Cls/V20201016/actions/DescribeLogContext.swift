@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// DescribeLogContext请求参数结构体
-    public struct DescribeLogContextRequest: TCRequestModel {
+    public struct DescribeLogContextRequest: TCRequest {
         /// 要查询的日志主题ID
         public let topicId: String
 
@@ -59,7 +59,7 @@ extension Cls {
     }
 
     /// DescribeLogContext返回参数结构体
-    public struct DescribeLogContextResponse: TCResponseModel {
+    public struct DescribeLogContextResponse: TCResponse {
         /// 日志上下文信息集合
         public let logContextInfos: [LogContextInfo]
 

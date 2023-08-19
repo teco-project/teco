@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tke {
     /// DescribeEKSContainerInstanceRegions请求参数结构体
-    public struct DescribeEKSContainerInstanceRegionsRequest: TCRequestModel {
+    public struct DescribeEKSContainerInstanceRegionsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeEKSContainerInstanceRegions返回参数结构体
-    public struct DescribeEKSContainerInstanceRegionsResponse: TCResponseModel {
+    public struct DescribeEKSContainerInstanceRegionsResponse: TCResponse {
         /// EKS Container Instance支持的地域信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let regions: [EksCiRegionInfo]?

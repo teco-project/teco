@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// DeleteServiceLinkedRole请求参数结构体
-    public struct DeleteServiceLinkedRoleRequest: TCRequestModel {
+    public struct DeleteServiceLinkedRoleRequest: TCRequest {
         /// 要删除的服务相关角色的名称。
         public let roleName: String
 
@@ -34,7 +34,7 @@ extension Cam {
     }
 
     /// DeleteServiceLinkedRole返回参数结构体
-    public struct DeleteServiceLinkedRoleResponse: TCResponseModel {
+    public struct DeleteServiceLinkedRoleResponse: TCResponse {
         /// 删除任务ID，可用于检查删除服务相关角色状态。
         public let deletionTaskId: String
 

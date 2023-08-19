@@ -20,7 +20,7 @@ import TecoCore
 
 extension Partners {
     /// DescribeAgentClientGrade请求参数结构体
-    public struct DescribeAgentClientGradeRequest: TCRequestModel {
+    public struct DescribeAgentClientGradeRequest: TCRequest {
         /// 代客uin
         public let clientUin: String
 
@@ -34,7 +34,7 @@ extension Partners {
     }
 
     /// DescribeAgentClientGrade返回参数结构体
-    public struct DescribeAgentClientGradeResponse: TCResponseModel {
+    public struct DescribeAgentClientGradeResponse: TCResponse {
         /// 审核状态：0待审核，1，已审核
         public let auditStatus: UInt64
 

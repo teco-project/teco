@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// EnhanceMediaByTemplate请求参数结构体
-    public struct EnhanceMediaByTemplateRequest: TCRequestModel {
+    public struct EnhanceMediaByTemplateRequest: TCRequest {
         /// 媒体文件 ID。
         public let fileId: String
 
@@ -79,7 +79,7 @@ extension Vod {
     }
 
     /// EnhanceMediaByTemplate返回参数结构体
-    public struct EnhanceMediaByTemplateResponse: TCResponseModel {
+    public struct EnhanceMediaByTemplateResponse: TCResponse {
         /// 音画质重生的任务 ID，可以通过该 ID 查询音画质重生任务的状态。
         public let taskId: String
 

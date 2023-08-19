@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdc {
     /// CreateDedicatedClusterOrder请求参数结构体
-    public struct CreateDedicatedClusterOrderRequest: TCRequestModel {
+    public struct CreateDedicatedClusterOrderRequest: TCRequest {
         /// 专用集群id
         public let dedicatedClusterId: String
 
@@ -59,7 +59,7 @@ extension Cdc {
     }
 
     /// CreateDedicatedClusterOrder返回参数结构体
-    public struct CreateDedicatedClusterOrderResponse: TCResponseModel {
+    public struct CreateDedicatedClusterOrderResponse: TCResponse {
         /// 专用集群订单id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dedicatedClusterOrderId: String?

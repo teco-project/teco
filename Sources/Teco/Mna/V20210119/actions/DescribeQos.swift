@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mna {
     /// DescribeQos请求参数结构体
-    public struct DescribeQosRequest: TCRequestModel {
+    public struct DescribeQosRequest: TCRequest {
         /// 单次加速唯一 Id
         public let sessionId: String
 
@@ -34,7 +34,7 @@ extension Mna {
     }
 
     /// DescribeQos返回参数结构体
-    public struct DescribeQosResponse: TCResponseModel {
+    public struct DescribeQosResponse: TCResponse {
         /// 0：无匹配的加速中会话
         /// 1：存在匹配的加速中会话
         public let status: UInt64

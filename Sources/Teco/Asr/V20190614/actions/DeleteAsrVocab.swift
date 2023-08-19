@@ -20,7 +20,7 @@ import TecoCore
 
 extension Asr {
     /// DeleteAsrVocab请求参数结构体
-    public struct DeleteAsrVocabRequest: TCRequestModel {
+    public struct DeleteAsrVocabRequest: TCRequest {
         /// 热词表Id
         public let vocabId: String
 
@@ -34,7 +34,7 @@ extension Asr {
     }
 
     /// DeleteAsrVocab返回参数结构体
-    public struct DeleteAsrVocabResponse: TCResponseModel {
+    public struct DeleteAsrVocabResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

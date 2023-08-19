@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// DeleteRolePermissionsBoundary请求参数结构体
-    public struct DeleteRolePermissionsBoundaryRequest: TCRequestModel {
+    public struct DeleteRolePermissionsBoundaryRequest: TCRequest {
         /// 角色ID（与角色名至少填一个）
         public let roleId: String?
 
@@ -39,7 +39,7 @@ extension Cam {
     }
 
     /// DeleteRolePermissionsBoundary返回参数结构体
-    public struct DeleteRolePermissionsBoundaryResponse: TCResponseModel {
+    public struct DeleteRolePermissionsBoundaryResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

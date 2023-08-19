@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// BindOpenBankProfitSharePayee请求参数结构体
-    public struct BindOpenBankProfitSharePayeeRequest: TCRequestModel {
+    public struct BindOpenBankProfitSharePayeeRequest: TCRequest {
         /// 渠道商户号。代理商/集团ID
         public let channelMerchantId: String
 
@@ -70,7 +70,7 @@ extension Cpdp {
     }
 
     /// BindOpenBankProfitSharePayee返回参数结构体
-    public struct BindOpenBankProfitSharePayeeResponse: TCResponseModel {
+    public struct BindOpenBankProfitSharePayeeResponse: TCResponse {
         /// 错误码。
         public let errCode: String
 

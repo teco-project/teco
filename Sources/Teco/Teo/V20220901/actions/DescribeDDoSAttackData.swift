@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Teo {
     /// DescribeDDoSAttackData请求参数结构体
-    public struct DescribeDDoSAttackDataRequest: TCRequestModel {
+    public struct DescribeDDoSAttackDataRequest: TCRequest {
         /// 开始时间。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -85,7 +85,7 @@ extension Teo {
     }
 
     /// DescribeDDoSAttackData返回参数结构体
-    public struct DescribeDDoSAttackDataResponse: TCResponseModel {
+    public struct DescribeDDoSAttackDataResponse: TCResponse {
         /// 查询结果的总条数。
         public let totalCount: UInt64
 

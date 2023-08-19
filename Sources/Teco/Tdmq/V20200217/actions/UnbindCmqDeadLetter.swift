@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// UnbindCmqDeadLetter请求参数结构体
-    public struct UnbindCmqDeadLetterRequest: TCRequestModel {
+    public struct UnbindCmqDeadLetterRequest: TCRequest {
         /// 死信策略源队列名称，调用本接口会清空该队列的死信队列策略。
         public let sourceQueueName: String
 
@@ -34,7 +34,7 @@ extension Tdmq {
     }
 
     /// UnbindCmqDeadLetter返回参数结构体
-    public struct UnbindCmqDeadLetterResponse: TCResponseModel {
+    public struct UnbindCmqDeadLetterResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

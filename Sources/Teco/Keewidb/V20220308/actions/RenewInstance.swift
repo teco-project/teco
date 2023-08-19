@@ -20,7 +20,7 @@ import TecoCore
 
 extension Keewidb {
     /// RenewInstance请求参数结构体
-    public struct RenewInstanceRequest: TCRequestModel {
+    public struct RenewInstanceRequest: TCRequest {
         /// 实例 ID。
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Keewidb {
     }
 
     /// RenewInstance返回参数结构体
-    public struct RenewInstanceResponse: TCResponseModel {
+    public struct RenewInstanceResponse: TCResponse {
         /// 交易 ID。
         public let dealId: String
 

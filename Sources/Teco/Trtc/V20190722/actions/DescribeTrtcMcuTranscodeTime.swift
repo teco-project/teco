@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Trtc {
     /// DescribeTrtcMcuTranscodeTime请求参数结构体
-    public struct DescribeTrtcMcuTranscodeTimeRequest: TCRequestModel {
+    public struct DescribeTrtcMcuTranscodeTimeRequest: TCRequest {
         /// 查询开始时间，格式为YYYY-MM-DD。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -53,7 +53,7 @@ extension Trtc {
     }
 
     /// DescribeTrtcMcuTranscodeTime返回参数结构体
-    public struct DescribeTrtcMcuTranscodeTimeResponse: TCResponseModel {
+    public struct DescribeTrtcMcuTranscodeTimeResponse: TCResponse {
         /// 应用的用量信息数组。
         public let usages: [OneSdkAppIdTranscodeTimeUsagesInfo]
 

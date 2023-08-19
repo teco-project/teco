@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// GetTkeAppChartList请求参数结构体
-    public struct GetTkeAppChartListRequest: TCRequestModel {
+    public struct GetTkeAppChartListRequest: TCRequest {
         /// app类型，取值log,scheduler,network,storage,monitor,dns,image,other,invisible
         public let kind: String?
 
@@ -44,7 +44,7 @@ extension Tke {
     }
 
     /// GetTkeAppChartList返回参数结构体
-    public struct GetTkeAppChartListResponse: TCResponseModel {
+    public struct GetTkeAppChartListResponse: TCResponse {
         /// 所支持的chart列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appCharts: [AppChart]?

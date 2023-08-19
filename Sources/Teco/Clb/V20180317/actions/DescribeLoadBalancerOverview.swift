@@ -20,13 +20,13 @@ import TecoCore
 
 extension Clb {
     /// DescribeLoadBalancerOverview请求参数结构体
-    public struct DescribeLoadBalancerOverviewRequest: TCRequestModel {
+    public struct DescribeLoadBalancerOverviewRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeLoadBalancerOverview返回参数结构体
-    public struct DescribeLoadBalancerOverviewResponse: TCResponseModel {
+    public struct DescribeLoadBalancerOverviewResponse: TCResponse {
         /// 负载均衡总数
         public let totalCount: Int64
 

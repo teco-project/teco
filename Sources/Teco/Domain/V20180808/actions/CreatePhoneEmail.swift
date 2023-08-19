@@ -20,7 +20,7 @@ import TecoCore
 
 extension Domain {
     /// CreatePhoneEmail请求参数结构体
-    public struct CreatePhoneEmailRequest: TCRequestModel {
+    public struct CreatePhoneEmailRequest: TCRequest {
         /// 手机号或者邮箱
         public let code: String
 
@@ -44,7 +44,7 @@ extension Domain {
     }
 
     /// CreatePhoneEmail返回参数结构体
-    public struct CreatePhoneEmailResponse: TCResponseModel {
+    public struct CreatePhoneEmailResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

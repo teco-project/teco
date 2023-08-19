@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// CreateDatabaseWhiteListRules请求参数结构体
-    public struct CreateDatabaseWhiteListRulesRequest: TCRequestModel {
+    public struct CreateDatabaseWhiteListRulesRequest: TCRequest {
         /// 创建白名单数据
         public let databaseWhiteListRuleData: [DatabaseWhiteListRuleData]
 
@@ -34,7 +34,7 @@ extension Cfw {
     }
 
     /// CreateDatabaseWhiteListRules返回参数结构体
-    public struct CreateDatabaseWhiteListRulesResponse: TCResponseModel {
+    public struct CreateDatabaseWhiteListRulesResponse: TCResponse {
         /// 状态值，0:添加成功，非0：添加失败
         public let status: Int64
 

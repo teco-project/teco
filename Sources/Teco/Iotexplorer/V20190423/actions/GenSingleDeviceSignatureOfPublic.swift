@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotexplorer {
     /// GenSingleDeviceSignatureOfPublic请求参数结构体
-    public struct GenSingleDeviceSignatureOfPublicRequest: TCRequestModel {
+    public struct GenSingleDeviceSignatureOfPublicRequest: TCRequest {
         /// 设备所属的产品ID
         public let productId: String
 
@@ -44,7 +44,7 @@ extension Iotexplorer {
     }
 
     /// GenSingleDeviceSignatureOfPublic返回参数结构体
-    public struct GenSingleDeviceSignatureOfPublicResponse: TCResponseModel {
+    public struct GenSingleDeviceSignatureOfPublicResponse: TCResponse {
         /// 设备签名
         public let deviceSignature: DeviceSignatureInfo
 

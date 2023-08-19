@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// CreateTransferBatch请求参数结构体
-    public struct CreateTransferBatchRequest: TCRequestModel {
+    public struct CreateTransferBatchRequest: TCRequest {
         /// 商户号。
         /// 示例值：129284394
         public let merchantId: String
@@ -92,7 +92,7 @@ extension Cpdp {
     }
 
     /// CreateTransferBatch返回参数结构体
-    public struct CreateTransferBatchResponse: TCResponseModel {
+    public struct CreateTransferBatchResponse: TCResponse {
         /// 商家批次单号。
         /// 商户系统内部的商家批次单号，此参数只能由数字、字母组成，商户系统内部唯一，UTF8编码，最多32个字符。
         /// 示例值：plfk2020042013

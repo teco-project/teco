@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// CreateFlexPayee请求参数结构体
-    public struct CreateFlexPayeeRequest: TCRequestModel {
+    public struct CreateFlexPayeeRequest: TCRequest {
         /// 用户外部业务ID
         public let outUserId: String
 
@@ -85,7 +85,7 @@ extension Cpdp {
     }
 
     /// CreateFlexPayee返回参数结构体
-    public struct CreateFlexPayeeResponse: TCResponseModel {
+    public struct CreateFlexPayeeResponse: TCResponse {
         /// 错误码。SUCCESS为成功，其他为失败
         public let errCode: String
 

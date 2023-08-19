@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// CreateDataset请求参数结构体
-    public struct CreateDatasetRequest: TCRequestModel {
+    public struct CreateDatasetRequest: TCRequest {
         /// 数据集名称，不超过60个字符，仅支持中英文、数字、下划线"_"、短横"-"，只能以中英文、数字开头
         public let datasetName: String
 
@@ -98,7 +98,7 @@ extension Tione {
     }
 
     /// CreateDataset返回参数结构体
-    public struct CreateDatasetResponse: TCResponseModel {
+    public struct CreateDatasetResponse: TCResponse {
         /// 数据集ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let datasetId: String?

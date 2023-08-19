@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tic {
     /// CreateStackVersion请求参数结构体
-    public struct CreateStackVersionRequest: TCRequestModel {
+    public struct CreateStackVersionRequest: TCRequest {
         /// 待增加版本的资源栈ID
         public let stackId: String
 
@@ -49,7 +49,7 @@ extension Tic {
     }
 
     /// CreateStackVersion返回参数结构体
-    public struct CreateStackVersionResponse: TCResponseModel {
+    public struct CreateStackVersionResponse: TCResponse {
         /// 新创建的版本ID
         public let versionId: String
 

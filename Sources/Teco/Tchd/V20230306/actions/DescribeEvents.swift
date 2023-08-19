@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Tchd {
     /// DescribeEvents请求参数结构体
-    public struct DescribeEventsRequest: TCRequestModel {
+    public struct DescribeEventsRequest: TCRequest {
         /// 事件的发生日期
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -52,7 +52,7 @@ extension Tchd {
     }
 
     /// DescribeEvents返回参数结构体
-    public struct DescribeEventsResponse: TCResponseModel {
+    public struct DescribeEventsResponse: TCResponse {
         /// 事件详情列表
         public let data: ProductEventList
 

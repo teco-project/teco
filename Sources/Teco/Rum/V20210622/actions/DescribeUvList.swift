@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// DescribeUvList请求参数结构体
-    public struct DescribeUvListRequest: TCRequestModel {
+    public struct DescribeUvListRequest: TCRequest {
         /// ID
         public let projectId: Int64
 
@@ -49,7 +49,7 @@ extension Rum {
     }
 
     /// DescribeUvList返回参数结构体
-    public struct DescribeUvListResponse: TCResponseModel {
+    public struct DescribeUvListResponse: TCResponse {
         /// uv列表
         public let projectUvSet: [RumUvInfo]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DisableVpnGatewaySslClientCert请求参数结构体
-    public struct DisableVpnGatewaySslClientCertRequest: TCRequestModel {
+    public struct DisableVpnGatewaySslClientCertRequest: TCRequest {
         /// SSL-VPN-CLIENT 实例ID。不可和SslVpnClientIds同时使用。
         public let sslVpnClientId: String?
 
@@ -39,7 +39,7 @@ extension Vpc {
     }
 
     /// DisableVpnGatewaySslClientCert返回参数结构体
-    public struct DisableVpnGatewaySslClientCertResponse: TCResponseModel {
+    public struct DisableVpnGatewaySslClientCertResponse: TCResponse {
         /// 异步任务实例ID。
         public let taskId: UInt64
 

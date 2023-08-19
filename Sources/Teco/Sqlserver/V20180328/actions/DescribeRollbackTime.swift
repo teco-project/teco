@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// DescribeRollbackTime请求参数结构体
-    public struct DescribeRollbackTimeRequest: TCRequestModel {
+    public struct DescribeRollbackTimeRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Sqlserver {
     }
 
     /// DescribeRollbackTime返回参数结构体
-    public struct DescribeRollbackTimeResponse: TCResponseModel {
+    public struct DescribeRollbackTimeResponse: TCResponse {
         /// 数据库可回档实例信息
         public let details: [DbRollbackTimeInfo]
 

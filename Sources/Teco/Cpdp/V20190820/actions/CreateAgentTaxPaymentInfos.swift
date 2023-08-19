@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// CreateAgentTaxPaymentInfos请求参数结构体
-    public struct CreateAgentTaxPaymentInfosRequest: TCRequestModel {
+    public struct CreateAgentTaxPaymentInfosRequest: TCRequest {
         /// 代理商ID
         public let agentId: String
 
@@ -64,7 +64,7 @@ extension Cpdp {
     }
 
     /// CreateAgentTaxPaymentInfos返回参数结构体
-    public struct CreateAgentTaxPaymentInfosResponse: TCResponseModel {
+    public struct CreateAgentTaxPaymentInfosResponse: TCResponse {
         /// 代理商完税证明批次信息
         public let agentTaxPaymentBatch: AgentTaxPaymentBatch
 

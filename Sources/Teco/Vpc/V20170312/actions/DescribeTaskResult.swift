@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DescribeTaskResult请求参数结构体
-    public struct DescribeTaskResultRequest: TCRequestModel {
+    public struct DescribeTaskResultRequest: TCRequest {
         /// 异步任务ID。TaskId和DealName必填一个参数
         public let taskId: UInt64?
 
@@ -39,7 +39,7 @@ extension Vpc {
     }
 
     /// DescribeTaskResult返回参数结构体
-    public struct DescribeTaskResultResponse: TCResponseModel {
+    public struct DescribeTaskResultResponse: TCResponse {
         /// 任务ID
         public let taskId: UInt64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// AddRecordRetrieveTask请求参数结构体
-    public struct AddRecordRetrieveTaskRequest: TCRequestModel {
+    public struct AddRecordRetrieveTaskRequest: TCRequest {
         /// 任务名称，仅支持中文、英文、数字、_、-，长度不超过32个字符，模板名称全局唯一，不能为空，不能重复
         public let taskName: String
 
@@ -64,7 +64,7 @@ extension Iss {
     }
 
     /// 查询取回任务详情返回数据
-    public struct AddRecordRetrieveTaskResponse: TCResponseModel {
+    public struct AddRecordRetrieveTaskResponse: TCResponse {
         private let data: Wrapped
 
         private struct Wrapped: Codable {

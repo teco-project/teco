@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mariadb {
     /// DestroyHourDBInstance请求参数结构体
-    public struct DestroyHourDBInstanceRequest: TCRequestModel {
+    public struct DestroyHourDBInstanceRequest: TCRequest {
         /// 实例 ID，格式如：tdsql-avw0207d，与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Mariadb {
     }
 
     /// DestroyHourDBInstance返回参数结构体
-    public struct DestroyHourDBInstanceResponse: TCResponseModel {
+    public struct DestroyHourDBInstanceResponse: TCResponse {
         /// 异步任务的请求 ID，可使用此 ID [查询异步任务的执行结果](https://cloud.tencent.com/document/product/237/16177)。
         public let flowId: Int64
 

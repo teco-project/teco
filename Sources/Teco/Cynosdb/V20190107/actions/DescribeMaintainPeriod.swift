@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// DescribeMaintainPeriod请求参数结构体
-    public struct DescribeMaintainPeriodRequest: TCRequestModel {
+    public struct DescribeMaintainPeriodRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Cynosdb {
     }
 
     /// DescribeMaintainPeriod返回参数结构体
-    public struct DescribeMaintainPeriodResponse: TCResponseModel {
+    public struct DescribeMaintainPeriodResponse: TCResponse {
         /// 维护week days
         public let maintainWeekDays: [String]
 

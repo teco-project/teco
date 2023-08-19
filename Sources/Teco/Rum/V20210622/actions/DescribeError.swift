@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// DescribeError请求参数结构体
-    public struct DescribeErrorRequest: TCRequestModel {
+    public struct DescribeErrorRequest: TCRequest {
         /// 日期
         public let date: String
 
@@ -39,7 +39,7 @@ extension Rum {
     }
 
     /// DescribeError返回参数结构体
-    public struct DescribeErrorResponse: TCResponseModel {
+    public struct DescribeErrorResponse: TCResponse {
         /// 内容
         public let content: String
 

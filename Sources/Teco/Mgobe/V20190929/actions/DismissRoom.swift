@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mgobe {
     /// DismissRoom请求参数结构体
-    public struct DismissRoomRequest: TCRequestModel {
+    public struct DismissRoomRequest: TCRequest {
         /// 表示游戏资源唯一 ID, 由后台自动分配, 无法修改。
         public let gameId: String
 
@@ -39,7 +39,7 @@ extension Mgobe {
     }
 
     /// DismissRoom返回参数结构体
-    public struct DismissRoomResponse: TCResponseModel {
+    public struct DismissRoomResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

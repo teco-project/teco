@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// DescribeDBInstanceAttribute请求参数结构体
-    public struct DescribeDBInstanceAttributeRequest: TCRequestModel {
+    public struct DescribeDBInstanceAttributeRequest: TCRequest {
         /// 实例ID
         public let dbInstanceId: String
 
@@ -34,7 +34,7 @@ extension Postgres {
     }
 
     /// DescribeDBInstanceAttribute返回参数结构体
-    public struct DescribeDBInstanceAttributeResponse: TCResponseModel {
+    public struct DescribeDBInstanceAttributeResponse: TCResponse {
         /// 实例详细信息。
         public let dbInstance: DBInstance
 

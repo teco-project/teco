@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// DeleteGlobalDomainDns请求参数结构体
-    public struct DeleteGlobalDomainDnsRequest: TCRequestModel {
+    public struct DeleteGlobalDomainDnsRequest: TCRequest {
         /// 解析记录的ID
         public let dnsRecordId: UInt64
 
@@ -34,7 +34,7 @@ extension Gaap {
     }
 
     /// DeleteGlobalDomainDns返回参数结构体
-    public struct DeleteGlobalDomainDnsResponse: TCResponseModel {
+    public struct DeleteGlobalDomainDnsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

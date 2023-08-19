@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DescribeGroupRelease请求参数结构体
-    public struct DescribeGroupReleaseRequest: TCRequestModel {
+    public struct DescribeGroupReleaseRequest: TCRequest {
         /// 部署组ID
         public let groupId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// DescribeGroupRelease返回参数结构体
-    public struct DescribeGroupReleaseResponse: TCResponseModel {
+    public struct DescribeGroupReleaseResponse: TCResponse {
         /// 部署组发布的相关信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: GroupRelease?

@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension As {
     /// ModifyScheduledAction请求参数结构体
-    public struct ModifyScheduledActionRequest: TCRequestModel {
+    public struct ModifyScheduledActionRequest: TCRequest {
         /// 待修改的定时任务ID
         public let scheduledActionId: String
 
@@ -81,7 +81,7 @@ extension As {
     }
 
     /// ModifyScheduledAction返回参数结构体
-    public struct ModifyScheduledActionResponse: TCResponseModel {
+    public struct ModifyScheduledActionResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

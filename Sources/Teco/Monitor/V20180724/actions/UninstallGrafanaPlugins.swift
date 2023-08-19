@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// UninstallGrafanaPlugins请求参数结构体
-    public struct UninstallGrafanaPluginsRequest: TCRequestModel {
+    public struct UninstallGrafanaPluginsRequest: TCRequest {
         /// 插件 ID 数组，例如"PluginIds": [ "grafana-clock-panel" ]，可通过 DescribePluginOverviews 获取 PluginId
         public let pluginIds: [String]
 
@@ -39,7 +39,7 @@ extension Monitor {
     }
 
     /// UninstallGrafanaPlugins返回参数结构体
-    public struct UninstallGrafanaPluginsResponse: TCResponseModel {
+    public struct UninstallGrafanaPluginsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

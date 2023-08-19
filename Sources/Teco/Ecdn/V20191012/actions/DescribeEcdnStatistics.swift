@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Ecdn {
     /// DescribeEcdnStatistics请求参数结构体
-    public struct DescribeEcdnStatisticsRequest: TCRequestModel {
+    public struct DescribeEcdnStatisticsRequest: TCRequest {
         /// 查询起始时间，如：2019-12-13 00:00:00
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -90,7 +90,7 @@ extension Ecdn {
     }
 
     /// DescribeEcdnStatistics返回参数结构体
-    public struct DescribeEcdnStatisticsResponse: TCResponseModel {
+    public struct DescribeEcdnStatisticsResponse: TCResponse {
         /// 指定条件查询得到的数据明细
         public let data: [ResourceData]
 

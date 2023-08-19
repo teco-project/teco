@@ -20,7 +20,7 @@ import TecoCore
 
 extension Kms {
     /// UnbindCloudResource请求参数结构体
-    public struct UnbindCloudResourceRequest: TCRequestModel {
+    public struct UnbindCloudResourceRequest: TCRequest {
         /// cmk的ID
         public let keyId: String
 
@@ -44,7 +44,7 @@ extension Kms {
     }
 
     /// UnbindCloudResource返回参数结构体
-    public struct UnbindCloudResourceResponse: TCResponseModel {
+    public struct UnbindCloudResourceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

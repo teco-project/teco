@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// DescribeDisksDeniedActions请求参数结构体
-    public struct DescribeDisksDeniedActionsRequest: TCRequestModel {
+    public struct DescribeDisksDeniedActionsRequest: TCRequest {
         /// 云硬盘ID列表。
         public let diskIds: [String]
 
@@ -34,7 +34,7 @@ extension Lighthouse {
     }
 
     /// DescribeDisksDeniedActions返回参数结构体
-    public struct DescribeDisksDeniedActionsResponse: TCResponseModel {
+    public struct DescribeDisksDeniedActionsResponse: TCResponse {
         /// 云硬盘操作限制列表详细信息。
         public let diskDeniedActionSet: [DiskDeniedActions]
 

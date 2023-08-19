@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sms {
     /// AddSmsTemplate请求参数结构体
-    public struct AddSmsTemplateRequest: TCRequestModel {
+    public struct AddSmsTemplateRequest: TCRequest {
         /// 模板名称。
         public let templateName: String
 
@@ -56,7 +56,7 @@ extension Sms {
     }
 
     /// AddSmsTemplate返回参数结构体
-    public struct AddSmsTemplateResponse: TCResponseModel {
+    public struct AddSmsTemplateResponse: TCResponse {
         /// 添加短信模板响应包体
         public let addTemplateStatus: AddTemplateStatus
 

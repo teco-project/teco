@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ape {
     /// BatchDescribeOrderImage请求参数结构体
-    public struct BatchDescribeOrderImageRequest: TCRequestModel {
+    public struct BatchDescribeOrderImageRequest: TCRequest {
         /// 要下载图片的订单id
         public let orderIds: [String]
 
@@ -34,7 +34,7 @@ extension Ape {
     }
 
     /// BatchDescribeOrderImage返回参数结构体
-    public struct BatchDescribeOrderImageResponse: TCResponseModel {
+    public struct BatchDescribeOrderImageResponse: TCResponse {
         /// 图片的下载地址
         public let imageUrls: [String]
 

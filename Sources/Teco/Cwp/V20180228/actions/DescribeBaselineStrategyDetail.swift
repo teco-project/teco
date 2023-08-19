@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeBaselineStrategyDetail请求参数结构体
-    public struct DescribeBaselineStrategyDetailRequest: TCRequestModel {
+    public struct DescribeBaselineStrategyDetailRequest: TCRequest {
         /// 用户基线策略id
         public let strategyId: UInt64
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// DescribeBaselineStrategyDetail返回参数结构体
-    public struct DescribeBaselineStrategyDetailResponse: TCResponseModel {
+    public struct DescribeBaselineStrategyDetailResponse: TCResponse {
         /// 策略扫描通过率
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let passRate: UInt64?

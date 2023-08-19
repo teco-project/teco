@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Tione {
     /// DescribeNotebookInstance请求参数结构体
-    public struct DescribeNotebookInstanceRequest: TCRequestModel {
+    public struct DescribeNotebookInstanceRequest: TCRequest {
         /// Notebook实例名称
         /// 规则：“^\[a-zA-Z0-9\](-\*\[a-zA-Z0-9\])\*$”
         public let notebookInstanceName: String
@@ -37,7 +37,7 @@ extension Tione {
     }
 
     /// DescribeNotebookInstance返回参数结构体
-    public struct DescribeNotebookInstanceResponse: TCResponseModel {
+    public struct DescribeNotebookInstanceResponse: TCResponse {
         /// Notebook实例名称
         public let notebookInstanceName: String
 

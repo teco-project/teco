@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ocr {
     /// BankSlipOCR请求参数结构体
-    public struct BankSlipOCRRequest: TCRequestModel {
+    public struct BankSlipOCRRequest: TCRequest {
         /// 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。
         /// 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         public let imageBase64: String?
@@ -51,7 +51,7 @@ extension Ocr {
     }
 
     /// BankSlipOCR返回参数结构体
-    public struct BankSlipOCRResponse: TCResponseModel {
+    public struct BankSlipOCRResponse: TCResponse {
         /// 银行回单识别结果，具体内容请点击左侧链接。
         public let bankSlipInfos: [BankSlipInfo]
 

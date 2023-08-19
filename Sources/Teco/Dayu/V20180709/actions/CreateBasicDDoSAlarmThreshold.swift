@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dayu {
     /// CreateBasicDDoSAlarmThreshold请求参数结构体
-    public struct CreateBasicDDoSAlarmThresholdRequest: TCRequestModel {
+    public struct CreateBasicDDoSAlarmThresholdRequest: TCRequest {
         /// 大禹子产品代号（basic表示DDoS基础防护）
         public let business: String
 
@@ -49,7 +49,7 @@ extension Dayu {
     }
 
     /// CreateBasicDDoSAlarmThreshold返回参数结构体
-    public struct CreateBasicDDoSAlarmThresholdResponse: TCResponseModel {
+    public struct CreateBasicDDoSAlarmThresholdResponse: TCResponse {
         /// 当存在告警阈值配置时，返回告警阈值大于0，当不存在告警配置时，返回告警阈值为0；
         public let alarmThreshold: UInt64
 

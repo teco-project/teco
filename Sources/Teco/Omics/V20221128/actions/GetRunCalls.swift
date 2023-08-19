@@ -20,7 +20,7 @@ import TecoCore
 
 extension Omics {
     /// GetRunCalls请求参数结构体
-    public struct GetRunCallsRequest: TCRequestModel {
+    public struct GetRunCallsRequest: TCRequest {
         /// 任务Uuid。
         public let runUuid: String
 
@@ -44,7 +44,7 @@ extension Omics {
     }
 
     /// GetRunCalls返回参数结构体
-    public struct GetRunCallsResponse: TCResponseModel {
+    public struct GetRunCallsResponse: TCResponse {
         /// 作业详情。
         public let calls: [RunMetadata]
 

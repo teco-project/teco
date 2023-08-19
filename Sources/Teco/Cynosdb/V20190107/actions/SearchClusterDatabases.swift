@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// SearchClusterDatabases请求参数结构体
-    public struct SearchClusterDatabasesRequest: TCRequestModel {
+    public struct SearchClusterDatabasesRequest: TCRequest {
         /// 集群id
         public let clusterId: String
 
@@ -46,7 +46,7 @@ extension Cynosdb {
     }
 
     /// SearchClusterDatabases返回参数结构体
-    public struct SearchClusterDatabasesResponse: TCResponseModel {
+    public struct SearchClusterDatabasesResponse: TCResponse {
         /// 数据库列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let databases: [String]?

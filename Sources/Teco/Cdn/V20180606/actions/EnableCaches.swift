@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cdn {
     /// EnableCaches请求参数结构体
-    public struct EnableCachesRequest: TCRequestModel {
+    public struct EnableCachesRequest: TCRequest {
         /// 解封 URL 列表
         public let urls: [String]
 
@@ -44,7 +44,7 @@ extension Cdn {
     }
 
     /// EnableCaches返回参数结构体
-    public struct EnableCachesResponse: TCResponseModel {
+    public struct EnableCachesResponse: TCResponse {
         /// 结果列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cacheOptResult: CacheOptResult?

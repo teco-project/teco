@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DownloadCustomerGatewayConfiguration请求参数结构体
-    public struct DownloadCustomerGatewayConfigurationRequest: TCRequestModel {
+    public struct DownloadCustomerGatewayConfigurationRequest: TCRequest {
         /// VPN网关实例ID。
         public let vpnGatewayId: String
 
@@ -49,7 +49,7 @@ extension Vpc {
     }
 
     /// DownloadCustomerGatewayConfiguration返回参数结构体
-    public struct DownloadCustomerGatewayConfigurationResponse: TCResponseModel {
+    public struct DownloadCustomerGatewayConfigurationResponse: TCResponse {
         /// XML格式配置信息。
         public let customerGatewayConfiguration: String
 

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Dnspod {
     /// DescribeUserDetail请求参数结构体
-    public struct DescribeUserDetailRequest: TCRequestModel {
+    public struct DescribeUserDetailRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeUserDetail返回参数结构体
-    public struct DescribeUserDetailResponse: TCResponseModel {
+    public struct DescribeUserDetailResponse: TCResponse {
         /// 帐户信息
         public let userInfo: UserInfo
 

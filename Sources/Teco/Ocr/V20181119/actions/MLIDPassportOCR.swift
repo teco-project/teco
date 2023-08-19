@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ocr {
     /// MLIDPassportOCR请求参数结构体
-    public struct MLIDPassportOCRRequest: TCRequestModel {
+    public struct MLIDPassportOCRRequest: TCRequest {
         /// 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
         public let imageBase64: String
 
@@ -39,7 +39,7 @@ extension Ocr {
     }
 
     /// MLIDPassportOCR返回参数结构体
-    public struct MLIDPassportOCRResponse: TCResponseModel {
+    public struct MLIDPassportOCRResponse: TCResponse {
         /// 护照ID
         public let id: String
 

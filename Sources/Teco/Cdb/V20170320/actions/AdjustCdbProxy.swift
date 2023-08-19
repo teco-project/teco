@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// AdjustCdbProxy请求参数结构体
-    public struct AdjustCdbProxyRequest: TCRequestModel {
+    public struct AdjustCdbProxyRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -54,7 +54,7 @@ extension Cdb {
     }
 
     /// AdjustCdbProxy返回参数结构体
-    public struct AdjustCdbProxyResponse: TCResponseModel {
+    public struct AdjustCdbProxyResponse: TCResponse {
         /// 异步任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let asyncRequestId: String?

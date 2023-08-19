@@ -20,7 +20,7 @@ import TecoCore
 
 extension Kms {
     /// ReEncrypt请求参数结构体
-    public struct ReEncryptRequest: TCRequestModel {
+    public struct ReEncryptRequest: TCRequest {
         /// 需要重新加密的密文
         public let ciphertextBlob: String
 
@@ -49,7 +49,7 @@ extension Kms {
     }
 
     /// ReEncrypt返回参数结构体
-    public struct ReEncryptResponse: TCResponseModel {
+    public struct ReEncryptResponse: TCResponse {
         /// 重新加密后的密文
         public let ciphertextBlob: String
 

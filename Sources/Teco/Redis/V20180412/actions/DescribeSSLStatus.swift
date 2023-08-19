@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// DescribeSSLStatus请求参数结构体
-    public struct DescribeSSLStatusRequest: TCRequestModel {
+    public struct DescribeSSLStatusRequest: TCRequest {
         /// 实例 ID。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Redis {
     }
 
     /// DescribeSSLStatus返回参数结构体
-    public struct DescribeSSLStatusResponse: TCResponseModel {
+    public struct DescribeSSLStatusResponse: TCResponse {
         /// SSL 证书下载地址。
         public let certDownloadUrl: String
 

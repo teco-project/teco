@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// DeleteEnvironments请求参数结构体
-    public struct DeleteEnvironmentsRequest: TCRequestModel {
+    public struct DeleteEnvironmentsRequest: TCRequest {
         /// 环境（命名空间）数组，每次最多删除20个。
         public let environmentIds: [String]
 
@@ -39,7 +39,7 @@ extension Tdmq {
     }
 
     /// DeleteEnvironments返回参数结构体
-    public struct DeleteEnvironmentsResponse: TCResponseModel {
+    public struct DeleteEnvironmentsResponse: TCResponse {
         /// 成功删除的环境（命名空间）数组。
         public let environmentIds: [String]
 

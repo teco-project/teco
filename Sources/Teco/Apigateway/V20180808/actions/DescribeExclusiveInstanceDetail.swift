@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// DescribeExclusiveInstanceDetail请求参数结构体
-    public struct DescribeExclusiveInstanceDetailRequest: TCRequestModel {
+    public struct DescribeExclusiveInstanceDetailRequest: TCRequest {
         /// 独享实例唯一id
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Apigateway {
     }
 
     /// DescribeExclusiveInstanceDetail返回参数结构体
-    public struct DescribeExclusiveInstanceDetailResponse: TCResponseModel {
+    public struct DescribeExclusiveInstanceDetailResponse: TCResponse {
         /// 独享实例详情
         public let result: InstanceDetail
 

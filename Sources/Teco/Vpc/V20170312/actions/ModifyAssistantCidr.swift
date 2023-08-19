@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// ModifyAssistantCidr请求参数结构体
-    public struct ModifyAssistantCidrRequest: TCRequestModel {
+    public struct ModifyAssistantCidrRequest: TCRequest {
         /// `VPC`实例`ID`。形如：`vpc-6v2ht8q5`。
         public let vpcId: String
 
@@ -44,7 +44,7 @@ extension Vpc {
     }
 
     /// ModifyAssistantCidr返回参数结构体
-    public struct ModifyAssistantCidrResponse: TCResponseModel {
+    public struct ModifyAssistantCidrResponse: TCResponse {
         /// 辅助CIDR数组。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assistantCidrSet: [AssistantCidr]?

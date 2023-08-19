@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// CheckCdcCluster请求参数结构体
-    public struct CheckCdcClusterRequest: TCRequestModel {
+    public struct CheckCdcClusterRequest: TCRequest {
         /// 任务ID
         public let taskId: Int64
 
@@ -34,7 +34,7 @@ extension Ckafka {
     }
 
     /// CheckCdcCluster返回参数结构体
-    public struct CheckCdcClusterResponse: TCResponseModel {
+    public struct CheckCdcClusterResponse: TCResponse {
         /// 返回结果状态Success
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: String?

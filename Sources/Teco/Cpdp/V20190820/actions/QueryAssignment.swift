@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryAssignment请求参数结构体
-    public struct QueryAssignmentRequest: TCRequestModel {
+    public struct QueryAssignmentRequest: TCRequest {
         /// 主播ID
         public let anchorId: String
 
@@ -34,7 +34,7 @@ extension Cpdp {
     }
 
     /// QueryAssignment返回参数结构体
-    public struct QueryAssignmentResponse: TCResponseModel {
+    public struct QueryAssignmentResponse: TCResponse {
         /// 错误码。响应成功："SUCCESS"，其他为不成功。
         public let errCode: String
 

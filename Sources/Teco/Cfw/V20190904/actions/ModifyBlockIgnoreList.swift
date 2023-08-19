@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// ModifyBlockIgnoreList请求参数结构体
-    public struct ModifyBlockIgnoreListRequest: TCRequestModel {
+    public struct ModifyBlockIgnoreListRequest: TCRequest {
         /// 1封禁列表 2 放通列表
         public let ruleType: Int64
 
@@ -54,7 +54,7 @@ extension Cfw {
     }
 
     /// ModifyBlockIgnoreList返回参数结构体
-    public struct ModifyBlockIgnoreListResponse: TCResponseModel {
+    public struct ModifyBlockIgnoreListResponse: TCResponse {
         /// 接口返回信息
         public let returnMsg: String
 

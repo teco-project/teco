@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// CreateAuditLogFile请求参数结构体
-    public struct CreateAuditLogFileRequest: TCRequestModel {
+    public struct CreateAuditLogFileRequest: TCRequest {
         /// 实例 ID，与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceId: String
 
@@ -67,7 +67,7 @@ extension Cdb {
     }
 
     /// CreateAuditLogFile返回参数结构体
-    public struct CreateAuditLogFileResponse: TCResponseModel {
+    public struct CreateAuditLogFileResponse: TCResponse {
         /// 审计日志文件名称。
         public let fileName: String
 

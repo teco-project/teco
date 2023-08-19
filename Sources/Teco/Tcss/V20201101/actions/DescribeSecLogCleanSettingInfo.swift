@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeSecLogCleanSettingInfo请求参数结构体
-    public struct DescribeSecLogCleanSettingInfoRequest: TCRequestModel {
+    public struct DescribeSecLogCleanSettingInfoRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeSecLogCleanSettingInfo返回参数结构体
-    public struct DescribeSecLogCleanSettingInfoResponse: TCResponseModel {
+    public struct DescribeSecLogCleanSettingInfoResponse: TCResponse {
         /// 触发清理的储量底线
         public let reservesLimit: UInt64
 

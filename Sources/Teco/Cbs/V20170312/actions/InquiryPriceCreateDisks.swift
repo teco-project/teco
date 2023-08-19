@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cbs {
     /// InquiryPriceCreateDisks请求参数结构体
-    public struct InquiryPriceCreateDisksRequest: TCRequestModel {
+    public struct InquiryPriceCreateDisksRequest: TCRequest {
         /// 云硬盘计费类型。
         ///
         /// - PREPAID：预付费，即包年包月
@@ -82,7 +82,7 @@ extension Cbs {
     }
 
     /// InquiryPriceCreateDisks返回参数结构体
-    public struct InquiryPriceCreateDisksResponse: TCResponseModel {
+    public struct InquiryPriceCreateDisksResponse: TCResponse {
         /// 描述了新购云盘的价格。
         public let diskPrice: Price
 

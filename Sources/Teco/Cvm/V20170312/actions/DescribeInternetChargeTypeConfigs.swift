@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cvm {
     /// DescribeInternetChargeTypeConfigs请求参数结构体
-    public struct DescribeInternetChargeTypeConfigsRequest: TCRequestModel {
+    public struct DescribeInternetChargeTypeConfigsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeInternetChargeTypeConfigs返回参数结构体
-    public struct DescribeInternetChargeTypeConfigsResponse: TCResponseModel {
+    public struct DescribeInternetChargeTypeConfigsResponse: TCResponse {
         /// 网络计费类型配置。
         public let internetChargeTypeConfigSet: [InternetChargeTypeConfig]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DescribeAccountPrivileges请求参数结构体
-    public struct DescribeAccountPrivilegesRequest: TCRequestModel {
+    public struct DescribeAccountPrivilegesRequest: TCRequest {
         /// 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Cdb {
     }
 
     /// DescribeAccountPrivileges返回参数结构体
-    public struct DescribeAccountPrivilegesResponse: TCResponseModel {
+    public struct DescribeAccountPrivilegesResponse: TCResponse {
         /// 全局权限数组。
         public let globalPrivileges: [String]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Facefusion {
     /// FaceFusionLite请求参数结构体
-    public struct FaceFusionLiteRequest: TCRequestModel {
+    public struct FaceFusionLiteRequest: TCRequest {
         /// 活动 ID，请在人脸融合控制台查看。
         public let projectId: String
 
@@ -59,7 +59,7 @@ extension Facefusion {
     }
 
     /// FaceFusionLite返回参数结构体
-    public struct FaceFusionLiteResponse: TCResponseModel {
+    public struct FaceFusionLiteResponse: TCResponse {
         /// RspImgType 为 url 时，返回结果的 url， RspImgType 为 base64 时返回 base64 数据。
         public let image: String
 

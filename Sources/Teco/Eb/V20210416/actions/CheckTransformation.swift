@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eb {
     /// CheckTransformation请求参数结构体
-    public struct CheckTransformationRequest: TCRequestModel {
+    public struct CheckTransformationRequest: TCRequest {
         /// 待处理的json字符串
         public let input: String
 
@@ -39,7 +39,7 @@ extension Eb {
     }
 
     /// CheckTransformation返回参数结构体
-    public struct CheckTransformationResponse: TCResponseModel {
+    public struct CheckTransformationResponse: TCResponse {
         /// 经过Transformations处理之后的数据
         public let output: String
 

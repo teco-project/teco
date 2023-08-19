@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cam {
     /// DescribeUserSAMLConfig请求参数结构体
-    public struct DescribeUserSAMLConfigRequest: TCRequestModel {
+    public struct DescribeUserSAMLConfigRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeUserSAMLConfig返回参数结构体
-    public struct DescribeUserSAMLConfigResponse: TCResponseModel {
+    public struct DescribeUserSAMLConfigResponse: TCResponse {
         /// SAML元数据文档
         public let samlMetadata: String
 

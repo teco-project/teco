@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// UploadFiles请求参数结构体
-    public struct UploadFilesRequest: TCRequestModel {
+    public struct UploadFilesRequest: TCRequest {
         /// 文件对应业务类型
         /// 1. TEMPLATE - 模板； 文件类型：.pdf/.doc/.docx/.html
         /// 2. DOCUMENT - 签署过程及签署后的合同文档/图片控件 文件类型：.pdf/.doc/.docx/.jpg/.png/.xls.xlsx/.html
@@ -80,7 +80,7 @@ extension Ess {
     }
 
     /// UploadFiles返回参数结构体
-    public struct UploadFilesResponse: TCResponseModel {
+    public struct UploadFilesResponse: TCResponse {
         /// 文件id数组
         public let fileIds: [String]
 

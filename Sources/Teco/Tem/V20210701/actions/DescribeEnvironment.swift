@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tem {
     /// DescribeEnvironment请求参数结构体
-    public struct DescribeEnvironmentRequest: TCRequestModel {
+    public struct DescribeEnvironmentRequest: TCRequest {
         /// 命名空间id
         public let environmentId: String
 
@@ -39,7 +39,7 @@ extension Tem {
     }
 
     /// DescribeEnvironment返回参数结构体
-    public struct DescribeEnvironmentResponse: TCResponseModel {
+    public struct DescribeEnvironmentResponse: TCResponse {
         /// 环境信息
         public let result: NamespaceInfo
 

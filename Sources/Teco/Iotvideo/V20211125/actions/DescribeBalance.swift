@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// DescribeBalance请求参数结构体
-    public struct DescribeBalanceRequest: TCRequestModel {
+    public struct DescribeBalanceRequest: TCRequest {
         /// 账户类型：1-设备接入；2-云存。
         public let accountType: UInt64
 
@@ -34,7 +34,7 @@ extension Iotvideo {
     }
 
     /// DescribeBalance返回参数结构体
-    public struct DescribeBalanceResponse: TCResponseModel {
+    public struct DescribeBalanceResponse: TCResponse {
         /// 账户余额，单位：分（人民币）。
         public let balance: UInt64
 

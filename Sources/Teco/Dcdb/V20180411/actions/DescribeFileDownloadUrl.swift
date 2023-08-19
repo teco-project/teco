@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dcdb {
     /// DescribeFileDownloadUrl请求参数结构体
-    public struct DescribeFileDownloadUrlRequest: TCRequestModel {
+    public struct DescribeFileDownloadUrlRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Dcdb {
     }
 
     /// DescribeFileDownloadUrl返回参数结构体
-    public struct DescribeFileDownloadUrlResponse: TCResponseModel {
+    public struct DescribeFileDownloadUrlResponse: TCResponse {
         /// 带签名的下载连接
         public let preSignedUrl: String
 

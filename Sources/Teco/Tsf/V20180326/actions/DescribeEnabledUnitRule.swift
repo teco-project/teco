@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DescribeEnabledUnitRule请求参数结构体
-    public struct DescribeEnabledUnitRuleRequest: TCRequestModel {
+    public struct DescribeEnabledUnitRuleRequest: TCRequest {
         /// 网关实体ID
         public let gatewayInstanceId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// DescribeEnabledUnitRule返回参数结构体
-    public struct DescribeEnabledUnitRuleResponse: TCResponseModel {
+    public struct DescribeEnabledUnitRuleResponse: TCResponse {
         /// 单元化规则对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: UnitRule?

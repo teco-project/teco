@@ -20,7 +20,7 @@ import TecoCore
 
 extension Youmall {
     /// DescribeCameraPerson请求参数结构体
-    public struct DescribeCameraPersonRequest: TCRequestModel {
+    public struct DescribeCameraPersonRequest: TCRequest {
         /// 优mall集团id，通过"指定身份标识获取客户门店列表"接口获取
         public let companyId: String
 
@@ -69,7 +69,7 @@ extension Youmall {
     }
 
     /// DescribeCameraPerson返回参数结构体
-    public struct DescribeCameraPersonResponse: TCResponseModel {
+    public struct DescribeCameraPersonResponse: TCResponse {
         /// 集团id
         public let companyId: String
 

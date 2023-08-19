@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// DeletePublishSubscribe请求参数结构体
-    public struct DeletePublishSubscribeRequest: TCRequestModel {
+    public struct DeletePublishSubscribeRequest: TCRequest {
         /// 发布订阅ID，可通过DescribePublishSubscribe接口获得
         public let publishSubscribeId: UInt64
 
@@ -39,7 +39,7 @@ extension Sqlserver {
     }
 
     /// DeletePublishSubscribe返回参数结构体
-    public struct DeletePublishSubscribeResponse: TCResponseModel {
+    public struct DeletePublishSubscribeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

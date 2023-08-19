@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeVirusScanTaskStatus请求参数结构体
-    public struct DescribeVirusScanTaskStatusRequest: TCRequestModel {
+    public struct DescribeVirusScanTaskStatusRequest: TCRequest {
         /// 任务id
         public let taskID: String?
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeVirusScanTaskStatus返回参数结构体
-    public struct DescribeVirusScanTaskStatusResponse: TCResponseModel {
+    public struct DescribeVirusScanTaskStatusResponse: TCResponse {
         /// 查杀容器个数
         public let containerTotal: UInt64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// CreateLiveRecordTemplate请求参数结构体
-    public struct CreateLiveRecordTemplateRequest: TCRequestModel {
+    public struct CreateLiveRecordTemplateRequest: TCRequest {
         /// 模板名。仅支持中文、英文、数字、_、-。
         public let templateName: String
 
@@ -87,7 +87,7 @@ extension Live {
     }
 
     /// CreateLiveRecordTemplate返回参数结构体
-    public struct CreateLiveRecordTemplateResponse: TCResponseModel {
+    public struct CreateLiveRecordTemplateResponse: TCResponse {
         /// 模板Id。
         public let templateId: Int64
 

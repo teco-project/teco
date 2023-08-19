@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotexplorer {
     /// GetDeviceLocationHistory请求参数结构体
-    public struct GetDeviceLocationHistoryRequest: TCRequestModel {
+    public struct GetDeviceLocationHistoryRequest: TCRequest {
         /// 产品Id
         public let productId: String
 
@@ -54,7 +54,7 @@ extension Iotexplorer {
     }
 
     /// GetDeviceLocationHistory返回参数结构体
-    public struct GetDeviceLocationHistoryResponse: TCResponseModel {
+    public struct GetDeviceLocationHistoryResponse: TCResponse {
         /// 历史位置列表
         public let positions: [PositionItem]
 

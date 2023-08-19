@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Waf {
     /// PostAttackDownloadTask请求参数结构体
-    public struct PostAttackDownloadTaskRequest: TCRequestModel {
+    public struct PostAttackDownloadTaskRequest: TCRequest {
         /// 查询的域名，所有域名使用all
         public let domain: String
 
@@ -72,7 +72,7 @@ extension Waf {
     }
 
     /// PostAttackDownloadTask返回参数结构体
-    public struct PostAttackDownloadTaskResponse: TCResponseModel {
+    public struct PostAttackDownloadTaskResponse: TCResponse {
         /// 任务task id
         public let flow: String
 

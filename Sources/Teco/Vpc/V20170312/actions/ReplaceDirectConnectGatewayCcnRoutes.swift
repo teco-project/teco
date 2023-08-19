@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// ReplaceDirectConnectGatewayCcnRoutes请求参数结构体
-    public struct ReplaceDirectConnectGatewayCcnRoutesRequest: TCRequestModel {
+    public struct ReplaceDirectConnectGatewayCcnRoutesRequest: TCRequest {
         /// 专线网关ID，形如：dcg-prpqlmg1
         public let directConnectGatewayId: String
 
@@ -39,7 +39,7 @@ extension Vpc {
     }
 
     /// ReplaceDirectConnectGatewayCcnRoutes返回参数结构体
-    public struct ReplaceDirectConnectGatewayCcnRoutesResponse: TCResponseModel {
+    public struct ReplaceDirectConnectGatewayCcnRoutesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

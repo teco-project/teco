@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// DescribeBandwidthRange请求参数结构体
-    public struct DescribeBandwidthRangeRequest: TCRequestModel {
+    public struct DescribeBandwidthRangeRequest: TCRequest {
         /// 实例 ID。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Redis {
     }
 
     /// DescribeBandwidthRange返回参数结构体
-    public struct DescribeBandwidthRangeResponse: TCResponseModel {
+    public struct DescribeBandwidthRangeResponse: TCResponse {
         /// 标准带宽。指购买实例时，系统为每个节点分配的带宽。
         public let baseBandwidth: Int64
 

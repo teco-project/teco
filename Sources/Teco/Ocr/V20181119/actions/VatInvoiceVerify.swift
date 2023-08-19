@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ocr {
     /// VatInvoiceVerify请求参数结构体
-    public struct VatInvoiceVerifyRequest: TCRequestModel {
+    public struct VatInvoiceVerifyRequest: TCRequest {
         /// 发票代码， 一张发票一天只能查询5次。
         public let invoiceCode: String
 
@@ -61,7 +61,7 @@ extension Ocr {
     }
 
     /// VatInvoiceVerify返回参数结构体
-    public struct VatInvoiceVerifyResponse: TCResponseModel {
+    public struct VatInvoiceVerifyResponse: TCResponse {
         /// 增值税发票信息，详情请点击左侧链接。
         public let invoice: VatInvoice
 

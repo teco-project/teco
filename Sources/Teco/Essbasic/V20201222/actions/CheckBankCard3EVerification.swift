@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// CheckBankCard3EVerification请求参数结构体
-    public struct CheckBankCard3EVerificationRequest: TCRequestModel {
+    public struct CheckBankCard3EVerificationRequest: TCRequest {
         /// 调用方信息; 必选
         public let caller: Caller
 
@@ -54,7 +54,7 @@ extension Essbasic {
     }
 
     /// CheckBankCard3EVerification返回参数结构体
-    public struct CheckBankCard3EVerificationResponse: TCResponseModel {
+    public struct CheckBankCard3EVerificationResponse: TCResponse {
         /// 检测结果
         /// 计费结果码：
         ///   0:  认证通过

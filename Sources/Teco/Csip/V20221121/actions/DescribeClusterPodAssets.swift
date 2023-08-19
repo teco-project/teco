@@ -20,7 +20,7 @@ import TecoCore
 
 extension Csip {
     /// DescribeClusterPodAssets请求参数结构体
-    public struct DescribeClusterPodAssetsRequest: TCRequestModel {
+    public struct DescribeClusterPodAssetsRequest: TCRequest {
         /// 过滤
         public let filter: Filter?
 
@@ -34,7 +34,7 @@ extension Csip {
     }
 
     /// DescribeClusterPodAssets返回参数结构体
-    public struct DescribeClusterPodAssetsResponse: TCResponseModel {
+    public struct DescribeClusterPodAssetsResponse: TCResponse {
         /// 列表
         public let data: [AssetClusterPod]
 

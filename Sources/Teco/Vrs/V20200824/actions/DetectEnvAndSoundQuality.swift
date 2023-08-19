@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vrs {
     /// DetectEnvAndSoundQuality请求参数结构体
-    public struct DetectEnvAndSoundQualityRequest: TCRequestModel {
+    public struct DetectEnvAndSoundQualityRequest: TCRequest {
         /// 标注文本信息 ID
         public let textId: String
 
@@ -56,7 +56,7 @@ extension Vrs {
     }
 
     /// DetectEnvAndSoundQuality返回参数结构体
-    public struct DetectEnvAndSoundQualityResponse: TCResponseModel {
+    public struct DetectEnvAndSoundQualityResponse: TCResponse {
         /// 检测结果
         public let data: DetectionEnvAndSoundQualityRespData
 

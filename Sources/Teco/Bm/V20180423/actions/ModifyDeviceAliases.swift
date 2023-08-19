@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// ModifyDeviceAliases请求参数结构体
-    public struct ModifyDeviceAliasesRequest: TCRequestModel {
+    public struct ModifyDeviceAliasesRequest: TCRequest {
         /// 需要改名的设备与别名列表
         public let deviceAliases: [DeviceAlias]
 
@@ -34,7 +34,7 @@ extension Bm {
     }
 
     /// ModifyDeviceAliases返回参数结构体
-    public struct ModifyDeviceAliasesResponse: TCResponseModel {
+    public struct ModifyDeviceAliasesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

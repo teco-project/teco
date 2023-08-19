@@ -20,13 +20,13 @@ import TecoCore
 
 extension Bda {
     /// GetSummaryInfo请求参数结构体
-    public struct GetSummaryInfoRequest: TCRequestModel {
+    public struct GetSummaryInfoRequest: TCRequest {
         public init() {
         }
     }
 
     /// GetSummaryInfo返回参数结构体
-    public struct GetSummaryInfoResponse: TCResponseModel {
+    public struct GetSummaryInfoResponse: TCResponse {
         /// 人体库总数量。
         public let groupCount: UInt64
 

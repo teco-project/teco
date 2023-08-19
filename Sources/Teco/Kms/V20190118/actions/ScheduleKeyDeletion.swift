@@ -20,7 +20,7 @@ import TecoCore
 
 extension Kms {
     /// ScheduleKeyDeletion请求参数结构体
-    public struct ScheduleKeyDeletionRequest: TCRequestModel {
+    public struct ScheduleKeyDeletionRequest: TCRequest {
         /// CMK的唯一标志
         public let keyId: String
 
@@ -39,7 +39,7 @@ extension Kms {
     }
 
     /// ScheduleKeyDeletion返回参数结构体
-    public struct ScheduleKeyDeletionResponse: TCResponseModel {
+    public struct ScheduleKeyDeletionResponse: TCResponse {
         /// 计划删除执行时间
         public let deletionDate: UInt64
 

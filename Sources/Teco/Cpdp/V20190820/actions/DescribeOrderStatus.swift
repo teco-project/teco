@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// DescribeOrderStatus请求参数结构体
-    public struct DescribeOrderStatusRequest: TCRequestModel {
+    public struct DescribeOrderStatusRequest: TCRequest {
         /// 请求类型，此接口固定填：QueryOrderStatusReq
         public let requestType: String
 
@@ -109,7 +109,7 @@ extension Cpdp {
     }
 
     /// DescribeOrderStatus返回参数结构体
-    public struct DescribeOrderStatusResponse: TCResponseModel {
+    public struct DescribeOrderStatusResponse: TCResponse {
         /// 交易状态 （0：成功，1：失败，2：待确认, 5：待处理，6：处理中）
         public let orderStatus: String
 

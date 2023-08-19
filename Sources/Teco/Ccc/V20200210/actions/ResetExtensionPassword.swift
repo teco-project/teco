@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ccc {
     /// ResetExtensionPassword请求参数结构体
-    public struct ResetExtensionPasswordRequest: TCRequestModel {
+    public struct ResetExtensionPasswordRequest: TCRequest {
         /// TCCC 实例应用 ID
         public let sdkAppId: UInt64
 
@@ -39,7 +39,7 @@ extension Ccc {
     }
 
     /// ResetExtensionPassword返回参数结构体
-    public struct ResetExtensionPasswordResponse: TCResponseModel {
+    public struct ResetExtensionPasswordResponse: TCResponse {
         /// 重置后密码
         public let password: String
 

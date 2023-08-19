@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sms {
     /// ReportConversion请求参数结构体
-    public struct ReportConversionRequest: TCRequestModel {
+    public struct ReportConversionRequest: TCRequest {
         /// 短信应用ID。在 [短信控制台](https://console.cloud.tencent.com/smsv2/app-manage)  添加应用后生成的实际 SdkAppId，示例如1400006666。
         public let smsSdkAppId: String
 
@@ -44,7 +44,7 @@ extension Sms {
     }
 
     /// ReportConversion返回参数结构体
-    public struct ReportConversionResponse: TCResponseModel {
+    public struct ReportConversionResponse: TCResponse {
         /// 转化率上报响应包体。
         public let reportConversionStatus: ReportConversionStatus
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeVulScanInfo请求参数结构体
-    public struct DescribeVulScanInfoRequest: TCRequestModel {
+    public struct DescribeVulScanInfoRequest: TCRequest {
         /// 本地镜像漏洞扫描任务ID，无则返回最近一次的漏洞任务扫描
         public let localTaskID: Int64?
 
@@ -39,7 +39,7 @@ extension Tcss {
     }
 
     /// DescribeVulScanInfo返回参数结构体
-    public struct DescribeVulScanInfoResponse: TCResponseModel {
+    public struct DescribeVulScanInfoResponse: TCResponse {
         /// 本次扫描的本地镜像总数
         public let localImageScanCount: Int64
 

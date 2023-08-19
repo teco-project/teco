@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// AddEscapeWhiteList请求参数结构体
-    public struct AddEscapeWhiteListRequest: TCRequestModel {
+    public struct AddEscapeWhiteListRequest: TCRequest {
         /// 加白名单事件类型
         ///    ESCAPE_CGROUPS：利用cgroup机制逃逸
         ///    ESCAPE_TAMPER_SENSITIVE_FILE：篡改敏感文件逃逸
@@ -46,7 +46,7 @@ extension Tcss {
     }
 
     /// AddEscapeWhiteList返回参数结构体
-    public struct AddEscapeWhiteListResponse: TCResponseModel {
+    public struct AddEscapeWhiteListResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

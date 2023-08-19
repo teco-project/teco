@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// ImportOpenApi请求参数结构体
-    public struct ImportOpenApiRequest: TCRequestModel {
+    public struct ImportOpenApiRequest: TCRequest {
         /// API所在的服务唯一ID。
         public let serviceId: String
 
@@ -49,7 +49,7 @@ extension Apigateway {
     }
 
     /// ImportOpenApi返回参数结构体
-    public struct ImportOpenApiResponse: TCResponseModel {
+    public struct ImportOpenApiResponse: TCResponse {
         /// 导入OpenApi返回参数。
         public let result: CreateApiRspSet
 

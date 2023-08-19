@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Ckafka {
     /// DescribeTopicFlowRanking请求参数结构体
-    public struct DescribeTopicFlowRankingRequest: TCRequestModel {
+    public struct DescribeTopicFlowRankingRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -62,7 +62,7 @@ extension Ckafka {
     }
 
     /// DescribeTopicFlowRanking返回参数结构体
-    public struct DescribeTopicFlowRankingResponse: TCResponseModel {
+    public struct DescribeTopicFlowRankingResponse: TCResponse {
         /// 流量排行
         public let result: TopicFlowRankingResult
 

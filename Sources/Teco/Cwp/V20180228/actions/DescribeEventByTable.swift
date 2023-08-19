@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeEventByTable请求参数结构体
-    public struct DescribeEventByTableRequest: TCRequestModel {
+    public struct DescribeEventByTableRequest: TCRequest {
         /// 事件表名
         public let tableName: String
 
@@ -39,7 +39,7 @@ extension Cwp {
     }
 
     /// DescribeEventByTable返回参数结构体
-    public struct DescribeEventByTableResponse: TCResponseModel {
+    public struct DescribeEventByTableResponse: TCResponse {
         /// 告警类型，爆破bruteattack，高危命令bash，恶意文件malware，恶意请求risk_dns，本地提权privilege_escalation，反弹shell reverse_shell，内存马java_shell
         public let type: String
 

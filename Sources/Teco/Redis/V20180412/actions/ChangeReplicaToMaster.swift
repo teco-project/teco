@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// ChangeReplicaToMaster请求参数结构体
-    public struct ChangeReplicaToMasterRequest: TCRequestModel {
+    public struct ChangeReplicaToMasterRequest: TCRequest {
         /// 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Redis {
     }
 
     /// ChangeReplicaToMaster返回参数结构体
-    public struct ChangeReplicaToMasterResponse: TCResponseModel {
+    public struct ChangeReplicaToMasterResponse: TCResponse {
         /// 异步任务ID。
         public let taskId: Int64
 

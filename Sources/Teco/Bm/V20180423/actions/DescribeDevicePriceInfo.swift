@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// DescribeDevicePriceInfo请求参数结构体
-    public struct DescribeDevicePriceInfoRequest: TCRequestModel {
+    public struct DescribeDevicePriceInfoRequest: TCRequest {
         /// 需要查询的实例列表
         public let instanceIds: [String]
 
@@ -44,7 +44,7 @@ extension Bm {
     }
 
     /// DescribeDevicePriceInfo返回参数结构体
-    public struct DescribeDevicePriceInfoResponse: TCResponseModel {
+    public struct DescribeDevicePriceInfoResponse: TCResponse {
         /// 服务器价格信息列表
         public let devicePriceInfoSet: [DevicePriceInfo]
 

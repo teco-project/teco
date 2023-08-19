@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// FreezeOpsTasks请求参数结构体
-    public struct FreezeOpsTasksRequest: TCRequestModel {
+    public struct FreezeOpsTasksRequest: TCRequest {
         /// 任务列表
         public let tasks: [SimpleTaskInfo]
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// FreezeOpsTasks返回参数结构体
-    public struct FreezeOpsTasksResponse: TCResponseModel {
+    public struct FreezeOpsTasksResponse: TCResponse {
         /// 操作结果
         public let data: Bool
 

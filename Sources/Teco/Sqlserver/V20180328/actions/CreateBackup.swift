@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// CreateBackup请求参数结构体
-    public struct CreateBackupRequest: TCRequestModel {
+    public struct CreateBackupRequest: TCRequest {
         /// 备份策略(0-实例备份 1-多库备份)
         public let strategy: Int64?
 
@@ -49,7 +49,7 @@ extension Sqlserver {
     }
 
     /// CreateBackup返回参数结构体
-    public struct CreateBackupResponse: TCResponseModel {
+    public struct CreateBackupResponse: TCResponse {
         /// 异步任务ID
         public let flowId: Int64
 

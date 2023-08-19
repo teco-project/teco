@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DescribeBasicResourceUsage请求参数结构体
-    public struct DescribeBasicResourceUsageRequest: TCRequestModel {
+    public struct DescribeBasicResourceUsageRequest: TCRequest {
         /// 是否无视权限查询全租户的，默认 true。注：无论 true 还是 false，PackageSpaceUsed 和 ConsulInstanceCount  都是全租户的
         public let all: Bool?
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// DescribeBasicResourceUsage返回参数结构体
-    public struct DescribeBasicResourceUsageResponse: TCResponseModel {
+    public struct DescribeBasicResourceUsageResponse: TCResponse {
         /// TSF基本资源信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: OverviewBasicResourceUsage?

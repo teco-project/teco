@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// GetAlarmLog请求参数结构体
-    public struct GetAlarmLogRequest: TCRequestModel {
+    public struct GetAlarmLogRequest: TCRequest {
         /// 要查询的日志的起始时间，Unix时间戳，单位ms
         public let from: Int64
 
@@ -64,7 +64,7 @@ extension Cls {
     }
 
     /// GetAlarmLog返回参数结构体
-    public struct GetAlarmLogResponse: TCResponseModel {
+    public struct GetAlarmLogResponse: TCResponse {
         /// 加载后续内容的Context
         public let context: String
 

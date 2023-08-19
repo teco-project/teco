@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// CreateOIDCConfig请求参数结构体
-    public struct CreateOIDCConfigRequest: TCRequestModel {
+    public struct CreateOIDCConfigRequest: TCRequest {
         /// 身份提供商URL
         public let identityUrl: String
 
@@ -54,7 +54,7 @@ extension Cam {
     }
 
     /// CreateOIDCConfig返回参数结构体
-    public struct CreateOIDCConfigResponse: TCResponseModel {
+    public struct CreateOIDCConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

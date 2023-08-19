@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Iotvideo {
     /// DescribeCloudStoragePackageConsumeStats请求参数结构体
-    public struct DescribeCloudStoragePackageConsumeStatsRequest: TCRequestModel {
+    public struct DescribeCloudStoragePackageConsumeStatsRequest: TCRequest {
         /// 开始日期
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -47,7 +47,7 @@ extension Iotvideo {
     }
 
     /// DescribeCloudStoragePackageConsumeStats返回参数结构体
-    public struct DescribeCloudStoragePackageConsumeStatsResponse: TCResponseModel {
+    public struct DescribeCloudStoragePackageConsumeStatsResponse: TCResponse {
         /// 统计列表详情
         public let stats: [PackageConsumeStat]
 

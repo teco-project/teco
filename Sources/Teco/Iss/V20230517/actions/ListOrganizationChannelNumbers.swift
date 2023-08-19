@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// ListOrganizationChannelNumbers请求参数结构体
-    public struct ListOrganizationChannelNumbersRequest: TCRequestModel {
+    public struct ListOrganizationChannelNumbersRequest: TCRequest {
         /// 组织ID，json数组格式，最多一次支持10个组织
         public let organizationId: [String]
 
@@ -34,7 +34,7 @@ extension Iss {
     }
 
     /// 组织目录下的未添加到实时上云计划中的通道数量返回数据
-    public struct ListOrganizationChannelNumbersResponse: TCResponseModel {
+    public struct ListOrganizationChannelNumbersResponse: TCResponse {
         private let data: Wrapped
 
         private struct Wrapped: Codable {

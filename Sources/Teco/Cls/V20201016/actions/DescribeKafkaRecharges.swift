@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// DescribeKafkaRecharges请求参数结构体
-    public struct DescribeKafkaRechargesRequest: TCRequestModel {
+    public struct DescribeKafkaRechargesRequest: TCRequest {
         /// 日志主题 ID
         public let topicId: String
 
@@ -44,7 +44,7 @@ extension Cls {
     }
 
     /// DescribeKafkaRecharges返回参数结构体
-    public struct DescribeKafkaRechargesResponse: TCResponseModel {
+    public struct DescribeKafkaRechargesResponse: TCResponse {
         /// KafkaRechargeInfo 信息列表
         public let infos: [KafkaRechargeInfo]
 

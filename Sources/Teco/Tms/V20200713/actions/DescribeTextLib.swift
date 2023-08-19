@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tms {
     /// DescribeTextLib请求参数结构体
-    public struct DescribeTextLibRequest: TCRequestModel {
+    public struct DescribeTextLibRequest: TCRequest {
         /// 内容类型 text: 1; image: 2; audio: 3; video: 4
         public let strategyType: Int64
 
@@ -34,7 +34,7 @@ extension Tms {
     }
 
     /// DescribeTextLib返回参数结构体
-    public struct DescribeTextLibResponse: TCResponseModel {
+    public struct DescribeTextLibResponse: TCResponse {
         /// 文本库id和name列表
         public let textLib: [TextLib]
 

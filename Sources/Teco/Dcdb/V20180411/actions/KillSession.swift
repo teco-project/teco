@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dcdb {
     /// KillSession请求参数结构体
-    public struct KillSessionRequest: TCRequestModel {
+    public struct KillSessionRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -49,7 +49,7 @@ extension Dcdb {
     }
 
     /// KillSession返回参数结构体
-    public struct KillSessionResponse: TCResponseModel {
+    public struct KillSessionResponse: TCResponse {
         /// 任务ID
         public let taskId: Int64
 

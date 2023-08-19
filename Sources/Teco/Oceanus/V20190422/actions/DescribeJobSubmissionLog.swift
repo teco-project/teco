@@ -20,7 +20,7 @@ import TecoCore
 
 extension Oceanus {
     /// DescribeJobSubmissionLog请求参数结构体
-    public struct DescribeJobSubmissionLogRequest: TCRequestModel {
+    public struct DescribeJobSubmissionLogRequest: TCRequest {
         /// 作业ID，例如：cql-6v1jkxrn
         public let jobId: String
 
@@ -69,7 +69,7 @@ extension Oceanus {
     }
 
     /// DescribeJobSubmissionLog返回参数结构体
-    public struct DescribeJobSubmissionLogResponse: TCResponseModel {
+    public struct DescribeJobSubmissionLogResponse: TCResponse {
         /// 日志搜索的游标，需要搜索更多时透传这个值
         public let cursor: String
 

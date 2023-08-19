@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeDataSourceWithoutInfo请求参数结构体
-    public struct DescribeDataSourceWithoutInfoRequest: TCRequestModel {
+    public struct DescribeDataSourceWithoutInfoRequest: TCRequest {
         /// 1
         public let orderFields: [OrderField]?
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// DescribeDataSourceWithoutInfo返回参数结构体
-    public struct DescribeDataSourceWithoutInfoResponse: TCResponseModel {
+    public struct DescribeDataSourceWithoutInfoResponse: TCResponse {
         /// 1
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [DataSourceInfo]?

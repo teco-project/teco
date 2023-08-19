@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfs {
     /// UpdateCfsFileSystemSizeLimit请求参数结构体
-    public struct UpdateCfsFileSystemSizeLimitRequest: TCRequestModel {
+    public struct UpdateCfsFileSystemSizeLimitRequest: TCRequest {
         /// 文件系统容量限制大小，输入范围0-1073741824, 单位为GB；其中输入值为0时，表示不限制文件系统容量。
         public let fsLimit: UInt64
 
@@ -39,7 +39,7 @@ extension Cfs {
     }
 
     /// UpdateCfsFileSystemSizeLimit返回参数结构体
-    public struct UpdateCfsFileSystemSizeLimitResponse: TCResponseModel {
+    public struct UpdateCfsFileSystemSizeLimitResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trp {
     /// DeleteCodeBatch请求参数结构体
-    public struct DeleteCodeBatchRequest: TCRequestModel {
+    public struct DeleteCodeBatchRequest: TCRequest {
         /// 企业ID
         public let corpId: UInt64?
 
@@ -39,7 +39,7 @@ extension Trp {
     }
 
     /// DeleteCodeBatch返回参数结构体
-    public struct DeleteCodeBatchResponse: TCResponseModel {
+    public struct DeleteCodeBatchResponse: TCResponse {
         /// 批次ID
         public let batchId: String
 

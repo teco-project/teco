@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// ChannelCreateFlowGroupByFiles请求参数结构体
-    public struct ChannelCreateFlowGroupByFilesRequest: TCRequestModel {
+    public struct ChannelCreateFlowGroupByFilesRequest: TCRequest {
         /// 每个子合同的发起所需的信息，数量限制2-50
         public let flowFileInfos: [FlowFileInfo]
 
@@ -65,7 +65,7 @@ extension Essbasic {
     }
 
     /// ChannelCreateFlowGroupByFiles返回参数结构体
-    public struct ChannelCreateFlowGroupByFilesResponse: TCResponseModel {
+    public struct ChannelCreateFlowGroupByFilesResponse: TCResponse {
         /// 合同组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowGroupId: String?

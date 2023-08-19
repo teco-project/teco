@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// DeleteRoom请求参数结构体
-    public struct DeleteRoomRequest: TCRequestModel {
+    public struct DeleteRoomRequest: TCRequest {
         /// 房间ID。
         public let roomId: UInt64
 
@@ -34,7 +34,7 @@ extension Lcic {
     }
 
     /// DeleteRoom返回参数结构体
-    public struct DeleteRoomResponse: TCResponseModel {
+    public struct DeleteRoomResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

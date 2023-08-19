@@ -20,7 +20,7 @@ import TecoCore
 
 extension Pts {
     /// DescribeLabelValues请求参数结构体
-    public struct DescribeLabelValuesRequest: TCRequestModel {
+    public struct DescribeLabelValuesRequest: TCRequest {
         /// 任务ID
         public let jobId: String
 
@@ -54,7 +54,7 @@ extension Pts {
     }
 
     /// DescribeLabelValues返回参数结构体
-    public struct DescribeLabelValuesResponse: TCResponseModel {
+    public struct DescribeLabelValuesResponse: TCResponse {
         /// 标签值数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let labelValueSet: [String]?

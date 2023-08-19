@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeRouteTableConflicts请求参数结构体
-    public struct DescribeRouteTableConflictsRequest: TCRequestModel {
+    public struct DescribeRouteTableConflictsRequest: TCRequest {
         /// 路由表CIDR
         public let routeTableCidrBlock: String
 
@@ -39,7 +39,7 @@ extension Tke {
     }
 
     /// DescribeRouteTableConflicts返回参数结构体
-    public struct DescribeRouteTableConflictsResponse: TCResponseModel {
+    public struct DescribeRouteTableConflictsResponse: TCResponse {
         /// 路由表是否冲突。
         public let hasConflict: Bool
 

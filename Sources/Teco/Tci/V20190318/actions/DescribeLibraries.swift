@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tci {
     /// DescribeLibraries请求参数结构体
-    public struct DescribeLibrariesRequest: TCRequestModel {
+    public struct DescribeLibrariesRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeLibraries返回参数结构体
-    public struct DescribeLibrariesResponse: TCResponseModel {
+    public struct DescribeLibrariesResponse: TCResponse {
         /// 人员库列表
         public let librarySet: [Library]
 

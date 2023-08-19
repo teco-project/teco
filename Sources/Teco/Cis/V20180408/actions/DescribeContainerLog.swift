@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cis {
     /// DescribeContainerLog请求参数结构体
-    public struct DescribeContainerLogRequest: TCRequestModel {
+    public struct DescribeContainerLogRequest: TCRequest {
         /// 容器实例名称
         public let instanceName: String
 
@@ -49,7 +49,7 @@ extension Cis {
     }
 
     /// DescribeContainerLog返回参数结构体
-    public struct DescribeContainerLogResponse: TCResponseModel {
+    public struct DescribeContainerLogResponse: TCResponse {
         /// 容器日志数组
         public let containerLogList: [ContainerLog]
 

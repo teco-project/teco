@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// RestartModelAccelerateTask请求参数结构体
-    public struct RestartModelAccelerateTaskRequest: TCRequestModel {
+    public struct RestartModelAccelerateTaskRequest: TCRequest {
         /// 模型加速任务ID
         public let modelAccTaskId: String
 
@@ -129,7 +129,7 @@ extension Tione {
     }
 
     /// RestartModelAccelerateTask返回参数结构体
-    public struct RestartModelAccelerateTaskResponse: TCResponseModel {
+    public struct RestartModelAccelerateTaskResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

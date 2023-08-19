@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DeleteFolder请求参数结构体
-    public struct DeleteFolderRequest: TCRequestModel {
+    public struct DeleteFolderRequest: TCRequest {
         /// 项目Id
         public let projectId: String
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// DeleteFolder返回参数结构体
-    public struct DeleteFolderResponse: TCResponseModel {
+    public struct DeleteFolderResponse: TCResponse {
         /// true代表删除成功，false代表删除失败
         public let data: Bool
 

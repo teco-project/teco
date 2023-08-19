@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// InquiryPriceRunInstances请求参数结构体
-    public struct InquiryPriceRunInstancesRequest: TCRequestModel {
+    public struct InquiryPriceRunInstancesRequest: TCRequest {
         /// 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目等属性。
         ///  **注：如果您不指定LaunchTemplate参数，则Placement为必选参数。若同时传递Placement和LaunchTemplate，则默认覆盖LaunchTemplate中对应的Placement的值。**
         public let placement: Placement
@@ -154,7 +154,7 @@ extension Cvm {
     }
 
     /// InquiryPriceRunInstances返回参数结构体
-    public struct InquiryPriceRunInstancesResponse: TCResponseModel {
+    public struct InquiryPriceRunInstancesResponse: TCResponse {
         /// 该参数表示对应配置实例的价格。
         public let price: Price
 

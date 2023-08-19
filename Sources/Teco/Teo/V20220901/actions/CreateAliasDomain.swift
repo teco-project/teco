@@ -20,7 +20,7 @@ import TecoCore
 
 extension Teo {
     /// CreateAliasDomain请求参数结构体
-    public struct CreateAliasDomainRequest: TCRequestModel {
+    public struct CreateAliasDomainRequest: TCRequest {
         /// 站点 ID。
         public let zoneId: String
 
@@ -57,7 +57,7 @@ extension Teo {
     }
 
     /// CreateAliasDomain返回参数结构体
-    public struct CreateAliasDomainResponse: TCResponseModel {
+    public struct CreateAliasDomainResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cms {
     /// DeleteLibSamples请求参数结构体
-    public struct DeleteLibSamplesRequest: TCRequestModel {
+    public struct DeleteLibSamplesRequest: TCRequest {
         /// 关键词ID列表
         public let sampleIDs: [String]
 
@@ -44,7 +44,7 @@ extension Cms {
     }
 
     /// DeleteLibSamples返回参数结构体
-    public struct DeleteLibSamplesResponse: TCResponseModel {
+    public struct DeleteLibSamplesResponse: TCResponse {
         /// 删除成功的数量
         public let count: Int64
 

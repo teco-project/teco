@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// BatchRunOpsTask请求参数结构体
-    public struct BatchRunOpsTaskRequest: TCRequestModel {
+    public struct BatchRunOpsTaskRequest: TCRequest {
         /// 项目id
         public let projectId: String
 
@@ -44,7 +44,7 @@ extension Wedata {
     }
 
     /// BatchRunOpsTask返回参数结构体
-    public struct BatchRunOpsTaskResponse: TCResponseModel {
+    public struct BatchRunOpsTaskResponse: TCResponse {
         /// 操作结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: Bool?

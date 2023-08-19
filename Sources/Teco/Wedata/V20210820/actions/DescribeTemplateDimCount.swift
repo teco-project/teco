@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeTemplateDimCount请求参数结构体
-    public struct DescribeTemplateDimCountRequest: TCRequestModel {
+    public struct DescribeTemplateDimCountRequest: TCRequest {
         /// 模版类型
         public let type: UInt64?
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// DescribeTemplateDimCount返回参数结构体
-    public struct DescribeTemplateDimCountResponse: TCResponseModel {
+    public struct DescribeTemplateDimCountResponse: TCResponse {
         /// 维度统计结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [DimensionCount]?

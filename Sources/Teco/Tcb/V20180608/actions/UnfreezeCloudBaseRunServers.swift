@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// UnfreezeCloudBaseRunServers请求参数结构体
-    public struct UnfreezeCloudBaseRunServersRequest: TCRequestModel {
+    public struct UnfreezeCloudBaseRunServersRequest: TCRequest {
         /// 环境ID
         public let envId: String
 
@@ -39,7 +39,7 @@ extension Tcb {
     }
 
     /// UnfreezeCloudBaseRunServers返回参数结构体
-    public struct UnfreezeCloudBaseRunServersResponse: TCResponseModel {
+    public struct UnfreezeCloudBaseRunServersResponse: TCResponse {
         /// 批量执行结果
         /// 成功：succ
         /// 失败：fail

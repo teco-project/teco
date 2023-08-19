@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// ModifyUser请求参数结构体
-    public struct ModifyUserRequest: TCRequestModel {
+    public struct ModifyUserRequest: TCRequest {
         /// 用户Id，和CAM侧Uin匹配
         public let userId: String
 
@@ -39,7 +39,7 @@ extension Dlc {
     }
 
     /// ModifyUser返回参数结构体
-    public struct ModifyUserResponse: TCResponseModel {
+    public struct ModifyUserResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

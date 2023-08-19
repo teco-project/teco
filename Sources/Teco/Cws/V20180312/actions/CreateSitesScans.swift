@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cws {
     /// CreateSitesScans请求参数结构体
-    public struct CreateSitesScansRequest: TCRequestModel {
+    public struct CreateSitesScansRequest: TCRequest {
         /// 站点的ID列表
         public let siteIds: [UInt64]
 
@@ -44,7 +44,7 @@ extension Cws {
     }
 
     /// CreateSitesScans返回参数结构体
-    public struct CreateSitesScansResponse: TCResponseModel {
+    public struct CreateSitesScansResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

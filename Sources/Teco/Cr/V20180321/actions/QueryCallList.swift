@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cr {
     /// QueryCallList请求参数结构体
-    public struct QueryCallListRequest: TCRequestModel {
+    public struct QueryCallListRequest: TCRequest {
         /// 模块名。默认值（固定）：AiApi
         public let module: String
 
@@ -64,7 +64,7 @@ extension Cr {
     }
 
     /// QueryCallList返回参数结构体
-    public struct QueryCallListResponse: TCResponseModel {
+    public struct QueryCallListResponse: TCResponse {
         /// 任务作业状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let callList: [CallInfo]?

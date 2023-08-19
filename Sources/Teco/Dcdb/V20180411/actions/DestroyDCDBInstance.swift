@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dcdb {
     /// DestroyDCDBInstance请求参数结构体
-    public struct DestroyDCDBInstanceRequest: TCRequestModel {
+    public struct DestroyDCDBInstanceRequest: TCRequest {
         /// 实例 ID，格式如：tdsqlshard-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Dcdb {
     }
 
     /// DestroyDCDBInstance返回参数结构体
-    public struct DestroyDCDBInstanceResponse: TCResponseModel {
+    public struct DestroyDCDBInstanceResponse: TCResponse {
         /// 实例 ID，与入参InstanceId一致。
         public let instanceId: String
 

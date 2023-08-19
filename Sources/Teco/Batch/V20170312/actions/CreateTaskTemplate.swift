@@ -20,7 +20,7 @@ import TecoCore
 
 extension Batch {
     /// CreateTaskTemplate请求参数结构体
-    public struct CreateTaskTemplateRequest: TCRequestModel {
+    public struct CreateTaskTemplateRequest: TCRequest {
         /// 任务模板名称
         public let taskTemplateName: String
 
@@ -49,7 +49,7 @@ extension Batch {
     }
 
     /// CreateTaskTemplate返回参数结构体
-    public struct CreateTaskTemplateResponse: TCResponseModel {
+    public struct CreateTaskTemplateResponse: TCResponse {
         /// 任务模板ID
         public let taskTemplateId: String
 

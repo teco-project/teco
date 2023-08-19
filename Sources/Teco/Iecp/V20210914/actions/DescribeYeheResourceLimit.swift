@@ -20,13 +20,13 @@ import TecoCore
 
 extension Iecp {
     /// DescribeYeheResourceLimit请求参数结构体
-    public struct DescribeYeheResourceLimitRequest: TCRequestModel {
+    public struct DescribeYeheResourceLimitRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeYeheResourceLimit返回参数结构体
-    public struct DescribeYeheResourceLimitResponse: TCResponseModel {
+    public struct DescribeYeheResourceLimitResponse: TCResponse {
         /// 用户父账号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let uin: String?

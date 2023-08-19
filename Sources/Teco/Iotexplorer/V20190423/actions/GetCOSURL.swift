@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotexplorer {
     /// GetCOSURL请求参数结构体
-    public struct GetCOSURLRequest: TCRequestModel {
+    public struct GetCOSURLRequest: TCRequest {
         /// 产品ID
         public let productID: String
 
@@ -44,7 +44,7 @@ extension Iotexplorer {
     }
 
     /// GetCOSURL返回参数结构体
-    public struct GetCOSURLResponse: TCResponseModel {
+    public struct GetCOSURLResponse: TCResponse {
         /// 固件URL
         public let url: String
 

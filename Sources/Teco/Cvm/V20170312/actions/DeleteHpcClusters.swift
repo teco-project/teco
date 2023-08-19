@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// DeleteHpcClusters请求参数结构体
-    public struct DeleteHpcClustersRequest: TCRequestModel {
+    public struct DeleteHpcClustersRequest: TCRequest {
         /// 高性能计算集群ID列表。
         public let hpcClusterIds: [String]
 
@@ -34,7 +34,7 @@ extension Cvm {
     }
 
     /// DeleteHpcClusters返回参数结构体
-    public struct DeleteHpcClustersResponse: TCResponseModel {
+    public struct DeleteHpcClustersResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

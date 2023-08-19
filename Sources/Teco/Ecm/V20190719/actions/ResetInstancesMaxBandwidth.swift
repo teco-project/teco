@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// ResetInstancesMaxBandwidth请求参数结构体
-    public struct ResetInstancesMaxBandwidthRequest: TCRequestModel {
+    public struct ResetInstancesMaxBandwidthRequest: TCRequest {
         /// 待重置带宽上限的实例ID列表。在单次请求的过程中，单个region下的请求实例数上限为100。
         public let instanceIdSet: [String]
 
@@ -44,7 +44,7 @@ extension Ecm {
     }
 
     /// ResetInstancesMaxBandwidth返回参数结构体
-    public struct ResetInstancesMaxBandwidthResponse: TCResponseModel {
+    public struct ResetInstancesMaxBandwidthResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

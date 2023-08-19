@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ds {
     /// DeleteAccount请求参数结构体
-    public struct DeleteAccountRequest: TCRequestModel {
+    public struct DeleteAccountRequest: TCRequest {
         /// 模块名AccountMng
         public let module: String
 
@@ -44,7 +44,7 @@ extension Ds {
     }
 
     /// DeleteAccount返回参数结构体
-    public struct DeleteAccountResponse: TCResponseModel {
+    public struct DeleteAccountResponse: TCResponse {
         /// 删除成功帐号ID列表
         public let delSuccessList: [String]
 

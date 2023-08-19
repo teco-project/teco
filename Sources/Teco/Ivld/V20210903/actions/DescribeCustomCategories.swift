@@ -20,13 +20,13 @@ import TecoCore
 
 extension Ivld {
     /// DescribeCustomCategories请求参数结构体
-    public struct DescribeCustomCategoriesRequest: TCRequestModel {
+    public struct DescribeCustomCategoriesRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeCustomCategories返回参数结构体
-    public struct DescribeCustomCategoriesResponse: TCResponseModel {
+    public struct DescribeCustomCategoriesResponse: TCResponse {
         /// 自定义人物类型数组
         public let categorySet: [CustomCategory]
 

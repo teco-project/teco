@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// DescribeSwitchLists请求参数结构体
-    public struct DescribeSwitchListsRequest: TCRequestModel {
+    public struct DescribeSwitchListsRequest: TCRequest {
         /// 防火墙状态  0: 关闭，1：开启
         public let status: Int64?
 
@@ -69,7 +69,7 @@ extension Cfw {
     }
 
     /// DescribeSwitchLists返回参数结构体
-    public struct DescribeSwitchListsResponse: TCResponseModel {
+    public struct DescribeSwitchListsResponse: TCResponse {
         /// 总条数
         public let total: UInt64
 

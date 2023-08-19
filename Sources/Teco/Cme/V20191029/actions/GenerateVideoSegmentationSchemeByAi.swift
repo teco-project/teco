@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cme {
     /// GenerateVideoSegmentationSchemeByAi请求参数结构体
-    public struct GenerateVideoSegmentationSchemeByAiRequest: TCRequestModel {
+    public struct GenerateVideoSegmentationSchemeByAiRequest: TCRequest {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
         public let platform: String
 
@@ -44,7 +44,7 @@ extension Cme {
     }
 
     /// GenerateVideoSegmentationSchemeByAi返回参数结构体
-    public struct GenerateVideoSegmentationSchemeByAiResponse: TCResponseModel {
+    public struct GenerateVideoSegmentationSchemeByAiResponse: TCResponse {
         /// 视频智能拆条任务 Id 。
         public let taskId: String
 

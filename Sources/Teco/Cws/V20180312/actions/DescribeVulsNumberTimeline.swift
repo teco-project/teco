@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cws {
     /// DescribeVulsNumberTimeline请求参数结构体
-    public struct DescribeVulsNumberTimelineRequest: TCRequestModel {
+    public struct DescribeVulsNumberTimelineRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeVulsNumberTimeline返回参数结构体
-    public struct DescribeVulsNumberTimelineResponse: TCResponseModel {
+    public struct DescribeVulsNumberTimelineResponse: TCResponse {
         /// 统计数据记录数量。
         public let totalCount: UInt64
 

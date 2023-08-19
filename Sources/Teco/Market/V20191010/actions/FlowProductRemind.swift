@@ -20,7 +20,7 @@ import TecoCore
 
 extension Market {
     /// FlowProductRemind请求参数结构体
-    public struct FlowProductRemindRequest: TCRequestModel {
+    public struct FlowProductRemindRequest: TCRequest {
         /// 服务商uin
         public let providerUin: String
 
@@ -59,7 +59,7 @@ extension Market {
     }
 
     /// FlowProductRemind返回参数结构体
-    public struct FlowProductRemindResponse: TCResponseModel {
+    public struct FlowProductRemindResponse: TCResponse {
         /// 是否成功
         public let success: String
 

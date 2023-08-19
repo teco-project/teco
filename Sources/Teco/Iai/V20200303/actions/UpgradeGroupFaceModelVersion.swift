@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iai {
     /// UpgradeGroupFaceModelVersion请求参数结构体
-    public struct UpgradeGroupFaceModelVersionRequest: TCRequestModel {
+    public struct UpgradeGroupFaceModelVersionRequest: TCRequest {
         /// 需要升级的人员库ID。
         public let groupId: String
 
@@ -39,7 +39,7 @@ extension Iai {
     }
 
     /// UpgradeGroupFaceModelVersion返回参数结构体
-    public struct UpgradeGroupFaceModelVersionResponse: TCResponseModel {
+    public struct UpgradeGroupFaceModelVersionResponse: TCResponse {
         /// 升级任务ID，用于查询、获取升级的进度和结果。
         public let jobId: String
 

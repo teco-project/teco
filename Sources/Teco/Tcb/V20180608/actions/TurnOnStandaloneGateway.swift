@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// TurnOnStandaloneGateway请求参数结构体
-    public struct TurnOnStandaloneGatewayRequest: TCRequestModel {
+    public struct TurnOnStandaloneGatewayRequest: TCRequest {
         /// 环境ID
         public let envId: String
 
@@ -44,7 +44,7 @@ extension Tcb {
     }
 
     /// TurnOnStandaloneGateway返回参数结构体
-    public struct TurnOnStandaloneGatewayResponse: TCResponseModel {
+    public struct TurnOnStandaloneGatewayResponse: TCResponse {
         /// 小租户网关开启状态
         public let status: String
 

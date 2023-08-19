@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// ModifyModelServicePartialConfig请求参数结构体
-    public struct ModifyModelServicePartialConfigRequest: TCRequestModel {
+    public struct ModifyModelServicePartialConfigRequest: TCRequest {
         /// 在线推理服务Id，需已存在
         public let serviceId: String
 
@@ -44,7 +44,7 @@ extension Tione {
     }
 
     /// ModifyModelServicePartialConfig返回参数结构体
-    public struct ModifyModelServicePartialConfigResponse: TCResponseModel {
+    public struct ModifyModelServicePartialConfigResponse: TCResponse {
         /// 被修改后的服务配置
         public let service: Service
 

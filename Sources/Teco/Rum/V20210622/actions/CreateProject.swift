@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// CreateProject请求参数结构体
-    public struct CreateProjectRequest: TCRequestModel {
+    public struct CreateProjectRequest: TCRequest {
         /// 创建的项目名(不为空且最长为 200)
         public let name: String
 
@@ -69,7 +69,7 @@ extension Rum {
     }
 
     /// CreateProject返回参数结构体
-    public struct CreateProjectResponse: TCResponseModel {
+    public struct CreateProjectResponse: TCResponse {
         /// 项目 id
         public let id: UInt64
 

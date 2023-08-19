@@ -20,7 +20,7 @@ import TecoCore
 
 extension Teo {
     /// ModifyAccelerationDomainStatuses请求参数结构体
-    public struct ModifyAccelerationDomainStatusesRequest: TCRequestModel {
+    public struct ModifyAccelerationDomainStatusesRequest: TCRequest {
         /// 加速域名所属站点ID。
         public let zoneId: String
 
@@ -54,7 +54,7 @@ extension Teo {
     }
 
     /// ModifyAccelerationDomainStatuses返回参数结构体
-    public struct ModifyAccelerationDomainStatusesResponse: TCResponseModel {
+    public struct ModifyAccelerationDomainStatusesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

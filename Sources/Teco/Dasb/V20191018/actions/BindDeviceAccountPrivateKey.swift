@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dasb {
     /// BindDeviceAccountPrivateKey请求参数结构体
-    public struct BindDeviceAccountPrivateKeyRequest: TCRequestModel {
+    public struct BindDeviceAccountPrivateKeyRequest: TCRequest {
         /// 主机账号ID
         public let id: UInt64
 
@@ -44,7 +44,7 @@ extension Dasb {
     }
 
     /// BindDeviceAccountPrivateKey返回参数结构体
-    public struct BindDeviceAccountPrivateKeyResponse: TCResponseModel {
+    public struct BindDeviceAccountPrivateKeyResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

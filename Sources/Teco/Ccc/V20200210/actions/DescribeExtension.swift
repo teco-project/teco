@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ccc {
     /// DescribeExtension请求参数结构体
-    public struct DescribeExtensionRequest: TCRequestModel {
+    public struct DescribeExtensionRequest: TCRequest {
         /// TCCC 实例应用 ID
         public let sdkAppId: UInt64
 
@@ -39,7 +39,7 @@ extension Ccc {
     }
 
     /// DescribeExtension返回参数结构体
-    public struct DescribeExtensionResponse: TCResponseModel {
+    public struct DescribeExtensionResponse: TCResponse {
         /// 分机号
         public let extensionId: String
 

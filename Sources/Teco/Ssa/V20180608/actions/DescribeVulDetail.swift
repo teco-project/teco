@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssa {
     /// DescribeVulDetail请求参数结构体
-    public struct DescribeVulDetailRequest: TCRequestModel {
+    public struct DescribeVulDetailRequest: TCRequest {
         /// 漏洞唯一标识符
         public let uniqId: String
 
@@ -39,7 +39,7 @@ extension Ssa {
     }
 
     /// DescribeVulDetail返回参数结构体
-    public struct DescribeVulDetailResponse: TCResponseModel {
+    public struct DescribeVulDetailResponse: TCResponse {
         /// 漏洞类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vulType: Int64?

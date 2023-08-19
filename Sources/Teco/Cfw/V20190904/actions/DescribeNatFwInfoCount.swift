@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cfw {
     /// DescribeNatFwInfoCount请求参数结构体
-    public struct DescribeNatFwInfoCountRequest: TCRequestModel {
+    public struct DescribeNatFwInfoCountRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeNatFwInfoCount返回参数结构体
-    public struct DescribeNatFwInfoCountResponse: TCResponseModel {
+    public struct DescribeNatFwInfoCountResponse: TCResponse {
         /// 返回参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let returnMsg: String?

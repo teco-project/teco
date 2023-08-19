@@ -20,7 +20,7 @@ import TecoCore
 
 extension Waf {
     /// DeleteSession请求参数结构体
-    public struct DeleteSessionRequest: TCRequestModel {
+    public struct DeleteSessionRequest: TCRequest {
         /// 域名
         public let domain: String
 
@@ -39,7 +39,7 @@ extension Waf {
     }
 
     /// DeleteSession返回参数结构体
-    public struct DeleteSessionResponse: TCResponseModel {
+    public struct DeleteSessionResponse: TCResponse {
         /// 结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: String?

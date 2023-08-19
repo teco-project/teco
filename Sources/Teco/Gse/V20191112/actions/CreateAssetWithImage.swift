@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// CreateAssetWithImage请求参数结构体
-    public struct CreateAssetWithImageRequest: TCRequestModel {
+    public struct CreateAssetWithImageRequest: TCRequest {
         /// 生成包名字，最小长度为1，最大长度为64
         public let assetName: String
 
@@ -74,7 +74,7 @@ extension Gse {
     }
 
     /// CreateAssetWithImage返回参数结构体
-    public struct CreateAssetWithImageResponse: TCResponseModel {
+    public struct CreateAssetWithImageResponse: TCResponse {
         /// 生成包ID
         public let assetId: String
 

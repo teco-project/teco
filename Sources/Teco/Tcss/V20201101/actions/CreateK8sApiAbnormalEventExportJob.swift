@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// CreateK8sApiAbnormalEventExportJob请求参数结构体
-    public struct CreateK8sApiAbnormalEventExportJobRequest: TCRequestModel {
+    public struct CreateK8sApiAbnormalEventExportJobRequest: TCRequest {
         /// 过滤条件。
         /// - TimeRange - string -是否必填: 否 - 时间范围筛选 ["2022-03-31 16:55:00", "2022-03-31 17:00:00"]
         /// - MatchRules - string  - 是否必填: 否 -命中规则筛选
@@ -57,7 +57,7 @@ extension Tcss {
     }
 
     /// CreateK8sApiAbnormalEventExportJob返回参数结构体
-    public struct CreateK8sApiAbnormalEventExportJobResponse: TCResponseModel {
+    public struct CreateK8sApiAbnormalEventExportJobResponse: TCResponse {
         /// 导出任务ID，前端拿着任务ID查询任务进度
         public let jobId: String
 

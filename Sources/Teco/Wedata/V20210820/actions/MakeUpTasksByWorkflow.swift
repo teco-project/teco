@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// MakeUpTasksByWorkflow请求参数结构体
-    public struct MakeUpTasksByWorkflowRequest: TCRequestModel {
+    public struct MakeUpTasksByWorkflowRequest: TCRequest {
         /// 工作流id
         public let workflowId: String
 
@@ -49,7 +49,7 @@ extension Wedata {
     }
 
     /// MakeUpTasksByWorkflow返回参数结构体
-    public struct MakeUpTasksByWorkflowResponse: TCResponseModel {
+    public struct MakeUpTasksByWorkflowResponse: TCResponse {
         /// 补数据结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: BatchOperationOpsDto?

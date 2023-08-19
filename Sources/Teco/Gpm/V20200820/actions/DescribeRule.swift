@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gpm {
     /// DescribeRule请求参数结构体
-    public struct DescribeRuleRequest: TCRequestModel {
+    public struct DescribeRuleRequest: TCRequest {
         /// 规则code
         public let ruleCode: String
 
@@ -34,7 +34,7 @@ extension Gpm {
     }
 
     /// DescribeRule返回参数结构体
-    public struct DescribeRuleResponse: TCResponseModel {
+    public struct DescribeRuleResponse: TCResponse {
         /// 规则信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleInfo: RuleInfo?

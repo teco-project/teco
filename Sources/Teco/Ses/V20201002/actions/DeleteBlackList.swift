@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ses {
     /// DeleteBlackList请求参数结构体
-    public struct DeleteBlackListRequest: TCRequestModel {
+    public struct DeleteBlackListRequest: TCRequest {
         /// 需要清除的黑名单邮箱列表，数组长度至少为1
         public let emailAddressList: [String]
 
@@ -34,7 +34,7 @@ extension Ses {
     }
 
     /// DeleteBlackList返回参数结构体
-    public struct DeleteBlackListResponse: TCResponseModel {
+    public struct DeleteBlackListResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

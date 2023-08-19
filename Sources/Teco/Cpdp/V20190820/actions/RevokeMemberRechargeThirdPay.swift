@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// RevokeMemberRechargeThirdPay请求参数结构体
-    public struct RevokeMemberRechargeThirdPayRequest: TCRequestModel {
+    public struct RevokeMemberRechargeThirdPayRequest: TCRequest {
         /// STRING(52)，原充值的前置流水号
         public let oldFillFrontSeqNo: String
 
@@ -89,7 +89,7 @@ extension Cpdp {
     }
 
     /// RevokeMemberRechargeThirdPay返回参数结构体
-    public struct RevokeMemberRechargeThirdPayResponse: TCResponseModel {
+    public struct RevokeMemberRechargeThirdPayResponse: TCResponse {
         /// String(20)，返回码
         public let txnReturnCode: String
 

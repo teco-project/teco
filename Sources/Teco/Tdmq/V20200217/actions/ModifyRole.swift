@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// ModifyRole请求参数结构体
-    public struct ModifyRoleRequest: TCRequestModel {
+    public struct ModifyRoleRequest: TCRequest {
         /// 角色名称，不支持中字以及除了短线和下划线外的特殊字符且长度必须大于0且小等于32。
         public let roleName: String
 
@@ -44,7 +44,7 @@ extension Tdmq {
     }
 
     /// ModifyRole返回参数结构体
-    public struct ModifyRoleResponse: TCResponseModel {
+    public struct ModifyRoleResponse: TCResponse {
         /// 角色名称
         public let roleName: String
 

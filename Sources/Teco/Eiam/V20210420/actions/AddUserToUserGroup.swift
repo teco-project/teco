@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eiam {
     /// AddUserToUserGroup请求参数结构体
-    public struct AddUserToUserGroupRequest: TCRequestModel {
+    public struct AddUserToUserGroupRequest: TCRequest {
         /// 加入用户组的用户ID列表。
         public let userIds: [String]
 
@@ -39,7 +39,7 @@ extension Eiam {
     }
 
     /// AddUserToUserGroup返回参数结构体
-    public struct AddUserToUserGroupResponse: TCResponseModel {
+    public struct AddUserToUserGroupResponse: TCResponse {
         /// 未成功加入用户组的用户ID列表信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failedItems: [String]?

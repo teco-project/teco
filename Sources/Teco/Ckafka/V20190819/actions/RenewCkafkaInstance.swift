@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// RenewCkafkaInstance请求参数结构体
-    public struct RenewCkafkaInstanceRequest: TCRequestModel {
+    public struct RenewCkafkaInstanceRequest: TCRequest {
         /// 实例id
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Ckafka {
     }
 
     /// RenewCkafkaInstance接口出参bigDealIds
-    public struct RenewCkafkaInstanceResponse: TCResponseModel {
+    public struct RenewCkafkaInstanceResponse: TCResponse {
         private let data: Wrapped
 
         private struct Wrapped: Codable {

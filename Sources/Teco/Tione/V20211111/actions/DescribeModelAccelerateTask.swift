@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// DescribeModelAccelerateTask请求参数结构体
-    public struct DescribeModelAccelerateTaskRequest: TCRequestModel {
+    public struct DescribeModelAccelerateTaskRequest: TCRequest {
         /// 模型加速任务ID
         public let modelAccTaskId: String
 
@@ -34,7 +34,7 @@ extension Tione {
     }
 
     /// DescribeModelAccelerateTask返回参数结构体
-    public struct DescribeModelAccelerateTaskResponse: TCResponseModel {
+    public struct DescribeModelAccelerateTaskResponse: TCResponse {
         /// 模型加速任务详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let modelAccelerateTask: ModelAccelerateTask?

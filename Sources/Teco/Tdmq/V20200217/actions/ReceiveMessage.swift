@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// ReceiveMessage请求参数结构体
-    public struct ReceiveMessageRequest: TCRequestModel {
+    public struct ReceiveMessageRequest: TCRequest {
         /// 接收消息的topic的名字, 这里尽量需要使用topic的全路径，如果不指定，即：tenant/namespace/topic。默认使用的是：public/default
         public let topic: String
 
@@ -64,7 +64,7 @@ extension Tdmq {
     }
 
     /// ReceiveMessage返回参数结构体
-    public struct ReceiveMessageResponse: TCResponseModel {
+    public struct ReceiveMessageResponse: TCResponse {
         /// 用作标识消息的唯一主键
         public let messageID: String
 

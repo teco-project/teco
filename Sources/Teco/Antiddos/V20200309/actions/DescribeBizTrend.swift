@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Antiddos {
     /// DescribeBizTrend请求参数结构体
-    public struct DescribeBizTrendRequest: TCRequestModel {
+    public struct DescribeBizTrendRequest: TCRequest {
         /// 统计方式，可取值max, min, avg, sum, 如统计纬度是流量速率或包量速率，仅可取值max
         public let statistics: String
 
@@ -89,7 +89,7 @@ extension Antiddos {
     }
 
     /// DescribeBizTrend返回参数结构体
-    public struct DescribeBizTrendResponse: TCResponseModel {
+    public struct DescribeBizTrendResponse: TCResponse {
         /// 曲线图各个时间点的值
         public let dataList: [Float]
 

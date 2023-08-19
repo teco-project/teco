@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// SearchLog请求参数结构体
-    public struct SearchLogRequest: TCRequestModel {
+    public struct SearchLogRequest: TCRequest {
         /// 要检索分析的日志的起始时间，Unix时间戳（毫秒）
         public let from: Int64
 
@@ -107,7 +107,7 @@ extension Cls {
     }
 
     /// SearchLog返回参数结构体
-    public struct SearchLogResponse: TCResponseModel {
+    public struct SearchLogResponse: TCResponse {
         /// 透传本次接口返回的Context值，可获取后续更多日志，过期时间1小时
         public let context: String
 

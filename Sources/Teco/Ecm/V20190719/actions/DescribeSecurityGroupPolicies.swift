@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// DescribeSecurityGroupPolicies请求参数结构体
-    public struct DescribeSecurityGroupPoliciesRequest: TCRequestModel {
+    public struct DescribeSecurityGroupPoliciesRequest: TCRequest {
         /// 安全组实例ID，例如：esg-33ocnj9n，可通过[DescribeSecurityGroups](https://cloud.tencent.com/document/product/1108/47697)获取。
         public let securityGroupId: String
 
@@ -34,7 +34,7 @@ extension Ecm {
     }
 
     /// DescribeSecurityGroupPolicies返回参数结构体
-    public struct DescribeSecurityGroupPoliciesResponse: TCResponseModel {
+    public struct DescribeSecurityGroupPoliciesResponse: TCResponse {
         /// 安全组规则集合。
         public let securityGroupPolicySet: SecurityGroupPolicySet
 

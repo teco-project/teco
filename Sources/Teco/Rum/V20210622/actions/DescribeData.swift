@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// DescribeData请求参数结构体
-    public struct DescribeDataRequest: TCRequestModel {
+    public struct DescribeDataRequest: TCRequest {
         /// 查询字符串
         public let query: String
 
@@ -39,7 +39,7 @@ extension Rum {
     }
 
     /// DescribeData返回参数结构体
-    public struct DescribeDataResponse: TCResponseModel {
+    public struct DescribeDataResponse: TCResponse {
         /// 返回字符串
         public let result: String
 

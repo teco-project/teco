@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// ModifyMerchant请求参数结构体
-    public struct ModifyMerchantRequest: TCRequestModel {
+    public struct ModifyMerchantRequest: TCRequest {
         /// 进件成功后返给商户的AppId
         public let merchantAppId: String
 
@@ -44,7 +44,7 @@ extension Cpdp {
     }
 
     /// ModifyMerchant返回参数结构体
-    public struct ModifyMerchantResponse: TCResponseModel {
+    public struct ModifyMerchantResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mgobe {
     /// ChangeRoomPlayerProfile请求参数结构体
-    public struct ChangeRoomPlayerProfileRequest: TCRequestModel {
+    public struct ChangeRoomPlayerProfileRequest: TCRequest {
         /// 游戏资源Id。
         public let gameId: String
 
@@ -44,7 +44,7 @@ extension Mgobe {
     }
 
     /// ChangeRoomPlayerProfile返回参数结构体
-    public struct ChangeRoomPlayerProfileResponse: TCResponseModel {
+    public struct ChangeRoomPlayerProfileResponse: TCResponse {
         /// 房间信息。
         public let room: Room
 

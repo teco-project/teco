@@ -20,7 +20,7 @@ import TecoCore
 
 extension Partners {
     /// AgentPayDeals请求参数结构体
-    public struct AgentPayDealsRequest: TCRequestModel {
+    public struct AgentPayDealsRequest: TCRequest {
         /// 订单所有者uin
         public let ownerUin: String
 
@@ -44,7 +44,7 @@ extension Partners {
     }
 
     /// AgentPayDeals返回参数结构体
-    public struct AgentPayDealsResponse: TCResponseModel {
+    public struct AgentPayDealsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

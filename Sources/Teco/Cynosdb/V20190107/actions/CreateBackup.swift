@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// CreateBackup请求参数结构体
-    public struct CreateBackupRequest: TCRequestModel {
+    public struct CreateBackupRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -54,7 +54,7 @@ extension Cynosdb {
     }
 
     /// CreateBackup返回参数结构体
-    public struct CreateBackupResponse: TCResponseModel {
+    public struct CreateBackupResponse: TCResponse {
         /// 异步任务流ID
         public let flowId: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ocr {
     /// RecognizePhilippinesVoteIDOCR请求参数结构体
-    public struct RecognizePhilippinesVoteIDOCRRequest: TCRequestModel {
+    public struct RecognizePhilippinesVoteIDOCRRequest: TCRequest {
         /// 是否返回人像照片。
         public let returnHeadImage: Bool
 
@@ -51,7 +51,7 @@ extension Ocr {
     }
 
     /// RecognizePhilippinesVoteIDOCR返回参数结构体
-    public struct RecognizePhilippinesVoteIDOCRResponse: TCResponseModel {
+    public struct RecognizePhilippinesVoteIDOCRResponse: TCResponse {
         /// 人像照片Base64后的结果
         public let headPortrait: TextDetectionResult
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Chdfs {
     /// CreateAccessGroup请求参数结构体
-    public struct CreateAccessGroupRequest: TCRequestModel {
+    public struct CreateAccessGroupRequest: TCRequest {
         /// 权限组名称
         public let accessGroupName: String
 
@@ -39,7 +39,7 @@ extension Chdfs {
     }
 
     /// CreateAccessGroup返回参数结构体
-    public struct CreateAccessGroupResponse: TCResponseModel {
+    public struct CreateAccessGroupResponse: TCResponse {
         /// 权限组
         public let accessGroup: AccessGroup
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// DescribeRecordBackupPlan请求参数结构体
-    public struct DescribeRecordBackupPlanRequest: TCRequestModel {
+    public struct DescribeRecordBackupPlanRequest: TCRequest {
         /// 录像上云计划ID（从查询录像上云计划列表接口ListRecordBackupPlans中获取）
         public let planId: String
 
@@ -34,7 +34,7 @@ extension Iss {
     }
 
     /// 查询录像上云计划返回数据
-    public struct DescribeRecordBackupPlanResponse: TCResponseModel {
+    public struct DescribeRecordBackupPlanResponse: TCResponse {
         private let data: Wrapped
 
         private struct Wrapped: Codable {

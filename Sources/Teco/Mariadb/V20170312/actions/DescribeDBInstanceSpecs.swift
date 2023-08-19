@@ -20,13 +20,13 @@ import TecoCore
 
 extension Mariadb {
     /// DescribeDBInstanceSpecs请求参数结构体
-    public struct DescribeDBInstanceSpecsRequest: TCRequestModel {
+    public struct DescribeDBInstanceSpecsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeDBInstanceSpecs返回参数结构体
-    public struct DescribeDBInstanceSpecsResponse: TCResponseModel {
+    public struct DescribeDBInstanceSpecsResponse: TCResponse {
         /// 按机型分类的可售卖规格列表
         public let specs: [InstanceSpec]
 

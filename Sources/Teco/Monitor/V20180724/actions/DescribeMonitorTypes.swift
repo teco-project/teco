@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// DescribeMonitorTypes请求参数结构体
-    public struct DescribeMonitorTypesRequest: TCRequestModel {
+    public struct DescribeMonitorTypesRequest: TCRequest {
         /// 模块名，固定值 monitor
         public let module: String
 
@@ -34,7 +34,7 @@ extension Monitor {
     }
 
     /// DescribeMonitorTypes返回参数结构体
-    public struct DescribeMonitorTypesResponse: TCResponseModel {
+    public struct DescribeMonitorTypesResponse: TCResponse {
         /// 监控类型，云产品监控为 MT_QCE
         public let monitorTypes: [String]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Smh {
     /// ModifyLibrary请求参数结构体
-    public struct ModifyLibraryRequest: TCRequestModel {
+    public struct ModifyLibraryRequest: TCRequest {
         /// 媒体库 ID
         public let libraryId: String
 
@@ -49,7 +49,7 @@ extension Smh {
     }
 
     /// ModifyLibrary返回参数结构体
-    public struct ModifyLibraryResponse: TCResponseModel {
+    public struct ModifyLibraryResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

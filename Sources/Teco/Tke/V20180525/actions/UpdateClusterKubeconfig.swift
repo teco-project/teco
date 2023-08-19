@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// UpdateClusterKubeconfig请求参数结构体
-    public struct UpdateClusterKubeconfigRequest: TCRequestModel {
+    public struct UpdateClusterKubeconfigRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Tke {
     }
 
     /// UpdateClusterKubeconfig返回参数结构体
-    public struct UpdateClusterKubeconfigResponse: TCResponseModel {
+    public struct UpdateClusterKubeconfigResponse: TCResponse {
         /// 已更新的子账户Uin列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updatedSubAccounts: [String]?

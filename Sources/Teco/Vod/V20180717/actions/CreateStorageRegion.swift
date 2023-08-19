@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// CreateStorageRegion请求参数结构体
-    public struct CreateStorageRegionRequest: TCRequestModel {
+    public struct CreateStorageRegionRequest: TCRequest {
         /// 待开通的存储地域，必须是系统支持的地域。
         public let storageRegion: String
 
@@ -39,7 +39,7 @@ extension Vod {
     }
 
     /// CreateStorageRegion返回参数结构体
-    public struct CreateStorageRegionResponse: TCResponseModel {
+    public struct CreateStorageRegionResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

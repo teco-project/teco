@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// ModifyAccountDescription请求参数结构体
-    public struct ModifyAccountDescriptionRequest: TCRequestModel {
+    public struct ModifyAccountDescriptionRequest: TCRequest {
         /// 数据库账号名
         public let accountName: String
 
@@ -49,7 +49,7 @@ extension Cynosdb {
     }
 
     /// ModifyAccountDescription返回参数结构体
-    public struct ModifyAccountDescriptionResponse: TCResponseModel {
+    public struct ModifyAccountDescriptionResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

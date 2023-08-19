@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeDataTypes请求参数结构体
-    public struct DescribeDataTypesRequest: TCRequestModel {
+    public struct DescribeDataTypesRequest: TCRequest {
         /// 数据源类型，MYSQL|KAFKA等
         public let datasourceType: String
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// DescribeDataTypes返回参数结构体
-    public struct DescribeDataTypesResponse: TCResponseModel {
+    public struct DescribeDataTypesResponse: TCResponse {
         /// 字段类型列表。
         public let typeInfoSet: [Label]
 

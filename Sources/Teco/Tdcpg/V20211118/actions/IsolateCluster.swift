@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdcpg {
     /// IsolateCluster请求参数结构体
-    public struct IsolateClusterRequest: TCRequestModel {
+    public struct IsolateClusterRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Tdcpg {
     }
 
     /// IsolateCluster返回参数结构体
-    public struct IsolateClusterResponse: TCResponseModel {
+    public struct IsolateClusterResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

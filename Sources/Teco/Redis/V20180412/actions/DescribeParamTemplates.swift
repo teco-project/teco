@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// DescribeParamTemplates请求参数结构体
-    public struct DescribeParamTemplatesRequest: TCRequestModel {
+    public struct DescribeParamTemplatesRequest: TCRequest {
         /// 产品类型数组。产品类型：1 – Redis2.8内存版（集群架构），2 – Redis2.8内存版（标准架构），3 – CKV 3.2内存版(标准架构)，4 – CKV 3.2内存版(集群架构)，5 – Redis2.8内存版（单机），6 – Redis4.0内存版（标准架构），7 – Redis4.0内存版（集群架构），8 – Redis5.0内存版（标准架构），9 – Redis5.0内存版（集群架构）
         public let productTypes: [Int64]?
 
@@ -44,7 +44,7 @@ extension Redis {
     }
 
     /// DescribeParamTemplates返回参数结构体
-    public struct DescribeParamTemplatesResponse: TCResponseModel {
+    public struct DescribeParamTemplatesResponse: TCResponse {
         /// 该用户的参数模板数量。
         public let totalCount: UInt64
 

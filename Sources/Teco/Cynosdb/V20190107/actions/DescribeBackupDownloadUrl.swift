@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// DescribeBackupDownloadUrl请求参数结构体
-    public struct DescribeBackupDownloadUrlRequest: TCRequestModel {
+    public struct DescribeBackupDownloadUrlRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Cynosdb {
     }
 
     /// DescribeBackupDownloadUrl返回参数结构体
-    public struct DescribeBackupDownloadUrlResponse: TCResponseModel {
+    public struct DescribeBackupDownloadUrlResponse: TCResponse {
         /// 备份下载地址
         public let downloadUrl: String
 

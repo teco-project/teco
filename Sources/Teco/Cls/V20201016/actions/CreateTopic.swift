@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// CreateTopic请求参数结构体
-    public struct CreateTopicRequest: TCRequestModel {
+    public struct CreateTopicRequest: TCRequest {
         /// 日志集ID
         public let logsetId: String
 
@@ -85,7 +85,7 @@ extension Cls {
     }
 
     /// CreateTopic返回参数结构体
-    public struct CreateTopicResponse: TCResponseModel {
+    public struct CreateTopicResponse: TCResponse {
         /// 日志主题ID
         public let topicId: String
 

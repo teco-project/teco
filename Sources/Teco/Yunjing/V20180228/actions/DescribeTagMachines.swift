@@ -20,7 +20,7 @@ import TecoCore
 
 extension Yunjing {
     /// DescribeTagMachines请求参数结构体
-    public struct DescribeTagMachinesRequest: TCRequestModel {
+    public struct DescribeTagMachinesRequest: TCRequest {
         /// 标签ID
         public let id: UInt64
 
@@ -34,7 +34,7 @@ extension Yunjing {
     }
 
     /// DescribeTagMachines返回参数结构体
-    public struct DescribeTagMachinesResponse: TCResponseModel {
+    public struct DescribeTagMachinesResponse: TCResponse {
         /// 列表数据
         public let list: [TagMachine]
 

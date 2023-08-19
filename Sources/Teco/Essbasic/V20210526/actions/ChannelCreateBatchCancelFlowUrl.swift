@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// ChannelCreateBatchCancelFlowUrl请求参数结构体
-    public struct ChannelCreateBatchCancelFlowUrlRequest: TCRequestModel {
+    public struct ChannelCreateBatchCancelFlowUrlRequest: TCRequest {
         /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
 
@@ -50,7 +50,7 @@ extension Essbasic {
     }
 
     /// ChannelCreateBatchCancelFlowUrl返回参数结构体
-    public struct ChannelCreateBatchCancelFlowUrlResponse: TCResponseModel {
+    public struct ChannelCreateBatchCancelFlowUrlResponse: TCResponse {
         /// 批量撤销url
         public let batchCancelFlowUrl: String
 

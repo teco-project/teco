@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ocr {
     /// VatInvoiceVerifyNew请求参数结构体
-    public struct VatInvoiceVerifyNewRequest: TCRequestModel {
+    public struct VatInvoiceVerifyNewRequest: TCRequest {
         /// 发票号码，8位、20位（全电票）
         public let invoiceNo: String
 
@@ -76,7 +76,7 @@ extension Ocr {
     }
 
     /// VatInvoiceVerifyNew返回参数结构体
-    public struct VatInvoiceVerifyNewResponse: TCResponseModel {
+    public struct VatInvoiceVerifyNewResponse: TCResponse {
         /// 增值税发票信息，详情请点击左侧链接。
         public let invoice: VatInvoice
 

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cfw {
     /// DescribeDefenseSwitch请求参数结构体
-    public struct DescribeDefenseSwitchRequest: TCRequestModel {
+    public struct DescribeDefenseSwitchRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeDefenseSwitch返回参数结构体
-    public struct DescribeDefenseSwitchResponse: TCResponseModel {
+    public struct DescribeDefenseSwitchResponse: TCResponse {
         /// 基础防御开关
         public let basicRuleSwitch: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mariadb {
     /// ActivateHourDBInstance请求参数结构体
-    public struct ActivateHourDBInstanceRequest: TCRequestModel {
+    public struct ActivateHourDBInstanceRequest: TCRequest {
         /// 实例ID列表
         public let instanceIds: [String]
 
@@ -34,7 +34,7 @@ extension Mariadb {
     }
 
     /// ActivateHourDBInstance返回参数结构体
-    public struct ActivateHourDBInstanceResponse: TCResponseModel {
+    public struct ActivateHourDBInstanceResponse: TCResponse {
         /// 隔离成功的实例id列表
         public let successInstanceIds: [String]
 

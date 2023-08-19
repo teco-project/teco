@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// SetCheckMode请求参数结构体
-    public struct SetCheckModeRequest: TCRequestModel {
+    public struct SetCheckModeRequest: TCRequest {
         /// 要设置的集群ID列表
         public let clusterIds: [String]
 
@@ -44,7 +44,7 @@ extension Tcss {
     }
 
     /// SetCheckMode返回参数结构体
-    public struct SetCheckModeResponse: TCResponseModel {
+    public struct SetCheckModeResponse: TCResponse {
         /// "Succ"表示设置成功，"Failed"表示设置失败
         public let setCheckResult: String
 

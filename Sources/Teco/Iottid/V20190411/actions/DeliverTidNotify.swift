@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iottid {
     /// DeliverTidNotify请求参数结构体
-    public struct DeliverTidNotifyRequest: TCRequestModel {
+    public struct DeliverTidNotifyRequest: TCRequest {
         /// 订单编号
         public let orderId: String
 
@@ -39,7 +39,7 @@ extension Iottid {
     }
 
     /// DeliverTidNotify返回参数结构体
-    public struct DeliverTidNotifyResponse: TCResponseModel {
+    public struct DeliverTidNotifyResponse: TCResponse {
         /// 剩余空发数量
         public let remaindCount: UInt64
 

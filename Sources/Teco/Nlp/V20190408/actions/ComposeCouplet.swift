@@ -20,7 +20,7 @@ import TecoCore
 
 extension Nlp {
     /// ComposeCouplet请求参数结构体
-    public struct ComposeCoupletRequest: TCRequestModel {
+    public struct ComposeCoupletRequest: TCRequest {
         /// 生成对联的关键词。长度需>=2，当长度>2时，自动截取前两个字作为关键字。内容需为常用汉字（不含有数字、英文、韩语、日语、符号等等其他）。
         public let text: String
 
@@ -39,7 +39,7 @@ extension Nlp {
     }
 
     /// ComposeCouplet返回参数结构体
-    public struct ComposeCoupletResponse: TCResponseModel {
+    public struct ComposeCoupletResponse: TCResponse {
         /// 横批。
         public let topScroll: String
 

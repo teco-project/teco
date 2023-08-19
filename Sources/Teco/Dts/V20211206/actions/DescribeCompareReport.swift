@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dts {
     /// DescribeCompareReport请求参数结构体
-    public struct DescribeCompareReportRequest: TCRequestModel {
+    public struct DescribeCompareReportRequest: TCRequest {
         /// 迁移任务 Id
         public let jobId: String
 
@@ -79,7 +79,7 @@ extension Dts {
     }
 
     /// DescribeCompareReport返回参数结构体
-    public struct DescribeCompareReportResponse: TCResponseModel {
+    public struct DescribeCompareReportResponse: TCResponse {
         /// 一致性校验摘要信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let abstract: CompareAbstractInfo?

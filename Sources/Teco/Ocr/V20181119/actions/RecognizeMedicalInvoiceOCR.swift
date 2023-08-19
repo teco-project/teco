@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ocr {
     /// RecognizeMedicalInvoiceOCR请求参数结构体
-    public struct RecognizeMedicalInvoiceOCRRequest: TCRequestModel {
+    public struct RecognizeMedicalInvoiceOCRRequest: TCRequest {
         /// 图片的Base64 值。
         /// 支持的文件格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
         /// 支持的图片大小：所下载文件经Base64编码后不超过 7M。文件下载时间不超过 3 秒。
@@ -66,7 +66,7 @@ extension Ocr {
     }
 
     /// RecognizeMedicalInvoiceOCR返回参数结构体
-    public struct RecognizeMedicalInvoiceOCRResponse: TCResponseModel {
+    public struct RecognizeMedicalInvoiceOCRResponse: TCResponse {
         /// 识别出的字段信息
         public let medicalInvoiceInfos: [MedicalInvoiceInfo]
 

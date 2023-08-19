@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// CreateOpenBankExternalSubMerchantAccountBook请求参数结构体
-    public struct CreateOpenBankExternalSubMerchantAccountBookRequest: TCRequestModel {
+    public struct CreateOpenBankExternalSubMerchantAccountBookRequest: TCRequest {
         /// 外部账本ID
         public let outAccountBookId: String
 
@@ -68,7 +68,7 @@ extension Cpdp {
     }
 
     /// CreateOpenBankExternalSubMerchantAccountBook返回参数结构体
-    public struct CreateOpenBankExternalSubMerchantAccountBookResponse: TCResponseModel {
+    public struct CreateOpenBankExternalSubMerchantAccountBookResponse: TCResponse {
         /// 错误码。
         /// __SUCCESS__: 成功
         /// __其他__: 见附录-错误码表

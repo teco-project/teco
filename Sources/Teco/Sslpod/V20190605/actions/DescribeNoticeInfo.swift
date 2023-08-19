@@ -20,13 +20,13 @@ import TecoCore
 
 extension Sslpod {
     /// DescribeNoticeInfo请求参数结构体
-    public struct DescribeNoticeInfoRequest: TCRequestModel {
+    public struct DescribeNoticeInfoRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeNoticeInfo返回参数结构体
-    public struct DescribeNoticeInfoResponse: TCResponseModel {
+    public struct DescribeNoticeInfoResponse: TCResponse {
         /// 通知信息结果
         public let data: NoticeInfoResult
 

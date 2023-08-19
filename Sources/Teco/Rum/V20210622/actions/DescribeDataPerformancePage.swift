@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// DescribeDataPerformancePage请求参数结构体
-    public struct DescribeDataPerformancePageRequest: TCRequestModel {
+    public struct DescribeDataPerformancePageRequest: TCRequest {
         /// 项目ID
         public let id: Int64
 
@@ -144,7 +144,7 @@ extension Rum {
     }
 
     /// DescribeDataPerformancePage返回参数结构体
-    public struct DescribeDataPerformancePageResponse: TCResponseModel {
+    public struct DescribeDataPerformancePageResponse: TCResponse {
         /// 返回值
         public let result: String
 

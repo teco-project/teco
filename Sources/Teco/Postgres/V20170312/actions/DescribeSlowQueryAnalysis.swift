@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// DescribeSlowQueryAnalysis请求参数结构体
-    public struct DescribeSlowQueryAnalysisRequest: TCRequestModel {
+    public struct DescribeSlowQueryAnalysisRequest: TCRequest {
         /// 实例ID。
         public let dbInstanceId: String
 
@@ -69,7 +69,7 @@ extension Postgres {
     }
 
     /// DescribeSlowQueryAnalysis返回参数结构体
-    public struct DescribeSlowQueryAnalysisResponse: TCResponseModel {
+    public struct DescribeSlowQueryAnalysisResponse: TCResponse {
         /// 查询总条数。
         public let totalCount: Int64
 

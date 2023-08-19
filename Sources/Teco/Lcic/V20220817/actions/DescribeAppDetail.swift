@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// DescribeAppDetail请求参数结构体
-    public struct DescribeAppDetailRequest: TCRequestModel {
+    public struct DescribeAppDetailRequest: TCRequest {
         /// 应用ID。低代码互动课堂的SdkAppId。
         public let applicationId: String
 
@@ -39,7 +39,7 @@ extension Lcic {
     }
 
     /// DescribeAppDetail返回参数结构体
-    public struct DescribeAppDetailResponse: TCResponseModel {
+    public struct DescribeAppDetailResponse: TCResponse {
         /// SDK 对应的AppId
         public let sdkAppId: String
 

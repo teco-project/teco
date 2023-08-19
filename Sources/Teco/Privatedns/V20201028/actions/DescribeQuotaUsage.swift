@@ -20,13 +20,13 @@ import TecoCore
 
 extension Privatedns {
     /// DescribeQuotaUsage请求参数结构体
-    public struct DescribeQuotaUsageRequest: TCRequestModel {
+    public struct DescribeQuotaUsageRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeQuotaUsage返回参数结构体
-    public struct DescribeQuotaUsageResponse: TCResponseModel {
+    public struct DescribeQuotaUsageResponse: TCResponse {
         /// Tld额度使用情况
         public let tldQuota: TldQuota
 

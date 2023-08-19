@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DescribeLocalBinlogConfig请求参数结构体
-    public struct DescribeLocalBinlogConfigRequest: TCRequestModel {
+    public struct DescribeLocalBinlogConfigRequest: TCRequest {
         /// 实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例ID相同。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Cdb {
     }
 
     /// DescribeLocalBinlogConfig返回参数结构体
-    public struct DescribeLocalBinlogConfigResponse: TCResponseModel {
+    public struct DescribeLocalBinlogConfigResponse: TCResponse {
         /// 实例binlog保留策略。
         public let localBinlogConfig: LocalBinlogConfig
 

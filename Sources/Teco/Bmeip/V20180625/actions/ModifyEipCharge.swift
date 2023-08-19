@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmeip {
     /// ModifyEipCharge请求参数结构体
-    public struct ModifyEipChargeRequest: TCRequestModel {
+    public struct ModifyEipChargeRequest: TCRequest {
         /// EIP计费方式，flow-流量计费；bandwidth-带宽计费
         public let payMode: String
 
@@ -44,7 +44,7 @@ extension Bmeip {
     }
 
     /// ModifyEipCharge返回参数结构体
-    public struct ModifyEipChargeResponse: TCResponseModel {
+    public struct ModifyEipChargeResponse: TCResponse {
         /// 修改计费模式的异步任务ID，可以通过查询EIP任务状态查询任务状态
         public let taskId: Int64
 

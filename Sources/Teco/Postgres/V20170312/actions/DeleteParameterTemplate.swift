@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// DeleteParameterTemplate请求参数结构体
-    public struct DeleteParameterTemplateRequest: TCRequestModel {
+    public struct DeleteParameterTemplateRequest: TCRequest {
         /// 参数模板ID，用于唯一确认待操作的参数模板
         public let templateId: String
 
@@ -34,7 +34,7 @@ extension Postgres {
     }
 
     /// DeleteParameterTemplate返回参数结构体
-    public struct DeleteParameterTemplateResponse: TCResponseModel {
+    public struct DeleteParameterTemplateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tiw {
     /// DescribeTranscodeSearch请求参数结构体
-    public struct DescribeTranscodeSearchRequest: TCRequestModel {
+    public struct DescribeTranscodeSearchRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeTranscodeSearch返回参数结构体
-    public struct DescribeTranscodeSearchResponse: TCResponseModel {
+    public struct DescribeTranscodeSearchResponse: TCResponse {
         /// 转码任务搜索结果集合
         public let transcodeTaskSet: [TranscodeTaskSearchResult]
 

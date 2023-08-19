@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// ModifyDatahubTopic请求参数结构体
-    public struct ModifyDatahubTopicRequest: TCRequestModel {
+    public struct ModifyDatahubTopicRequest: TCRequest {
         /// 名称
         public let name: String
 
@@ -49,7 +49,7 @@ extension Ckafka {
     }
 
     /// ModifyDatahubTopic返回参数结构体
-    public struct ModifyDatahubTopicResponse: TCResponseModel {
+    public struct ModifyDatahubTopicResponse: TCResponse {
         /// 返回结果集
         public let result: JgwOperateResponse
 

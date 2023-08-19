@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// ModifyFolder请求参数结构体
-    public struct ModifyFolderRequest: TCRequestModel {
+    public struct ModifyFolderRequest: TCRequest {
         /// 项目Id
         public let projectId: String
 
@@ -49,7 +49,7 @@ extension Wedata {
     }
 
     /// ModifyFolder返回参数结构体
-    public struct ModifyFolderResponse: TCResponseModel {
+    public struct ModifyFolderResponse: TCResponse {
         /// true代表成功，false代表失败
         public let data: Bool
 

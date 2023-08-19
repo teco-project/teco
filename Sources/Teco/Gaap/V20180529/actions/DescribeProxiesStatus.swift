@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// DescribeProxiesStatus请求参数结构体
-    public struct DescribeProxiesStatusRequest: TCRequestModel {
+    public struct DescribeProxiesStatusRequest: TCRequest {
         /// （旧参数，请切换到ProxyIds）通道ID列表。
         public let instanceIds: [String]?
 
@@ -39,7 +39,7 @@ extension Gaap {
     }
 
     /// DescribeProxiesStatus返回参数结构体
-    public struct DescribeProxiesStatusResponse: TCResponseModel {
+    public struct DescribeProxiesStatusResponse: TCResponse {
         /// 通道状态列表。
         public let instanceStatusSet: [ProxyStatus]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfs {
     /// UpdateCfsFileSystemName请求参数结构体
-    public struct UpdateCfsFileSystemNameRequest: TCRequestModel {
+    public struct UpdateCfsFileSystemNameRequest: TCRequest {
         /// 文件系统 ID
         public let fileSystemId: String
 
@@ -39,7 +39,7 @@ extension Cfs {
     }
 
     /// UpdateCfsFileSystemName返回参数结构体
-    public struct UpdateCfsFileSystemNameResponse: TCResponseModel {
+    public struct UpdateCfsFileSystemNameResponse: TCResponse {
         /// 用户自定义文件系统名称
         public let creationToken: String
 

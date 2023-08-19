@@ -20,13 +20,13 @@ import TecoCore
 
 extension Yunjing {
     /// DescribeVulScanResult请求参数结构体
-    public struct DescribeVulScanResultRequest: TCRequestModel {
+    public struct DescribeVulScanResultRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeVulScanResult返回参数结构体
-    public struct DescribeVulScanResultResponse: TCResponseModel {
+    public struct DescribeVulScanResultResponse: TCResponse {
         /// 漏洞数量。
         public let vulNum: UInt64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mrs {
     /// ImageToObject请求参数结构体
-    public struct ImageToObjectRequest: TCRequestModel {
+    public struct ImageToObjectRequest: TCRequest {
         /// 图片列表，允许传入多张图片，目前只支持传入图片base64编码，图片url暂不支持
         public let imageInfoList: [ImageInfo]
 
@@ -63,7 +63,7 @@ extension Mrs {
     }
 
     /// ImageToObject返回参数结构体
-    public struct ImageToObjectResponse: TCResponseModel {
+    public struct ImageToObjectResponse: TCResponse {
         /// 报告结构化结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let template: Template?

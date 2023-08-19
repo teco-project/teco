@@ -20,7 +20,7 @@ import TecoCore
 
 extension Clb {
     /// SetSecurityGroupForLoadbalancers请求参数结构体
-    public struct SetSecurityGroupForLoadbalancersRequest: TCRequestModel {
+    public struct SetSecurityGroupForLoadbalancersRequest: TCRequest {
         /// 安全组ID，如 sg-12345678
         public let securityGroup: String
 
@@ -45,7 +45,7 @@ extension Clb {
     }
 
     /// SetSecurityGroupForLoadbalancers返回参数结构体
-    public struct SetSecurityGroupForLoadbalancersResponse: TCResponseModel {
+    public struct SetSecurityGroupForLoadbalancersResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

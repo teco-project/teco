@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cloudstudio {
     /// DescribeConfig请求参数结构体
-    public struct DescribeConfigRequest: TCRequestModel {
+    public struct DescribeConfigRequest: TCRequest {
         /// 配置名称
         public let name: String
 
@@ -34,7 +34,7 @@ extension Cloudstudio {
     }
 
     /// DescribeConfig返回参数结构体
-    public struct DescribeConfigResponse: TCResponseModel {
+    public struct DescribeConfigResponse: TCResponse {
         /// 配置值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: String?

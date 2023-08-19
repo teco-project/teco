@@ -20,13 +20,13 @@ import TecoCore
 
 extension Iss {
     /// ListRecordBackupTemplates请求参数结构体
-    public struct ListRecordBackupTemplatesRequest: TCRequestModel {
+    public struct ListRecordBackupTemplatesRequest: TCRequest {
         public init() {
         }
     }
 
     /// 查询录像上云模板列表返回数据
-    public struct ListRecordBackupTemplatesResponse: TCResponseModel {
+    public struct ListRecordBackupTemplatesResponse: TCResponse {
         private let data: Wrapped
 
         private struct Wrapped: Codable {

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// AddAcRule请求参数结构体
-    public struct AddAcRuleRequest: TCRequestModel {
+    public struct AddAcRuleRequest: TCRequest {
         /// -1表示优先级最低，1表示优先级最高
         public let orderIndex: String
 
@@ -139,7 +139,7 @@ extension Cfw {
     }
 
     /// AddAcRule返回参数结构体
-    public struct AddAcRuleResponse: TCResponseModel {
+    public struct AddAcRuleResponse: TCResponse {
         /// 创建成功后返回新策略的uuid
         public let ruleUuid: Int64
 

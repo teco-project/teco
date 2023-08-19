@@ -20,7 +20,7 @@ import TecoCore
 
 extension Smpn {
     /// DescribeSmpnChp请求参数结构体
-    public struct DescribeSmpnChpRequest: TCRequestModel {
+    public struct DescribeSmpnChpRequest: TCRequest {
         /// 客户用于计费的资源Id
         public let resourceId: String
 
@@ -39,7 +39,7 @@ extension Smpn {
     }
 
     /// DescribeSmpnChp返回参数结构体
-    public struct DescribeSmpnChpResponse: TCResponseModel {
+    public struct DescribeSmpnChpResponse: TCResponse {
         /// 终端骚扰保护回应
         public let responseData: CHPResponse
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// ModifyRuleTemplate请求参数结构体
-    public struct ModifyRuleTemplateRequest: TCRequestModel {
+    public struct ModifyRuleTemplateRequest: TCRequest {
         /// 模版ID
         public let templateId: UInt64?
 
@@ -84,7 +84,7 @@ extension Wedata {
     }
 
     /// ModifyRuleTemplate返回参数结构体
-    public struct ModifyRuleTemplateResponse: TCResponseModel {
+    public struct ModifyRuleTemplateResponse: TCResponse {
         /// 修改成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: Bool?

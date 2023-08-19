@@ -20,7 +20,7 @@ import TecoCore
 
 extension As {
     /// AttachInstances请求参数结构体
-    public struct AttachInstancesRequest: TCRequestModel {
+    public struct AttachInstancesRequest: TCRequest {
         /// 伸缩组ID
         public let autoScalingGroupId: String
 
@@ -39,7 +39,7 @@ extension As {
     }
 
     /// AttachInstances返回参数结构体
-    public struct AttachInstancesResponse: TCResponseModel {
+    public struct AttachInstancesResponse: TCResponse {
         /// 伸缩活动ID
         public let activityId: String
 

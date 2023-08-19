@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeLiveRecordTemplates请求参数结构体
-    public struct DescribeLiveRecordTemplatesRequest: TCRequestModel {
+    public struct DescribeLiveRecordTemplatesRequest: TCRequest {
         /// 是否属于慢直播模板，默认：0。
         /// 0： 标准直播。
         /// 1：慢直播。
@@ -36,7 +36,7 @@ extension Live {
     }
 
     /// DescribeLiveRecordTemplates返回参数结构体
-    public struct DescribeLiveRecordTemplatesResponse: TCResponseModel {
+    public struct DescribeLiveRecordTemplatesResponse: TCResponse {
         /// 录制模板信息列表。
         public let templates: [RecordTemplateInfo]
 

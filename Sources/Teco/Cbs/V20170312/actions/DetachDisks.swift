@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cbs {
     /// DetachDisks请求参数结构体
-    public struct DetachDisksRequest: TCRequestModel {
+    public struct DetachDisksRequest: TCRequest {
         /// 将要卸载的云硬盘ID， 通过[DescribeDisks](/document/product/362/16315)接口查询，单次请求最多可卸载10块弹性云盘。
         public let diskIds: [String]
 
@@ -39,7 +39,7 @@ extension Cbs {
     }
 
     /// DetachDisks返回参数结构体
-    public struct DetachDisksResponse: TCResponseModel {
+    public struct DetachDisksResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

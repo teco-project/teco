@@ -20,7 +20,7 @@ import TecoCore
 
 extension Kms {
     /// VerifyByAsymmetricKey请求参数结构体
-    public struct VerifyByAsymmetricKeyRequest: TCRequestModel {
+    public struct VerifyByAsymmetricKeyRequest: TCRequest {
         /// 密钥的唯一标识
         public let keyId: String
 
@@ -54,7 +54,7 @@ extension Kms {
     }
 
     /// VerifyByAsymmetricKey返回参数结构体
-    public struct VerifyByAsymmetricKeyResponse: TCResponseModel {
+    public struct VerifyByAsymmetricKeyResponse: TCResponse {
         /// 签名是否有效。true：签名有效，false：签名无效。
         public let signatureValid: Bool
 

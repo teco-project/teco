@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cwp {
     /// DescribeLicenseGeneral请求参数结构体
-    public struct DescribeLicenseGeneralRequest: TCRequestModel {
+    public struct DescribeLicenseGeneralRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeLicenseGeneral返回参数结构体
-    public struct DescribeLicenseGeneralResponse: TCResponseModel {
+    public struct DescribeLicenseGeneralResponse: TCResponse {
         /// 总授权数 (包含隔离,过期等不可用状态)
         public let licenseCnt: UInt64
 

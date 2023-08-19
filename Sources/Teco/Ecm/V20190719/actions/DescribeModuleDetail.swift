@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// DescribeModuleDetail请求参数结构体
-    public struct DescribeModuleDetailRequest: TCRequestModel {
+    public struct DescribeModuleDetailRequest: TCRequest {
         /// 模块ID，如em-qn46snq8。
         public let moduleId: String
 
@@ -34,7 +34,7 @@ extension Ecm {
     }
 
     /// DescribeModuleDetail返回参数结构体
-    public struct DescribeModuleDetailResponse: TCResponseModel {
+    public struct DescribeModuleDetailResponse: TCResponse {
         /// 模块的详细信息，详细见数据结构中的ModuleInfo。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let module: Module?

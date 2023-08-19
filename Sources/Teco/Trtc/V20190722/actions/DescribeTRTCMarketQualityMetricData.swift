@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Trtc {
     /// DescribeTRTCMarketQualityMetricData请求参数结构体
-    public struct DescribeTRTCMarketQualityMetricDataRequest: TCRequestModel {
+    public struct DescribeTRTCMarketQualityMetricDataRequest: TCRequest {
         /// 用户SdkAppId（如：1400xxxxxx）
         public let sdkAppId: String
 
@@ -59,7 +59,7 @@ extension Trtc {
     }
 
     /// DescribeTRTCMarketQualityMetricData返回参数结构体
-    public struct DescribeTRTCMarketQualityMetricDataResponse: TCResponseModel {
+    public struct DescribeTRTCMarketQualityMetricDataResponse: TCResponse {
         /// TRTC监控数据出参
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: TRTCDataResp?

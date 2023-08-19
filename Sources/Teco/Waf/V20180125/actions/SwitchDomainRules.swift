@@ -20,7 +20,7 @@ import TecoCore
 
 extension Waf {
     /// SwitchDomainRules请求参数结构体
-    public struct SwitchDomainRulesRequest: TCRequestModel {
+    public struct SwitchDomainRulesRequest: TCRequest {
         /// 域名
         public let domain: String?
 
@@ -50,7 +50,7 @@ extension Waf {
     }
 
     /// SwitchDomainRules返回参数结构体
-    public struct SwitchDomainRulesResponse: TCResponseModel {
+    public struct SwitchDomainRulesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

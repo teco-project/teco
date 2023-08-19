@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// CreateSSOAccount请求参数结构体
-    public struct CreateSSOAccountRequest: TCRequestModel {
+    public struct CreateSSOAccountRequest: TCRequest {
         /// Grafana 实例 ID，例如：grafana-abcdefgh
         public let instanceId: String
 
@@ -49,7 +49,7 @@ extension Monitor {
     }
 
     /// CreateSSOAccount返回参数结构体
-    public struct CreateSSOAccountResponse: TCResponseModel {
+    public struct CreateSSOAccountResponse: TCResponse {
         /// 已添加的用户 UIN
         public let userId: String
 

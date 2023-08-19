@@ -20,13 +20,13 @@ import TecoCore
 
 extension Live {
     /// DescribeLiveTimeShiftTemplates请求参数结构体
-    public struct DescribeLiveTimeShiftTemplatesRequest: TCRequestModel {
+    public struct DescribeLiveTimeShiftTemplatesRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeLiveTimeShiftTemplates返回参数结构体
-    public struct DescribeLiveTimeShiftTemplatesResponse: TCResponseModel {
+    public struct DescribeLiveTimeShiftTemplatesResponse: TCResponse {
         /// 直播时移模板信息。
         public let templates: [TimeShiftTemplate]
 

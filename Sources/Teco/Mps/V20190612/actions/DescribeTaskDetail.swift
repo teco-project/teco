@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// DescribeTaskDetail请求参数结构体
-    public struct DescribeTaskDetailRequest: TCRequestModel {
+    public struct DescribeTaskDetailRequest: TCRequest {
         /// 视频处理任务的任务 ID。
         public let taskId: String
 
@@ -34,7 +34,7 @@ extension Mps {
     }
 
     /// DescribeTaskDetail返回参数结构体
-    public struct DescribeTaskDetailResponse: TCResponseModel {
+    public struct DescribeTaskDetailResponse: TCResponse {
         /// 任务类型，目前取值有：
         /// - WorkflowTask：视频工作流处理任务。
         /// - EditMediaTask：视频编辑任务。

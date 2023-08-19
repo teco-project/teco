@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// DownloadHelmChart请求参数结构体
-    public struct DownloadHelmChartRequest: TCRequestModel {
+    public struct DownloadHelmChartRequest: TCRequest {
         /// 实例ID
         public let registryId: String
 
@@ -49,7 +49,7 @@ extension Tcr {
     }
 
     /// DownloadHelmChart返回参数结构体
-    public struct DownloadHelmChartResponse: TCResponseModel {
+    public struct DownloadHelmChartResponse: TCResponse {
         /// 临时token
         public let tmpToken: String
 

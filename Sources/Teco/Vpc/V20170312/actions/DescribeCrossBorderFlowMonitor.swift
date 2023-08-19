@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DescribeCrossBorderFlowMonitor请求参数结构体
-    public struct DescribeCrossBorderFlowMonitorRequest: TCRequestModel {
+    public struct DescribeCrossBorderFlowMonitorRequest: TCRequest {
         /// 源地域。
         public let sourceRegion: String
 
@@ -64,7 +64,7 @@ extension Vpc {
     }
 
     /// DescribeCrossBorderFlowMonitor返回参数结构体
-    public struct DescribeCrossBorderFlowMonitorResponse: TCResponseModel {
+    public struct DescribeCrossBorderFlowMonitorResponse: TCResponse {
         /// 云联网跨境带宽监控数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let crossBorderFlowMonitorData: [CrossBorderFlowMonitorData]?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// EnableEventPersistence请求参数结构体
-    public struct EnableEventPersistenceRequest: TCRequestModel {
+    public struct EnableEventPersistenceRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -49,7 +49,7 @@ extension Tke {
     }
 
     /// EnableEventPersistence返回参数结构体
-    public struct EnableEventPersistenceResponse: TCResponseModel {
+    public struct EnableEventPersistenceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

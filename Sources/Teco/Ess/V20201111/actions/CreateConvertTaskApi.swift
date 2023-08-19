@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// CreateConvertTaskApi请求参数结构体
-    public struct CreateConvertTaskApiRequest: TCRequestModel {
+    public struct CreateConvertTaskApiRequest: TCRequest {
         /// 资源类型 支持doc,docx,html,xls,xlsx,jpg,jpeg,png,bmp文件类型
         public let resourceType: String
 
@@ -67,7 +67,7 @@ extension Ess {
     }
 
     /// CreateConvertTaskApi返回参数结构体
-    public struct CreateConvertTaskApiResponse: TCResponseModel {
+    public struct CreateConvertTaskApiResponse: TCResponse {
         /// 转换任务Id
         public let taskId: String
 

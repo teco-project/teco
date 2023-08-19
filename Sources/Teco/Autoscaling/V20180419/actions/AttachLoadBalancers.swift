@@ -20,7 +20,7 @@ import TecoCore
 
 extension As {
     /// AttachLoadBalancers请求参数结构体
-    public struct AttachLoadBalancersRequest: TCRequestModel {
+    public struct AttachLoadBalancersRequest: TCRequest {
         /// 伸缩组ID
         public let autoScalingGroupId: String
 
@@ -44,7 +44,7 @@ extension As {
     }
 
     /// AttachLoadBalancers返回参数结构体
-    public struct AttachLoadBalancersResponse: TCResponseModel {
+    public struct AttachLoadBalancersResponse: TCResponse {
         /// 伸缩活动ID
         public let activityId: String
 

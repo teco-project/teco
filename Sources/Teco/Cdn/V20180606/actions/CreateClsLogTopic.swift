@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdn {
     /// CreateClsLogTopic请求参数结构体
-    public struct CreateClsLogTopicRequest: TCRequestModel {
+    public struct CreateClsLogTopicRequest: TCRequest {
         /// 日志主题名称
         public let topicName: String
 
@@ -49,7 +49,7 @@ extension Cdn {
     }
 
     /// CreateClsLogTopic返回参数结构体
-    public struct CreateClsLogTopicResponse: TCResponseModel {
+    public struct CreateClsLogTopicResponse: TCResponse {
         /// 主题ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let topicId: String?

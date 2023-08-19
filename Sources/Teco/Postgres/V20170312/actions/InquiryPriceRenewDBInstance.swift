@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// InquiryPriceRenewDBInstance请求参数结构体
-    public struct InquiryPriceRenewDBInstanceRequest: TCRequestModel {
+    public struct InquiryPriceRenewDBInstanceRequest: TCRequest {
         /// 实例ID
         public let dbInstanceId: String
 
@@ -39,7 +39,7 @@ extension Postgres {
     }
 
     /// InquiryPriceRenewDBInstance返回参数结构体
-    public struct InquiryPriceRenewDBInstanceResponse: TCResponseModel {
+    public struct InquiryPriceRenewDBInstanceResponse: TCResponse {
         /// 刊例价，单位为分。如24650表示246.5元
         public let originalPrice: Int64
 

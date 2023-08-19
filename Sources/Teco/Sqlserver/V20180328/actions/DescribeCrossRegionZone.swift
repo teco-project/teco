@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// DescribeCrossRegionZone请求参数结构体
-    public struct DescribeCrossRegionZoneRequest: TCRequestModel {
+    public struct DescribeCrossRegionZoneRequest: TCRequest {
         /// 实例ID，格式如：mssql-3l3fgqn7
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Sqlserver {
     }
 
     /// DescribeCrossRegionZone返回参数结构体
-    public struct DescribeCrossRegionZoneResponse: TCResponseModel {
+    public struct DescribeCrossRegionZoneResponse: TCResponse {
         /// 备机所在地域的字符串ID，形如：ap-guangzhou
         public let region: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cbs {
     /// InquiryPriceRenewDisks请求参数结构体
-    public struct InquiryPriceRenewDisksRequest: TCRequestModel {
+    public struct InquiryPriceRenewDisksRequest: TCRequest {
         /// 云硬盘ID， 通过[DescribeDisks](/document/product/362/16315)接口查询。
         public let diskIds: [String]
 
@@ -49,7 +49,7 @@ extension Cbs {
     }
 
     /// InquiryPriceRenewDisks返回参数结构体
-    public struct InquiryPriceRenewDisksResponse: TCResponseModel {
+    public struct InquiryPriceRenewDisksResponse: TCResponse {
         /// 描述了续费云盘的价格。
         public let diskPrice: PrepayPrice
 

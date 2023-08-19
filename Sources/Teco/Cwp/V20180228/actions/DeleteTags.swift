@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DeleteTags请求参数结构体
-    public struct DeleteTagsRequest: TCRequestModel {
+    public struct DeleteTagsRequest: TCRequest {
         /// 标签ID (最大100 条)
         public let ids: [UInt64]
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// DeleteTags返回参数结构体
-    public struct DeleteTagsResponse: TCResponseModel {
+    public struct DeleteTagsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

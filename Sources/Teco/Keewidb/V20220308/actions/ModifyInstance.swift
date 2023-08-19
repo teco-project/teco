@@ -20,7 +20,7 @@ import TecoCore
 
 extension Keewidb {
     /// ModifyInstance请求参数结构体
-    public struct ModifyInstanceRequest: TCRequestModel {
+    public struct ModifyInstanceRequest: TCRequest {
         /// 修改实例操作。
         /// - rename：表示实例重命名。
         /// - modifyProject：修改实例所属项目。
@@ -60,7 +60,7 @@ extension Keewidb {
     }
 
     /// ModifyInstance返回参数结构体
-    public struct ModifyInstanceResponse: TCResponseModel {
+    public struct ModifyInstanceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Faceid {
     /// MobileNetworkTimeVerification请求参数结构体
-    public struct MobileNetworkTimeVerificationRequest: TCRequestModel {
+    public struct MobileNetworkTimeVerificationRequest: TCRequest {
         /// 手机号码
         public let mobile: String
 
@@ -39,7 +39,7 @@ extension Faceid {
     }
 
     /// MobileNetworkTimeVerification返回参数结构体
-    public struct MobileNetworkTimeVerificationResponse: TCResponseModel {
+    public struct MobileNetworkTimeVerificationResponse: TCResponse {
         /// 认证结果码，收费情况如下。
         /// 收费结果码：
         /// 0: 成功

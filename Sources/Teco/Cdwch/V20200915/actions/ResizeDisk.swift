@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdwch {
     /// ResizeDisk请求参数结构体
-    public struct ResizeDiskRequest: TCRequestModel {
+    public struct ResizeDiskRequest: TCRequest {
         /// 实例唯一ID
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Cdwch {
     }
 
     /// ResizeDisk返回参数结构体
-    public struct ResizeDiskResponse: TCResponseModel {
+    public struct ResizeDiskResponse: TCResponse {
         /// 流程ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowId: String?

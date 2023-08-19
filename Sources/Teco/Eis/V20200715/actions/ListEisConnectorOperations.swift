@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eis {
     /// ListEisConnectorOperations请求参数结构体
-    public struct ListEisConnectorOperationsRequest: TCRequestModel {
+    public struct ListEisConnectorOperationsRequest: TCRequest {
         /// 连接器名称
         public let connectorName: String
 
@@ -39,7 +39,7 @@ extension Eis {
     }
 
     /// ListEisConnectorOperations返回参数结构体
-    public struct ListEisConnectorOperationsResponse: TCResponseModel {
+    public struct ListEisConnectorOperationsResponse: TCResponse {
         /// 连接器列表
         public let operations: [EisConnectionOperation]
 

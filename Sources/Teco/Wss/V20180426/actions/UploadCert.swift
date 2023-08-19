@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wss {
     /// UploadCert请求参数结构体
-    public struct UploadCertRequest: TCRequestModel {
+    public struct UploadCertRequest: TCRequest {
         /// 证书内容。
         public let cert: String
 
@@ -59,7 +59,7 @@ extension Wss {
     }
 
     /// UploadCert返回参数结构体
-    public struct UploadCertResponse: TCResponseModel {
+    public struct UploadCertResponse: TCResponse {
         /// 证书ID。
         public let id: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// CreateAIAnalysisTemplate请求参数结构体
-    public struct CreateAIAnalysisTemplateRequest: TCRequestModel {
+    public struct CreateAIAnalysisTemplateRequest: TCRequest {
         /// 视频内容分析模板名称，长度限制：64 个字符。
         public let name: String?
 
@@ -59,7 +59,7 @@ extension Mps {
     }
 
     /// CreateAIAnalysisTemplate返回参数结构体
-    public struct CreateAIAnalysisTemplateResponse: TCResponseModel {
+    public struct CreateAIAnalysisTemplateResponse: TCResponse {
         /// 视频内容分析模板唯一标识。
         public let definition: Int64
 

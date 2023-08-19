@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// DescribeCustomFlowIdsByFlowId请求参数结构体
-    public struct DescribeCustomFlowIdsByFlowIdRequest: TCRequestModel {
+    public struct DescribeCustomFlowIdsByFlowIdRequest: TCRequest {
         /// 调用方信息
         public let caller: Caller
 
@@ -39,7 +39,7 @@ extension Essbasic {
     }
 
     /// DescribeCustomFlowIdsByFlowId返回参数结构体
-    public struct DescribeCustomFlowIdsByFlowIdResponse: TCResponseModel {
+    public struct DescribeCustomFlowIdsByFlowIdResponse: TCResponse {
         /// 自定义流程 id 映射列表
         public let customIdList: [CustomFlowIdMap]
 

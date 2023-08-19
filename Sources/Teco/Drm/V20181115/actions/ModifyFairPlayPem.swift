@@ -20,7 +20,7 @@ import TecoCore
 
 extension Drm {
     /// ModifyFairPlayPem请求参数结构体
-    public struct ModifyFairPlayPemRequest: TCRequestModel {
+    public struct ModifyFairPlayPemRequest: TCRequest {
         /// 加密后的fairplay方案申请时使用的私钥。
         /// 请使用腾讯云DRM 提供的公钥，使用rsa加密算法，PKCS1填充方式对私钥文件中的字段进行加密，并对加密结果进行base64编码。
         public let pem: String
@@ -64,7 +64,7 @@ extension Drm {
     }
 
     /// ModifyFairPlayPem返回参数结构体
-    public struct ModifyFairPlayPemResponse: TCResponseModel {
+    public struct ModifyFairPlayPemResponse: TCResponse {
         /// 设置私钥后，后台返回的pem id，用来唯一标识一个私钥。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fairPlayPemId: UInt64?

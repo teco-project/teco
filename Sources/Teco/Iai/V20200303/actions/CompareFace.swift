@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iai {
     /// CompareFace请求参数结构体
-    public struct CompareFaceRequest: TCRequestModel {
+    public struct CompareFaceRequest: TCRequest {
         /// A 图片 base64 数据，base64 编码后大小不可超过5M。
         /// jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
         /// 若图片中包含多张人脸，只选取其中人脸面积最大的人脸。
@@ -97,7 +97,7 @@ extension Iai {
     }
 
     /// CompareFace返回参数结构体
-    public struct CompareFaceResponse: TCResponseModel {
+    public struct CompareFaceResponse: TCResponse {
         /// 两张图片中人脸的相似度分数。
         /// 不同算法版本返回的相似度分数不同。
         /// 若需要验证两张图片中人脸是否为同一人，3.0版本误识率千分之一对应分数为40分，误识率万分之一对应分数为50分，误识率十万分之一对应分数为60分。  一般超过50分则可认定为同一人。

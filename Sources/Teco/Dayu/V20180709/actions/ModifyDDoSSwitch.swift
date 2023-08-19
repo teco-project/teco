@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dayu {
     /// ModifyDDoSSwitch请求参数结构体
-    public struct ModifyDDoSSwitchRequest: TCRequestModel {
+    public struct ModifyDDoSSwitchRequest: TCRequest {
         /// 大禹子产品代号（basic表示基础防护）
         public let business: String
 
@@ -91,7 +91,7 @@ extension Dayu {
     }
 
     /// ModifyDDoSSwitch返回参数结构体
-    public struct ModifyDDoSSwitchResponse: TCResponseModel {
+    public struct ModifyDDoSSwitchResponse: TCResponse {
         /// 当前防护状态值，取值[0（关闭），1（开启）]
         public let status: UInt64
 

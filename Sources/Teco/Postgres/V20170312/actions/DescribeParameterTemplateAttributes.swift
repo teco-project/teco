@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// DescribeParameterTemplateAttributes请求参数结构体
-    public struct DescribeParameterTemplateAttributesRequest: TCRequestModel {
+    public struct DescribeParameterTemplateAttributesRequest: TCRequest {
         /// 参数模板ID
         public let templateId: String
 
@@ -34,7 +34,7 @@ extension Postgres {
     }
 
     /// DescribeParameterTemplateAttributes返回参数结构体
-    public struct DescribeParameterTemplateAttributesResponse: TCResponseModel {
+    public struct DescribeParameterTemplateAttributesResponse: TCResponse {
         /// 参数模板ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let templateId: String?

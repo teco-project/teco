@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// DescribeFileUrls请求参数结构体
-    public struct DescribeFileUrlsRequest: TCRequestModel {
+    public struct DescribeFileUrlsRequest: TCRequest {
         /// 调用方信息
         public let caller: Caller
 
@@ -68,7 +68,7 @@ extension Essbasic {
     }
 
     /// DescribeFileUrls返回参数结构体
-    public struct DescribeFileUrlsResponse: TCResponseModel {
+    public struct DescribeFileUrlsResponse: TCResponse {
         /// 文件下载URL数组
         public let fileUrls: [FileUrl]
 

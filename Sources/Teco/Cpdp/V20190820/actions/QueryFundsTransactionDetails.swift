@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryFundsTransactionDetails请求参数结构体
-    public struct QueryFundsTransactionDetailsRequest: TCRequestModel {
+    public struct QueryFundsTransactionDetailsRequest: TCRequest {
         /// 查询的交易发生时间类型。
         /// __1__：当日
         /// __2__：历史
@@ -81,7 +81,7 @@ extension Cpdp {
     }
 
     /// QueryFundsTransactionDetails返回参数结构体
-    public struct QueryFundsTransactionDetailsResponse: TCResponseModel {
+    public struct QueryFundsTransactionDetailsResponse: TCResponse {
         /// 错误码。
         /// __SUCCESS__: 成功
         /// __其他__: 见附录-错误码表

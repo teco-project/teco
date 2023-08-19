@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// CreateLiveRecord请求参数结构体
-    public struct CreateLiveRecordRequest: TCRequestModel {
+    public struct CreateLiveRecordRequest: TCRequest {
         /// 流名称。
         public let streamName: String
 
@@ -96,7 +96,7 @@ extension Live {
     }
 
     /// CreateLiveRecord返回参数结构体
-    public struct CreateLiveRecordResponse: TCResponseModel {
+    public struct CreateLiveRecordResponse: TCResponse {
         /// 任务 ID，全局唯一标识录制任务。
         public let taskId: UInt64
 

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Gse {
     /// DescribeUserQuotas请求参数结构体
-    public struct DescribeUserQuotasRequest: TCRequestModel {
+    public struct DescribeUserQuotasRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeUserQuotas返回参数结构体
-    public struct DescribeUserQuotasResponse: TCResponseModel {
+    public struct DescribeUserQuotasResponse: TCResponse {
         /// 配额信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let quotaResource: [QuotaResource]?

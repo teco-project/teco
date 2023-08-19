@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcaplusdb {
     /// DeleteBackupRecords请求参数结构体
-    public struct DeleteBackupRecordsRequest: TCRequestModel {
+    public struct DeleteBackupRecordsRequest: TCRequest {
         /// 待删除备份记录的所在集群ID
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Tcaplusdb {
     }
 
     /// DeleteBackupRecords返回参数结构体
-    public struct DeleteBackupRecordsResponse: TCResponseModel {
+    public struct DeleteBackupRecordsResponse: TCResponse {
         /// TaskId由 AppInstanceId-taskId 组成，以区分不同集群的任务
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cwp {
     /// DescribeLogStorageConfig请求参数结构体
-    public struct DescribeLogStorageConfigRequest: TCRequestModel {
+    public struct DescribeLogStorageConfigRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeLogStorageConfig返回参数结构体
-    public struct DescribeLogStorageConfigResponse: TCResponseModel {
+    public struct DescribeLogStorageConfigResponse: TCResponse {
         /// 存储类型，string数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: [String]?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// CreateMachineGroup请求参数结构体
-    public struct CreateMachineGroupRequest: TCRequestModel {
+    public struct CreateMachineGroupRequest: TCRequest {
         /// 机器组名字，不能重复
         public let groupName: String
 
@@ -69,7 +69,7 @@ extension Cls {
     }
 
     /// CreateMachineGroup返回参数结构体
-    public struct CreateMachineGroupResponse: TCResponseModel {
+    public struct CreateMachineGroupResponse: TCResponse {
         /// 机器组ID
         public let groupId: String
 

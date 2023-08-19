@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmvpc {
     /// DeleteRoutePolicy请求参数结构体
-    public struct DeleteRoutePolicyRequest: TCRequestModel {
+    public struct DeleteRoutePolicyRequest: TCRequest {
         /// 路由表ID
         public let routeTableId: String
 
@@ -39,7 +39,7 @@ extension Bmvpc {
     }
 
     /// DeleteRoutePolicy返回参数结构体
-    public struct DeleteRoutePolicyResponse: TCResponseModel {
+    public struct DeleteRoutePolicyResponse: TCResponse {
         /// 异步任务ID
         public let taskId: UInt64
 

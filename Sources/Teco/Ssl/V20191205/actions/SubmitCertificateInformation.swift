@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssl {
     /// SubmitCertificateInformation请求参数结构体
-    public struct SubmitCertificateInformationRequest: TCRequestModel {
+    public struct SubmitCertificateInformationRequest: TCRequest {
         /// 证书 ID。
         public let certificateId: String
 
@@ -159,7 +159,7 @@ extension Ssl {
     }
 
     /// SubmitCertificateInformation返回参数结构体
-    public struct SubmitCertificateInformationResponse: TCResponseModel {
+    public struct SubmitCertificateInformationResponse: TCResponse {
         /// 证书 ID。
         public let certificateId: String
 

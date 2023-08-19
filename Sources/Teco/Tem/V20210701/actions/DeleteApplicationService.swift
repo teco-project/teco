@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tem {
     /// DeleteApplicationService请求参数结构体
-    public struct DeleteApplicationServiceRequest: TCRequestModel {
+    public struct DeleteApplicationServiceRequest: TCRequest {
         /// 服务id
         public let applicationId: String?
 
@@ -49,7 +49,7 @@ extension Tem {
     }
 
     /// DeleteApplicationService返回参数结构体
-    public struct DeleteApplicationServiceResponse: TCResponseModel {
+    public struct DeleteApplicationServiceResponse: TCResponse {
         /// 是否成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

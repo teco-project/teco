@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// DeleteAllAccessControlRule请求参数结构体
-    public struct DeleteAllAccessControlRuleRequest: TCRequestModel {
+    public struct DeleteAllAccessControlRuleRequest: TCRequest {
         /// 方向，0：出站，1：入站  默认值是 0
         public let direction: UInt64?
 
@@ -44,7 +44,7 @@ extension Cfw {
     }
 
     /// DeleteAllAccessControlRule返回参数结构体
-    public struct DeleteAllAccessControlRuleResponse: TCResponseModel {
+    public struct DeleteAllAccessControlRuleResponse: TCResponse {
         /// 状态值 0: 修改成功, 非0: 修改失败
         public let status: Int64
 

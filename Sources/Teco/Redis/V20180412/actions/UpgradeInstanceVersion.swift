@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// UpgradeInstanceVersion请求参数结构体
-    public struct UpgradeInstanceVersionRequest: TCRequestModel {
+    public struct UpgradeInstanceVersionRequest: TCRequest {
         /// 目标实例类型，同 [CreateInstances](https://cloud.tencent.com/document/api/239/20026) 的**TypeId**，即实例要变更的目标类型。
         /// - Redis 4.0 及以上的版本，支持相同版本的实例从标准架构升级至集群架构，例如，支持 Redis 4.0 标准架构升级至 Redis 4.0 集群架构。
         /// - 不支持跨版本架构升级，例如，Redis 4.0 标准架构升级至 Redis 5.0 集群架构。
@@ -50,7 +50,7 @@ extension Redis {
     }
 
     /// UpgradeInstanceVersion返回参数结构体
-    public struct UpgradeInstanceVersionResponse: TCResponseModel {
+    public struct UpgradeInstanceVersionResponse: TCResponse {
         /// 订单ID
         public let dealId: String
 

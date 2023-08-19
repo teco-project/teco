@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ModifyLicenseUnBinds请求参数结构体
-    public struct ModifyLicenseUnBindsRequest: TCRequestModel {
+    public struct ModifyLicenseUnBindsRequest: TCRequest {
         /// 资源ID
         public let resourceId: String
 
@@ -50,7 +50,7 @@ extension Cwp {
     }
 
     /// ModifyLicenseUnBinds返回参数结构体
-    public struct ModifyLicenseUnBindsResponse: TCResponseModel {
+    public struct ModifyLicenseUnBindsResponse: TCResponse {
         /// 只有解绑失败的才有该值.
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errMsg: [LicenseUnBindRsp]?

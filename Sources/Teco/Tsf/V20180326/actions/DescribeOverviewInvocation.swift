@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Tsf {
     /// DescribeOverviewInvocation请求参数结构体
-    public struct DescribeOverviewInvocationRequest: TCRequestModel {
+    public struct DescribeOverviewInvocationRequest: TCRequest {
         /// 命名空间ID
         public let namespaceId: String?
 
@@ -62,7 +62,7 @@ extension Tsf {
     }
 
     /// DescribeOverviewInvocation返回参数结构体
-    public struct DescribeOverviewInvocationResponse: TCResponseModel {
+    public struct DescribeOverviewInvocationResponse: TCResponse {
         /// 监控统计数据列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: [MetricDataPoint]?

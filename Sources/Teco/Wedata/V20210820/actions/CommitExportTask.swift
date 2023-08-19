@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// CommitExportTask请求参数结构体
-    public struct CommitExportTaskRequest: TCRequestModel {
+    public struct CommitExportTaskRequest: TCRequest {
         /// 项目id
         public let projectId: String?
 
@@ -54,7 +54,7 @@ extension Wedata {
     }
 
     /// CommitExportTask返回参数结构体
-    public struct CommitExportTaskResponse: TCResponseModel {
+    public struct CommitExportTaskResponse: TCResponse {
         /// 提交结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: Bool?

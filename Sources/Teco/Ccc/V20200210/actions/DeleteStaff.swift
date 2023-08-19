@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ccc {
     /// DeleteStaff请求参数结构体
-    public struct DeleteStaffRequest: TCRequestModel {
+    public struct DeleteStaffRequest: TCRequest {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         public let sdkAppId: Int64
 
@@ -39,7 +39,7 @@ extension Ccc {
     }
 
     /// DeleteStaff返回参数结构体
-    public struct DeleteStaffResponse: TCResponseModel {
+    public struct DeleteStaffResponse: TCResponse {
         /// 无法删除的状态为在线的客服列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let onlineStaffList: [String]?

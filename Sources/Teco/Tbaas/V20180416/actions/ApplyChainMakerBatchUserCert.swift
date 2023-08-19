@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tbaas {
     /// ApplyChainMakerBatchUserCert请求参数结构体
-    public struct ApplyChainMakerBatchUserCertRequest: TCRequestModel {
+    public struct ApplyChainMakerBatchUserCertRequest: TCRequest {
         /// 网络ID，可在区块链网络详情或列表中获取
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Tbaas {
     }
 
     /// ApplyChainMakerBatchUserCert返回参数结构体
-    public struct ApplyChainMakerBatchUserCertResponse: TCResponseModel {
+    public struct ApplyChainMakerBatchUserCertResponse: TCResponse {
         /// 成功生成的用户证书的base64编码字符串列表，与SignUserCsrList一一对应
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let signUserCrtList: [String]?

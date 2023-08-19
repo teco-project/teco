@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// BatchDeleteIntegrationTasks请求参数结构体
-    public struct BatchDeleteIntegrationTasksRequest: TCRequestModel {
+    public struct BatchDeleteIntegrationTasksRequest: TCRequest {
         /// 任务id
         public let taskIds: [String]
 
@@ -49,7 +49,7 @@ extension Wedata {
     }
 
     /// BatchDeleteIntegrationTasks返回参数结构体
-    public struct BatchDeleteIntegrationTasksResponse: TCResponseModel {
+    public struct BatchDeleteIntegrationTasksResponse: TCResponse {
         /// 操作成功的任务数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let successCount: Int64?

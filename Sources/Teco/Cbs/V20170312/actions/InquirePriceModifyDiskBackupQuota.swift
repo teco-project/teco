@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cbs {
     /// InquirePriceModifyDiskBackupQuota请求参数结构体
-    public struct InquirePriceModifyDiskBackupQuotaRequest: TCRequestModel {
+    public struct InquirePriceModifyDiskBackupQuotaRequest: TCRequest {
         /// 云硬盘ID， 通过DescribeDisks（查询云硬盘信息）接口查询。
         public let diskId: String
 
@@ -39,7 +39,7 @@ extension Cbs {
     }
 
     /// InquirePriceModifyDiskBackupQuota返回参数结构体
-    public struct InquirePriceModifyDiskBackupQuotaResponse: TCResponseModel {
+    public struct InquirePriceModifyDiskBackupQuotaResponse: TCResponse {
         /// 描述了修改云硬盘备份点之后的云盘价格。
         public let diskPrice: Price
 

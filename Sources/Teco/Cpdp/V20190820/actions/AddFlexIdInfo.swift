@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// AddFlexIdInfo请求参数结构体
-    public struct AddFlexIdInfoRequest: TCRequestModel {
+    public struct AddFlexIdInfoRequest: TCRequest {
         /// 证件类型
         /// 0:身份证
         /// 1:社会信用代码
@@ -60,7 +60,7 @@ extension Cpdp {
     }
 
     /// AddFlexIdInfo返回参数结构体
-    public struct AddFlexIdInfoResponse: TCResponseModel {
+    public struct AddFlexIdInfoResponse: TCResponse {
         /// 错误码。SUCCESS为成功，其他为失败
         public let errCode: String
 

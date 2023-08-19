@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Dayu {
     /// DescribeBizTrend请求参数结构体
-    public struct DescribeBizTrendRequest: TCRequestModel {
+    public struct DescribeBizTrendRequest: TCRequest {
         /// 大禹子产品代号（bgpip表示高防IP）
         public let business: String
 
@@ -82,7 +82,7 @@ extension Dayu {
     }
 
     /// DescribeBizTrend返回参数结构体
-    public struct DescribeBizTrendResponse: TCResponseModel {
+    public struct DescribeBizTrendResponse: TCResponse {
         /// 曲线图各个时间点的值
         public let dataList: [Float]
 

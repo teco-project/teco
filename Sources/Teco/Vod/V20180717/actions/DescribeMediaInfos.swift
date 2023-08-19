@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// DescribeMediaInfos请求参数结构体
-    public struct DescribeMediaInfosRequest: TCRequestModel {
+    public struct DescribeMediaInfosRequest: TCRequest {
         /// 媒体文件 ID 列表，N 从 0 开始取值，最大 19。
         public let fileIds: [String]
 
@@ -56,7 +56,7 @@ extension Vod {
     }
 
     /// DescribeMediaInfos返回参数结构体
-    public struct DescribeMediaInfosResponse: TCResponseModel {
+    public struct DescribeMediaInfosResponse: TCResponse {
         /// 媒体文件信息列表。
         public let mediaInfoSet: [MediaInfo]
 

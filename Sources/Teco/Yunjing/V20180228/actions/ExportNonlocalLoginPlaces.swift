@@ -20,13 +20,13 @@ import TecoCore
 
 extension Yunjing {
     /// ExportNonlocalLoginPlaces请求参数结构体
-    public struct ExportNonlocalLoginPlacesRequest: TCRequestModel {
+    public struct ExportNonlocalLoginPlacesRequest: TCRequest {
         public init() {
         }
     }
 
     /// ExportNonlocalLoginPlaces返回参数结构体
-    public struct ExportNonlocalLoginPlacesResponse: TCResponseModel {
+    public struct ExportNonlocalLoginPlacesResponse: TCResponse {
         /// 导出文件下载链接地址。
         public let downloadUrl: String
 

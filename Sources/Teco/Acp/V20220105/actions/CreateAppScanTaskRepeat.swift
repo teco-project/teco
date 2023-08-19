@@ -20,7 +20,7 @@ import TecoCore
 
 extension Acp {
     /// CreateAppScanTaskRepeat请求参数结构体
-    public struct CreateAppScanTaskRepeatRequest: TCRequestModel {
+    public struct CreateAppScanTaskRepeatRequest: TCRequest {
         /// 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android), 3:app漏洞扫描;
         public let source: Int64
 
@@ -89,7 +89,7 @@ extension Acp {
     }
 
     /// CreateAppScanTaskRepeat返回参数结构体
-    public struct CreateAppScanTaskRepeatResponse: TCResponseModel {
+    public struct CreateAppScanTaskRepeatResponse: TCResponse {
         /// 返回值, 0:成功, 其他值请查看“返回值”定义
         public let result: Int64
 

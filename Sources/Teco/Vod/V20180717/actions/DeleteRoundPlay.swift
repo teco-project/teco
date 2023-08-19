@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// DeleteRoundPlay请求参数结构体
-    public struct DeleteRoundPlayRequest: TCRequestModel {
+    public struct DeleteRoundPlayRequest: TCRequest {
         /// 轮播播单唯一标识。
         public let roundPlayId: String
 
@@ -39,7 +39,7 @@ extension Vod {
     }
 
     /// DeleteRoundPlay返回参数结构体
-    public struct DeleteRoundPlayResponse: TCResponseModel {
+    public struct DeleteRoundPlayResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// DescribeBackupPlans请求参数结构体
-    public struct DescribeBackupPlansRequest: TCRequestModel {
+    public struct DescribeBackupPlansRequest: TCRequest {
         /// 实例ID
         public let dbInstanceId: String
 
@@ -34,7 +34,7 @@ extension Postgres {
     }
 
     /// DescribeBackupPlans返回参数结构体
-    public struct DescribeBackupPlansResponse: TCResponseModel {
+    public struct DescribeBackupPlansResponse: TCResponse {
         /// 实例的备份计划集
         public let plans: [BackupPlan]
 

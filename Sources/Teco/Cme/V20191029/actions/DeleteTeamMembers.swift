@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cme {
     /// DeleteTeamMembers请求参数结构体
-    public struct DeleteTeamMembersRequest: TCRequestModel {
+    public struct DeleteTeamMembersRequest: TCRequest {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
         public let platform: String
 
@@ -49,7 +49,7 @@ extension Cme {
     }
 
     /// DeleteTeamMembers返回参数结构体
-    public struct DeleteTeamMembersResponse: TCResponseModel {
+    public struct DeleteTeamMembersResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

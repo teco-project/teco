@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmlb {
     /// CreateTrafficMirror请求参数结构体
-    public struct CreateTrafficMirrorRequest: TCRequestModel {
+    public struct CreateTrafficMirrorRequest: TCRequest {
         /// 流量镜像实例别名。
         public let alias: String
 
@@ -39,7 +39,7 @@ extension Bmlb {
     }
 
     /// CreateTrafficMirror返回参数结构体
-    public struct CreateTrafficMirrorResponse: TCResponseModel {
+    public struct CreateTrafficMirrorResponse: TCResponse {
         /// 流量镜像实例ID
         public let trafficMirrorId: String
 

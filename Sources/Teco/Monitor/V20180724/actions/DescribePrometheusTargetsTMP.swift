@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// DescribePrometheusTargetsTMP请求参数结构体
-    public struct DescribePrometheusTargetsTMPRequest: TCRequestModel {
+    public struct DescribePrometheusTargetsTMPRequest: TCRequest {
         /// 实例id
         public let instanceId: String
 
@@ -51,7 +51,7 @@ extension Monitor {
     }
 
     /// DescribePrometheusTargetsTMP返回参数结构体
-    public struct DescribePrometheusTargetsTMPResponse: TCResponseModel {
+    public struct DescribePrometheusTargetsTMPResponse: TCResponse {
         /// 所有Job的targets信息
         public let jobs: [PrometheusJobTargets]
 

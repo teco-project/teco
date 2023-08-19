@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iottid {
     /// VerifyChipBurnInfo请求参数结构体
-    public struct VerifyChipBurnInfoRequest: TCRequestModel {
+    public struct VerifyChipBurnInfoRequest: TCRequest {
         /// 验证数据
         public let data: String
 
@@ -34,7 +34,7 @@ extension Iottid {
     }
 
     /// VerifyChipBurnInfo返回参数结构体
-    public struct VerifyChipBurnInfoResponse: TCResponseModel {
+    public struct VerifyChipBurnInfoResponse: TCResponse {
         /// 验证结果
         public let pass: Bool
 

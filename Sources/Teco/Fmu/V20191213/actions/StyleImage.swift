@@ -20,7 +20,7 @@ import TecoCore
 
 extension Fmu {
     /// StyleImage请求参数结构体
-    public struct StyleImageRequest: TCRequestModel {
+    public struct StyleImageRequest: TCRequest {
         /// 滤镜类型，取值如下：
         /// 1.白茶；2 白皙；3.初夏；4.东京；5.告白；6.暖阳；7.蔷薇；8.清澄；9.清透；10.甜薄荷；11.默认；12.心动；13.哑灰；14.樱桃布丁；15.自然；16.清逸；17.黑白；18.水果；19.爱情；20.冬日；21.相片；22.夏日；23.香氛；24.魅惑；25.悸动；26.沙滩；27.街拍；28.甜美；29.初吻；30.午后。
         public let filterType: Int64
@@ -60,7 +60,7 @@ extension Fmu {
     }
 
     /// StyleImage返回参数结构体
-    public struct StyleImageResponse: TCResponseModel {
+    public struct StyleImageResponse: TCResponse {
         /// RspImgType 为 base64 时，返回处理后的图片 base64 数据。默认返回base64
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resultImage: String?

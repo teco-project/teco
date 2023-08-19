@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// DeleteListeners请求参数结构体
-    public struct DeleteListenersRequest: TCRequestModel {
+    public struct DeleteListenersRequest: TCRequest {
         /// 待删除的监听器ID列表
         public let listenerIds: [String]
 
@@ -49,7 +49,7 @@ extension Gaap {
     }
 
     /// DeleteListeners返回参数结构体
-    public struct DeleteListenersResponse: TCResponseModel {
+    public struct DeleteListenersResponse: TCResponse {
         /// 删除操作失败的监听器ID列表
         public let operationFailedListenerSet: [String]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Emr {
     /// ScaleOutCluster请求参数结构体
-    public struct ScaleOutClusterRequest: TCRequestModel {
+    public struct ScaleOutClusterRequest: TCRequest {
         /// 节点计费模式。取值范围：
         /// - PREPAID：预付费，即包年包月。
         /// - POSTPAID_BY_HOUR：按小时后付费。
@@ -130,7 +130,7 @@ extension Emr {
     }
 
     /// ScaleOutCluster返回参数结构体
-    public struct ScaleOutClusterResponse: TCResponseModel {
+    public struct ScaleOutClusterResponse: TCResponse {
         /// 实例ID。
         public let instanceId: String
 

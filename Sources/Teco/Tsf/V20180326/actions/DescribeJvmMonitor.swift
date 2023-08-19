@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DescribeJvmMonitor请求参数结构体
-    public struct DescribeJvmMonitorRequest: TCRequestModel {
+    public struct DescribeJvmMonitorRequest: TCRequest {
         /// 查询的实例Id
         public let instanceId: String
 
@@ -64,7 +64,7 @@ extension Tsf {
     }
 
     /// DescribeJvmMonitor返回参数结构体
-    public struct DescribeJvmMonitorResponse: TCResponseModel {
+    public struct DescribeJvmMonitorResponse: TCResponse {
         /// Java实例jvm监控数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: JvmMonitorData?

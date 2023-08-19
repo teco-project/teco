@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// EnableTask请求参数结构体
-    public struct EnableTaskRequest: TCRequestModel {
+    public struct EnableTaskRequest: TCRequest {
         /// 启用任务
         public let taskId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// EnableTask返回参数结构体
-    public struct EnableTaskResponse: TCResponseModel {
+    public struct EnableTaskResponse: TCResponse {
         /// 操作成功or失败
         public let result: Bool
 

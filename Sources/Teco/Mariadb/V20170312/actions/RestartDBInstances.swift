@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mariadb {
     /// RestartDBInstances请求参数结构体
-    public struct RestartDBInstancesRequest: TCRequestModel {
+    public struct RestartDBInstancesRequest: TCRequest {
         /// 实例ID的数组
         public let instanceIds: [String]
 
@@ -39,7 +39,7 @@ extension Mariadb {
     }
 
     /// RestartDBInstances返回参数结构体
-    public struct RestartDBInstancesResponse: TCResponseModel {
+    public struct RestartDBInstancesResponse: TCResponse {
         /// 异步任务ID
         public let flowId: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// DescribeLatestTrainingMetrics请求参数结构体
-    public struct DescribeLatestTrainingMetricsRequest: TCRequestModel {
+    public struct DescribeLatestTrainingMetricsRequest: TCRequest {
         /// 任务ID
         public let taskId: String
 
@@ -34,7 +34,7 @@ extension Tione {
     }
 
     /// DescribeLatestTrainingMetrics返回参数结构体
-    public struct DescribeLatestTrainingMetricsResponse: TCResponseModel {
+    public struct DescribeLatestTrainingMetricsResponse: TCResponse {
         /// 任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?

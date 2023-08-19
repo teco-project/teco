@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ccc {
     /// DescribeCallInMetrics请求参数结构体
-    public struct DescribeCallInMetricsRequest: TCRequestModel {
+    public struct DescribeCallInMetricsRequest: TCRequest {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         public let sdkAppId: Int64
 
@@ -49,7 +49,7 @@ extension Ccc {
     }
 
     /// DescribeCallInMetrics返回参数结构体
-    public struct DescribeCallInMetricsResponse: TCResponseModel {
+    public struct DescribeCallInMetricsResponse: TCResponse {
         /// 时间戳
         public let timestamp: Int64
 

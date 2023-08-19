@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ciam {
     /// CreateUserStore请求参数结构体
-    public struct CreateUserStoreRequest: TCRequestModel {
+    public struct CreateUserStoreRequest: TCRequest {
         /// 用户池名字
         public let userPoolName: String
 
@@ -44,7 +44,7 @@ extension Ciam {
     }
 
     /// CreateUserStore返回参数结构体
-    public struct CreateUserStoreResponse: TCResponseModel {
+    public struct CreateUserStoreResponse: TCResponse {
         /// 用户目录ID
         public let userStoreId: String?
 

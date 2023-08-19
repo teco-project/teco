@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// CreateTawInstance请求参数结构体
-    public struct CreateTawInstanceRequest: TCRequestModel {
+    public struct CreateTawInstanceRequest: TCRequest {
         /// 片区Id，(至少大于0)
         public let areaId: Int64
 
@@ -89,7 +89,7 @@ extension Rum {
     }
 
     /// CreateTawInstance返回参数结构体
-    public struct CreateTawInstanceResponse: TCResponseModel {
+    public struct CreateTawInstanceResponse: TCResponse {
         /// 实例Id
         public let instanceId: String
 

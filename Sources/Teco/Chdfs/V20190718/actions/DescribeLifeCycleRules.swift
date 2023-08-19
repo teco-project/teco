@@ -20,7 +20,7 @@ import TecoCore
 
 extension Chdfs {
     /// DescribeLifeCycleRules请求参数结构体
-    public struct DescribeLifeCycleRulesRequest: TCRequestModel {
+    public struct DescribeLifeCycleRulesRequest: TCRequest {
         /// 文件系统ID
         public let fileSystemId: String
 
@@ -34,7 +34,7 @@ extension Chdfs {
     }
 
     /// DescribeLifeCycleRules返回参数结构体
-    public struct DescribeLifeCycleRulesResponse: TCResponseModel {
+    public struct DescribeLifeCycleRulesResponse: TCResponse {
         /// 生命周期规则列表
         public let lifeCycleRules: [LifeCycleRule]
 

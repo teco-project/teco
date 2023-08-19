@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// RefundStorageService请求参数结构体
-    public struct RefundStorageServiceRequest: TCRequestModel {
+    public struct RefundStorageServiceRequest: TCRequest {
         /// 云存服务ID
         public let serviceId: String
 
@@ -39,7 +39,7 @@ extension Iotvideo {
     }
 
     /// RefundStorageService返回参数结构体
-    public struct RefundStorageServiceResponse: TCResponseModel {
+    public struct RefundStorageServiceResponse: TCResponse {
         /// 云存服务ID
         public let serviceId: String
 

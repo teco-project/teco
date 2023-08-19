@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// CreateStarProject请求参数结构体
-    public struct CreateStarProjectRequest: TCRequestModel {
+    public struct CreateStarProjectRequest: TCRequest {
         /// 实例ID：taw-123
         public let instanceID: String
 
@@ -39,7 +39,7 @@ extension Rum {
     }
 
     /// CreateStarProject返回参数结构体
-    public struct CreateStarProjectResponse: TCResponseModel {
+    public struct CreateStarProjectResponse: TCResponse {
         /// 接口返回信息
         public let msg: String
 

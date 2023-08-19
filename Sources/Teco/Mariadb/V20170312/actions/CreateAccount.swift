@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mariadb {
     /// CreateAccount请求参数结构体
-    public struct CreateAccountRequest: TCRequestModel {
+    public struct CreateAccountRequest: TCRequest {
         /// 实例 ID，形如：tdsql-ow728lmc，可以通过 DescribeDBInstances 查询实例详情获得。
         public let instanceId: String
 
@@ -74,7 +74,7 @@ extension Mariadb {
     }
 
     /// CreateAccount返回参数结构体
-    public struct CreateAccountResponse: TCResponseModel {
+    public struct CreateAccountResponse: TCResponse {
         /// 实例ID，透传入参。
         public let instanceId: String
 

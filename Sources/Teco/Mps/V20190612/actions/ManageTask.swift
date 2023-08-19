@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// ManageTask请求参数结构体
-    public struct ManageTaskRequest: TCRequestModel {
+    public struct ManageTaskRequest: TCRequest {
         /// 操作类型，取值范围：
         ///
         /// - Abort：终止任务。使用说明：
@@ -43,7 +43,7 @@ extension Mps {
     }
 
     /// ManageTask返回参数结构体
-    public struct ManageTaskResponse: TCResponseModel {
+    public struct ManageTaskResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

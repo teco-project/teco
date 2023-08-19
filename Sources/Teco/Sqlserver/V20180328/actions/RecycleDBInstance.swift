@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// RecycleDBInstance请求参数结构体
-    public struct RecycleDBInstanceRequest: TCRequestModel {
+    public struct RecycleDBInstanceRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Sqlserver {
     }
 
     /// RecycleDBInstance返回参数结构体
-    public struct RecycleDBInstanceResponse: TCResponseModel {
+    public struct RecycleDBInstanceResponse: TCResponse {
         /// 流程id
         public let flowId: Int64
 

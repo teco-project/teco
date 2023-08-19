@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdc {
     /// ModifyOrderStatus请求参数结构体
-    public struct ModifyOrderStatusRequest: TCRequestModel {
+    public struct ModifyOrderStatusRequest: TCRequest {
         /// 要更新成的状态
         public let status: String
 
@@ -44,7 +44,7 @@ extension Cdc {
     }
 
     /// ModifyOrderStatus返回参数结构体
-    public struct ModifyOrderStatusResponse: TCResponseModel {
+    public struct ModifyOrderStatusResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

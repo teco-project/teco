@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dts {
     /// CreateSubscribe请求参数结构体
-    public struct CreateSubscribeRequest: TCRequestModel {
+    public struct CreateSubscribeRequest: TCRequest {
         /// 订阅的数据库类型，目前支持的有 mysql
         public let product: String
 
@@ -64,7 +64,7 @@ extension Dts {
     }
 
     /// CreateSubscribe返回参数结构体
-    public struct CreateSubscribeResponse: TCResponseModel {
+    public struct CreateSubscribeResponse: TCResponse {
         /// 数据订阅实例的ID数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subscribeIds: [String]?

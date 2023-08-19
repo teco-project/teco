@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryOpenBankSubMerchantSignOnline请求参数结构体
-    public struct QueryOpenBankSubMerchantSignOnlineRequest: TCRequestModel {
+    public struct QueryOpenBankSubMerchantSignOnlineRequest: TCRequest {
         /// 渠道商户号。外部平台接入云企付平台下发。必填。
         public let channelMerchantId: String
 
@@ -49,7 +49,7 @@ extension Cpdp {
     }
 
     /// QueryOpenBankSubMerchantSignOnline返回参数结构体
-    public struct QueryOpenBankSubMerchantSignOnlineResponse: TCResponseModel {
+    public struct QueryOpenBankSubMerchantSignOnlineResponse: TCResponse {
         /// 错误码。
         public let errCode: String
 

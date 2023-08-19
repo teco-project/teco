@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// DescribeEdgeUnitApplicationEvents请求参数结构体
-    public struct DescribeEdgeUnitApplicationEventsRequest: TCRequestModel {
+    public struct DescribeEdgeUnitApplicationEventsRequest: TCRequest {
         /// 单元ID
         public let edgeUnitId: UInt64
 
@@ -39,7 +39,7 @@ extension Iecp {
     }
 
     /// DescribeEdgeUnitApplicationEvents返回参数结构体
-    public struct DescribeEdgeUnitApplicationEventsResponse: TCResponseModel {
+    public struct DescribeEdgeUnitApplicationEventsResponse: TCResponse {
         /// 事件列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eventSet: [Event]?

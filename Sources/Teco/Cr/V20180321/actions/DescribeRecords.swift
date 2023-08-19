@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cr {
     /// DescribeRecords请求参数结构体
-    public struct DescribeRecordsRequest: TCRequestModel {
+    public struct DescribeRecordsRequest: TCRequest {
         /// 模块名，本接口取值：Record
         public let module: String
 
@@ -87,7 +87,7 @@ extension Cr {
     }
 
     /// DescribeRecords返回参数结构体
-    public struct DescribeRecordsResponse: TCResponseModel {
+    public struct DescribeRecordsResponse: TCResponse {
         /// 录音列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordList: [SingleRecord]?

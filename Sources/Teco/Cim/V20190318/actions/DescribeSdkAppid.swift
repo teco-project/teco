@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cim {
     /// DescribeSdkAppid请求参数结构体
-    public struct DescribeSdkAppidRequest: TCRequestModel {
+    public struct DescribeSdkAppidRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeSdkAppid返回参数结构体
-    public struct DescribeSdkAppidResponse: TCResponseModel {
+    public struct DescribeSdkAppidResponse: TCResponse {
         /// 表示 appid 对应的 SdkAppid 的数据
         public let sdkAppids: [Int64]
 

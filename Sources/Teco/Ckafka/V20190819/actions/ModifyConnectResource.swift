@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// ModifyConnectResource请求参数结构体
-    public struct ModifyConnectResourceRequest: TCRequestModel {
+    public struct ModifyConnectResourceRequest: TCRequest {
         /// 连接源的Id
         public let resourceId: String
 
@@ -104,7 +104,7 @@ extension Ckafka {
     }
 
     /// ModifyConnectResource返回参数结构体
-    public struct ModifyConnectResourceResponse: TCResponseModel {
+    public struct ModifyConnectResourceResponse: TCResponse {
         /// 连接源的Id
         public let result: ConnectResourceResourceIdResp
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// StopBaselineDetect请求参数结构体
-    public struct StopBaselineDetectRequest: TCRequestModel {
+    public struct StopBaselineDetectRequest: TCRequest {
         /// 取消任务ID集合
         public let taskIds: [Int64]
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// StopBaselineDetect返回参数结构体
-    public struct StopBaselineDetectResponse: TCResponseModel {
+    public struct StopBaselineDetectResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

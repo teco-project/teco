@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeEdgeLogSwitches请求参数结构体
-    public struct DescribeEdgeLogSwitchesRequest: TCRequestModel {
+    public struct DescribeEdgeLogSwitchesRequest: TCRequest {
         /// 集群ID列表
         public let clusterIds: [String]
 
@@ -34,7 +34,7 @@ extension Tke {
     }
 
     /// DescribeEdgeLogSwitches返回参数结构体
-    public struct DescribeEdgeLogSwitchesResponse: TCResponseModel {
+    public struct DescribeEdgeLogSwitchesResponse: TCResponse {
         /// 集群日志开关集合
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let switchSet: [String]?

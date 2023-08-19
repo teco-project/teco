@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// DescribeRumLogExports请求参数结构体
-    public struct DescribeRumLogExportsRequest: TCRequestModel {
+    public struct DescribeRumLogExportsRequest: TCRequest {
         /// 页面大小
         public let pageSize: Int64
 
@@ -44,7 +44,7 @@ extension Rum {
     }
 
     /// DescribeRumLogExports返回参数结构体
-    public struct DescribeRumLogExportsResponse: TCResponseModel {
+    public struct DescribeRumLogExportsResponse: TCResponse {
         /// 返回字符串
         public let result: String
 

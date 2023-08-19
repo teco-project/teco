@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// DescribeZones请求参数结构体
-    public struct DescribeZonesRequest: TCRequestModel {
+    public struct DescribeZonesRequest: TCRequest {
         /// 可用区列表排序的依据字段。取值范围：
         /// - ZONE：依据可用区排序。
         /// - INSTANCE_DISPLAY_LABEL：依据可用区展示标签排序，可用区展示标签包括：HIDDEN（隐藏）、NORMAL（普通）、SELECTED（默认选中），默认采用的升序排列为：['HIDDEN', 'NORMAL', 'SELECTED']。
@@ -47,7 +47,7 @@ extension Lighthouse {
     }
 
     /// DescribeZones返回参数结构体
-    public struct DescribeZonesResponse: TCResponseModel {
+    public struct DescribeZonesResponse: TCResponse {
         /// 可用区数量
         public let totalCount: Int64
 

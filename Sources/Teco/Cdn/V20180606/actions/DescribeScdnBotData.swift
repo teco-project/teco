@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cdn {
     /// DescribeScdnBotData请求参数结构体
-    public struct DescribeScdnBotDataRequest: TCRequestModel {
+    public struct DescribeScdnBotDataRequest: TCRequest {
         /// 开始时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -62,7 +62,7 @@ extension Cdn {
     }
 
     /// DescribeScdnBotData返回参数结构体
-    public struct DescribeScdnBotDataResponse: TCResponseModel {
+    public struct DescribeScdnBotDataResponse: TCResponse {
         /// 统计信息详细数据
         public let data: [BotStats]
 

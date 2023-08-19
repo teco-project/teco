@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DeleteConfig请求参数结构体
-    public struct DeleteConfigRequest: TCRequestModel {
+    public struct DeleteConfigRequest: TCRequest {
         /// 配置项ID
         public let configId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// DeleteConfig返回参数结构体
-    public struct DeleteConfigResponse: TCResponseModel {
+    public struct DeleteConfigResponse: TCResponse {
         /// true：删除成功；false：删除失败
         public let result: Bool
 

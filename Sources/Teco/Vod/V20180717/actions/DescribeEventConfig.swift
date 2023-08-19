@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// DescribeEventConfig请求参数结构体
-    public struct DescribeEventConfigRequest: TCRequestModel {
+    public struct DescribeEventConfigRequest: TCRequest {
         /// 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
         public let subAppId: UInt64?
 
@@ -34,7 +34,7 @@ extension Vod {
     }
 
     /// DescribeEventConfig返回参数结构体
-    public struct DescribeEventConfigResponse: TCResponseModel {
+    public struct DescribeEventConfigResponse: TCResponse {
         /// 接收事件通知的方式。"PUSH" 为 [HTTP 回调通知](https://cloud.tencent.com/document/product/266/7829#http.E5.9B.9E.E8.B0.83)，"PULL" 为 [基于消息队列的可靠通知](https://cloud.tencent.com/document/product/266/7829#.E5.9F.BA.E4.BA.8E.E6.B6.88.E6.81.AF.E9.98.9F.E5.88.97.E7.9A.84.E5.8F.AF.E9.9D.A0.E9.80.9A.E7.9F.A5)。
         public let mode: String
 

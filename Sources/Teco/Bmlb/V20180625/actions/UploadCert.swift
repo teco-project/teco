@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmlb {
     /// UploadCert请求参数结构体
-    public struct UploadCertRequest: TCRequestModel {
+    public struct UploadCertRequest: TCRequest {
         /// 证书类型，可选值：CA，SVR。
         public let certType: String
 
@@ -49,7 +49,7 @@ extension Bmlb {
     }
 
     /// UploadCert返回参数结构体
-    public struct UploadCertResponse: TCResponseModel {
+    public struct UploadCertResponse: TCResponse {
         /// 新建的证书ID。
         public let certId: String
 

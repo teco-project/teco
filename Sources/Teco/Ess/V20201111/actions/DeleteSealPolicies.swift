@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// DeleteSealPolicies请求参数结构体
-    public struct DeleteSealPoliciesRequest: TCRequestModel {
+    public struct DeleteSealPoliciesRequest: TCRequest {
         /// 调用方用户信息，userId 必填
         public let `operator`: UserInfo
 
@@ -54,7 +54,7 @@ extension Ess {
     }
 
     /// DeleteSealPolicies返回参数结构体
-    public struct DeleteSealPoliciesResponse: TCResponseModel {
+    public struct DeleteSealPoliciesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

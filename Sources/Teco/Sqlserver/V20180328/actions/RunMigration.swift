@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// RunMigration请求参数结构体
-    public struct RunMigrationRequest: TCRequestModel {
+    public struct RunMigrationRequest: TCRequest {
         /// 迁移任务ID
         public let migrateId: UInt64
 
@@ -34,7 +34,7 @@ extension Sqlserver {
     }
 
     /// RunMigration返回参数结构体
-    public struct RunMigrationResponse: TCResponseModel {
+    public struct RunMigrationResponse: TCResponse {
         /// 迁移流程启动后，返回流程ID
         public let flowId: Int64
 

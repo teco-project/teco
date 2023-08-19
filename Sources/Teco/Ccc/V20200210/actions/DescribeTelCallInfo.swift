@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ccc {
     /// DescribeTelCallInfo请求参数结构体
-    public struct DescribeTelCallInfoRequest: TCRequestModel {
+    public struct DescribeTelCallInfoRequest: TCRequest {
         /// 起始时间戳，Unix 时间戳
         public let startTimeStamp: Int64
 
@@ -44,7 +44,7 @@ extension Ccc {
     }
 
     /// DescribeTelCallInfo返回参数结构体
-    public struct DescribeTelCallInfoResponse: TCResponseModel {
+    public struct DescribeTelCallInfoResponse: TCResponse {
         /// 呼出套餐包消耗分钟数
         public let telCallOutCount: Int64
 

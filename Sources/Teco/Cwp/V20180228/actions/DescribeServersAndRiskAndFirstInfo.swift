@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cwp {
     /// DescribeServersAndRiskAndFirstInfo请求参数结构体
-    public struct DescribeServersAndRiskAndFirstInfoRequest: TCRequestModel {
+    public struct DescribeServersAndRiskAndFirstInfoRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeServersAndRiskAndFirstInfo返回参数结构体
-    public struct DescribeServersAndRiskAndFirstInfoResponse: TCResponseModel {
+    public struct DescribeServersAndRiskAndFirstInfoResponse: TCResponse {
         /// 风险文件数
         public let riskFileCount: UInt64
 

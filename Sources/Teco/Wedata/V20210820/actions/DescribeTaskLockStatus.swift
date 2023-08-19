@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeTaskLockStatus请求参数结构体
-    public struct DescribeTaskLockStatusRequest: TCRequestModel {
+    public struct DescribeTaskLockStatusRequest: TCRequest {
         /// 任务id
         public let taskId: String
 
@@ -44,7 +44,7 @@ extension Wedata {
     }
 
     /// DescribeTaskLockStatus返回参数结构体
-    public struct DescribeTaskLockStatusResponse: TCResponseModel {
+    public struct DescribeTaskLockStatusResponse: TCResponse {
         /// 任务锁状态信息
         public let taskLockStatus: TaskLockStatus
 

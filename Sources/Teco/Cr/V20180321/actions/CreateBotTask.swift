@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cr {
     /// CreateBotTask请求参数结构体
-    public struct CreateBotTaskRequest: TCRequestModel {
+    public struct CreateBotTaskRequest: TCRequest {
         /// 模块名。默认值（固定）：AiApi
         public let module: String
 
@@ -119,7 +119,7 @@ extension Cr {
     }
 
     /// CreateBotTask返回参数结构体
-    public struct CreateBotTaskResponse: TCResponseModel {
+    public struct CreateBotTaskResponse: TCResponse {
         /// 机器人任务Id
         public let botId: String
 

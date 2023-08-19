@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// CloseInterCommunication请求参数结构体
-    public struct CloseInterCommunicationRequest: TCRequestModel {
+    public struct CloseInterCommunicationRequest: TCRequest {
         /// 关闭互通的实例ID集合
         public let instanceIdSet: [String]
 
@@ -34,7 +34,7 @@ extension Sqlserver {
     }
 
     /// CloseInterCommunication返回参数结构体
-    public struct CloseInterCommunicationResponse: TCResponseModel {
+    public struct CloseInterCommunicationResponse: TCResponse {
         /// 实例和异步流程ID
         public let interInstanceFlowSet: [InterInstanceFlow]
 

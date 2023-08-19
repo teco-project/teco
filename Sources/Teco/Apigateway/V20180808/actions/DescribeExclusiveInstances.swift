@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// DescribeExclusiveInstances请求参数结构体
-    public struct DescribeExclusiveInstancesRequest: TCRequestModel {
+    public struct DescribeExclusiveInstancesRequest: TCRequest {
         /// 分页查询，limit
         public let limit: UInt64
 
@@ -44,7 +44,7 @@ extension Apigateway {
     }
 
     /// DescribeExclusiveInstances返回参数结构体
-    public struct DescribeExclusiveInstancesResponse: TCResponseModel {
+    public struct DescribeExclusiveInstancesResponse: TCResponse {
         /// 独享实例列表查询结果
         public let result: DescribeExclusiveInstancesResult
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tia {
     /// InstallAgent请求参数结构体
-    public struct InstallAgentRequest: TCRequestModel {
+    public struct InstallAgentRequest: TCRequest {
         /// 集群名称
         public let cluster: String
 
@@ -44,7 +44,7 @@ extension Tia {
     }
 
     /// InstallAgent返回参数结构体
-    public struct InstallAgentResponse: TCResponseModel {
+    public struct InstallAgentResponse: TCResponse {
         /// Agent版本, 用于私有集群的agent安装
         public let tiaVersion: String
 

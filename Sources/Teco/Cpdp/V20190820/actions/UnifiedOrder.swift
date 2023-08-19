@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// UnifiedOrder请求参数结构体
-    public struct UnifiedOrderRequest: TCRequestModel {
+    public struct UnifiedOrderRequest: TCRequest {
         /// ISO 货币代码，CNY
         public let currencyType: String
 
@@ -165,7 +165,7 @@ extension Cpdp {
     }
 
     /// UnifiedOrder返回参数结构体
-    public struct UnifiedOrderResponse: TCResponseModel {
+    public struct UnifiedOrderResponse: TCResponse {
         /// 支付金额，单位： 分
         public let totalAmt: Int64
 

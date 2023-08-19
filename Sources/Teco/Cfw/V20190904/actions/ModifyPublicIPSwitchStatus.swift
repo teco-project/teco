@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// ModifyPublicIPSwitchStatus请求参数结构体
-    public struct ModifyPublicIPSwitchStatusRequest: TCRequestModel {
+    public struct ModifyPublicIPSwitchStatusRequest: TCRequest {
         /// 公网IP
         public let fireWallPublicIP: String
 
@@ -39,7 +39,7 @@ extension Cfw {
     }
 
     /// ModifyPublicIPSwitchStatus返回参数结构体
-    public struct ModifyPublicIPSwitchStatusResponse: TCResponseModel {
+    public struct ModifyPublicIPSwitchStatusResponse: TCResponse {
         /// 接口返回信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let returnMsg: String?

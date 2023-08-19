@@ -20,13 +20,13 @@ import TecoCore
 
 extension Trro {
     /// GetLicenseStat请求参数结构体
-    public struct GetLicenseStatRequest: TCRequestModel {
+    public struct GetLicenseStatRequest: TCRequest {
         public init() {
         }
     }
 
     /// GetLicenseStat返回参数结构体
-    public struct GetLicenseStatResponse: TCResponseModel {
+    public struct GetLicenseStatResponse: TCResponse {
         /// 有效授权
         public let valid: Int64
 

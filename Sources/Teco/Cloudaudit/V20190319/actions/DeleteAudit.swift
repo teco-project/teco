@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cloudaudit {
     /// DeleteAudit请求参数结构体
-    public struct DeleteAuditRequest: TCRequestModel {
+    public struct DeleteAuditRequest: TCRequest {
         /// 跟踪集名称
         public let auditName: String
 
@@ -34,7 +34,7 @@ extension Cloudaudit {
     }
 
     /// DeleteAudit返回参数结构体
-    public struct DeleteAuditResponse: TCResponseModel {
+    public struct DeleteAuditResponse: TCResponse {
         /// 是否删除成功
         public let isSuccess: Int64
 

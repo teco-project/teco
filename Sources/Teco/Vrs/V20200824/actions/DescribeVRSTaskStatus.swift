@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vrs {
     /// DescribeVRSTaskStatus请求参数结构体
-    public struct DescribeVRSTaskStatusRequest: TCRequestModel {
+    public struct DescribeVRSTaskStatusRequest: TCRequest {
         /// 任务ID
         public let taskId: String
 
@@ -34,7 +34,7 @@ extension Vrs {
     }
 
     /// DescribeVRSTaskStatus返回参数结构体
-    public struct DescribeVRSTaskStatusResponse: TCResponseModel {
+    public struct DescribeVRSTaskStatusResponse: TCResponse {
         /// 声音复刻任务结果
         public let data: DescribeVRSTaskStatusRespData
 

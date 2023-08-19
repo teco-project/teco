@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// CreatePrometheusAlertPolicy请求参数结构体
-    public struct CreatePrometheusAlertPolicyRequest: TCRequestModel {
+    public struct CreatePrometheusAlertPolicyRequest: TCRequest {
         /// 实例id
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Monitor {
     }
 
     /// CreatePrometheusAlertPolicy返回参数结构体
-    public struct CreatePrometheusAlertPolicyResponse: TCResponseModel {
+    public struct CreatePrometheusAlertPolicyResponse: TCResponse {
         /// 告警id
         public let id: String
 

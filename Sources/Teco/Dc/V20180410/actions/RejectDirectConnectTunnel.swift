@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dc {
     /// RejectDirectConnectTunnel请求参数结构体
-    public struct RejectDirectConnectTunnelRequest: TCRequestModel {
+    public struct RejectDirectConnectTunnelRequest: TCRequest {
         public let directConnectTunnelId: String
 
         public init(directConnectTunnelId: String) {
@@ -33,7 +33,7 @@ extension Dc {
     }
 
     /// RejectDirectConnectTunnel返回参数结构体
-    public struct RejectDirectConnectTunnelResponse: TCResponseModel {
+    public struct RejectDirectConnectTunnelResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

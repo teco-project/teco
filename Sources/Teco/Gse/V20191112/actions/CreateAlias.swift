@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// CreateAlias请求参数结构体
-    public struct CreateAliasRequest: TCRequestModel {
+    public struct CreateAliasRequest: TCRequest {
         /// 名字，长度不小于1字符不超过1024字符
         public let name: String
 
@@ -49,7 +49,7 @@ extension Gse {
     }
 
     /// CreateAlias返回参数结构体
-    public struct CreateAliasResponse: TCResponseModel {
+    public struct CreateAliasResponse: TCResponse {
         /// 别名对象
         public let alias: Alias
 

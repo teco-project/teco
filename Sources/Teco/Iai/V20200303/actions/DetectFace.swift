@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iai {
     /// DetectFace请求参数结构体
-    public struct DetectFaceRequest: TCRequestModel {
+    public struct DetectFaceRequest: TCRequest {
         /// 最多处理的人脸数目。默认值为1（仅检测图片中面积最大的那张人脸），最大值为120。
         /// 此参数用于控制处理待检测图片中的人脸个数，值越小，处理速度越快。
         public let maxFaceNum: UInt64?
@@ -92,7 +92,7 @@ extension Iai {
     }
 
     /// DetectFace返回参数结构体
-    public struct DetectFaceResponse: TCResponseModel {
+    public struct DetectFaceResponse: TCResponse {
         /// 请求的图片宽度。
         public let imageWidth: Int64
 

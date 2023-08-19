@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// DescribePrometheusTempSync请求参数结构体
-    public struct DescribePrometheusTempSyncRequest: TCRequestModel {
+    public struct DescribePrometheusTempSyncRequest: TCRequest {
         /// 模板ID
         public let templateId: String
 
@@ -34,7 +34,7 @@ extension Monitor {
     }
 
     /// DescribePrometheusTempSync返回参数结构体
-    public struct DescribePrometheusTempSyncResponse: TCResponseModel {
+    public struct DescribePrometheusTempSyncResponse: TCResponse {
         /// 同步目标详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targets: [PrometheusTemplateSyncTarget]?

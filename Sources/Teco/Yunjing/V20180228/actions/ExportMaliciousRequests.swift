@@ -20,13 +20,13 @@ import TecoCore
 
 extension Yunjing {
     /// ExportMaliciousRequests请求参数结构体
-    public struct ExportMaliciousRequestsRequest: TCRequestModel {
+    public struct ExportMaliciousRequestsRequest: TCRequest {
         public init() {
         }
     }
 
     /// ExportMaliciousRequests返回参数结构体
-    public struct ExportMaliciousRequestsResponse: TCResponseModel {
+    public struct ExportMaliciousRequestsResponse: TCResponse {
         /// 导出文件下载链接地址。
         public let downloadUrl: String
 

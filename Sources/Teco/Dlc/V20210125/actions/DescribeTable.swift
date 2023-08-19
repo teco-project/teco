@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// DescribeTable请求参数结构体
-    public struct DescribeTableRequest: TCRequestModel {
+    public struct DescribeTableRequest: TCRequest {
         /// 查询对象表名称
         public let tableName: String
 
@@ -44,7 +44,7 @@ extension Dlc {
     }
 
     /// DescribeTable返回参数结构体
-    public struct DescribeTableResponse: TCResponseModel {
+    public struct DescribeTableResponse: TCResponse {
         /// 数据表对象
         public let table: TableResponseInfo
 

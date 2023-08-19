@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iai {
     /// DetectLiveFaceAccurate请求参数结构体
-    public struct DetectLiveFaceAccurateRequest: TCRequestModel {
+    public struct DetectLiveFaceAccurateRequest: TCRequest {
         /// 图片 base64 数据，base64 编码后大小不可超过5M。
         /// jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
         /// 图片的宽高比请接近 3:4，手机拍摄比例最佳。
@@ -54,7 +54,7 @@ extension Iai {
     }
 
     /// DetectLiveFaceAccurate返回参数结构体
-    public struct DetectLiveFaceAccurateResponse: TCResponseModel {
+    public struct DetectLiveFaceAccurateResponse: TCResponse {
         /// 活体打分，取值范围 [0,100]，根据活体分数对应的阈值区间来判断是否为翻拍。目前阈值可分为[5,10,40,70,90]，其中推荐阈值为40。
         public let score: Float
 

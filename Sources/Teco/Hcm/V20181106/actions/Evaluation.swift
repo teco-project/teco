@@ -20,7 +20,7 @@ import TecoCore
 
 extension Hcm {
     /// Evaluation请求参数结构体
-    public struct EvaluationRequest: TCRequestModel {
+    public struct EvaluationRequest: TCRequest {
         /// 图片唯一标识，一张图片一个SessionId；
         public let sessionId: String
 
@@ -94,7 +94,7 @@ extension Hcm {
     }
 
     /// Evaluation返回参数结构体
-    public struct EvaluationResponse: TCResponseModel {
+    public struct EvaluationResponse: TCResponse {
         /// 图片唯一标识，一张图片一个SessionId；
         public let sessionId: String
 

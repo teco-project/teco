@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// OpenInterCommunication请求参数结构体
-    public struct OpenInterCommunicationRequest: TCRequestModel {
+    public struct OpenInterCommunicationRequest: TCRequest {
         /// 打开互通组的实例ID集合
         public let instanceIdSet: [String]
 
@@ -34,7 +34,7 @@ extension Sqlserver {
     }
 
     /// OpenInterCommunication返回参数结构体
-    public struct OpenInterCommunicationResponse: TCResponseModel {
+    public struct OpenInterCommunicationResponse: TCResponse {
         /// 实例和异步流程ID
         public let interInstanceFlowSet: [InterInstanceFlow]
 

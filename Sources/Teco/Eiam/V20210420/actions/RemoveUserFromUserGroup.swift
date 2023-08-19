@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eiam {
     /// RemoveUserFromUserGroup请求参数结构体
-    public struct RemoveUserFromUserGroupRequest: TCRequestModel {
+    public struct RemoveUserFromUserGroupRequest: TCRequest {
         /// 要加入用户组的用户ID列表。
         public let userIds: [String]
 
@@ -39,7 +39,7 @@ extension Eiam {
     }
 
     /// RemoveUserFromUserGroup返回参数结构体
-    public struct RemoveUserFromUserGroupResponse: TCResponseModel {
+    public struct RemoveUserFromUserGroupResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

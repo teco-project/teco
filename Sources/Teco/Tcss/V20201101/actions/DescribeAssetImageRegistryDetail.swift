@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Tcss {
     /// DescribeAssetImageRegistryDetail请求参数结构体
-    public struct DescribeAssetImageRegistryDetailRequest: TCRequestModel {
+    public struct DescribeAssetImageRegistryDetailRequest: TCRequest {
         /// 仓库列表id
         public let id: UInt64?
 
@@ -41,7 +41,7 @@ extension Tcss {
     }
 
     /// DescribeAssetImageRegistryDetail返回参数结构体
-    public struct DescribeAssetImageRegistryDetailResponse: TCResponseModel {
+    public struct DescribeAssetImageRegistryDetailResponse: TCResponse {
         /// 镜像Digest
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let imageDigest: String?

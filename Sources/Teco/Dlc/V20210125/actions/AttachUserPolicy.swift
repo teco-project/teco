@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// AttachUserPolicy请求参数结构体
-    public struct AttachUserPolicyRequest: TCRequestModel {
+    public struct AttachUserPolicyRequest: TCRequest {
         /// 用户Id，和子用户uin相同，需要先使用CreateUser接口创建用户。可以使用DescribeUsers接口查看。
         public let userId: String
 
@@ -39,7 +39,7 @@ extension Dlc {
     }
 
     /// AttachUserPolicy返回参数结构体
-    public struct AttachUserPolicyResponse: TCResponseModel {
+    public struct AttachUserPolicyResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

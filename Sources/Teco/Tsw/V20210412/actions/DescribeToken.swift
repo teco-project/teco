@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsw {
     /// DescribeToken请求参数结构体
-    public struct DescribeTokenRequest: TCRequestModel {
+    public struct DescribeTokenRequest: TCRequest {
         /// 命名空间
         public let namespace: String
 
@@ -34,7 +34,7 @@ extension Tsw {
     }
 
     /// DescribeToken返回参数结构体
-    public struct DescribeTokenResponse: TCResponseModel {
+    public struct DescribeTokenResponse: TCResponse {
         /// token
         public let result: String
 

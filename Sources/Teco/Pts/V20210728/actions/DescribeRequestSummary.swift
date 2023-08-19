@@ -20,7 +20,7 @@ import TecoCore
 
 extension Pts {
     /// DescribeRequestSummary请求参数结构体
-    public struct DescribeRequestSummaryRequest: TCRequestModel {
+    public struct DescribeRequestSummaryRequest: TCRequest {
         /// 压测任务ID
         public let jobId: String
 
@@ -44,7 +44,7 @@ extension Pts {
     }
 
     /// DescribeRequestSummary返回参数结构体
-    public struct DescribeRequestSummaryResponse: TCResponseModel {
+    public struct DescribeRequestSummaryResponse: TCResponse {
         /// 请求汇总信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let requestSummarySet: [RequestSummary]?

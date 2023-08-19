@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// AllocateAddresses请求参数结构体
-    public struct AllocateAddressesRequest: TCRequestModel {
+    public struct AllocateAddressesRequest: TCRequest {
         /// ECM 地域
         public let ecmRegion: String
 
@@ -71,7 +71,7 @@ extension Ecm {
     }
 
     /// AllocateAddresses返回参数结构体
-    public struct AllocateAddressesResponse: TCResponseModel {
+    public struct AllocateAddressesResponse: TCResponse {
         /// 申请到的 EIP 的唯一 ID 列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let addressSet: [String]?

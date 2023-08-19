@@ -20,7 +20,7 @@ import TecoCore
 
 extension Privatedns {
     /// CreatePrivateZone请求参数结构体
-    public struct CreatePrivateZoneRequest: TCRequestModel {
+    public struct CreatePrivateZoneRequest: TCRequest {
         /// 域名，格式必须是标准的TLD
         public let domain: String
 
@@ -69,7 +69,7 @@ extension Privatedns {
     }
 
     /// CreatePrivateZone返回参数结构体
-    public struct CreatePrivateZoneResponse: TCResponseModel {
+    public struct CreatePrivateZoneResponse: TCResponse {
         /// 私有域ID, zone-xxxxxx
         public let zoneId: String
 

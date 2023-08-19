@@ -20,7 +20,7 @@ import TecoCore
 
 extension Asw {
     /// DescribeExecutions请求参数结构体
-    public struct DescribeExecutionsRequest: TCRequestModel {
+    public struct DescribeExecutionsRequest: TCRequest {
         /// 状态机资源名
         public let stateMachineResourceName: String
 
@@ -54,7 +54,7 @@ extension Asw {
     }
 
     /// DescribeExecutions返回参数结构体
-    public struct DescribeExecutionsResponse: TCResponseModel {
+    public struct DescribeExecutionsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tms {
     /// TextModeration请求参数结构体
-    public struct TextModerationRequest: TCRequestModel {
+    public struct TextModerationRequest: TCRequest {
         /// 该字段表示待检测对象的文本内容，文本需要按utf-8格式编码，长度不能超过10000个字符（按unicode编码计算），并进行 Base64加密
         public let content: String
 
@@ -58,7 +58,7 @@ extension Tms {
     }
 
     /// TextModeration返回参数结构体
-    public struct TextModerationResponse: TCResponseModel {
+    public struct TextModerationResponse: TCResponse {
         /// 该字段用于返回请求参数中的BizType参数
         public let bizType: String
 

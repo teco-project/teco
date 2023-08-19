@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// ModifyAcRule请求参数结构体
-    public struct ModifyAcRuleRequest: TCRequestModel {
+    public struct ModifyAcRuleRequest: TCRequest {
         /// 规则数组
         public let data: [RuleInfoData]
 
@@ -49,7 +49,7 @@ extension Cfw {
     }
 
     /// ModifyAcRule返回参数结构体
-    public struct ModifyAcRuleResponse: TCResponseModel {
+    public struct ModifyAcRuleResponse: TCResponse {
         /// 状态值，0:操作成功，非0：操作失败
         public let status: Int64
 

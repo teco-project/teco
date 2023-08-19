@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension As {
     /// CreateScheduledAction请求参数结构体
-    public struct CreateScheduledActionRequest: TCRequestModel {
+    public struct CreateScheduledActionRequest: TCRequest {
         /// 伸缩组ID
         public let autoScalingGroupId: String
 
@@ -81,7 +81,7 @@ extension As {
     }
 
     /// CreateScheduledAction返回参数结构体
-    public struct CreateScheduledActionResponse: TCResponseModel {
+    public struct CreateScheduledActionResponse: TCResponse {
         /// 定时任务ID
         public let scheduledActionId: String
 

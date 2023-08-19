@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// DescribeDatasetDetailStructured请求参数结构体
-    public struct DescribeDatasetDetailStructuredRequest: TCRequestModel {
+    public struct DescribeDatasetDetailStructuredRequest: TCRequest {
         /// 数据集ID
         public let datasetId: String
 
@@ -44,7 +44,7 @@ extension Tione {
     }
 
     /// DescribeDatasetDetailStructured返回参数结构体
-    public struct DescribeDatasetDetailStructuredResponse: TCResponseModel {
+    public struct DescribeDatasetDetailStructuredResponse: TCResponse {
         /// 数据总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?

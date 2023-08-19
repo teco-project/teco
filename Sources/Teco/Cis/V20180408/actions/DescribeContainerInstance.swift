@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cis {
     /// DescribeContainerInstance请求参数结构体
-    public struct DescribeContainerInstanceRequest: TCRequestModel {
+    public struct DescribeContainerInstanceRequest: TCRequest {
         /// 容器实例名称
         public let instanceName: String
 
@@ -34,7 +34,7 @@ extension Cis {
     }
 
     /// DescribeContainerInstance返回参数结构体
-    public struct DescribeContainerInstanceResponse: TCResponseModel {
+    public struct DescribeContainerInstanceResponse: TCResponse {
         /// 容器实例详细信息
         public let containerInstance: ContainerInstance
 

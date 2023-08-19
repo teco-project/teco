@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// VerifyPdf请求参数结构体
-    public struct VerifyPdfRequest: TCRequestModel {
+    public struct VerifyPdfRequest: TCRequest {
         /// 流程ID
         public let flowId: String
 
@@ -39,7 +39,7 @@ extension Ess {
     }
 
     /// VerifyPdf返回参数结构体
-    public struct VerifyPdfResponse: TCResponseModel {
+    public struct VerifyPdfResponse: TCResponse {
         /// 验签结果，1-文件未被篡改，全部签名在腾讯电子签完成； 2-文件未被篡改，部分签名在腾讯电子签完成；3-文件被篡改；4-异常：文件内没有签名域；5-异常：文件签名格式错误
         public let verifyResult: Int64
 

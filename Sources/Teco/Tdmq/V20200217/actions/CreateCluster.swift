@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// CreateCluster请求参数结构体
-    public struct CreateClusterRequest: TCRequestModel {
+    public struct CreateClusterRequest: TCRequest {
         /// 集群名称，不支持中字以及除了短线和下划线外的特殊字符且不超过16个字符。
         public let clusterName: String
 
@@ -54,7 +54,7 @@ extension Tdmq {
     }
 
     /// CreateCluster返回参数结构体
-    public struct CreateClusterResponse: TCResponseModel {
+    public struct CreateClusterResponse: TCResponse {
         /// 集群ID
         public let clusterId: String
 

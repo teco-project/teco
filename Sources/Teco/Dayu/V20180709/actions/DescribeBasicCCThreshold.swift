@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dayu {
     /// DescribeBasicCCThreshold请求参数结构体
-    public struct DescribeBasicCCThresholdRequest: TCRequestModel {
+    public struct DescribeBasicCCThresholdRequest: TCRequest {
         /// 查询的IP地址，取值如：1.1.1.1
         public let basicIp: String
 
@@ -59,7 +59,7 @@ extension Dayu {
     }
 
     /// DescribeBasicCCThreshold返回参数结构体
-    public struct DescribeBasicCCThresholdResponse: TCResponseModel {
+    public struct DescribeBasicCCThresholdResponse: TCResponse {
         /// CC启动开关（0:关闭；1:开启）
         public let ccEnable: UInt64
 

@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Dbbrain {
     /// CreateSecurityAuditLogExportTask请求参数结构体
-    public struct CreateSecurityAuditLogExportTaskRequest: TCRequestModel {
+    public struct CreateSecurityAuditLogExportTaskRequest: TCRequest {
         /// 安全审计组Id。
         public let secAuditGroupId: String
 
@@ -62,7 +62,7 @@ extension Dbbrain {
     }
 
     /// CreateSecurityAuditLogExportTask返回参数结构体
-    public struct CreateSecurityAuditLogExportTaskResponse: TCResponseModel {
+    public struct CreateSecurityAuditLogExportTaskResponse: TCResponse {
         /// 日志导出任务Id。
         public let asyncRequestId: UInt64
 

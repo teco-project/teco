@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssm {
     /// UpdateSecret请求参数结构体
-    public struct UpdateSecretRequest: TCRequestModel {
+    public struct UpdateSecretRequest: TCRequest {
         /// 指定需要更新凭据内容的名称。
         public let secretName: String
 
@@ -50,7 +50,7 @@ extension Ssm {
     }
 
     /// UpdateSecret返回参数结构体
-    public struct UpdateSecretResponse: TCResponseModel {
+    public struct UpdateSecretResponse: TCResponse {
         /// 凭据名称。
         public let secretName: String
 

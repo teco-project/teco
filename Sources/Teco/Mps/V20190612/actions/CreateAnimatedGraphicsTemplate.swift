@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// CreateAnimatedGraphicsTemplate请求参数结构体
-    public struct CreateAnimatedGraphicsTemplateRequest: TCRequestModel {
+    public struct CreateAnimatedGraphicsTemplateRequest: TCRequest {
         /// 帧率，取值范围：[1, 30]，单位：Hz。
         public let fps: UInt64
 
@@ -85,7 +85,7 @@ extension Mps {
     }
 
     /// CreateAnimatedGraphicsTemplate返回参数结构体
-    public struct CreateAnimatedGraphicsTemplateResponse: TCResponseModel {
+    public struct CreateAnimatedGraphicsTemplateResponse: TCResponse {
         /// 转动图模板唯一标识。
         public let definition: UInt64
 

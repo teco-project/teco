@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// RepairTaskControl请求参数结构体
-    public struct RepairTaskControlRequest: TCRequestModel {
+    public struct RepairTaskControlRequest: TCRequest {
         /// 维修任务ID
         public let taskId: String
 
@@ -44,7 +44,7 @@ extension Bm {
     }
 
     /// RepairTaskControl返回参数结构体
-    public struct RepairTaskControlResponse: TCResponseModel {
+    public struct RepairTaskControlResponse: TCResponse {
         /// 出参TaskId是黑石异步任务ID，不同于入参TaskId字段。
         /// 此字段可作为DescriptionOperationResult查询异步任务状态接口的入参，查询异步任务执行结果。
         public let taskId: UInt64

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dts {
     /// CreateMigrateJob请求参数结构体
-    public struct CreateMigrateJobRequest: TCRequestModel {
+    public struct CreateMigrateJobRequest: TCRequest {
         /// 数据迁移任务名称
         public let jobName: String
 
@@ -93,7 +93,7 @@ extension Dts {
     }
 
     /// CreateMigrateJob返回参数结构体
-    public struct CreateMigrateJobResponse: TCResponseModel {
+    public struct CreateMigrateJobResponse: TCResponse {
         /// 数据迁移任务ID
         public let jobId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vm {
     /// CreateVideoModerationTask请求参数结构体
-    public struct CreateVideoModerationTaskRequest: TCRequestModel {
+    public struct CreateVideoModerationTaskRequest: TCRequest {
         /// 该参数用于传入审核任务的任务类型，取值：**VIDEO**（点播视频），**LIVE_VIDEO**（直播视频）。
         public let type: String
 
@@ -67,7 +67,7 @@ extension Vm {
     }
 
     /// CreateVideoModerationTask返回参数结构体
-    public struct CreateVideoModerationTaskResponse: TCResponseModel {
+    public struct CreateVideoModerationTaskResponse: TCResponse {
         /// 该字段用于返回任务创建的结果，具体输出内容请参见TaskResult数据结构的详细描述。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let results: [TaskResult]?

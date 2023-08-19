@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// DescribeInstanceAllNamespaces请求参数结构体
-    public struct DescribeInstanceAllNamespacesRequest: TCRequestModel {
+    public struct DescribeInstanceAllNamespacesRequest: TCRequest {
         /// 每页个数
         public let limit: Int64?
 
@@ -39,7 +39,7 @@ extension Tcr {
     }
 
     /// DescribeInstanceAllNamespaces返回参数结构体
-    public struct DescribeInstanceAllNamespacesResponse: TCResponseModel {
+    public struct DescribeInstanceAllNamespacesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

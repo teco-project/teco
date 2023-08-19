@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcaplusdb {
     /// CreateSnapshots请求参数结构体
-    public struct CreateSnapshotsRequest: TCRequestModel {
+    public struct CreateSnapshotsRequest: TCRequest {
         /// 表格所属集群id
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Tcaplusdb {
     }
 
     /// CreateSnapshots返回参数结构体
-    public struct CreateSnapshotsResponse: TCResponseModel {
+    public struct CreateSnapshotsResponse: TCResponse {
         /// 批量创建的快照数量
         public let totalCount: UInt64
 

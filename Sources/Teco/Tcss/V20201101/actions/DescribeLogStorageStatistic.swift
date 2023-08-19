@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeLogStorageStatistic请求参数结构体
-    public struct DescribeLogStorageStatisticRequest: TCRequestModel {
+    public struct DescribeLogStorageStatisticRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeLogStorageStatistic返回参数结构体
-    public struct DescribeLogStorageStatisticResponse: TCResponseModel {
+    public struct DescribeLogStorageStatisticResponse: TCResponse {
         /// 总容量（单位：B）
         public let totalSize: UInt64
 

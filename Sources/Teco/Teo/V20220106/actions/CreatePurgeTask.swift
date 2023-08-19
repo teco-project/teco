@@ -20,7 +20,7 @@ import TecoCore
 
 extension Teo {
     /// CreatePurgeTask请求参数结构体
-    public struct CreatePurgeTaskRequest: TCRequestModel {
+    public struct CreatePurgeTaskRequest: TCRequest {
         /// Zone ID
         public let zoneId: String
 
@@ -62,7 +62,7 @@ extension Teo {
     }
 
     /// CreatePurgeTask返回参数结构体
-    public struct CreatePurgeTaskResponse: TCResponseModel {
+    public struct CreatePurgeTaskResponse: TCResponse {
         /// 任务ID
         public let jobId: String
 

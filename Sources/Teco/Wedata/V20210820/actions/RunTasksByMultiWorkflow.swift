@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// RunTasksByMultiWorkflow请求参数结构体
-    public struct RunTasksByMultiWorkflowRequest: TCRequestModel {
+    public struct RunTasksByMultiWorkflowRequest: TCRequest {
         /// 项目id
         public let projectId: String
 
@@ -44,7 +44,7 @@ extension Wedata {
     }
 
     /// RunTasksByMultiWorkflow返回参数结构体
-    public struct RunTasksByMultiWorkflowResponse: TCResponseModel {
+    public struct RunTasksByMultiWorkflowResponse: TCResponse {
         /// 操作返回结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: OperationOpsDto?

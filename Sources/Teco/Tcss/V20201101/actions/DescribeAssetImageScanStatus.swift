@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeAssetImageScanStatus请求参数结构体
-    public struct DescribeAssetImageScanStatusRequest: TCRequestModel {
+    public struct DescribeAssetImageScanStatusRequest: TCRequest {
         /// 任务id
         public let taskID: String?
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeAssetImageScanStatus返回参数结构体
-    public struct DescribeAssetImageScanStatusResponse: TCResponseModel {
+    public struct DescribeAssetImageScanStatusResponse: TCResponse {
         /// 镜像个数
         public let imageTotal: UInt64
 

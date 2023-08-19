@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dasb {
     /// DeployResource请求参数结构体
-    public struct DeployResourceRequest: TCRequestModel {
+    public struct DeployResourceRequest: TCRequest {
         /// 需要开通服务的资源ID
         public let resourceId: String
 
@@ -74,7 +74,7 @@ extension Dasb {
     }
 
     /// DeployResource返回参数结构体
-    public struct DeployResourceResponse: TCResponseModel {
+    public struct DeployResourceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

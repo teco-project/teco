@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// ModifyDBInstanceHAConfig请求参数结构体
-    public struct ModifyDBInstanceHAConfigRequest: TCRequestModel {
+    public struct ModifyDBInstanceHAConfigRequest: TCRequest {
         /// 实例ID
         public let dbInstanceId: String
 
@@ -71,7 +71,7 @@ extension Postgres {
     }
 
     /// ModifyDBInstanceHAConfig返回参数结构体
-    public struct ModifyDBInstanceHAConfigResponse: TCResponseModel {
+    public struct ModifyDBInstanceHAConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

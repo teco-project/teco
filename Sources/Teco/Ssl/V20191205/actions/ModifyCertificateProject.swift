@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssl {
     /// ModifyCertificateProject请求参数结构体
-    public struct ModifyCertificateProjectRequest: TCRequestModel {
+    public struct ModifyCertificateProjectRequest: TCRequest {
         /// 需要修改所属项目的证书 ID 集合，最多100个证书。
         public let certificateIdList: [String]
 
@@ -39,7 +39,7 @@ extension Ssl {
     }
 
     /// ModifyCertificateProject返回参数结构体
-    public struct ModifyCertificateProjectResponse: TCResponseModel {
+    public struct ModifyCertificateProjectResponse: TCResponse {
         /// 修改所属项目成功的证书集合。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let successCertificates: [String]?

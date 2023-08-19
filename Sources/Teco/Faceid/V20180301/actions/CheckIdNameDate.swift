@@ -20,7 +20,7 @@ import TecoCore
 
 extension Faceid {
     /// CheckIdNameDate请求参数结构体
-    public struct CheckIdNameDateRequest: TCRequestModel {
+    public struct CheckIdNameDateRequest: TCRequest {
         /// 姓名
         public let name: String
 
@@ -54,7 +54,7 @@ extension Faceid {
     }
 
     /// CheckIdNameDate返回参数结构体
-    public struct CheckIdNameDateResponse: TCResponseModel {
+    public struct CheckIdNameDateResponse: TCResponse {
         /// 认证结果码，收费情况如下。
         /// 收费结果码：
         /// 0: 一致

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// CreateGrafanaInstance请求参数结构体
-    public struct CreateGrafanaInstanceRequest: TCRequestModel {
+    public struct CreateGrafanaInstanceRequest: TCRequest {
         /// 实例名
         public let instanceName: String
 
@@ -59,7 +59,7 @@ extension Monitor {
     }
 
     /// CreateGrafanaInstance返回参数结构体
-    public struct CreateGrafanaInstanceResponse: TCResponseModel {
+    public struct CreateGrafanaInstanceResponse: TCResponse {
         /// 实例名
         public let instanceId: String
 

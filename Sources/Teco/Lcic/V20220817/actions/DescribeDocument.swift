@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// DescribeDocument请求参数结构体
-    public struct DescribeDocumentRequest: TCRequestModel {
+    public struct DescribeDocumentRequest: TCRequest {
         /// 文档Id（唯一id）
         public let documentId: String
 
@@ -34,7 +34,7 @@ extension Lcic {
     }
 
     /// DescribeDocument返回参数结构体
-    public struct DescribeDocumentResponse: TCResponseModel {
+    public struct DescribeDocumentResponse: TCResponse {
         /// 文档Id
         public let documentId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// DescribeProxies请求参数结构体
-    public struct DescribeProxiesRequest: TCRequestModel {
+    public struct DescribeProxiesRequest: TCRequest {
         /// （旧参数，请切换到ProxyIds）按照一个或者多个实例ID查询。每次请求的实例的上限为100。参数不支持同时指定InstanceIds和Filters。
         public let instanceIds: [String]?
 
@@ -92,7 +92,7 @@ extension Gaap {
     }
 
     /// DescribeProxies返回参数结构体
-    public struct DescribeProxiesResponse: TCResponseModel {
+    public struct DescribeProxiesResponse: TCResponse {
         /// 通道个数。
         public let totalCount: Int64
 

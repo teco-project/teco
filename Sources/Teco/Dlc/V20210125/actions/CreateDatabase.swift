@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// CreateDatabase请求参数结构体
-    public struct CreateDatabaseRequest: TCRequestModel {
+    public struct CreateDatabaseRequest: TCRequest {
         /// 数据库基础信息
         public let databaseInfo: DatabaseInfo
 
@@ -39,7 +39,7 @@ extension Dlc {
     }
 
     /// CreateDatabase返回参数结构体
-    public struct CreateDatabaseResponse: TCResponseModel {
+    public struct CreateDatabaseResponse: TCResponse {
         /// 生成的建库执行语句对象。
         public let execution: Execution
 

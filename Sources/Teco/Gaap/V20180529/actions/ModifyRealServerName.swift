@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// ModifyRealServerName请求参数结构体
-    public struct ModifyRealServerNameRequest: TCRequestModel {
+    public struct ModifyRealServerNameRequest: TCRequest {
         /// 源站名称
         public let realServerName: String
 
@@ -39,7 +39,7 @@ extension Gaap {
     }
 
     /// ModifyRealServerName返回参数结构体
-    public struct ModifyRealServerNameResponse: TCResponseModel {
+    public struct ModifyRealServerNameResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

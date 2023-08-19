@@ -20,13 +20,13 @@ import TecoCore
 
 extension Scf {
     /// GetAccount请求参数结构体
-    public struct GetAccountRequest: TCRequestModel {
+    public struct GetAccountRequest: TCRequest {
         public init() {
         }
     }
 
     /// GetAccount返回参数结构体
-    public struct GetAccountResponse: TCResponseModel {
+    public struct GetAccountResponse: TCResponse {
         /// 命名空间已使用的信息
         public let accountUsage: UsageInfo
 

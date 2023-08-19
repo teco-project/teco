@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// ChannelCreateBoundFlows请求参数结构体
-    public struct ChannelCreateBoundFlowsRequest: TCRequestModel {
+    public struct ChannelCreateBoundFlowsRequest: TCRequest {
         /// 应用信息
         /// 此接口Agent.AppId、Agent.ProxyOrganizationOpenId 和 Agent. ProxyOperator.OpenId 必填
         public let agent: Agent
@@ -51,7 +51,7 @@ extension Essbasic {
     }
 
     /// ChannelCreateBoundFlows返回参数结构体
-    public struct ChannelCreateBoundFlowsResponse: TCResponseModel {
+    public struct ChannelCreateBoundFlowsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

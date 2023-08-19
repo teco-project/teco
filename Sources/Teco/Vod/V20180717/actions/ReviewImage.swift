@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// ReviewImage请求参数结构体
-    public struct ReviewImageRequest: TCRequestModel {
+    public struct ReviewImageRequest: TCRequest {
         /// 媒体文件 ID，即该文件在云点播上的全局唯一标识符。本接口要求媒体文件必须是图片格式。
         public let fileId: String
 
@@ -45,7 +45,7 @@ extension Vod {
     }
 
     /// ReviewImage返回参数结构体
-    public struct ReviewImageResponse: TCResponseModel {
+    public struct ReviewImageResponse: TCResponse {
         /// 图片审核任务结果。
         /// _注意：该字段已废弃，建议使用 MediaReviewResult。_
         public let reviewResultSet: [ContentReviewResult]

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// ModifyDisksAttribute请求参数结构体
-    public struct ModifyDisksAttributeRequest: TCRequestModel {
+    public struct ModifyDisksAttributeRequest: TCRequest {
         /// 云硬盘ID列表。
         public let diskIds: [String]
 
@@ -39,7 +39,7 @@ extension Lighthouse {
     }
 
     /// ModifyDisksAttribute返回参数结构体
-    public struct ModifyDisksAttributeResponse: TCResponseModel {
+    public struct ModifyDisksAttributeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

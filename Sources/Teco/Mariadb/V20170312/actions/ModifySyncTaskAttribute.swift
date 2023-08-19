@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mariadb {
     /// ModifySyncTaskAttribute请求参数结构体
-    public struct ModifySyncTaskAttributeRequest: TCRequestModel {
+    public struct ModifySyncTaskAttributeRequest: TCRequest {
         /// 一个或多个待操作的任务ID。可通过DescribeSyncTasks API返回值中的TaskId获取。每次请求允许操作的任务数量上限是100。
         public let taskIds: [String]
 
@@ -39,7 +39,7 @@ extension Mariadb {
     }
 
     /// ModifySyncTaskAttribute返回参数结构体
-    public struct ModifySyncTaskAttributeResponse: TCResponseModel {
+    public struct ModifySyncTaskAttributeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

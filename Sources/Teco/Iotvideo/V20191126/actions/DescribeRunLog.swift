@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// DescribeRunLog请求参数结构体
-    public struct DescribeRunLogRequest: TCRequestModel {
+    public struct DescribeRunLogRequest: TCRequest {
         /// 设备TID
         public let tid: String
 
@@ -34,7 +34,7 @@ extension Iotvideo {
     }
 
     /// DescribeRunLog返回参数结构体
-    public struct DescribeRunLogResponse: TCResponseModel {
+    public struct DescribeRunLogResponse: TCResponse {
         /// 设备运行日志文本信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: String?

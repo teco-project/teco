@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecdn {
     /// PurgeUrlsCache请求参数结构体
-    public struct PurgeUrlsCacheRequest: TCRequestModel {
+    public struct PurgeUrlsCacheRequest: TCRequest {
         /// 要刷新的Url列表，必须包含协议头部。
         public let urls: [String]
 
@@ -34,7 +34,7 @@ extension Ecdn {
     }
 
     /// PurgeUrlsCache返回参数结构体
-    public struct PurgeUrlsCacheResponse: TCResponseModel {
+    public struct PurgeUrlsCacheResponse: TCResponse {
         /// 刷新任务Id。
         public let taskId: String
 

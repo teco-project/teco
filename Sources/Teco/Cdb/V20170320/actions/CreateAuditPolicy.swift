@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// CreateAuditPolicy请求参数结构体
-    public struct CreateAuditPolicyRequest: TCRequestModel {
+    public struct CreateAuditPolicyRequest: TCRequest {
         /// 审计策略名称。
         public let name: String
 
@@ -56,7 +56,7 @@ extension Cdb {
     }
 
     /// CreateAuditPolicy返回参数结构体
-    public struct CreateAuditPolicyResponse: TCResponseModel {
+    public struct CreateAuditPolicyResponse: TCResponse {
         /// 审计策略 ID。
         public let policyId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeNetworkFirewallPolicyYamlDetail请求参数结构体
-    public struct DescribeNetworkFirewallPolicyYamlDetailRequest: TCRequestModel {
+    public struct DescribeNetworkFirewallPolicyYamlDetailRequest: TCRequest {
         /// 策略Id
         public let id: UInt64
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeNetworkFirewallPolicyYamlDetail返回参数结构体
-    public struct DescribeNetworkFirewallPolicyYamlDetailResponse: TCResponseModel {
+    public struct DescribeNetworkFirewallPolicyYamlDetailResponse: TCResponse {
         /// 集群Id
         public let clusterId: String
 

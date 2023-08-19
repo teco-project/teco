@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiems {
     /// ExposeService请求参数结构体
-    public struct ExposeServiceRequest: TCRequestModel {
+    public struct ExposeServiceRequest: TCRequest {
         /// 服务Id
         public let serviceId: String
 
@@ -49,7 +49,7 @@ extension Tiems {
     }
 
     /// ExposeService返回参数结构体
-    public struct ExposeServiceResponse: TCResponseModel {
+    public struct ExposeServiceResponse: TCResponse {
         /// 暴露方式
         public let expose: ExposeInfo
 

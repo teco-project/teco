@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// GetClusterLevelPrice请求参数结构体
-    public struct GetClusterLevelPriceRequest: TCRequestModel {
+    public struct GetClusterLevelPriceRequest: TCRequest {
         /// 集群规格，托管集群询价
         public let clusterLevel: String
 
@@ -34,7 +34,7 @@ extension Tke {
     }
 
     /// GetClusterLevelPrice返回参数结构体
-    public struct GetClusterLevelPriceResponse: TCResponseModel {
+    public struct GetClusterLevelPriceResponse: TCResponse {
         /// 询价结果，单位：分，打折后
         public let cost: UInt64
 

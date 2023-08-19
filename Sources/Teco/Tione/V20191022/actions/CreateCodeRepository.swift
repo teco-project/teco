@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// CreateCodeRepository请求参数结构体
-    public struct CreateCodeRepositoryRequest: TCRequestModel {
+    public struct CreateCodeRepositoryRequest: TCRequest {
         /// 存储库名称
         public let codeRepositoryName: String
 
@@ -44,7 +44,7 @@ extension Tione {
     }
 
     /// CreateCodeRepository返回参数结构体
-    public struct CreateCodeRepositoryResponse: TCResponseModel {
+    public struct CreateCodeRepositoryResponse: TCResponse {
         /// 存储库名称
         public let codeRepositoryName: String
 

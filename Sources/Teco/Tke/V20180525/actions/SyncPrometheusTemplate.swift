@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// SyncPrometheusTemplate请求参数结构体
-    public struct SyncPrometheusTemplateRequest: TCRequestModel {
+    public struct SyncPrometheusTemplateRequest: TCRequest {
         /// 实例id
         public let templateId: String
 
@@ -39,7 +39,7 @@ extension Tke {
     }
 
     /// SyncPrometheusTemplate返回参数结构体
-    public struct SyncPrometheusTemplateResponse: TCResponseModel {
+    public struct SyncPrometheusTemplateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

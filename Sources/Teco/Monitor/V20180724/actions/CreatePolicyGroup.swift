@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// CreatePolicyGroup请求参数结构体
-    public struct CreatePolicyGroupRequest: TCRequestModel {
+    public struct CreatePolicyGroupRequest: TCRequest {
         /// 组策略名称
         public let groupName: String
 
@@ -89,7 +89,7 @@ extension Monitor {
     }
 
     /// CreatePolicyGroup返回参数结构体
-    public struct CreatePolicyGroupResponse: TCResponseModel {
+    public struct CreatePolicyGroupResponse: TCResponse {
         /// 创建成功的策略组Id
         public let groupId: Int64
 

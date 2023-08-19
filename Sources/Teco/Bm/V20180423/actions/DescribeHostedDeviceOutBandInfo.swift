@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// DescribeHostedDeviceOutBandInfo请求参数结构体
-    public struct DescribeHostedDeviceOutBandInfoRequest: TCRequestModel {
+    public struct DescribeHostedDeviceOutBandInfoRequest: TCRequest {
         /// 托管设备的唯一ID数组,数组个数不超过20
         public let instanceIds: [String]
 
@@ -39,7 +39,7 @@ extension Bm {
     }
 
     /// DescribeHostedDeviceOutBandInfo返回参数结构体
-    public struct DescribeHostedDeviceOutBandInfoResponse: TCResponseModel {
+    public struct DescribeHostedDeviceOutBandInfoResponse: TCResponse {
         /// 托管设备带外信息
         public let hostedDeviceOutBandInfoSet: [HostedDeviceOutBandInfo]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Kms {
     /// UpdateKeyDescription请求参数结构体
-    public struct UpdateKeyDescriptionRequest: TCRequestModel {
+    public struct UpdateKeyDescriptionRequest: TCRequest {
         /// 新的描述信息，最大支持1024字节
         public let description: String
 
@@ -39,7 +39,7 @@ extension Kms {
     }
 
     /// UpdateKeyDescription返回参数结构体
-    public struct UpdateKeyDescriptionResponse: TCResponseModel {
+    public struct UpdateKeyDescriptionResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

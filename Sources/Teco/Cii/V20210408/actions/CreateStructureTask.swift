@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cii {
     /// CreateStructureTask请求参数结构体
-    public struct CreateStructureTaskRequest: TCRequestModel {
+    public struct CreateStructureTaskRequest: TCRequest {
         /// 服务类型
         /// Structured 仅结构化
         /// Underwrite 结构化+核保
@@ -66,7 +66,7 @@ extension Cii {
     }
 
     /// CreateStructureTask返回参数结构体
-    public struct CreateStructureTaskResponse: TCResponseModel {
+    public struct CreateStructureTaskResponse: TCResponse {
         /// 创建的主任务号，用于查询结果
         public let mainTaskId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Thpc {
     /// DescribeClusterStorageOption请求参数结构体
-    public struct DescribeClusterStorageOptionRequest: TCRequestModel {
+    public struct DescribeClusterStorageOptionRequest: TCRequest {
         /// 集群ID。
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Thpc {
     }
 
     /// DescribeClusterStorageOption返回参数结构体
-    public struct DescribeClusterStorageOptionResponse: TCResponseModel {
+    public struct DescribeClusterStorageOptionResponse: TCResponse {
         /// 集群存储选项信息概览。
         public let storageOption: StorageOptionOverview
 

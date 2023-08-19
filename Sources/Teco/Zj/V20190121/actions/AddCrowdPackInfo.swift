@@ -20,7 +20,7 @@ import TecoCore
 
 extension Zj {
     /// AddCrowdPackInfo请求参数结构体
-    public struct AddCrowdPackInfoRequest: TCRequestModel {
+    public struct AddCrowdPackInfoRequest: TCRequest {
         /// 商户证书
         public let license: String
 
@@ -59,7 +59,7 @@ extension Zj {
     }
 
     /// AddCrowdPackInfo返回参数结构体
-    public struct AddCrowdPackInfoResponse: TCResponseModel {
+    public struct AddCrowdPackInfoResponse: TCResponse {
         /// 接口返回
         public let data: SmsAddCrowdPackInfoResponse
 

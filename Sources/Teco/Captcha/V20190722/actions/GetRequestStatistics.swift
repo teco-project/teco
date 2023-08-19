@@ -20,7 +20,7 @@ import TecoCore
 
 extension Captcha {
     /// GetRequestStatistics请求参数结构体
-    public struct GetRequestStatisticsRequest: TCRequestModel {
+    public struct GetRequestStatisticsRequest: TCRequest {
         /// 验证码AppId
         public let captchaAppId: String
 
@@ -49,7 +49,7 @@ extension Captcha {
     }
 
     /// GetRequestStatistics返回参数结构体
-    public struct GetRequestStatisticsResponse: TCResponseModel {
+    public struct GetRequestStatisticsResponse: TCResponse {
         /// 查询后数据块
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: CaptchaStatisticObj?

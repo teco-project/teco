@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// DescribeSecret请求参数结构体
-    public struct DescribeSecretRequest: TCRequestModel {
+    public struct DescribeSecretRequest: TCRequest {
         /// 边缘单元ID
         public let edgeUnitID: UInt64
 
@@ -44,7 +44,7 @@ extension Iecp {
     }
 
     /// DescribeSecret返回参数结构体
-    public struct DescribeSecretResponse: TCResponseModel {
+    public struct DescribeSecretResponse: TCResponse {
         /// Secret名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?

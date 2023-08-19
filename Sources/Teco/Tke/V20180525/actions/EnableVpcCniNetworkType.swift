@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// EnableVpcCniNetworkType请求参数结构体
-    public struct EnableVpcCniNetworkTypeRequest: TCRequestModel {
+    public struct EnableVpcCniNetworkTypeRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -59,7 +59,7 @@ extension Tke {
     }
 
     /// EnableVpcCniNetworkType返回参数结构体
-    public struct EnableVpcCniNetworkTypeResponse: TCResponseModel {
+    public struct EnableVpcCniNetworkTypeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

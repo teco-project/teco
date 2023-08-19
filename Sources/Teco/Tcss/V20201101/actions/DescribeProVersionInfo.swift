@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeProVersionInfo请求参数结构体
-    public struct DescribeProVersionInfoRequest: TCRequestModel {
+    public struct DescribeProVersionInfoRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeProVersionInfo返回参数结构体
-    public struct DescribeProVersionInfoResponse: TCResponseModel {
+    public struct DescribeProVersionInfoResponse: TCResponse {
         /// 专业版开始时间，补充购买时才不为空
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTime: String?

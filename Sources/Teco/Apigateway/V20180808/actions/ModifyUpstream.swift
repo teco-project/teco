@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// ModifyUpstream请求参数结构体
-    public struct ModifyUpstreamRequest: TCRequestModel {
+    public struct ModifyUpstreamRequest: TCRequest {
         /// 后端通道唯一ID
         public let upstreamId: String
 
@@ -89,7 +89,7 @@ extension Apigateway {
     }
 
     /// ModifyUpstream返回参数结构体
-    public struct ModifyUpstreamResponse: TCResponseModel {
+    public struct ModifyUpstreamResponse: TCResponse {
         /// 返回修改后的后端通道信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: ModifyUpstreamResultInfo?

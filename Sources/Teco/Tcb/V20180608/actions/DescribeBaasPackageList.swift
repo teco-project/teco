@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeBaasPackageList请求参数结构体
-    public struct DescribeBaasPackageListRequest: TCRequestModel {
+    public struct DescribeBaasPackageListRequest: TCRequest {
         /// tcb产品套餐ID，不填拉取全量package信息。
         public let packageName: String?
 
@@ -75,7 +75,7 @@ extension Tcb {
     }
 
     /// DescribeBaasPackageList返回参数结构体
-    public struct DescribeBaasPackageListResponse: TCResponseModel {
+    public struct DescribeBaasPackageListResponse: TCResponse {
         /// 套餐列表
         public let packageList: [BaasPackageInfo]
 

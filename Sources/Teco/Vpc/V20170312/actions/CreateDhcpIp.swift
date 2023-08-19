@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CreateDhcpIp请求参数结构体
-    public struct CreateDhcpIpRequest: TCRequestModel {
+    public struct CreateDhcpIpRequest: TCRequest {
         /// 私有网络`ID`。
         public let vpcId: String
 
@@ -49,7 +49,7 @@ extension Vpc {
     }
 
     /// CreateDhcpIp返回参数结构体
-    public struct CreateDhcpIpResponse: TCResponseModel {
+    public struct CreateDhcpIpResponse: TCResponse {
         /// 新创建的`DhcpIp`信息。
         public let dhcpIpSet: [DhcpIp]
 

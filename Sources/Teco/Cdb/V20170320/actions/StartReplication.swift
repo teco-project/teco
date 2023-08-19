@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// StartReplication请求参数结构体
-    public struct StartReplicationRequest: TCRequestModel {
+    public struct StartReplicationRequest: TCRequest {
         /// 实例 ID。仅支持只读实例。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Cdb {
     }
 
     /// StartReplication返回参数结构体
-    public struct StartReplicationResponse: TCResponseModel {
+    public struct StartReplicationResponse: TCResponse {
         /// 异步任务 ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let asyncRequestId: String?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Keewidb {
     /// CreateInstances请求参数结构体
-    public struct CreateInstancesRequest: TCRequestModel {
+    public struct CreateInstancesRequest: TCRequest {
         /// 产品版本。
         /// 14：当前仅支持混合存储版。
         public let typeId: UInt64
@@ -169,7 +169,7 @@ extension Keewidb {
     }
 
     /// CreateInstances返回参数结构体
-    public struct CreateInstancesResponse: TCResponseModel {
+    public struct CreateInstancesResponse: TCResponse {
         /// 交易 ID。
         public let dealId: String
 

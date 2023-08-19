@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeAssetImageHostList请求参数结构体
-    public struct DescribeAssetImageHostListRequest: TCRequestModel {
+    public struct DescribeAssetImageHostListRequest: TCRequest {
         /// 过滤条件 支持ImageID,HostID
         public let filters: [AssetFilters]?
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeAssetImageHostList返回参数结构体
-    public struct DescribeAssetImageHostListResponse: TCResponseModel {
+    public struct DescribeAssetImageHostListResponse: TCResponse {
         /// 镜像列表
         public let list: [ImageHost]
 

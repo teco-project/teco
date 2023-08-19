@@ -20,7 +20,7 @@ import TecoCore
 
 extension Icr {
     /// GetIndustryV1HomeMembers请求参数结构体
-    public struct GetIndustryV1HomeMembersRequest: TCRequestModel {
+    public struct GetIndustryV1HomeMembersRequest: TCRequest {
         public let payload: GetIndustryV1HomeMembersReqPayload
 
         public let metadata: ReqMetadata?
@@ -37,7 +37,7 @@ extension Icr {
     }
 
     /// GetIndustryV1HomeMembers返回参数结构体
-    public struct GetIndustryV1HomeMembersResponse: TCResponseModel {
+    public struct GetIndustryV1HomeMembersResponse: TCResponse {
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metadata: RspMetadata?

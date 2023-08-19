@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DescribeParamTemplates请求参数结构体
-    public struct DescribeParamTemplatesRequest: TCRequestModel {
+    public struct DescribeParamTemplatesRequest: TCRequest {
         /// 引擎版本，缺省则查询所有
         public let engineVersions: [String]?
 
@@ -49,7 +49,7 @@ extension Cdb {
     }
 
     /// DescribeParamTemplates返回参数结构体
-    public struct DescribeParamTemplatesResponse: TCResponseModel {
+    public struct DescribeParamTemplatesResponse: TCResponse {
         /// 该用户的参数模板数量。
         public let totalCount: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeVulHostTop请求参数结构体
-    public struct DescribeVulHostTopRequest: TCRequestModel {
+    public struct DescribeVulHostTopRequest: TCRequest {
         /// 获取top值，1-100
         public let top: UInt64
 
@@ -44,7 +44,7 @@ extension Cwp {
     }
 
     /// DescribeVulHostTop返回参数结构体
-    public struct DescribeVulHostTopResponse: TCResponseModel {
+    public struct DescribeVulHostTopResponse: TCResponse {
         /// 服务器风险top列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vulHostTopList: [VulHostTopInfo]?

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Waf {
     /// DescribeWafThreatenIntelligence请求参数结构体
-    public struct DescribeWafThreatenIntelligenceRequest: TCRequestModel {
+    public struct DescribeWafThreatenIntelligenceRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeWafThreatenIntelligence返回参数结构体
-    public struct DescribeWafThreatenIntelligenceResponse: TCResponseModel {
+    public struct DescribeWafThreatenIntelligenceResponse: TCResponse {
         /// WAF 威胁情报封禁信息
         public let wafThreatenIntelligenceDetails: WafThreatenIntelligenceDetails
 

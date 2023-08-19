@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DeleteFileConfig请求参数结构体
-    public struct DeleteFileConfigRequest: TCRequestModel {
+    public struct DeleteFileConfigRequest: TCRequest {
         /// 文件配置项ID
         public let configId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// DeleteFileConfig返回参数结构体
-    public struct DeleteFileConfigResponse: TCResponseModel {
+    public struct DeleteFileConfigResponse: TCResponse {
         /// 删除结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

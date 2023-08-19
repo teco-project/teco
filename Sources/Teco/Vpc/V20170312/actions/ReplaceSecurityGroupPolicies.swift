@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// ReplaceSecurityGroupPolicies请求参数结构体
-    public struct ReplaceSecurityGroupPoliciesRequest: TCRequestModel {
+    public struct ReplaceSecurityGroupPoliciesRequest: TCRequest {
         /// 安全组实例ID，例如sg-33ocnj9n，可通过DescribeSecurityGroups获取。
         public let securityGroupId: String
 
@@ -44,7 +44,7 @@ extension Vpc {
     }
 
     /// ReplaceSecurityGroupPolicies返回参数结构体
-    public struct ReplaceSecurityGroupPoliciesResponse: TCResponseModel {
+    public struct ReplaceSecurityGroupPoliciesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

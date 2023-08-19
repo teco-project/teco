@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CreateAndAttachNetworkInterface请求参数结构体
-    public struct CreateAndAttachNetworkInterfaceRequest: TCRequestModel {
+    public struct CreateAndAttachNetworkInterfaceRequest: TCRequest {
         /// VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
         public let vpcId: String
 
@@ -84,7 +84,7 @@ extension Vpc {
     }
 
     /// CreateAndAttachNetworkInterface返回参数结构体
-    public struct CreateAndAttachNetworkInterfaceResponse: TCResponseModel {
+    public struct CreateAndAttachNetworkInterfaceResponse: TCResponse {
         /// 弹性网卡实例。
         public let networkInterface: NetworkInterface
 

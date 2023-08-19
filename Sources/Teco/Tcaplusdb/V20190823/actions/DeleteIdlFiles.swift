@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcaplusdb {
     /// DeleteIdlFiles请求参数结构体
-    public struct DeleteIdlFilesRequest: TCRequestModel {
+    public struct DeleteIdlFilesRequest: TCRequest {
         /// IDL所属集群ID
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Tcaplusdb {
     }
 
     /// DeleteIdlFiles返回参数结构体
-    public struct DeleteIdlFilesResponse: TCResponseModel {
+    public struct DeleteIdlFilesResponse: TCResponse {
         /// 结果记录数量
         public let totalCount: UInt64
 

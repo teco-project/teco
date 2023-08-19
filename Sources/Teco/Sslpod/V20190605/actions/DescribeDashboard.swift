@@ -20,13 +20,13 @@ import TecoCore
 
 extension Sslpod {
     /// DescribeDashboard请求参数结构体
-    public struct DescribeDashboardRequest: TCRequestModel {
+    public struct DescribeDashboardRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeDashboard返回参数结构体
-    public struct DescribeDashboardResponse: TCResponseModel {
+    public struct DescribeDashboardResponse: TCResponse {
         /// dashboard面板数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: DashboardResult?

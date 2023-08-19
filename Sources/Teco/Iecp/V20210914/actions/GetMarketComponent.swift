@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// GetMarketComponent请求参数结构体
-    public struct GetMarketComponentRequest: TCRequestModel {
+    public struct GetMarketComponentRequest: TCRequest {
         /// 组件ID
         public let id: Int64
 
@@ -34,7 +34,7 @@ extension Iecp {
     }
 
     /// GetMarketComponent返回参数结构体
-    public struct GetMarketComponentResponse: TCResponseModel {
+    public struct GetMarketComponentResponse: TCResponse {
         /// 组件ID
         public let id: Int64
 

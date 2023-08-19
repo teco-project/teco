@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeBanRegions请求参数结构体
-    public struct DescribeBanRegionsRequest: TCRequestModel {
+    public struct DescribeBanRegionsRequest: TCRequest {
         /// 阻断模式，STANDARD_MODE：标准阻断，DEEP_MODE：深度阻断
         public let mode: String
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// DescribeBanRegions返回参数结构体
-    public struct DescribeBanRegionsResponse: TCResponseModel {
+    public struct DescribeBanRegionsResponse: TCResponse {
         /// 地域信息列表
         public let regionSet: [RegionSet]
 

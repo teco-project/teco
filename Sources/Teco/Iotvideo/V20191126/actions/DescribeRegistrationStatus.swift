@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// DescribeRegistrationStatus请求参数结构体
-    public struct DescribeRegistrationStatusRequest: TCRequestModel {
+    public struct DescribeRegistrationStatusRequest: TCRequest {
         /// 终端用户的唯一ID列表，0<元素数量<=100
         public let cunionIds: [String]
 
@@ -34,7 +34,7 @@ extension Iotvideo {
     }
 
     /// DescribeRegistrationStatus返回参数结构体
-    public struct DescribeRegistrationStatusResponse: TCResponseModel {
+    public struct DescribeRegistrationStatusResponse: TCResponse {
         /// 终端用户注册状态列表
         public let data: [RegisteredStatus]
 

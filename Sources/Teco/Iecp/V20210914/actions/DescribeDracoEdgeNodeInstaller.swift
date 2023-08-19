@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// DescribeDracoEdgeNodeInstaller请求参数结构体
-    public struct DescribeDracoEdgeNodeInstallerRequest: TCRequestModel {
+    public struct DescribeDracoEdgeNodeInstallerRequest: TCRequest {
         /// 设备SN
         public let sn: String
 
@@ -34,7 +34,7 @@ extension Iecp {
     }
 
     /// DescribeDracoEdgeNodeInstaller返回参数结构体
-    public struct DescribeDracoEdgeNodeInstallerResponse: TCResponseModel {
+    public struct DescribeDracoEdgeNodeInstallerResponse: TCResponse {
         /// 在线安装命名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let onlineInstallationCommand: String?

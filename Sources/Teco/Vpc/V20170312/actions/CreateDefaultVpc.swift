@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CreateDefaultVpc请求参数结构体
-    public struct CreateDefaultVpcRequest: TCRequestModel {
+    public struct CreateDefaultVpcRequest: TCRequest {
         /// 子网所在的可用区，该参数可通过[DescribeZones](https://cloud.tencent.com/document/product/213/15707)接口获取，例如ap-guangzhou-1，不指定时将随机选择可用区。
         public let zone: String?
 
@@ -39,7 +39,7 @@ extension Vpc {
     }
 
     /// CreateDefaultVpc返回参数结构体
-    public struct CreateDefaultVpcResponse: TCResponseModel {
+    public struct CreateDefaultVpcResponse: TCResponse {
         /// 默认VPC和子网ID。
         public let vpc: DefaultVpcSubnet
 

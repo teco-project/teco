@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssl {
     /// ApplyCertificate请求参数结构体
-    public struct ApplyCertificateRequest: TCRequestModel {
+    public struct ApplyCertificateRequest: TCRequest {
         /// 验证方式：DNS_AUTO = 自动DNS验证，DNS = 手动DNS验证，FILE = 文件验证。
         public let dvAuthMethod: String
 
@@ -99,7 +99,7 @@ extension Ssl {
     }
 
     /// ApplyCertificate返回参数结构体
-    public struct ApplyCertificateResponse: TCResponseModel {
+    public struct ApplyCertificateResponse: TCResponse {
         /// 证书 ID。
         public let certificateId: String
 

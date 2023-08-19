@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// SubmitBaseline请求参数结构体
-    public struct SubmitBaselineRequest: TCRequestModel {
+    public struct SubmitBaselineRequest: TCRequest {
         /// 1
         public let baselineId: String
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// SubmitBaseline返回参数结构体
-    public struct SubmitBaselineResponse: TCResponseModel {
+    public struct SubmitBaselineResponse: TCResponse {
         /// 是否操作成功描述
         public let data: BooleanResponse
 

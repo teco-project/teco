@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// UpdatePolicy请求参数结构体
-    public struct UpdatePolicyRequest: TCRequestModel {
+    public struct UpdatePolicyRequest: TCRequest {
         /// 策略ID，与PolicyName二选一必填
         public let policyId: UInt64?
 
@@ -54,7 +54,7 @@ extension Cam {
     }
 
     /// UpdatePolicy返回参数结构体
-    public struct UpdatePolicyResponse: TCResponseModel {
+    public struct UpdatePolicyResponse: TCResponse {
         /// 策略id，入参是PolicyName时，才会返回
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let policyId: UInt64?

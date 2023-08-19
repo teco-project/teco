@@ -20,7 +20,7 @@ import TecoCore
 
 extension Scf {
     /// PublishLayerVersion请求参数结构体
-    public struct PublishLayerVersionRequest: TCRequestModel {
+    public struct PublishLayerVersionRequest: TCRequest {
         /// 层名称，支持26个英文字母大小写、数字、连接符和下划线，第一个字符只能以字母开头，最后一个字符不能为连接符或者下划线，名称长度1-64
         public let layerName: String
 
@@ -54,7 +54,7 @@ extension Scf {
     }
 
     /// PublishLayerVersion返回参数结构体
-    public struct PublishLayerVersionResponse: TCResponseModel {
+    public struct PublishLayerVersionResponse: TCResponse {
         /// 本次创建的层的版本号
         public let layerVersion: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Pts {
     /// CopyScenario请求参数结构体
-    public struct CopyScenarioRequest: TCRequestModel {
+    public struct CopyScenarioRequest: TCRequest {
         /// 项目 ID
         public let projectId: String
 
@@ -39,7 +39,7 @@ extension Pts {
     }
 
     /// CopyScenario返回参数结构体
-    public struct CopyScenarioResponse: TCResponseModel {
+    public struct CopyScenarioResponse: TCResponse {
         /// 复制出的新场景 ID
         public let scenarioId: String
 

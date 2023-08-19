@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cms {
     /// TextModeration请求参数结构体
-    public struct TextModerationRequest: TCRequestModel {
+    public struct TextModerationRequest: TCRequest {
         /// 文本内容Base64编码。原文长度需小于15000字节，即5000个汉字以内。
         public let content: String
 
@@ -59,7 +59,7 @@ extension Cms {
     }
 
     /// TextModeration返回参数结构体
-    public struct TextModerationResponse: TCResponseModel {
+    public struct TextModerationResponse: TCResponse {
         /// 业务返回码
         public let businessCode: Int64
 

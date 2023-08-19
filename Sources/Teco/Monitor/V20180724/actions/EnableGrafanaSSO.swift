@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// EnableGrafanaSSO请求参数结构体
-    public struct EnableGrafanaSSORequest: TCRequestModel {
+    public struct EnableGrafanaSSORequest: TCRequest {
         /// 是否开启 SSO，true为开启，false 为不开启
         public let enableSSO: Bool
 
@@ -39,7 +39,7 @@ extension Monitor {
     }
 
     /// EnableGrafanaSSO返回参数结构体
-    public struct EnableGrafanaSSOResponse: TCResponseModel {
+    public struct EnableGrafanaSSOResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

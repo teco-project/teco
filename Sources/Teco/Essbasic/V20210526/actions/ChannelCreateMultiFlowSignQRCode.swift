@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// ChannelCreateMultiFlowSignQRCode请求参数结构体
-    public struct ChannelCreateMultiFlowSignQRCodeRequest: TCRequestModel {
+    public struct ChannelCreateMultiFlowSignQRCodeRequest: TCRequest {
         /// 应用相关信息。
         /// 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
@@ -100,7 +100,7 @@ extension Essbasic {
     }
 
     /// ChannelCreateMultiFlowSignQRCode返回参数结构体
-    public struct ChannelCreateMultiFlowSignQRCodeResponse: TCResponseModel {
+    public struct ChannelCreateMultiFlowSignQRCodeResponse: TCResponse {
         /// 签署二维码对象
         public let qrCode: SignQrCode
 

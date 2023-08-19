@@ -20,7 +20,7 @@ import TecoCore
 
 extension Intlpartnersmgt {
     /// QueryCreditByUinList请求参数结构体
-    public struct QueryCreditByUinListRequest: TCRequestModel {
+    public struct QueryCreditByUinListRequest: TCRequest {
         /// 用户列表
         public let uinList: [UInt64]
 
@@ -34,7 +34,7 @@ extension Intlpartnersmgt {
     }
 
     /// QueryCreditByUinList返回参数结构体
-    public struct QueryCreditByUinListResponse: TCResponseModel {
+    public struct QueryCreditByUinListResponse: TCResponse {
         /// 用户信息列表
         public let data: [QueryDirectCustomersCreditData]
 

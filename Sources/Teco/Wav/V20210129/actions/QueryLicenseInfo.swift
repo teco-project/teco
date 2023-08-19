@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wav {
     /// QueryLicenseInfo请求参数结构体
-    public struct QueryLicenseInfoRequest: TCRequestModel {
+    public struct QueryLicenseInfoRequest: TCRequest {
         /// license编号
         public let license: String
 
@@ -34,7 +34,7 @@ extension Wav {
     }
 
     /// QueryLicenseInfo返回参数结构体
-    public struct QueryLicenseInfoResponse: TCResponseModel {
+    public struct QueryLicenseInfoResponse: TCResponse {
         /// license响应信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let licenseInfo: LicenseInfo?

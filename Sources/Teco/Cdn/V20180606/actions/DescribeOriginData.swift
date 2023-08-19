@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cdn {
     /// DescribeOriginData请求参数结构体
-    public struct DescribeOriginDataRequest: TCRequestModel {
+    public struct DescribeOriginDataRequest: TCRequest {
         /// 查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间
         /// 根据指定时间粒度不同，会进行向前归整，如 2018-09-04 10:40:00 在按 1 小时的时间粒度查询时，返回的第一个数据对应时间点为 2018-09-04 10:00:00
         /// 起始时间与结束时间间隔小于等于 90 天
@@ -106,7 +106,7 @@ extension Cdn {
     }
 
     /// DescribeOriginData返回参数结构体
-    public struct DescribeOriginDataResponse: TCResponseModel {
+    public struct DescribeOriginDataResponse: TCResponse {
         /// 数据统计的时间粒度，支持min, 5min, hour, day，分别表示1分钟，5分钟，1小时和1天的时间粒度。
         public let interval: String
 

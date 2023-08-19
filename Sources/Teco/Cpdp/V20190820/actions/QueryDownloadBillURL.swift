@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryDownloadBillURL请求参数结构体
-    public struct QueryDownloadBillURLRequest: TCRequestModel {
+    public struct QueryDownloadBillURLRequest: TCRequest {
         /// 分配给商户的AppId。进件成功后返给商户方的AppId。
         public let merchantAppId: String
 
@@ -44,7 +44,7 @@ extension Cpdp {
     }
 
     /// QueryDownloadBillURL返回参数结构体
-    public struct QueryDownloadBillURLResponse: TCResponseModel {
+    public struct QueryDownloadBillURLResponse: TCResponse {
         /// 分配给商户的AppId。进件成功后返给商户方的AppId。
         public let merchantAppId: String
 

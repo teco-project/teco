@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cloudhsm {
     /// GetAlarmEvent请求参数结构体
-    public struct GetAlarmEventRequest: TCRequestModel {
+    public struct GetAlarmEventRequest: TCRequest {
         public init() {
         }
     }
 
     /// GetAlarmEvent返回参数结构体
-    public struct GetAlarmEventResponse: TCResponseModel {
+    public struct GetAlarmEventResponse: TCResponse {
         /// 用户所有的告警策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alarmConfig: [AlarmPolicy]?

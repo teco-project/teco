@@ -20,7 +20,7 @@ import TecoCore
 
 extension Youmall {
     /// DescribeNetworkInfo请求参数结构体
-    public struct DescribeNetworkInfoRequest: TCRequestModel {
+    public struct DescribeNetworkInfoRequest: TCRequest {
         /// 请求时间戳
         public let time: Int64
 
@@ -44,7 +44,7 @@ extension Youmall {
     }
 
     /// DescribeNetworkInfo返回参数结构体
-    public struct DescribeNetworkInfoResponse: TCResponseModel {
+    public struct DescribeNetworkInfoResponse: TCResponse {
         /// 网络状态详情
         public let instanceSet: NetworkLastInfo
 

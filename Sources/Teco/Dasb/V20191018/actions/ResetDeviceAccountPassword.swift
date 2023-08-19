@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dasb {
     /// ResetDeviceAccountPassword请求参数结构体
-    public struct ResetDeviceAccountPasswordRequest: TCRequestModel {
+    public struct ResetDeviceAccountPasswordRequest: TCRequest {
         /// ID集合
         public let idSet: [UInt64]
 
@@ -34,7 +34,7 @@ extension Dasb {
     }
 
     /// ResetDeviceAccountPassword返回参数结构体
-    public struct ResetDeviceAccountPasswordResponse: TCResponseModel {
+    public struct ResetDeviceAccountPasswordResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

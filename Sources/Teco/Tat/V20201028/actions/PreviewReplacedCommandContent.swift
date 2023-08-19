@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tat {
     /// PreviewReplacedCommandContent请求参数结构体
-    public struct PreviewReplacedCommandContentRequest: TCRequestModel {
+    public struct PreviewReplacedCommandContentRequest: TCRequest {
         /// 本次预览采用的自定义参数。字段类型为 json encoded string，如：{\"varA\": \"222\"}。
         /// key 为自定义参数名称，value 为该参数的取值。kv 均为字符串型。
         /// 自定义参数最多 20 个。
@@ -50,7 +50,7 @@ extension Tat {
     }
 
     /// PreviewReplacedCommandContent返回参数结构体
-    public struct PreviewReplacedCommandContentResponse: TCResponseModel {
+    public struct PreviewReplacedCommandContentResponse: TCResponse {
         /// 自定义参数替换后的，经Base64编码的命令内容。
         public let replacedContent: String
 

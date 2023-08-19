@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeSecLogDeliveryKafkaOptions请求参数结构体
-    public struct DescribeSecLogDeliveryKafkaOptionsRequest: TCRequestModel {
+    public struct DescribeSecLogDeliveryKafkaOptionsRequest: TCRequest {
         /// 地域，若为空则返回所有可选地域
         public let regionID: String?
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeSecLogDeliveryKafkaOptions返回参数结构体
-    public struct DescribeSecLogDeliveryKafkaOptionsResponse: TCResponseModel {
+    public struct DescribeSecLogDeliveryKafkaOptionsResponse: TCResponse {
         /// 实例列表
         public let instanceList: [CKafkaInstanceInfo]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfs {
     /// CreateCfsSnapshot请求参数结构体
-    public struct CreateCfsSnapshotRequest: TCRequestModel {
+    public struct CreateCfsSnapshotRequest: TCRequest {
         /// 文件系统id
         public let fileSystemId: String
 
@@ -44,7 +44,7 @@ extension Cfs {
     }
 
     /// CreateCfsSnapshot返回参数结构体
-    public struct CreateCfsSnapshotResponse: TCResponseModel {
+    public struct CreateCfsSnapshotResponse: TCResponse {
         /// 文件系统快照id
         public let snapshotId: String
 

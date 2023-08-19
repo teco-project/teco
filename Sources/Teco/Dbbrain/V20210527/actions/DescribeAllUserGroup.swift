@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dbbrain {
     /// DescribeAllUserGroup请求参数结构体
-    public struct DescribeAllUserGroupRequest: TCRequestModel {
+    public struct DescribeAllUserGroupRequest: TCRequest {
         /// 服务产品类型，固定值：mysql。
         public let product: String
 
@@ -39,7 +39,7 @@ extension Dbbrain {
     }
 
     /// DescribeAllUserGroup返回参数结构体
-    public struct DescribeAllUserGroupResponse: TCResponseModel {
+    public struct DescribeAllUserGroupResponse: TCResponse {
         /// 组总数。
         public let totalCount: Int64
 

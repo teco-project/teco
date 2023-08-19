@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DescribeSgSnapshotFileContent请求参数结构体
-    public struct DescribeSgSnapshotFileContentRequest: TCRequestModel {
+    public struct DescribeSgSnapshotFileContentRequest: TCRequest {
         /// 快照策略Id。
         public let snapshotPolicyId: String
 
@@ -44,7 +44,7 @@ extension Vpc {
     }
 
     /// DescribeSgSnapshotFileContent返回参数结构体
-    public struct DescribeSgSnapshotFileContentResponse: TCResponseModel {
+    public struct DescribeSgSnapshotFileContentResponse: TCResponse {
         /// 实例Id，即安全组Id。
         public let instanceId: String
 

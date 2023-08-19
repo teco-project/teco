@@ -20,7 +20,7 @@ import TecoCore
 
 extension Domain {
     /// ModifyDomainOwnerBatch请求参数结构体
-    public struct ModifyDomainOwnerBatchRequest: TCRequestModel {
+    public struct ModifyDomainOwnerBatchRequest: TCRequest {
         /// 要过户的域名。
         public let domains: [String]
 
@@ -49,7 +49,7 @@ extension Domain {
     }
 
     /// ModifyDomainOwnerBatch返回参数结构体
-    public struct ModifyDomainOwnerBatchResponse: TCResponseModel {
+    public struct ModifyDomainOwnerBatchResponse: TCResponse {
         /// 日志id
         public let logId: UInt64
 

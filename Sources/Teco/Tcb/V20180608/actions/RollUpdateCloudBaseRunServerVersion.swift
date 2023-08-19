@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// RollUpdateCloudBaseRunServerVersion请求参数结构体
-    public struct RollUpdateCloudBaseRunServerVersionRequest: TCRequestModel {
+    public struct RollUpdateCloudBaseRunServerVersionRequest: TCRequest {
         /// 环境ID
         public let envId: String
 
@@ -199,7 +199,7 @@ extension Tcb {
     }
 
     /// RollUpdateCloudBaseRunServerVersion返回参数结构体
-    public struct RollUpdateCloudBaseRunServerVersionResponse: TCResponseModel {
+    public struct RollUpdateCloudBaseRunServerVersionResponse: TCResponse {
         /// succ为成功
         public let result: String
 

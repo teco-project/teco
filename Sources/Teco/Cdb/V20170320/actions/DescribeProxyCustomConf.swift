@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DescribeProxyCustomConf请求参数结构体
-    public struct DescribeProxyCustomConfRequest: TCRequestModel {
+    public struct DescribeProxyCustomConfRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Cdb {
     }
 
     /// DescribeProxyCustomConf返回参数结构体
-    public struct DescribeProxyCustomConfResponse: TCResponseModel {
+    public struct DescribeProxyCustomConfResponse: TCResponse {
         /// 代理配置数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let count: UInt64?

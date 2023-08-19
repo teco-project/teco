@@ -20,13 +20,13 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// DescribeWarnMod请求参数结构体
-    public struct DescribeWarnModRequest: TCRequestModel {
+    public struct DescribeWarnModRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeWarnMod返回参数结构体
-    public struct DescribeWarnModResponse: TCResponseModel {
+    public struct DescribeWarnModResponse: TCResponse {
         /// 告警类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: String?

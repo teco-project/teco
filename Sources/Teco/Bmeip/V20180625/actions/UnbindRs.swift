@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmeip {
     /// UnbindRs请求参数结构体
-    public struct UnbindRsRequest: TCRequestModel {
+    public struct UnbindRsRequest: TCRequest {
         /// Eip实例ID
         public let eipId: String
 
@@ -39,7 +39,7 @@ extension Bmeip {
     }
 
     /// UnbindRs返回参数结构体
-    public struct UnbindRsResponse: TCResponseModel {
+    public struct UnbindRsResponse: TCResponse {
         /// 解绑操作的异步任务ID，可以通过查询EIP任务状态查询任务状态
         public let taskId: Int64
 

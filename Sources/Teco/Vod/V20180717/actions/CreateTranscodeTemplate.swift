@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// CreateTranscodeTemplate请求参数结构体
-    public struct CreateTranscodeTemplateRequest: TCRequestModel {
+    public struct CreateTranscodeTemplateRequest: TCRequest {
         /// 封装格式，可选值：mp4、flv、hls、mp3、flac、ogg、m4a、wav。其中，mp3、flac、ogg、m4a、wav 为纯音频文件。
         public let container: String
 
@@ -91,7 +91,7 @@ extension Vod {
     }
 
     /// CreateTranscodeTemplate返回参数结构体
-    public struct CreateTranscodeTemplateResponse: TCResponseModel {
+    public struct CreateTranscodeTemplateResponse: TCResponse {
         /// 转码模板唯一标识。
         public let definition: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Waf {
     /// DescribeFlowTrend请求参数结构体
-    public struct DescribeFlowTrendRequest: TCRequestModel {
+    public struct DescribeFlowTrendRequest: TCRequest {
         /// 需要获取流量趋势的域名, all表示所有域名
         public let domain: String
 
@@ -44,7 +44,7 @@ extension Waf {
     }
 
     /// DescribeFlowTrend返回参数结构体
-    public struct DescribeFlowTrendResponse: TCResponseModel {
+    public struct DescribeFlowTrendResponse: TCResponse {
         /// 流量趋势数据
         public let data: [BotStatPointItem]
 

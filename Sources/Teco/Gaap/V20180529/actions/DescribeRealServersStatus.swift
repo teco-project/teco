@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// DescribeRealServersStatus请求参数结构体
-    public struct DescribeRealServersStatusRequest: TCRequestModel {
+    public struct DescribeRealServersStatusRequest: TCRequest {
         /// 源站ID列表
         public let realServerIds: [String]
 
@@ -34,7 +34,7 @@ extension Gaap {
     }
 
     /// DescribeRealServersStatus返回参数结构体
-    public struct DescribeRealServersStatusResponse: TCResponseModel {
+    public struct DescribeRealServersStatusResponse: TCResponse {
         /// 返回源站查询结果的个数
         public let totalCount: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiia {
     /// DetectChefDress请求参数结构体
-    public struct DetectChefDressRequest: TCRequestModel {
+    public struct DetectChefDressRequest: TCRequest {
         /// 图片的 Url 。
         /// ImageUrl和ImageBase64必须提供一个，同时存在时优先使用ImageUrl字段。
         /// 图片限制：
@@ -62,7 +62,7 @@ extension Tiia {
     }
 
     /// DetectChefDress返回参数结构体
-    public struct DetectChefDressResponse: TCResponseModel {
+    public struct DetectChefDressResponse: TCResponse {
         /// 识别到的人体属性信息。单个人体属性信息包括人体检测置信度，属性信息，人体检测框。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bodies: [AttributesForBody]?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// DescribeRumGroupLog请求参数结构体
-    public struct DescribeRumGroupLogRequest: TCRequestModel {
+    public struct DescribeRumGroupLogRequest: TCRequest {
         /// 排序方式  desc  asc（必填）
         public let orderBy: String
 
@@ -69,7 +69,7 @@ extension Rum {
     }
 
     /// DescribeRumGroupLog返回参数结构体
-    public struct DescribeRumGroupLogResponse: TCResponseModel {
+    public struct DescribeRumGroupLogResponse: TCResponse {
         /// 返回字符串
         public let result: String
 

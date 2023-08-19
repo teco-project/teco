@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// DeleteNotebookSession请求参数结构体
-    public struct DeleteNotebookSessionRequest: TCRequestModel {
+    public struct DeleteNotebookSessionRequest: TCRequest {
         /// Session唯一标识
         public let sessionId: String
 
@@ -34,7 +34,7 @@ extension Dlc {
     }
 
     /// DeleteNotebookSession返回参数结构体
-    public struct DeleteNotebookSessionResponse: TCResponseModel {
+    public struct DeleteNotebookSessionResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

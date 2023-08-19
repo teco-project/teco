@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// DownloadReconciliationUrl请求参数结构体
-    public struct DownloadReconciliationUrlRequest: TCRequestModel {
+    public struct DownloadReconciliationUrlRequest: TCRequest {
         /// 平台应用ID
         public let mainAppId: String
 
@@ -49,7 +49,7 @@ extension Cpdp {
     }
 
     /// DownloadReconciliationUrl返回参数结构体
-    public struct DownloadReconciliationUrlResponse: TCResponseModel {
+    public struct DownloadReconciliationUrlResponse: TCResponse {
         /// 下载地址
         public let downloadUrl: String
 

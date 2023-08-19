@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// StopRecordTask请求参数结构体
-    public struct StopRecordTaskRequest: TCRequestModel {
+    public struct StopRecordTaskRequest: TCRequest {
         /// 录制任务ID。
         public let taskId: String
 
@@ -34,7 +34,7 @@ extension Live {
     }
 
     /// StopRecordTask返回参数结构体
-    public struct StopRecordTaskResponse: TCResponseModel {
+    public struct StopRecordTaskResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

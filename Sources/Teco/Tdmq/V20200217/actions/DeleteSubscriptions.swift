@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// DeleteSubscriptions请求参数结构体
-    public struct DeleteSubscriptionsRequest: TCRequestModel {
+    public struct DeleteSubscriptionsRequest: TCRequest {
         /// 订阅关系集合，每次最多删除20个。
         public let subscriptionTopicSets: [SubscriptionTopic]
 
@@ -49,7 +49,7 @@ extension Tdmq {
     }
 
     /// DeleteSubscriptions返回参数结构体
-    public struct DeleteSubscriptionsResponse: TCResponseModel {
+    public struct DeleteSubscriptionsResponse: TCResponse {
         /// 成功删除的订阅关系数组。
         public let subscriptionTopicSets: [SubscriptionTopic]
 

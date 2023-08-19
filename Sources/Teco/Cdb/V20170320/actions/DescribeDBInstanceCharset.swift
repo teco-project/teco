@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DescribeDBInstanceCharset请求参数结构体
-    public struct DescribeDBInstanceCharsetRequest: TCRequestModel {
+    public struct DescribeDBInstanceCharsetRequest: TCRequest {
         /// 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Cdb {
     }
 
     /// DescribeDBInstanceCharset返回参数结构体
-    public struct DescribeDBInstanceCharsetResponse: TCResponseModel {
+    public struct DescribeDBInstanceCharsetResponse: TCResponse {
         /// 实例的默认字符集，如 "latin1"，"utf8" 等。
         public let charset: String
 

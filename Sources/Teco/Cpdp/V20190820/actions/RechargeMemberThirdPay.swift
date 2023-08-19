@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// RechargeMemberThirdPay请求参数结构体
-    public struct RechargeMemberThirdPayRequest: TCRequestModel {
+    public struct RechargeMemberThirdPayRequest: TCRequest {
         /// STRING(32)，交易网会代码
         public let tranNetMemberCode: String
 
@@ -107,7 +107,7 @@ extension Cpdp {
     }
 
     /// RechargeMemberThirdPay返回参数结构体
-    public struct RechargeMemberThirdPayResponse: TCResponseModel {
+    public struct RechargeMemberThirdPayResponse: TCResponse {
         /// String(20)，返回码
         public let txnReturnCode: String
 

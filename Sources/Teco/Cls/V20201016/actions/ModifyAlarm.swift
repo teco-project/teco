@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// ModifyAlarm请求参数结构体
-    public struct ModifyAlarmRequest: TCRequestModel {
+    public struct ModifyAlarmRequest: TCRequest {
         /// 告警策略ID。
         public let alarmId: String
 
@@ -89,7 +89,7 @@ extension Cls {
     }
 
     /// ModifyAlarm返回参数结构体
-    public struct ModifyAlarmResponse: TCResponseModel {
+    public struct ModifyAlarmResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

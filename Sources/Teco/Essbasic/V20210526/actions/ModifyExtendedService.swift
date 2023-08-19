@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// ModifyExtendedService请求参数结构体
-    public struct ModifyExtendedServiceRequest: TCRequestModel {
+    public struct ModifyExtendedServiceRequest: TCRequest {
         /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         ///
         /// 注: 此接口 参数Agent. ProxyOperator.OpenId 需要传递超管或者法人的OpenId
@@ -53,7 +53,7 @@ extension Essbasic {
     }
 
     /// ModifyExtendedService返回参数结构体
-    public struct ModifyExtendedServiceResponse: TCResponseModel {
+    public struct ModifyExtendedServiceResponse: TCResponse {
         /// 操作跳转链接，有效期24小时
         /// 若操作时没有返回跳转链接，表示无需跳转操作，此时会直接开通/关闭服务。
         ///

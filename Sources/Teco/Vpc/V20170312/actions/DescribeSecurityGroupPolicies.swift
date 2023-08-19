@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DescribeSecurityGroupPolicies请求参数结构体
-    public struct DescribeSecurityGroupPoliciesRequest: TCRequestModel {
+    public struct DescribeSecurityGroupPoliciesRequest: TCRequest {
         /// 安全组实例ID，例如：sg-33ocnj9n，可通过DescribeSecurityGroups获取。
         public let securityGroupId: String
 
@@ -48,7 +48,7 @@ extension Vpc {
     }
 
     /// DescribeSecurityGroupPolicies返回参数结构体
-    public struct DescribeSecurityGroupPoliciesResponse: TCResponseModel {
+    public struct DescribeSecurityGroupPoliciesResponse: TCResponse {
         /// 安全组规则集合。
         public let securityGroupPolicySet: SecurityGroupPolicySet
 

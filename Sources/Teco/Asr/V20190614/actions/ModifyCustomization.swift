@@ -20,7 +20,7 @@ import TecoCore
 
 extension Asr {
     /// ModifyCustomization请求参数结构体
-    public struct ModifyCustomizationRequest: TCRequestModel {
+    public struct ModifyCustomizationRequest: TCRequest {
         /// 要修改的模型ID
         public let modelId: String
 
@@ -49,7 +49,7 @@ extension Asr {
     }
 
     /// ModifyCustomization返回参数结构体
-    public struct ModifyCustomizationResponse: TCResponseModel {
+    public struct ModifyCustomizationResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Vpc {
     /// DescribeBandwidthPackageQuota请求参数结构体
-    public struct DescribeBandwidthPackageQuotaRequest: TCRequestModel {
+    public struct DescribeBandwidthPackageQuotaRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeBandwidthPackageQuota返回参数结构体
-    public struct DescribeBandwidthPackageQuotaResponse: TCResponseModel {
+    public struct DescribeBandwidthPackageQuotaResponse: TCResponse {
         /// 带宽包配额详细信息
         public let quotaSet: [Quota]
 

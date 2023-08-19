@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dayu {
     /// DescribeL7HealthConfig请求参数结构体
-    public struct DescribeL7HealthConfigRequest: TCRequestModel {
+    public struct DescribeL7HealthConfigRequest: TCRequest {
         /// 大禹子产品代号（bgpip表示高防IP；net表示高防IP专业版）
         public let business: String
 
@@ -44,7 +44,7 @@ extension Dayu {
     }
 
     /// DescribeL7HealthConfig返回参数结构体
-    public struct DescribeL7HealthConfigResponse: TCResponseModel {
+    public struct DescribeL7HealthConfigResponse: TCResponse {
         /// 七层健康检查配置数组
         public let healthConfig: [L7HealthConfig]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bma {
     /// ModifyCRBlockStatus请求参数结构体
-    public struct ModifyCRBlockStatusRequest: TCRequestModel {
+    public struct ModifyCRBlockStatusRequest: TCRequest {
         /// 侵权ID
         public let tortId: Int64
 
@@ -39,7 +39,7 @@ extension Bma {
     }
 
     /// ModifyCRBlockStatus返回参数结构体
-    public struct ModifyCRBlockStatusResponse: TCResponseModel {
+    public struct ModifyCRBlockStatusResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

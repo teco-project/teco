@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Mariadb {
     /// DescribeDBInstanceDetail请求参数结构体
-    public struct DescribeDBInstanceDetailRequest: TCRequestModel {
+    public struct DescribeDBInstanceDetailRequest: TCRequest {
         /// 实例Id形如：tdsql-ow728lmc。
         public let instanceId: String
 
@@ -36,7 +36,7 @@ extension Mariadb {
     }
 
     /// DescribeDBInstanceDetail返回参数结构体
-    public struct DescribeDBInstanceDetailResponse: TCResponseModel {
+    public struct DescribeDBInstanceDetailResponse: TCResponse {
         /// 实例Id
         public let instanceId: String
 

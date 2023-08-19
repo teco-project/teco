@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Eb {
     /// GetRule请求参数结构体
-    public struct GetRuleRequest: TCRequestModel {
+    public struct GetRuleRequest: TCRequest {
         /// 事件集ID
         public let eventBusId: String
 
@@ -41,7 +41,7 @@ extension Eb {
     }
 
     /// GetRule返回参数结构体
-    public struct GetRuleResponse: TCResponseModel {
+    public struct GetRuleResponse: TCResponse {
         /// 事件集id
         public let eventBusId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension As {
     /// CreateLifecycleHook请求参数结构体
-    public struct CreateLifecycleHookRequest: TCRequestModel {
+    public struct CreateLifecycleHookRequest: TCRequest {
         /// 伸缩组ID
         public let autoScalingGroupId: String
 
@@ -74,7 +74,7 @@ extension As {
     }
 
     /// CreateLifecycleHook返回参数结构体
-    public struct CreateLifecycleHookResponse: TCResponseModel {
+    public struct CreateLifecycleHookResponse: TCResponse {
         /// 生命周期挂钩ID
         public let lifecycleHookId: String
 

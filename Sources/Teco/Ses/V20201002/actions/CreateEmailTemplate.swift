@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ses {
     /// CreateEmailTemplate请求参数结构体
-    public struct CreateEmailTemplateRequest: TCRequestModel {
+    public struct CreateEmailTemplateRequest: TCRequest {
         /// 模板名称
         public let templateName: String
 
@@ -39,7 +39,7 @@ extension Ses {
     }
 
     /// CreateEmailTemplate返回参数结构体
-    public struct CreateEmailTemplateResponse: TCResponseModel {
+    public struct CreateEmailTemplateResponse: TCResponse {
         /// 模板id
         public let templateID: UInt64
 

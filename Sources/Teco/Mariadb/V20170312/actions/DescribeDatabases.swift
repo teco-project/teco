@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mariadb {
     /// DescribeDatabases请求参数结构体
-    public struct DescribeDatabasesRequest: TCRequestModel {
+    public struct DescribeDatabasesRequest: TCRequest {
         /// 实例 ID，形如：dcdbt-ow7t8lmc。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Mariadb {
     }
 
     /// DescribeDatabases返回参数结构体
-    public struct DescribeDatabasesResponse: TCResponseModel {
+    public struct DescribeDatabasesResponse: TCResponse {
         /// 该实例上的数据库列表。
         public let databases: [Database]
 

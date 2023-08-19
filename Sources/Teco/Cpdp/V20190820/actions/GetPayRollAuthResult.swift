@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// GetPayRollAuthResult请求参数结构体
-    public struct GetPayRollAuthResultRequest: TCRequestModel {
+    public struct GetPayRollAuthResultRequest: TCRequest {
         /// 商户系统内部的商家核身单号，要求此参数只能由数字、大小写字母组成，在服务商内部唯一
         public let authNumber: String
 
@@ -39,7 +39,7 @@ extension Cpdp {
     }
 
     /// GetPayRollAuthResult返回参数结构体
-    public struct GetPayRollAuthResultResponse: TCResponseModel {
+    public struct GetPayRollAuthResultResponse: TCResponse {
         /// 核身结果
         public let result: PayRollAuthResult
 

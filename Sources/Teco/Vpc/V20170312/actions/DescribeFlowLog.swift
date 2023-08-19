@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DescribeFlowLog请求参数结构体
-    public struct DescribeFlowLogRequest: TCRequestModel {
+    public struct DescribeFlowLogRequest: TCRequest {
         /// 私用网络ID或者统一ID，建议使用统一ID。
         public let vpcId: String
 
@@ -39,7 +39,7 @@ extension Vpc {
     }
 
     /// DescribeFlowLog返回参数结构体
-    public struct DescribeFlowLogResponse: TCResponseModel {
+    public struct DescribeFlowLogResponse: TCResponse {
         /// 流日志信息。
         public let flowLog: [FlowLog]
 

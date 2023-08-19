@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// ModifySampleSnapshotTemplate请求参数结构体
-    public struct ModifySampleSnapshotTemplateRequest: TCRequestModel {
+    public struct ModifySampleSnapshotTemplateRequest: TCRequest {
         /// 采样截图模板唯一标识。
         public let definition: UInt64
 
@@ -110,7 +110,7 @@ extension Vod {
     }
 
     /// ModifySampleSnapshotTemplate返回参数结构体
-    public struct ModifySampleSnapshotTemplateResponse: TCResponseModel {
+    public struct ModifySampleSnapshotTemplateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

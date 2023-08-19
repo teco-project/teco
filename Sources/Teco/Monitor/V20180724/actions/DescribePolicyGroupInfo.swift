@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// DescribePolicyGroupInfo请求参数结构体
-    public struct DescribePolicyGroupInfoRequest: TCRequestModel {
+    public struct DescribePolicyGroupInfoRequest: TCRequest {
         /// 固定值，为"monitor"
         public let module: String
 
@@ -39,7 +39,7 @@ extension Monitor {
     }
 
     /// DescribePolicyGroupInfo返回参数结构体
-    public struct DescribePolicyGroupInfoResponse: TCResponseModel {
+    public struct DescribePolicyGroupInfoResponse: TCResponse {
         /// 策略组名称
         public let groupName: String
 

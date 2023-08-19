@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cme {
     /// ExportVideoEditProject请求参数结构体
-    public struct ExportVideoEditProjectRequest: TCRequestModel {
+    public struct ExportVideoEditProjectRequest: TCRequest {
         /// 平台名称，指定访问的平台。
         public let platform: String
 
@@ -79,7 +79,7 @@ extension Cme {
     }
 
     /// ExportVideoEditProject返回参数结构体
-    public struct ExportVideoEditProjectResponse: TCResponseModel {
+    public struct ExportVideoEditProjectResponse: TCResponse {
         /// 任务 Id。
         public let taskId: String
 

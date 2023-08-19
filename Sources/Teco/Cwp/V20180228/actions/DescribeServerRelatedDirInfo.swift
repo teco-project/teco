@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeServerRelatedDirInfo请求参数结构体
-    public struct DescribeServerRelatedDirInfoRequest: TCRequestModel {
+    public struct DescribeServerRelatedDirInfoRequest: TCRequest {
         /// 唯一ID
         public let id: UInt64
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// DescribeServerRelatedDirInfo返回参数结构体
-    public struct DescribeServerRelatedDirInfoResponse: TCResponseModel {
+    public struct DescribeServerRelatedDirInfoResponse: TCResponse {
         /// 服务器名称
         public let hostName: String
 

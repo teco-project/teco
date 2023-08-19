@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdcpg {
     /// ModifyClustersAutoRenewFlag请求参数结构体
-    public struct ModifyClustersAutoRenewFlagRequest: TCRequestModel {
+    public struct ModifyClustersAutoRenewFlagRequest: TCRequest {
         /// 集群ID列表
         public let clusterIdSet: [String]
 
@@ -39,7 +39,7 @@ extension Tdcpg {
     }
 
     /// ModifyClustersAutoRenewFlag返回参数结构体
-    public struct ModifyClustersAutoRenewFlagResponse: TCResponseModel {
+    public struct ModifyClustersAutoRenewFlagResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

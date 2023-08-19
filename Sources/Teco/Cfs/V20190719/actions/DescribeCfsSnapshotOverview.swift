@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cfs {
     /// DescribeCfsSnapshotOverview请求参数结构体
-    public struct DescribeCfsSnapshotOverviewRequest: TCRequestModel {
+    public struct DescribeCfsSnapshotOverviewRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeCfsSnapshotOverview返回参数结构体
-    public struct DescribeCfsSnapshotOverviewResponse: TCResponseModel {
+    public struct DescribeCfsSnapshotOverviewResponse: TCResponse {
         /// 统计信息
         public let statisticsList: [SnapshotStatistics]
 

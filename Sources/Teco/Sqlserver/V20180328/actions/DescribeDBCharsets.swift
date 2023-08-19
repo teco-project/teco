@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// DescribeDBCharsets请求参数结构体
-    public struct DescribeDBCharsetsRequest: TCRequestModel {
+    public struct DescribeDBCharsetsRequest: TCRequest {
         /// 实例ID，形如mssql-j8kv137v
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Sqlserver {
     }
 
     /// DescribeDBCharsets返回参数结构体
-    public struct DescribeDBCharsetsResponse: TCResponseModel {
+    public struct DescribeDBCharsetsResponse: TCResponse {
         /// 数据库字符集列表
         public let databaseCharsets: [String]
 

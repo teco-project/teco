@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// CreateAuditRuleTemplate请求参数结构体
-    public struct CreateAuditRuleTemplateRequest: TCRequestModel {
+    public struct CreateAuditRuleTemplateRequest: TCRequest {
         /// 审计规则。
         public let ruleFilters: [RuleFilters]
 
@@ -44,7 +44,7 @@ extension Cynosdb {
     }
 
     /// CreateAuditRuleTemplate返回参数结构体
-    public struct CreateAuditRuleTemplateResponse: TCResponseModel {
+    public struct CreateAuditRuleTemplateResponse: TCResponse {
         /// 生成的规则模版ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleTemplateId: String?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// BatchStopOpsTasks请求参数结构体
-    public struct BatchStopOpsTasksRequest: TCRequestModel {
+    public struct BatchStopOpsTasksRequest: TCRequest {
         /// 批量停止任务的TaskId
         public let taskIdList: [String]
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// BatchStopOpsTasks返回参数结构体
-    public struct BatchStopOpsTasksResponse: TCResponseModel {
+    public struct BatchStopOpsTasksResponse: TCResponse {
         /// 返回批量操作成功个数、失败个数、操作总数
         public let data: BatchOperationOpsDto
 

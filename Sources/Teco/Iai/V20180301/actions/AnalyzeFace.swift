@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iai {
     /// AnalyzeFace请求参数结构体
-    public struct AnalyzeFaceRequest: TCRequestModel {
+    public struct AnalyzeFaceRequest: TCRequest {
         /// 检测模式。0 为检测所有出现的人脸， 1 为检测面积最大的人脸。默认为 0。最多返回 10 张人脸的五官定位（人脸关键点）具体信息。
         public let mode: UInt64?
 
@@ -67,7 +67,7 @@ extension Iai {
     }
 
     /// AnalyzeFace返回参数结构体
-    public struct AnalyzeFaceResponse: TCResponseModel {
+    public struct AnalyzeFaceResponse: TCResponse {
         /// 请求的图片宽度。
         public let imageWidth: UInt64
 

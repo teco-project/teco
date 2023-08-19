@@ -20,7 +20,7 @@ import TecoCore
 
 extension Nlp {
     /// AnalyzeSentiment请求参数结构体
-    public struct AnalyzeSentimentRequest: TCRequestModel {
+    public struct AnalyzeSentimentRequest: TCRequest {
         /// 待分析的文本（仅支持UTF-8格式，不超过200字）。
         public let text: String
 
@@ -34,7 +34,7 @@ extension Nlp {
     }
 
     /// AnalyzeSentiment返回参数结构体
-    public struct AnalyzeSentimentResponse: TCResponseModel {
+    public struct AnalyzeSentimentResponse: TCResponse {
         /// 正面情感概率。
         public let positive: Float
 

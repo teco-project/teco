@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// ModifyLiveDomainReferer请求参数结构体
-    public struct ModifyLiveDomainRefererRequest: TCRequestModel {
+    public struct ModifyLiveDomainRefererRequest: TCRequest {
         /// 播放域名。
         public let domainName: String
 
@@ -54,7 +54,7 @@ extension Live {
     }
 
     /// ModifyLiveDomainReferer返回参数结构体
-    public struct ModifyLiveDomainRefererResponse: TCResponseModel {
+    public struct ModifyLiveDomainRefererResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

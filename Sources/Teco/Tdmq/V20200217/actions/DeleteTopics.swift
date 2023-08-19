@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// DeleteTopics请求参数结构体
-    public struct DeleteTopicsRequest: TCRequestModel {
+    public struct DeleteTopicsRequest: TCRequest {
         /// 主题集合，每次最多删除20个。
         public let topicSets: [TopicRecord]
 
@@ -49,7 +49,7 @@ extension Tdmq {
     }
 
     /// DeleteTopics返回参数结构体
-    public struct DeleteTopicsResponse: TCResponseModel {
+    public struct DeleteTopicsResponse: TCResponse {
         /// 被删除的主题数组。
         public let topicSets: [TopicRecord]
 

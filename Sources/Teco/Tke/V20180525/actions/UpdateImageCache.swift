@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// UpdateImageCache请求参数结构体
-    public struct UpdateImageCacheRequest: TCRequestModel {
+    public struct UpdateImageCacheRequest: TCRequest {
         /// 镜像缓存Id
         public let imageCacheId: String
 
@@ -64,7 +64,7 @@ extension Tke {
     }
 
     /// UpdateImageCache返回参数结构体
-    public struct UpdateImageCacheResponse: TCResponseModel {
+    public struct UpdateImageCacheResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

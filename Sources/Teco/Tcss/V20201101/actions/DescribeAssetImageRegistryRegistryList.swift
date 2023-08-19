@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeAssetImageRegistryRegistryList请求参数结构体
-    public struct DescribeAssetImageRegistryRegistryListRequest: TCRequestModel {
+    public struct DescribeAssetImageRegistryRegistryListRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeAssetImageRegistryRegistryList返回参数结构体
-    public struct DescribeAssetImageRegistryRegistryListResponse: TCResponseModel {
+    public struct DescribeAssetImageRegistryRegistryListResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

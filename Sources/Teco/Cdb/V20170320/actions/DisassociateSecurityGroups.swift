@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DisassociateSecurityGroups请求参数结构体
-    public struct DisassociateSecurityGroupsRequest: TCRequestModel {
+    public struct DisassociateSecurityGroupsRequest: TCRequest {
         /// 安全组 ID。
         public let securityGroupId: String
 
@@ -44,7 +44,7 @@ extension Cdb {
     }
 
     /// DisassociateSecurityGroups返回参数结构体
-    public struct DisassociateSecurityGroupsResponse: TCResponseModel {
+    public struct DisassociateSecurityGroupsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

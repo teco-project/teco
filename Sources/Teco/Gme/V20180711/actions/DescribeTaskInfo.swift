@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gme {
     /// DescribeTaskInfo请求参数结构体
-    public struct DescribeTaskInfoRequest: TCRequestModel {
+    public struct DescribeTaskInfoRequest: TCRequest {
         /// 应用ID。
         public let bizId: UInt64
 
@@ -39,7 +39,7 @@ extension Gme {
     }
 
     /// DescribeTaskInfo返回参数结构体
-    public struct DescribeTaskInfoResponse: TCResponseModel {
+    public struct DescribeTaskInfoResponse: TCResponse {
         /// 进行中的任务taskid（StartRecord接口返回）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: UInt64?

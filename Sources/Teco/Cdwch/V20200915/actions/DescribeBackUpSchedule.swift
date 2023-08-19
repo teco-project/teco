@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdwch {
     /// DescribeBackUpSchedule请求参数结构体
-    public struct DescribeBackUpScheduleRequest: TCRequestModel {
+    public struct DescribeBackUpScheduleRequest: TCRequest {
         /// 集群id
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Cdwch {
     }
 
     /// DescribeBackUpSchedule返回参数结构体
-    public struct DescribeBackUpScheduleResponse: TCResponseModel {
+    public struct DescribeBackUpScheduleResponse: TCResponse {
         /// 备份是否开启
         public let backUpOpened: Bool
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// RefreshUrlCache请求参数结构体
-    public struct RefreshUrlCacheRequest: TCRequestModel {
+    public struct RefreshUrlCacheRequest: TCRequest {
         /// 刷新的 URL 列表，单次最多指定20个 URL。
         public let urls: [String]
 
@@ -39,7 +39,7 @@ extension Vod {
     }
 
     /// RefreshUrlCache返回参数结构体
-    public struct RefreshUrlCacheResponse: TCResponseModel {
+    public struct RefreshUrlCacheResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

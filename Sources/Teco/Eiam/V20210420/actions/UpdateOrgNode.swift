@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eiam {
     /// UpdateOrgNode请求参数结构体
-    public struct UpdateOrgNodeRequest: TCRequestModel {
+    public struct UpdateOrgNodeRequest: TCRequest {
         /// 机构节点ID，是机构节点的全局唯一标识。
         public let orgNodeId: String
 
@@ -49,7 +49,7 @@ extension Eiam {
     }
 
     /// UpdateOrgNode返回参数结构体
-    public struct UpdateOrgNodeResponse: TCResponseModel {
+    public struct UpdateOrgNodeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

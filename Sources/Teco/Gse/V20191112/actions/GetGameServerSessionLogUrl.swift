@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// GetGameServerSessionLogUrl请求参数结构体
-    public struct GetGameServerSessionLogUrlRequest: TCRequestModel {
+    public struct GetGameServerSessionLogUrlRequest: TCRequest {
         /// 游戏服务器会话ID，最小长度不小于1个ASCII字符，最大长度不超过48个ASCII字符
         public let gameServerSessionId: String
 
@@ -34,7 +34,7 @@ extension Gse {
     }
 
     /// GetGameServerSessionLogUrl返回参数结构体
-    public struct GetGameServerSessionLogUrlResponse: TCResponseModel {
+    public struct GetGameServerSessionLogUrlResponse: TCResponse {
         /// 日志下载URL，最小长度不小于1个ASCII字符，最大长度不超过1024个ASCII字符
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let preSignedUrl: String?

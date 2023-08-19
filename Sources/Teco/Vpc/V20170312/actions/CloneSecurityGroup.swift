@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CloneSecurityGroup请求参数结构体
-    public struct CloneSecurityGroupRequest: TCRequestModel {
+    public struct CloneSecurityGroupRequest: TCRequest {
         /// 安全组实例ID，例如sg-33ocnj9n，可通过[DescribeSecurityGroups](https://cloud.tencent.com/document/product/215/15808)获取。
         public let securityGroupId: String
 
@@ -54,7 +54,7 @@ extension Vpc {
     }
 
     /// CloneSecurityGroup返回参数结构体
-    public struct CloneSecurityGroupResponse: TCResponseModel {
+    public struct CloneSecurityGroupResponse: TCResponse {
         /// 安全组对象。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let securityGroup: SecurityGroup?

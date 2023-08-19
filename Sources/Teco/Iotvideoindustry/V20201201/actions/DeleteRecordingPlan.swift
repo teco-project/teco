@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// DeleteRecordingPlan请求参数结构体
-    public struct DeleteRecordingPlanRequest: TCRequestModel {
+    public struct DeleteRecordingPlanRequest: TCRequest {
         /// 录制计划ID
         public let planId: String
 
@@ -34,7 +34,7 @@ extension Iotvideoindustry {
     }
 
     /// DeleteRecordingPlan返回参数结构体
-    public struct DeleteRecordingPlanResponse: TCResponseModel {
+    public struct DeleteRecordingPlanResponse: TCResponse {
         /// 操作结果，OK：成功，其他：失败
         public let status: String
 

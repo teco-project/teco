@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cbs {
     /// ResizeDisk请求参数结构体
-    public struct ResizeDiskRequest: TCRequestModel {
+    public struct ResizeDiskRequest: TCRequest {
         /// 云硬盘扩容后的大小，单位为GB，必须大于当前云硬盘大小。云盘大小取值范围参见云硬盘[产品分类](/document/product/362/2353)的说明。
         public let diskSize: UInt64
 
@@ -39,7 +39,7 @@ extension Cbs {
     }
 
     /// ResizeDisk返回参数结构体
-    public struct ResizeDiskResponse: TCResponseModel {
+    public struct ResizeDiskResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

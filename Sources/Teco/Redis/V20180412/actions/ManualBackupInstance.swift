@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// ManualBackupInstance请求参数结构体
-    public struct ManualBackupInstanceRequest: TCRequestModel {
+    public struct ManualBackupInstanceRequest: TCRequest {
         /// 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         public let instanceId: String
 
@@ -47,7 +47,7 @@ extension Redis {
     }
 
     /// ManualBackupInstance返回参数结构体
-    public struct ManualBackupInstanceResponse: TCResponseModel {
+    public struct ManualBackupInstanceResponse: TCResponse {
         /// 任务ID
         public let taskId: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// CreateRuleTemplate请求参数结构体
-    public struct CreateRuleTemplateRequest: TCRequestModel {
+    public struct CreateRuleTemplateRequest: TCRequest {
         /// 模版类型  1.系统模版   2.自定义模版
         public let type: UInt64?
 
@@ -79,7 +79,7 @@ extension Wedata {
     }
 
     /// CreateRuleTemplate返回参数结构体
-    public struct CreateRuleTemplateResponse: TCResponseModel {
+    public struct CreateRuleTemplateResponse: TCResponse {
         /// 模板Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: UInt64?

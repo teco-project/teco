@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dasb {
     /// ModifyDeviceGroup请求参数结构体
-    public struct ModifyDeviceGroupRequest: TCRequestModel {
+    public struct ModifyDeviceGroupRequest: TCRequest {
         /// 资产组名，最大长度32字符，不能为空
         public let name: String
 
@@ -44,7 +44,7 @@ extension Dasb {
     }
 
     /// ModifyDeviceGroup返回参数结构体
-    public struct ModifyDeviceGroupResponse: TCResponseModel {
+    public struct ModifyDeviceGroupResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

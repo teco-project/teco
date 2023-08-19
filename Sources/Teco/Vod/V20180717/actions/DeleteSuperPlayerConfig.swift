@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// DeleteSuperPlayerConfig请求参数结构体
-    public struct DeleteSuperPlayerConfigRequest: TCRequestModel {
+    public struct DeleteSuperPlayerConfigRequest: TCRequest {
         /// 播放器配置名称。
         public let name: String
 
@@ -39,7 +39,7 @@ extension Vod {
     }
 
     /// DeleteSuperPlayerConfig返回参数结构体
-    public struct DeleteSuperPlayerConfigResponse: TCResponseModel {
+    public struct DeleteSuperPlayerConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

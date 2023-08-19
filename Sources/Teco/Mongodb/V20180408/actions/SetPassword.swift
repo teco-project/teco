@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mongodb {
     /// SetPassword请求参数结构体
-    public struct SetPasswordRequest: TCRequestModel {
+    public struct SetPasswordRequest: TCRequest {
         /// 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Mongodb {
     }
 
     /// SetPassword返回参数结构体
-    public struct SetPasswordResponse: TCResponseModel {
+    public struct SetPasswordResponse: TCResponse {
         /// 返回的异步任务ID
         public let flowId: UInt64
 

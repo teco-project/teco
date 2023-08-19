@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// ModifyEdgeUnitApplicationBasicInfo请求参数结构体
-    public struct ModifyEdgeUnitApplicationBasicInfoRequest: TCRequestModel {
+    public struct ModifyEdgeUnitApplicationBasicInfoRequest: TCRequest {
         /// 应用基本信息
         public let basicInfo: ApplicationBasicInfo
 
@@ -44,7 +44,7 @@ extension Iecp {
     }
 
     /// ModifyEdgeUnitApplicationBasicInfo返回参数结构体
-    public struct ModifyEdgeUnitApplicationBasicInfoResponse: TCResponseModel {
+    public struct ModifyEdgeUnitApplicationBasicInfoResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

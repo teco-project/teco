@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// ModifyBindRecordingPlan请求参数结构体
-    public struct ModifyBindRecordingPlanRequest: TCRequestModel {
+    public struct ModifyBindRecordingPlanRequest: TCRequest {
         /// 操作类型： 1-绑定设备 ；2-解绑设备
         public let type: Int64
 
@@ -44,7 +44,7 @@ extension Iotvideoindustry {
     }
 
     /// ModifyBindRecordingPlan返回参数结构体
-    public struct ModifyBindRecordingPlanResponse: TCResponseModel {
+    public struct ModifyBindRecordingPlanResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tione {
     /// DescribeNotebookSummary请求参数结构体
-    public struct DescribeNotebookSummaryRequest: TCRequestModel {
+    public struct DescribeNotebookSummaryRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeNotebookSummary返回参数结构体
-    public struct DescribeNotebookSummaryResponse: TCResponseModel {
+    public struct DescribeNotebookSummaryResponse: TCResponse {
         /// 实例总数
         public let allInstanceCnt: Int64
 

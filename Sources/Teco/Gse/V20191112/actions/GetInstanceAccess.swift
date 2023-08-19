@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// GetInstanceAccess请求参数结构体
-    public struct GetInstanceAccessRequest: TCRequestModel {
+    public struct GetInstanceAccessRequest: TCRequest {
         /// 服务器舰队ID
         public let fleetId: String
 
@@ -39,7 +39,7 @@ extension Gse {
     }
 
     /// GetInstanceAccess返回参数结构体
-    public struct GetInstanceAccessResponse: TCResponseModel {
+    public struct GetInstanceAccessResponse: TCResponse {
         /// 实例登录所需要的凭据
         public let instanceAccess: InstanceAccess
 

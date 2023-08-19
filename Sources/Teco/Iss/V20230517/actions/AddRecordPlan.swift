@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// AddRecordPlan请求参数结构体
-    public struct AddRecordPlanRequest: TCRequestModel {
+    public struct AddRecordPlanRequest: TCRequest {
         /// 实时上云计划名称，仅支持中文、英文、数字、_、-，长度不超过32个字符，计划名称全局唯一，不能为空，不能重复
         public let planName: String
 
@@ -64,7 +64,7 @@ extension Iss {
     }
 
     /// AddRecordPlan返回参数结构体
-    public struct AddRecordPlanResponse: TCResponseModel {
+    public struct AddRecordPlanResponse: TCResponse {
         /// 返回结果
         public let data: RecordPlanOptResponse
 

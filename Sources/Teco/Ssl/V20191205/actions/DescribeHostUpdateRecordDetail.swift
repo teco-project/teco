@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssl {
     /// DescribeHostUpdateRecordDetail请求参数结构体
-    public struct DescribeHostUpdateRecordDetailRequest: TCRequestModel {
+    public struct DescribeHostUpdateRecordDetailRequest: TCRequest {
         /// 待部署的证书ID
         public let deployRecordId: String
 
@@ -44,7 +44,7 @@ extension Ssl {
     }
 
     /// DescribeHostUpdateRecordDetail返回参数结构体
-    public struct DescribeHostUpdateRecordDetailResponse: TCResponseModel {
+    public struct DescribeHostUpdateRecordDetailResponse: TCResponse {
         /// 总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?

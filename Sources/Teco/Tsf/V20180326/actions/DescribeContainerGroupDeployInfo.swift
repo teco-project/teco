@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DescribeContainerGroupDeployInfo请求参数结构体
-    public struct DescribeContainerGroupDeployInfoRequest: TCRequestModel {
+    public struct DescribeContainerGroupDeployInfoRequest: TCRequest {
         /// 实例所属 groupId
         public let groupId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// DescribeContainerGroupDeployInfo返回参数结构体
-    public struct DescribeContainerGroupDeployInfoResponse: TCResponseModel {
+    public struct DescribeContainerGroupDeployInfoResponse: TCResponse {
         /// 获取部署组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: ContainerGroupDeploy?

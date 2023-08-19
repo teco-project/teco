@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// CheckLockMetaData请求参数结构体
-    public struct CheckLockMetaDataRequest: TCRequestModel {
+    public struct CheckLockMetaDataRequest: TCRequest {
         /// 锁ID
         public let lockId: Int64
 
@@ -49,7 +49,7 @@ extension Dlc {
     }
 
     /// CheckLockMetaData返回参数结构体
-    public struct CheckLockMetaDataResponse: TCResponseModel {
+    public struct CheckLockMetaDataResponse: TCResponse {
         /// 锁ID
         public let lockId: Int64
 

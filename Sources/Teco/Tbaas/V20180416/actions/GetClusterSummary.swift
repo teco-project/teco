@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tbaas {
     /// GetClusterSummary请求参数结构体
-    public struct GetClusterSummaryRequest: TCRequestModel {
+    public struct GetClusterSummaryRequest: TCRequest {
         /// 模块名称，固定字段：cluster_mng
         public let module: String
 
@@ -54,7 +54,7 @@ extension Tbaas {
     }
 
     /// GetClusterSummary返回参数结构体
-    public struct GetClusterSummaryResponse: TCResponseModel {
+    public struct GetClusterSummaryResponse: TCResponse {
         /// 网络通道总数量
         public let totalChannelCount: UInt64
 

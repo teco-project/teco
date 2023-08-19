@@ -20,13 +20,13 @@ import TecoCore
 
 extension Live {
     /// DescribeLiveRecordRules请求参数结构体
-    public struct DescribeLiveRecordRulesRequest: TCRequestModel {
+    public struct DescribeLiveRecordRulesRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeLiveRecordRules返回参数结构体
-    public struct DescribeLiveRecordRulesResponse: TCResponseModel {
+    public struct DescribeLiveRecordRulesResponse: TCResponse {
         /// 规则列表。
         public let rules: [RuleInfo]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mgobe {
     /// DescribePlayer请求参数结构体
-    public struct DescribePlayerRequest: TCRequestModel {
+    public struct DescribePlayerRequest: TCRequest {
         /// 游戏资源Id。
         public let gameId: String
 
@@ -44,7 +44,7 @@ extension Mgobe {
     }
 
     /// DescribePlayer返回参数结构体
-    public struct DescribePlayerResponse: TCResponseModel {
+    public struct DescribePlayerResponse: TCResponse {
         /// 玩家信息。
         public let player: Player
 

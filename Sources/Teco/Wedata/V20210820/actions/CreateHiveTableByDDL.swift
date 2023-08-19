@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// CreateHiveTableByDDL请求参数结构体
-    public struct CreateHiveTableByDDLRequest: TCRequestModel {
+    public struct CreateHiveTableByDDLRequest: TCRequest {
         /// 数据源ID
         public let datasourceId: String
 
@@ -64,7 +64,7 @@ extension Wedata {
     }
 
     /// CreateHiveTableByDDL返回参数结构体
-    public struct CreateHiveTableByDDLResponse: TCResponseModel {
+    public struct CreateHiveTableByDDLResponse: TCResponse {
         /// 表名称
         public let data: String
 

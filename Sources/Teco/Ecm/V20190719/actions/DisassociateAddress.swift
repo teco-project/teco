@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// DisassociateAddress请求参数结构体
-    public struct DisassociateAddressRequest: TCRequestModel {
+    public struct DisassociateAddressRequest: TCRequest {
         /// ECM 地域
         public let ecmRegion: String
 
@@ -51,7 +51,7 @@ extension Ecm {
     }
 
     /// DisassociateAddress返回参数结构体
-    public struct DisassociateAddressResponse: TCResponseModel {
+    public struct DisassociateAddressResponse: TCResponse {
         /// 异步任务TaskId。可以使用DescribeTaskResult接口查询任务状态。
         public let taskId: String
 

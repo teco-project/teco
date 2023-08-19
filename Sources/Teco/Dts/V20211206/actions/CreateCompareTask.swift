@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dts {
     /// CreateCompareTask请求参数结构体
-    public struct CreateCompareTaskRequest: TCRequestModel {
+    public struct CreateCompareTaskRequest: TCRequest {
         /// 任务 Id
         public let jobId: String
 
@@ -54,7 +54,7 @@ extension Dts {
     }
 
     /// CreateCompareTask返回参数结构体
-    public struct CreateCompareTaskResponse: TCResponseModel {
+    public struct CreateCompareTaskResponse: TCResponse {
         /// 数据对比任务 ID，形如：dts-8yv4w2i1-cmp-37skmii9
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let compareTaskId: String?

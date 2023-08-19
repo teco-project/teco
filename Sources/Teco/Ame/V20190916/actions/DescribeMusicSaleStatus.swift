@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ame {
     /// DescribeMusicSaleStatus请求参数结构体
-    public struct DescribeMusicSaleStatusRequest: TCRequestModel {
+    public struct DescribeMusicSaleStatusRequest: TCRequest {
         /// 歌曲Id集合，可传单个，也可传多个，上线查询单次50个
         public let musicIds: [String]
 
@@ -39,7 +39,7 @@ extension Ame {
     }
 
     /// DescribeMusicSaleStatus返回参数结构体
-    public struct DescribeMusicSaleStatusResponse: TCResponseModel {
+    public struct DescribeMusicSaleStatusResponse: TCResponse {
         /// musicId对应歌曲状态
         public let musicStatusSet: [MusicStatus]
 

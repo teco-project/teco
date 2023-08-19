@@ -20,7 +20,7 @@ import TecoCore
 
 extension Antiddos {
     /// DescribeOverviewAttackTrend请求参数结构体
-    public struct DescribeOverviewAttackTrendRequest: TCRequestModel {
+    public struct DescribeOverviewAttackTrendRequest: TCRequest {
         /// 攻击类型，取值ddos， cc
         public let type: String
 
@@ -54,7 +54,7 @@ extension Antiddos {
     }
 
     /// DescribeOverviewAttackTrend返回参数结构体
-    public struct DescribeOverviewAttackTrendResponse: TCResponseModel {
+    public struct DescribeOverviewAttackTrendResponse: TCResponse {
         /// 攻击类型
         public let type: String
 

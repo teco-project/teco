@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mariadb {
     /// DescribeDBTmpInstances请求参数结构体
-    public struct DescribeDBTmpInstancesRequest: TCRequestModel {
+    public struct DescribeDBTmpInstancesRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Mariadb {
     }
 
     /// DescribeDBTmpInstances返回参数结构体
-    public struct DescribeDBTmpInstancesResponse: TCResponseModel {
+    public struct DescribeDBTmpInstancesResponse: TCResponse {
         /// 临时实例
         public let tmpInstances: [TmpInstance]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeReverseShellDetail请求参数结构体
-    public struct DescribeReverseShellDetailRequest: TCRequestModel {
+    public struct DescribeReverseShellDetailRequest: TCRequest {
         /// 事件唯一id
         public let eventId: String
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeReverseShellDetail返回参数结构体
-    public struct DescribeReverseShellDetailResponse: TCResponseModel {
+    public struct DescribeReverseShellDetailResponse: TCResponse {
         /// 事件基本信息
         public let eventBaseInfo: RunTimeEventBaseInfo
 

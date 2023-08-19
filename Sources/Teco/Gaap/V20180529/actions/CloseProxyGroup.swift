@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// CloseProxyGroup请求参数结构体
-    public struct CloseProxyGroupRequest: TCRequestModel {
+    public struct CloseProxyGroupRequest: TCRequest {
         /// 通道组的实例 ID。
         public let groupId: String
 
@@ -34,7 +34,7 @@ extension Gaap {
     }
 
     /// CloseProxyGroup返回参数结构体
-    public struct CloseProxyGroupResponse: TCResponseModel {
+    public struct CloseProxyGroupResponse: TCResponse {
         /// 非运行状态下的通道实例ID列表，不可开启。
         public let invalidStatusInstanceSet: [String]
 

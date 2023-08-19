@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cii {
     /// AddSubStructureTasks请求参数结构体
-    public struct AddSubStructureTasksRequest: TCRequestModel {
+    public struct AddSubStructureTasksRequest: TCRequest {
         /// 主任务id
         public let mainTaskId: String
 
@@ -39,7 +39,7 @@ extension Cii {
     }
 
     /// AddSubStructureTasks返回参数结构体
-    public struct AddSubStructureTasksResponse: TCResponseModel {
+    public struct AddSubStructureTasksResponse: TCResponse {
         /// 增量子任务id数组
         public let subTaskIds: [String]
 

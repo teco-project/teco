@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotcloud {
     /// ListLogPayload请求参数结构体
-    public struct ListLogPayloadRequest: TCRequestModel {
+    public struct ListLogPayloadRequest: TCRequest {
         /// 日志开始时间，毫秒级时间戳
         public let minTime: UInt64
 
@@ -55,7 +55,7 @@ extension Iotcloud {
     }
 
     /// ListLogPayload返回参数结构体
-    public struct ListLogPayloadResponse: TCResponseModel {
+    public struct ListLogPayloadResponse: TCResponse {
         /// 日志上下文
         public let context: String
 

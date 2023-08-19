@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeWxCloudBaseRunSubNets请求参数结构体
-    public struct DescribeWxCloudBaseRunSubNetsRequest: TCRequestModel {
+    public struct DescribeWxCloudBaseRunSubNetsRequest: TCRequest {
         /// VPC id
         public let vpcId: String
 
@@ -39,7 +39,7 @@ extension Tcb {
     }
 
     /// DescribeWxCloudBaseRunSubNets返回参数结构体
-    public struct DescribeWxCloudBaseRunSubNetsResponse: TCResponseModel {
+    public struct DescribeWxCloudBaseRunSubNetsResponse: TCResponse {
         /// 子网Id列表
         public let subNetIds: [String]
 

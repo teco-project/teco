@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gpm {
     /// CancelMatching请求参数结构体
-    public struct CancelMatchingRequest: TCRequestModel {
+    public struct CancelMatchingRequest: TCRequest {
         /// 匹配 Code
         public let matchCode: String
 
@@ -39,7 +39,7 @@ extension Gpm {
     }
 
     /// CancelMatching返回参数结构体
-    public struct CancelMatchingResponse: TCResponseModel {
+    public struct CancelMatchingResponse: TCResponse {
         /// 错误码
         public let errCode: UInt64
 

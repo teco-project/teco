@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// DescribeAccessRegionsByDestRegion请求参数结构体
-    public struct DescribeAccessRegionsByDestRegionRequest: TCRequestModel {
+    public struct DescribeAccessRegionsByDestRegionRequest: TCRequest {
         /// 源站区域：接口DescribeDestRegions返回DestRegionSet中的RegionId字段值
         public let destRegion: String
 
@@ -44,7 +44,7 @@ extension Gaap {
     }
 
     /// DescribeAccessRegionsByDestRegion返回参数结构体
-    public struct DescribeAccessRegionsByDestRegionResponse: TCResponseModel {
+    public struct DescribeAccessRegionsByDestRegionResponse: TCResponse {
         /// 可用加速区域数量
         public let totalCount: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mongodb {
     /// SetAccountUserPrivilege请求参数结构体
-    public struct SetAccountUserPrivilegeRequest: TCRequestModel {
+    public struct SetAccountUserPrivilegeRequest: TCRequest {
         /// 指定待设置账号的实例ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Mongodb {
     }
 
     /// SetAccountUserPrivilege返回参数结构体
-    public struct SetAccountUserPrivilegeResponse: TCResponseModel {
+    public struct SetAccountUserPrivilegeResponse: TCResponse {
         /// 任务ID。
         public let flowId: UInt64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tic {
     /// UpdateStack请求参数结构体
-    public struct UpdateStackRequest: TCRequestModel {
+    public struct UpdateStackRequest: TCRequest {
         /// 待更新的资源栈ID
         public let stackId: String
 
@@ -44,7 +44,7 @@ extension Tic {
     }
 
     /// UpdateStack返回参数结构体
-    public struct UpdateStackResponse: TCResponseModel {
+    public struct UpdateStackResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

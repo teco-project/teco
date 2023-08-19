@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcaplusdb {
     /// DeleteTableGroup请求参数结构体
-    public struct DeleteTableGroupRequest: TCRequestModel {
+    public struct DeleteTableGroupRequest: TCRequest {
         /// 表格组所属的集群ID
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Tcaplusdb {
     }
 
     /// DeleteTableGroup返回参数结构体
-    public struct DeleteTableGroupResponse: TCResponseModel {
+    public struct DeleteTableGroupResponse: TCResponse {
         /// 删除表格组所创建的任务ID
         public let taskId: String
 

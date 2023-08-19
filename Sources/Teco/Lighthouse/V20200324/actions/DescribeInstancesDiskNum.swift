@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// DescribeInstancesDiskNum请求参数结构体
-    public struct DescribeInstancesDiskNumRequest: TCRequestModel {
+    public struct DescribeInstancesDiskNumRequest: TCRequest {
         /// 实例ID列表。
         public let instanceIds: [String]
 
@@ -34,7 +34,7 @@ extension Lighthouse {
     }
 
     /// DescribeInstancesDiskNum返回参数结构体
-    public struct DescribeInstancesDiskNumResponse: TCResponseModel {
+    public struct DescribeInstancesDiskNumResponse: TCResponse {
         /// 挂载信息列表
         public let attachDetailSet: [AttachDetail]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// RestoreInstance请求参数结构体
-    public struct RestoreInstanceRequest: TCRequestModel {
+    public struct RestoreInstanceRequest: TCRequest {
         /// 待操作的实例ID，可通过 DescribeInstances 接口返回值中的 InstanceId 获取。
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Redis {
     }
 
     /// RestoreInstance返回参数结构体
-    public struct RestoreInstanceResponse: TCResponseModel {
+    public struct RestoreInstanceResponse: TCResponse {
         /// 任务ID，可通过 DescribeTaskInfo 接口查询任务执行状态
         public let taskId: Int64
 

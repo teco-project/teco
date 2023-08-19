@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cat {
     /// DescribeProbeMetricData请求参数结构体
-    public struct DescribeProbeMetricDataRequest: TCRequestModel {
+    public struct DescribeProbeMetricDataRequest: TCRequest {
         /// 分析任务类型，支持以下几种类型：
         /// AnalyzeTaskType_Network：网络质量
         /// AnalyzeTaskType_Browse：页面性能
@@ -65,7 +65,7 @@ extension Cat {
     }
 
     /// DescribeProbeMetricData返回参数结构体
-    public struct DescribeProbeMetricDataResponse: TCResponseModel {
+    public struct DescribeProbeMetricDataResponse: TCResponse {
         /// 返回指标 JSON 序列化后的字符串,具体如下所示：
         /// "[{\"name\":\"task_navigate_request_gauge\",\"columns\":[\"time\",\"avg(first_screen_time) / 1000\"],\"values\":[[1641571200,6.756600000000001]],\"tags\":null}]"
         public let metricSet: String

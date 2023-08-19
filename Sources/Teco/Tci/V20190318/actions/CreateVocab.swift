@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tci {
     /// CreateVocab请求参数结构体
-    public struct CreateVocabRequest: TCRequestModel {
+    public struct CreateVocabRequest: TCRequest {
         /// 要添加词汇的词汇库名
         public let vocabLibName: String
 
@@ -39,7 +39,7 @@ extension Tci {
     }
 
     /// CreateVocab返回参数结构体
-    public struct CreateVocabResponse: TCResponseModel {
+    public struct CreateVocabResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

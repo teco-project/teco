@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cme {
     /// HandleMediaCastProject请求参数结构体
-    public struct HandleMediaCastProjectRequest: TCRequestModel {
+    public struct HandleMediaCastProjectRequest: TCRequest {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
         public let platform: String
 
@@ -79,7 +79,7 @@ extension Cme {
     }
 
     /// HandleMediaCastProject返回参数结构体
-    public struct HandleMediaCastProjectResponse: TCResponseModel {
+    public struct HandleMediaCastProjectResponse: TCResponse {
         /// 播放信息，Operation 为 DescribePlayInfo 时返回。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let playInfo: MediaCastPlayInfo?

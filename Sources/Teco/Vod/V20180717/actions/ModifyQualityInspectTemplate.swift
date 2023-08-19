@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// ModifyQualityInspectTemplate请求参数结构体
-    public struct ModifyQualityInspectTemplateRequest: TCRequestModel {
+    public struct ModifyQualityInspectTemplateRequest: TCRequest {
         /// 模板 ID。
         public let definition: Int64
 
@@ -104,7 +104,7 @@ extension Vod {
     }
 
     /// ModifyQualityInspectTemplate返回参数结构体
-    public struct ModifyQualityInspectTemplateResponse: TCResponseModel {
+    public struct ModifyQualityInspectTemplateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

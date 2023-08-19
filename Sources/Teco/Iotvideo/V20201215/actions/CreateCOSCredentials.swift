@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// CreateCOSCredentials请求参数结构体
-    public struct CreateCOSCredentialsRequest: TCRequestModel {
+    public struct CreateCOSCredentialsRequest: TCRequest {
         /// 产品ID
         public let productId: String
 
@@ -39,7 +39,7 @@ extension Iotvideo {
     }
 
     /// CreateCOSCredentials返回参数结构体
-    public struct CreateCOSCredentialsResponse: TCResponseModel {
+    public struct CreateCOSCredentialsResponse: TCResponse {
         /// COS存储桶名称
         public let storageBucket: String
 

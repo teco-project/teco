@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tics {
     /// DescribeThreatInfo请求参数结构体
-    public struct DescribeThreatInfoRequest: TCRequestModel {
+    public struct DescribeThreatInfoRequest: TCRequest {
         /// 查询对象，域名或IP
         public let key: String
 
@@ -44,7 +44,7 @@ extension Tics {
     }
 
     /// DescribeThreatInfo返回参数结构体
-    public struct DescribeThreatInfoResponse: TCResponseModel {
+    public struct DescribeThreatInfoResponse: TCResponse {
         /// 是否有数据，0代表有数据，1代表没有数据
         public let returnCode: UInt64
 

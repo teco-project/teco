@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// QueryVpcTaskResult请求参数结构体
-    public struct QueryVpcTaskResultRequest: TCRequestModel {
+    public struct QueryVpcTaskResultRequest: TCRequest {
         public let taskId: String
 
         public init(taskId: String) {
@@ -33,7 +33,7 @@ extension Ecm {
     }
 
     /// QueryVpcTaskResult返回参数结构体
-    public struct QueryVpcTaskResultResponse: TCResponseModel {
+    public struct QueryVpcTaskResultResponse: TCResponse {
         /// 执行结果，包括"SUCCESS", "FAILED", "RUNNING"
         public let status: String
 

@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cws {
     /// CreateMonitors请求参数结构体
-    public struct CreateMonitorsRequest: TCRequestModel {
+    public struct CreateMonitorsRequest: TCRequest {
         /// 站点的url列表
         public let urls: [String]
 
@@ -64,7 +64,7 @@ extension Cws {
     }
 
     /// CreateMonitors返回参数结构体
-    public struct CreateMonitorsResponse: TCResponseModel {
+    public struct CreateMonitorsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

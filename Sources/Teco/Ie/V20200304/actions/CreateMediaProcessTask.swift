@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ie {
     /// CreateMediaProcessTask请求参数结构体
-    public struct CreateMediaProcessTaskRequest: TCRequestModel {
+    public struct CreateMediaProcessTaskRequest: TCRequest {
         /// 编辑处理任务参数。
         public let mediaProcessInfo: MediaProcessInfo
 
@@ -49,7 +49,7 @@ extension Ie {
     }
 
     /// CreateMediaProcessTask返回参数结构体
-    public struct CreateMediaProcessTaskResponse: TCResponseModel {
+    public struct CreateMediaProcessTaskResponse: TCResponse {
         /// 编辑任务 ID，可以通过该 ID 查询任务状态和结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?

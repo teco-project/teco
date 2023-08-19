@@ -20,13 +20,13 @@ import TecoCore
 
 extension Dlc {
     /// ModifyGovernEventRule请求参数结构体
-    public struct ModifyGovernEventRuleRequest: TCRequestModel {
+    public struct ModifyGovernEventRuleRequest: TCRequest {
         public init() {
         }
     }
 
     /// ModifyGovernEventRule返回参数结构体
-    public struct ModifyGovernEventRuleResponse: TCResponseModel {
+    public struct ModifyGovernEventRuleResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

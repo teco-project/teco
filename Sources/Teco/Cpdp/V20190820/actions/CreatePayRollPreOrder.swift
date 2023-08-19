@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// CreatePayRollPreOrder请求参数结构体
-    public struct CreatePayRollPreOrderRequest: TCRequestModel {
+    public struct CreatePayRollPreOrderRequest: TCRequest {
         /// 用户在商户对应appid下的唯一标识
         public let openId: String
 
@@ -66,7 +66,7 @@ extension Cpdp {
     }
 
     /// CreatePayRollPreOrder返回参数结构体
-    public struct CreatePayRollPreOrderResponse: TCResponseModel {
+    public struct CreatePayRollPreOrderResponse: TCResponse {
         /// 商户系统内部的商家核身单号，要求此参数只能由数字、大小写字母组成，在服务商内部唯一
         public let authNumber: String
 

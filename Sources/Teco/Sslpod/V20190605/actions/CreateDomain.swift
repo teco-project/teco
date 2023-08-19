@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sslpod {
     /// CreateDomain请求参数结构体
-    public struct CreateDomainRequest: TCRequestModel {
+    public struct CreateDomainRequest: TCRequest {
         /// 监控的服务器类型（0：web，1：smtp，2：imap，3：pops）
         public let serverType: Int64
 
@@ -59,7 +59,7 @@ extension Sslpod {
     }
 
     /// CreateDomain返回参数结构体
-    public struct CreateDomainResponse: TCResponseModel {
+    public struct CreateDomainResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

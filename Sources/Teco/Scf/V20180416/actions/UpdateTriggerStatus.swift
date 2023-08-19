@@ -20,7 +20,7 @@ import TecoCore
 
 extension Scf {
     /// UpdateTriggerStatus请求参数结构体
-    public struct UpdateTriggerStatusRequest: TCRequestModel {
+    public struct UpdateTriggerStatusRequest: TCRequest {
         /// 触发器的初始是能状态OPEN表示开启 CLOSE表示关闭
         public let enable: String
 
@@ -64,7 +64,7 @@ extension Scf {
     }
 
     /// UpdateTriggerStatus返回参数结构体
-    public struct UpdateTriggerStatusResponse: TCResponseModel {
+    public struct UpdateTriggerStatusResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

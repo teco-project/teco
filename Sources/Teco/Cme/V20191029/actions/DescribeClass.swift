@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cme {
     /// DescribeClass请求参数结构体
-    public struct DescribeClassRequest: TCRequestModel {
+    public struct DescribeClassRequest: TCRequest {
         /// 平台名称，指定访问的平台。
         public let platform: String
 
@@ -44,7 +44,7 @@ extension Cme {
     }
 
     /// DescribeClass返回参数结构体
-    public struct DescribeClassResponse: TCResponseModel {
+    public struct DescribeClassResponse: TCResponse {
         /// 分类信息列表。
         public let classInfoSet: [ClassInfo]
 

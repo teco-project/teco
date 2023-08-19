@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// DescribeCurrentMemberList请求参数结构体
-    public struct DescribeCurrentMemberListRequest: TCRequestModel {
+    public struct DescribeCurrentMemberListRequest: TCRequest {
         /// 房间Id。
         public let roomId: UInt64
 
@@ -44,7 +44,7 @@ extension Lcic {
     }
 
     /// DescribeCurrentMemberList返回参数结构体
-    public struct DescribeCurrentMemberListResponse: TCResponseModel {
+    public struct DescribeCurrentMemberListResponse: TCResponse {
         /// 记录总数。当前房间的总人数。
         public let total: UInt64
 

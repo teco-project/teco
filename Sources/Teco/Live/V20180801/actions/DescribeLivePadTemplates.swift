@@ -20,13 +20,13 @@ import TecoCore
 
 extension Live {
     /// DescribeLivePadTemplates请求参数结构体
-    public struct DescribeLivePadTemplatesRequest: TCRequestModel {
+    public struct DescribeLivePadTemplatesRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeLivePadTemplates返回参数结构体
-    public struct DescribeLivePadTemplatesResponse: TCResponseModel {
+    public struct DescribeLivePadTemplatesResponse: TCResponse {
         /// 直播垫片模板信息。
         public let templates: [PadTemplate]
 

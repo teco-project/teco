@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeClusterStatus请求参数结构体
-    public struct DescribeClusterStatusRequest: TCRequestModel {
+    public struct DescribeClusterStatusRequest: TCRequest {
         /// 集群ID列表，不传默认拉取所有集群
         public let clusterIds: [String]?
 
@@ -34,7 +34,7 @@ extension Tke {
     }
 
     /// DescribeClusterStatus返回参数结构体
-    public struct DescribeClusterStatusResponse: TCResponseModel {
+    public struct DescribeClusterStatusResponse: TCResponse {
         /// 集群状态列表
         public let clusterStatusSet: [ClusterStatus]
 

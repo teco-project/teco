@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// ModifyInstanceParams请求参数结构体
-    public struct ModifyInstanceParamsRequest: TCRequestModel {
+    public struct ModifyInstanceParamsRequest: TCRequest {
         /// 实例ID。
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Redis {
     }
 
     /// ModifyInstanceParams返回参数结构体
-    public struct ModifyInstanceParamsResponse: TCResponseModel {
+    public struct ModifyInstanceParamsResponse: TCResponse {
         /// 说明修改参数配置是否成功。
         ///
         /// - true：指修改成功；

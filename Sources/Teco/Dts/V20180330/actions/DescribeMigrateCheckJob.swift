@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dts {
     /// DescribeMigrateCheckJob请求参数结构体
-    public struct DescribeMigrateCheckJobRequest: TCRequestModel {
+    public struct DescribeMigrateCheckJobRequest: TCRequest {
         /// 数据迁移任务ID
         public let jobId: String
 
@@ -34,7 +34,7 @@ extension Dts {
     }
 
     /// DescribeMigrateCheckJob返回参数结构体
-    public struct DescribeMigrateCheckJobResponse: TCResponseModel {
+    public struct DescribeMigrateCheckJobResponse: TCResponse {
         /// 校验任务状态：unavailable(当前不可用), starting(开始中)，running(校验中)，finished(校验完成)
         public let status: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// Refund请求参数结构体
-    public struct RefundRequest: TCRequestModel {
+    public struct RefundRequest: TCRequest {
         /// 用户ID，长度不小于5位， 仅支持字母和数字的组合
         public let userId: String
 
@@ -93,7 +93,7 @@ extension Cpdp {
     }
 
     /// Refund返回参数结构体
-    public struct RefundResponse: TCResponseModel {
+    public struct RefundResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

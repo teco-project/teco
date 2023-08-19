@@ -20,7 +20,7 @@ import TecoCore
 
 extension Partners {
     /// DescribeClientBalanceNew请求参数结构体
-    public struct DescribeClientBalanceNewRequest: TCRequestModel {
+    public struct DescribeClientBalanceNewRequest: TCRequest {
         /// 客户(代客)账号ID
         public let clientUin: String
 
@@ -34,7 +34,7 @@ extension Partners {
     }
 
     /// DescribeClientBalanceNew返回参数结构体
-    public struct DescribeClientBalanceNewResponse: TCResponseModel {
+    public struct DescribeClientBalanceNewResponse: TCResponse {
         /// 账户可用余额，单位分 （可用余额 = 现金余额 + 赠送金余额 - 欠费金额 - 冻结金额）
         public let balance: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// ModifyBackupDownloadRestriction请求参数结构体
-    public struct ModifyBackupDownloadRestrictionRequest: TCRequestModel {
+    public struct ModifyBackupDownloadRestrictionRequest: TCRequest {
         /// 下载备份文件的网络限制类型：
         ///
         /// - NoLimit：不限制，腾讯云内外网均可以下载备份文件。
@@ -61,7 +61,7 @@ extension Redis {
     }
 
     /// ModifyBackupDownloadRestriction返回参数结构体
-    public struct ModifyBackupDownloadRestrictionResponse: TCResponseModel {
+    public struct ModifyBackupDownloadRestrictionResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

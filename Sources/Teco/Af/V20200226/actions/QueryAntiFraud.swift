@@ -20,7 +20,7 @@ import TecoCore
 
 extension Af {
     /// QueryAntiFraud请求参数结构体
-    public struct QueryAntiFraudRequest: TCRequestModel {
+    public struct QueryAntiFraudRequest: TCRequest {
         /// 电话号码(五选二)
         public let phoneNumber: String?
 
@@ -153,7 +153,7 @@ extension Af {
     }
 
     /// QueryAntiFraud返回参数结构体
-    public struct QueryAntiFraudResponse: TCResponseModel {
+    public struct QueryAntiFraudResponse: TCResponse {
         /// 表示该条记录能否查到：1为能查到，-1为查不到
         public let found: Int64
 

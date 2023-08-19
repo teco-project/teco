@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// CheckDomain请求参数结构体
-    public struct CheckDomainRequest: TCRequestModel {
+    public struct CheckDomainRequest: TCRequest {
         /// 播放域名
         public let playDomain: String
 
@@ -39,7 +39,7 @@ extension Iss {
     }
 
     /// CheckDomain返回参数结构体
-    public struct CheckDomainResponse: TCResponseModel {
+    public struct CheckDomainResponse: TCResponse {
         /// 是否备案
         public let data: Bool
 

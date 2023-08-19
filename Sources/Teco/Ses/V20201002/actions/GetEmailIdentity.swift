@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ses {
     /// GetEmailIdentity请求参数结构体
-    public struct GetEmailIdentityRequest: TCRequestModel {
+    public struct GetEmailIdentityRequest: TCRequest {
         /// 发信域名
         public let emailIdentity: String
 
@@ -34,7 +34,7 @@ extension Ses {
     }
 
     /// GetEmailIdentity返回参数结构体
-    public struct GetEmailIdentityResponse: TCResponseModel {
+    public struct GetEmailIdentityResponse: TCResponse {
         /// 验证类型。固定值：DOMAIN
         public let identityType: String
 

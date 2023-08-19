@@ -20,7 +20,7 @@ import TecoCore
 
 extension Youmall {
     /// DescribeTrajectoryData请求参数结构体
-    public struct DescribeTrajectoryDataRequest: TCRequestModel {
+    public struct DescribeTrajectoryDataRequest: TCRequest {
         /// 集团ID
         public let companyId: String
 
@@ -59,7 +59,7 @@ extension Youmall {
     }
 
     /// DescribeTrajectoryData返回参数结构体
-    public struct DescribeTrajectoryDataResponse: TCResponseModel {
+    public struct DescribeTrajectoryDataResponse: TCResponse {
         /// 集团ID
         public let companyId: String
 

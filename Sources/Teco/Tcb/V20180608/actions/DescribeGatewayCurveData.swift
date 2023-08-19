@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeGatewayCurveData请求参数结构体
-    public struct DescribeGatewayCurveDataRequest: TCRequestModel {
+    public struct DescribeGatewayCurveDataRequest: TCRequest {
         /// 环境id
         public let envId: String
 
@@ -64,7 +64,7 @@ extension Tcb {
     }
 
     /// DescribeGatewayCurveData返回参数结构体
-    public struct DescribeGatewayCurveDataResponse: TCResponseModel {
+    public struct DescribeGatewayCurveDataResponse: TCResponse {
         /// 监控类型
         public let metricName: String
 

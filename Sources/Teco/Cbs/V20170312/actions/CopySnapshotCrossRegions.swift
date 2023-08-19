@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cbs {
     /// CopySnapshotCrossRegions请求参数结构体
-    public struct CopySnapshotCrossRegionsRequest: TCRequestModel {
+    public struct CopySnapshotCrossRegionsRequest: TCRequest {
         /// 快照需要复制到的目标地域，各地域的标准取值可通过接口[DescribeRegions](https://cloud.tencent.com/document/product/213/9456)查询，且只能传入支持快照的地域。
         public let destinationRegions: [String]
 
@@ -44,7 +44,7 @@ extension Cbs {
     }
 
     /// CopySnapshotCrossRegions返回参数结构体
-    public struct CopySnapshotCrossRegionsResponse: TCResponseModel {
+    public struct CopySnapshotCrossRegionsResponse: TCResponse {
         /// 快照跨地域复制的结果，如果请求下发成功，则返回相应地地域的新快照ID，否则返回Error。
         public let snapshotCopyResultSet: [SnapshotCopyResult]
 

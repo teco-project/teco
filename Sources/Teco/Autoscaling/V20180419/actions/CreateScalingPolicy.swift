@@ -20,7 +20,7 @@ import TecoCore
 
 extension As {
     /// CreateScalingPolicy请求参数结构体
-    public struct CreateScalingPolicyRequest: TCRequestModel {
+    public struct CreateScalingPolicyRequest: TCRequest {
         /// 伸缩组ID。
         public let autoScalingGroupId: String
 
@@ -116,7 +116,7 @@ extension As {
     }
 
     /// CreateScalingPolicy返回参数结构体
-    public struct CreateScalingPolicyResponse: TCResponseModel {
+    public struct CreateScalingPolicyResponse: TCResponse {
         /// 告警触发策略ID。
         public let autoScalingPolicyId: String
 

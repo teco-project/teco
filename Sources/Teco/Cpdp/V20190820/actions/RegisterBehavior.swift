@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// RegisterBehavior请求参数结构体
-    public struct RegisterBehaviorRequest: TCRequestModel {
+    public struct RegisterBehaviorRequest: TCRequest {
         /// 聚鑫分配的支付主MidasAppId
         public let midasAppId: String
 
@@ -94,7 +94,7 @@ extension Cpdp {
     }
 
     /// RegisterBehavior返回参数结构体
-    public struct RegisterBehaviorResponse: TCResponseModel {
+    public struct RegisterBehaviorResponse: TCResponse {
         /// 补录是否成功标志
         /// 功能标志为2时存在。
         /// S：成功

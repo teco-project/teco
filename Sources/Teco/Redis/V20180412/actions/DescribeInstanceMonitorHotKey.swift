@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// DescribeInstanceMonitorHotKey请求参数结构体
-    public struct DescribeInstanceMonitorHotKeyRequest: TCRequestModel {
+    public struct DescribeInstanceMonitorHotKeyRequest: TCRequest {
         /// 实例Id
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Redis {
     }
 
     /// DescribeInstanceMonitorHotKey返回参数结构体
-    public struct DescribeInstanceMonitorHotKeyResponse: TCResponseModel {
+    public struct DescribeInstanceMonitorHotKeyResponse: TCResponse {
         /// 热Key详细信息
         public let data: [HotKeyInfo]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iai {
     /// CopyPerson请求参数结构体
-    public struct CopyPersonRequest: TCRequestModel {
+    public struct CopyPersonRequest: TCRequest {
         /// 人员ID，取值为创建人员接口中的PersonId
         public let personId: String
 
@@ -39,7 +39,7 @@ extension Iai {
     }
 
     /// CopyPerson返回参数结构体
-    public struct CopyPersonResponse: TCResponseModel {
+    public struct CopyPersonResponse: TCResponse {
         /// 成功加入的人员库数量
         public let sucGroupNum: UInt64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// DeleteSecurityPolicy请求参数结构体
-    public struct DeleteSecurityPolicyRequest: TCRequestModel {
+    public struct DeleteSecurityPolicyRequest: TCRequest {
         /// 策略ID
         public let policyId: String
 
@@ -34,7 +34,7 @@ extension Gaap {
     }
 
     /// DeleteSecurityPolicy返回参数结构体
-    public struct DeleteSecurityPolicyResponse: TCResponseModel {
+    public struct DeleteSecurityPolicyResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

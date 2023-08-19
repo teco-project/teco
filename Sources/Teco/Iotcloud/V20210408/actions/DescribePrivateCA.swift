@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotcloud {
     /// DescribePrivateCA请求参数结构体
-    public struct DescribePrivateCARequest: TCRequestModel {
+    public struct DescribePrivateCARequest: TCRequest {
         /// 私有化CA名称
         public let certName: String
 
@@ -34,7 +34,7 @@ extension Iotcloud {
     }
 
     /// DescribePrivateCA返回参数结构体
-    public struct DescribePrivateCAResponse: TCResponseModel {
+    public struct DescribePrivateCAResponse: TCResponse {
         /// 私有化CA详情
         public let ca: CertInfo
 

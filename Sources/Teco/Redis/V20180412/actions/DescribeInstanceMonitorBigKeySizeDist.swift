@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// DescribeInstanceMonitorBigKeySizeDist请求参数结构体
-    public struct DescribeInstanceMonitorBigKeySizeDistRequest: TCRequestModel {
+    public struct DescribeInstanceMonitorBigKeySizeDistRequest: TCRequest {
         /// 实例Id
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Redis {
     }
 
     /// DescribeInstanceMonitorBigKeySizeDist返回参数结构体
-    public struct DescribeInstanceMonitorBigKeySizeDistResponse: TCResponseModel {
+    public struct DescribeInstanceMonitorBigKeySizeDistResponse: TCResponse {
         /// 大Key大小分布详情
         public let data: [DelayDistribution]
 

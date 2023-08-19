@@ -20,7 +20,7 @@ import TecoCore
 
 extension Chdfs {
     /// DeleteFileSystem请求参数结构体
-    public struct DeleteFileSystemRequest: TCRequestModel {
+    public struct DeleteFileSystemRequest: TCRequest {
         /// 文件系统ID
         public let fileSystemId: String
 
@@ -34,7 +34,7 @@ extension Chdfs {
     }
 
     /// DeleteFileSystem返回参数结构体
-    public struct DeleteFileSystemResponse: TCResponseModel {
+    public struct DeleteFileSystemResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

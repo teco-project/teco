@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DescribeRouteTables请求参数结构体
-    public struct DescribeRouteTablesRequest: TCRequestModel {
+    public struct DescribeRouteTablesRequest: TCRequest {
         /// 过滤条件，参数不支持同时指定RouteTableIds和Filters。
         /// - route-table-id - String - （过滤条件）路由表实例ID。
         /// - route-table-name - String - （过滤条件）路由表名称。
@@ -68,7 +68,7 @@ extension Vpc {
     }
 
     /// DescribeRouteTables返回参数结构体
-    public struct DescribeRouteTablesResponse: TCResponseModel {
+    public struct DescribeRouteTablesResponse: TCResponse {
         /// 符合条件的实例数量。
         public let totalCount: UInt64
 

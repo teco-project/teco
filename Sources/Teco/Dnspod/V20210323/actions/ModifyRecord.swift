@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dnspod {
     /// ModifyRecord请求参数结构体
-    public struct ModifyRecordRequest: TCRequestModel {
+    public struct ModifyRecordRequest: TCRequest {
         /// 域名
         public let domain: String
 
@@ -89,7 +89,7 @@ extension Dnspod {
     }
 
     /// ModifyRecord返回参数结构体
-    public struct ModifyRecordResponse: TCResponseModel {
+    public struct ModifyRecordResponse: TCResponse {
         /// 记录ID
         public let recordId: UInt64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ccc {
     /// CreateAutoCalloutTask请求参数结构体
-    public struct CreateAutoCalloutTaskRequest: TCRequestModel {
+    public struct CreateAutoCalloutTaskRequest: TCRequest {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         public let sdkAppId: UInt64
 
@@ -89,7 +89,7 @@ extension Ccc {
     }
 
     /// CreateAutoCalloutTask返回参数结构体
-    public struct CreateAutoCalloutTaskResponse: TCResponseModel {
+    public struct CreateAutoCalloutTaskResponse: TCResponse {
         /// 任务Id
         public let taskId: UInt64
 

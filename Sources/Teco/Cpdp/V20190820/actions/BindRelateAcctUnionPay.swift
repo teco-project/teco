@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// BindRelateAcctUnionPay请求参数结构体
-    public struct BindRelateAcctUnionPayRequest: TCRequestModel {
+    public struct BindRelateAcctUnionPayRequest: TCRequest {
         /// STRING(32)，交易网会员代码（若需要把一个待绑定账户关联到两个会员名下，此字段可上送两个会员的交易网代码，并且须用“|::|”（右侧）进行分隔）
         public let tranNetMemberCode: String
 
@@ -94,7 +94,7 @@ extension Cpdp {
     }
 
     /// BindRelateAcctUnionPay返回参数结构体
-    public struct BindRelateAcctUnionPayResponse: TCResponseModel {
+    public struct BindRelateAcctUnionPayResponse: TCResponse {
         /// STRING(1027)，保留域（在同名子账户绑定的场景下，若返回"VERIFIED"则说明无需验证直接绑定成功）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reservedMsg: String?

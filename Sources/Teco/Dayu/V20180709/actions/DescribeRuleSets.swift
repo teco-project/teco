@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dayu {
     /// DescribeRuleSets请求参数结构体
-    public struct DescribeRuleSetsRequest: TCRequestModel {
+    public struct DescribeRuleSetsRequest: TCRequest {
         /// 大禹子产品代号（bgpip表示高防IP；net表示高防IP专业版）
         public let business: String
 
@@ -39,7 +39,7 @@ extension Dayu {
     }
 
     /// DescribeRuleSets返回参数结构体
-    public struct DescribeRuleSetsResponse: TCResponseModel {
+    public struct DescribeRuleSetsResponse: TCResponse {
         /// 规则记录数数组，取值说明:
         /// Key值为"Id"时，Value表示资源ID
         /// Key值为"RuleIdList"时，Value值表示资源的规则ID，多个规则ID用","分割

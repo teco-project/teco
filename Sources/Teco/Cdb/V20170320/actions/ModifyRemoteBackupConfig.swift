@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// ModifyRemoteBackupConfig请求参数结构体
-    public struct ModifyRemoteBackupConfigRequest: TCRequestModel {
+    public struct ModifyRemoteBackupConfigRequest: TCRequest {
         /// 实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceId: String
 
@@ -54,7 +54,7 @@ extension Cdb {
     }
 
     /// ModifyRemoteBackupConfig返回参数结构体
-    public struct ModifyRemoteBackupConfigResponse: TCResponseModel {
+    public struct ModifyRemoteBackupConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

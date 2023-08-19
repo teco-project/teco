@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// CreateCdbProxyAddress请求参数结构体
-    public struct CreateCdbProxyAddressRequest: TCRequestModel {
+    public struct CreateCdbProxyAddressRequest: TCRequest {
         /// 代理组ID
         public let proxyGroupId: String
 
@@ -120,7 +120,7 @@ extension Cdb {
     }
 
     /// CreateCdbProxyAddress返回参数结构体
-    public struct CreateCdbProxyAddressResponse: TCResponseModel {
+    public struct CreateCdbProxyAddressResponse: TCResponse {
         /// 异步任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let asyncRequestId: String?

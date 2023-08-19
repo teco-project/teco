@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DeployContainerGroup请求参数结构体
-    public struct DeployContainerGroupRequest: TCRequestModel {
+    public struct DeployContainerGroupRequest: TCRequest {
         /// 部署组ID，分组唯一标识
         public let groupId: String
 
@@ -219,7 +219,7 @@ extension Tsf {
     }
 
     /// DeployContainerGroup返回参数结构体
-    public struct DeployContainerGroupResponse: TCResponseModel {
+    public struct DeployContainerGroupResponse: TCResponse {
         /// 部署容器应用是否成功。
         /// true：成功。
         /// false：失败。

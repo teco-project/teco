@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfs {
     /// SetUserQuota请求参数结构体
-    public struct SetUserQuotaRequest: TCRequestModel {
+    public struct SetUserQuotaRequest: TCRequest {
         /// 文件系统 ID
         public let fileSystemId: String
 
@@ -54,7 +54,7 @@ extension Cfs {
     }
 
     /// SetUserQuota返回参数结构体
-    public struct SetUserQuotaResponse: TCResponseModel {
+    public struct SetUserQuotaResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

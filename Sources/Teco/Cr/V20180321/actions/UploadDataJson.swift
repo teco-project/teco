@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cr {
     /// UploadDataJson请求参数结构体
-    public struct UploadDataJsonRequest: TCRequestModel {
+    public struct UploadDataJsonRequest: TCRequest {
         /// 模块名，本接口取值：Data
         public let module: String
 
@@ -57,7 +57,7 @@ extension Cr {
     }
 
     /// UploadDataJson返回参数结构体
-    public struct UploadDataJsonResponse: TCResponseModel {
+    public struct UploadDataJsonResponse: TCResponse {
         /// 响应报文信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: String?

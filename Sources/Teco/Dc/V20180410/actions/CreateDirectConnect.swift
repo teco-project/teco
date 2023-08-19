@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dc {
     /// CreateDirectConnect请求参数结构体
-    public struct CreateDirectConnectRequest: TCRequestModel {
+    public struct CreateDirectConnectRequest: TCRequest {
         /// 物理专线的名称。
         public let directConnectName: String
 
@@ -126,7 +126,7 @@ extension Dc {
     }
 
     /// CreateDirectConnect返回参数结构体
-    public struct CreateDirectConnectResponse: TCResponseModel {
+    public struct CreateDirectConnectResponse: TCResponse {
         /// 物理专线的ID。
         public let directConnectIdSet: [String]
 

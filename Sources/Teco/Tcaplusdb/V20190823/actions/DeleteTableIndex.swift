@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcaplusdb {
     /// DeleteTableIndex请求参数结构体
-    public struct DeleteTableIndexRequest: TCRequestModel {
+    public struct DeleteTableIndexRequest: TCRequest {
         /// 表格所属集群实例ID
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Tcaplusdb {
     }
 
     /// DeleteTableIndex返回参数结构体
-    public struct DeleteTableIndexResponse: TCResponseModel {
+    public struct DeleteTableIndexResponse: TCResponse {
         /// 删除表格分布式索引结果数量
         public let totalCount: UInt64
 

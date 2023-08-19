@@ -20,7 +20,7 @@ import TecoCore
 
 extension Api {
     /// DescribeZones请求参数结构体
-    public struct DescribeZonesRequest: TCRequestModel {
+    public struct DescribeZonesRequest: TCRequest {
         /// 待查询产品的名称，例如cvm，具体取值请查询DescribeProducts接口
         public let product: String
 
@@ -34,7 +34,7 @@ extension Api {
     }
 
     /// DescribeZones返回参数结构体
-    public struct DescribeZonesResponse: TCResponseModel {
+    public struct DescribeZonesResponse: TCResponse {
         /// 可用区数量。
         public let totalCount: UInt64
 

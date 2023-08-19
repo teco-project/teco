@@ -20,7 +20,7 @@ import TecoCore
 
 extension Pts {
     /// DeleteProjects请求参数结构体
-    public struct DeleteProjectsRequest: TCRequestModel {
+    public struct DeleteProjectsRequest: TCRequest {
         /// 项目ID数组
         public let projectIds: [String]
 
@@ -44,7 +44,7 @@ extension Pts {
     }
 
     /// DeleteProjects返回参数结构体
-    public struct DeleteProjectsResponse: TCResponseModel {
+    public struct DeleteProjectsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

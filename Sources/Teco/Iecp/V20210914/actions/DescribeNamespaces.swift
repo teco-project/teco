@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// DescribeNamespaces请求参数结构体
-    public struct DescribeNamespacesRequest: TCRequestModel {
+    public struct DescribeNamespacesRequest: TCRequest {
         /// IECP边缘单元ID
         public let edgeUnitID: UInt64
 
@@ -39,7 +39,7 @@ extension Iecp {
     }
 
     /// DescribeNamespaces返回参数结构体
-    public struct DescribeNamespacesResponse: TCResponseModel {
+    public struct DescribeNamespacesResponse: TCResponse {
         /// 命名空间信息列表
         public let items: [NamespaceInfo]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DryRunDIOfflineTask请求参数结构体
-    public struct DryRunDIOfflineTaskRequest: TCRequestModel {
+    public struct DryRunDIOfflineTaskRequest: TCRequest {
         /// 任务Id
         public let taskId: String
 
@@ -49,7 +49,7 @@ extension Wedata {
     }
 
     /// DryRunDIOfflineTask返回参数结构体
-    public struct DryRunDIOfflineTaskResponse: TCResponseModel {
+    public struct DryRunDIOfflineTaskResponse: TCResponse {
         /// 数据时间
         public let currentRunDate: String
 

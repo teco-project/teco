@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cloudhsm {
     /// DescribeVsmAttributes请求参数结构体
-    public struct DescribeVsmAttributesRequest: TCRequestModel {
+    public struct DescribeVsmAttributesRequest: TCRequest {
         /// 资源Id
         public let resourceId: String
 
@@ -34,7 +34,7 @@ extension Cloudhsm {
     }
 
     /// DescribeVsmAttributes返回参数结构体
-    public struct DescribeVsmAttributesResponse: TCResponseModel {
+    public struct DescribeVsmAttributesResponse: TCResponse {
         /// 资源Id
         public let resourceId: String
 

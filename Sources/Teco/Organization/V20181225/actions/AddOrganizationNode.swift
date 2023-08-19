@@ -20,7 +20,7 @@ import TecoCore
 
 extension Organization {
     /// AddOrganizationNode请求参数结构体
-    public struct AddOrganizationNodeRequest: TCRequestModel {
+    public struct AddOrganizationNodeRequest: TCRequest {
         /// 父组织单元ID
         public let parentNodeId: UInt64
 
@@ -39,7 +39,7 @@ extension Organization {
     }
 
     /// AddOrganizationNode返回参数结构体
-    public struct AddOrganizationNodeResponse: TCResponseModel {
+    public struct AddOrganizationNodeResponse: TCResponse {
         /// 组织单元ID
         public let nodeId: UInt64
 

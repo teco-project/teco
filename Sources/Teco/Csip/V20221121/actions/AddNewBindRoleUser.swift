@@ -20,13 +20,13 @@ import TecoCore
 
 extension Csip {
     /// AddNewBindRoleUser请求参数结构体
-    public struct AddNewBindRoleUserRequest: TCRequestModel {
+    public struct AddNewBindRoleUserRequest: TCRequest {
         public init() {
         }
     }
 
     /// AddNewBindRoleUser返回参数结构体
-    public struct AddNewBindRoleUserResponse: TCResponseModel {
+    public struct AddNewBindRoleUserResponse: TCResponse {
         /// 0成功，其他失败
         public let status: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Yinsuda {
     /// DescribeKTVSuggestions请求参数结构体
-    public struct DescribeKTVSuggestionsRequest: TCRequestModel {
+    public struct DescribeKTVSuggestionsRequest: TCRequest {
         /// 应用名称。
         public let appName: String
 
@@ -44,7 +44,7 @@ extension Yinsuda {
     }
 
     /// DescribeKTVSuggestions返回参数结构体
-    public struct DescribeKTVSuggestionsResponse: TCResponseModel {
+    public struct DescribeKTVSuggestionsResponse: TCResponse {
         /// 联想词信息列表。
         public let ktvSuggestionInfoSet: [KTVSuggestionInfo]
 

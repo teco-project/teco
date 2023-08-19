@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// DescribePubVersions请求参数结构体
-    public struct DescribePubVersionsRequest: TCRequestModel {
+    public struct DescribePubVersionsRequest: TCRequest {
         /// 产品ID
         public let productId: String
 
@@ -34,7 +34,7 @@ extension Iotvideo {
     }
 
     /// DescribePubVersions返回参数结构体
-    public struct DescribePubVersionsResponse: TCResponseModel {
+    public struct DescribePubVersionsResponse: TCResponse {
         /// 历史发布的版本列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [OtaPubHistory]?

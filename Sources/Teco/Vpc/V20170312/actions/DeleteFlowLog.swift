@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DeleteFlowLog请求参数结构体
-    public struct DeleteFlowLogRequest: TCRequestModel {
+    public struct DeleteFlowLogRequest: TCRequest {
         /// 流日志唯一ID。
         public let flowLogId: String
 
@@ -39,7 +39,7 @@ extension Vpc {
     }
 
     /// DeleteFlowLog返回参数结构体
-    public struct DeleteFlowLogResponse: TCResponseModel {
+    public struct DeleteFlowLogResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

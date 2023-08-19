@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeSecLogJoinTypeList请求参数结构体
-    public struct DescribeSecLogJoinTypeListRequest: TCRequestModel {
+    public struct DescribeSecLogJoinTypeListRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeSecLogJoinTypeList返回参数结构体
-    public struct DescribeSecLogJoinTypeListResponse: TCResponseModel {
+    public struct DescribeSecLogJoinTypeListResponse: TCResponse {
         /// 接入日志列表
         public let list: [SecLogJoinInfo]
 

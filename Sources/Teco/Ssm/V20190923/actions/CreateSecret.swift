@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssm {
     /// CreateSecret请求参数结构体
-    public struct CreateSecretRequest: TCRequestModel {
+    public struct CreateSecretRequest: TCRequest {
         /// 凭据名称，同一region内不可重复，最长128字节，使用字母、数字或者 - _ 的组合，第一个字符必须为字母或者数字。一旦创建不可修改。
         public let secretName: String
 
@@ -74,7 +74,7 @@ extension Ssm {
     }
 
     /// CreateSecret返回参数结构体
-    public struct CreateSecretResponse: TCResponseModel {
+    public struct CreateSecretResponse: TCResponse {
         /// 新创建的凭据名称。
         public let secretName: String
 

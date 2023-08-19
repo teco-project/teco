@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ticm {
     /// DescribeVideoTask请求参数结构体
-    public struct DescribeVideoTaskRequest: TCRequestModel {
+    public struct DescribeVideoTaskRequest: TCRequest {
         /// 需要查询的视频审核的任务ID
         public let vodTaskId: String
 
@@ -34,7 +34,7 @@ extension Ticm {
     }
 
     /// DescribeVideoTask返回参数结构体
-    public struct DescribeVideoTaskResponse: TCResponseModel {
+    public struct DescribeVideoTaskResponse: TCResponse {
         /// 任务状态，取值：
         /// WAITING：等待中；
         /// PROCESSING：处理中；

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// ExecuteFunction请求参数结构体
-    public struct ExecuteFunctionRequest: TCRequestModel {
+    public struct ExecuteFunctionRequest: TCRequest {
         /// 调用后端接口名称。
         public let functionName: String
 
@@ -59,7 +59,7 @@ extension Vod {
     }
 
     /// ExecuteFunction返回参数结构体
-    public struct ExecuteFunctionResponse: TCResponseModel {
+    public struct ExecuteFunctionResponse: TCResponse {
         /// 处理结果打包后的字符串，具体与后台一同协调。
         public let result: String
 

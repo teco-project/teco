@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeVulImageSummary请求参数结构体
-    public struct DescribeVulImageSummaryRequest: TCRequestModel {
+    public struct DescribeVulImageSummaryRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeVulImageSummary返回参数结构体
-    public struct DescribeVulImageSummaryResponse: TCResponseModel {
+    public struct DescribeVulImageSummaryResponse: TCResponse {
         /// 受严重或高危漏洞影响的镜像数
         public let seriousVulImageCount: Int64
 

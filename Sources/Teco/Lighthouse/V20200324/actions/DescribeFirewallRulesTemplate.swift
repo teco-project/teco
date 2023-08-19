@@ -20,13 +20,13 @@ import TecoCore
 
 extension Lighthouse {
     /// DescribeFirewallRulesTemplate请求参数结构体
-    public struct DescribeFirewallRulesTemplateRequest: TCRequestModel {
+    public struct DescribeFirewallRulesTemplateRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeFirewallRulesTemplate返回参数结构体
-    public struct DescribeFirewallRulesTemplateResponse: TCResponseModel {
+    public struct DescribeFirewallRulesTemplateResponse: TCResponse {
         /// 符合条件的防火墙规则数量。
         public let totalCount: Int64
 

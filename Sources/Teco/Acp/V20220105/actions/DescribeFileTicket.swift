@@ -20,7 +20,7 @@ import TecoCore
 
 extension Acp {
     /// DescribeFileTicket请求参数结构体
-    public struct DescribeFileTicketRequest: TCRequestModel {
+    public struct DescribeFileTicketRequest: TCRequest {
         /// 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android), 3:app漏洞扫描;
         public let source: Int64
 
@@ -39,7 +39,7 @@ extension Acp {
     }
 
     /// DescribeFileTicket返回参数结构体
-    public struct DescribeFileTicketResponse: TCResponseModel {
+    public struct DescribeFileTicketResponse: TCResponse {
         /// 返回值, 0:成功, 其他值请查看“返回值”定义
         public let result: Int64
 

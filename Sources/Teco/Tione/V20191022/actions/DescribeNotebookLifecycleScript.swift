@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Tione {
     /// DescribeNotebookLifecycleScript请求参数结构体
-    public struct DescribeNotebookLifecycleScriptRequest: TCRequestModel {
+    public struct DescribeNotebookLifecycleScriptRequest: TCRequest {
         /// 生命周期脚本名称
         public let notebookLifecycleScriptsName: String
 
@@ -36,7 +36,7 @@ extension Tione {
     }
 
     /// DescribeNotebookLifecycleScript返回参数结构体
-    public struct DescribeNotebookLifecycleScriptResponse: TCResponseModel {
+    public struct DescribeNotebookLifecycleScriptResponse: TCResponse {
         /// 生命周期脚本名称
         public let notebookLifecycleScriptsName: String
 

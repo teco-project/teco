@@ -20,7 +20,7 @@ import TecoCore
 
 extension Fmu {
     /// CancelBeautifyVideoJob请求参数结构体
-    public struct CancelBeautifyVideoJobRequest: TCRequestModel {
+    public struct CancelBeautifyVideoJobRequest: TCRequest {
         /// 美颜视频的Job id
         public let jobId: String
 
@@ -34,7 +34,7 @@ extension Fmu {
     }
 
     /// CancelBeautifyVideoJob返回参数结构体
-    public struct CancelBeautifyVideoJobResponse: TCResponseModel {
+    public struct CancelBeautifyVideoJobResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

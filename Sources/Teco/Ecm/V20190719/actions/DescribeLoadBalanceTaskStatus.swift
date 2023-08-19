@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// DescribeLoadBalanceTaskStatus请求参数结构体
-    public struct DescribeLoadBalanceTaskStatusRequest: TCRequestModel {
+    public struct DescribeLoadBalanceTaskStatusRequest: TCRequest {
         /// 请求ID，即接口返回的 RequestId 参数
         public let taskId: String
 
@@ -34,7 +34,7 @@ extension Ecm {
     }
 
     /// DescribeLoadBalanceTaskStatus返回参数结构体
-    public struct DescribeLoadBalanceTaskStatusResponse: TCResponseModel {
+    public struct DescribeLoadBalanceTaskStatusResponse: TCResponse {
         /// 任务的当前状态。 0：成功，1：失败，2：进行中。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// DescribeParamsEvent请求参数结构体
-    public struct DescribeParamsEventRequest: TCRequestModel {
+    public struct DescribeParamsEventRequest: TCRequest {
         /// 实例DB ID
         public let dbInstanceId: String
 
@@ -34,7 +34,7 @@ extension Postgres {
     }
 
     /// DescribeParamsEvent返回参数结构体
-    public struct DescribeParamsEventResponse: TCResponseModel {
+    public struct DescribeParamsEventResponse: TCResponse {
         /// 参数修改事件总数，以参数为统计粒度
         public let totalCount: Int64
 

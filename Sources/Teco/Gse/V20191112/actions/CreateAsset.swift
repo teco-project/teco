@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// CreateAsset请求参数结构体
-    public struct CreateAssetRequest: TCRequestModel {
+    public struct CreateAssetRequest: TCRequest {
         /// 生成包的ZIP包名，例如：server.zip
         public let bucketKey: String
 
@@ -64,7 +64,7 @@ extension Gse {
     }
 
     /// CreateAsset返回参数结构体
-    public struct CreateAssetResponse: TCResponseModel {
+    public struct CreateAssetResponse: TCResponse {
         /// 生成包ID
         public let assetId: String
 

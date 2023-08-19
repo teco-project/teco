@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// BatchDescribeDocument请求参数结构体
-    public struct BatchDescribeDocumentRequest: TCRequestModel {
+    public struct BatchDescribeDocumentRequest: TCRequest {
         /// 低代码互动课堂的SdkAppId。
         public let sdkAppId: UInt64
 
@@ -64,7 +64,7 @@ extension Lcic {
     }
 
     /// BatchDescribeDocument返回参数结构体
-    public struct BatchDescribeDocumentResponse: TCResponseModel {
+    public struct BatchDescribeDocumentResponse: TCResponse {
         /// 符合查询条件文档总数
         public let total: Int64
 

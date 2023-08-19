@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// ModifyGroupOffsets请求参数结构体
-    public struct ModifyGroupOffsetsRequest: TCRequestModel {
+    public struct ModifyGroupOffsetsRequest: TCRequest {
         /// kafka实例id
         public let instanceId: String
 
@@ -69,7 +69,7 @@ extension Ckafka {
     }
 
     /// ModifyGroupOffsets返回参数结构体
-    public struct ModifyGroupOffsetsResponse: TCResponseModel {
+    public struct ModifyGroupOffsetsResponse: TCResponse {
         /// 返回结果
         public let result: JgwOperateResponse
 

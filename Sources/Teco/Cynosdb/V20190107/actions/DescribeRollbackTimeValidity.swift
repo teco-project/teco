@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// DescribeRollbackTimeValidity请求参数结构体
-    public struct DescribeRollbackTimeValidityRequest: TCRequestModel {
+    public struct DescribeRollbackTimeValidityRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -44,7 +44,7 @@ extension Cynosdb {
     }
 
     /// DescribeRollbackTimeValidity返回参数结构体
-    public struct DescribeRollbackTimeValidityResponse: TCResponseModel {
+    public struct DescribeRollbackTimeValidityResponse: TCResponse {
         /// 存储poolID
         public let poolId: UInt64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tat {
     /// CreateInvoker请求参数结构体
-    public struct CreateInvokerRequest: TCRequestModel {
+    public struct CreateInvokerRequest: TCRequest {
         /// 执行器名称。
         public let name: String
 
@@ -64,7 +64,7 @@ extension Tat {
     }
 
     /// CreateInvoker返回参数结构体
-    public struct CreateInvokerResponse: TCResponseModel {
+    public struct CreateInvokerResponse: TCResponse {
         /// 执行器ID。
         public let invokerId: String
 

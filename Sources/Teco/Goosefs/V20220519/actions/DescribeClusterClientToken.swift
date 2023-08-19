@@ -20,7 +20,7 @@ import TecoCore
 
 extension Goosefs {
     /// DescribeClusterClientToken请求参数结构体
-    public struct DescribeClusterClientTokenRequest: TCRequestModel {
+    public struct DescribeClusterClientTokenRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Goosefs {
     }
 
     /// DescribeClusterClientToken返回参数结构体
-    public struct DescribeClusterClientTokenResponse: TCResponseModel {
+    public struct DescribeClusterClientTokenResponse: TCResponse {
         /// 客户端凭证
         public let clientTokens: [ClientToken]
 

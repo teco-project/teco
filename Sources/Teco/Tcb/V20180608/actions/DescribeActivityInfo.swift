@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeActivityInfo请求参数结构体
-    public struct DescribeActivityInfoRequest: TCRequestModel {
+    public struct DescribeActivityInfoRequest: TCRequest {
         /// 活动id列表
         public let activityIdList: [Int64]?
 
@@ -34,7 +34,7 @@ extension Tcb {
     }
 
     /// DescribeActivityInfo返回参数结构体
-    public struct DescribeActivityInfoResponse: TCResponseModel {
+    public struct DescribeActivityInfoResponse: TCResponse {
         /// 活动详情
         public let activityInfoList: [ActivityInfoItem]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeClusterEndpointVipStatus请求参数结构体
-    public struct DescribeClusterEndpointVipStatusRequest: TCRequestModel {
+    public struct DescribeClusterEndpointVipStatusRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Tke {
     }
 
     /// DescribeClusterEndpointVipStatus返回参数结构体
-    public struct DescribeClusterEndpointVipStatusResponse: TCResponseModel {
+    public struct DescribeClusterEndpointVipStatusResponse: TCResponse {
         /// 端口操作状态 (Creating 创建中  CreateFailed 创建失败 Created 创建完成 Deleting 删除中 DeletedFailed 删除失败 Deleted 已删除 NotFound 未发现操作 )
         public let status: String
 

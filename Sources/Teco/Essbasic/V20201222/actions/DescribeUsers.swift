@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// DescribeUsers请求参数结构体
-    public struct DescribeUsersRequest: TCRequestModel {
+    public struct DescribeUsersRequest: TCRequest {
         /// 调用方信息
         public let caller: Caller
 
@@ -39,7 +39,7 @@ extension Essbasic {
     }
 
     /// DescribeUsers返回参数结构体
-    public struct DescribeUsersResponse: TCResponseModel {
+    public struct DescribeUsersResponse: TCResponse {
         /// 用户信息查询结果
         public let users: [UserDescribe]
 

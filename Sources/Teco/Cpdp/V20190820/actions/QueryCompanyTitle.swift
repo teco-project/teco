@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryCompanyTitle请求参数结构体
-    public struct QueryCompanyTitleRequest: TCRequestModel {
+    public struct QueryCompanyTitleRequest: TCRequest {
         /// 公司抬头关键字
         public let companyTitleKeyword: String
 
@@ -49,7 +49,7 @@ extension Cpdp {
     }
 
     /// QueryCompanyTitle返回参数结构体
-    public struct QueryCompanyTitleResponse: TCResponseModel {
+    public struct QueryCompanyTitleResponse: TCResponse {
         /// 错误码
         public let errCode: String
 

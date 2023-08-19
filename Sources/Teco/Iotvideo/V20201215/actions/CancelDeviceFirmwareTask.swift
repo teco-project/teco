@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// CancelDeviceFirmwareTask请求参数结构体
-    public struct CancelDeviceFirmwareTaskRequest: TCRequestModel {
+    public struct CancelDeviceFirmwareTaskRequest: TCRequest {
         /// 产品ID
         public let productID: String
 
@@ -49,7 +49,7 @@ extension Iotvideo {
     }
 
     /// CancelDeviceFirmwareTask返回参数结构体
-    public struct CancelDeviceFirmwareTaskResponse: TCResponseModel {
+    public struct CancelDeviceFirmwareTaskResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

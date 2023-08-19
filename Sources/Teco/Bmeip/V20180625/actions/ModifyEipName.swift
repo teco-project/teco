@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmeip {
     /// ModifyEipName请求参数结构体
-    public struct ModifyEipNameRequest: TCRequestModel {
+    public struct ModifyEipNameRequest: TCRequest {
         /// Eip实例ID，可通过/v2/DescribeEip 接口返回字段中的 eipId获取
         public let eipId: String
 
@@ -39,7 +39,7 @@ extension Bmeip {
     }
 
     /// ModifyEipName返回参数结构体
-    public struct ModifyEipNameResponse: TCResponseModel {
+    public struct ModifyEipNameResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trp {
     /// DescribeScanLogs请求参数结构体
-    public struct DescribeScanLogsRequest: TCRequestModel {
+    public struct DescribeScanLogsRequest: TCRequest {
         /// 企业ID
         public let corpId: UInt64?
 
@@ -54,7 +54,7 @@ extension Trp {
     }
 
     /// DescribeScanLogs返回参数结构体
-    public struct DescribeScanLogsResponse: TCResponseModel {
+    public struct DescribeScanLogsResponse: TCResponse {
         /// 【弃用】
         @available(*, deprecated)
         public let products: [ScanLog]

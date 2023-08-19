@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdn {
     /// VerifyDomainRecord请求参数结构体
-    public struct VerifyDomainRecordRequest: TCRequestModel {
+    public struct VerifyDomainRecordRequest: TCRequest {
         /// 域名
         public let domain: String
 
@@ -41,7 +41,7 @@ extension Cdn {
     }
 
     /// VerifyDomainRecord返回参数结构体
-    public struct VerifyDomainRecordResponse: TCResponseModel {
+    public struct VerifyDomainRecordResponse: TCResponse {
         /// 是否验证成功
         public let result: Bool
 

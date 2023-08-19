@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcaplusdb {
     /// CreateBackup请求参数结构体
-    public struct CreateBackupRequest: TCRequestModel {
+    public struct CreateBackupRequest: TCRequest {
         /// 待创建备份表所属集群ID
         public let clusterId: String
 
@@ -44,7 +44,7 @@ extension Tcaplusdb {
     }
 
     /// CreateBackup返回参数结构体
-    public struct CreateBackupResponse: TCResponseModel {
+    public struct CreateBackupResponse: TCResponse {
         /// 创建的备份任务ID列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskIds: [String]?

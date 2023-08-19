@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trro {
     /// CreateProject请求参数结构体
-    public struct CreateProjectRequest: TCRequestModel {
+    public struct CreateProjectRequest: TCRequest {
         /// 项目名称，长度不超过24个字符
         public let projectName: String
 
@@ -44,7 +44,7 @@ extension Trro {
     }
 
     /// CreateProject返回参数结构体
-    public struct CreateProjectResponse: TCResponseModel {
+    public struct CreateProjectResponse: TCResponse {
         /// 项目ID，长度为16位
         public let projectId: String
 

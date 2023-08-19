@@ -20,7 +20,7 @@ import TecoCore
 
 extension Antiddos {
     /// CreateNewL7Rules请求参数结构体
-    public struct CreateNewL7RulesRequest: TCRequestModel {
+    public struct CreateNewL7RulesRequest: TCRequest {
         /// 规则列表
         public let rules: [L7RuleEntry]
 
@@ -49,7 +49,7 @@ extension Antiddos {
     }
 
     /// CreateNewL7Rules返回参数结构体
-    public struct CreateNewL7RulesResponse: TCResponseModel {
+    public struct CreateNewL7RulesResponse: TCResponse {
         /// 成功码
         public let success: SuccessCode
 

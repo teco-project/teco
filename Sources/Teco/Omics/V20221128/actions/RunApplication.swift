@@ -20,7 +20,7 @@ import TecoCore
 
 extension Omics {
     /// RunApplication请求参数结构体
-    public struct RunApplicationRequest: TCRequestModel {
+    public struct RunApplicationRequest: TCRequest {
         /// 应用ID。
         public let applicationId: String
 
@@ -84,7 +84,7 @@ extension Omics {
     }
 
     /// RunApplication返回参数结构体
-    public struct RunApplicationResponse: TCResponseModel {
+    public struct RunApplicationResponse: TCResponse {
         /// 任务批次ID。
         public let runGroupId: String
 

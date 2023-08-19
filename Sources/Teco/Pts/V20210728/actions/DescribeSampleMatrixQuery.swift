@@ -20,7 +20,7 @@ import TecoCore
 
 extension Pts {
     /// DescribeSampleMatrixQuery请求参数结构体
-    public struct DescribeSampleMatrixQueryRequest: TCRequestModel {
+    public struct DescribeSampleMatrixQueryRequest: TCRequest {
         /// 任务ID
         public let jobId: String
 
@@ -64,7 +64,7 @@ extension Pts {
     }
 
     /// DescribeSampleMatrixQuery返回参数结构体
-    public struct DescribeSampleMatrixQueryResponse: TCResponseModel {
+    public struct DescribeSampleMatrixQueryResponse: TCResponse {
         /// 指标矩阵
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metricSampleMatrix: CustomSampleMatrix?

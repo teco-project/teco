@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeAssetImageVirusListExport请求参数结构体
-    public struct DescribeAssetImageVirusListExportRequest: TCRequestModel {
+    public struct DescribeAssetImageVirusListExportRequest: TCRequest {
         /// 列表支持字段
         public let exportField: [String]
 
@@ -46,7 +46,7 @@ extension Tcss {
     }
 
     /// DescribeAssetImageVirusListExport返回参数结构体
-    public struct DescribeAssetImageVirusListExportResponse: TCResponseModel {
+    public struct DescribeAssetImageVirusListExportResponse: TCResponse {
         /// excel文件下载地址
         public let downloadUrl: String
 

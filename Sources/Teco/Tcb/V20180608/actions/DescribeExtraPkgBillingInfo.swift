@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeExtraPkgBillingInfo请求参数结构体
-    public struct DescribeExtraPkgBillingInfoRequest: TCRequestModel {
+    public struct DescribeExtraPkgBillingInfoRequest: TCRequest {
         /// 已购买增值包的环境ID
         public let envId: String?
 
@@ -34,7 +34,7 @@ extension Tcb {
     }
 
     /// DescribeExtraPkgBillingInfo返回参数结构体
-    public struct DescribeExtraPkgBillingInfoResponse: TCResponseModel {
+    public struct DescribeExtraPkgBillingInfoResponse: TCResponse {
         /// 增值包计费信息列表
         public let envInfoList: [EnvBillingInfoItem]
 

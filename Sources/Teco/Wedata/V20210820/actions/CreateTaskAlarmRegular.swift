@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// CreateTaskAlarmRegular请求参数结构体
-    public struct CreateTaskAlarmRegularRequest: TCRequestModel {
+    public struct CreateTaskAlarmRegularRequest: TCRequest {
         /// 告警配置信息
         public let taskAlarmInfo: TaskAlarmInfo
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// CreateTaskAlarmRegular返回参数结构体
-    public struct CreateTaskAlarmRegularResponse: TCResponseModel {
+    public struct CreateTaskAlarmRegularResponse: TCResponse {
         /// 告警ID
         public let alarmId: Int64
 

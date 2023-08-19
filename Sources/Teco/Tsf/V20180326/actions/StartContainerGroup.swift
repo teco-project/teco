@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// StartContainerGroup请求参数结构体
-    public struct StartContainerGroupRequest: TCRequestModel {
+    public struct StartContainerGroupRequest: TCRequest {
         /// 部署组ID
         public let groupId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// StartContainerGroup返回参数结构体
-    public struct StartContainerGroupResponse: TCResponseModel {
+    public struct StartContainerGroupResponse: TCResponse {
         /// 启动操作是否成功。
         /// true：启动成功
         /// false：启动失败

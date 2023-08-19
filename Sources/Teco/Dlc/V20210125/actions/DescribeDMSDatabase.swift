@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// DescribeDMSDatabase请求参数结构体
-    public struct DescribeDMSDatabaseRequest: TCRequestModel {
+    public struct DescribeDMSDatabaseRequest: TCRequest {
         /// 数据库名称
         public let name: String?
 
@@ -44,7 +44,7 @@ extension Dlc {
     }
 
     /// DescribeDMSDatabase返回参数结构体
-    public struct DescribeDMSDatabaseResponse: TCResponseModel {
+    public struct DescribeDMSDatabaseResponse: TCResponse {
         /// 数据库名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?

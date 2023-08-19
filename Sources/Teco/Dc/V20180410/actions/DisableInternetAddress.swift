@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dc {
     /// DisableInternetAddress请求参数结构体
-    public struct DisableInternetAddressRequest: TCRequestModel {
+    public struct DisableInternetAddressRequest: TCRequest {
         /// 公网互联网地址ID
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Dc {
     }
 
     /// DisableInternetAddress返回参数结构体
-    public struct DisableInternetAddressResponse: TCResponseModel {
+    public struct DisableInternetAddressResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

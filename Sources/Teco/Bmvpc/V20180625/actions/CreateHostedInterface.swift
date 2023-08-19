@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmvpc {
     /// CreateHostedInterface请求参数结构体
-    public struct CreateHostedInterfaceRequest: TCRequestModel {
+    public struct CreateHostedInterfaceRequest: TCRequest {
         /// 托管机器唯一ID 数组
         public let instanceIds: [String]
 
@@ -44,7 +44,7 @@ extension Bmvpc {
     }
 
     /// CreateHostedInterface返回参数结构体
-    public struct CreateHostedInterfaceResponse: TCResponseModel {
+    public struct CreateHostedInterfaceResponse: TCResponse {
         /// 异步任务ID
         public let taskId: UInt64
 

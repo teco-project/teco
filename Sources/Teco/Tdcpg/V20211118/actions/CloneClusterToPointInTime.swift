@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdcpg {
     /// CloneClusterToPointInTime请求参数结构体
-    public struct CloneClusterToPointInTimeRequest: TCRequestModel {
+    public struct CloneClusterToPointInTimeRequest: TCRequest {
         /// 可用区
         public let zone: String
 
@@ -120,7 +120,7 @@ extension Tdcpg {
     }
 
     /// CloneClusterToPointInTime返回参数结构体
-    public struct CloneClusterToPointInTimeResponse: TCResponseModel {
+    public struct CloneClusterToPointInTimeResponse: TCResponse {
         /// 订单号
         public let dealNameSet: [String]
 

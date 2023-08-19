@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// RerunInstances请求参数结构体
-    public struct RerunInstancesRequest: TCRequestModel {
+    public struct RerunInstancesRequest: TCRequest {
         /// 项目Id
         public let projectId: String
 
@@ -64,7 +64,7 @@ extension Wedata {
     }
 
     /// RerunInstances返回参数结构体
-    public struct RerunInstancesResponse: TCResponseModel {
+    public struct RerunInstancesResponse: TCResponse {
         /// 返回实例批量终止结果
         public let data: OperateResult
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dcdb {
     /// DescribeDCDBPrice请求参数结构体
-    public struct DescribeDCDBPriceRequest: TCRequestModel {
+    public struct DescribeDCDBPriceRequest: TCRequest {
         /// 欲新购实例的可用区ID。
         public let zone: String
 
@@ -79,7 +79,7 @@ extension Dcdb {
     }
 
     /// DescribeDCDBPrice返回参数结构体
-    public struct DescribeDCDBPriceResponse: TCResponseModel {
+    public struct DescribeDCDBPriceResponse: TCResponse {
         /// 原价
         /// * 单位：默认为分，若请求参数带有AmountUnit，参考AmountUnit描述
         /// * 币种：国内站为人民币，国际站为美元

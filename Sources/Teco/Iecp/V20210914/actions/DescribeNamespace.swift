@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// DescribeNamespace请求参数结构体
-    public struct DescribeNamespaceRequest: TCRequestModel {
+    public struct DescribeNamespaceRequest: TCRequest {
         /// 单元ID
         public let edgeUnitID: UInt64
 
@@ -39,7 +39,7 @@ extension Iecp {
     }
 
     /// DescribeNamespace返回参数结构体
-    public struct DescribeNamespaceResponse: TCResponseModel {
+    public struct DescribeNamespaceResponse: TCResponse {
         /// 命名空间名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespace: String?

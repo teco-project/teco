@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Dayu {
     /// DescribeDDoSIpLog请求参数结构体
-    public struct DescribeDDoSIpLogRequest: TCRequestModel {
+    public struct DescribeDDoSIpLogRequest: TCRequest {
         /// 大禹子产品代号（net表示高防IP专业版）
         public let business: String
 
@@ -62,7 +62,7 @@ extension Dayu {
     }
 
     /// DescribeDDoSIpLog返回参数结构体
-    public struct DescribeDDoSIpLogResponse: TCResponseModel {
+    public struct DescribeDDoSIpLogResponse: TCResponse {
         /// 大禹子产品代号（net表示高防IP专业版）
         public let business: String
 

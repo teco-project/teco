@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// CreateMerchant请求参数结构体
-    public struct CreateMerchantRequest: TCRequestModel {
+    public struct CreateMerchantRequest: TCRequest {
         /// 开票平台ID
         public let invoicePlatformId: Int64
 
@@ -138,7 +138,7 @@ extension Cpdp {
     }
 
     /// CreateMerchant返回参数结构体
-    public struct CreateMerchantResponse: TCResponseModel {
+    public struct CreateMerchantResponse: TCResponse {
         /// 商户注册结果
         public let result: CreateMerchantResult
 

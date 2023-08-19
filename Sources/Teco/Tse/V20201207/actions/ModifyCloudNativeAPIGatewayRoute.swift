@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tse {
     /// ModifyCloudNativeAPIGatewayRoute请求参数结构体
-    public struct ModifyCloudNativeAPIGatewayRouteRequest: TCRequestModel {
+    public struct ModifyCloudNativeAPIGatewayRouteRequest: TCRequest {
         /// 网关ID
         public let gatewayId: String
 
@@ -134,7 +134,7 @@ extension Tse {
     }
 
     /// ModifyCloudNativeAPIGatewayRoute返回参数结构体
-    public struct ModifyCloudNativeAPIGatewayRouteResponse: TCResponseModel {
+    public struct ModifyCloudNativeAPIGatewayRouteResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

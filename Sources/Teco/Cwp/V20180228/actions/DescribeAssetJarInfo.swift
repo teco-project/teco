@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeAssetJarInfo请求参数结构体
-    public struct DescribeAssetJarInfoRequest: TCRequestModel {
+    public struct DescribeAssetJarInfoRequest: TCRequest {
         /// 服务器Quuid
         public let quuid: String
 
@@ -44,7 +44,7 @@ extension Cwp {
     }
 
     /// DescribeAssetJarInfo返回参数结构体
-    public struct DescribeAssetJarInfoResponse: TCResponseModel {
+    public struct DescribeAssetJarInfoResponse: TCResponse {
         /// Jar包详情
         public let jar: AssetJarDetail
 

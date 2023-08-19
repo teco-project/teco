@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cfw {
     /// DescribeNatFwInstance请求参数结构体
-    public struct DescribeNatFwInstanceRequest: TCRequestModel {
+    public struct DescribeNatFwInstanceRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeNatFwInstance返回参数结构体
-    public struct DescribeNatFwInstanceResponse: TCResponseModel {
+    public struct DescribeNatFwInstanceResponse: TCResponse {
         /// 实例数组
         public let natinsLst: [NatFwInstance]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// UpgradeInstance请求参数结构体
-    public struct UpgradeInstanceRequest: TCRequestModel {
+    public struct UpgradeInstanceRequest: TCRequest {
         /// 待变更实例 ID。
         public let instanceId: String
 
@@ -61,7 +61,7 @@ extension Redis {
     }
 
     /// UpgradeInstance返回参数结构体
-    public struct UpgradeInstanceResponse: TCResponseModel {
+    public struct UpgradeInstanceResponse: TCResponse {
         /// 订单ID。
         public let dealId: String
 

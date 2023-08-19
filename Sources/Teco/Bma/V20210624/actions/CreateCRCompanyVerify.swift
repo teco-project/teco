@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bma {
     /// CreateCRCompanyVerify请求参数结构体
-    public struct CreateCRCompanyVerifyRequest: TCRequestModel {
+    public struct CreateCRCompanyVerifyRequest: TCRequest {
         /// 企业名称
         public let companyName: String
 
@@ -69,7 +69,7 @@ extension Bma {
     }
 
     /// CreateCRCompanyVerify返回参数结构体
-    public struct CreateCRCompanyVerifyResponse: TCResponseModel {
+    public struct CreateCRCompanyVerifyResponse: TCResponse {
         /// 认证状态：0-认证成功 1-认证失败
         public let status: Int64
 

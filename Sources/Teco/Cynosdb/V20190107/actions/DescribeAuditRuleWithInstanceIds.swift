@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// DescribeAuditRuleWithInstanceIds请求参数结构体
-    public struct DescribeAuditRuleWithInstanceIdsRequest: TCRequestModel {
+    public struct DescribeAuditRuleWithInstanceIdsRequest: TCRequest {
         /// 实例ID。目前仅支持单个实例的查询。
         public let instanceIds: [String]
 
@@ -34,7 +34,7 @@ extension Cynosdb {
     }
 
     /// DescribeAuditRuleWithInstanceIds返回参数结构体
-    public struct DescribeAuditRuleWithInstanceIdsResponse: TCResponseModel {
+    public struct DescribeAuditRuleWithInstanceIdsResponse: TCResponse {
         public let totalCount: Int64
 
         /// 实例审计规则信息。

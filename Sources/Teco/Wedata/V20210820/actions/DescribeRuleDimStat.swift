@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeRuleDimStat请求参数结构体
-    public struct DescribeRuleDimStatRequest: TCRequestModel {
+    public struct DescribeRuleDimStatRequest: TCRequest {
         /// Project Id
         public let projectId: String
 
@@ -44,7 +44,7 @@ extension Wedata {
     }
 
     /// DescribeRuleDimStat返回参数结构体
-    public struct DescribeRuleDimStatResponse: TCResponseModel {
+    public struct DescribeRuleDimStatResponse: TCResponse {
         /// 结果
         public let data: RuleDimStat
 

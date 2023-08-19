@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeTranscodeTaskNum请求参数结构体
-    public struct DescribeTranscodeTaskNumRequest: TCRequestModel {
+    public struct DescribeTranscodeTaskNumRequest: TCRequest {
         /// 起始时间，格式：yyyy-mm-dd HH:MM:SS。
         public let startTime: String
 
@@ -44,7 +44,7 @@ extension Live {
     }
 
     /// DescribeTranscodeTaskNum返回参数结构体
-    public struct DescribeTranscodeTaskNumResponse: TCResponseModel {
+    public struct DescribeTranscodeTaskNumResponse: TCResponse {
         /// 任务数列表。
         public let dataInfoList: [TranscodeTaskNum]
 

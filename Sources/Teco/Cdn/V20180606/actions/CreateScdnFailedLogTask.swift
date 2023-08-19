@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdn {
     /// CreateScdnFailedLogTask请求参数结构体
-    public struct CreateScdnFailedLogTaskRequest: TCRequestModel {
+    public struct CreateScdnFailedLogTaskRequest: TCRequest {
         /// 重试失败任务的taskID
         public let taskId: String
 
@@ -39,7 +39,7 @@ extension Cdn {
     }
 
     /// CreateScdnFailedLogTask返回参数结构体
-    public struct CreateScdnFailedLogTaskResponse: TCResponseModel {
+    public struct CreateScdnFailedLogTaskResponse: TCResponse {
         /// 创建结果,
         /// "0" -> 创建成功
         public let result: String

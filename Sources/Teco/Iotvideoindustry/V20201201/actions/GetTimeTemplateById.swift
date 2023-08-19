@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// GetTimeTemplateById请求参数结构体
-    public struct GetTimeTemplateByIdRequest: TCRequestModel {
+    public struct GetTimeTemplateByIdRequest: TCRequest {
         /// 时间模板ID
         public let templateId: String
 
@@ -34,7 +34,7 @@ extension Iotvideoindustry {
     }
 
     /// GetTimeTemplateById返回参数结构体
-    public struct GetTimeTemplateByIdResponse: TCResponseModel {
+    public struct GetTimeTemplateByIdResponse: TCResponse {
         /// 时间模板详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let template: TimeTemplateItem?

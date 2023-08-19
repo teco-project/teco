@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// DescribeKafkaConsumer请求参数结构体
-    public struct DescribeKafkaConsumerRequest: TCRequestModel {
+    public struct DescribeKafkaConsumerRequest: TCRequest {
         /// 日志主题ID
         public let fromTopicId: String
 
@@ -34,7 +34,7 @@ extension Cls {
     }
 
     /// DescribeKafkaConsumer返回参数结构体
-    public struct DescribeKafkaConsumerResponse: TCResponseModel {
+    public struct DescribeKafkaConsumerResponse: TCResponse {
         /// Kafka协议消费是否打开
         public let status: Bool
 

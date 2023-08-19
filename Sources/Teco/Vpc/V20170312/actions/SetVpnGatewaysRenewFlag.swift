@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// SetVpnGatewaysRenewFlag请求参数结构体
-    public struct SetVpnGatewaysRenewFlagRequest: TCRequestModel {
+    public struct SetVpnGatewaysRenewFlagRequest: TCRequest {
         /// VPNGW字符型ID列表。可通过[DescribeVpnGateways](https://cloud.tencent.com/document/api/215/17514)接口返回值VpnGatewaySet中的VpnGatewayId获取。
         public let vpnGatewayIds: [String]
 
@@ -45,7 +45,7 @@ extension Vpc {
     }
 
     /// SetVpnGatewaysRenewFlag返回参数结构体
-    public struct SetVpnGatewaysRenewFlagResponse: TCResponseModel {
+    public struct SetVpnGatewaysRenewFlagResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

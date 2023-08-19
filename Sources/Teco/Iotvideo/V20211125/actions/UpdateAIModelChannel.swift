@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// UpdateAIModelChannel请求参数结构体
-    public struct UpdateAIModelChannelRequest: TCRequestModel {
+    public struct UpdateAIModelChannelRequest: TCRequest {
         /// 模型ID
         public let modelId: String
 
@@ -69,7 +69,7 @@ extension Iotvideo {
     }
 
     /// UpdateAIModelChannel返回参数结构体
-    public struct UpdateAIModelChannelResponse: TCResponseModel {
+    public struct UpdateAIModelChannelResponse: TCResponse {
         /// 第三方推送密钥，如果选择自动生成则会返回此字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let forwardKey: String?

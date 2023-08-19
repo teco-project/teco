@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mongodb {
     /// DeleteAccountUser请求参数结构体
-    public struct DeleteAccountUserRequest: TCRequestModel {
+    public struct DeleteAccountUserRequest: TCRequest {
         /// 指定待删除账号的实例 ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Mongodb {
     }
 
     /// DeleteAccountUser返回参数结构体
-    public struct DeleteAccountUserResponse: TCResponseModel {
+    public struct DeleteAccountUserResponse: TCResponse {
         /// 账户删除任务ID。
         public let flowId: Int64
 

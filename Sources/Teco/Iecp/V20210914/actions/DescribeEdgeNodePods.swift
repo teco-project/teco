@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// DescribeEdgeNodePods请求参数结构体
-    public struct DescribeEdgeNodePodsRequest: TCRequestModel {
+    public struct DescribeEdgeNodePodsRequest: TCRequest {
         /// IECP边缘单元ID
         public let edgeUnitId: UInt64
 
@@ -49,7 +49,7 @@ extension Iecp {
     }
 
     /// DescribeEdgeNodePods返回参数结构体
-    public struct DescribeEdgeNodePodsResponse: TCResponseModel {
+    public struct DescribeEdgeNodePodsResponse: TCResponse {
         /// Pod列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let podSet: [EdgeNodePodInfo]?

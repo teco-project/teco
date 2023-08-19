@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ame {
     /// CreateKTVRobot请求参数结构体
-    public struct CreateKTVRobotRequest: TCRequestModel {
+    public struct CreateKTVRobotRequest: TCRequest {
         /// RTC厂商类型，取值有：
         /// - TRTC
         public let rtcSystem: String
@@ -50,7 +50,7 @@ extension Ame {
     }
 
     /// CreateKTVRobot返回参数结构体
-    public struct CreateKTVRobotResponse: TCResponseModel {
+    public struct CreateKTVRobotResponse: TCResponse {
         /// 机器人Id。
         public let robotId: String
 

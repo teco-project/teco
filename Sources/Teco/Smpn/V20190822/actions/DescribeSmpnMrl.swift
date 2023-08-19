@@ -20,7 +20,7 @@ import TecoCore
 
 extension Smpn {
     /// DescribeSmpnMrl请求参数结构体
-    public struct DescribeSmpnMrlRequest: TCRequestModel {
+    public struct DescribeSmpnMrlRequest: TCRequest {
         /// 恶意标记等级请求内容
         public let requestData: MRLRequest
 
@@ -39,7 +39,7 @@ extension Smpn {
     }
 
     /// DescribeSmpnMrl返回参数结构体
-    public struct DescribeSmpnMrlResponse: TCResponseModel {
+    public struct DescribeSmpnMrlResponse: TCResponse {
         /// 恶意标记等级回应内容
         public let responseData: MRLResponse
 

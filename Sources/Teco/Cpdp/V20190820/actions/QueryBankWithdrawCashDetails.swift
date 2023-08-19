@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryBankWithdrawCashDetails请求参数结构体
-    public struct QueryBankWithdrawCashDetailsRequest: TCRequestModel {
+    public struct QueryBankWithdrawCashDetailsRequest: TCRequest {
         /// String(22)，商户号（签约客户号）
         public let mrchCode: String
 
@@ -74,7 +74,7 @@ extension Cpdp {
     }
 
     /// QueryBankWithdrawCashDetails返回参数结构体
-    public struct QueryBankWithdrawCashDetailsResponse: TCResponseModel {
+    public struct QueryBankWithdrawCashDetailsResponse: TCResponse {
         /// String(20)，返回码
         public let txnReturnCode: String
 

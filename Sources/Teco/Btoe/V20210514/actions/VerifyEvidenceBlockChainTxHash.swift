@@ -20,7 +20,7 @@ import TecoCore
 
 extension Btoe {
     /// VerifyEvidenceBlockChainTxHash请求参数结构体
-    public struct VerifyEvidenceBlockChainTxHashRequest: TCRequestModel {
+    public struct VerifyEvidenceBlockChainTxHashRequest: TCRequest {
         /// 区块链交易 hash，在“存证基本信息查询（GetDepositInfo）”接口中可以获取。
         public let evidenceTxHash: String
 
@@ -34,7 +34,7 @@ extension Btoe {
     }
 
     /// VerifyEvidenceBlockChainTxHash返回参数结构体
-    public struct VerifyEvidenceBlockChainTxHashResponse: TCResponseModel {
+    public struct VerifyEvidenceBlockChainTxHashResponse: TCResponse {
         /// 核验结果，true为核验成功，fals为核验失败
         public let result: Bool
 

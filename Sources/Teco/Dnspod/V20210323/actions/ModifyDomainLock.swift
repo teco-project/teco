@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dnspod {
     /// ModifyDomainLock请求参数结构体
-    public struct ModifyDomainLockRequest: TCRequestModel {
+    public struct ModifyDomainLockRequest: TCRequest {
         /// 域名
         public let domain: String
 
@@ -44,7 +44,7 @@ extension Dnspod {
     }
 
     /// ModifyDomainLock返回参数结构体
-    public struct ModifyDomainLockResponse: TCResponseModel {
+    public struct ModifyDomainLockResponse: TCResponse {
         /// 域名锁定信息
         public let lockInfo: LockInfo
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// BindPlugin请求参数结构体
-    public struct BindPluginRequest: TCRequestModel {
+    public struct BindPluginRequest: TCRequest {
         /// 分组/API绑定插件列表
         public let pluginInstanceList: [GatewayPluginBoundParam]
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// BindPlugin返回参数结构体
-    public struct BindPluginResponse: TCResponseModel {
+    public struct BindPluginResponse: TCResponse {
         /// 返回结果，成功失败
         public let result: Bool
 

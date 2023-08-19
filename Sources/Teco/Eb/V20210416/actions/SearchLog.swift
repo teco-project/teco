@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eb {
     /// SearchLog请求参数结构体
-    public struct SearchLogRequest: TCRequestModel {
+    public struct SearchLogRequest: TCRequest {
         /// 起始时间unix 毫秒时间戳
         public let startTime: Int64
 
@@ -69,7 +69,7 @@ extension Eb {
     }
 
     /// SearchLog返回参数结构体
-    public struct SearchLogResponse: TCResponseModel {
+    public struct SearchLogResponse: TCResponse {
         /// 日志总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let total: Int64?

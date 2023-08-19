@@ -20,13 +20,13 @@ import TecoCore
 
 extension Waf {
     /// GetAttackDownloadRecords请求参数结构体
-    public struct GetAttackDownloadRecordsRequest: TCRequestModel {
+    public struct GetAttackDownloadRecordsRequest: TCRequest {
         public init() {
         }
     }
 
     /// GetAttackDownloadRecords返回参数结构体
-    public struct GetAttackDownloadRecordsResponse: TCResponseModel {
+    public struct GetAttackDownloadRecordsResponse: TCResponse {
         /// 下载攻击日志记录数组
         public let records: [DownloadAttackRecordInfo]
 

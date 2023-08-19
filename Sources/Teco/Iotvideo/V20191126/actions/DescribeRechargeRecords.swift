@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// DescribeRechargeRecords请求参数结构体
-    public struct DescribeRechargeRecordsRequest: TCRequestModel {
+    public struct DescribeRechargeRecordsRequest: TCRequest {
         /// 账户类型 1:设备接入 2:云存。
         public let accountType: Int64
 
@@ -44,7 +44,7 @@ extension Iotvideo {
     }
 
     /// DescribeRechargeRecords返回参数结构体
-    public struct DescribeRechargeRecordsResponse: TCResponseModel {
+    public struct DescribeRechargeRecordsResponse: TCResponse {
         /// 账户类型 1:设备接入 2:云存
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accountType: Int64?

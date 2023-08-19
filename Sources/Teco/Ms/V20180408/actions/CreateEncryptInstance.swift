@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ms {
     /// CreateEncryptInstance请求参数结构体
-    public struct CreateEncryptInstanceRequest: TCRequestModel {
+    public struct CreateEncryptInstanceRequest: TCRequest {
         /// 平台类型  1.android加固   2.ios源码混淆  3.sdk加固  4.applet小程序加固
         public let platformType: Int64
 
@@ -64,7 +64,7 @@ extension Ms {
     }
 
     /// CreateEncryptInstance返回参数结构体
-    public struct CreateEncryptInstanceResponse: TCResponseModel {
+    public struct CreateEncryptInstanceResponse: TCResponse {
         /// 加固任务Id
         public let resultId: String
 

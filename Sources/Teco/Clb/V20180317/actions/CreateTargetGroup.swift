@@ -20,7 +20,7 @@ import TecoCore
 
 extension Clb {
     /// CreateTargetGroup请求参数结构体
-    public struct CreateTargetGroupRequest: TCRequestModel {
+    public struct CreateTargetGroupRequest: TCRequest {
         /// 目标组名称，限定50个字符
         public let targetGroupName: String?
 
@@ -49,7 +49,7 @@ extension Clb {
     }
 
     /// CreateTargetGroup返回参数结构体
-    public struct CreateTargetGroupResponse: TCResponseModel {
+    public struct CreateTargetGroupResponse: TCResponse {
         /// 创建目标组后生成的id
         public let targetGroupId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// ModifyProxyConfiguration请求参数结构体
-    public struct ModifyProxyConfigurationRequest: TCRequestModel {
+    public struct ModifyProxyConfigurationRequest: TCRequest {
         /// （旧参数，请切换到ProxyId）通道的实例ID。
         public let instanceId: String?
 
@@ -62,7 +62,7 @@ extension Gaap {
     }
 
     /// ModifyProxyConfiguration返回参数结构体
-    public struct ModifyProxyConfigurationResponse: TCResponseModel {
+    public struct ModifyProxyConfigurationResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

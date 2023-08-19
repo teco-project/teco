@@ -20,7 +20,7 @@ import TecoCore
 
 extension Zj {
     /// DescribeSmsTemplateList请求参数结构体
-    public struct DescribeSmsTemplateListRequest: TCRequestModel {
+    public struct DescribeSmsTemplateListRequest: TCRequest {
         /// 商户证书
         public let license: String
 
@@ -46,7 +46,7 @@ extension Zj {
     }
 
     /// DescribeSmsTemplateList返回参数结构体
-    public struct DescribeSmsTemplateListResponse: TCResponseModel {
+    public struct DescribeSmsTemplateListResponse: TCResponse {
         /// 返回数据信息
         public let data: [DescribeSmsTemplateListDataStruct]
 

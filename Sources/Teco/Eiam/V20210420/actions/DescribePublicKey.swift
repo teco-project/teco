@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eiam {
     /// DescribePublicKey请求参数结构体
-    public struct DescribePublicKeyRequest: TCRequestModel {
+    public struct DescribePublicKeyRequest: TCRequest {
         /// 应用ID，是应用的全局唯一标识。
         public let applicationId: String
 
@@ -34,7 +34,7 @@ extension Eiam {
     }
 
     /// DescribePublicKey返回参数结构体
-    public struct DescribePublicKeyResponse: TCResponseModel {
+    public struct DescribePublicKeyResponse: TCResponse {
         /// jwt验证签名所用的公钥信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let publicKey: String?

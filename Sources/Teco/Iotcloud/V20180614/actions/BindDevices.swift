@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotcloud {
     /// BindDevices请求参数结构体
-    public struct BindDevicesRequest: TCRequestModel {
+    public struct BindDevicesRequest: TCRequest {
         /// 网关设备的产品ID
         public let gatewayProductId: String
 
@@ -54,7 +54,7 @@ extension Iotcloud {
     }
 
     /// BindDevices返回参数结构体
-    public struct BindDevicesResponse: TCResponseModel {
+    public struct BindDevicesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

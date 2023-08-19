@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dbbrain {
     /// DescribeSecurityAuditLogDownloadUrls请求参数结构体
-    public struct DescribeSecurityAuditLogDownloadUrlsRequest: TCRequestModel {
+    public struct DescribeSecurityAuditLogDownloadUrlsRequest: TCRequest {
         /// 安全审计组Id。
         public let secAuditGroupId: String
 
@@ -44,7 +44,7 @@ extension Dbbrain {
     }
 
     /// DescribeSecurityAuditLogDownloadUrls返回参数结构体
-    public struct DescribeSecurityAuditLogDownloadUrlsResponse: TCResponseModel {
+    public struct DescribeSecurityAuditLogDownloadUrlsResponse: TCResponse {
         /// 导出结果的COS链接列表。当结果集很大时，可能会切分为多个url下载。
         public let urls: [String]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// GetRooms请求参数结构体
-    public struct GetRoomsRequest: TCRequestModel {
+    public struct GetRoomsRequest: TCRequest {
         /// 低代码平台的SdkAppId。
         public let sdkAppId: UInt64
 
@@ -59,7 +59,7 @@ extension Lcic {
     }
 
     /// GetRooms返回参数结构体
-    public struct GetRoomsResponse: TCResponseModel {
+    public struct GetRoomsResponse: TCResponse {
         /// 总数
         public let total: UInt64
 

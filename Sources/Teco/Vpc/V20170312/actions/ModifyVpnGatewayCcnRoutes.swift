@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// ModifyVpnGatewayCcnRoutes请求参数结构体
-    public struct ModifyVpnGatewayCcnRoutesRequest: TCRequestModel {
+    public struct ModifyVpnGatewayCcnRoutesRequest: TCRequest {
         /// VPN网关实例ID。
         public let vpnGatewayId: String
 
@@ -39,7 +39,7 @@ extension Vpc {
     }
 
     /// ModifyVpnGatewayCcnRoutes返回参数结构体
-    public struct ModifyVpnGatewayCcnRoutesResponse: TCResponseModel {
+    public struct ModifyVpnGatewayCcnRoutesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

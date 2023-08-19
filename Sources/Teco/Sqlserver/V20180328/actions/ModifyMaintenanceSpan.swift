@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// ModifyMaintenanceSpan请求参数结构体
-    public struct ModifyMaintenanceSpanRequest: TCRequestModel {
+    public struct ModifyMaintenanceSpanRequest: TCRequest {
         /// 实例ID，形如mssql-k8voqdlz
         public let instanceId: String
 
@@ -49,7 +49,7 @@ extension Sqlserver {
     }
 
     /// ModifyMaintenanceSpan返回参数结构体
-    public struct ModifyMaintenanceSpanResponse: TCResponseModel {
+    public struct ModifyMaintenanceSpanResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

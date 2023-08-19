@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// CreateCosRecharge请求参数结构体
-    public struct CreateCosRechargeRequest: TCRequestModel {
+    public struct CreateCosRechargeRequest: TCRequest {
         /// 日志主题 ID
         public let topicId: String
 
@@ -75,7 +75,7 @@ extension Cls {
     }
 
     /// CreateCosRecharge返回参数结构体
-    public struct CreateCosRechargeResponse: TCResponseModel {
+    public struct CreateCosRechargeResponse: TCResponse {
         /// cos_recharge记录id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: String?

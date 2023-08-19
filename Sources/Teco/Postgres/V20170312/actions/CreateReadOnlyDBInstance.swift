@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// CreateReadOnlyDBInstance请求参数结构体
-    public struct CreateReadOnlyDBInstanceRequest: TCRequestModel {
+    public struct CreateReadOnlyDBInstanceRequest: TCRequest {
         /// 实例所属主可用区， 如：ap-guangzhou-3；
         /// 可用区信息可以通过调用 [DescribeZones](https://cloud.tencent.com/document/api/409/16769) 接口的返回值中的Zone字段来获取。
         public let zone: String
@@ -148,7 +148,7 @@ extension Postgres {
     }
 
     /// CreateReadOnlyDBInstance返回参数结构体
-    public struct CreateReadOnlyDBInstanceResponse: TCResponseModel {
+    public struct CreateReadOnlyDBInstanceResponse: TCResponse {
         /// 订单号列表。每个实例对应一个订单号
         public let dealNames: [String]
 

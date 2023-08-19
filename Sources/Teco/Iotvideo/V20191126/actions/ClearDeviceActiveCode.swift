@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// ClearDeviceActiveCode请求参数结构体
-    public struct ClearDeviceActiveCodeRequest: TCRequestModel {
+    public struct ClearDeviceActiveCodeRequest: TCRequest {
         /// 设备TID列表，0<元素数量<=100
         public let tids: [String]
 
@@ -34,7 +34,7 @@ extension Iotvideo {
     }
 
     /// ClearDeviceActiveCode返回参数结构体
-    public struct ClearDeviceActiveCodeResponse: TCResponseModel {
+    public struct ClearDeviceActiveCodeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

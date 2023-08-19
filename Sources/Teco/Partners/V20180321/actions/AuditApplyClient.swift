@@ -20,7 +20,7 @@ import TecoCore
 
 extension Partners {
     /// AuditApplyClient请求参数结构体
-    public struct AuditApplyClientRequest: TCRequestModel {
+    public struct AuditApplyClientRequest: TCRequest {
         /// 待审核客户账号ID
         public let clientUin: String
 
@@ -44,7 +44,7 @@ extension Partners {
     }
 
     /// AuditApplyClient返回参数结构体
-    public struct AuditApplyClientResponse: TCResponseModel {
+    public struct AuditApplyClientResponse: TCResponse {
         /// 代理商账号ID
         public let uin: String
 

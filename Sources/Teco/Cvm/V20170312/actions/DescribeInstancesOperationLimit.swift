@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// DescribeInstancesOperationLimit请求参数结构体
-    public struct DescribeInstancesOperationLimitRequest: TCRequestModel {
+    public struct DescribeInstancesOperationLimitRequest: TCRequest {
         /// 按照一个或者多个实例ID查询，可通过[DescribeInstances](https://cloud.tencent.com/document/api/213/15728)API返回值中的InstanceId获取。实例ID形如：ins-xxxxxxxx。（此参数的具体格式可参考API[简介](https://cloud.tencent.com/document/api/213/15688)的ids.N一节）。每次请求的实例的上限为100。
         public let instanceIds: [String]
 
@@ -40,7 +40,7 @@ extension Cvm {
     }
 
     /// DescribeInstancesOperationLimit返回参数结构体
-    public struct DescribeInstancesOperationLimitResponse: TCResponseModel {
+    public struct DescribeInstancesOperationLimitResponse: TCResponse {
         /// 该参数表示调整配置操作（降配）限制次数查询。
         public let instanceOperationLimitSet: [OperationCountLimit]
 

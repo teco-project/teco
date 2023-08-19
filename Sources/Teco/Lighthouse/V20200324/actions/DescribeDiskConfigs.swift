@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// DescribeDiskConfigs请求参数结构体
-    public struct DescribeDiskConfigsRequest: TCRequestModel {
+    public struct DescribeDiskConfigsRequest: TCRequest {
         /// 过滤器列表。
         /// - zone
         /// 按照【可用区】进行过滤。
@@ -38,7 +38,7 @@ extension Lighthouse {
     }
 
     /// DescribeDiskConfigs返回参数结构体
-    public struct DescribeDiskConfigsResponse: TCResponseModel {
+    public struct DescribeDiskConfigsResponse: TCResponse {
         /// 云硬盘配置列表。
         public let diskConfigSet: [DiskConfig]
 

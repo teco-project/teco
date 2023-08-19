@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cr {
     /// DescribeFileModel请求参数结构体
-    public struct DescribeFileModelRequest: TCRequestModel {
+    public struct DescribeFileModelRequest: TCRequest {
         /// 模块名。默认值（固定）：AiApi
         public let module: String
 
@@ -54,7 +54,7 @@ extension Cr {
     }
 
     /// DescribeFileModel返回参数结构体
-    public struct DescribeFileModelResponse: TCResponseModel {
+    public struct DescribeFileModelResponse: TCResponse {
         /// 模板下载链接
         public let cosUrl: String
 

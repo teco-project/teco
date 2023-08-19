@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiems {
     /// UpdateRsgAsGroup请求参数结构体
-    public struct UpdateRsgAsGroupRequest: TCRequestModel {
+    public struct UpdateRsgAsGroupRequest: TCRequest {
         /// 伸缩组 ID
         public let id: String
 
@@ -54,7 +54,7 @@ extension Tiems {
     }
 
     /// UpdateRsgAsGroup返回参数结构体
-    public struct UpdateRsgAsGroupResponse: TCResponseModel {
+    public struct UpdateRsgAsGroupResponse: TCResponse {
         /// 资源组的伸缩组
         public let rsgAsGroup: RsgAsGroup
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// CheckFaceIdentify请求参数结构体
-    public struct CheckFaceIdentifyRequest: TCRequestModel {
+    public struct CheckFaceIdentifyRequest: TCRequest {
         /// 调用方信息; 必选
         public let caller: Caller
 
@@ -59,7 +59,7 @@ extension Essbasic {
     }
 
     /// CheckFaceIdentify返回参数结构体
-    public struct CheckFaceIdentifyResponse: TCResponseModel {
+    public struct CheckFaceIdentifyResponse: TCResponse {
         /// 核身结果; 0:通过,1:不通过
         public let result: Int64
 

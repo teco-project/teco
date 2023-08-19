@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rce {
     /// ManageMarketingRisk请求参数结构体
-    public struct ManageMarketingRiskRequest: TCRequestModel {
+    public struct ManageMarketingRiskRequest: TCRequest {
         /// 业务入参
         public let businessSecurityData: InputManageMarketingRisk?
 
@@ -39,7 +39,7 @@ extension Rce {
     }
 
     /// ManageMarketingRisk返回参数结构体
-    public struct ManageMarketingRiskResponse: TCResponseModel {
+    public struct ManageMarketingRiskResponse: TCResponse {
         /// 业务出参
         public let data: OutputManageMarketingRisk
 

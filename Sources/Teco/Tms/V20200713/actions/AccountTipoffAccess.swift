@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tms {
     /// AccountTipoffAccess请求参数结构体
-    public struct AccountTipoffAccessRequest: TCRequestModel {
+    public struct AccountTipoffAccessRequest: TCRequest {
         /// 被举报账号，长度低于 128 个字符
         public let reportedAccount: String
 
@@ -64,7 +64,7 @@ extension Tms {
     }
 
     /// AccountTipoffAccess返回参数结构体
-    public struct AccountTipoffAccessResponse: TCResponseModel {
+    public struct AccountTipoffAccessResponse: TCResponse {
         /// 举报接口响应数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: TipoffResponse?

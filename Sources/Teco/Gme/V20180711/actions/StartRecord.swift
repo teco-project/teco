@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gme {
     /// StartRecord请求参数结构体
-    public struct StartRecordRequest: TCRequestModel {
+    public struct StartRecordRequest: TCRequest {
         /// 应用ID。
         public let bizId: UInt64
 
@@ -49,7 +49,7 @@ extension Gme {
     }
 
     /// StartRecord返回参数结构体
-    public struct StartRecordResponse: TCResponseModel {
+    public struct StartRecordResponse: TCResponse {
         /// 任务taskid。
         public let taskId: UInt64
 

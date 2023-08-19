@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CreateLocalGateway请求参数结构体
-    public struct CreateLocalGatewayRequest: TCRequestModel {
+    public struct CreateLocalGatewayRequest: TCRequest {
         /// 本地网关名称。
         public let localGatewayName: String
 
@@ -44,7 +44,7 @@ extension Vpc {
     }
 
     /// CreateLocalGateway返回参数结构体
-    public struct CreateLocalGatewayResponse: TCResponseModel {
+    public struct CreateLocalGatewayResponse: TCResponse {
         /// 本地网关信息。
         public let localGateway: LocalGateway
 

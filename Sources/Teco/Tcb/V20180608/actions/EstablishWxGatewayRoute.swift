@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// EstablishWxGatewayRoute请求参数结构体
-    public struct EstablishWxGatewayRouteRequest: TCRequestModel {
+    public struct EstablishWxGatewayRouteRequest: TCRequest {
         /// 网关id
         public let gatewayId: String
 
@@ -54,7 +54,7 @@ extension Tcb {
     }
 
     /// EstablishWxGatewayRoute返回参数结构体
-    public struct EstablishWxGatewayRouteResponse: TCResponseModel {
+    public struct EstablishWxGatewayRouteResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

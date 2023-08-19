@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// CreateSearchTemplate请求参数结构体
-    public struct CreateSearchTemplateRequest: TCRequestModel {
+    public struct CreateSearchTemplateRequest: TCRequest {
         /// 搜索模板
         public let searchTemplate: SearchTemplate
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// CreateSearchTemplate返回参数结构体
-    public struct CreateSearchTemplateResponse: TCResponseModel {
+    public struct CreateSearchTemplateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

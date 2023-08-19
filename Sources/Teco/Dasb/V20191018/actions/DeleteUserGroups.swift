@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dasb {
     /// DeleteUserGroups请求参数结构体
-    public struct DeleteUserGroupsRequest: TCRequestModel {
+    public struct DeleteUserGroupsRequest: TCRequest {
         /// 待删除的用户组ID集合
         public let idSet: [UInt64]
 
@@ -34,7 +34,7 @@ extension Dasb {
     }
 
     /// DeleteUserGroups返回参数结构体
-    public struct DeleteUserGroupsResponse: TCResponseModel {
+    public struct DeleteUserGroupsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

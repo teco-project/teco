@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iot {
     /// PublishMsg请求参数结构体
-    public struct PublishMsgRequest: TCRequestModel {
+    public struct PublishMsgRequest: TCRequest {
         /// Topic
         public let topic: String
 
@@ -44,7 +44,7 @@ extension Iot {
     }
 
     /// PublishMsg返回参数结构体
-    public struct PublishMsgResponse: TCResponseModel {
+    public struct PublishMsgResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

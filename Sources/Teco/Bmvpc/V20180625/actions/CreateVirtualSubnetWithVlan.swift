@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmvpc {
     /// CreateVirtualSubnetWithVlan请求参数结构体
-    public struct CreateVirtualSubnetWithVlanRequest: TCRequestModel {
+    public struct CreateVirtualSubnetWithVlanRequest: TCRequest {
         /// 系统分配的私有网络ID，例如：vpc-kd7d06of
         public let vpcId: String
 
@@ -39,7 +39,7 @@ extension Bmvpc {
     }
 
     /// CreateVirtualSubnetWithVlan返回参数结构体
-    public struct CreateVirtualSubnetWithVlanResponse: TCResponseModel {
+    public struct CreateVirtualSubnetWithVlanResponse: TCResponse {
         /// 任务ID
         public let taskId: Int64
 

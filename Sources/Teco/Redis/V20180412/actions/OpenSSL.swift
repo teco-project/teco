@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// OpenSSL请求参数结构体
-    public struct OpenSSLRequest: TCRequestModel {
+    public struct OpenSSLRequest: TCRequest {
         /// 实例ID。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Redis {
     }
 
     /// OpenSSL返回参数结构体
-    public struct OpenSSLResponse: TCResponseModel {
+    public struct OpenSSLResponse: TCResponse {
         /// 任务ID。
         public let taskId: Int64
 

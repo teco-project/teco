@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// CreateServerlessDBInstance请求参数结构体
-    public struct CreateServerlessDBInstanceRequest: TCRequestModel {
+    public struct CreateServerlessDBInstanceRequest: TCRequest {
         /// 可用区ID。公测阶段仅支持ap-shanghai-2、ap-beijing-1,ap-guangzhou-2.
         public let zone: String
 
@@ -69,7 +69,7 @@ extension Postgres {
     }
 
     /// CreateServerlessDBInstance返回参数结构体
-    public struct CreateServerlessDBInstanceResponse: TCResponseModel {
+    public struct CreateServerlessDBInstanceResponse: TCResponse {
         /// 实例ID，该ID全局唯一，如：postgres-xxxxx
         public let dbInstanceId: String
 

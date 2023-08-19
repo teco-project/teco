@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tics {
     /// DescribeIpInfo请求参数结构体
-    public struct DescribeIpInfoRequest: TCRequestModel {
+    public struct DescribeIpInfoRequest: TCRequest {
         /// 要查询的IP
         public let key: String
 
@@ -39,7 +39,7 @@ extension Tics {
     }
 
     /// DescribeIpInfo返回参数结构体
-    public struct DescribeIpInfoResponse: TCResponseModel {
+    public struct DescribeIpInfoResponse: TCResponse {
         /// 是否有数据，0代表有数据，1代表没有数据
         public let returnCode: UInt64
 

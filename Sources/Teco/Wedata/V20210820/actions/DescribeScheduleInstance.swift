@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeScheduleInstance请求参数结构体
-    public struct DescribeScheduleInstanceRequest: TCRequestModel {
+    public struct DescribeScheduleInstanceRequest: TCRequest {
         /// 基线id
         public let taskId: String
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// DescribeScheduleInstance返回参数结构体
-    public struct DescribeScheduleInstanceResponse: TCResponseModel {
+    public struct DescribeScheduleInstanceResponse: TCResponse {
         /// 基线实例中的调度任务实例信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: InstanceOpsDto?

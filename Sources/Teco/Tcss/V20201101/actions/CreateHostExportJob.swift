@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// CreateHostExportJob请求参数结构体
-    public struct CreateHostExportJobRequest: TCRequestModel {
+    public struct CreateHostExportJobRequest: TCRequest {
         /// 过滤条件。
         /// - Status - String - 是否必填：否 - agent状态筛选，"ALL":"全部"(或不传该字段),"UNINSTALL"："未安装","OFFLINE"："离线", "ONLINE"："防护中"
         /// - HostName - String - 是否必填：否 - 主机名筛选
@@ -69,7 +69,7 @@ extension Tcss {
     }
 
     /// CreateHostExportJob返回参数结构体
-    public struct CreateHostExportJobResponse: TCResponseModel {
+    public struct CreateHostExportJobResponse: TCResponse {
         /// 导出任务ID，前端拿着任务ID查询任务进度
         public let jobId: String
 

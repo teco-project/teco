@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// CreatePrometheusTemplate请求参数结构体
-    public struct CreatePrometheusTemplateRequest: TCRequestModel {
+    public struct CreatePrometheusTemplateRequest: TCRequest {
         /// 模板设置
         public let template: PrometheusTemplate
 
@@ -34,7 +34,7 @@ extension Tke {
     }
 
     /// CreatePrometheusTemplate返回参数结构体
-    public struct CreatePrometheusTemplateResponse: TCResponseModel {
+    public struct CreatePrometheusTemplateResponse: TCResponse {
         /// 模板Id
         public let templateId: String
 

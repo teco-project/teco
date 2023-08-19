@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// InquirePriceCreate请求参数结构体
-    public struct InquirePriceCreateRequest: TCRequestModel {
+    public struct InquirePriceCreateRequest: TCRequest {
         /// 可用区,每个地域提供最佳实践
         public let zone: String
 
@@ -79,7 +79,7 @@ extension Cynosdb {
     }
 
     /// InquirePriceCreate返回参数结构体
-    public struct InquirePriceCreateResponse: TCResponseModel {
+    public struct InquirePriceCreateResponse: TCResponse {
         /// 实例价格
         public let instancePrice: TradePrice
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Msp {
     /// ModifyMigrationTaskStatus请求参数结构体
-    public struct ModifyMigrationTaskStatusRequest: TCRequestModel {
+    public struct ModifyMigrationTaskStatusRequest: TCRequest {
         /// 任务状态，取值为unstart，migrating，finish，fail之一，分别代表该迁移任务状态为迁移未开始，迁移中，迁移完成，迁移失败
         public let status: String
 
@@ -39,7 +39,7 @@ extension Msp {
     }
 
     /// ModifyMigrationTaskStatus返回参数结构体
-    public struct ModifyMigrationTaskStatusResponse: TCResponseModel {
+    public struct ModifyMigrationTaskStatusResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

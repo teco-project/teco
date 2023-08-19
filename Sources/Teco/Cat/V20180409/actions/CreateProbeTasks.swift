@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cat {
     /// CreateProbeTasks请求参数结构体
-    public struct CreateProbeTasksRequest: TCRequestModel {
+    public struct CreateProbeTasksRequest: TCRequest {
         /// 批量任务名-地址
         public let batchTasks: [ProbeTaskBasicConfiguration]
 
@@ -86,7 +86,7 @@ extension Cat {
     }
 
     /// CreateProbeTasks返回参数结构体
-    public struct CreateProbeTasksResponse: TCResponseModel {
+    public struct CreateProbeTasksResponse: TCResponse {
         /// 任务ID列表
         public let taskIDs: [String]
 

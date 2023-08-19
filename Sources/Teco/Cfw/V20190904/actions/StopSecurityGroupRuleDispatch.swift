@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// StopSecurityGroupRuleDispatch请求参数结构体
-    public struct StopSecurityGroupRuleDispatchRequest: TCRequestModel {
+    public struct StopSecurityGroupRuleDispatchRequest: TCRequest {
         /// 值为1，中止全部
         public let stopType: Int64?
 
@@ -34,7 +34,7 @@ extension Cfw {
     }
 
     /// StopSecurityGroupRuleDispatch返回参数结构体
-    public struct StopSecurityGroupRuleDispatchResponse: TCResponseModel {
+    public struct StopSecurityGroupRuleDispatchResponse: TCResponse {
         /// true代表成功，false代表错误
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Bool?

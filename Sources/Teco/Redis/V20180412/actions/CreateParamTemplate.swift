@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// CreateParamTemplate请求参数结构体
-    public struct CreateParamTemplateRequest: TCRequestModel {
+    public struct CreateParamTemplateRequest: TCRequest {
         /// 参数模板名称。
         public let name: String
 
@@ -54,7 +54,7 @@ extension Redis {
     }
 
     /// CreateParamTemplate返回参数结构体
-    public struct CreateParamTemplateResponse: TCResponseModel {
+    public struct CreateParamTemplateResponse: TCResponse {
         /// 参数模板 ID。
         public let templateId: String
 

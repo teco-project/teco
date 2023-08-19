@@ -20,13 +20,13 @@ import TecoCore
 
 extension Faceid {
     /// GetLiveCode请求参数结构体
-    public struct GetLiveCodeRequest: TCRequestModel {
+    public struct GetLiveCodeRequest: TCRequest {
         public init() {
         }
     }
 
     /// GetLiveCode返回参数结构体
-    public struct GetLiveCodeResponse: TCResponseModel {
+    public struct GetLiveCodeResponse: TCResponse {
         /// 数字验证码，如：1234
         public let liveCode: String
 

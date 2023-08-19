@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DescribeDBPrice请求参数结构体
-    public struct DescribeDBPriceRequest: TCRequestModel {
+    public struct DescribeDBPriceRequest: TCRequest {
         /// 实例时长，单位：月，最小值 1，最大值为 36；查询按量计费价格时，该字段无效。
         public let period: Int64
 
@@ -94,7 +94,7 @@ extension Cdb {
     }
 
     /// DescribeDBPrice返回参数结构体
-    public struct DescribeDBPriceResponse: TCResponseModel {
+    public struct DescribeDBPriceResponse: TCResponse {
         /// 实例价格，单位：分。
         public let price: Int64
 

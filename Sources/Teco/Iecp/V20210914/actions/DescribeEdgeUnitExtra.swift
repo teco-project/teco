@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// DescribeEdgeUnitExtra请求参数结构体
-    public struct DescribeEdgeUnitExtraRequest: TCRequestModel {
+    public struct DescribeEdgeUnitExtraRequest: TCRequest {
         /// IECP边缘单元ID
         public let edgeUnitId: UInt64
 
@@ -34,7 +34,7 @@ extension Iecp {
     }
 
     /// DescribeEdgeUnitExtra返回参数结构体
-    public struct DescribeEdgeUnitExtraResponse: TCResponseModel {
+    public struct DescribeEdgeUnitExtraResponse: TCResponse {
         /// APIServer类型
         public let apiServerType: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// CreatePublishSubscribe请求参数结构体
-    public struct CreatePublishSubscribeRequest: TCRequestModel {
+    public struct CreatePublishSubscribeRequest: TCRequest {
         /// 发布实例ID，形如mssql-j8kv137v
         public let publishInstanceId: String
 
@@ -49,7 +49,7 @@ extension Sqlserver {
     }
 
     /// CreatePublishSubscribe返回参数结构体
-    public struct CreatePublishSubscribeResponse: TCResponseModel {
+    public struct CreatePublishSubscribeResponse: TCResponse {
         /// 流程ID，可通过接口DescribeFlowStatus查询立即切换升级任务的状态。
         public let flowId: UInt64
 

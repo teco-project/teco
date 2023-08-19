@@ -20,7 +20,7 @@ import TecoCore
 
 extension Waf {
     /// ModifyWafThreatenIntelligence请求参数结构体
-    public struct ModifyWafThreatenIntelligenceRequest: TCRequestModel {
+    public struct ModifyWafThreatenIntelligenceRequest: TCRequest {
         /// 配置WAF威胁情报封禁模块详情
         public let wafThreatenIntelligenceDetails: WafThreatenIntelligenceDetails?
 
@@ -34,7 +34,7 @@ extension Waf {
     }
 
     /// ModifyWafThreatenIntelligence返回参数结构体
-    public struct ModifyWafThreatenIntelligenceResponse: TCResponseModel {
+    public struct ModifyWafThreatenIntelligenceResponse: TCResponse {
         /// 当前WAF威胁情报封禁模块详情
         public let wafThreatenIntelligenceDetails: WafThreatenIntelligenceDetails?
 

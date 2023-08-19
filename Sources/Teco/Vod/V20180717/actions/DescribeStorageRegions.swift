@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// DescribeStorageRegions请求参数结构体
-    public struct DescribeStorageRegionsRequest: TCRequestModel {
+    public struct DescribeStorageRegionsRequest: TCRequest {
         /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
         public let subAppId: UInt64?
 
@@ -34,7 +34,7 @@ extension Vod {
     }
 
     /// DescribeStorageRegions返回参数结构体
-    public struct DescribeStorageRegionsResponse: TCResponseModel {
+    public struct DescribeStorageRegionsResponse: TCResponse {
         /// 存储地域信息列表。
         public let storageRegionInfos: [StorageRegionInfo]
 

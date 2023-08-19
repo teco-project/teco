@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DescribeSecurityGroupReferences请求参数结构体
-    public struct DescribeSecurityGroupReferencesRequest: TCRequestModel {
+    public struct DescribeSecurityGroupReferencesRequest: TCRequest {
         /// 安全组实例ID数组。格式如：['sg-12345678']。
         public let securityGroupIds: [String]
 
@@ -34,7 +34,7 @@ extension Vpc {
     }
 
     /// DescribeSecurityGroupReferences返回参数结构体
-    public struct DescribeSecurityGroupReferencesResponse: TCResponseModel {
+    public struct DescribeSecurityGroupReferencesResponse: TCResponse {
         /// 安全组被引用信息。
         public let referredSecurityGroupSet: [ReferredSecurityGroup]
 

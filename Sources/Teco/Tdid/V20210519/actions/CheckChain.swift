@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdid {
     /// CheckChain请求参数结构体
-    public struct CheckChainRequest: TCRequestModel {
+    public struct CheckChainRequest: TCRequest {
         /// 群组ID
         public let groupId: Int64
 
@@ -44,7 +44,7 @@ extension Tdid {
     }
 
     /// CheckChain返回参数结构体
-    public struct CheckChainResponse: TCResponseModel {
+    public struct CheckChainResponse: TCResponse {
         /// 1为盟主，0为非盟主
         public let roleType: Int64
 

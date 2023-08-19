@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dts {
     /// ModifySubscribeAutoRenewFlag请求参数结构体
-    public struct ModifySubscribeAutoRenewFlagRequest: TCRequestModel {
+    public struct ModifySubscribeAutoRenewFlagRequest: TCRequest {
         /// 订阅实例ID，例如：subs-8uey736k
         public let subscribeId: String
 
@@ -39,7 +39,7 @@ extension Dts {
     }
 
     /// ModifySubscribeAutoRenewFlag返回参数结构体
-    public struct ModifySubscribeAutoRenewFlagResponse: TCResponseModel {
+    public struct ModifySubscribeAutoRenewFlagResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

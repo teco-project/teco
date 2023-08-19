@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// DescribeProductConfig请求参数结构体
-    public struct DescribeProductConfigRequest: TCRequestModel {
+    public struct DescribeProductConfigRequest: TCRequest {
         /// 可用区名称
         public let zone: String?
 
@@ -42,7 +42,7 @@ extension Postgres {
     }
 
     /// DescribeProductConfig返回参数结构体
-    public struct DescribeProductConfigResponse: TCResponseModel {
+    public struct DescribeProductConfigResponse: TCResponse {
         /// 售卖规格列表。
         public let specInfoList: [SpecInfo]
 

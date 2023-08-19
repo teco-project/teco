@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// DescribeInstanceDTSInfo请求参数结构体
-    public struct DescribeInstanceDTSInfoRequest: TCRequestModel {
+    public struct DescribeInstanceDTSInfoRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Redis {
     }
 
     /// DescribeInstanceDTSInfo返回参数结构体
-    public struct DescribeInstanceDTSInfoResponse: TCResponseModel {
+    public struct DescribeInstanceDTSInfoResponse: TCResponse {
         /// DTS任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let jobId: String?

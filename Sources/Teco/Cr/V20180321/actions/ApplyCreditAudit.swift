@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cr {
     /// ApplyCreditAudit请求参数结构体
-    public struct ApplyCreditAuditRequest: TCRequestModel {
+    public struct ApplyCreditAuditRequest: TCRequest {
         /// 模块名，本接口取值：Credit
         public let module: String
 
@@ -66,7 +66,7 @@ extension Cr {
     }
 
     /// ApplyCreditAudit返回参数结构体
-    public struct ApplyCreditAuditResponse: TCResponseModel {
+    public struct ApplyCreditAuditResponse: TCResponse {
         /// 请求日期
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected

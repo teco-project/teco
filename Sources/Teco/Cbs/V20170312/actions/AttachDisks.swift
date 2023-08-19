@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cbs {
     /// AttachDisks请求参数结构体
-    public struct AttachDisksRequest: TCRequestModel {
+    public struct AttachDisksRequest: TCRequest {
         /// 云服务器实例ID。云盘将被挂载到此云服务器上，通过[DescribeInstances](/document/product/213/15728)接口查询。
         public let instanceId: String
 
@@ -52,7 +52,7 @@ extension Cbs {
     }
 
     /// AttachDisks返回参数结构体
-    public struct AttachDisksResponse: TCResponseModel {
+    public struct AttachDisksResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

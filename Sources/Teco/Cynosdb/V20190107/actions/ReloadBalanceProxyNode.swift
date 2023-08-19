@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// ReloadBalanceProxyNode请求参数结构体
-    public struct ReloadBalanceProxyNodeRequest: TCRequestModel {
+    public struct ReloadBalanceProxyNodeRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Cynosdb {
     }
 
     /// ReloadBalanceProxyNode返回参数结构体
-    public struct ReloadBalanceProxyNodeResponse: TCResponseModel {
+    public struct ReloadBalanceProxyNodeResponse: TCResponse {
         /// 异步流程ID
         public let flowId: Int64
 

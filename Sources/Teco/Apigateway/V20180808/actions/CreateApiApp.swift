@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// CreateApiApp请求参数结构体
-    public struct CreateApiAppRequest: TCRequestModel {
+    public struct CreateApiAppRequest: TCRequest {
         /// 用户自定义应用名称。
         public let apiAppName: String
 
@@ -39,7 +39,7 @@ extension Apigateway {
     }
 
     /// CreateApiApp返回参数结构体
-    public struct CreateApiAppResponse: TCResponseModel {
+    public struct CreateApiAppResponse: TCResponse {
         /// 新增的应用详情。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: ApiAppInfo?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssa {
     /// SaDivulgeDataQueryPub请求参数结构体
-    public struct SaDivulgeDataQueryPubRequest: TCRequestModel {
+    public struct SaDivulgeDataQueryPubRequest: TCRequest {
         /// 模糊查询字段(针对appid或者uin)
         public let queryKey: String
 
@@ -89,7 +89,7 @@ extension Ssa {
     }
 
     /// SaDivulgeDataQueryPub返回参数结构体
-    public struct SaDivulgeDataQueryPubResponse: TCResponseModel {
+    public struct SaDivulgeDataQueryPubResponse: TCResponse {
         /// 自定义泄露事件列表
         public let data: SaDivulgeDataQueryPubList
 

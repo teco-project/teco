@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mariadb {
     /// CreateHourDBInstance请求参数结构体
-    public struct CreateHourDBInstanceRequest: TCRequestModel {
+    public struct CreateHourDBInstanceRequest: TCRequest {
         /// 节点可用区分布，最多可填两个可用区。
         public let zones: [String]
 
@@ -121,7 +121,7 @@ extension Mariadb {
     }
 
     /// CreateHourDBInstance返回参数结构体
-    public struct CreateHourDBInstanceResponse: TCResponseModel {
+    public struct CreateHourDBInstanceResponse: TCResponse {
         /// 订单号。可以据此调用 DescribeOrders
         ///  查询订单详细信息，或在支付失败时调用用户账号相关接口进行支付。
         public let dealName: String

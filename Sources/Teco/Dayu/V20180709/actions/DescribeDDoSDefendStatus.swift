@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dayu {
     /// DescribeDDoSDefendStatus请求参数结构体
-    public struct DescribeDDoSDefendStatusRequest: TCRequestModel {
+    public struct DescribeDDoSDefendStatusRequest: TCRequest {
         /// 大禹子产品代号（basic表示基础防护；bgp表示独享包；bgp-multip表示共享包；bgpip表示高防IP；net表示高防IP专业版）
         public let business: String
 
@@ -86,7 +86,7 @@ extension Dayu {
     }
 
     /// DescribeDDoSDefendStatus返回参数结构体
-    public struct DescribeDDoSDefendStatusResponse: TCResponseModel {
+    public struct DescribeDDoSDefendStatusResponse: TCResponse {
         /// 防护状态，为0表示防护处于关闭状态，为1表示防护处于开启状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let defendStatus: UInt64?

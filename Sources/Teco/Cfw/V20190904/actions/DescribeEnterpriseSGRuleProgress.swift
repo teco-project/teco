@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cfw {
     /// DescribeEnterpriseSGRuleProgress请求参数结构体
-    public struct DescribeEnterpriseSGRuleProgressRequest: TCRequestModel {
+    public struct DescribeEnterpriseSGRuleProgressRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeEnterpriseSGRuleProgress返回参数结构体
-    public struct DescribeEnterpriseSGRuleProgressResponse: TCResponseModel {
+    public struct DescribeEnterpriseSGRuleProgressResponse: TCResponse {
         /// 0-100，代表下发进度百分比
         public let progress: Int64
 

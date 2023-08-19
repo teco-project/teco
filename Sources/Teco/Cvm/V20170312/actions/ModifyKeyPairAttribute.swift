@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// ModifyKeyPairAttribute请求参数结构体
-    public struct ModifyKeyPairAttributeRequest: TCRequestModel {
+    public struct ModifyKeyPairAttributeRequest: TCRequest {
         /// 密钥对ID，密钥对ID形如：`skey-xxxxxxxx`。
         ///
         /// 可以通过以下方式获取可用的密钥 ID：
@@ -49,7 +49,7 @@ extension Cvm {
     }
 
     /// ModifyKeyPairAttribute返回参数结构体
-    public struct ModifyKeyPairAttributeResponse: TCResponseModel {
+    public struct ModifyKeyPairAttributeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

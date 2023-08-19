@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cloudhsm {
     /// DescribeSupportedHsm请求参数结构体
-    public struct DescribeSupportedHsmRequest: TCRequestModel {
+    public struct DescribeSupportedHsmRequest: TCRequest {
         /// Hsm类型，可选值all、virtulization、GHSM、EHSM、SHSM
         public let hsmType: String?
 
@@ -34,7 +34,7 @@ extension Cloudhsm {
     }
 
     /// DescribeSupportedHsm返回参数结构体
-    public struct DescribeSupportedHsmResponse: TCResponseModel {
+    public struct DescribeSupportedHsmResponse: TCResponse {
         /// 当前地域所支持的设备列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deviceTypes: [DeviceInfo]?

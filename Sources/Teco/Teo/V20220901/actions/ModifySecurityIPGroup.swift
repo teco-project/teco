@@ -20,7 +20,7 @@ import TecoCore
 
 extension Teo {
     /// ModifySecurityIPGroup请求参数结构体
-    public struct ModifySecurityIPGroupRequest: TCRequestModel {
+    public struct ModifySecurityIPGroupRequest: TCRequest {
         /// 站点 Id。
         public let zoneId: String
 
@@ -47,7 +47,7 @@ extension Teo {
     }
 
     /// ModifySecurityIPGroup返回参数结构体
-    public struct ModifySecurityIPGroupResponse: TCResponseModel {
+    public struct ModifySecurityIPGroupResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

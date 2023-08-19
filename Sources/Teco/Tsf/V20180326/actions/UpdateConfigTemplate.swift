@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// UpdateConfigTemplate请求参数结构体
-    public struct UpdateConfigTemplateRequest: TCRequestModel {
+    public struct UpdateConfigTemplateRequest: TCRequest {
         /// 配置模板id
         public let configTemplateId: String
 
@@ -54,7 +54,7 @@ extension Tsf {
     }
 
     /// UpdateConfigTemplate返回参数结构体
-    public struct UpdateConfigTemplateResponse: TCResponseModel {
+    public struct UpdateConfigTemplateResponse: TCResponse {
         /// 结果true：成功；false：失败；
         public let result: Bool
 

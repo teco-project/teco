@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// DescribeBundleDiscount请求参数结构体
-    public struct DescribeBundleDiscountRequest: TCRequestModel {
+    public struct DescribeBundleDiscountRequest: TCRequest {
         /// 套餐 ID。
         public let bundleId: String
 
@@ -34,7 +34,7 @@ extension Lighthouse {
     }
 
     /// DescribeBundleDiscount返回参数结构体
-    public struct DescribeBundleDiscountResponse: TCResponseModel {
+    public struct DescribeBundleDiscountResponse: TCResponse {
         /// 币种：CNY人民币，USD 美元。
         public let currency: String
 

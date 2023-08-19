@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// CreateSnapshotByTimeOffsetTemplate请求参数结构体
-    public struct CreateSnapshotByTimeOffsetTemplateRequest: TCRequestModel {
+    public struct CreateSnapshotByTimeOffsetTemplateRequest: TCRequest {
         /// 指定时间点截图模板名称，长度限制：64 个字符。
         public let name: String?
 
@@ -86,7 +86,7 @@ extension Mps {
     }
 
     /// CreateSnapshotByTimeOffsetTemplate返回参数结构体
-    public struct CreateSnapshotByTimeOffsetTemplateResponse: TCResponseModel {
+    public struct CreateSnapshotByTimeOffsetTemplateResponse: TCResponse {
         /// 时间点截图模板唯一标识。
         public let definition: UInt64
 

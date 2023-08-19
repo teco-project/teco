@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryOpenBankDailyReceiptDownloadUrl请求参数结构体
-    public struct QueryOpenBankDailyReceiptDownloadUrlRequest: TCRequestModel {
+    public struct QueryOpenBankDailyReceiptDownloadUrlRequest: TCRequest {
         /// 云企付渠道商户号。外部接入平台入驻云企付平台后下发。
         public let channelMerchantId: String
 
@@ -72,7 +72,7 @@ extension Cpdp {
     }
 
     /// QueryOpenBankDailyReceiptDownloadUrl返回参数结构体
-    public struct QueryOpenBankDailyReceiptDownloadUrlResponse: TCResponseModel {
+    public struct QueryOpenBankDailyReceiptDownloadUrlResponse: TCResponse {
         /// 业务系统返回码，SUCCESS表示成功，其他表示失败。
         public let errCode: String
 

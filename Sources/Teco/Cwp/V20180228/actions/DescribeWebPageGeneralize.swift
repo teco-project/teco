@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cwp {
     /// DescribeWebPageGeneralize请求参数结构体
-    public struct DescribeWebPageGeneralizeRequest: TCRequestModel {
+    public struct DescribeWebPageGeneralizeRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeWebPageGeneralize返回参数结构体
-    public struct DescribeWebPageGeneralizeResponse: TCResponseModel {
+    public struct DescribeWebPageGeneralizeResponse: TCResponse {
         /// 防护监测 0 未开启 1 已开启 2 异常
         public let protectMonitor: UInt64
 

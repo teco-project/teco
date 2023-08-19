@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// DescribeFileAttributes请求参数结构体
-    public struct DescribeFileAttributesRequest: TCRequestModel {
+    public struct DescribeFileAttributesRequest: TCRequest {
         /// 媒体文件 ID
         public let fileId: String
 
@@ -59,7 +59,7 @@ extension Vod {
     }
 
     /// DescribeFileAttributes返回参数结构体
-    public struct DescribeFileAttributesResponse: TCResponseModel {
+    public struct DescribeFileAttributesResponse: TCResponse {
         /// 任务 ID 。
         public let taskId: String
 

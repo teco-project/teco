@@ -20,7 +20,7 @@ import TecoCore
 
 extension Youmall {
     /// ModifyPersonTagInfo请求参数结构体
-    public struct ModifyPersonTagInfoRequest: TCRequestModel {
+    public struct ModifyPersonTagInfoRequest: TCRequest {
         /// 优mall集团id，通过"指定身份标识获取客户门店列表"接口获取
         public let companyId: String
 
@@ -44,7 +44,7 @@ extension Youmall {
     }
 
     /// ModifyPersonTagInfo返回参数结构体
-    public struct ModifyPersonTagInfoResponse: TCResponseModel {
+    public struct ModifyPersonTagInfoResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

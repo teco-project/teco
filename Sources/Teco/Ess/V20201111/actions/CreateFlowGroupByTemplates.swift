@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// CreateFlowGroupByTemplates请求参数结构体
-    public struct CreateFlowGroupByTemplatesRequest: TCRequestModel {
+    public struct CreateFlowGroupByTemplatesRequest: TCRequest {
         /// 调用方用户信息，userId 必填。支持填入集团子公司经办人 userId 代发合同
         public let `operator`: UserInfo
 
@@ -54,7 +54,7 @@ extension Ess {
     }
 
     /// CreateFlowGroupByTemplates返回参数结构体
-    public struct CreateFlowGroupByTemplatesResponse: TCResponseModel {
+    public struct CreateFlowGroupByTemplatesResponse: TCResponse {
         /// 合同(流程)组的合同组Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowGroupId: String?

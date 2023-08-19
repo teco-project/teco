@@ -20,7 +20,7 @@ import TecoCore
 
 extension Clb {
     /// DescribeClassicalLBByInstanceId请求参数结构体
-    public struct DescribeClassicalLBByInstanceIdRequest: TCRequestModel {
+    public struct DescribeClassicalLBByInstanceIdRequest: TCRequest {
         /// 后端实例ID列表。
         public let instanceIds: [String]
 
@@ -34,7 +34,7 @@ extension Clb {
     }
 
     /// DescribeClassicalLBByInstanceId返回参数结构体
-    public struct DescribeClassicalLBByInstanceIdResponse: TCResponseModel {
+    public struct DescribeClassicalLBByInstanceIdResponse: TCResponse {
         /// 负载均衡相关信息列表。
         public let loadBalancerInfoList: [ClassicalLoadBalancerInfo]
 

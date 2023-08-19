@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// CreateClusterVirtualNodePool请求参数结构体
-    public struct CreateClusterVirtualNodePoolRequest: TCRequestModel {
+    public struct CreateClusterVirtualNodePoolRequest: TCRequest {
         /// 集群Id
         public let clusterId: String
 
@@ -76,7 +76,7 @@ extension Tke {
     }
 
     /// CreateClusterVirtualNodePool返回参数结构体
-    public struct CreateClusterVirtualNodePoolResponse: TCResponseModel {
+    public struct CreateClusterVirtualNodePoolResponse: TCResponse {
         /// 节点池ID
         public let nodePoolId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// DescribeMonitorDataByDate请求参数结构体
-    public struct DescribeMonitorDataByDateRequest: TCRequestModel {
+    public struct DescribeMonitorDataByDateRequest: TCRequest {
         /// 开始时间戳
         public let startTime: Int64
 
@@ -39,7 +39,7 @@ extension Iotvideoindustry {
     }
 
     /// DescribeMonitorDataByDate返回参数结构体
-    public struct DescribeMonitorDataByDateResponse: TCResponseModel {
+    public struct DescribeMonitorDataByDateResponse: TCResponse {
         /// 统计数据列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [RecordStatistic]?

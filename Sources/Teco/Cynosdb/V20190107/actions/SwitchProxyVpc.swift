@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// SwitchProxyVpc请求参数结构体
-    public struct SwitchProxyVpcRequest: TCRequestModel {
+    public struct SwitchProxyVpcRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -54,7 +54,7 @@ extension Cynosdb {
     }
 
     /// SwitchProxyVpc返回参数结构体
-    public struct SwitchProxyVpcResponse: TCResponseModel {
+    public struct SwitchProxyVpcResponse: TCResponse {
         /// 异步任务id。
         public let flowId: Int64
 

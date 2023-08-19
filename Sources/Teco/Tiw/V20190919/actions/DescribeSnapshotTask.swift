@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiw {
     /// DescribeSnapshotTask请求参数结构体
-    public struct DescribeSnapshotTaskRequest: TCRequestModel {
+    public struct DescribeSnapshotTaskRequest: TCRequest {
         /// 查询任务ID
         public let taskID: String
 
@@ -39,7 +39,7 @@ extension Tiw {
     }
 
     /// DescribeSnapshotTask返回参数结构体
-    public struct DescribeSnapshotTaskResponse: TCResponseModel {
+    public struct DescribeSnapshotTaskResponse: TCResponse {
         /// 任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskID: String?

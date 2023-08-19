@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iai {
     /// CreateFace请求参数结构体
-    public struct CreateFaceRequest: TCRequestModel {
+    public struct CreateFaceRequest: TCRequest {
         /// 人员ID。
         public let personId: String
 
@@ -76,7 +76,7 @@ extension Iai {
     }
 
     /// CreateFace返回参数结构体
-    public struct CreateFaceResponse: TCResponseModel {
+    public struct CreateFaceResponse: TCResponse {
         /// 加入成功的人脸数量
         public let sucFaceNum: UInt64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Asr {
     /// DownloadCustomization请求参数结构体
-    public struct DownloadCustomizationRequest: TCRequestModel {
+    public struct DownloadCustomizationRequest: TCRequest {
         /// 自学习模型ID
         public let modelId: String
 
@@ -34,7 +34,7 @@ extension Asr {
     }
 
     /// DownloadCustomization返回参数结构体
-    public struct DownloadCustomizationResponse: TCResponseModel {
+    public struct DownloadCustomizationResponse: TCResponse {
         /// 下载地址
         public let downloadUrl: String
 

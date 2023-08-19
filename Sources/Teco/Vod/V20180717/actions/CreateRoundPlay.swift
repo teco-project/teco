@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// CreateRoundPlay请求参数结构体
-    public struct CreateRoundPlayRequest: TCRequestModel {
+    public struct CreateRoundPlayRequest: TCRequest {
         /// 启播时间，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#52)。
         public let startTime: String
 
@@ -64,7 +64,7 @@ extension Vod {
     }
 
     /// CreateRoundPlay返回参数结构体
-    public struct CreateRoundPlayResponse: TCResponseModel {
+    public struct CreateRoundPlayResponse: TCResponse {
         /// 轮播播单唯一标识。
         public let roundPlayId: String
 

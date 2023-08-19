@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeDimensionScore请求参数结构体
-    public struct DescribeDimensionScoreRequest: TCRequestModel {
+    public struct DescribeDimensionScoreRequest: TCRequest {
         /// 统计日期 时间戳
         public let statisticsDate: Int64
 
@@ -49,7 +49,7 @@ extension Wedata {
     }
 
     /// DescribeDimensionScore返回参数结构体
-    public struct DescribeDimensionScoreResponse: TCResponseModel {
+    public struct DescribeDimensionScoreResponse: TCResponse {
         /// 维度评分
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: DimensionScore?

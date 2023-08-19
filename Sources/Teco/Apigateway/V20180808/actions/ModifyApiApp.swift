@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// ModifyApiApp请求参数结构体
-    public struct ModifyApiAppRequest: TCRequestModel {
+    public struct ModifyApiAppRequest: TCRequest {
         /// 应用唯一 ID。
         public let apiAppId: String
 
@@ -44,7 +44,7 @@ extension Apigateway {
     }
 
     /// ModifyApiApp返回参数结构体
-    public struct ModifyApiAppResponse: TCResponseModel {
+    public struct ModifyApiAppResponse: TCResponse {
         /// 修改操作是否成功。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

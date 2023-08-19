@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// ModifyWordSample请求参数结构体
-    public struct ModifyWordSampleRequest: TCRequestModel {
+    public struct ModifyWordSampleRequest: TCRequest {
         /// 关键词，长度限制：128 个字符。
         public let keyword: String
 
@@ -57,7 +57,7 @@ extension Vod {
     }
 
     /// ModifyWordSample返回参数结构体
-    public struct ModifyWordSampleResponse: TCResponseModel {
+    public struct ModifyWordSampleResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

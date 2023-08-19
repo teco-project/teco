@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeEKSContainerInstanceEvent请求参数结构体
-    public struct DescribeEKSContainerInstanceEventRequest: TCRequestModel {
+    public struct DescribeEKSContainerInstanceEventRequest: TCRequest {
         /// 容器实例id
         public let eksCiId: String
 
@@ -39,7 +39,7 @@ extension Tke {
     }
 
     /// DescribeEKSContainerInstanceEvent返回参数结构体
-    public struct DescribeEKSContainerInstanceEventResponse: TCResponseModel {
+    public struct DescribeEKSContainerInstanceEventResponse: TCResponse {
         /// 事件集合
         public let events: [Event]
 

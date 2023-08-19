@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dcdb {
     /// DeleteAccount请求参数结构体
-    public struct DeleteAccountRequest: TCRequestModel {
+    public struct DeleteAccountRequest: TCRequest {
         /// 实例ID，形如：dcdbt-ow728lmc，可以通过 DescribeDCDBInstances 查询实例详情获得。
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Dcdb {
     }
 
     /// DeleteAccount返回参数结构体
-    public struct DeleteAccountResponse: TCResponseModel {
+    public struct DeleteAccountResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

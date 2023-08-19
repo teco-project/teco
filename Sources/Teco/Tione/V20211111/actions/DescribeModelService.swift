@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// DescribeModelService请求参数结构体
-    public struct DescribeModelServiceRequest: TCRequestModel {
+    public struct DescribeModelServiceRequest: TCRequest {
         /// 服务id
         public let serviceId: String
 
@@ -34,7 +34,7 @@ extension Tione {
     }
 
     /// DescribeModelService返回参数结构体
-    public struct DescribeModelServiceResponse: TCResponseModel {
+    public struct DescribeModelServiceResponse: TCResponse {
         /// 服务信息
         public let service: Service
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// ImportImage请求参数结构体
-    public struct ImportImageRequest: TCRequestModel {
+    public struct ImportImageRequest: TCRequest {
         /// 导入镜像的操作系统架构，`x86_64` 或 `i386`
         public let architecture: String
 
@@ -87,7 +87,7 @@ extension Cvm {
     }
 
     /// ImportImage返回参数结构体
-    public struct ImportImageResponse: TCResponseModel {
+    public struct ImportImageResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

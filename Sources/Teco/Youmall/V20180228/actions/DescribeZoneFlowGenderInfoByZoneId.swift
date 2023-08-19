@@ -20,7 +20,7 @@ import TecoCore
 
 extension Youmall {
     /// DescribeZoneFlowGenderInfoByZoneId请求参数结构体
-    public struct DescribeZoneFlowGenderInfoByZoneIdRequest: TCRequestModel {
+    public struct DescribeZoneFlowGenderInfoByZoneIdRequest: TCRequest {
         /// 集团ID
         public let companyId: String
 
@@ -54,7 +54,7 @@ extension Youmall {
     }
 
     /// DescribeZoneFlowGenderInfoByZoneId返回参数结构体
-    public struct DescribeZoneFlowGenderInfoByZoneIdResponse: TCResponseModel {
+    public struct DescribeZoneFlowGenderInfoByZoneIdResponse: TCResponse {
         /// 集团ID
         public let companyId: String
 

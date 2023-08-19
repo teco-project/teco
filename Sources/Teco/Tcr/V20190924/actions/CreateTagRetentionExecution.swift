@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// CreateTagRetentionExecution请求参数结构体
-    public struct CreateTagRetentionExecutionRequest: TCRequestModel {
+    public struct CreateTagRetentionExecutionRequest: TCRequest {
         /// 主实例iD
         public let registryId: String
 
@@ -44,7 +44,7 @@ extension Tcr {
     }
 
     /// CreateTagRetentionExecution返回参数结构体
-    public struct CreateTagRetentionExecutionResponse: TCResponseModel {
+    public struct CreateTagRetentionExecutionResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

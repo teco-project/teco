@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeCloudBaseRunOperationTypes请求参数结构体
-    public struct DescribeCloudBaseRunOperationTypesRequest: TCRequestModel {
+    public struct DescribeCloudBaseRunOperationTypesRequest: TCRequest {
         /// 环境ID
         public let envId: String
 
@@ -39,7 +39,7 @@ extension Tcb {
     }
 
     /// DescribeCloudBaseRunOperationTypes返回参数结构体
-    public struct DescribeCloudBaseRunOperationTypesResponse: TCResponseModel {
+    public struct DescribeCloudBaseRunOperationTypesResponse: TCResponse {
         /// 操作类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let action: [String]?

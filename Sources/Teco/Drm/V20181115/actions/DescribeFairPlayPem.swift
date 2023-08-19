@@ -20,7 +20,7 @@ import TecoCore
 
 extension Drm {
     /// DescribeFairPlayPem请求参数结构体
-    public struct DescribeFairPlayPemRequest: TCRequestModel {
+    public struct DescribeFairPlayPemRequest: TCRequest {
         /// 委托者Id,适用于托管自身证书的客户。普通客户无需填该字段。
         public let bailorId: UInt64?
 
@@ -40,7 +40,7 @@ extension Drm {
     }
 
     /// DescribeFairPlayPem返回参数结构体
-    public struct DescribeFairPlayPemResponse: TCResponseModel {
+    public struct DescribeFairPlayPemResponse: TCResponse {
         /// 该账户下，所有设置的FairPlay私钥摘要信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fairPlayPems: [FairPlayPemDigestInfo]?

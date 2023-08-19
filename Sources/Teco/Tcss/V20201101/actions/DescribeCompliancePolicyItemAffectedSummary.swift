@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeCompliancePolicyItemAffectedSummary请求参数结构体
-    public struct DescribeCompliancePolicyItemAffectedSummaryRequest: TCRequestModel {
+    public struct DescribeCompliancePolicyItemAffectedSummaryRequest: TCRequest {
         /// DescribeComplianceTaskPolicyItemSummaryList返回的CustomerPolicyItemId，表示检测项的ID。
         public let customerPolicyItemId: UInt64
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeCompliancePolicyItemAffectedSummary返回参数结构体
-    public struct DescribeCompliancePolicyItemAffectedSummaryResponse: TCResponseModel {
+    public struct DescribeCompliancePolicyItemAffectedSummaryResponse: TCResponse {
         /// 返回各检测项影响的资产的汇总信息。
         public let policyItemSummary: CompliancePolicyItemSummary
 

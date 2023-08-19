@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// ModifyEscapeRule请求参数结构体
-    public struct ModifyEscapeRuleRequest: TCRequestModel {
+    public struct ModifyEscapeRuleRequest: TCRequest {
         /// 需要修改的数组
         public let ruleSet: [EscapeRuleEnabled]
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// ModifyEscapeRule返回参数结构体
-    public struct ModifyEscapeRuleResponse: TCResponseModel {
+    public struct ModifyEscapeRuleResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

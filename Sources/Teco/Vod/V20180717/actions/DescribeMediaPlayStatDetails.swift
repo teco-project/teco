@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// DescribeMediaPlayStatDetails请求参数结构体
-    public struct DescribeMediaPlayStatDetailsRequest: TCRequestModel {
+    public struct DescribeMediaPlayStatDetailsRequest: TCRequest {
         /// 媒体文件 ID。
         public let fileId: String
 
@@ -58,7 +58,7 @@ extension Vod {
     }
 
     /// DescribeMediaPlayStatDetails返回参数结构体
-    public struct DescribeMediaPlayStatDetailsResponse: TCResponseModel {
+    public struct DescribeMediaPlayStatDetailsResponse: TCResponse {
         /// 播放统计数据。
         public let playStatInfoSet: [PlayStatInfo]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cbs {
     /// InquiryPriceResizeDisk请求参数结构体
-    public struct InquiryPriceResizeDiskRequest: TCRequestModel {
+    public struct InquiryPriceResizeDiskRequest: TCRequest {
         /// 云硬盘扩容后的大小，单位为GB，不得小于当前云硬盘大小。云盘大小取值范围参见云硬盘[产品分类](/document/product/362/2353)的说明。
         public let diskSize: UInt64
 
@@ -44,7 +44,7 @@ extension Cbs {
     }
 
     /// InquiryPriceResizeDisk返回参数结构体
-    public struct InquiryPriceResizeDiskResponse: TCResponseModel {
+    public struct InquiryPriceResizeDiskResponse: TCResponse {
         /// 描述了扩容云盘的价格。
         public let diskPrice: PrepayPrice
 

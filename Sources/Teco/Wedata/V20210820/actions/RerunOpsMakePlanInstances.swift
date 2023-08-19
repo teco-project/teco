@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// RerunOpsMakePlanInstances请求参数结构体
-    public struct RerunOpsMakePlanInstancesRequest: TCRequestModel {
+    public struct RerunOpsMakePlanInstancesRequest: TCRequest {
         /// 项目ID
         public let projectId: String
 
@@ -44,7 +44,7 @@ extension Wedata {
     }
 
     /// RerunOpsMakePlanInstances返回参数结构体
-    public struct RerunOpsMakePlanInstancesResponse: TCResponseModel {
+    public struct RerunOpsMakePlanInstancesResponse: TCResponse {
         /// 操作结果描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: BatchOperateResultOpsDto?

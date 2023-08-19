@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeK8sApiAbnormalTendency请求参数结构体
-    public struct DescribeK8sApiAbnormalTendencyRequest: TCRequestModel {
+    public struct DescribeK8sApiAbnormalTendencyRequest: TCRequest {
         /// 趋势周期(默认为7天)
         public let tendencyPeriod: UInt64
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeK8sApiAbnormalTendency返回参数结构体
-    public struct DescribeK8sApiAbnormalTendencyResponse: TCResponseModel {
+    public struct DescribeK8sApiAbnormalTendencyResponse: TCResponse {
         /// 趋势列表
         public let list: [K8sApiAbnormalTendencyItem]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Es {
     /// DescribeIndexMeta请求参数结构体
-    public struct DescribeIndexMetaRequest: TCRequestModel {
+    public struct DescribeIndexMetaRequest: TCRequest {
         /// ES集群ID
         public let instanceId: String
 
@@ -54,7 +54,7 @@ extension Es {
     }
 
     /// DescribeIndexMeta返回参数结构体
-    public struct DescribeIndexMetaResponse: TCResponseModel {
+    public struct DescribeIndexMetaResponse: TCResponse {
         /// 索引元数据字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let indexMetaField: IndexMetaField?

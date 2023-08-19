@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mongodb {
     /// DescribeDBInstanceNodeProperty请求参数结构体
-    public struct DescribeDBInstanceNodePropertyRequest: TCRequestModel {
+    public struct DescribeDBInstanceNodePropertyRequest: TCRequest {
         /// 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同。
         public let instanceId: String
 
@@ -72,7 +72,7 @@ extension Mongodb {
     }
 
     /// DescribeDBInstanceNodeProperty返回参数结构体
-    public struct DescribeDBInstanceNodePropertyResponse: TCResponseModel {
+    public struct DescribeDBInstanceNodePropertyResponse: TCResponse {
         /// Mongos节点属性。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mongos: [NodeProperty]?

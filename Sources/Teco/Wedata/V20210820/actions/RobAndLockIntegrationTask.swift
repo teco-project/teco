@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// RobAndLockIntegrationTask请求参数结构体
-    public struct RobAndLockIntegrationTaskRequest: TCRequestModel {
+    public struct RobAndLockIntegrationTaskRequest: TCRequest {
         /// 任务id
         public let taskId: String
 
@@ -44,7 +44,7 @@ extension Wedata {
     }
 
     /// RobAndLockIntegrationTask返回参数结构体
-    public struct RobAndLockIntegrationTaskResponse: TCResponseModel {
+    public struct RobAndLockIntegrationTaskResponse: TCResponse {
         /// 抢锁状态
         public let robLockState: RobLockState
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// CreateTask请求参数结构体
-    public struct CreateTaskRequest: TCRequestModel {
+    public struct CreateTaskRequest: TCRequest {
         /// 任务名称，任务长度64字符
         public let taskName: String
 
@@ -108,7 +108,7 @@ extension Tsf {
     }
 
     /// CreateTask返回参数结构体
-    public struct CreateTaskResponse: TCResponseModel {
+    public struct CreateTaskResponse: TCResponse {
         /// 任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: String?

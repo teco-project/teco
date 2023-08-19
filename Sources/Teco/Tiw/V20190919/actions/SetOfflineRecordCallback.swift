@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiw {
     /// SetOfflineRecordCallback请求参数结构体
-    public struct SetOfflineRecordCallbackRequest: TCRequestModel {
+    public struct SetOfflineRecordCallbackRequest: TCRequest {
         /// 客户的SdkAppId
         public let sdkAppId: Int64
 
@@ -39,7 +39,7 @@ extension Tiw {
     }
 
     /// SetOfflineRecordCallback返回参数结构体
-    public struct SetOfflineRecordCallbackResponse: TCResponseModel {
+    public struct SetOfflineRecordCallbackResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

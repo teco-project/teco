@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// DistributeQuery请求参数结构体
-    public struct DistributeQueryRequest: TCRequestModel {
+    public struct DistributeQueryRequest: TCRequest {
         /// 使用门店OpenId
         public let openId: String
 
@@ -64,7 +64,7 @@ extension Cpdp {
     }
 
     /// DistributeQuery返回参数结构体
-    public struct DistributeQueryResponse: TCResponseModel {
+    public struct DistributeQueryResponse: TCResponse {
         /// 业务系统返回消息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errMessage: String?

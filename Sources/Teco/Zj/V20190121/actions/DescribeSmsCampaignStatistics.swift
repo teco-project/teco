@@ -20,7 +20,7 @@ import TecoCore
 
 extension Zj {
     /// DescribeSmsCampaignStatistics请求参数结构体
-    public struct DescribeSmsCampaignStatisticsRequest: TCRequestModel {
+    public struct DescribeSmsCampaignStatisticsRequest: TCRequest {
         /// 活动id
         public let campaignId: UInt64
 
@@ -39,7 +39,7 @@ extension Zj {
     }
 
     /// DescribeSmsCampaignStatistics返回参数结构体
-    public struct DescribeSmsCampaignStatisticsResponse: TCResponseModel {
+    public struct DescribeSmsCampaignStatisticsResponse: TCResponse {
         /// 响应数据
         public let data: SmsCampaignStatisticsData
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeTimeShiftRecordDetail请求参数结构体
-    public struct DescribeTimeShiftRecordDetailRequest: TCRequestModel {
+    public struct DescribeTimeShiftRecordDetailRequest: TCRequest {
         /// 推流域名。
         public let domain: String
 
@@ -64,7 +64,7 @@ extension Live {
     }
 
     /// DescribeTimeShiftRecordDetail返回参数结构体
-    public struct DescribeTimeShiftRecordDetailResponse: TCResponseModel {
+    public struct DescribeTimeShiftRecordDetailResponse: TCResponse {
         /// 时移录制会话数组。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordList: [TimeShiftRecord]?

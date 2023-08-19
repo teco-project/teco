@@ -20,7 +20,7 @@ import TecoCore
 
 extension Pts {
     /// GenerateTmpKey请求参数结构体
-    public struct GenerateTmpKeyRequest: TCRequestModel {
+    public struct GenerateTmpKeyRequest: TCRequest {
         /// 项目ID
         public let projectId: String
 
@@ -39,7 +39,7 @@ extension Pts {
     }
 
     /// GenerateTmpKey返回参数结构体
-    public struct GenerateTmpKeyResponse: TCResponseModel {
+    public struct GenerateTmpKeyResponse: TCResponse {
         /// 临时访问凭证获取时刻的时间戳（单位秒）
         public let startTime: Int64
 

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Antiddos {
     /// DescribePendingRiskInfo请求参数结构体
-    public struct DescribePendingRiskInfoRequest: TCRequestModel {
+    public struct DescribePendingRiskInfoRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribePendingRiskInfo返回参数结构体
-    public struct DescribePendingRiskInfoResponse: TCResponseModel {
+    public struct DescribePendingRiskInfoResponse: TCResponse {
         /// 是否为付费用户，true：付费用户， false：普通用户
         public let isPaidUsr: Bool
 

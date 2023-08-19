@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// DeleteCmqQueue请求参数结构体
-    public struct DeleteCmqQueueRequest: TCRequestModel {
+    public struct DeleteCmqQueueRequest: TCRequest {
         /// 队列名字，在单个地域同一帐号下唯一。队列名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
         public let queueName: String
 
@@ -34,7 +34,7 @@ extension Tdmq {
     }
 
     /// DeleteCmqQueue返回参数结构体
-    public struct DeleteCmqQueueResponse: TCResponseModel {
+    public struct DeleteCmqQueueResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

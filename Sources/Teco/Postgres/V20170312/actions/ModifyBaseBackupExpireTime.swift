@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// ModifyBaseBackupExpireTime请求参数结构体
-    public struct ModifyBaseBackupExpireTimeRequest: TCRequestModel {
+    public struct ModifyBaseBackupExpireTimeRequest: TCRequest {
         /// 实例ID。
         public let dbInstanceId: String
 
@@ -44,7 +44,7 @@ extension Postgres {
     }
 
     /// ModifyBaseBackupExpireTime返回参数结构体
-    public struct ModifyBaseBackupExpireTimeResponse: TCResponseModel {
+    public struct ModifyBaseBackupExpireTimeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

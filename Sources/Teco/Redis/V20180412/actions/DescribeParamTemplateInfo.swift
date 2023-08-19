@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// DescribeParamTemplateInfo请求参数结构体
-    public struct DescribeParamTemplateInfoRequest: TCRequestModel {
+    public struct DescribeParamTemplateInfoRequest: TCRequest {
         /// 指定查询的参数模板 ID。请通过接口[DescribeParamTemplates](https://cloud.tencent.com/document/product/239/58750)获取参数模板列表信息。
         public let templateId: String
 
@@ -34,7 +34,7 @@ extension Redis {
     }
 
     /// DescribeParamTemplateInfo返回参数结构体
-    public struct DescribeParamTemplateInfoResponse: TCResponseModel {
+    public struct DescribeParamTemplateInfoResponse: TCResponse {
         /// 参数模板的参数数量。
         public let totalCount: Int64
 

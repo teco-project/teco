@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// UnbindEmployeeUserIdWithClientOpenId请求参数结构体
-    public struct UnbindEmployeeUserIdWithClientOpenIdRequest: TCRequestModel {
+    public struct UnbindEmployeeUserIdWithClientOpenIdRequest: TCRequest {
         /// 用户信息，OpenId与UserId二选一必填一个，OpenId是第三方客户ID，userId是用户实名后的电子签生成的ID,当传入客户系统openId，传入的openId需与电子签员工userId绑定，且参数Channel必填，Channel值为INTEGRATE；当传入参数UserId，Channel无需指定(参数用法参考示例)
         public let `operator`: UserInfo
 
@@ -49,7 +49,7 @@ extension Ess {
     }
 
     /// UnbindEmployeeUserIdWithClientOpenId返回参数结构体
-    public struct UnbindEmployeeUserIdWithClientOpenIdResponse: TCResponseModel {
+    public struct UnbindEmployeeUserIdWithClientOpenIdResponse: TCResponse {
         /// 解绑是否成功，1表示成功，0表示失败
         public let status: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// DeleteTimeTemplate请求参数结构体
-    public struct DeleteTimeTemplateRequest: TCRequestModel {
+    public struct DeleteTimeTemplateRequest: TCRequest {
         /// 时间模板ID
         public let templateId: String
 
@@ -34,7 +34,7 @@ extension Iotvideoindustry {
     }
 
     /// DeleteTimeTemplate返回参数结构体
-    public struct DeleteTimeTemplateResponse: TCResponseModel {
+    public struct DeleteTimeTemplateResponse: TCResponse {
         /// 操作结果，OK：成功，其他：失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?

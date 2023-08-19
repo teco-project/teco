@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// CreateLoadBalancer请求参数结构体
-    public struct CreateLoadBalancerRequest: TCRequestModel {
+    public struct CreateLoadBalancerRequest: TCRequest {
         /// ECM区域，形如ap-xian-ecm。
         public let ecmRegion: String
 
@@ -85,7 +85,7 @@ extension Ecm {
     }
 
     /// CreateLoadBalancer返回参数结构体
-    public struct CreateLoadBalancerResponse: TCResponseModel {
+    public struct CreateLoadBalancerResponse: TCResponse {
         /// 由负载均衡实例ID组成的数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let loadBalancerIds: [String]?

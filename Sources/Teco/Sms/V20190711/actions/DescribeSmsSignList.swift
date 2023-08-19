@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sms {
     /// DescribeSmsSignList请求参数结构体
-    public struct DescribeSmsSignListRequest: TCRequestModel {
+    public struct DescribeSmsSignListRequest: TCRequest {
         /// 签名 ID 数组。
         public let signIdSet: [UInt64]
 
@@ -41,7 +41,7 @@ extension Sms {
     }
 
     /// DescribeSmsSignList返回参数结构体
-    public struct DescribeSmsSignListResponse: TCResponseModel {
+    public struct DescribeSmsSignListResponse: TCResponse {
         /// 获取签名信息响应
         public let describeSignListStatusSet: [DescribeSignListStatus]
 

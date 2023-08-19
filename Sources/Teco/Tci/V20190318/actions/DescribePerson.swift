@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Tci {
     /// DescribePerson请求参数结构体
-    public struct DescribePersonRequest: TCRequestModel {
+    public struct DescribePersonRequest: TCRequest {
         /// 人员库唯一标识符
         public let libraryId: String
 
@@ -41,7 +41,7 @@ extension Tci {
     }
 
     /// DescribePerson返回参数结构体
-    public struct DescribePersonResponse: TCResponseModel {
+    public struct DescribePersonResponse: TCResponse {
         /// 人员人脸列表
         public let faceSet: [Face]
 

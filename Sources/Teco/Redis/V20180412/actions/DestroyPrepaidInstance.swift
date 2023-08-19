@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// DestroyPrepaidInstance请求参数结构体
-    public struct DestroyPrepaidInstanceRequest: TCRequestModel {
+    public struct DestroyPrepaidInstanceRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Redis {
     }
 
     /// DestroyPrepaidInstance返回参数结构体
-    public struct DestroyPrepaidInstanceResponse: TCResponseModel {
+    public struct DestroyPrepaidInstanceResponse: TCResponse {
         /// 订单Id
         public let dealId: String
 

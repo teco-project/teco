@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// DescribePvList请求参数结构体
-    public struct DescribePvListRequest: TCRequestModel {
+    public struct DescribePvListRequest: TCRequest {
         /// ID
         public let projectId: Int64
 
@@ -49,7 +49,7 @@ extension Rum {
     }
 
     /// DescribePvList返回参数结构体
-    public struct DescribePvListResponse: TCResponseModel {
+    public struct DescribePvListResponse: TCResponse {
         /// pv列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectPvSet: [RumPvInfo]?

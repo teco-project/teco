@@ -20,7 +20,7 @@ import TecoCore
 
 extension Es {
     /// GetRequestTargetNodeTypes请求参数结构体
-    public struct GetRequestTargetNodeTypesRequest: TCRequestModel {
+    public struct GetRequestTargetNodeTypesRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Es {
     }
 
     /// GetRequestTargetNodeTypes返回参数结构体
-    public struct GetRequestTargetNodeTypesResponse: TCResponseModel {
+    public struct GetRequestTargetNodeTypesResponse: TCResponse {
         /// 接收请求的目标节点类型列表
         public let targetNodeTypes: [String]
 

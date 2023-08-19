@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ExportBaselineHostDetectList请求参数结构体
-    public struct ExportBaselineHostDetectListRequest: TCRequestModel {
+    public struct ExportBaselineHostDetectListRequest: TCRequest {
         /// - HostTag - string - 是否必填：否 - 主机标签</i>
         /// - ItemId - int64 - 是否必填：否 - 项Id</i>
         /// - RuleId - int64 - 是否必填：否 - 规则Id
@@ -43,7 +43,7 @@ extension Cwp {
     }
 
     /// ExportBaselineHostDetectList返回参数结构体
-    public struct ExportBaselineHostDetectListResponse: TCResponseModel {
+    public struct ExportBaselineHostDetectListResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

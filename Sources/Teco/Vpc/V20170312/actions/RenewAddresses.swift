@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// RenewAddresses请求参数结构体
-    public struct RenewAddressesRequest: TCRequestModel {
+    public struct RenewAddressesRequest: TCRequest {
         /// EIP唯一标识ID列表，形如'eip-xxxx'
         public let addressIds: [String]
 
@@ -39,7 +39,7 @@ extension Vpc {
     }
 
     /// RenewAddresses返回参数结构体
-    public struct RenewAddressesResponse: TCResponseModel {
+    public struct RenewAddressesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

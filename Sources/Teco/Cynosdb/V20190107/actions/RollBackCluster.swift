@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// RollBackCluster请求参数结构体
-    public struct RollBackClusterRequest: TCRequestModel {
+    public struct RollBackClusterRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -69,7 +69,7 @@ extension Cynosdb {
     }
 
     /// RollBackCluster返回参数结构体
-    public struct RollBackClusterResponse: TCResponseModel {
+    public struct RollBackClusterResponse: TCResponse {
         /// 任务流ID
         public let flowId: Int64
 

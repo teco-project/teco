@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DescribeNetworkInterfaceLimit请求参数结构体
-    public struct DescribeNetworkInterfaceLimitRequest: TCRequestModel {
+    public struct DescribeNetworkInterfaceLimitRequest: TCRequest {
         /// 要查询的CVM实例ID或弹性网卡ID。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Vpc {
     }
 
     /// DescribeNetworkInterfaceLimit返回参数结构体
-    public struct DescribeNetworkInterfaceLimitResponse: TCResponseModel {
+    public struct DescribeNetworkInterfaceLimitResponse: TCResponse {
         /// 标准型弹性网卡配额。
         public let eniQuantity: Int64
 

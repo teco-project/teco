@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// CreateRoom请求参数结构体
-    public struct CreateRoomRequest: TCRequestModel {
+    public struct CreateRoomRequest: TCRequest {
         /// 房间名称。
         public let name: String
 
@@ -157,7 +157,7 @@ extension Lcic {
     }
 
     /// CreateRoom返回参数结构体
-    public struct CreateRoomResponse: TCResponseModel {
+    public struct CreateRoomResponse: TCResponse {
         /// 房间ID。
         public let roomId: UInt64
 

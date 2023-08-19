@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// DescribeBillingSpecsPrice请求参数结构体
-    public struct DescribeBillingSpecsPriceRequest: TCRequestModel {
+    public struct DescribeBillingSpecsPriceRequest: TCRequest {
         /// 询价参数，支持批量询价
         public let specsParam: [SpecUnit]
 
@@ -34,7 +34,7 @@ extension Tione {
     }
 
     /// DescribeBillingSpecsPrice返回参数结构体
-    public struct DescribeBillingSpecsPriceResponse: TCResponseModel {
+    public struct DescribeBillingSpecsPriceResponse: TCResponse {
         /// 计费项价格，支持批量返回
         public let specsPrice: [SpecPrice]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// CreateCustomHeader请求参数结构体
-    public struct CreateCustomHeaderRequest: TCRequestModel {
+    public struct CreateCustomHeaderRequest: TCRequest {
         /// 规则id
         public let ruleId: String
 
@@ -39,7 +39,7 @@ extension Gaap {
     }
 
     /// CreateCustomHeader返回参数结构体
-    public struct CreateCustomHeaderResponse: TCResponseModel {
+    public struct CreateCustomHeaderResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Tione {
     /// DescribeCodeRepository请求参数结构体
-    public struct DescribeCodeRepositoryRequest: TCRequestModel {
+    public struct DescribeCodeRepositoryRequest: TCRequest {
         /// 存储库名称
         public let codeRepositoryName: String
 
@@ -36,7 +36,7 @@ extension Tione {
     }
 
     /// DescribeCodeRepository返回参数结构体
-    public struct DescribeCodeRepositoryResponse: TCResponseModel {
+    public struct DescribeCodeRepositoryResponse: TCResponse {
         /// 创建时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeAssetImageScanSetting请求参数结构体
-    public struct DescribeAssetImageScanSettingRequest: TCRequestModel {
+    public struct DescribeAssetImageScanSettingRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeAssetImageScanSetting返回参数结构体
-    public struct DescribeAssetImageScanSettingResponse: TCResponseModel {
+    public struct DescribeAssetImageScanSettingResponse: TCResponse {
         /// 开关
         public let enable: Bool
 

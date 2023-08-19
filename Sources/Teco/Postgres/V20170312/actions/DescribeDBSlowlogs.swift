@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Postgres {
     /// DescribeDBSlowlogs请求参数结构体
-    public struct DescribeDBSlowlogsRequest: TCRequestModel {
+    public struct DescribeDBSlowlogsRequest: TCRequest {
         /// 实例ID，形如postgres-lnp6j617
         public let dbInstanceId: String
 
@@ -77,7 +77,7 @@ extension Postgres {
     }
 
     /// DescribeDBSlowlogs返回参数结构体
-    public struct DescribeDBSlowlogsResponse: TCResponseModel {
+    public struct DescribeDBSlowlogsResponse: TCResponse {
         /// 本次返回多少条数据
         public let totalCount: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssa {
     /// DescribeAssetsMappingList请求参数结构体
-    public struct DescribeAssetsMappingListRequest: TCRequestModel {
+    public struct DescribeAssetsMappingListRequest: TCRequest {
         /// 请求参数
         public let params: String
 
@@ -34,7 +34,7 @@ extension Ssa {
     }
 
     /// DescribeAssetsMappingList返回参数结构体
-    public struct DescribeAssetsMappingListResponse: TCResponseModel {
+    public struct DescribeAssetsMappingListResponse: TCResponse {
         /// 资产测绘列表
         public let data: [DataAssetMapping]
 

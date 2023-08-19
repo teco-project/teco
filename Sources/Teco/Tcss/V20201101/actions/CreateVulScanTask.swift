@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// CreateVulScanTask请求参数结构体
-    public struct CreateVulScanTaskRequest: TCRequestModel {
+    public struct CreateVulScanTaskRequest: TCRequest {
         /// 本地镜像扫描范围类型。ALL:全部本地镜像，NOT_SCAN：全部已授权未扫描本地镜像，IMAGEIDS:自选本地镜像ID
         public let localImageScanType: String?
 
@@ -59,7 +59,7 @@ extension Tcss {
     }
 
     /// CreateVulScanTask返回参数结构体
-    public struct CreateVulScanTaskResponse: TCResponseModel {
+    public struct CreateVulScanTaskResponse: TCResponse {
         /// 本地镜像重新漏洞扫描时的任务ID
         public let localTaskID: Int64
 

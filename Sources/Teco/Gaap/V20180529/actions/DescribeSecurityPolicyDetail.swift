@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// DescribeSecurityPolicyDetail请求参数结构体
-    public struct DescribeSecurityPolicyDetailRequest: TCRequestModel {
+    public struct DescribeSecurityPolicyDetailRequest: TCRequest {
         /// 安全策略ID
         public let policyId: String
 
@@ -34,7 +34,7 @@ extension Gaap {
     }
 
     /// DescribeSecurityPolicyDetail返回参数结构体
-    public struct DescribeSecurityPolicyDetailResponse: TCResponseModel {
+    public struct DescribeSecurityPolicyDetailResponse: TCResponse {
         /// 通道ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let proxyId: String?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// RenewDBInstance请求参数结构体
-    public struct RenewDBInstanceRequest: TCRequestModel {
+    public struct RenewDBInstanceRequest: TCRequest {
         /// 待续费的实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872)。
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Cdb {
     }
 
     /// RenewDBInstance返回参数结构体
-    public struct RenewDBInstanceResponse: TCResponseModel {
+    public struct RenewDBInstanceResponse: TCResponse {
         /// 订单 ID。
         public let dealId: String
 

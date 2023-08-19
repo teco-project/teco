@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeStandaloneGatewayPackage请求参数结构体
-    public struct DescribeStandaloneGatewayPackageRequest: TCRequestModel {
+    public struct DescribeStandaloneGatewayPackageRequest: TCRequest {
         /// 环境ID
         public let envId: String?
 
@@ -39,7 +39,7 @@ extension Tcb {
     }
 
     /// DescribeStandaloneGatewayPackage返回参数结构体
-    public struct DescribeStandaloneGatewayPackageResponse: TCResponseModel {
+    public struct DescribeStandaloneGatewayPackageResponse: TCResponse {
         /// 总数
         public let total: Int64
 

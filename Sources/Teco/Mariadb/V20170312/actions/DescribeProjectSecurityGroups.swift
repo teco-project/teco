@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mariadb {
     /// DescribeProjectSecurityGroups请求参数结构体
-    public struct DescribeProjectSecurityGroupsRequest: TCRequestModel {
+    public struct DescribeProjectSecurityGroupsRequest: TCRequest {
         /// 数据库引擎名称，本接口取值：mariadb。
         public let product: String
 
@@ -39,7 +39,7 @@ extension Mariadb {
     }
 
     /// DescribeProjectSecurityGroups返回参数结构体
-    public struct DescribeProjectSecurityGroupsResponse: TCResponseModel {
+    public struct DescribeProjectSecurityGroupsResponse: TCResponse {
         /// 安全组详情。
         public let groups: [SecurityGroup]
 

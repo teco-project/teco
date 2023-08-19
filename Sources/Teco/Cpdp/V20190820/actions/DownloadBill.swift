@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// DownloadBill请求参数结构体
-    public struct DownloadBillRequest: TCRequestModel {
+    public struct DownloadBillRequest: TCRequest {
         /// 请求下载对账单日期
         public let stateDate: String
 
@@ -58,7 +58,7 @@ extension Cpdp {
     }
 
     /// DownloadBill返回参数结构体
-    public struct DownloadBillResponse: TCResponseModel {
+    public struct DownloadBillResponse: TCResponse {
         /// 账单文件名
         public let fileName: String
 

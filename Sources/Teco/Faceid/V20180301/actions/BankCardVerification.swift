@@ -20,7 +20,7 @@ import TecoCore
 
 extension Faceid {
     /// BankCardVerification请求参数结构体
-    public struct BankCardVerificationRequest: TCRequestModel {
+    public struct BankCardVerificationRequest: TCRequest {
         /// 开户证件号，与CertType参数的证件类型一致，如：身份证，则传入身份证号。
         public let idCard: String
 
@@ -55,7 +55,7 @@ extension Faceid {
     }
 
     /// BankCardVerification返回参数结构体
-    public struct BankCardVerificationResponse: TCResponseModel {
+    public struct BankCardVerificationResponse: TCResponse {
         /// 认证结果码
         /// 收费结果码：
         /// '0': '认证通过'

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// CreateEKSContainerInstances请求参数结构体
-    public struct CreateEKSContainerInstancesRequest: TCRequestModel {
+    public struct CreateEKSContainerInstancesRequest: TCRequest {
         /// 容器组
         public let containers: [Container]
 
@@ -140,7 +140,7 @@ extension Tke {
     }
 
     /// CreateEKSContainerInstances返回参数结构体
-    public struct CreateEKSContainerInstancesResponse: TCResponseModel {
+    public struct CreateEKSContainerInstancesResponse: TCResponse {
         /// EKS Container Instance Id集合，格式为eksci-xxx，是容器实例的唯一标识。
         public let eksCiIds: [String]
 

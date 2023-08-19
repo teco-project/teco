@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tke {
     /// DescribeVersions请求参数结构体
-    public struct DescribeVersionsRequest: TCRequestModel {
+    public struct DescribeVersionsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeVersions返回参数结构体
-    public struct DescribeVersionsResponse: TCResponseModel {
+    public struct DescribeVersionsResponse: TCResponse {
         /// 版本数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?

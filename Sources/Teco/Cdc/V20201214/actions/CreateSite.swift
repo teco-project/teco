@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdc {
     /// CreateSite请求参数结构体
-    public struct CreateSiteRequest: TCRequestModel {
+    public struct CreateSiteRequest: TCRequest {
         /// 站点名称
         public let name: String
 
@@ -152,7 +152,7 @@ extension Cdc {
     }
 
     /// CreateSite返回参数结构体
-    public struct CreateSiteResponse: TCResponseModel {
+    public struct CreateSiteResponse: TCResponse {
         /// 创建Site生成的id
         public let siteId: String
 

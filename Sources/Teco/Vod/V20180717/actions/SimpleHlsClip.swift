@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// SimpleHlsClip请求参数结构体
-    public struct SimpleHlsClipRequest: TCRequestModel {
+    public struct SimpleHlsClipRequest: TCRequest {
         /// 需要裁剪的腾讯云点播 HLS 视频 URL。
         public let url: String
 
@@ -82,7 +82,7 @@ extension Vod {
     }
 
     /// SimpleHlsClip返回参数结构体
-    public struct SimpleHlsClipResponse: TCResponseModel {
+    public struct SimpleHlsClipResponse: TCResponse {
         /// 裁剪后的视频地址。
         public let url: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// DescribeReplicationInstanceCreateTasks请求参数结构体
-    public struct DescribeReplicationInstanceCreateTasksRequest: TCRequestModel {
+    public struct DescribeReplicationInstanceCreateTasksRequest: TCRequest {
         /// 同步实例Id，见实例返回列表中的同步实例ID
         public let replicationRegistryId: String
 
@@ -39,7 +39,7 @@ extension Tcr {
     }
 
     /// DescribeReplicationInstanceCreateTasks返回参数结构体
-    public struct DescribeReplicationInstanceCreateTasksResponse: TCResponseModel {
+    public struct DescribeReplicationInstanceCreateTasksResponse: TCResponse {
         /// 任务详情
         public let taskDetail: [TaskDetail]
 

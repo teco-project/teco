@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdwch {
     /// ScaleUpInstance请求参数结构体
-    public struct ScaleUpInstanceRequest: TCRequestModel {
+    public struct ScaleUpInstanceRequest: TCRequest {
         /// 实例唯一ID
         public let instanceId: String
 
@@ -49,7 +49,7 @@ extension Cdwch {
     }
 
     /// ScaleUpInstance返回参数结构体
-    public struct ScaleUpInstanceResponse: TCResponseModel {
+    public struct ScaleUpInstanceResponse: TCResponse {
         /// 流程ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowId: String?

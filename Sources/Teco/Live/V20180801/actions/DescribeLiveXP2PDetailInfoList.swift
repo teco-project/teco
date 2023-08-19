@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeLiveXP2PDetailInfoList请求参数结构体
-    public struct DescribeLiveXP2PDetailInfoListRequest: TCRequestModel {
+    public struct DescribeLiveXP2PDetailInfoListRequest: TCRequest {
         /// utc分钟粒度查询时间，查询某一分钟的用量数据，格式为：yyyy-mm-ddTHH:MM:00Z，参考https://cloud.tencent.com/document/product/266/11732#I，
         /// 例如：北京时间2019-01-08 10:00:00，对应utc时间为：2019-01-08T10:00:00+08:00。
         ///
@@ -52,7 +52,7 @@ extension Live {
     }
 
     /// DescribeLiveXP2PDetailInfoList返回参数结构体
-    public struct DescribeLiveXP2PDetailInfoListResponse: TCResponseModel {
+    public struct DescribeLiveXP2PDetailInfoListResponse: TCResponse {
         /// P2P流统计信息。
         public let dataInfoList: [XP2PDetailInfo]
 

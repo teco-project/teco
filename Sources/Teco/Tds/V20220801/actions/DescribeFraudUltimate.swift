@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tds {
     /// DescribeFraudUltimate请求参数结构体
-    public struct DescribeFraudUltimateRequest: TCRequestModel {
+    public struct DescribeFraudUltimateRequest: TCRequest {
         /// 客户端通过SDK获取的设备Token
         public let deviceToken: String
 
@@ -74,7 +74,7 @@ extension Tds {
     }
 
     /// DescribeFraudUltimate返回参数结构体
-    public struct DescribeFraudUltimateResponse: TCResponseModel {
+    public struct DescribeFraudUltimateResponse: TCResponse {
         /// App版本信息
         public let appVersion: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryMerchantPayWayList请求参数结构体
-    public struct QueryMerchantPayWayListRequest: TCRequestModel {
+    public struct QueryMerchantPayWayListRequest: TCRequest {
         /// 使用门店OpenId
         public let openId: String
 
@@ -49,7 +49,7 @@ extension Cpdp {
     }
 
     /// QueryMerchantPayWayList返回参数结构体
-    public struct QueryMerchantPayWayListResponse: TCResponseModel {
+    public struct QueryMerchantPayWayListResponse: TCResponse {
         /// 业务系统返回码，0表示成功，其他表示失败。
         public let errCode: String
 

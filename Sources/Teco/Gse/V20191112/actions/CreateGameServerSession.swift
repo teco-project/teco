@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// CreateGameServerSession请求参数结构体
-    public struct CreateGameServerSessionRequest: TCRequestModel {
+    public struct CreateGameServerSessionRequest: TCRequest {
         /// 最大玩家数量，最小值不小于0
         public let maximumPlayerSessionCount: UInt64
 
@@ -74,7 +74,7 @@ extension Gse {
     }
 
     /// CreateGameServerSession返回参数结构体
-    public struct CreateGameServerSessionResponse: TCResponseModel {
+    public struct CreateGameServerSessionResponse: TCResponse {
         /// 游戏服务器会话
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gameServerSession: GameServerSession?

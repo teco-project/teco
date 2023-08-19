@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeRiskSyscallDetail请求参数结构体
-    public struct DescribeRiskSyscallDetailRequest: TCRequestModel {
+    public struct DescribeRiskSyscallDetailRequest: TCRequest {
         /// 事件唯一id
         public let eventId: String
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeRiskSyscallDetail返回参数结构体
-    public struct DescribeRiskSyscallDetailResponse: TCResponseModel {
+    public struct DescribeRiskSyscallDetailResponse: TCResponse {
         /// 事件基本信息
         public let eventBaseInfo: RunTimeEventBaseInfo
 

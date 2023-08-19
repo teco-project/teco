@@ -20,7 +20,7 @@ import TecoCore
 
 extension Zj {
     /// GetSmsAmountInfo请求参数结构体
-    public struct GetSmsAmountInfoRequest: TCRequestModel {
+    public struct GetSmsAmountInfoRequest: TCRequest {
         /// 商户证书
         public let license: String
 
@@ -34,7 +34,7 @@ extension Zj {
     }
 
     /// GetSmsAmountInfo返回参数结构体
-    public struct GetSmsAmountInfoResponse: TCResponseModel {
+    public struct GetSmsAmountInfoResponse: TCResponse {
         /// 短信账号额度接口
         public let data: SmsAmountDataStruct
 

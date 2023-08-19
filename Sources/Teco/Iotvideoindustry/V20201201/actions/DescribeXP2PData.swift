@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// DescribeXP2PData请求参数结构体
-    public struct DescribeXP2PDataRequest: TCRequestModel {
+    public struct DescribeXP2PDataRequest: TCRequest {
         /// P2P应用ID
         public let p2pAppId: String
 
@@ -49,7 +49,7 @@ extension Iotvideoindustry {
     }
 
     /// DescribeXP2PData返回参数结构体
-    public struct DescribeXP2PDataResponse: TCResponseModel {
+    public struct DescribeXP2PDataResponse: TCResponse {
         /// [log_time,cdn_bytes , p2p_bytes, online_people, stuck_times, stuck_people,request,request_success,request_fail,play_fail]
         /// [时间戳,cdn流量(字节) , p2p流量(字节), 在线人数, 卡播次数, 卡播人数,起播请求次数,起播成功次数,起播失败次数,播放失败次数, pcdn cdn流量（字节), pcdn路由流量(字节), 上传流量(字节)]
         /// [1481016480, 46118502414, 75144943171, 61691, 3853, 0,0,0,0,0, 0, 0, 0]

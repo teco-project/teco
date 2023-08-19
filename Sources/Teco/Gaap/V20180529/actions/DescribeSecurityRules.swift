@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// DescribeSecurityRules请求参数结构体
-    public struct DescribeSecurityRulesRequest: TCRequestModel {
+    public struct DescribeSecurityRulesRequest: TCRequest {
         /// 安全规则ID列表。总数不能超过20个。
         public let securityRuleIds: [String]
 
@@ -34,7 +34,7 @@ extension Gaap {
     }
 
     /// DescribeSecurityRules返回参数结构体
-    public struct DescribeSecurityRulesResponse: TCResponseModel {
+    public struct DescribeSecurityRulesResponse: TCResponse {
         /// 返回的安全规则详情总数。
         public let totalCount: UInt64
 

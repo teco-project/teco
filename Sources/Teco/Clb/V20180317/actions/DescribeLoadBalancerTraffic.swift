@@ -20,7 +20,7 @@ import TecoCore
 
 extension Clb {
     /// DescribeLoadBalancerTraffic请求参数结构体
-    public struct DescribeLoadBalancerTrafficRequest: TCRequestModel {
+    public struct DescribeLoadBalancerTrafficRequest: TCRequest {
         /// 负载均衡所在地域，不传默认返回所有地域负载均衡。
         public let loadBalancerRegion: String?
 
@@ -34,7 +34,7 @@ extension Clb {
     }
 
     /// DescribeLoadBalancerTraffic返回参数结构体
-    public struct DescribeLoadBalancerTrafficResponse: TCResponseModel {
+    public struct DescribeLoadBalancerTrafficResponse: TCResponse {
         /// 按出带宽从高到低排序后的负载均衡信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let loadBalancerTraffic: [LoadBalancerTraffic]?

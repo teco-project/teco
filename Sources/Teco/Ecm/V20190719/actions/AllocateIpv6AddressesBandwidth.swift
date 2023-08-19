@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// AllocateIpv6AddressesBandwidth请求参数结构体
-    public struct AllocateIpv6AddressesBandwidthRequest: TCRequestModel {
+    public struct AllocateIpv6AddressesBandwidthRequest: TCRequest {
         /// ECM 地域。
         public let ecmRegion: String
 
@@ -49,7 +49,7 @@ extension Ecm {
     }
 
     /// AllocateIpv6AddressesBandwidth返回参数结构体
-    public struct AllocateIpv6AddressesBandwidthResponse: TCResponseModel {
+    public struct AllocateIpv6AddressesBandwidthResponse: TCResponse {
         /// 弹性公网 IPV6 的唯一 ID 列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let addressSet: [String]?

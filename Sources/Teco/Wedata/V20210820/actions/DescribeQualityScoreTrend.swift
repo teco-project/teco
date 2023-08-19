@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeQualityScoreTrend请求参数结构体
-    public struct DescribeQualityScoreTrendRequest: TCRequestModel {
+    public struct DescribeQualityScoreTrendRequest: TCRequest {
         /// 统计开始日期
         public let statisticsStartDate: Int64
 
@@ -59,7 +59,7 @@ extension Wedata {
     }
 
     /// DescribeQualityScoreTrend返回参数结构体
-    public struct DescribeQualityScoreTrendResponse: TCResponseModel {
+    public struct DescribeQualityScoreTrendResponse: TCResponse {
         /// 质量评分趋势视图
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: QualityScoreTrend?

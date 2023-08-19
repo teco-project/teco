@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// DescribeDBInstanceHAConfig请求参数结构体
-    public struct DescribeDBInstanceHAConfigRequest: TCRequestModel {
+    public struct DescribeDBInstanceHAConfigRequest: TCRequest {
         /// 实例ID
         public let dbInstanceId: String
 
@@ -34,7 +34,7 @@ extension Postgres {
     }
 
     /// DescribeDBInstanceHAConfig返回参数结构体
-    public struct DescribeDBInstanceHAConfigResponse: TCResponseModel {
+    public struct DescribeDBInstanceHAConfigResponse: TCResponse {
         /// 主从同步方式：
         /// - Semi-sync：半同步
         /// - Async：异步

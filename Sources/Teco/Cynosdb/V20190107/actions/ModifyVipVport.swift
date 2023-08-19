@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// ModifyVipVport请求参数结构体
-    public struct ModifyVipVportRequest: TCRequestModel {
+    public struct ModifyVipVportRequest: TCRequest {
         /// 集群id
         public let clusterId: String
 
@@ -60,7 +60,7 @@ extension Cynosdb {
     }
 
     /// ModifyVipVport返回参数结构体
-    public struct ModifyVipVportResponse: TCResponseModel {
+    public struct ModifyVipVportResponse: TCResponse {
         /// 异步任务id
         public let flowId: Int64
 

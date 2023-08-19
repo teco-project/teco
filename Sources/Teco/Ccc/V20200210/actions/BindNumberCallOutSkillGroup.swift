@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ccc {
     /// BindNumberCallOutSkillGroup请求参数结构体
-    public struct BindNumberCallOutSkillGroupRequest: TCRequestModel {
+    public struct BindNumberCallOutSkillGroupRequest: TCRequest {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         public let sdkAppId: UInt64
 
@@ -44,7 +44,7 @@ extension Ccc {
     }
 
     /// BindNumberCallOutSkillGroup返回参数结构体
-    public struct BindNumberCallOutSkillGroupResponse: TCResponseModel {
+    public struct BindNumberCallOutSkillGroupResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

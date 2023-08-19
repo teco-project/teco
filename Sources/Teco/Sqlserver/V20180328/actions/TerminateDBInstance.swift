@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// TerminateDBInstance请求参数结构体
-    public struct TerminateDBInstanceRequest: TCRequestModel {
+    public struct TerminateDBInstanceRequest: TCRequest {
         /// 主动销毁的实例ID列表，格式如：[mssql-3l3fgqn7]。与云数据库控制台页面中显示的实例ID相同
         public let instanceIdSet: [String]
 
@@ -34,7 +34,7 @@ extension Sqlserver {
     }
 
     /// TerminateDBInstance返回参数结构体
-    public struct TerminateDBInstanceResponse: TCResponseModel {
+    public struct TerminateDBInstanceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

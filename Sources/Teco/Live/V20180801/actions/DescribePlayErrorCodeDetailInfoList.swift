@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribePlayErrorCodeDetailInfoList请求参数结构体
-    public struct DescribePlayErrorCodeDetailInfoListRequest: TCRequestModel {
+    public struct DescribePlayErrorCodeDetailInfoListRequest: TCRequest {
         /// 起始时间，北京时间，
         /// 格式：yyyy-mm-dd HH:MM:SS。
         public let startTime: String
@@ -63,7 +63,7 @@ extension Live {
     }
 
     /// DescribePlayErrorCodeDetailInfoList返回参数结构体
-    public struct DescribePlayErrorCodeDetailInfoListResponse: TCResponseModel {
+    public struct DescribePlayErrorCodeDetailInfoListResponse: TCResponse {
         /// 统计信息列表。
         public let httpCodeList: [HttpCodeInfo]
 

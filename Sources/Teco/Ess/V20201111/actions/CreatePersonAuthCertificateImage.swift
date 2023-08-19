@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// CreatePersonAuthCertificateImage请求参数结构体
-    public struct CreatePersonAuthCertificateImageRequest: TCRequestModel {
+    public struct CreatePersonAuthCertificateImageRequest: TCRequest {
         /// 操作人信息
         public let `operator`: UserInfo
 
@@ -54,7 +54,7 @@ extension Ess {
     }
 
     /// CreatePersonAuthCertificateImage返回参数结构体
-    public struct CreatePersonAuthCertificateImageResponse: TCResponseModel {
+    public struct CreatePersonAuthCertificateImageResponse: TCResponse {
         /// 个人用户证明证书的下载链接
         public let authCertUrl: String
 

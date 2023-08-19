@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// DescribeCDNUsageData请求参数结构体
-    public struct DescribeCDNUsageDataRequest: TCRequestModel {
+    public struct DescribeCDNUsageDataRequest: TCRequest {
         /// 起始日期，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         public let startTime: String
 
@@ -66,7 +66,7 @@ extension Vod {
     }
 
     /// DescribeCDNUsageData返回参数结构体
-    public struct DescribeCDNUsageDataResponse: TCResponseModel {
+    public struct DescribeCDNUsageDataResponse: TCResponse {
         /// 时间粒度，单位：分钟。
         public let dataInterval: Int64
 

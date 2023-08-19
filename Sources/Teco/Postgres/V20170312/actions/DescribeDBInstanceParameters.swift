@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// DescribeDBInstanceParameters请求参数结构体
-    public struct DescribeDBInstanceParametersRequest: TCRequestModel {
+    public struct DescribeDBInstanceParametersRequest: TCRequest {
         /// 实例ID
         public let dbInstanceId: String
 
@@ -39,7 +39,7 @@ extension Postgres {
     }
 
     /// DescribeDBInstanceParameters返回参数结构体
-    public struct DescribeDBInstanceParametersResponse: TCResponseModel {
+    public struct DescribeDBInstanceParametersResponse: TCResponse {
         /// 参数列表总数
         public let totalCount: Int64
 

@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Tcss {
     /// DescribeAbnormalProcessEventTendency请求参数结构体
-    public struct DescribeAbnormalProcessEventTendencyRequest: TCRequestModel {
+    public struct DescribeAbnormalProcessEventTendencyRequest: TCRequest {
         /// 开始时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -47,7 +47,7 @@ extension Tcss {
     }
 
     /// DescribeAbnormalProcessEventTendency返回参数结构体
-    public struct DescribeAbnormalProcessEventTendencyResponse: TCResponseModel {
+    public struct DescribeAbnormalProcessEventTendencyResponse: TCResponse {
         /// 待处理异常进程事件趋势
         public let list: [AbnormalProcessEventTendencyInfo]
 

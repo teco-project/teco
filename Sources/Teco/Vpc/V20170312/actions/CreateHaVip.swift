@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CreateHaVip请求参数结构体
-    public struct CreateHaVipRequest: TCRequestModel {
+    public struct CreateHaVipRequest: TCRequest {
         /// `HAVIP`所在私有网络`ID`。
         public let vpcId: String
 
@@ -54,7 +54,7 @@ extension Vpc {
     }
 
     /// CreateHaVip返回参数结构体
-    public struct CreateHaVipResponse: TCResponseModel {
+    public struct CreateHaVipResponse: TCResponse {
         /// `HAVIP`对象。
         public let haVip: HaVip
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// ModifySeal请求参数结构体
-    public struct ModifySealRequest: TCRequestModel {
+    public struct ModifySealRequest: TCRequest {
         /// 调用方信息
         public let caller: Caller
 
@@ -64,7 +64,7 @@ extension Essbasic {
     }
 
     /// ModifySeal返回参数结构体
-    public struct ModifySealResponse: TCResponseModel {
+    public struct ModifySealResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

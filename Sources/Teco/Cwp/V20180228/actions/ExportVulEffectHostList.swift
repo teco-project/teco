@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ExportVulEffectHostList请求参数结构体
-    public struct ExportVulEffectHostListRequest: TCRequestModel {
+    public struct ExportVulEffectHostListRequest: TCRequest {
         /// 漏洞id
         public let vulId: UInt64
 
@@ -40,7 +40,7 @@ extension Cwp {
     }
 
     /// ExportVulEffectHostList返回参数结构体
-    public struct ExportVulEffectHostListResponse: TCResponseModel {
+    public struct ExportVulEffectHostListResponse: TCResponse {
         /// 已废弃
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let downloadUrl: String?

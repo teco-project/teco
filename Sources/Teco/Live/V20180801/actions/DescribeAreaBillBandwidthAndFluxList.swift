@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeAreaBillBandwidthAndFluxList请求参数结构体
-    public struct DescribeAreaBillBandwidthAndFluxListRequest: TCRequestModel {
+    public struct DescribeAreaBillBandwidthAndFluxListRequest: TCRequest {
         /// 起始时间点，格式为yyyy-mm-dd HH:MM:SS。
         public let startTime: String
 
@@ -44,7 +44,7 @@ extension Live {
     }
 
     /// DescribeAreaBillBandwidthAndFluxList返回参数结构体
-    public struct DescribeAreaBillBandwidthAndFluxListResponse: TCResponseModel {
+    public struct DescribeAreaBillBandwidthAndFluxListResponse: TCResponse {
         /// 明细数据信息。
         public let dataInfoList: [BillAreaInfo]
 

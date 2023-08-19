@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cbs {
     /// DeleteAutoSnapshotPolicies请求参数结构体
-    public struct DeleteAutoSnapshotPoliciesRequest: TCRequestModel {
+    public struct DeleteAutoSnapshotPoliciesRequest: TCRequest {
         /// 要删除的定期快照策略ID列表。
         public let autoSnapshotPolicyIds: [String]
 
@@ -34,7 +34,7 @@ extension Cbs {
     }
 
     /// DeleteAutoSnapshotPolicies返回参数结构体
-    public struct DeleteAutoSnapshotPoliciesResponse: TCResponseModel {
+    public struct DeleteAutoSnapshotPoliciesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

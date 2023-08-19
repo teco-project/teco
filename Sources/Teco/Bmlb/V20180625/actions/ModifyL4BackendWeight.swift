@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmlb {
     /// ModifyL4BackendWeight请求参数结构体
-    public struct ModifyL4BackendWeightRequest: TCRequestModel {
+    public struct ModifyL4BackendWeightRequest: TCRequest {
         /// 负载均衡实例ID，可通过接口DescribeLoadBalancers查询。
         public let loadBalancerId: String
 
@@ -59,7 +59,7 @@ extension Bmlb {
     }
 
     /// ModifyL4BackendWeight返回参数结构体
-    public struct ModifyL4BackendWeightResponse: TCResponseModel {
+    public struct ModifyL4BackendWeightResponse: TCResponse {
         /// 任务ID。该接口为异步任务，可根据本参数调用DescribeLoadBalancerTaskResult接口来查询任务操作结果。
         public let taskId: String
 

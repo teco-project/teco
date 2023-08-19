@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// ReleaseApiGroup请求参数结构体
-    public struct ReleaseApiGroupRequest: TCRequestModel {
+    public struct ReleaseApiGroupRequest: TCRequest {
         /// Api 分组ID
         public let groupId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// ReleaseApiGroup返回参数结构体
-    public struct ReleaseApiGroupResponse: TCResponseModel {
+    public struct ReleaseApiGroupResponse: TCResponse {
         /// 成功/失败
         public let result: Bool
 
