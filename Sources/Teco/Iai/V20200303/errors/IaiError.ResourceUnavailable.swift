@@ -55,6 +55,8 @@ extension TCIaiError {
         }
 
         /// 帐号已欠费。
+        ///
+        /// None
         public static var chargeStatusException: ResourceUnavailable {
             ResourceUnavailable(.chargeStatusException)
         }
@@ -65,6 +67,8 @@ extension TCIaiError {
         }
 
         /// 帐号已被冻结。
+        ///
+        /// None
         public static var freeze: ResourceUnavailable {
             ResourceUnavailable(.freeze)
         }
@@ -75,6 +79,8 @@ extension TCIaiError {
         }
 
         /// 帐号已欠费。
+        ///
+        /// None
         public static var inArrears: ResourceUnavailable {
             ResourceUnavailable(.inArrears)
         }
@@ -100,6 +106,8 @@ extension TCIaiError {
         }
 
         /// 帐号已停服。
+        ///
+        /// None
         public static var stopUsing: ResourceUnavailable {
             ResourceUnavailable(.stopUsing)
         }

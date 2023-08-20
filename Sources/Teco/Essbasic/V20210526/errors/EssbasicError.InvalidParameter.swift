@@ -26,6 +26,7 @@ extension TCEssbasicError {
             case bizApproverAlreadyExists = "InvalidParameter.BizApproverAlreadyExists"
             case businessLicense = "InvalidParameter.BusinessLicense"
             case cancelReason = "InvalidParameter.CancelReason"
+            case cardNumber = "InvalidParameter.CardNumber"
             case cardType = "InvalidParameter.CardType"
             case componentValue = "InvalidParameter.ComponentValue"
             case contentType = "InvalidParameter.ContentType"
@@ -116,6 +117,7 @@ extension TCEssbasicError {
 
         /// 1:上传授权书
         /// 2:法人授权
+        /// 4:信任第三方认证源
         public static var authorizationType: InvalidParameter {
             InvalidParameter(.authorizationType)
         }
@@ -135,6 +137,13 @@ extension TCEssbasicError {
         /// 撤销理由填写格式错误。
         public static var cancelReason: InvalidParameter {
             InvalidParameter(.cancelReason)
+        }
+
+        /// 证件号码错误。
+        ///
+        /// 请检查证件号码是否规范。
+        public static var cardNumber: InvalidParameter {
+            InvalidParameter(.cardNumber)
         }
 
         /// 证件类型错误。
@@ -400,6 +409,8 @@ extension TCEssbasicError {
                 code = .invalidParameter_BusinessLicense
             case .cancelReason:
                 code = .invalidParameter_CancelReason
+            case .cardNumber:
+                code = .invalidParameter_CardNumber
             case .cardType:
                 code = .invalidParameter_CardType
             case .componentValue:

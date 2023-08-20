@@ -117,6 +117,13 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorInfo: [ErrorInfoItem]?
 
+        /// 全量导出可重入标识：enum::"yes"/"no"。yes表示当前任务可重入、no表示当前任务处于全量导出且不可重入阶段；如果在该值为no时重启任务导出流程不支持断点续传
+        public let dumperResumeCtrl: String
+
+        /// 任务的限速信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rateLimitOption: RateLimitOption?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -141,6 +148,8 @@ extension Dts {
             case checkStepInfo = "CheckStepInfo"
             case tradeInfo = "TradeInfo"
             case errorInfo = "ErrorInfo"
+            case dumperResumeCtrl = "DumperResumeCtrl"
+            case rateLimitOption = "RateLimitOption"
             case requestId = "RequestId"
         }
     }

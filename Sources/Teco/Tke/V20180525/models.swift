@@ -987,6 +987,21 @@ extension Tke {
         }
     }
 
+    /// 集群属性
+    public struct ClusterProperty: TCInputModel, TCOutputModel {
+        /// 节点hostname命名模式
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nodeNameType: String?
+
+        public init(nodeNameType: String? = nil) {
+            self.nodeNameType = nodeNameType
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case nodeNameType = "NodeNameType"
+        }
+    }
+
     /// 弹性容器集群公网访问负载均衡信息
     public struct ClusterPublicLB: TCInputModel {
         /// 是否开启公网访问LB

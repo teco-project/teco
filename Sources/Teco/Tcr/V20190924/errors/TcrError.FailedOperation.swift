@@ -30,6 +30,7 @@ extension TCTcrError {
             case getSecurityPolicyFail = "FailedOperation.GetSecurityPolicyFail"
             case getTcrClient = "FailedOperation.GetTcrClient"
             case operationCancel = "FailedOperation.OperationCancel"
+            case preconditionFailed = "FailedOperation.PreconditionFailed"
             case tradeFailed = "FailedOperation.TradeFailed"
             case validateRegistryNameFail = "FailedOperation.ValidateRegistryNameFail"
             case validateSupportedRegionFail = "FailedOperation.ValidateSupportedRegionFail"
@@ -118,6 +119,10 @@ extension TCTcrError {
             FailedOperation(.operationCancel)
         }
 
+        public static var preconditionFailed: FailedOperation {
+            FailedOperation(.preconditionFailed)
+        }
+
         /// 交易失败。
         ///
         /// 请检查帐户余额是否充足。
@@ -165,6 +170,8 @@ extension TCTcrError {
                 code = .failedOperation_GetTcrClient
             case .operationCancel:
                 code = .failedOperation_OperationCancel
+            case .preconditionFailed:
+                code = .failedOperation_PreconditionFailed
             case .tradeFailed:
                 code = .failedOperation_TradeFailed
             case .validateRegistryNameFail:

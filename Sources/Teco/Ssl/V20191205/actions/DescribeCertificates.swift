@@ -61,7 +61,10 @@ extension Ssl {
         /// 筛选证书是否即将过期，传1是筛选，0不筛选
         public let filterExpiring: UInt64?
 
-        public init(offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, certificateType: String? = nil, projectId: UInt64? = nil, expirationSort: String? = nil, certificateStatus: [UInt64]? = nil, deployable: UInt64? = nil, upload: Int64? = nil, renew: Int64? = nil, filterSource: String? = nil, isSM: Int64? = nil, filterExpiring: UInt64? = nil) {
+        /// 是否可托管，可选值：1 = 可托管，0 =  不可托管。
+        public let hostable: UInt64?
+
+        public init(offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, certificateType: String? = nil, projectId: UInt64? = nil, expirationSort: String? = nil, certificateStatus: [UInt64]? = nil, deployable: UInt64? = nil, upload: Int64? = nil, renew: Int64? = nil, filterSource: String? = nil, isSM: Int64? = nil, filterExpiring: UInt64? = nil, hostable: UInt64? = nil) {
             self.offset = offset
             self.limit = limit
             self.searchKey = searchKey
@@ -75,6 +78,7 @@ extension Ssl {
             self.filterSource = filterSource
             self.isSM = isSM
             self.filterExpiring = filterExpiring
+            self.hostable = hostable
         }
 
         enum CodingKeys: String, CodingKey {
@@ -91,6 +95,7 @@ extension Ssl {
             case filterSource = "FilterSource"
             case isSM = "IsSM"
             case filterExpiring = "FilterExpiring"
+            case hostable = "Hostable"
         }
 
         /// Compute the next request based on API response.
@@ -98,7 +103,7 @@ extension Ssl {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchKey: self.searchKey, certificateType: self.certificateType, projectId: self.projectId, expirationSort: self.expirationSort, certificateStatus: self.certificateStatus, deployable: self.deployable, upload: self.upload, renew: self.renew, filterSource: self.filterSource, isSM: self.isSM, filterExpiring: self.filterExpiring)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchKey: self.searchKey, certificateType: self.certificateType, projectId: self.projectId, expirationSort: self.expirationSort, certificateStatus: self.certificateStatus, deployable: self.deployable, upload: self.upload, renew: self.renew, filterSource: self.filterSource, isSM: self.isSM, filterExpiring: self.filterExpiring, hostable: self.hostable)
         }
     }
 
@@ -152,16 +157,16 @@ extension Ssl {
     ///
     /// 本接口（DescribeCertificates）用于获取证书列表。
     @inlinable
-    public func describeCertificates(offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, certificateType: String? = nil, projectId: UInt64? = nil, expirationSort: String? = nil, certificateStatus: [UInt64]? = nil, deployable: UInt64? = nil, upload: Int64? = nil, renew: Int64? = nil, filterSource: String? = nil, isSM: Int64? = nil, filterExpiring: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCertificatesResponse> {
-        self.describeCertificates(.init(offset: offset, limit: limit, searchKey: searchKey, certificateType: certificateType, projectId: projectId, expirationSort: expirationSort, certificateStatus: certificateStatus, deployable: deployable, upload: upload, renew: renew, filterSource: filterSource, isSM: isSM, filterExpiring: filterExpiring), region: region, logger: logger, on: eventLoop)
+    public func describeCertificates(offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, certificateType: String? = nil, projectId: UInt64? = nil, expirationSort: String? = nil, certificateStatus: [UInt64]? = nil, deployable: UInt64? = nil, upload: Int64? = nil, renew: Int64? = nil, filterSource: String? = nil, isSM: Int64? = nil, filterExpiring: UInt64? = nil, hostable: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCertificatesResponse> {
+        self.describeCertificates(.init(offset: offset, limit: limit, searchKey: searchKey, certificateType: certificateType, projectId: projectId, expirationSort: expirationSort, certificateStatus: certificateStatus, deployable: deployable, upload: upload, renew: renew, filterSource: filterSource, isSM: isSM, filterExpiring: filterExpiring, hostable: hostable), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取证书列表
     ///
     /// 本接口（DescribeCertificates）用于获取证书列表。
     @inlinable
-    public func describeCertificates(offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, certificateType: String? = nil, projectId: UInt64? = nil, expirationSort: String? = nil, certificateStatus: [UInt64]? = nil, deployable: UInt64? = nil, upload: Int64? = nil, renew: Int64? = nil, filterSource: String? = nil, isSM: Int64? = nil, filterExpiring: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertificatesResponse {
-        try await self.describeCertificates(.init(offset: offset, limit: limit, searchKey: searchKey, certificateType: certificateType, projectId: projectId, expirationSort: expirationSort, certificateStatus: certificateStatus, deployable: deployable, upload: upload, renew: renew, filterSource: filterSource, isSM: isSM, filterExpiring: filterExpiring), region: region, logger: logger, on: eventLoop)
+    public func describeCertificates(offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, certificateType: String? = nil, projectId: UInt64? = nil, expirationSort: String? = nil, certificateStatus: [UInt64]? = nil, deployable: UInt64? = nil, upload: Int64? = nil, renew: Int64? = nil, filterSource: String? = nil, isSM: Int64? = nil, filterExpiring: UInt64? = nil, hostable: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertificatesResponse {
+        try await self.describeCertificates(.init(offset: offset, limit: limit, searchKey: searchKey, certificateType: certificateType, projectId: projectId, expirationSort: expirationSort, certificateStatus: certificateStatus, deployable: deployable, upload: upload, renew: renew, filterSource: filterSource, isSM: isSM, filterExpiring: filterExpiring, hostable: hostable), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取证书列表

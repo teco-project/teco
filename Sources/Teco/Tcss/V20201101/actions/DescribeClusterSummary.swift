@@ -63,6 +63,18 @@ extension Tcss {
         /// eks集群数量
         public let serverlessClusterCount: UInt64
 
+        /// TKE集群数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tkeClusterCount: UInt64?
+
+        /// 用户自建腾讯云集群数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userCreateTencentClusterCount: UInt64?
+
+        /// 用户自建集群混合云数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userCreateHybridClusterCount: UInt64?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -79,6 +91,9 @@ extension Tcss {
             case failedClusterCount = "FailedClusterCount"
             case notImportedClusterCount = "NotImportedClusterCount"
             case serverlessClusterCount = "ServerlessClusterCount"
+            case tkeClusterCount = "TkeClusterCount"
+            case userCreateTencentClusterCount = "UserCreateTencentClusterCount"
+            case userCreateHybridClusterCount = "UserCreateHybridClusterCount"
             case requestId = "RequestId"
         }
     }

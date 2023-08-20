@@ -96,7 +96,7 @@ extension Cynosdb {
 
     /// 查询代理节点列表
     ///
-    /// 本接口（DescribeProxyNodes）用于查询代理接口列表。
+    /// 本接口（DescribeProxyNodes）用于查询代理节点列表。
     @inlinable
     public func describeProxyNodes(_ input: DescribeProxyNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyNodesResponse> {
         self.client.execute(action: "DescribeProxyNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -104,7 +104,7 @@ extension Cynosdb {
 
     /// 查询代理节点列表
     ///
-    /// 本接口（DescribeProxyNodes）用于查询代理接口列表。
+    /// 本接口（DescribeProxyNodes）用于查询代理节点列表。
     @inlinable
     public func describeProxyNodes(_ input: DescribeProxyNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyNodesResponse {
         try await self.client.execute(action: "DescribeProxyNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -112,7 +112,7 @@ extension Cynosdb {
 
     /// 查询代理节点列表
     ///
-    /// 本接口（DescribeProxyNodes）用于查询代理接口列表。
+    /// 本接口（DescribeProxyNodes）用于查询代理节点列表。
     @inlinable
     public func describeProxyNodes(limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, filters: [QueryFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyNodesResponse> {
         self.describeProxyNodes(.init(limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, filters: filters), region: region, logger: logger, on: eventLoop)
@@ -120,7 +120,7 @@ extension Cynosdb {
 
     /// 查询代理节点列表
     ///
-    /// 本接口（DescribeProxyNodes）用于查询代理接口列表。
+    /// 本接口（DescribeProxyNodes）用于查询代理节点列表。
     @inlinable
     public func describeProxyNodes(limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, filters: [QueryFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyNodesResponse {
         try await self.describeProxyNodes(.init(limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, filters: filters), region: region, logger: logger, on: eventLoop)
@@ -128,7 +128,7 @@ extension Cynosdb {
 
     /// 查询代理节点列表
     ///
-    /// 本接口（DescribeProxyNodes）用于查询代理接口列表。
+    /// 本接口（DescribeProxyNodes）用于查询代理节点列表。
     @inlinable
     public func describeProxyNodesPaginated(_ input: DescribeProxyNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ProxyNodeInfo])> {
         self.client.paginate(input: input, region: region, command: self.describeProxyNodes, logger: logger, on: eventLoop)
@@ -136,7 +136,7 @@ extension Cynosdb {
 
     /// 查询代理节点列表
     ///
-    /// 本接口（DescribeProxyNodes）用于查询代理接口列表。
+    /// 本接口（DescribeProxyNodes）用于查询代理节点列表。
     @inlinable @discardableResult
     public func describeProxyNodesPaginated(_ input: DescribeProxyNodesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProxyNodesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeProxyNodes, callback: onResponse, logger: logger, on: eventLoop)
@@ -144,7 +144,7 @@ extension Cynosdb {
 
     /// 查询代理节点列表
     ///
-    /// 本接口（DescribeProxyNodes）用于查询代理接口列表。
+    /// 本接口（DescribeProxyNodes）用于查询代理节点列表。
     ///
     /// - Returns: `AsyncSequence`s of ``ProxyNodeInfo`` and ``DescribeProxyNodesResponse`` that can be iterated over asynchronously on demand.
     @inlinable

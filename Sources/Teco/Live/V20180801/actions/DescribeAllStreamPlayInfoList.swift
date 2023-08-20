@@ -58,6 +58,7 @@ extension Live {
 
     /// 查询某个时间点所有流的下行播放数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 输入某个时间点（1分钟维度），查询该时间点所有流的下行信息。
     @inlinable
     public func describeAllStreamPlayInfoList(_ input: DescribeAllStreamPlayInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllStreamPlayInfoListResponse> {
@@ -66,6 +67,7 @@ extension Live {
 
     /// 查询某个时间点所有流的下行播放数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 输入某个时间点（1分钟维度），查询该时间点所有流的下行信息。
     @inlinable
     public func describeAllStreamPlayInfoList(_ input: DescribeAllStreamPlayInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllStreamPlayInfoListResponse {
@@ -74,6 +76,7 @@ extension Live {
 
     /// 查询某个时间点所有流的下行播放数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 输入某个时间点（1分钟维度），查询该时间点所有流的下行信息。
     @inlinable
     public func describeAllStreamPlayInfoList(queryTime: String, playDomains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllStreamPlayInfoListResponse> {
@@ -82,6 +85,7 @@ extension Live {
 
     /// 查询某个时间点所有流的下行播放数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 输入某个时间点（1分钟维度），查询该时间点所有流的下行信息。
     @inlinable
     public func describeAllStreamPlayInfoList(queryTime: String, playDomains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllStreamPlayInfoListResponse {

@@ -19,7 +19,6 @@ import TecoCore
 extension TCEssError {
     public struct FailedOperation: TCEssErrorType {
         enum Code: String {
-            case accountVerifyFail = "FailedOperation.AccountVerifyFail"
             case ageNotAchieveNormalLegal = "FailedOperation.AgeNotAchieveNormalLegal"
             case flowHasDocument = "FailedOperation.FlowHasDocument"
             case flowHasNoDocument = "FailedOperation.FlowHasNoDocument"
@@ -62,11 +61,6 @@ extension TCEssError {
         internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
-        }
-
-        /// 实名认证失败。
-        public static var accountVerifyFail: FailedOperation {
-            FailedOperation(.accountVerifyFail)
         }
 
         /// 年龄限制无法使用电子签服务，请联系客服咨询处理。
@@ -174,8 +168,6 @@ extension TCEssError {
         public func asEssError() -> TCEssError {
             let code: TCEssError.Code
             switch self.error {
-            case .accountVerifyFail:
-                code = .failedOperation_AccountVerifyFail
             case .ageNotAchieveNormalLegal:
                 code = .failedOperation_AgeNotAchieveNormalLegal
             case .flowHasDocument:

@@ -584,23 +584,29 @@ extension Trp {
     }
 
     /// 环节数据
-    public struct PhaseData: TCInputModel {
+    public struct PhaseData: TCInputModel, TCOutputModel {
         /// 启用头
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headEnabled: Bool?
 
         /// 标题
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headTitle: String?
 
         /// 标识符
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let key: String?
 
         /// 小程序AppId
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appId: String?
 
         /// 小程序AppPath
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appPath: String?
 
         /// 小程序名称AppName
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appName: String?
 
         public init(headEnabled: Bool? = nil, headTitle: String? = nil, key: String? = nil, appId: String? = nil, appPath: String? = nil, appName: String? = nil) {

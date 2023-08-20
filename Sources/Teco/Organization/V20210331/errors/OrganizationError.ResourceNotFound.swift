@@ -23,6 +23,7 @@ extension TCOrganizationError {
             case memberIdentityNotExist = "ResourceNotFound.MemberIdentityNotExist"
             case memberNotExist = "ResourceNotFound.MemberNotExist"
             case memberPolicyNotExist = "ResourceNotFound.MemberPolicyNotExist"
+            case organizationIdentityNotExist = "ResourceNotFound.OrganizationIdentityNotExist"
             case organizationMemberNotExist = "ResourceNotFound.OrganizationMemberNotExist"
             case organizationNodeNotExist = "ResourceNotFound.OrganizationNodeNotExist"
             case organizationNotExist = "ResourceNotFound.OrganizationNotExist"
@@ -72,6 +73,11 @@ extension TCOrganizationError {
             ResourceNotFound(.memberPolicyNotExist)
         }
 
+        /// 组织身份不存在。
+        public static var organizationIdentityNotExist: ResourceNotFound {
+            ResourceNotFound(.organizationIdentityNotExist)
+        }
+
         /// 组织成员不存在。
         public static var organizationMemberNotExist: ResourceNotFound {
             ResourceNotFound(.organizationMemberNotExist)
@@ -108,6 +114,8 @@ extension TCOrganizationError {
                 code = .resourceNotFound_MemberNotExist
             case .memberPolicyNotExist:
                 code = .resourceNotFound_MemberPolicyNotExist
+            case .organizationIdentityNotExist:
+                code = .resourceNotFound_OrganizationIdentityNotExist
             case .organizationMemberNotExist:
                 code = .resourceNotFound_OrganizationMemberNotExist
             case .organizationNodeNotExist:

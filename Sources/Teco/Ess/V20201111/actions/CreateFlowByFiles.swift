@@ -21,91 +21,146 @@ import TecoCore
 extension Ess {
     /// CreateFlowByFiles请求参数结构体
     public struct CreateFlowByFilesRequest: TCRequest {
-        /// 调用方用户信息，userId 必填。支持填入集团子公司经办人 userId 代发合同
+        /// 执行本接口操作的员工信息。使用此接口时，必须填写userId。
+        /// 支持填入集团子公司经办人 userId 代发合同。
+        ///
+        /// 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         public let `operator`: UserInfo
 
-        /// 签署流程名称,最大长度200个字符
+        /// 合同流程的名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。
+        ///
+        /// 该名称还将用于合同签署完成后的下载文件名。
         public let flowName: String
 
-        /// 签署参与者信息，最大限制50方
+        /// 合同流程的参与方列表，最多可支持50个参与方，可在列表中指定企业B端签署方和个人C端签署方的联系和认证方式等信息，具体定义可以参考开发者中心的ApproverInfo结构体。
+        ///
+        /// 如果合同流程是有序签署，Approvers列表中参与人的顺序就是默认的签署顺序，请确保列表中参与人的顺序符合实际签署顺序。
         public let approvers: [ApproverInfo]
 
-        /// 签署pdf文件的资源编号列表，通过UploadFiles接口获取，暂时仅支持单文件发起
+        /// 本合同流程需包含的PDF文件资源编号列表，通过[UploadFiles](https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles)接口获取PDF文件资源编号。
+        ///
+        /// 注:  `目前，此接口仅支持单个文件发起。`
         public let fileIds: [String]
 
-        /// 签署流程的类型(如销售合同/入职合同等)，最大长度200个字符
-        public let flowType: String?
-
-        /// 经办人内容控件配置
-        public let components: [Component]?
-
-        /// 被抄送人的信息列表。
-        /// 注:此功能为白名单功能，若有需要，请联系电子签客服开白使用
-        public let ccInfos: [CcInfo]?
-
-        /// 是否需要预览，true：预览模式，false：非预览（默认）；
-        /// 预览链接有效期300秒；
-        ///
-        /// 注：如果使用“预览模式”，出参会返回合同预览链接 PreviewUrl，不会正式发起合同，且出参不会返回签署流程编号 FlowId；如果使用“非预览”，则会正常返回签署流程编号 FlowId，不会生成合同预览链接 PreviewUrl。
-        public let needPreview: Bool?
-
-        /// 预览链接类型 默认:0-文件流, 1- H5链接 注意:此参数在NeedPreview 为true 时有效,
-        public let previewType: Int64?
-
-        /// 签署流程的签署截止时间。
-        /// 值为unix时间戳,精确到秒,不传默认为当前时间一年后
-        public let deadline: Int64?
-
-        /// 合同到期提醒时间戳，单位秒。设定该值后，可以提前进行到期通知，方便客户处理合同到期事务，如合同续签等。该值支持的范围是从发起时间起到往后的10年内。仅合同发起方企业的发起人可以编辑修改。
-        public let remindedOn: Int64?
-
-        /// 发送类型：
-        /// true：无序签
-        /// false：有序签
-        /// 注：默认为false（有序签）
-        public let unordered: Bool?
-
-        /// 合同显示的页卡模板，说明：只支持{合同名称}, {发起方企业}, {发起方姓名}, {签署方N企业}, {签署方N姓名}，且N不能超过签署人的数量，N从1开始
-        public let customShowMap: String?
-
-        /// 发起方企业的签署人进行签署操作是否需要企业内部审批。使用此功能需要发起方企业有参与签署。
-        /// 若设置为true，审核结果需通过接口 CreateFlowSignReview 通知电子签，审核通过后，发起方企业签署人方可进行签署操作，否则会阻塞其签署操作。
-        ///
-        /// 注：企业可以通过此功能与企业内部的审批流程进行关联，支持手动、静默签署合同。
-        public let needSignReview: Bool?
-
-        /// 用户自定义字段，回调的时候会进行透传，长度需要小于20480
-        public let userData: String?
-
-        /// 签署人校验方式
-        /// VerifyCheck: 人脸识别（默认）
-        /// MobileCheck：手机号验证
-        /// 参数说明：可选人脸识别或手机号验证两种方式，若选择后者，未实名个人签署方在签署合同时，无需经过实名认证和意愿确认两次人脸识别，该能力仅适用于个人签署方。
-        public let approverVerifyType: String?
-
-        /// 签署流程描述,最大长度1000个字符
+        /// 合同流程描述信息(可自定义此描述)，最大长度1000个字符。
         public let flowDescription: String?
 
-        /// 标识是否允许发起后添加控件。0为不允许1为允许。如果为1，创建的时候不能有签署控件，只能创建后添加。注意发起后添加控件功能不支持添加骑缝章和签批控件
-        public let signBeanTag: Int64?
+        /// 合同流程的类别分类（可自定义名称，如销售合同/入职合同等），最大长度为200个字符，仅限中文、字母、数字和下划线组成。
+        public let flowType: String?
 
-        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
-        public let agent: Agent?
+        /// 模板或者合同中的填写控件列表，列表中可支持下列多种填写控件，控件的详细定义参考开发者中心的Component结构体
+        ///
+        /// - 单行文本控件
+        /// - 多行文本控件
+        /// - 勾选框控件
+        /// - 数字控件
+        /// - 图片控件
+        /// - 动态表格等填写控件
+        public let components: [Component]?
 
-        /// 给关注人发送短信通知的类型，0-合同发起时通知 1-签署完成后通知
+        /// 合同流程的抄送人列表，最多可支持50个抄送人，抄送人可查看合同内容及签署进度，但无需参与合同签署。
+        ///
+        /// 注:`此功能为白名单功能，使用前请联系对接的客户经理沟通。`
+        public let ccInfos: [CcInfo]?
+
+        /// 可以设置以下时间节点来给抄送人发送短信通知来查看合同内容：
+        ///
+        /// - **0**：合同发起时通知（默认值）
+        /// - **1**：签署完成后通知
         public let ccNotifyType: Int64?
 
-        /// 个人自动签场景。发起自动签署时，需设置对应自动签署场景，目前仅支持场景：处方单-E_PRESCRIPTION_AUTO_SIGN
+        /// 是否为预览模式，取值如下：
+        ///
+        /// - **false**：非预览模式（默认），会产生合同流程并返回合同流程编号FlowId。
+        /// - **true**：预览模式，不产生合同流程，不返回合同流程编号FlowId，而是返回预览链接PreviewUrl，有效期为300秒，用于查看真实发起后合同的样子。
+        public let needPreview: Bool?
+
+        /// 预览模式下产生的预览链接类型
+        ///
+        /// - **0** :(默认) 文件流 ,点开后后下载预览的合同PDF文件
+        /// - **1** :H5链接 ,点开后在浏览器中展示合同的样子
+        /// 注: `此参数在NeedPreview 为true时有效`
+        public let previewType: Int64?
+
+        /// 合同流程的签署截止时间，格式为Unix标准时间戳（秒），如果未设置签署截止时间，则默认为合同流程创建后的365天时截止。
+        /// 如果在签署截止时间前未完成签署，则合同状态会变为已过期，导致合同作废。
+        public let deadline: Int64?
+
+        /// 合同到期提醒时间，为Unix标准时间戳（秒）格式，支持的范围是从发起时间开始到后10年内。
+        ///
+        /// 到达提醒时间后，腾讯电子签会短信通知发起方企业合同提醒，可用于处理合同到期事务，如合同续签等事宜。
+        public let remindedOn: Int64?
+
+        /// 合同流程的签署顺序类型：
+        ///
+        /// - **false**：(默认)有序签署, 本合同多个参与人需要依次签署
+        /// - **true**：无序签署, 本合同多个参与人没有先后签署限制
+        public let unordered: Bool?
+
+        /// 您可以自定义腾讯电子签小程序合同列表页展示的合同内容模板，模板中支持以下变量：
+        ///
+        /// - {合同名称}
+        /// - {发起方企业}
+        /// - {发起方姓名}
+        /// - {签署方N企业}
+        /// - {签署方N姓名}
+        /// 其中，N表示签署方的编号，从1开始，不能超过签署人的数量。
+        ///
+        /// 例如，如果是腾讯公司张三发给李四名称为“租房合同”的合同，您可以将此字段设置为：`合同名称:{合同名称};发起方: {发起方企业}({发起方姓名});签署方:{签署方1姓名}`，则小程序中列表页展示此合同为以下样子
+        ///
+        /// 合同名称：租房合同
+        /// 发起方：腾讯公司(张三)
+        /// 签署方：李四
+        public let customShowMap: String?
+
+        /// 发起方企业的签署人进行签署操作前，是否需要企业内部走审批流程，取值如下：
+        ///
+        /// - **false**：（默认）不需要审批，直接签署。
+        /// - **true**：需要走审批流程。当到对应参与人签署时，会阻塞其签署操作，等待企业内部审批完成。
+        /// 企业可以通过CreateFlowSignReview审批接口通知腾讯电子签平台企业内部审批结果
+        ///
+        /// - 如果企业通知腾讯电子签平台审核通过，签署方可继续签署动作。
+        /// - 如果企业通知腾讯电子签平台审核未通过，平台将继续阻塞签署方的签署动作，直到企业通知平台审核通过。
+        /// 注：`此功能可用于与企业内部的审批流程进行关联，支持手动、静默签署合同`
+        public let needSignReview: Bool?
+
+        /// 调用方自定义的个性化字段(可自定义此名称)，并以base64方式编码，支持的最大数据大小为 20480长度。
+        ///
+        /// 在合同状态变更的回调信息等场景中，该字段的信息将原封不动地透传给贵方。回调的相关说明可参考开发者中心的[回调通知](https://qian.tencent.com/developers/company/callback_types_v2)模块。
+        public let userData: String?
+
+        /// 指定个人签署方查看合同的校验方式
+        ///
+        /// - **VerifyCheck**  :（默认）人脸识别,人脸识别后才能合同内容
+        /// - **MobileCheck**  :  手机号验证, 用户手机号和参与方手机号(ApproverMobile)相同即可查看合同内容
+        public let approverVerifyType: String?
+
+        /// 签署方签署控件（印章/签名等）的生成方式：
+        ///
+        /// - **0**：在合同流程发起时，由发起人指定签署方的签署控件的位置和数量。
+        /// - **1**：签署方在签署时自行添加签署控件，可以拖动位置和控制数量。
+        public let signBeanTag: Int64?
+
+        /// 代理企业和员工的信息。
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        public let agent: Agent?
+
+        /// 个人自动签名的使用场景包括以下, 个人自动签署(即ApproverType设置成个人自动签署时)业务此值必传：
+        ///
+        /// - **E_PRESCRIPTION_AUTO_SIGN**：处方单（医疗自动签）
+        /// 注: `个人自动签名场景是白名单功能，使用前请与对接的客户经理联系沟通。`
         public let autoSignScene: String?
 
-        public init(operator: UserInfo, flowName: String, approvers: [ApproverInfo], fileIds: [String], flowType: String? = nil, components: [Component]? = nil, ccInfos: [CcInfo]? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, deadline: Int64? = nil, remindedOn: Int64? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, userData: String? = nil, approverVerifyType: String? = nil, flowDescription: String? = nil, signBeanTag: Int64? = nil, agent: Agent? = nil, ccNotifyType: Int64? = nil, autoSignScene: String? = nil) {
+        public init(operator: UserInfo, flowName: String, approvers: [ApproverInfo], fileIds: [String], flowDescription: String? = nil, flowType: String? = nil, components: [Component]? = nil, ccInfos: [CcInfo]? = nil, ccNotifyType: Int64? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, deadline: Int64? = nil, remindedOn: Int64? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, userData: String? = nil, approverVerifyType: String? = nil, signBeanTag: Int64? = nil, agent: Agent? = nil, autoSignScene: String? = nil) {
             self.operator = `operator`
             self.flowName = flowName
             self.approvers = approvers
             self.fileIds = fileIds
+            self.flowDescription = flowDescription
             self.flowType = flowType
             self.components = components
             self.ccInfos = ccInfos
+            self.ccNotifyType = ccNotifyType
             self.needPreview = needPreview
             self.previewType = previewType
             self.deadline = deadline
@@ -115,10 +170,8 @@ extension Ess {
             self.needSignReview = needSignReview
             self.userData = userData
             self.approverVerifyType = approverVerifyType
-            self.flowDescription = flowDescription
             self.signBeanTag = signBeanTag
             self.agent = agent
-            self.ccNotifyType = ccNotifyType
             self.autoSignScene = autoSignScene
         }
 
@@ -127,9 +180,11 @@ extension Ess {
             case flowName = "FlowName"
             case approvers = "Approvers"
             case fileIds = "FileIds"
+            case flowDescription = "FlowDescription"
             case flowType = "FlowType"
             case components = "Components"
             case ccInfos = "CcInfos"
+            case ccNotifyType = "CcNotifyType"
             case needPreview = "NeedPreview"
             case previewType = "PreviewType"
             case deadline = "Deadline"
@@ -139,24 +194,24 @@ extension Ess {
             case needSignReview = "NeedSignReview"
             case userData = "UserData"
             case approverVerifyType = "ApproverVerifyType"
-            case flowDescription = "FlowDescription"
             case signBeanTag = "SignBeanTag"
             case agent = "Agent"
-            case ccNotifyType = "CcNotifyType"
             case autoSignScene = "AutoSignScene"
         }
     }
 
     /// CreateFlowByFiles返回参数结构体
     public struct CreateFlowByFilesResponse: TCResponse {
-        /// 签署流程编号。
+        /// 合同流程ID，为32位字符串。
+        /// 建议开发者妥善保存此流程ID，以便于顺利进行后续操作。
+        /// 可登录腾讯电子签控制台，在 "合同"->"合同中心" 中查看某个合同的FlowId(在页面中展示为合同ID)。
         ///
-        /// 注：如入参 是否需要预览 NeedPreview 设置为 true，不会正式发起合同，此处不会有值返回；如入参 是否需要预览 NeedPreview 设置为 false，此处会正常返回签署流程编号 FlowId。
+        /// 注: 如果是预览模式(即NeedPreview设置为true)时, 此处不会有值返回。
         public let flowId: String
 
-        /// 合同预览链接。
+        /// 合同预览链接URL。
         ///
-        /// 注：如入参 是否需要预览 NeedPreview 设置为 true，会开启“预览模式”，此处会返回预览链接；如入参 是否需要预览 NeedPreview 设置为 false，此处不会有值返回。
+        /// 注：如果是预览模式(即NeedPreview设置为true)时, 才会有此预览链接URL
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let previewUrl: String?
 
@@ -208,8 +263,8 @@ extension Ess {
     ///
     /// 注意事项：该接口需要依赖“多文件上传”接口生成pdf资源编号（FileIds）进行使用。
     @inlinable
-    public func createFlowByFiles(operator: UserInfo, flowName: String, approvers: [ApproverInfo], fileIds: [String], flowType: String? = nil, components: [Component]? = nil, ccInfos: [CcInfo]? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, deadline: Int64? = nil, remindedOn: Int64? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, userData: String? = nil, approverVerifyType: String? = nil, flowDescription: String? = nil, signBeanTag: Int64? = nil, agent: Agent? = nil, ccNotifyType: Int64? = nil, autoSignScene: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowByFilesResponse> {
-        self.createFlowByFiles(.init(operator: `operator`, flowName: flowName, approvers: approvers, fileIds: fileIds, flowType: flowType, components: components, ccInfos: ccInfos, needPreview: needPreview, previewType: previewType, deadline: deadline, remindedOn: remindedOn, unordered: unordered, customShowMap: customShowMap, needSignReview: needSignReview, userData: userData, approverVerifyType: approverVerifyType, flowDescription: flowDescription, signBeanTag: signBeanTag, agent: agent, ccNotifyType: ccNotifyType, autoSignScene: autoSignScene), region: region, logger: logger, on: eventLoop)
+    public func createFlowByFiles(operator: UserInfo, flowName: String, approvers: [ApproverInfo], fileIds: [String], flowDescription: String? = nil, flowType: String? = nil, components: [Component]? = nil, ccInfos: [CcInfo]? = nil, ccNotifyType: Int64? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, deadline: Int64? = nil, remindedOn: Int64? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, userData: String? = nil, approverVerifyType: String? = nil, signBeanTag: Int64? = nil, agent: Agent? = nil, autoSignScene: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowByFilesResponse> {
+        self.createFlowByFiles(.init(operator: `operator`, flowName: flowName, approvers: approvers, fileIds: fileIds, flowDescription: flowDescription, flowType: flowType, components: components, ccInfos: ccInfos, ccNotifyType: ccNotifyType, needPreview: needPreview, previewType: previewType, deadline: deadline, remindedOn: remindedOn, unordered: unordered, customShowMap: customShowMap, needSignReview: needSignReview, userData: userData, approverVerifyType: approverVerifyType, signBeanTag: signBeanTag, agent: agent, autoSignScene: autoSignScene), region: region, logger: logger, on: eventLoop)
     }
 
     /// 用PDF文件创建签署流程
@@ -222,7 +277,7 @@ extension Ess {
     ///
     /// 注意事项：该接口需要依赖“多文件上传”接口生成pdf资源编号（FileIds）进行使用。
     @inlinable
-    public func createFlowByFiles(operator: UserInfo, flowName: String, approvers: [ApproverInfo], fileIds: [String], flowType: String? = nil, components: [Component]? = nil, ccInfos: [CcInfo]? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, deadline: Int64? = nil, remindedOn: Int64? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, userData: String? = nil, approverVerifyType: String? = nil, flowDescription: String? = nil, signBeanTag: Int64? = nil, agent: Agent? = nil, ccNotifyType: Int64? = nil, autoSignScene: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowByFilesResponse {
-        try await self.createFlowByFiles(.init(operator: `operator`, flowName: flowName, approvers: approvers, fileIds: fileIds, flowType: flowType, components: components, ccInfos: ccInfos, needPreview: needPreview, previewType: previewType, deadline: deadline, remindedOn: remindedOn, unordered: unordered, customShowMap: customShowMap, needSignReview: needSignReview, userData: userData, approverVerifyType: approverVerifyType, flowDescription: flowDescription, signBeanTag: signBeanTag, agent: agent, ccNotifyType: ccNotifyType, autoSignScene: autoSignScene), region: region, logger: logger, on: eventLoop)
+    public func createFlowByFiles(operator: UserInfo, flowName: String, approvers: [ApproverInfo], fileIds: [String], flowDescription: String? = nil, flowType: String? = nil, components: [Component]? = nil, ccInfos: [CcInfo]? = nil, ccNotifyType: Int64? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, deadline: Int64? = nil, remindedOn: Int64? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, userData: String? = nil, approverVerifyType: String? = nil, signBeanTag: Int64? = nil, agent: Agent? = nil, autoSignScene: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowByFilesResponse {
+        try await self.createFlowByFiles(.init(operator: `operator`, flowName: flowName, approvers: approvers, fileIds: fileIds, flowDescription: flowDescription, flowType: flowType, components: components, ccInfos: ccInfos, ccNotifyType: ccNotifyType, needPreview: needPreview, previewType: previewType, deadline: deadline, remindedOn: remindedOn, unordered: unordered, customShowMap: customShowMap, needSignReview: needSignReview, userData: userData, approverVerifyType: approverVerifyType, signBeanTag: signBeanTag, agent: agent, autoSignScene: autoSignScene), region: region, logger: logger, on: eventLoop)
     }
 }

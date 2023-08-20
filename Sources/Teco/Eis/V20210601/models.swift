@@ -50,6 +50,10 @@ extension Eis {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deployed: Bool?
 
+        /// 环境扩展组件是否满足应用要求：0=true, 1=false 表示该应用需要扩展组件0(cdc)以及1(java)，但是独立环境有cdc无java，不满足发布要求
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let matchExtensions: String?
+
         enum CodingKeys: String, CodingKey {
             case runtimeId = "RuntimeId"
             case displayName = "DisplayName"
@@ -61,6 +65,7 @@ extension Eis {
             case expiredAt = "ExpiredAt"
             case runtimeClass = "RuntimeClass"
             case deployed = "Deployed"
+            case matchExtensions = "MatchExtensions"
         }
     }
 
@@ -136,28 +141,28 @@ extension Eis {
 
     /// 运行环境扩展组件
     public struct RuntimeExtensionMC: TCInputModel, TCOutputModel {
-        /// 扩展组件类型：0:cdc
+        /// 扩展组件类型：0:cdc 1:dataway-java
         public let type: Int64
 
         /// 部署规格vcore数
-        public let size: Float
+        public let size: Float?
 
         /// 副本数
-        public let replica: Int64
+        public let replica: Int64?
 
         /// 扩展组件名称
-        public let name: String
+        public let name: String?
 
         /// 状态 1:未启用 2:已启用
-        public let status: Int64
+        public let status: Int64?
 
         /// 创建时间
-        public let createdAt: Int64
+        public let createdAt: Int64?
 
         /// 修改时间
-        public let updatedAt: Int64
+        public let updatedAt: Int64?
 
-        public init(type: Int64, size: Float, replica: Int64, name: String, status: Int64, createdAt: Int64, updatedAt: Int64) {
+        public init(type: Int64, size: Float? = nil, replica: Int64? = nil, name: String? = nil, status: Int64? = nil, createdAt: Int64? = nil, updatedAt: Int64? = nil) {
             self.type = type
             self.size = size
             self.replica = replica
@@ -249,7 +254,7 @@ extension Eis {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let runtimeType: Int64?
 
-        /// 环境运行类型：0:运行时类型、1:api类型
+        /// 环境运行类型：0:运行时类型、1:api类型、2:etl环境
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let runtimeClass: Int64?
 

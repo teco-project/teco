@@ -52,6 +52,9 @@ extension Dasb {
         /// 可提供按照多种类型过滤, 1 - Linux, 2 - Windows, 3 - MySQL, 4 - SQLServer
         public let kindSet: [UInt64]?
 
+        /// 资产是否包含托管账号。1，包含；0，不包含
+        public let managedAccount: String?
+
         /// 过滤条件，可按照部门ID进行过滤
         public let departmentId: String?
 
@@ -62,7 +65,7 @@ extension Dasb {
         /// BindingStatus 绑定状态
         public let filters: [Filter]?
 
-        public init(idSet: [UInt64]? = nil, name: String? = nil, ip: String? = nil, apCodeSet: [String]? = nil, kind: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, authorizedUserIdSet: [UInt64]? = nil, resourceIdSet: [String]? = nil, kindSet: [UInt64]? = nil, departmentId: String? = nil, tagFilters: [TagFilter]? = nil, filters: [Filter]? = nil) {
+        public init(idSet: [UInt64]? = nil, name: String? = nil, ip: String? = nil, apCodeSet: [String]? = nil, kind: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, authorizedUserIdSet: [UInt64]? = nil, resourceIdSet: [String]? = nil, kindSet: [UInt64]? = nil, managedAccount: String? = nil, departmentId: String? = nil, tagFilters: [TagFilter]? = nil, filters: [Filter]? = nil) {
             self.idSet = idSet
             self.name = name
             self.ip = ip
@@ -73,6 +76,7 @@ extension Dasb {
             self.authorizedUserIdSet = authorizedUserIdSet
             self.resourceIdSet = resourceIdSet
             self.kindSet = kindSet
+            self.managedAccount = managedAccount
             self.departmentId = departmentId
             self.tagFilters = tagFilters
             self.filters = filters
@@ -89,6 +93,7 @@ extension Dasb {
             case authorizedUserIdSet = "AuthorizedUserIdSet"
             case resourceIdSet = "ResourceIdSet"
             case kindSet = "KindSet"
+            case managedAccount = "ManagedAccount"
             case departmentId = "DepartmentId"
             case tagFilters = "TagFilters"
             case filters = "Filters"
@@ -99,7 +104,7 @@ extension Dasb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return .init(idSet: self.idSet, name: self.name, ip: self.ip, apCodeSet: self.apCodeSet, kind: self.kind, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, authorizedUserIdSet: self.authorizedUserIdSet, resourceIdSet: self.resourceIdSet, kindSet: self.kindSet, departmentId: self.departmentId, tagFilters: self.tagFilters, filters: self.filters)
+            return .init(idSet: self.idSet, name: self.name, ip: self.ip, apCodeSet: self.apCodeSet, kind: self.kind, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, authorizedUserIdSet: self.authorizedUserIdSet, resourceIdSet: self.resourceIdSet, kindSet: self.kindSet, managedAccount: self.managedAccount, departmentId: self.departmentId, tagFilters: self.tagFilters, filters: self.filters)
         }
     }
 
@@ -145,14 +150,14 @@ extension Dasb {
 
     /// 查询资产列表
     @inlinable
-    public func describeDevices(idSet: [UInt64]? = nil, name: String? = nil, ip: String? = nil, apCodeSet: [String]? = nil, kind: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, authorizedUserIdSet: [UInt64]? = nil, resourceIdSet: [String]? = nil, kindSet: [UInt64]? = nil, departmentId: String? = nil, tagFilters: [TagFilter]? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicesResponse> {
-        self.describeDevices(.init(idSet: idSet, name: name, ip: ip, apCodeSet: apCodeSet, kind: kind, offset: offset, limit: limit, authorizedUserIdSet: authorizedUserIdSet, resourceIdSet: resourceIdSet, kindSet: kindSet, departmentId: departmentId, tagFilters: tagFilters, filters: filters), region: region, logger: logger, on: eventLoop)
+    public func describeDevices(idSet: [UInt64]? = nil, name: String? = nil, ip: String? = nil, apCodeSet: [String]? = nil, kind: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, authorizedUserIdSet: [UInt64]? = nil, resourceIdSet: [String]? = nil, kindSet: [UInt64]? = nil, managedAccount: String? = nil, departmentId: String? = nil, tagFilters: [TagFilter]? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicesResponse> {
+        self.describeDevices(.init(idSet: idSet, name: name, ip: ip, apCodeSet: apCodeSet, kind: kind, offset: offset, limit: limit, authorizedUserIdSet: authorizedUserIdSet, resourceIdSet: resourceIdSet, kindSet: kindSet, managedAccount: managedAccount, departmentId: departmentId, tagFilters: tagFilters, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询资产列表
     @inlinable
-    public func describeDevices(idSet: [UInt64]? = nil, name: String? = nil, ip: String? = nil, apCodeSet: [String]? = nil, kind: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, authorizedUserIdSet: [UInt64]? = nil, resourceIdSet: [String]? = nil, kindSet: [UInt64]? = nil, departmentId: String? = nil, tagFilters: [TagFilter]? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesResponse {
-        try await self.describeDevices(.init(idSet: idSet, name: name, ip: ip, apCodeSet: apCodeSet, kind: kind, offset: offset, limit: limit, authorizedUserIdSet: authorizedUserIdSet, resourceIdSet: resourceIdSet, kindSet: kindSet, departmentId: departmentId, tagFilters: tagFilters, filters: filters), region: region, logger: logger, on: eventLoop)
+    public func describeDevices(idSet: [UInt64]? = nil, name: String? = nil, ip: String? = nil, apCodeSet: [String]? = nil, kind: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, authorizedUserIdSet: [UInt64]? = nil, resourceIdSet: [String]? = nil, kindSet: [UInt64]? = nil, managedAccount: String? = nil, departmentId: String? = nil, tagFilters: [TagFilter]? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesResponse {
+        try await self.describeDevices(.init(idSet: idSet, name: name, ip: ip, apCodeSet: apCodeSet, kind: kind, offset: offset, limit: limit, authorizedUserIdSet: authorizedUserIdSet, resourceIdSet: resourceIdSet, kindSet: kindSet, managedAccount: managedAccount, departmentId: departmentId, tagFilters: tagFilters, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询资产列表

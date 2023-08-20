@@ -695,6 +695,14 @@ extension Iotvideo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updatedAt: Int64?
 
+        /// 套餐id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let packageId: String?
+
+        /// 订单id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let orderId: String?
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case csType = "CSType"
@@ -702,6 +710,8 @@ extension Iotvideo {
             case csExpiredTime = "CSExpiredTime"
             case createdAt = "CreatedAt"
             case updatedAt = "UpdatedAt"
+            case packageId = "PackageId"
+            case orderId = "OrderId"
         }
     }
 

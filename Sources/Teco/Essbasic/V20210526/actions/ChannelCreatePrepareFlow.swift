@@ -91,10 +91,10 @@ extension Essbasic {
 
     /// ChannelCreatePrepareFlow返回参数结构体
     public struct ChannelCreatePrepareFlowResponse: TCResponse {
-        /// 预发起的合同链接
+        /// 预发起的合同链接， 可以直接点击进入进行合同发起
         public let prepareFlowUrl: String
 
-        /// 合同发起后预览链接
+        /// 合同发起后预览链接， 注意此时合同并未发起，仅只是展示效果
         public let previewFlowUrl: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

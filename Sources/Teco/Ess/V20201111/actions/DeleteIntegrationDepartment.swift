@@ -24,7 +24,7 @@ extension Ess {
         /// 操作人信息，UserId必填且需拥有组织架构管理权限
         public let `operator`: UserInfo
 
-        /// 电子签中的部门id
+        /// 电子签中的部门id,通过DescribeIntegrationDepartments接口可获得
         public let deptId: String
 
         /// 交接部门ID。待删除部门中的合同、印章和模板数据，交接至该部门ID下，未填写交接至公司根部门。

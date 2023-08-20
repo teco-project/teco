@@ -662,23 +662,28 @@ extension Waf {
     }
 
     /// clb-waf 域名扩展套餐
-    public struct DomainPackageNew: TCInputModel {
+    public struct DomainPackageNew: TCInputModel, TCOutputModel {
         /// 资源ID
-        public let resourceIds: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resourceIds: String?
 
         /// 过期时间
-        public let validTime: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let validTime: String?
 
         /// 是否自动续费，1：自动续费，0：不自动续费
-        public let renewFlag: UInt64
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let renewFlag: UInt64?
 
         /// 套餐购买个数
-        public let count: UInt64
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let count: UInt64?
 
         /// 套餐购买地域，clb-waf暂时没有用到
-        public let region: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let region: String?
 
-        public init(resourceIds: String, validTime: String, renewFlag: UInt64, count: UInt64, region: String) {
+        public init(resourceIds: String? = nil, validTime: String? = nil, renewFlag: UInt64? = nil, count: UInt64? = nil, region: String? = nil) {
             self.resourceIds = resourceIds
             self.validTime = validTime
             self.renewFlag = renewFlag
@@ -794,6 +799,10 @@ extension Waf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipHeaders: [String]?
 
+        /// 0:关闭xff重置；1:开启xff重置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let xffReset: Int64?
+
         enum CodingKeys: String, CodingKey {
             case httpsRewrite = "HttpsRewrite"
             case httpsUpstreamPort = "HttpsUpstreamPort"
@@ -824,6 +833,7 @@ extension Waf {
             case sniHost = "SniHost"
             case weights = "Weights"
             case ipHeaders = "IpHeaders"
+            case xffReset = "XFFReset"
         }
     }
 
@@ -1210,7 +1220,7 @@ extension Waf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let attackLogPost: Int64?
 
-        /// 带宽峰值
+        /// 带宽峰值，单位为B/s(字节每秒)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxBandwidth: UInt64?
 
@@ -1233,7 +1243,11 @@ extension Waf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sandboxQps: UInt64?
 
-        public init(instanceId: String, instanceName: String, resourceIds: String, region: String, payMode: UInt64, renewFlag: UInt64, mode: UInt64, level: UInt64, validTime: String, beginTime: String, domainCount: UInt64, subDomainLimit: UInt64, mainDomainCount: UInt64, mainDomainLimit: UInt64, maxQPS: UInt64, qps: QPSPackageNew, domainPkg: DomainPackageNew, appId: UInt64, edition: String, fraudPkg: FraudPkg? = nil, botPkg: BotPkg? = nil, botQPS: BotQPS? = nil, elasticBilling: UInt64? = nil, attackLogPost: Int64? = nil, maxBandwidth: UInt64? = nil, apiSecurity: UInt64? = nil, qpsStandard: UInt64? = nil, bandwidthStandard: UInt64? = nil, status: UInt64? = nil, sandboxQps: UInt64? = nil) {
+        /// 是否api 安全试用
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isAPISecurityTrial: UInt64?
+
+        public init(instanceId: String, instanceName: String, resourceIds: String, region: String, payMode: UInt64, renewFlag: UInt64, mode: UInt64, level: UInt64, validTime: String, beginTime: String, domainCount: UInt64, subDomainLimit: UInt64, mainDomainCount: UInt64, mainDomainLimit: UInt64, maxQPS: UInt64, qps: QPSPackageNew, domainPkg: DomainPackageNew, appId: UInt64, edition: String, fraudPkg: FraudPkg? = nil, botPkg: BotPkg? = nil, botQPS: BotQPS? = nil, elasticBilling: UInt64? = nil, attackLogPost: Int64? = nil, maxBandwidth: UInt64? = nil, apiSecurity: UInt64? = nil, qpsStandard: UInt64? = nil, bandwidthStandard: UInt64? = nil, status: UInt64? = nil, sandboxQps: UInt64? = nil, isAPISecurityTrial: UInt64? = nil) {
             self.instanceId = instanceId
             self.instanceName = instanceName
             self.resourceIds = resourceIds
@@ -1264,6 +1278,7 @@ extension Waf {
             self.bandwidthStandard = bandwidthStandard
             self.status = status
             self.sandboxQps = sandboxQps
+            self.isAPISecurityTrial = isAPISecurityTrial
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1297,6 +1312,7 @@ extension Waf {
             case bandwidthStandard = "BandwidthStandard"
             case status = "Status"
             case sandboxQps = "SandboxQps"
+            case isAPISecurityTrial = "IsAPISecurityTrial"
         }
     }
 
@@ -1683,26 +1699,32 @@ extension Waf {
     }
 
     /// clb-waf QPS套餐 New
-    public struct QPSPackageNew: TCInputModel {
+    public struct QPSPackageNew: TCInputModel, TCOutputModel {
         /// 资源ID
-        public let resourceIds: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resourceIds: String?
 
         /// 过期时间
-        public let validTime: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let validTime: String?
 
         /// 是否自动续费，1：自动续费，0：不自动续费
-        public let renewFlag: Int64
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let renewFlag: Int64?
 
         /// 套餐购买个数
-        public let count: Int64
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let count: Int64?
 
         /// 套餐购买地域，clb-waf暂时没有用到
-        public let region: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let region: String?
 
         /// 计费项
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let billingItem: String?
 
-        public init(resourceIds: String, validTime: String, renewFlag: Int64, count: Int64, region: String, billingItem: String? = nil) {
+        public init(resourceIds: String? = nil, validTime: String? = nil, renewFlag: Int64? = nil, count: Int64? = nil, region: String? = nil, billingItem: String? = nil) {
             self.resourceIds = resourceIds
             self.validTime = validTime
             self.renewFlag = renewFlag

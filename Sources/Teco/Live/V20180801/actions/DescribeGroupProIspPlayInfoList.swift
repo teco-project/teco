@@ -21,10 +21,16 @@ import TecoCore
 extension Live {
     /// DescribeGroupProIspPlayInfoList请求参数结构体
     public struct DescribeGroupProIspPlayInfoListRequest: TCRequest {
-        /// 起始时间点，格式为yyyy-mm-dd HH:MM:SS。
+        /// 起始时间点，
+        /// 使用UTC格式时间，
+        /// 例如：2019-01-08T10:00:00Z。
+        /// 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         public let startTime: String
 
-        /// 结束时间点，格式为yyyy-mm-dd HH:MM:SS
+        /// 结束时间点，
+        /// 使用UTC格式时间，
+        /// 例如：2019-01-08T10:00:00Z。
+        /// 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         /// 时间跨度在（0,3小时]，支持最近1个月数据查询。
         public let endTime: String
 
@@ -73,32 +79,36 @@ extension Live {
         }
     }
 
-    /// 查询按省份和运营商分组的播放数据
+    /// 查询按省份和运营商分组的下行播放数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询按省份和运营商分组的下行播放数据。
     @inlinable
     public func describeGroupProIspPlayInfoList(_ input: DescribeGroupProIspPlayInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupProIspPlayInfoListResponse> {
         self.client.execute(action: "DescribeGroupProIspPlayInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询按省份和运营商分组的播放数据
+    /// 查询按省份和运营商分组的下行播放数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询按省份和运营商分组的下行播放数据。
     @inlinable
     public func describeGroupProIspPlayInfoList(_ input: DescribeGroupProIspPlayInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupProIspPlayInfoListResponse {
         try await self.client.execute(action: "DescribeGroupProIspPlayInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询按省份和运营商分组的播放数据
+    /// 查询按省份和运营商分组的下行播放数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询按省份和运营商分组的下行播放数据。
     @inlinable
     public func describeGroupProIspPlayInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, provinceNames: [String]? = nil, ispNames: [String]? = nil, mainlandOrOversea: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupProIspPlayInfoListResponse> {
         self.describeGroupProIspPlayInfoList(.init(startTime: startTime, endTime: endTime, playDomains: playDomains, provinceNames: provinceNames, ispNames: ispNames, mainlandOrOversea: mainlandOrOversea), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询按省份和运营商分组的播放数据
+    /// 查询按省份和运营商分组的下行播放数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询按省份和运营商分组的下行播放数据。
     @inlinable
     public func describeGroupProIspPlayInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, provinceNames: [String]? = nil, ispNames: [String]? = nil, mainlandOrOversea: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupProIspPlayInfoListResponse {

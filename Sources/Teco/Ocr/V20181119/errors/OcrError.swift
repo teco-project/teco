@@ -29,7 +29,6 @@ public struct TCOcrError: TCOcrErrorType {
         case failedOperation_ArrearsError = "FailedOperation.ArrearsError"
         case failedOperation_CardSideError = "FailedOperation.CardSideError"
         case failedOperation_CountLimitError = "FailedOperation.CountLimitError"
-        case failedOperation_DataSourceQueryFailed = "FailedOperation.DataSourceQueryFailed"
         case failedOperation_DbError = "FailedOperation.DbError"
         case failedOperation_DetectFailed = "FailedOperation.DetectFailed"
         case failedOperation_DownLoadError = "FailedOperation.DownLoadError"
@@ -54,7 +53,6 @@ public struct TCOcrError: TCOcrErrorType {
         case failedOperation_NoMASIDCard = "FailedOperation.NoMASIDCard"
         case failedOperation_NoPassport = "FailedOperation.NoPassport"
         case failedOperation_OcrFailed = "FailedOperation.OcrFailed"
-        case failedOperation_QueryNoRecord = "FailedOperation.QueryNoRecord"
         case failedOperation_UnKnowError = "FailedOperation.UnKnowError"
         case failedOperation_UnOpenError = "FailedOperation.UnOpenError"
         case failedOperation_UserQuotaError = "FailedOperation.UserQuotaError"
@@ -72,6 +70,8 @@ public struct TCOcrError: TCOcrErrorType {
         case resourceNotFound_NoAreaCode = "ResourceNotFound.NoAreaCode"
         case resourceNotFound_NoInvoice = "ResourceNotFound.NoInvoice"
         case resourceNotFound_NotSupportCurrentInvoiceQuery = "ResourceNotFound.NotSupportCurrentInvoiceQuery"
+        case resourceUnavailable_InArrears = "ResourceUnavailable.InArrears"
+        case resourceUnavailable_ResourcePackageRunOut = "ResourceUnavailable.ResourcePackageRunOut"
         case resourceUnavailable_TaxNetworkError = "ResourceUnavailable.TaxNetworkError"
         case resourcesSoldOut_ChargeStatusException = "ResourcesSoldOut.ChargeStatusException"
     }
@@ -134,11 +134,6 @@ public struct TCOcrError: TCOcrErrorType {
     /// 每张发票每天最多查验五次，请明日再试。
     public static var failedOperation_CountLimitError: TCOcrError {
         TCOcrError(.failedOperation_CountLimitError)
-    }
-
-    /// 数据源查询失败。
-    public static var failedOperation_DataSourceQueryFailed: TCOcrError {
-        TCOcrError(.failedOperation_DataSourceQueryFailed)
     }
 
     /// 数据库异常。
@@ -286,11 +281,6 @@ public struct TCOcrError: TCOcrErrorType {
         TCOcrError(.failedOperation_OcrFailed)
     }
 
-    /// 查询无记录。
-    public static var failedOperation_QueryNoRecord: TCOcrError {
-        TCOcrError(.failedOperation_QueryNoRecord)
-    }
-
     /// 未知错误。
     ///
     /// 导致此错误的原因比较多，比如参数异常、网络波动、识别超时、第三方库源不可能用等等。建议先检查参数再重试，如果仍然出现则提单。
@@ -383,6 +373,16 @@ public struct TCOcrError: TCOcrErrorType {
     /// 不支持当天发票查询。
     public static var resourceNotFound_NotSupportCurrentInvoiceQuery: TCOcrError {
         TCOcrError(.resourceNotFound_NotSupportCurrentInvoiceQuery)
+    }
+
+    /// 账号充值。
+    public static var resourceUnavailable_InArrears: TCOcrError {
+        TCOcrError(.resourceUnavailable_InArrears)
+    }
+
+    /// 账号充值资源包。
+    public static var resourceUnavailable_ResourcePackageRunOut: TCOcrError {
+        TCOcrError(.resourceUnavailable_ResourcePackageRunOut)
     }
 
     /// 税务局网络异常，请稍后访问。

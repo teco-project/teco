@@ -63,7 +63,7 @@ extension Dts {
         /// 枚举值：cluster、single。目标库为单节点数据库使用single，多节点使用cluster
         public let dstNodeType: String?
 
-        /// 同步任务选项
+        /// 同步任务选项；该字段下的RateLimitOption暂时无法生效、如果需要修改限速、可通过ModifySyncRateLimit接口完成限速
         public let options: Options?
 
         /// 自动重试的时间段、可设置5至720分钟、0表示不重试

@@ -26,6 +26,7 @@ public protocol TCTdsErrorType: TCServiceErrorType {
 
 public struct TCTdsError: TCTdsErrorType {
     enum Code: String {
+        case failedOperation = "FailedOperation"
         case resourceInsufficient = "ResourceInsufficient"
     }
 
@@ -49,6 +50,11 @@ public struct TCTdsError: TCTdsErrorType {
     internal init(_ error: Code, context: TCErrorContext? = nil) {
         self.error = error
         self.context = context
+    }
+
+    /// 操作失败。
+    public static var failedOperation: TCTdsError {
+        TCTdsError(.failedOperation)
     }
 
     /// 资源不足。

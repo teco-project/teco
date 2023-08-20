@@ -21,7 +21,7 @@ import TecoCore
 extension Ess {
     /// UpdateIntegrationEmployees请求参数结构体
     public struct UpdateIntegrationEmployeesRequest: TCRequest {
-        /// 当前用户信息，OpenId与UserId二选一必填一个，OpenId是第三方客户ID，userId是用户实名后的电子签生成的ID,当传入客户系统openId，传入的openId需与电子签员工userId绑定，且参数Channel必填，Channel值为YUFU；
+        /// 当前用户信息，UserId必填
         public let `operator`: UserInfo
 
         /// 员工信息，不超过100个。

@@ -103,6 +103,7 @@ extension Live {
 
     /// 获取在线流的推流数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询所有实时流的推流信息，包括客户端IP，服务端IP，帧率，码率，域名，开始推流时间。
     @inlinable
     public func describeLiveStreamPushInfoList(_ input: DescribeLiveStreamPushInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveStreamPushInfoListResponse> {
@@ -111,6 +112,7 @@ extension Live {
 
     /// 获取在线流的推流数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询所有实时流的推流信息，包括客户端IP，服务端IP，帧率，码率，域名，开始推流时间。
     @inlinable
     public func describeLiveStreamPushInfoList(_ input: DescribeLiveStreamPushInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveStreamPushInfoListResponse {
@@ -119,6 +121,7 @@ extension Live {
 
     /// 获取在线流的推流数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询所有实时流的推流信息，包括客户端IP，服务端IP，帧率，码率，域名，开始推流时间。
     @inlinable
     public func describeLiveStreamPushInfoList(pushDomain: String? = nil, appName: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveStreamPushInfoListResponse> {
@@ -127,6 +130,7 @@ extension Live {
 
     /// 获取在线流的推流数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询所有实时流的推流信息，包括客户端IP，服务端IP，帧率，码率，域名，开始推流时间。
     @inlinable
     public func describeLiveStreamPushInfoList(pushDomain: String? = nil, appName: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveStreamPushInfoListResponse {
@@ -135,6 +139,7 @@ extension Live {
 
     /// 获取在线流的推流数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询所有实时流的推流信息，包括客户端IP，服务端IP，帧率，码率，域名，开始推流时间。
     @inlinable
     public func describeLiveStreamPushInfoListPaginated(_ input: DescribeLiveStreamPushInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [PushDataInfo])> {
@@ -143,6 +148,7 @@ extension Live {
 
     /// 获取在线流的推流数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询所有实时流的推流信息，包括客户端IP，服务端IP，帧率，码率，域名，开始推流时间。
     @inlinable @discardableResult
     public func describeLiveStreamPushInfoListPaginated(_ input: DescribeLiveStreamPushInfoListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLiveStreamPushInfoListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
@@ -151,6 +157,7 @@ extension Live {
 
     /// 获取在线流的推流数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询所有实时流的推流信息，包括客户端IP，服务端IP，帧率，码率，域名，开始推流时间。
     ///
     /// - Returns: `AsyncSequence`s of ``PushDataInfo`` and ``DescribeLiveStreamPushInfoListResponse`` that can be iterated over asynchronously on demand.

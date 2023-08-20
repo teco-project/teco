@@ -76,7 +76,10 @@ extension Teo {
         /// - 端口段：81-90，81至90端口。
         public let originPort: String?
 
-        public init(zoneId: String, proxyId: String, ruleId: String, originType: String, port: [String], proto: String? = nil, originValue: [String]? = nil, forwardClientIp: String? = nil, sessionPersist: Bool? = nil, sessionPersistTime: UInt64? = nil, originPort: String? = nil) {
+        /// 规则标签。不填保持原有值。
+        public let ruleTag: String?
+
+        public init(zoneId: String, proxyId: String, ruleId: String, originType: String, port: [String], proto: String? = nil, originValue: [String]? = nil, forwardClientIp: String? = nil, sessionPersist: Bool? = nil, sessionPersistTime: UInt64? = nil, originPort: String? = nil, ruleTag: String? = nil) {
             self.zoneId = zoneId
             self.proxyId = proxyId
             self.ruleId = ruleId
@@ -88,6 +91,7 @@ extension Teo {
             self.sessionPersist = sessionPersist
             self.sessionPersistTime = sessionPersistTime
             self.originPort = originPort
+            self.ruleTag = ruleTag
         }
 
         enum CodingKeys: String, CodingKey {
@@ -102,6 +106,7 @@ extension Teo {
             case sessionPersist = "SessionPersist"
             case sessionPersistTime = "SessionPersistTime"
             case originPort = "OriginPort"
+            case ruleTag = "RuleTag"
         }
     }
 
@@ -129,13 +134,13 @@ extension Teo {
 
     /// 修改应用代理规则
     @inlinable @discardableResult
-    public func modifyApplicationProxyRule(zoneId: String, proxyId: String, ruleId: String, originType: String, port: [String], proto: String? = nil, originValue: [String]? = nil, forwardClientIp: String? = nil, sessionPersist: Bool? = nil, sessionPersistTime: UInt64? = nil, originPort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationProxyRuleResponse> {
-        self.modifyApplicationProxyRule(.init(zoneId: zoneId, proxyId: proxyId, ruleId: ruleId, originType: originType, port: port, proto: proto, originValue: originValue, forwardClientIp: forwardClientIp, sessionPersist: sessionPersist, sessionPersistTime: sessionPersistTime, originPort: originPort), region: region, logger: logger, on: eventLoop)
+    public func modifyApplicationProxyRule(zoneId: String, proxyId: String, ruleId: String, originType: String, port: [String], proto: String? = nil, originValue: [String]? = nil, forwardClientIp: String? = nil, sessionPersist: Bool? = nil, sessionPersistTime: UInt64? = nil, originPort: String? = nil, ruleTag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationProxyRuleResponse> {
+        self.modifyApplicationProxyRule(.init(zoneId: zoneId, proxyId: proxyId, ruleId: ruleId, originType: originType, port: port, proto: proto, originValue: originValue, forwardClientIp: forwardClientIp, sessionPersist: sessionPersist, sessionPersistTime: sessionPersistTime, originPort: originPort, ruleTag: ruleTag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改应用代理规则
     @inlinable @discardableResult
-    public func modifyApplicationProxyRule(zoneId: String, proxyId: String, ruleId: String, originType: String, port: [String], proto: String? = nil, originValue: [String]? = nil, forwardClientIp: String? = nil, sessionPersist: Bool? = nil, sessionPersistTime: UInt64? = nil, originPort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationProxyRuleResponse {
-        try await self.modifyApplicationProxyRule(.init(zoneId: zoneId, proxyId: proxyId, ruleId: ruleId, originType: originType, port: port, proto: proto, originValue: originValue, forwardClientIp: forwardClientIp, sessionPersist: sessionPersist, sessionPersistTime: sessionPersistTime, originPort: originPort), region: region, logger: logger, on: eventLoop)
+    public func modifyApplicationProxyRule(zoneId: String, proxyId: String, ruleId: String, originType: String, port: [String], proto: String? = nil, originValue: [String]? = nil, forwardClientIp: String? = nil, sessionPersist: Bool? = nil, sessionPersistTime: UInt64? = nil, originPort: String? = nil, ruleTag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationProxyRuleResponse {
+        try await self.modifyApplicationProxyRule(.init(zoneId: zoneId, proxyId: proxyId, ruleId: ruleId, originType: originType, port: port, proto: proto, originValue: originValue, forwardClientIp: forwardClientIp, sessionPersist: sessionPersist, sessionPersistTime: sessionPersistTime, originPort: originPort, ruleTag: ruleTag), region: region, logger: logger, on: eventLoop)
     }
 }

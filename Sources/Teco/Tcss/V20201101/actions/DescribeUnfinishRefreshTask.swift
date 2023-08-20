@@ -33,12 +33,17 @@ extension Tcss {
         /// 任务状态，为Task_New,Task_Running,Task_Finish,Task_Error,Task_NoExist.Task_New,Task_Running表示有任务存在，不允许新下发
         public let taskStatus: String
 
+        /// 新任务ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let newTaskID: String?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case taskStatus = "TaskStatus"
+            case newTaskID = "NewTaskID"
             case requestId = "RequestId"
         }
     }

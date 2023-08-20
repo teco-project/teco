@@ -22,7 +22,6 @@ extension TCOcrError {
             case arrearsError = "FailedOperation.ArrearsError"
             case cardSideError = "FailedOperation.CardSideError"
             case countLimitError = "FailedOperation.CountLimitError"
-            case dataSourceQueryFailed = "FailedOperation.DataSourceQueryFailed"
             case dbError = "FailedOperation.DbError"
             case detectFailed = "FailedOperation.DetectFailed"
             case downLoadError = "FailedOperation.DownLoadError"
@@ -47,7 +46,6 @@ extension TCOcrError {
             case noMASIDCard = "FailedOperation.NoMASIDCard"
             case noPassport = "FailedOperation.NoPassport"
             case ocrFailed = "FailedOperation.OcrFailed"
-            case queryNoRecord = "FailedOperation.QueryNoRecord"
             case unKnowError = "FailedOperation.UnKnowError"
             case unOpenError = "FailedOperation.UnOpenError"
             case userQuotaError = "FailedOperation.UserQuotaError"
@@ -98,11 +96,6 @@ extension TCOcrError {
         /// 每张发票每天最多查验五次，请明日再试。
         public static var countLimitError: FailedOperation {
             FailedOperation(.countLimitError)
-        }
-
-        /// 数据源查询失败。
-        public static var dataSourceQueryFailed: FailedOperation {
-            FailedOperation(.dataSourceQueryFailed)
         }
 
         /// 数据库异常。
@@ -250,11 +243,6 @@ extension TCOcrError {
             FailedOperation(.ocrFailed)
         }
 
-        /// 查询无记录。
-        public static var queryNoRecord: FailedOperation {
-            FailedOperation(.queryNoRecord)
-        }
-
         /// 未知错误。
         ///
         /// 导致此错误的原因比较多，比如参数异常、网络波动、识别超时、第三方库源不可能用等等。建议先检查参数再重试，如果仍然出现则提单。
@@ -284,8 +272,6 @@ extension TCOcrError {
                 code = .failedOperation_CardSideError
             case .countLimitError:
                 code = .failedOperation_CountLimitError
-            case .dataSourceQueryFailed:
-                code = .failedOperation_DataSourceQueryFailed
             case .dbError:
                 code = .failedOperation_DbError
             case .detectFailed:
@@ -334,8 +320,6 @@ extension TCOcrError {
                 code = .failedOperation_NoPassport
             case .ocrFailed:
                 code = .failedOperation_OcrFailed
-            case .queryNoRecord:
-                code = .failedOperation_QueryNoRecord
             case .unKnowError:
                 code = .failedOperation_UnKnowError
             case .unOpenError:

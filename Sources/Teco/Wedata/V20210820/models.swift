@@ -2234,7 +2234,23 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
 
-        public init(taskId: String? = nil, taskName: String? = nil, workflowId: String? = nil, workflowName: String? = nil, status: String? = nil, taskTypeId: UInt64? = nil, taskTypeDesc: String? = nil, folderName: String? = nil, folderId: String? = nil, inCharge: String? = nil, submit: UInt64? = nil, dataEngine: String? = nil, updateTime: String? = nil, createTime: String? = nil) {
+        /// 周期类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cycleUnit: String?
+
+        /// 调度计划
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scheduleDesc: String?
+
+        /// 数据源ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let datasourceId: String?
+
+        /// 数据源类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let datasourceType: String?
+
+        public init(taskId: String? = nil, taskName: String? = nil, workflowId: String? = nil, workflowName: String? = nil, status: String? = nil, taskTypeId: UInt64? = nil, taskTypeDesc: String? = nil, folderName: String? = nil, folderId: String? = nil, inCharge: String? = nil, submit: UInt64? = nil, dataEngine: String? = nil, updateTime: String? = nil, createTime: String? = nil, cycleUnit: String? = nil, scheduleDesc: String? = nil, datasourceId: String? = nil, datasourceType: String? = nil) {
             self.taskId = taskId
             self.taskName = taskName
             self.workflowId = workflowId
@@ -2249,6 +2265,10 @@ extension Wedata {
             self.dataEngine = dataEngine
             self.updateTime = updateTime
             self.createTime = createTime
+            self.cycleUnit = cycleUnit
+            self.scheduleDesc = scheduleDesc
+            self.datasourceId = datasourceId
+            self.datasourceType = datasourceType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -2266,6 +2286,10 @@ extension Wedata {
             case dataEngine = "DataEngine"
             case updateTime = "UpdateTime"
             case createTime = "CreateTime"
+            case cycleUnit = "CycleUnit"
+            case scheduleDesc = "ScheduleDesc"
+            case datasourceId = "DatasourceId"
+            case datasourceType = "DatasourceType"
         }
     }
 
@@ -4645,12 +4669,22 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let showTime: String?
 
+        /// 1
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let reportTime: String?
+
+        /// 1
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let count: Int64?
+
         enum CodingKeys: String, CodingKey {
             case countList = "CountList"
             case timeList = "TimeList"
             case instanceStatus = "InstanceStatus"
             case instanceCount = "InstanceCount"
             case showTime = "ShowTime"
+            case reportTime = "ReportTime"
+            case count = "Count"
         }
     }
 
@@ -9772,11 +9806,19 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cycleUnit: String?
 
-        public init(countGroup: String? = nil, showTimeGroup: String? = nil, status: String? = nil, cycleUnit: String? = nil) {
+        /// 1
+        public let reportTime: String?
+
+        /// 1
+        public let count: UInt64?
+
+        public init(countGroup: String? = nil, showTimeGroup: String? = nil, status: String? = nil, cycleUnit: String? = nil, reportTime: String? = nil, count: UInt64? = nil) {
             self.countGroup = countGroup
             self.showTimeGroup = showTimeGroup
             self.status = status
             self.cycleUnit = cycleUnit
+            self.reportTime = reportTime
+            self.count = count
         }
 
         enum CodingKeys: String, CodingKey {
@@ -9784,6 +9826,8 @@ extension Wedata {
             case showTimeGroup = "ShowTimeGroup"
             case status = "Status"
             case cycleUnit = "CycleUnit"
+            case reportTime = "ReportTime"
+            case count = "Count"
         }
     }
 

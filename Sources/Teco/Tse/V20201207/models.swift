@@ -756,7 +756,8 @@ extension Tse {
 
         /// 是否开启了强制HTTPS
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let forceHttps: Bool?
+        @available(*, deprecated)
+        public let forceHttps: Bool? = nil
 
         /// 服务名
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -772,9 +773,9 @@ extension Tse {
 
         /// 路由的Headers
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let headers: KVMapping?
+        public let headers: [KVMapping]?
 
-        public init(id: String, name: String? = nil, methods: [String]? = nil, paths: [String]? = nil, hosts: [String]? = nil, protocols: [String]? = nil, preserveHost: Bool? = nil, httpsRedirectStatusCode: Int64? = nil, stripPath: Bool? = nil, createdTime: String? = nil, forceHttps: Bool? = nil, serviceName: String? = nil, serviceID: String? = nil, destinationPorts: [UInt64]? = nil, headers: KVMapping? = nil) {
+        public init(id: String, name: String? = nil, methods: [String]? = nil, paths: [String]? = nil, hosts: [String]? = nil, protocols: [String]? = nil, preserveHost: Bool? = nil, httpsRedirectStatusCode: Int64? = nil, stripPath: Bool? = nil, createdTime: String? = nil, serviceName: String? = nil, serviceID: String? = nil, destinationPorts: [UInt64]? = nil, headers: [KVMapping]? = nil) {
             self.id = id
             self.name = name
             self.methods = methods
@@ -785,7 +786,24 @@ extension Tse {
             self.httpsRedirectStatusCode = httpsRedirectStatusCode
             self.stripPath = stripPath
             self.createdTime = createdTime
-            self.forceHttps = forceHttps
+            self.serviceName = serviceName
+            self.serviceID = serviceID
+            self.destinationPorts = destinationPorts
+            self.headers = headers
+        }
+
+        @available(*, deprecated, renamed: "init(id:name:methods:paths:hosts:protocols:preserveHost:httpsRedirectStatusCode:stripPath:createdTime:serviceName:serviceID:destinationPorts:headers:)", message: "'forceHttps' is deprecated in 'KongRoutePreview'. Setting this parameter has no effect.")
+        public init(id: String, name: String? = nil, methods: [String]? = nil, paths: [String]? = nil, hosts: [String]? = nil, protocols: [String]? = nil, preserveHost: Bool? = nil, httpsRedirectStatusCode: Int64? = nil, stripPath: Bool? = nil, createdTime: String? = nil, forceHttps: Bool? = nil, serviceName: String? = nil, serviceID: String? = nil, destinationPorts: [UInt64]? = nil, headers: [KVMapping]? = nil) {
+            self.id = id
+            self.name = name
+            self.methods = methods
+            self.paths = paths
+            self.hosts = hosts
+            self.protocols = protocols
+            self.preserveHost = preserveHost
+            self.httpsRedirectStatusCode = httpsRedirectStatusCode
+            self.stripPath = stripPath
+            self.createdTime = createdTime
             self.serviceName = serviceName
             self.serviceID = serviceID
             self.destinationPorts = destinationPorts

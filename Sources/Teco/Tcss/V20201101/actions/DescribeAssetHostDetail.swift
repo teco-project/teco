@@ -113,6 +113,15 @@ extension Tcss {
         /// 标签
         public let tags: [TagInfo]
 
+        /// 集群ID
+        public let clusterID: String
+
+        /// 集群名称
+        public let clusterName: String
+
+        /// 集群接入状态
+        public let clusterAccessedStatus: String
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -143,6 +152,9 @@ extension Tcss {
             case regionID = "RegionID"
             case project = "Project"
             case tags = "Tags"
+            case clusterID = "ClusterID"
+            case clusterName = "ClusterName"
+            case clusterAccessedStatus = "ClusterAccessedStatus"
             case requestId = "RequestId"
         }
     }

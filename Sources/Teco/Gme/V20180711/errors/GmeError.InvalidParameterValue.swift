@@ -20,6 +20,7 @@ extension TCGmeError {
     public struct InvalidParameterValue: TCGmeErrorType {
         enum Code: String {
             case invalidBizId = "InvalidParameterValue.InvalidBizId"
+            case invalidDeleteType = "InvalidParameterValue.InvalidDeleteType"
             case invalidRecordMode = "InvalidParameterValue.InvalidRecordMode"
             case invalidRoomId = "InvalidParameterValue.InvalidRoomId"
             case invalidSubscribeRecordUserIds = "InvalidParameterValue.InvalidSubscribeRecordUserIds"
@@ -53,6 +54,11 @@ extension TCGmeError {
         /// BizId 参数错误
         public static var invalidBizId: InvalidParameterValue {
             InvalidParameterValue(.invalidBizId)
+        }
+
+        /// 输入删除类型应为1或2。
+        public static var invalidDeleteType: InvalidParameterValue {
+            InvalidParameterValue(.invalidDeleteType)
         }
 
         /// RecordMode参数错误
@@ -90,6 +96,8 @@ extension TCGmeError {
             switch self.error {
             case .invalidBizId:
                 code = .invalidParameterValue_InvalidBizId
+            case .invalidDeleteType:
+                code = .invalidParameterValue_InvalidDeleteType
             case .invalidRecordMode:
                 code = .invalidParameterValue_InvalidRecordMode
             case .invalidRoomId:

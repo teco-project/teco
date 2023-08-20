@@ -116,6 +116,9 @@ extension Lcic {
         /// 房间类型: 0 小班课（默认值）; 1 大班课; 2 1V1 (后续扩展)
         public let roomType: Int64?
 
+        /// 录制时长
+        public let videoDuration: UInt64?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -141,6 +144,7 @@ extension Lcic {
             case videoOrientation = "VideoOrientation"
             case isGradingRequiredPostClass = "IsGradingRequiredPostClass"
             case roomType = "RoomType"
+            case videoDuration = "VideoDuration"
             case requestId = "RequestId"
         }
     }

@@ -24,10 +24,10 @@ extension Ess {
         /// 操作人信息，UserId必填
         public let `operator`: UserInfo
 
-        /// 绑定角色的用户id列表
+        /// 绑定角色的用户id列表，不能重复，不能大于 100 个
         public let userIds: [String]
 
-        /// 绑定角色的角色id列表
+        /// 绑定角色的角色id列表，不能重复，不能大于 100，可以通过DescribeIntegrationRoles接口获取
         public let roleIds: [String]
 
         /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填

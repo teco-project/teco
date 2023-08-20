@@ -19,6 +19,7 @@ import TecoCore
 extension TCTdmqError {
     public struct InvalidParameterValue: TCTdmqErrorType {
         enum Code: String {
+            case atLeastOne = "InvalidParameterValue.AtLeastOne"
             case clusterNameDuplication = "InvalidParameterValue.ClusterNameDuplication"
             case invalidParams = "InvalidParameterValue.InvalidParams"
             case needMoreParams = "InvalidParameterValue.NeedMoreParams"
@@ -47,6 +48,13 @@ extension TCTdmqError {
         internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
+        }
+
+        /// 至少需要提供一个参数。
+        ///
+        /// 一般情况下可选参数都没有传入引起。
+        public static var atLeastOne: InvalidParameterValue {
+            InvalidParameterValue(.atLeastOne)
         }
 
         /// 与现有集群名称重复。
@@ -82,6 +90,8 @@ extension TCTdmqError {
         public func asTdmqError() -> TCTdmqError {
             let code: TCTdmqError.Code
             switch self.error {
+            case .atLeastOne:
+                code = .invalidParameterValue_AtLeastOne
             case .clusterNameDuplication:
                 code = .invalidParameterValue_ClusterNameDuplication
             case .invalidParams:

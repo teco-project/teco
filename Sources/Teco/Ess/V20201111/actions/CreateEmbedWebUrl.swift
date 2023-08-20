@@ -49,7 +49,7 @@ extension Ess {
         ///
         /// PREVIEW_SEAL_DETAIL，必填，取值为印章id
         ///
-        /// MODIFY_TEMPLATE，PREVIEW_TEMPLATE，必填，取值为模版id
+        /// MODIFY_TEMPLATE，PREVIEW_TEMPLATE，必填，取值为模板id
         ///
         /// PREVIEW_FLOW，PREVIEW_FLOW_DETAIL，必填，取值为合同id
         public let businessId: String?

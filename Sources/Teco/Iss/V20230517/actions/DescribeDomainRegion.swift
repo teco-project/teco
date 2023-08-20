@@ -25,41 +25,10 @@ extension Iss {
         }
     }
 
-    /// 查询域名可绑定集群数据
+    /// DescribeDomainRegion返回参数结构体
     public struct DescribeDomainRegionResponse: TCResponse {
-        private let data: Wrapped
-
-        private struct Wrapped: Codable {
-            public let label: String?
-
-            public let value: String?
-
-            public let region: String?
-
-            enum CodingKeys: String, CodingKey {
-                case label = "Label"
-                case value = "Value"
-                case region = "Region"
-            }
-        }
-
-        /// 服务节点描述
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var label: String? {
-            self.data.label
-        }
-
-        /// 服务节点 ID（对应为其他接口中所需的 ClusterId）
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var value: String? {
-            self.data.value
-        }
-
-        /// 地域信息
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var region: String? {
-            self.data.region
-        }
+        /// 返回数据
+        public let data: [DescribeDomainRegionData]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String

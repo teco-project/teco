@@ -1742,10 +1742,10 @@ extension Tdmq {
     /// RabbitMQ的vhost详情
     public struct RabbitMQVirtualHostInfo: TCOutputModel {
         /// 集群实例Id
-        public let instanceId: String?
+        public let instanceId: String
 
         /// vhost名
-        public let virtualHost: String?
+        public let virtualHost: String
 
         /// vhost描述信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1767,6 +1767,22 @@ extension Tdmq {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let virtualHostStatistics: RabbitMQVirtualHostStatistics?
 
+        /// vhost状态，与原生控制台对应，有running、partial、stopped、unknown
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: String?
+
+        /// 消息堆积数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let messageHeapCount: Int64?
+
+        /// 输入消息速率
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let messageRateIn: Float?
+
+        /// 输出消息速率
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let messageRateOut: Float?
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case virtualHost = "VirtualHost"
@@ -1775,6 +1791,10 @@ extension Tdmq {
             case createTime = "CreateTime"
             case modifyTime = "ModifyTime"
             case virtualHostStatistics = "VirtualHostStatistics"
+            case status = "Status"
+            case messageHeapCount = "MessageHeapCount"
+            case messageRateIn = "MessageRateIn"
+            case messageRateOut = "MessageRateOut"
         }
     }
 

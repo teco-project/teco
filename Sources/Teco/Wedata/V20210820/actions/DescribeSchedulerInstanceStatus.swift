@@ -33,11 +33,23 @@ extension Wedata {
         /// 执行资源组名字
         public let executionGroupName: String?
 
-        public init(projectId: String, taskTypeId: String? = nil, executionGroupId: String? = nil, executionGroupName: String? = nil) {
+        /// 开始时间
+        public let startTime: String?
+
+        /// 结束时间
+        public let endTime: String?
+
+        /// 责任人
+        public let inCharge: String?
+
+        public init(projectId: String, taskTypeId: String? = nil, executionGroupId: String? = nil, executionGroupName: String? = nil, startTime: String? = nil, endTime: String? = nil, inCharge: String? = nil) {
             self.projectId = projectId
             self.taskTypeId = taskTypeId
             self.executionGroupId = executionGroupId
             self.executionGroupName = executionGroupName
+            self.startTime = startTime
+            self.endTime = endTime
+            self.inCharge = inCharge
         }
 
         enum CodingKeys: String, CodingKey {
@@ -45,6 +57,9 @@ extension Wedata {
             case taskTypeId = "TaskTypeId"
             case executionGroupId = "ExecutionGroupId"
             case executionGroupName = "ExecutionGroupName"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+            case inCharge = "InCharge"
         }
     }
 
@@ -77,13 +92,13 @@ extension Wedata {
 
     /// 运维大屏-实例状态分布
     @inlinable
-    public func describeSchedulerInstanceStatus(projectId: String, taskTypeId: String? = nil, executionGroupId: String? = nil, executionGroupName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSchedulerInstanceStatusResponse> {
-        self.describeSchedulerInstanceStatus(.init(projectId: projectId, taskTypeId: taskTypeId, executionGroupId: executionGroupId, executionGroupName: executionGroupName), region: region, logger: logger, on: eventLoop)
+    public func describeSchedulerInstanceStatus(projectId: String, taskTypeId: String? = nil, executionGroupId: String? = nil, executionGroupName: String? = nil, startTime: String? = nil, endTime: String? = nil, inCharge: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSchedulerInstanceStatusResponse> {
+        self.describeSchedulerInstanceStatus(.init(projectId: projectId, taskTypeId: taskTypeId, executionGroupId: executionGroupId, executionGroupName: executionGroupName, startTime: startTime, endTime: endTime, inCharge: inCharge), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运维大屏-实例状态分布
     @inlinable
-    public func describeSchedulerInstanceStatus(projectId: String, taskTypeId: String? = nil, executionGroupId: String? = nil, executionGroupName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSchedulerInstanceStatusResponse {
-        try await self.describeSchedulerInstanceStatus(.init(projectId: projectId, taskTypeId: taskTypeId, executionGroupId: executionGroupId, executionGroupName: executionGroupName), region: region, logger: logger, on: eventLoop)
+    public func describeSchedulerInstanceStatus(projectId: String, taskTypeId: String? = nil, executionGroupId: String? = nil, executionGroupName: String? = nil, startTime: String? = nil, endTime: String? = nil, inCharge: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSchedulerInstanceStatusResponse {
+        try await self.describeSchedulerInstanceStatus(.init(projectId: projectId, taskTypeId: taskTypeId, executionGroupId: executionGroupId, executionGroupName: executionGroupName, startTime: startTime, endTime: endTime, inCharge: inCharge), region: region, logger: logger, on: eventLoop)
     }
 }

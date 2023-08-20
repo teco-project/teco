@@ -50,12 +50,14 @@ public struct TCCdbError: TCCdbErrorType {
         case failedOperation_InstanceQueryError = "FailedOperation.InstanceQueryError"
         case failedOperation_JsonMarshalError = "FailedOperation.JsonMarshalError"
         case failedOperation_JsonUnmarshalError = "FailedOperation.JsonUnmarshalError"
+        case failedOperation_NotChangeStrategy = "FailedOperation.NotChangeStrategy"
         case failedOperation_NotDelayRo = "FailedOperation.NotDelayRo"
         case failedOperation_OperationInConflictErr = "FailedOperation.OperationInConflictErr"
         case failedOperation_PrivilegeDataIllegal = "FailedOperation.PrivilegeDataIllegal"
         case failedOperation_ProxyGroupStatusError = "FailedOperation.ProxyGroupStatusError"
         case failedOperation_QueryAuditTaskFailError = "FailedOperation.QueryAuditTaskFailError"
         case failedOperation_QueryLogError = "FailedOperation.QueryLogError"
+        case failedOperation_RemoteCallUnmarshalError = "FailedOperation.RemoteCallUnmarshalError"
         case failedOperation_RepeatCreateProxyError = "FailedOperation.RepeatCreateProxyError"
         case failedOperation_ResponseValueError = "FailedOperation.ResponseValueError"
         case failedOperation_StartFlowError = "FailedOperation.StartFlowError"
@@ -208,6 +210,7 @@ public struct TCCdbError: TCCdbErrorType {
         case resourceUnavailable = "ResourceUnavailable"
         case unauthorizedOperation_NotEnoughPrivileges = "UnauthorizedOperation.NotEnoughPrivileges"
         case unsupportedOperation = "UnsupportedOperation"
+        case unsupportedOperation_NotSupportNormalInstance = "UnsupportedOperation.NotSupportNormalInstance"
         case unsupportedOperation_PrivilegesUnsupportedError = "UnsupportedOperation.PrivilegesUnsupportedError"
     }
 
@@ -372,6 +375,11 @@ public struct TCCdbError: TCCdbErrorType {
         TCCdbError(.failedOperation_JsonUnmarshalError)
     }
 
+    /// 检查到改动前后策略一致，无改动点。
+    public static var failedOperation_NotChangeStrategy: TCCdbError {
+        TCCdbError(.failedOperation_NotChangeStrategy)
+    }
+
     /// 不是延迟复制RO。
     public static var failedOperation_NotDelayRo: TCCdbError {
         TCCdbError(.failedOperation_NotDelayRo)
@@ -400,6 +408,11 @@ public struct TCCdbError: TCCdbErrorType {
     /// 查询日志失败。
     public static var failedOperation_QueryLogError: TCCdbError {
         TCCdbError(.failedOperation_QueryLogError)
+    }
+
+    /// 高可用版服务跨区调用反序列化失败。
+    public static var failedOperation_RemoteCallUnmarshalError: TCCdbError {
+        TCCdbError(.failedOperation_RemoteCallUnmarshalError)
     }
 
     /// 代理创建中或则已存在，请勿重复创建。
@@ -1164,6 +1177,11 @@ public struct TCCdbError: TCCdbErrorType {
     /// 操作不支持。
     public static var unsupportedOperation: TCCdbError {
         TCCdbError(.unsupportedOperation)
+    }
+
+    /// 非强隔离实例不支持当前操作。
+    public static var unsupportedOperation_NotSupportNormalInstance: TCCdbError {
+        TCCdbError(.unsupportedOperation_NotSupportNormalInstance)
     }
 
     /// 权限不支持。

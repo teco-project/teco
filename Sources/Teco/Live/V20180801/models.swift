@@ -198,7 +198,11 @@ extension Live {
 
     /// 回调事件信息
     public struct CallbackEventInfo: TCOutputModel {
-        /// 事件时间
+        /// 事件时间。
+        /// 接口返回支持两种时间格式：
+        /// 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)
+        /// 2）yyyy-MM-dd HH:mm:ss：使用此格式时，默认代表北京时间。
+        /// 接口返回的时间格式和查询请求传入的时间格式一致。
         public let eventTime: String
 
         /// 事件类型
@@ -210,7 +214,11 @@ extension Live {
         /// 回调响应
         public let response: String
 
-        /// 客户接口响应时间
+        /// 客户接口响应时间。
+        /// 接口返回支持两种时间格式：
+        /// 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)
+        /// 2）yyyy-MM-dd HH:mm:ss：使用此格式时，默认代表北京时间。
+        /// 接口返回的时间格式和查询请求传入的时间格式一致。
         public let responseTime: String
 
         /// 回调结果
@@ -467,9 +475,9 @@ extension Live {
 
         /// 当InputType为3(画布)时，该值表示画布的颜色。
         /// 常用的颜色有：
-        /// 红色：0xcc0033。
-        /// 黄色：0xcc9900。
-        /// 绿色：0xcccc33。
+        /// 红色：0xCC0033。
+        /// 黄色：0xCC9900。
+        /// 绿色：0xCCCC33。
         /// 蓝色：0x99CCFF。
         /// 黑色：0x000000。
         /// 白色：0xFFFFFF。
@@ -583,7 +591,7 @@ extension Live {
     /// 流播放信息
     public struct DayStreamPlayInfo: TCOutputModel {
         /// 数据时间点，接口返回支持两种时间格式：
-        /// 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见IOS日期格式说明文档: https://cloud.tencent.com/document/product/266/11732#I
+        /// 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见ISO日期格式说明文档: https://cloud.tencent.com/document/product/266/11732#I
         /// 2）yyyy-MM-dd HH:mm:ss：使用此格式时，默认代表北京时间。
         /// 接口返回的时间格式和查询请求传入的时间格式一致。
         public let time: String
@@ -933,7 +941,10 @@ extension Live {
 
     /// HTTP返回码数据信息
     public struct HttpCodeValue: TCOutputModel {
-        /// 时间，格式：yyyy-mm-dd HH:MM:SS。
+        /// 时间，
+        /// 使用UTC格式时间，
+        /// 例如：2019-01-08T10:00:00Z。
+        /// 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         public let time: String
 
         /// 次数。
@@ -952,7 +963,9 @@ extension Live {
     /// 播放错误码信息
     public struct HttpStatusData: TCOutputModel {
         /// 数据时间点，
-        /// 格式：yyyy-mm-dd HH:MM:SS。
+        /// 使用UTC格式时间，
+        /// 例如：2019-01-08T10:00:00Z。
+        /// 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         public let time: String
 
         /// 播放状态码详细信息。
@@ -2048,7 +2061,9 @@ extension Live {
 
     /// 某条流的推流质量详情数据。
     public struct PushQualityData: TCOutputModel {
-        /// 数据时间，格式: %Y-%m-%d %H:%M:%S.%ms，精确到毫秒级。
+        /// 数据时间，使用UTC格式时间，
+        /// 例如：2019-01-08T10:00:00Z。
+        /// 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         public let time: String
 
         /// 推流域名。

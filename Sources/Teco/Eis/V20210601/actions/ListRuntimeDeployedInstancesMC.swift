@@ -52,7 +52,12 @@ extension Eis {
         /// 2: 已停止
         public let status: Int64?
 
-        public init(runtimeId: Int64, limit: Int64, offset: Int64, sortType: Int64, sort: String, zone: String, apiVersion: Int64? = nil, groupId: Int64? = nil, status: Int64? = nil) {
+        /// 0: 应用集成
+        /// 1: API管理
+        /// 2: ETL
+        public let runtimeClass: Int64?
+
+        public init(runtimeId: Int64, limit: Int64, offset: Int64, sortType: Int64, sort: String, zone: String, apiVersion: Int64? = nil, groupId: Int64? = nil, status: Int64? = nil, runtimeClass: Int64? = nil) {
             self.runtimeId = runtimeId
             self.limit = limit
             self.offset = offset
@@ -62,6 +67,7 @@ extension Eis {
             self.apiVersion = apiVersion
             self.groupId = groupId
             self.status = status
+            self.runtimeClass = runtimeClass
         }
 
         enum CodingKeys: String, CodingKey {
@@ -74,6 +80,7 @@ extension Eis {
             case apiVersion = "ApiVersion"
             case groupId = "GroupId"
             case status = "Status"
+            case runtimeClass = "RuntimeClass"
         }
 
         /// Compute the next request based on API response.
@@ -81,7 +88,7 @@ extension Eis {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return .init(runtimeId: self.runtimeId, limit: self.limit, offset: self.offset + .init(response.getItems().count), sortType: self.sortType, sort: self.sort, zone: self.zone, apiVersion: self.apiVersion, groupId: self.groupId, status: self.status)
+            return .init(runtimeId: self.runtimeId, limit: self.limit, offset: self.offset + .init(response.getItems().count), sortType: self.sortType, sort: self.sort, zone: self.zone, apiVersion: self.apiVersion, groupId: self.groupId, status: self.status, runtimeClass: self.runtimeClass)
         }
     }
 
@@ -127,14 +134,14 @@ extension Eis {
 
     /// 获取运行时部署的应用实例列表
     @inlinable
-    public func listRuntimeDeployedInstancesMC(runtimeId: Int64, limit: Int64, offset: Int64, sortType: Int64, sort: String, zone: String, apiVersion: Int64? = nil, groupId: Int64? = nil, status: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListRuntimeDeployedInstancesMCResponse> {
-        self.listRuntimeDeployedInstancesMC(.init(runtimeId: runtimeId, limit: limit, offset: offset, sortType: sortType, sort: sort, zone: zone, apiVersion: apiVersion, groupId: groupId, status: status), region: region, logger: logger, on: eventLoop)
+    public func listRuntimeDeployedInstancesMC(runtimeId: Int64, limit: Int64, offset: Int64, sortType: Int64, sort: String, zone: String, apiVersion: Int64? = nil, groupId: Int64? = nil, status: Int64? = nil, runtimeClass: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListRuntimeDeployedInstancesMCResponse> {
+        self.listRuntimeDeployedInstancesMC(.init(runtimeId: runtimeId, limit: limit, offset: offset, sortType: sortType, sort: sort, zone: zone, apiVersion: apiVersion, groupId: groupId, status: status, runtimeClass: runtimeClass), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取运行时部署的应用实例列表
     @inlinable
-    public func listRuntimeDeployedInstancesMC(runtimeId: Int64, limit: Int64, offset: Int64, sortType: Int64, sort: String, zone: String, apiVersion: Int64? = nil, groupId: Int64? = nil, status: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListRuntimeDeployedInstancesMCResponse {
-        try await self.listRuntimeDeployedInstancesMC(.init(runtimeId: runtimeId, limit: limit, offset: offset, sortType: sortType, sort: sort, zone: zone, apiVersion: apiVersion, groupId: groupId, status: status), region: region, logger: logger, on: eventLoop)
+    public func listRuntimeDeployedInstancesMC(runtimeId: Int64, limit: Int64, offset: Int64, sortType: Int64, sort: String, zone: String, apiVersion: Int64? = nil, groupId: Int64? = nil, status: Int64? = nil, runtimeClass: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListRuntimeDeployedInstancesMCResponse {
+        try await self.listRuntimeDeployedInstancesMC(.init(runtimeId: runtimeId, limit: limit, offset: offset, sortType: sortType, sort: sort, zone: zone, apiVersion: apiVersion, groupId: groupId, status: status, runtimeClass: runtimeClass), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取运行时部署的应用实例列表

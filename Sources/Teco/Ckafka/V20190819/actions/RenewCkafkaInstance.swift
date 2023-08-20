@@ -38,38 +38,16 @@ extension Ckafka {
         }
     }
 
-    /// RenewCkafkaInstance接口出参bigDealIds
+    /// RenewCkafkaInstance返回参数结构体
     public struct RenewCkafkaInstanceResponse: TCResponse {
-        private let data: Wrapped
-
-        private struct Wrapped: Codable {
-            public let bigDealId: String?
-
-            public let dealName: String?
-
-            enum CodingKeys: String, CodingKey {
-                case bigDealId = "BigDealId"
-                case dealName = "DealName"
-            }
-        }
-
-        /// 订单号
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var bigDealId: String? {
-            self.data.bigDealId
-        }
-
-        /// 子订单号
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var dealName: String? {
-            self.data.dealName
-        }
+        /// 返回值
+        public let result: RenewCkafkaInstanceResp
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
-            case data = "Data"
+            case result = "Result"
             case requestId = "RequestId"
         }
     }

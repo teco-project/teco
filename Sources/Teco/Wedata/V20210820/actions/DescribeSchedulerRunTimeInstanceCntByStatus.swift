@@ -36,12 +36,20 @@ extension Wedata {
         /// 结束日前：2023-03-20
         public let endTime: String?
 
-        public init(projectId: String, cycleUnit: String? = nil, timeUnit: String? = nil, startTime: String? = nil, endTime: String? = nil) {
+        /// 1
+        public let taskType: Int64?
+
+        /// 1
+        public let inCharge: String?
+
+        public init(projectId: String, cycleUnit: String? = nil, timeUnit: String? = nil, startTime: String? = nil, endTime: String? = nil, taskType: Int64? = nil, inCharge: String? = nil) {
             self.projectId = projectId
             self.cycleUnit = cycleUnit
             self.timeUnit = timeUnit
             self.startTime = startTime
             self.endTime = endTime
+            self.taskType = taskType
+            self.inCharge = inCharge
         }
 
         enum CodingKeys: String, CodingKey {
@@ -50,6 +58,8 @@ extension Wedata {
             case timeUnit = "TimeUnit"
             case startTime = "StartTime"
             case endTime = "EndTime"
+            case taskType = "TaskType"
+            case inCharge = "InCharge"
         }
     }
 
@@ -82,13 +92,13 @@ extension Wedata {
 
     /// 运维大屏-实例运行时长排行
     @inlinable
-    public func describeSchedulerRunTimeInstanceCntByStatus(projectId: String, cycleUnit: String? = nil, timeUnit: String? = nil, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSchedulerRunTimeInstanceCntByStatusResponse> {
-        self.describeSchedulerRunTimeInstanceCntByStatus(.init(projectId: projectId, cycleUnit: cycleUnit, timeUnit: timeUnit, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+    public func describeSchedulerRunTimeInstanceCntByStatus(projectId: String, cycleUnit: String? = nil, timeUnit: String? = nil, startTime: String? = nil, endTime: String? = nil, taskType: Int64? = nil, inCharge: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSchedulerRunTimeInstanceCntByStatusResponse> {
+        self.describeSchedulerRunTimeInstanceCntByStatus(.init(projectId: projectId, cycleUnit: cycleUnit, timeUnit: timeUnit, startTime: startTime, endTime: endTime, taskType: taskType, inCharge: inCharge), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运维大屏-实例运行时长排行
     @inlinable
-    public func describeSchedulerRunTimeInstanceCntByStatus(projectId: String, cycleUnit: String? = nil, timeUnit: String? = nil, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSchedulerRunTimeInstanceCntByStatusResponse {
-        try await self.describeSchedulerRunTimeInstanceCntByStatus(.init(projectId: projectId, cycleUnit: cycleUnit, timeUnit: timeUnit, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+    public func describeSchedulerRunTimeInstanceCntByStatus(projectId: String, cycleUnit: String? = nil, timeUnit: String? = nil, startTime: String? = nil, endTime: String? = nil, taskType: Int64? = nil, inCharge: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSchedulerRunTimeInstanceCntByStatusResponse {
+        try await self.describeSchedulerRunTimeInstanceCntByStatus(.init(projectId: projectId, cycleUnit: cycleUnit, timeUnit: timeUnit, startTime: startTime, endTime: endTime, taskType: taskType, inCharge: inCharge), region: region, logger: logger, on: eventLoop)
     }
 }

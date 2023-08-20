@@ -584,6 +584,14 @@ extension Cfw {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let betaList: [BetaInfoByACL]?
 
+        /// 生效范围：serial，串行；side，旁路；all，全局
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scope: String?
+
+        /// 互联网边界防火墙使用的内部规则id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let internetBorderUuid: String?
+
         enum CodingKeys: String, CodingKey {
             case sourceContent = "SourceContent"
             case targetContent = "TargetContent"
@@ -610,6 +618,8 @@ extension Cfw {
             case internalUuid = "InternalUuid"
             case status = "Status"
             case betaList = "BetaList"
+            case scope = "Scope"
+            case internetBorderUuid = "InternetBorderUuid"
         }
     }
 
@@ -954,6 +964,14 @@ extension Cfw {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleMax: UInt64?
 
+        /// 实例引擎版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let engineVersion: String?
+
+        /// 引擎是否可升级：0，不可升级；1，可升级
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updateEnable: Int64?
+
         enum CodingKeys: String, CodingKey {
             case natinsId = "NatinsId"
             case natinsName = "NatinsName"
@@ -972,6 +990,8 @@ extension Cfw {
             case zoneZhBak = "ZoneZhBak"
             case ruleUsed = "RuleUsed"
             case ruleMax = "RuleMax"
+            case engineVersion = "EngineVersion"
+            case updateEnable = "UpdateEnable"
         }
     }
 
@@ -1851,6 +1871,14 @@ extension Cfw {
         /// 0：开关关闭 ， 1: 开关打开
         public let switchStatus: Int64
 
+        /// 0：未防护， 1: 已防护，2：忽略此字段
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let protectedStatus: UInt64?
+
+        /// 是否支持DNS FW，0-不支持、1-支持
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let supportDNSFW: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case vpcId = "VpcId"
             case vpcName = "VpcName"
@@ -1860,6 +1888,8 @@ extension Cfw {
             case natInsId = "NatInsId"
             case natInsName = "NatInsName"
             case switchStatus = "SwitchStatus"
+            case protectedStatus = "ProtectedStatus"
+            case supportDNSFW = "SupportDNSFW"
         }
     }
 

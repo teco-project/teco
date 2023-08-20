@@ -24,10 +24,10 @@ extension Ess {
         /// 操作人信息，UserId必填且需拥有组织架构管理权限
         public let `operator`: UserInfo
 
-        /// 电子签部门ID
+        /// 电子签部门ID,通过DescribeIntegrationDepartments接口可以获取
         public let deptId: String
 
-        /// 电子签父部门ID
+        /// 电子签父部门ID，通过DescribeIntegrationDepartments接口可以获取
         public let parentDeptId: String?
 
         /// 部门名称，不超过50个字符

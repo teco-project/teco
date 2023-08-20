@@ -44,6 +44,7 @@ extension TCLighthouseError {
             case keyPairNotBoundToInstance = "UnsupportedOperation.KeyPairNotBoundToInstance"
             case latestOperationUnfinished = "UnsupportedOperation.LatestOperationUnfinished"
             case notSupportSharedBlueprint = "UnsupportedOperation.NotSupportSharedBlueprint"
+            case operationOffline = "UnsupportedOperation.OperationOffline"
             case postDestroyResourceFailed = "UnsupportedOperation.PostDestroyResourceFailed"
             case resetAttachCcnFailed = "UnsupportedOperation.ResetAttachCcnFailed"
             case resourceNotReturnable = "UnsupportedOperation.ResourceNotReturnable"
@@ -202,6 +203,13 @@ extension TCLighthouseError {
             UnsupportedOperation(.notSupportSharedBlueprint)
         }
 
+        /// 此接口已下线。
+        ///
+        /// 使用其他API。
+        public static var operationOffline: UnsupportedOperation {
+            UnsupportedOperation(.operationOffline)
+        }
+
         /// 计费资源中心删除资源失败。
         ///
         /// 请稍后再次重试。
@@ -304,6 +312,8 @@ extension TCLighthouseError {
                 code = .unsupportedOperation_LatestOperationUnfinished
             case .notSupportSharedBlueprint:
                 code = .unsupportedOperation_NotSupportSharedBlueprint
+            case .operationOffline:
+                code = .unsupportedOperation_OperationOffline
             case .postDestroyResourceFailed:
                 code = .unsupportedOperation_PostDestroyResourceFailed
             case .resetAttachCcnFailed:

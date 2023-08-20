@@ -50,7 +50,7 @@ extension Redis {
         /// 私有网络所属子网 ID 数组，例如：56854。该参数暂时保留，可忽略。请根据 UniqSubnetIds 参数格式设置私有网络子网 ID 数组。
         public let subnetIds: [String]?
 
-        /// 设置模糊查询关键字，支持根据实例名称或实例ID模糊查询实例。
+        /// 设置模糊查询关键字段，仅实例名称支持模糊查询。
         public let searchKey: String?
 
         /// 项目 ID 组成的数组。
@@ -109,7 +109,7 @@ extension Redis {
         /// - 16：Redis 6.2内存版（集群架构）。
         public let type: Int64?
 
-        /// 设置搜索关键字数组，可根据实例ID、实例名称、完整IP地址查询实例。
+        /// 设置搜索关键字数组，可根据实例ID、实例名称、完整IP地址搜索实例。
         public let searchKeys: [String]?
 
         /// 内部参数，用户可忽略。

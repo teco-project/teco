@@ -35,6 +35,7 @@ extension TCOrganizationError {
             case createRecordAlreadySuccess = "FailedOperation.CreateRecordAlreadySuccess"
             case createRecordNotExist = "FailedOperation.CreateRecordNotExist"
             case createRole = "FailedOperation.CreateRole"
+            case deletePolicy = "FailedOperation.DeletePolicy"
             case disableQuitSelfCreatedOrganization = "FailedOperation.DisableQuitSelfCreatedOrganization"
             case emailAlreadyUsed = "FailedOperation.EmailAlreadyUsed"
             case emailBindRecordInvalid = "FailedOperation.EmailBindRecordInvalid"
@@ -43,6 +44,7 @@ extension TCOrganizationError {
             case memberBindPhoneError = "FailedOperation.MemberBindPhoneError"
             case memberEmailExist = "FailedOperation.MemberEmailExist"
             case memberExistDelegatePayerNotAllowDelete = "FailedOperation.MemberExistDelegatePayerNotAllowDelete"
+            case memberIdentityAuthUsed = "FailedOperation.MemberIdentityAuthUsed"
             case memberIsDelegatePayerNotAllowDelete = "FailedOperation.MemberIsDelegatePayerNotAllowDelete"
             case memberNameUsed = "FailedOperation.MemberNameUsed"
             case memberPolicyNameExist = "FailedOperation.MemberPolicyNameExist"
@@ -51,6 +53,7 @@ extension TCOrganizationError {
             case operateBillingPermissionErr = "FailedOperation.OperateBillingPermissionErr"
             case operatePolicy = "FailedOperation.OperatePolicy"
             case organizationAuthManageNotAllowDelete = "FailedOperation.OrganizationAuthManageNotAllowDelete"
+            case organizationIdentityPolicyError = "FailedOperation.OrganizationIdentityPolicyError"
             case organizationMemberNameUsed = "FailedOperation.OrganizationMemberNameUsed"
             case organizationNodeDeleteOverLimit = "FailedOperation.OrganizationNodeDeleteOverLimit"
             case organizationNodeNameUsed = "FailedOperation.OrganizationNodeNameUsed"
@@ -168,6 +171,11 @@ extension TCOrganizationError {
             FailedOperation(.createRole)
         }
 
+        /// 删除授权策略异常。
+        public static var deletePolicy: FailedOperation {
+            FailedOperation(.deletePolicy)
+        }
+
         /// 不能退出自己创建的企业组织。
         public static var disableQuitSelfCreatedOrganization: FailedOperation {
             FailedOperation(.disableQuitSelfCreatedOrganization)
@@ -208,6 +216,11 @@ extension TCOrganizationError {
             FailedOperation(.memberExistDelegatePayerNotAllowDelete)
         }
 
+        /// 成员授权在使用。
+        public static var memberIdentityAuthUsed: FailedOperation {
+            FailedOperation(.memberIdentityAuthUsed)
+        }
+
         /// 成员是代付者，不允许删除。
         public static var memberIsDelegatePayerNotAllowDelete: FailedOperation {
             FailedOperation(.memberIsDelegatePayerNotAllowDelete)
@@ -246,6 +259,11 @@ extension TCOrganizationError {
         /// 成员是主体管理账号不允许删除。
         public static var organizationAuthManageNotAllowDelete: FailedOperation {
             FailedOperation(.organizationAuthManageNotAllowDelete)
+        }
+
+        /// 组织身份策略不合法。
+        public static var organizationIdentityPolicyError: FailedOperation {
+            FailedOperation(.organizationIdentityPolicyError)
         }
 
         /// 成员名已存在。
@@ -348,6 +366,8 @@ extension TCOrganizationError {
                 code = .failedOperation_CreateRecordNotExist
             case .createRole:
                 code = .failedOperation_CreateRole
+            case .deletePolicy:
+                code = .failedOperation_DeletePolicy
             case .disableQuitSelfCreatedOrganization:
                 code = .failedOperation_DisableQuitSelfCreatedOrganization
             case .emailAlreadyUsed:
@@ -364,6 +384,8 @@ extension TCOrganizationError {
                 code = .failedOperation_MemberEmailExist
             case .memberExistDelegatePayerNotAllowDelete:
                 code = .failedOperation_MemberExistDelegatePayerNotAllowDelete
+            case .memberIdentityAuthUsed:
+                code = .failedOperation_MemberIdentityAuthUsed
             case .memberIsDelegatePayerNotAllowDelete:
                 code = .failedOperation_MemberIsDelegatePayerNotAllowDelete
             case .memberNameUsed:
@@ -380,6 +402,8 @@ extension TCOrganizationError {
                 code = .failedOperation_OperatePolicy
             case .organizationAuthManageNotAllowDelete:
                 code = .failedOperation_OrganizationAuthManageNotAllowDelete
+            case .organizationIdentityPolicyError:
+                code = .failedOperation_OrganizationIdentityPolicyError
             case .organizationMemberNameUsed:
                 code = .failedOperation_OrganizationMemberNameUsed
             case .organizationNodeDeleteOverLimit:

@@ -21,12 +21,16 @@ import TecoCore
 extension Live {
     /// DescribePlayErrorCodeDetailInfoList请求参数结构体
     public struct DescribePlayErrorCodeDetailInfoListRequest: TCRequest {
-        /// 起始时间，北京时间，
-        /// 格式：yyyy-mm-dd HH:MM:SS。
+        /// 起始时间，
+        /// 使用UTC格式时间，
+        /// 例如：2019-01-08T10:00:00Z。
+        /// 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         public let startTime: String
 
-        /// 结束时间，北京时间，
-        /// 格式：yyyy-mm-dd HH:MM:SS。
+        /// 结束时间，
+        /// 使用UTC格式时间，
+        /// 例如：2019-01-08T10:00:00Z。
+        /// 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         /// 注：EndTime 和 StartTime 只支持最近1天的数据查询。
         public let endTime: String
 
@@ -82,6 +86,7 @@ extension Live {
 
     /// 查询播放http错误码实时数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询下行播放错误码信息，某段时间内1分钟粒度的各http错误码出现的次数，包括4xx，5xx。
     @inlinable
     public func describePlayErrorCodeDetailInfoList(_ input: DescribePlayErrorCodeDetailInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePlayErrorCodeDetailInfoListResponse> {
@@ -90,6 +95,7 @@ extension Live {
 
     /// 查询播放http错误码实时数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询下行播放错误码信息，某段时间内1分钟粒度的各http错误码出现的次数，包括4xx，5xx。
     @inlinable
     public func describePlayErrorCodeDetailInfoList(_ input: DescribePlayErrorCodeDetailInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlayErrorCodeDetailInfoListResponse {
@@ -98,6 +104,7 @@ extension Live {
 
     /// 查询播放http错误码实时数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询下行播放错误码信息，某段时间内1分钟粒度的各http错误码出现的次数，包括4xx，5xx。
     @inlinable
     public func describePlayErrorCodeDetailInfoList(startTime: String, endTime: String, granularity: UInt64, statType: String, playDomains: [String]? = nil, mainlandOrOversea: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePlayErrorCodeDetailInfoListResponse> {
@@ -106,6 +113,7 @@ extension Live {
 
     /// 查询播放http错误码实时数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询下行播放错误码信息，某段时间内1分钟粒度的各http错误码出现的次数，包括4xx，5xx。
     @inlinable
     public func describePlayErrorCodeDetailInfoList(startTime: String, endTime: String, granularity: UInt64, statType: String, playDomains: [String]? = nil, mainlandOrOversea: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlayErrorCodeDetailInfoListResponse {

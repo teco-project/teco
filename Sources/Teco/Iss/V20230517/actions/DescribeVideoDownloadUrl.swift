@@ -53,44 +53,10 @@ extension Iss {
         }
     }
 
-    /// 获取云录像下载URL返回的数据
+    /// DescribeVideoDownloadUrl返回参数结构体
     public struct DescribeVideoDownloadUrlResponse: TCResponse {
-        private let data: Wrapped
-
-        private struct Wrapped: Codable {
-            public let url: String?
-
-            public let actualBeginTime: String?
-
-            public let actualEndTime: String?
-
-            enum CodingKeys: String, CodingKey {
-                case url = "Url"
-                case actualBeginTime = "ActualBeginTime"
-                case actualEndTime = "ActualEndTime"
-            }
-        }
-
-        /// 录像文件下载 URL
-        /// 注意：
-        /// URL 有效期是10分钟，过期后将拒绝访问，若需再用请重新获取
-        /// 录像文件下载采用分块传输编码，响应头Transfer-Encoding:chunked
-        /// 下载文件命名格式为{ChannelId}-{BeginTime}-{EndTime}.{FileType}
-        public var url: String? {
-            self.data.url
-        }
-
-        /// 实际下载录像的开始时间
-        /// 注意：当请求中指定IsRespActualTime参数为true时，才有该字段
-        public var actualBeginTime: String? {
-            self.data.actualBeginTime
-        }
-
-        /// 实际下载录像的结束时间
-        /// 注意：当请求中指定IsRespActualTime参数为true时，才有该字段
-        public var actualEndTime: String? {
-            self.data.actualEndTime
-        }
+        /// 返回的数据结构
+        public let data: DescribeVideoDownloadUrlData
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String

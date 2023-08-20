@@ -100,6 +100,10 @@ extension Faceid {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let intentionQuestionResult: IntentionQuestionResult?
 
+        /// 意愿核身点头确认模式的结果信息，若未使用该意愿核身功能，该字段返回值可以不处理。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let intentionActionResult: IntentionActionResult?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -111,6 +115,7 @@ extension Faceid {
             case encryption = "Encryption"
             case intentionVerifyData = "IntentionVerifyData"
             case intentionQuestionResult = "IntentionQuestionResult"
+            case intentionActionResult = "IntentionActionResult"
             case requestId = "RequestId"
         }
     }

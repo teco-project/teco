@@ -83,6 +83,8 @@ extension TCAsrError {
         }
 
         /// 账号本月免费额度已用完。
+        ///
+        /// None
         public static var userHasNoFreeAmount: FailedOperation {
             FailedOperation(.userHasNoFreeAmount)
         }

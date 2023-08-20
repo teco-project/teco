@@ -1120,6 +1120,35 @@ extension Cls {
         }
     }
 
+    /// Windows事件日志采集配置
+    public struct EventLog: TCInputModel, TCOutputModel {
+        /// 事件通道，支持Application，Security，Setup，System，ALL
+        public let eventChannel: String
+
+        /// 时间类型，1:用户自定义，2:当前时间
+        public let timeType: UInt64
+
+        /// 时间，用户选择自定义时间类型时，需要指定时间
+        public let timestamp: UInt64?
+
+        /// 事件ID过滤列表
+        public let eventIDs: [String]?
+
+        public init(eventChannel: String, timeType: UInt64, timestamp: UInt64? = nil, eventIDs: [String]? = nil) {
+            self.eventChannel = eventChannel
+            self.timeType = timeType
+            self.timestamp = timestamp
+            self.eventIDs = eventIDs
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case eventChannel = "EventChannel"
+            case timeType = "TimeType"
+            case timestamp = "Timestamp"
+            case eventIDs = "EventIDs"
+        }
+    }
+
     /// 黑名单path信息
     public struct ExcludePathInfo: TCInputModel, TCOutputModel {
         /// 类型，选填File或Path
@@ -1274,7 +1303,10 @@ extension Cls {
         /// 用户自定义元数据信息，MetadataType为2时必填
         public let metaTags: [MetaTagInfo]?
 
-        public init(timeKey: String? = nil, timeFormat: String? = nil, delimiter: String? = nil, logRegex: String? = nil, beginRegex: String? = nil, keys: [String]? = nil, filterKeyRegex: [KeyRegexInfo]? = nil, unMatchUpLoadSwitch: Bool? = nil, unMatchLogKey: String? = nil, backtracking: Int64? = nil, isGBK: Int64? = nil, jsonStandard: Int64? = nil, protocol: String? = nil, address: String? = nil, parseProtocol: String? = nil, metadataType: Int64? = nil, pathRegex: String? = nil, metaTags: [MetaTagInfo]? = nil) {
+        /// windows事件日志采集
+        public let eventLogRules: [EventLog]?
+
+        public init(timeKey: String? = nil, timeFormat: String? = nil, delimiter: String? = nil, logRegex: String? = nil, beginRegex: String? = nil, keys: [String]? = nil, filterKeyRegex: [KeyRegexInfo]? = nil, unMatchUpLoadSwitch: Bool? = nil, unMatchLogKey: String? = nil, backtracking: Int64? = nil, isGBK: Int64? = nil, jsonStandard: Int64? = nil, protocol: String? = nil, address: String? = nil, parseProtocol: String? = nil, metadataType: Int64? = nil, pathRegex: String? = nil, metaTags: [MetaTagInfo]? = nil, eventLogRules: [EventLog]? = nil) {
             self.timeKey = timeKey
             self.timeFormat = timeFormat
             self.delimiter = delimiter
@@ -1293,6 +1325,7 @@ extension Cls {
             self.metadataType = metadataType
             self.pathRegex = pathRegex
             self.metaTags = metaTags
+            self.eventLogRules = eventLogRules
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1314,6 +1347,7 @@ extension Cls {
             case metadataType = "MetadataType"
             case pathRegex = "PathRegex"
             case metaTags = "MetaTags"
+            case eventLogRules = "EventLogRules"
         }
     }
 
@@ -1950,6 +1984,9 @@ extension Cls {
         /// 机器组元数据信息列表
         public let metaTags: [MetaTagInfo]?
 
+        /// 操作系统类型，0: Linux，1: windows
+        public let osType: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case groupName = "GroupName"
@@ -1961,6 +1998,7 @@ extension Cls {
             case updateEndTime = "UpdateEndTime"
             case serviceLogging = "ServiceLogging"
             case metaTags = "MetaTags"
+            case osType = "OSType"
         }
     }
 
@@ -2420,6 +2458,62 @@ extension Cls {
             case processDelay = "ProcessDelay"
             case srcTopicRegion = "SrcTopicRegion"
             case syntaxRule = "SyntaxRule"
+        }
+    }
+
+    /// 多日志主题检索错误信息
+    public struct SearchLogErrors: TCOutputModel {
+        /// 日志主题ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let topicId: String?
+
+        /// 错误信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let errorMsg: String?
+
+        /// 错误码
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let errorCodeStr: String?
+
+        enum CodingKeys: String, CodingKey {
+            case topicId = "TopicId"
+            case errorMsg = "ErrorMsg"
+            case errorCodeStr = "ErrorCodeStr"
+        }
+    }
+
+    /// 多日志主题检索topic信息
+    public struct SearchLogInfos: TCOutputModel {
+        /// 日志主题ID
+        public let topicId: String
+
+        /// 日志存储生命周期
+        public let period: Int64
+
+        /// 透传本次接口返回的Context值，可获取后续更多日志，过期时间1小时
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let context: String?
+
+        enum CodingKeys: String, CodingKey {
+            case topicId = "TopicId"
+            case period = "Period"
+            case context = "Context"
+        }
+    }
+
+    /// 多主题检索返回信息
+    public struct SearchLogTopics: TCOutputModel {
+        /// 多日志主题检索对应的错误信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let errors: [SearchLogErrors]?
+
+        /// 多日志主题检索各日志主题信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let infos: [SearchLogInfos]?
+
+        enum CodingKeys: String, CodingKey {
+            case errors = "Errors"
+            case infos = "Infos"
         }
     }
 

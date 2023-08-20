@@ -30,7 +30,7 @@ extension Essbasic {
         /// 资源名称，长度限制为256字符
         public let resourceName: String
 
-        /// 资源Id，通过UploadFiles获取
+        /// 文件Id，通过UploadFiles获取
         public let resourceId: String
 
         /// 调用方用户信息，不用传

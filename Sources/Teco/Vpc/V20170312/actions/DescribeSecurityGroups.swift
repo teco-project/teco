@@ -28,8 +28,8 @@ extension Vpc {
         /// - security-group-id - String - （过滤条件）安全组ID。
         /// - project-id - Integer - （过滤条件）项目ID。
         /// - security-group-name - String - （过滤条件）安全组名称。
-        /// - tag-key - String -是否必填：否- （过滤条件）按照标签键进行过滤。使用请参考示例2。
-        /// - tag:tag-key - String - 是否必填：否 - （过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。使用请参考示例3。
+        /// - tag-key - String -是否必填：否- （过滤条件）按照标签键进行过滤。
+        /// - tag:tag-key - String - 是否必填：否 - （过滤条件）按照标签键值对进行过滤。 其中 tag-key 请使用具体的标签键进行替换。
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。

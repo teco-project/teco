@@ -22,42 +22,42 @@ import TecoPaginationHelpers
 extension Essbasic {
     /// ChannelDescribeEmployees请求参数结构体
     public struct ChannelDescribeEmployeesRequest: TCPaginatedRequest {
-        /// 返回最大数量，最大为20
-        public let limit: Int64
-
         /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
-        public let agent: Agent?
+        public let agent: Agent
+
+        /// 指定每页多少条数据，单页最大20
+        public let limit: Int64
 
         /// 查询过滤实名用户，Key为Status，Values为["IsVerified"]
         /// 根据第三方系统openId过滤查询员工时,Key为StaffOpenId,Values为["OpenId","OpenId",...]
         /// 查询离职员工时，Key为Status，Values为["QuiteJob"]
         public let filters: [Filter]?
 
-        /// 偏移量，默认为0，最大为20000
+        /// 查询结果分页返回，此处指定第几页，如果不传默认从第一页返回。页码从 0 开始，即首页为 0,最大为20000
         public let offset: Int64?
 
         /// 暂未开放
         @available(*, deprecated)
         public let `operator`: UserInfo? = nil
 
-        public init(limit: Int64, agent: Agent? = nil, filters: [Filter]? = nil, offset: Int64? = nil) {
-            self.limit = limit
+        public init(agent: Agent, limit: Int64, filters: [Filter]? = nil, offset: Int64? = nil) {
             self.agent = agent
+            self.limit = limit
             self.filters = filters
             self.offset = offset
         }
 
-        @available(*, deprecated, renamed: "init(limit:agent:filters:offset:)", message: "'operator' is deprecated in 'ChannelDescribeEmployeesRequest'. Setting this parameter has no effect.")
-        public init(limit: Int64, agent: Agent? = nil, filters: [Filter]? = nil, offset: Int64? = nil, operator: UserInfo? = nil) {
-            self.limit = limit
+        @available(*, deprecated, renamed: "init(agent:limit:filters:offset:)", message: "'operator' is deprecated in 'ChannelDescribeEmployeesRequest'. Setting this parameter has no effect.")
+        public init(agent: Agent, limit: Int64, filters: [Filter]? = nil, offset: Int64? = nil, operator: UserInfo? = nil) {
             self.agent = agent
+            self.limit = limit
             self.filters = filters
             self.offset = offset
         }
 
         enum CodingKeys: String, CodingKey {
-            case limit = "Limit"
             case agent = "Agent"
+            case limit = "Limit"
             case filters = "Filters"
             case offset = "Offset"
             case `operator` = "Operator"
@@ -68,7 +68,7 @@ extension Essbasic {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return .init(limit: self.limit, agent: self.agent, filters: self.filters, offset: (self.offset ?? 0) + response.limit)
+            return .init(agent: self.agent, limit: self.limit, filters: self.filters, offset: (self.offset ?? 0) + response.limit)
         }
     }
 
@@ -78,11 +78,11 @@ extension Essbasic {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let employees: [Staff]?
 
-        /// 偏移量，默认为0，最大为20000
+        /// 查询结果分页返回，此处指定第几页，如果不传默认从第一页返回。页码从 0 开始，即首页为 0，最大20000
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let offset: Int64?
 
-        /// 返回最大数量，最大为20
+        /// 指定每页多少条数据，单页最大20
         public let limit: Int64
 
         /// 符合条件的员工数量
@@ -130,34 +130,34 @@ extension Essbasic {
     ///
     /// 查询企业员工列表
     @inlinable
-    public func channelDescribeEmployees(limit: Int64, agent: Agent? = nil, filters: [Filter]? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelDescribeEmployeesResponse> {
-        self.channelDescribeEmployees(.init(limit: limit, agent: agent, filters: filters, offset: offset), region: region, logger: logger, on: eventLoop)
+    public func channelDescribeEmployees(agent: Agent, limit: Int64, filters: [Filter]? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelDescribeEmployeesResponse> {
+        self.channelDescribeEmployees(.init(agent: agent, limit: limit, filters: filters, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询企业员工
     ///
     /// 查询企业员工列表
-    @available(*, deprecated, renamed: "channelDescribeEmployees(limit:agent:filters:offset:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    @available(*, deprecated, renamed: "channelDescribeEmployees(agent:limit:filters:offset:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable
-    public func channelDescribeEmployees(limit: Int64, agent: Agent? = nil, filters: [Filter]? = nil, offset: Int64? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelDescribeEmployeesResponse> {
-        self.channelDescribeEmployees(.init(limit: limit, agent: agent, filters: filters, offset: offset, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func channelDescribeEmployees(agent: Agent, limit: Int64, filters: [Filter]? = nil, offset: Int64? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelDescribeEmployeesResponse> {
+        self.channelDescribeEmployees(.init(agent: agent, limit: limit, filters: filters, offset: offset, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询企业员工
     ///
     /// 查询企业员工列表
     @inlinable
-    public func channelDescribeEmployees(limit: Int64, agent: Agent? = nil, filters: [Filter]? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelDescribeEmployeesResponse {
-        try await self.channelDescribeEmployees(.init(limit: limit, agent: agent, filters: filters, offset: offset), region: region, logger: logger, on: eventLoop)
+    public func channelDescribeEmployees(agent: Agent, limit: Int64, filters: [Filter]? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelDescribeEmployeesResponse {
+        try await self.channelDescribeEmployees(.init(agent: agent, limit: limit, filters: filters, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询企业员工
     ///
     /// 查询企业员工列表
-    @available(*, deprecated, renamed: "channelDescribeEmployees(limit:agent:filters:offset:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    @available(*, deprecated, renamed: "channelDescribeEmployees(agent:limit:filters:offset:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable
-    public func channelDescribeEmployees(limit: Int64, agent: Agent? = nil, filters: [Filter]? = nil, offset: Int64? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelDescribeEmployeesResponse {
-        try await self.channelDescribeEmployees(.init(limit: limit, agent: agent, filters: filters, offset: offset, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func channelDescribeEmployees(agent: Agent, limit: Int64, filters: [Filter]? = nil, offset: Int64? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelDescribeEmployeesResponse {
+        try await self.channelDescribeEmployees(.init(agent: agent, limit: limit, filters: filters, offset: offset, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询企业员工

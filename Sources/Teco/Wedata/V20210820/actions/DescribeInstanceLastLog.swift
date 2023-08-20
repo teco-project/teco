@@ -52,24 +52,32 @@ extension Wedata {
         }
     }
 
+    /// 获取日志详情页面
+    ///
     /// 日志获取详情页面
     @inlinable
     public func describeInstanceLastLog(_ input: DescribeInstanceLastLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceLastLogResponse> {
         self.client.execute(action: "DescribeInstanceLastLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
+    /// 获取日志详情页面
+    ///
     /// 日志获取详情页面
     @inlinable
     public func describeInstanceLastLog(_ input: DescribeInstanceLastLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLastLogResponse {
         try await self.client.execute(action: "DescribeInstanceLastLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
+    /// 获取日志详情页面
+    ///
     /// 日志获取详情页面
     @inlinable
     public func describeInstanceLastLog(taskId: String, curRunDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceLastLogResponse> {
         self.describeInstanceLastLog(.init(taskId: taskId, curRunDate: curRunDate), region: region, logger: logger, on: eventLoop)
     }
 
+    /// 获取日志详情页面
+    ///
     /// 日志获取详情页面
     @inlinable
     public func describeInstanceLastLog(taskId: String, curRunDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLastLogResponse {

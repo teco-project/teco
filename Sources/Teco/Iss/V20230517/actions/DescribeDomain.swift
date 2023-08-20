@@ -25,77 +25,10 @@ extension Iss {
         }
     }
 
-    /// 查询域名详情数据
+    /// DescribeDomain返回参数结构体
     public struct DescribeDomainResponse: TCResponse {
-        private let data: Wrapped
-
-        private struct Wrapped: Codable {
-            public let id: String?
-
-            public let playDomain: String?
-
-            public let internalDomain: String?
-
-            public let haveCert: Int64?
-
-            public let clusterId: String?
-
-            public let clusterName: String?
-
-            public let appId: Int64?
-
-            enum CodingKeys: String, CodingKey {
-                case id = "Id"
-                case playDomain = "PlayDomain"
-                case internalDomain = "InternalDomain"
-                case haveCert = "HaveCert"
-                case clusterId = "ClusterId"
-                case clusterName = "ClusterName"
-                case appId = "AppId"
-            }
-        }
-
-        /// 域名ID
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var id: String? {
-            self.data.id
-        }
-
-        /// 播放域名
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var playDomain: String? {
-            self.data.playDomain
-        }
-
-        /// CNAME 记录值
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var internalDomain: String? {
-            self.data.internalDomain
-        }
-
-        /// 是否上传证书（0：否，1：是）
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var haveCert: Int64? {
-            self.data.haveCert
-        }
-
-        /// 服务节点 ID
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var clusterId: String? {
-            self.data.clusterId
-        }
-
-        /// 服务节点名称
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var clusterName: String? {
-            self.data.clusterName
-        }
-
-        /// 用户ID
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var appId: Int64? {
-            self.data.appId
-        }
+        /// 返回数据
+        public let data: [DescribeDomainData]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String

@@ -37,12 +37,20 @@ extension Trp {
         /// 是否有流水码 0:无 1:有
         public let serialType: UInt64?
 
-        public init(pageSize: UInt64? = nil, pageNumber: UInt64? = nil, keyword: String? = nil, corpId: UInt64? = nil, serialType: UInt64? = nil) {
+        /// 资源类型 batch:批次, order_in 入库, order_out: 出入
+        public let resType: String?
+
+        /// 资源ID ResType是 batch 时对应是批次ID, 是 order_in, order_out时，则是订单ID
+        public let resId: String?
+
+        public init(pageSize: UInt64? = nil, pageNumber: UInt64? = nil, keyword: String? = nil, corpId: UInt64? = nil, serialType: UInt64? = nil, resType: String? = nil, resId: String? = nil) {
             self.pageSize = pageSize
             self.pageNumber = pageNumber
             self.keyword = keyword
             self.corpId = corpId
             self.serialType = serialType
+            self.resType = resType
+            self.resId = resId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -51,6 +59,8 @@ extension Trp {
             case keyword = "Keyword"
             case corpId = "CorpId"
             case serialType = "SerialType"
+            case resType = "ResType"
+            case resId = "ResId"
         }
 
         /// Compute the next request based on API response.
@@ -58,7 +68,7 @@ extension Trp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return .init(pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1, keyword: self.keyword, corpId: self.corpId, serialType: self.serialType)
+            return .init(pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1, keyword: self.keyword, corpId: self.corpId, serialType: self.serialType, resType: self.resType, resId: self.resId)
         }
     }
 
@@ -106,14 +116,14 @@ extension Trp {
 
     /// 查询码包列表
     @inlinable
-    public func describeCodePacks(pageSize: UInt64? = nil, pageNumber: UInt64? = nil, keyword: String? = nil, corpId: UInt64? = nil, serialType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCodePacksResponse> {
-        self.describeCodePacks(.init(pageSize: pageSize, pageNumber: pageNumber, keyword: keyword, corpId: corpId, serialType: serialType), region: region, logger: logger, on: eventLoop)
+    public func describeCodePacks(pageSize: UInt64? = nil, pageNumber: UInt64? = nil, keyword: String? = nil, corpId: UInt64? = nil, serialType: UInt64? = nil, resType: String? = nil, resId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCodePacksResponse> {
+        self.describeCodePacks(.init(pageSize: pageSize, pageNumber: pageNumber, keyword: keyword, corpId: corpId, serialType: serialType, resType: resType, resId: resId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询码包列表
     @inlinable
-    public func describeCodePacks(pageSize: UInt64? = nil, pageNumber: UInt64? = nil, keyword: String? = nil, corpId: UInt64? = nil, serialType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodePacksResponse {
-        try await self.describeCodePacks(.init(pageSize: pageSize, pageNumber: pageNumber, keyword: keyword, corpId: corpId, serialType: serialType), region: region, logger: logger, on: eventLoop)
+    public func describeCodePacks(pageSize: UInt64? = nil, pageNumber: UInt64? = nil, keyword: String? = nil, corpId: UInt64? = nil, serialType: UInt64? = nil, resType: String? = nil, resId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodePacksResponse {
+        try await self.describeCodePacks(.init(pageSize: pageSize, pageNumber: pageNumber, keyword: keyword, corpId: corpId, serialType: serialType, resType: resType, resId: resId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询码包列表

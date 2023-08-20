@@ -113,6 +113,7 @@ extension Live {
 
     /// 查询所有流的流量数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询天维度每条流的播放数据，包括总流量等。
     @inlinable
     public func describeStreamDayPlayInfoList(_ input: DescribeStreamDayPlayInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamDayPlayInfoListResponse> {
@@ -121,6 +122,7 @@ extension Live {
 
     /// 查询所有流的流量数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询天维度每条流的播放数据，包括总流量等。
     @inlinable
     public func describeStreamDayPlayInfoList(_ input: DescribeStreamDayPlayInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamDayPlayInfoListResponse {
@@ -129,6 +131,7 @@ extension Live {
 
     /// 查询所有流的流量数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询天维度每条流的播放数据，包括总流量等。
     @inlinable
     public func describeStreamDayPlayInfoList(dayTime: String, playDomain: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, mainlandOrOversea: String? = nil, serviceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamDayPlayInfoListResponse> {
@@ -137,6 +140,7 @@ extension Live {
 
     /// 查询所有流的流量数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询天维度每条流的播放数据，包括总流量等。
     @inlinable
     public func describeStreamDayPlayInfoList(dayTime: String, playDomain: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, mainlandOrOversea: String? = nil, serviceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamDayPlayInfoListResponse {
@@ -145,6 +149,7 @@ extension Live {
 
     /// 查询所有流的流量数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询天维度每条流的播放数据，包括总流量等。
     @inlinable
     public func describeStreamDayPlayInfoListPaginated(_ input: DescribeStreamDayPlayInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [PlayDataInfoByStream])> {
@@ -153,6 +158,7 @@ extension Live {
 
     /// 查询所有流的流量数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询天维度每条流的播放数据，包括总流量等。
     @inlinable @discardableResult
     public func describeStreamDayPlayInfoListPaginated(_ input: DescribeStreamDayPlayInfoListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeStreamDayPlayInfoListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
@@ -161,6 +167,7 @@ extension Live {
 
     /// 查询所有流的流量数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询天维度每条流的播放数据，包括总流量等。
     ///
     /// - Returns: `AsyncSequence`s of ``PlayDataInfoByStream`` and ``DescribeStreamDayPlayInfoListResponse`` that can be iterated over asynchronously on demand.

@@ -21,7 +21,7 @@ import TecoCore
 extension Ssl {
     /// DescribeHostUpdateRecordDetail请求参数结构体
     public struct DescribeHostUpdateRecordDetailRequest: TCRequest {
-        /// 待部署的证书ID
+        /// 一键更新记录ID
         public let deployRecordId: String
 
         /// 每页数量，默认10。

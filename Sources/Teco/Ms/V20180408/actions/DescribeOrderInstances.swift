@@ -127,10 +127,9 @@ extension Ms {
     /// 1.支持多订单分页查询；
     /// 2.支持唯一订单号精准匹配查询；
     /// 3.支持唯一资源号精准匹配查询；
-    @available(*, unavailable, message: "上错服务器了")
     @inlinable
     public func describeOrderInstances(_ input: DescribeOrderInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrderInstancesResponse> {
-        fatalError("DescribeOrderInstances is no longer available.")
+        self.client.execute(action: "DescribeOrderInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询渠道合作应用加固订单信息
@@ -140,10 +139,9 @@ extension Ms {
     /// 1.支持多订单分页查询；
     /// 2.支持唯一订单号精准匹配查询；
     /// 3.支持唯一资源号精准匹配查询；
-    @available(*, unavailable, message: "上错服务器了")
     @inlinable
     public func describeOrderInstances(_ input: DescribeOrderInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrderInstancesResponse {
-        fatalError("DescribeOrderInstances is no longer available.")
+        try await self.client.execute(action: "DescribeOrderInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询渠道合作应用加固订单信息
@@ -153,10 +151,9 @@ extension Ms {
     /// 1.支持多订单分页查询；
     /// 2.支持唯一订单号精准匹配查询；
     /// 3.支持唯一资源号精准匹配查询；
-    @available(*, unavailable, message: "上错服务器了")
     @inlinable
     public func describeOrderInstances(pageNumber: Int64? = nil, pageSize: Int64? = nil, orderField: String? = nil, orderDirection: String? = nil, platformType: Int64? = nil, orderType: Int64? = nil, approvalStatus: Int64? = nil, resourceStatus: Int64? = nil, orderId: String? = nil, resourceId: String? = nil, appPkgName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrderInstancesResponse> {
-        fatalError("DescribeOrderInstances is no longer available.")
+        self.describeOrderInstances(.init(pageNumber: pageNumber, pageSize: pageSize, orderField: orderField, orderDirection: orderDirection, platformType: platformType, orderType: orderType, approvalStatus: approvalStatus, resourceStatus: resourceStatus, orderId: orderId, resourceId: resourceId, appPkgName: appPkgName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询渠道合作应用加固订单信息
@@ -166,10 +163,9 @@ extension Ms {
     /// 1.支持多订单分页查询；
     /// 2.支持唯一订单号精准匹配查询；
     /// 3.支持唯一资源号精准匹配查询；
-    @available(*, unavailable, message: "上错服务器了")
     @inlinable
     public func describeOrderInstances(pageNumber: Int64? = nil, pageSize: Int64? = nil, orderField: String? = nil, orderDirection: String? = nil, platformType: Int64? = nil, orderType: Int64? = nil, approvalStatus: Int64? = nil, resourceStatus: Int64? = nil, orderId: String? = nil, resourceId: String? = nil, appPkgName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrderInstancesResponse {
-        fatalError("DescribeOrderInstances is no longer available.")
+        try await self.describeOrderInstances(.init(pageNumber: pageNumber, pageSize: pageSize, orderField: orderField, orderDirection: orderDirection, platformType: platformType, orderType: orderType, approvalStatus: approvalStatus, resourceStatus: resourceStatus, orderId: orderId, resourceId: resourceId, appPkgName: appPkgName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询渠道合作应用加固订单信息
@@ -179,10 +175,9 @@ extension Ms {
     /// 1.支持多订单分页查询；
     /// 2.支持唯一订单号精准匹配查询；
     /// 3.支持唯一资源号精准匹配查询；
-    @available(*, unavailable, message: "上错服务器了")
     @inlinable
     public func describeOrderInstancesPaginated(_ input: DescribeOrderInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Orders])> {
-        fatalError("DescribeOrderInstances is no longer available.")
+        self.client.paginate(input: input, region: region, command: self.describeOrderInstances, logger: logger, on: eventLoop)
     }
 
     /// 查询渠道合作应用加固订单信息
@@ -192,10 +187,9 @@ extension Ms {
     /// 1.支持多订单分页查询；
     /// 2.支持唯一订单号精准匹配查询；
     /// 3.支持唯一资源号精准匹配查询；
-    @available(*, unavailable, message: "上错服务器了")
     @inlinable @discardableResult
     public func describeOrderInstancesPaginated(_ input: DescribeOrderInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeOrderInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
-        fatalError("DescribeOrderInstances is no longer available.")
+        self.client.paginate(input: input, region: region, command: self.describeOrderInstances, callback: onResponse, logger: logger, on: eventLoop)
     }
 
     /// 查询渠道合作应用加固订单信息
@@ -207,9 +201,8 @@ extension Ms {
     /// 3.支持唯一资源号精准匹配查询；
     ///
     /// - Returns: `AsyncSequence`s of ``Orders`` and ``DescribeOrderInstancesResponse`` that can be iterated over asynchronously on demand.
-    @available(*, unavailable, message: "上错服务器了")
     @inlinable
     public func describeOrderInstancesPaginator(_ input: DescribeOrderInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOrderInstancesRequest> {
-        fatalError("DescribeOrderInstances is no longer available.")
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOrderInstances, logger: logger, on: eventLoop)
     }
 }

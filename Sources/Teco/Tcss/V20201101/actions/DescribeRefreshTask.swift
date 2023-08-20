@@ -24,12 +24,17 @@ extension Tcss {
         /// 任务ID
         public let taskId: UInt64
 
-        public init(taskId: UInt64) {
+        /// 新任务ID
+        public let newTaskID: String?
+
+        public init(taskId: UInt64, newTaskID: String? = nil) {
             self.taskId = taskId
+            self.newTaskID = newTaskID
         }
 
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
+            case newTaskID = "NewTaskID"
         }
     }
 
@@ -61,13 +66,13 @@ extension Tcss {
 
     /// 查询刷新任务
     @inlinable
-    public func describeRefreshTask(taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRefreshTaskResponse> {
-        self.describeRefreshTask(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
+    public func describeRefreshTask(taskId: UInt64, newTaskID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRefreshTaskResponse> {
+        self.describeRefreshTask(.init(taskId: taskId, newTaskID: newTaskID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询刷新任务
     @inlinable
-    public func describeRefreshTask(taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRefreshTaskResponse {
-        try await self.describeRefreshTask(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
+    public func describeRefreshTask(taskId: UInt64, newTaskID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRefreshTaskResponse {
+        try await self.describeRefreshTask(.init(taskId: taskId, newTaskID: newTaskID), region: region, logger: logger, on: eventLoop)
     }
 }

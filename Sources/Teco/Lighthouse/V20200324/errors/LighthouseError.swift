@@ -46,6 +46,7 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         case failedOperation_FirewallRulesOperationFailed = "FailedOperation.FirewallRulesOperationFailed"
         case failedOperation_ImportKeyPairFailed = "FailedOperation.ImportKeyPairFailed"
         case failedOperation_InstanceOperationFailed = "FailedOperation.InstanceOperationFailed"
+        case failedOperation_InsufficientBalance = "FailedOperation.InsufficientBalance"
         case failedOperation_InvalidCommandNotFound = "FailedOperation.InvalidCommandNotFound"
         case failedOperation_IsolateResourcesFailed = "FailedOperation.IsolateResourcesFailed"
         case failedOperation_ModifyInstancesBundleFailed = "FailedOperation.ModifyInstancesBundleFailed"
@@ -233,6 +234,7 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         case unsupportedOperation_KeyPairNotBoundToInstance = "UnsupportedOperation.KeyPairNotBoundToInstance"
         case unsupportedOperation_LatestOperationUnfinished = "UnsupportedOperation.LatestOperationUnfinished"
         case unsupportedOperation_NotSupportSharedBlueprint = "UnsupportedOperation.NotSupportSharedBlueprint"
+        case unsupportedOperation_OperationOffline = "UnsupportedOperation.OperationOffline"
         case unsupportedOperation_PostDestroyResourceFailed = "UnsupportedOperation.PostDestroyResourceFailed"
         case unsupportedOperation_ResetAttachCcnFailed = "UnsupportedOperation.ResetAttachCcnFailed"
         case unsupportedOperation_ResourceNotReturnable = "UnsupportedOperation.ResourceNotReturnable"
@@ -383,6 +385,10 @@ public struct TCLighthouseError: TCLighthouseErrorType {
     /// 对实例的操作失败。
     public static var failedOperation_InstanceOperationFailed: TCLighthouseError {
         TCLighthouseError(.failedOperation_InstanceOperationFailed)
+    }
+
+    public static var failedOperation_InsufficientBalance: TCLighthouseError {
+        TCLighthouseError(.failedOperation_InsufficientBalance)
     }
 
     /// 命令无法找到。
@@ -1335,6 +1341,13 @@ public struct TCLighthouseError: TCLighthouseErrorType {
     /// 共享镜像不支持此操作。
     public static var unsupportedOperation_NotSupportSharedBlueprint: TCLighthouseError {
         TCLighthouseError(.unsupportedOperation_NotSupportSharedBlueprint)
+    }
+
+    /// 此接口已下线。
+    ///
+    /// 使用其他API。
+    public static var unsupportedOperation_OperationOffline: TCLighthouseError {
+        TCLighthouseError(.unsupportedOperation_OperationOffline)
     }
 
     /// 计费资源中心删除资源失败。

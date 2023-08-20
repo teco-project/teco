@@ -69,7 +69,7 @@ extension Essbasic {
 
     /// 流程文件验签
     ///
-    /// 对流程的合同文件进行验证，判断文件是否合法。
+    /// 对流程的合同文件进行数字签名验证，判断文件是否被篡改。
     @inlinable
     public func channelVerifyPdf(_ input: ChannelVerifyPdfRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelVerifyPdfResponse> {
         self.client.execute(action: "ChannelVerifyPdf", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -77,7 +77,7 @@ extension Essbasic {
 
     /// 流程文件验签
     ///
-    /// 对流程的合同文件进行验证，判断文件是否合法。
+    /// 对流程的合同文件进行数字签名验证，判断文件是否被篡改。
     @inlinable
     public func channelVerifyPdf(_ input: ChannelVerifyPdfRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelVerifyPdfResponse {
         try await self.client.execute(action: "ChannelVerifyPdf", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -85,7 +85,7 @@ extension Essbasic {
 
     /// 流程文件验签
     ///
-    /// 对流程的合同文件进行验证，判断文件是否合法。
+    /// 对流程的合同文件进行数字签名验证，判断文件是否被篡改。
     @inlinable
     public func channelVerifyPdf(flowId: String, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelVerifyPdfResponse> {
         self.channelVerifyPdf(.init(flowId: flowId, agent: agent), region: region, logger: logger, on: eventLoop)
@@ -93,7 +93,7 @@ extension Essbasic {
 
     /// 流程文件验签
     ///
-    /// 对流程的合同文件进行验证，判断文件是否合法。
+    /// 对流程的合同文件进行数字签名验证，判断文件是否被篡改。
     @available(*, deprecated, renamed: "channelVerifyPdf(flowId:agent:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func channelVerifyPdf(flowId: String, agent: Agent? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelVerifyPdfResponse> {
@@ -102,7 +102,7 @@ extension Essbasic {
 
     /// 流程文件验签
     ///
-    /// 对流程的合同文件进行验证，判断文件是否合法。
+    /// 对流程的合同文件进行数字签名验证，判断文件是否被篡改。
     @inlinable
     public func channelVerifyPdf(flowId: String, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelVerifyPdfResponse {
         try await self.channelVerifyPdf(.init(flowId: flowId, agent: agent), region: region, logger: logger, on: eventLoop)
@@ -110,7 +110,7 @@ extension Essbasic {
 
     /// 流程文件验签
     ///
-    /// 对流程的合同文件进行验证，判断文件是否合法。
+    /// 对流程的合同文件进行数字签名验证，判断文件是否被篡改。
     @available(*, deprecated, renamed: "channelVerifyPdf(flowId:agent:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func channelVerifyPdf(flowId: String, agent: Agent? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelVerifyPdfResponse {

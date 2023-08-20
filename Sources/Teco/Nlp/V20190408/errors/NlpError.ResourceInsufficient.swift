@@ -20,6 +20,7 @@ extension TCNlpError {
     public struct ResourceInsufficient: TCNlpErrorType {
         enum Code: String {
             case quotaRunOut = "ResourceInsufficient.QuotaRunOut"
+            case other = "ResourceInsufficient"
         }
 
         private let error: Code
@@ -49,11 +50,18 @@ extension TCNlpError {
             ResourceInsufficient(.quotaRunOut)
         }
 
+        /// 资源不足。
+        public static var other: ResourceInsufficient {
+            ResourceInsufficient(.other)
+        }
+
         public func asNlpError() -> TCNlpError {
             let code: TCNlpError.Code
             switch self.error {
             case .quotaRunOut:
                 code = .resourceInsufficient_QuotaRunOut
+            case .other:
+                code = .resourceInsufficient
             }
             return TCNlpError(code, context: self.context)
         }

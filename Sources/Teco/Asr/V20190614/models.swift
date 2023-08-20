@@ -317,6 +317,17 @@ extension Asr {
         }
     }
 
+    /// 统计返回注册数量结构
+    public struct VoicePrintCountData: TCOutputModel {
+        /// 总数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let total: UInt64?
+
+        enum CodingKeys: String, CodingKey {
+            case total = "Total"
+        }
+    }
+
     /// 说话人验证数据
     public struct VoicePrintVerifyData: TCOutputModel {
         /// 说话人id

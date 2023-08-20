@@ -24,12 +24,17 @@ extension Wedata {
         /// 项目ID
         public let projectId: String
 
-        public init(projectId: String) {
+        /// 1
+        public let inCharge: String?
+
+        public init(projectId: String, inCharge: String? = nil) {
             self.projectId = projectId
+            self.inCharge = inCharge
         }
 
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
+            case inCharge = "InCharge"
         }
     }
 
@@ -67,15 +72,15 @@ extension Wedata {
     ///
     /// 根据周期类型 查询所有任务
     @inlinable
-    public func describeTaskByCycle(projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskByCycleResponse> {
-        self.describeTaskByCycle(.init(projectId: projectId), region: region, logger: logger, on: eventLoop)
+    public func describeTaskByCycle(projectId: String, inCharge: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskByCycleResponse> {
+        self.describeTaskByCycle(.init(projectId: projectId, inCharge: inCharge), region: region, logger: logger, on: eventLoop)
     }
 
     /// 周期任务统计
     ///
     /// 根据周期类型 查询所有任务
     @inlinable
-    public func describeTaskByCycle(projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskByCycleResponse {
-        try await self.describeTaskByCycle(.init(projectId: projectId), region: region, logger: logger, on: eventLoop)
+    public func describeTaskByCycle(projectId: String, inCharge: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskByCycleResponse {
+        try await self.describeTaskByCycle(.init(projectId: projectId, inCharge: inCharge), region: region, logger: logger, on: eventLoop)
     }
 }

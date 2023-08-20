@@ -45,7 +45,22 @@ extension Wedata {
         /// 资源组名称
         public let executionGroupName: String?
 
-        public init(projectId: String, taskTypeId: String? = nil, timeType: String? = nil, typeName: String? = nil, startTime: String? = nil, endTime: String? = nil, executionGroupId: String? = nil, executionGroupName: String? = nil) {
+        /// 1
+        public let inCharge: String?
+
+        /// 1
+        public let taskType: Int64?
+
+        /// 1
+        public let stateList: [Int64]?
+
+        /// D代表天，H代表小时
+        public let aggregationUnit: String?
+
+        /// 1
+        public let averageWindowSize: Int64?
+
+        public init(projectId: String, taskTypeId: String? = nil, timeType: String? = nil, typeName: String? = nil, startTime: String? = nil, endTime: String? = nil, executionGroupId: String? = nil, executionGroupName: String? = nil, inCharge: String? = nil, taskType: Int64? = nil, stateList: [Int64]? = nil, aggregationUnit: String? = nil, averageWindowSize: Int64? = nil) {
             self.projectId = projectId
             self.taskTypeId = taskTypeId
             self.timeType = timeType
@@ -54,6 +69,11 @@ extension Wedata {
             self.endTime = endTime
             self.executionGroupId = executionGroupId
             self.executionGroupName = executionGroupName
+            self.inCharge = inCharge
+            self.taskType = taskType
+            self.stateList = stateList
+            self.aggregationUnit = aggregationUnit
+            self.averageWindowSize = averageWindowSize
         }
 
         enum CodingKeys: String, CodingKey {
@@ -65,6 +85,11 @@ extension Wedata {
             case endTime = "EndTime"
             case executionGroupId = "ExecutionGroupId"
             case executionGroupName = "ExecutionGroupName"
+            case inCharge = "InCharge"
+            case taskType = "TaskType"
+            case stateList = "StateList"
+            case aggregationUnit = "AggregationUnit"
+            case averageWindowSize = "AverageWindowSize"
         }
     }
 
@@ -103,15 +128,15 @@ extension Wedata {
     ///
     /// 任务状态趋势
     @inlinable
-    public func describeStatisticInstanceStatusTrendOps(projectId: String, taskTypeId: String? = nil, timeType: String? = nil, typeName: String? = nil, startTime: String? = nil, endTime: String? = nil, executionGroupId: String? = nil, executionGroupName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStatisticInstanceStatusTrendOpsResponse> {
-        self.describeStatisticInstanceStatusTrendOps(.init(projectId: projectId, taskTypeId: taskTypeId, timeType: timeType, typeName: typeName, startTime: startTime, endTime: endTime, executionGroupId: executionGroupId, executionGroupName: executionGroupName), region: region, logger: logger, on: eventLoop)
+    public func describeStatisticInstanceStatusTrendOps(projectId: String, taskTypeId: String? = nil, timeType: String? = nil, typeName: String? = nil, startTime: String? = nil, endTime: String? = nil, executionGroupId: String? = nil, executionGroupName: String? = nil, inCharge: String? = nil, taskType: Int64? = nil, stateList: [Int64]? = nil, aggregationUnit: String? = nil, averageWindowSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStatisticInstanceStatusTrendOpsResponse> {
+        self.describeStatisticInstanceStatusTrendOps(.init(projectId: projectId, taskTypeId: taskTypeId, timeType: timeType, typeName: typeName, startTime: startTime, endTime: endTime, executionGroupId: executionGroupId, executionGroupName: executionGroupName, inCharge: inCharge, taskType: taskType, stateList: stateList, aggregationUnit: aggregationUnit, averageWindowSize: averageWindowSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 实例状态趋势
     ///
     /// 任务状态趋势
     @inlinable
-    public func describeStatisticInstanceStatusTrendOps(projectId: String, taskTypeId: String? = nil, timeType: String? = nil, typeName: String? = nil, startTime: String? = nil, endTime: String? = nil, executionGroupId: String? = nil, executionGroupName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticInstanceStatusTrendOpsResponse {
-        try await self.describeStatisticInstanceStatusTrendOps(.init(projectId: projectId, taskTypeId: taskTypeId, timeType: timeType, typeName: typeName, startTime: startTime, endTime: endTime, executionGroupId: executionGroupId, executionGroupName: executionGroupName), region: region, logger: logger, on: eventLoop)
+    public func describeStatisticInstanceStatusTrendOps(projectId: String, taskTypeId: String? = nil, timeType: String? = nil, typeName: String? = nil, startTime: String? = nil, endTime: String? = nil, executionGroupId: String? = nil, executionGroupName: String? = nil, inCharge: String? = nil, taskType: Int64? = nil, stateList: [Int64]? = nil, aggregationUnit: String? = nil, averageWindowSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticInstanceStatusTrendOpsResponse {
+        try await self.describeStatisticInstanceStatusTrendOps(.init(projectId: projectId, taskTypeId: taskTypeId, timeType: timeType, typeName: typeName, startTime: startTime, endTime: endTime, executionGroupId: executionGroupId, executionGroupName: executionGroupName, inCharge: inCharge, taskType: taskType, stateList: stateList, aggregationUnit: aggregationUnit, averageWindowSize: averageWindowSize), region: region, logger: logger, on: eventLoop)
     }
 }

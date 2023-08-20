@@ -513,53 +513,83 @@ extension Ckafka {
     }
 
     /// ClickHouse类型入参
-    public struct ClickHouseParam: TCInputModel {
+    public struct ClickHouseParam: TCInputModel, TCOutputModel {
         /// ClickHouse的集群
-        public let cluster: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cluster: String?
 
         /// ClickHouse的数据库名
-        public let database: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let database: String?
 
         /// ClickHouse的数据表名
-        public let table: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let table: String?
 
         /// ClickHouse的schema
-        public let schema: [ClickHouseSchema]
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let schema: [ClickHouseSchema]?
 
         /// 实例资源
-        public let resource: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resource: String?
 
         /// ClickHouse的连接ip
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ip: String?
 
         /// ClickHouse的连接port
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let port: Int64?
 
         /// ClickHouse的用户名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userName: String?
 
         /// ClickHouse的密码
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let password: String?
 
         /// 实例vip
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceVip: String?
 
         /// 实例的vpcId
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let uniqVpcId: String?
 
         /// 是否为自建集群
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let selfBuilt: Bool?
 
         /// ClickHouse是否抛弃解析失败的消息，默认为true
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dropInvalidMessage: Bool?
 
         /// ClickHouse 类型，emr-clickhouse : "emr";cdw-clickhouse : "cdwch";自建 : ""
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
 
         /// 当设置成员参数DropInvalidMessageToCls设置为true时,DropInvalidMessage参数失效
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dropCls: DropCls?
 
-        public init(cluster: String, database: String, table: String, schema: [ClickHouseSchema], resource: String, ip: String? = nil, port: Int64? = nil, userName: String? = nil, password: String? = nil, serviceVip: String? = nil, uniqVpcId: String? = nil, selfBuilt: Bool? = nil, dropInvalidMessage: Bool? = nil, type: String? = nil, dropCls: DropCls? = nil) {
+        /// 每批次投递到 ClickHouse 表消息数量，默认为 1000 条。
+        /// 提高该参数值，有利于减少往  ClickHouse 投递的次数，但在错误消息过多及网络不稳定等极端情况下时，可能导致频繁重试影响效率。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let batchSize: Int64?
+
+        /// 每次从 topic 中拉取消息大小，默认为 1MB，即至少要从 topic 中批量拉取 1MB 消息，才进行数据投递到 ClickHouse 操作。
+        /// 提高该参数值，有利于减少往  ClickHouse 投递的次数，但在错误消息过多及网络不稳定等极端情况下时，可能导致频繁重试影响效率。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let consumerFetchMinBytes: Int64?
+
+        /// 每次从 topic 拉取消息最大等待时间，当超过当前最大等待时间时，即使没有拉取到 ConsumerFetchMinBytes 大小，也将进行 ClickHouse 投递操作。
+        /// 提高该参数值，有利于减少往  ClickHouse 投递的次数，但在错误消息过多及网络不稳定等极端情况下时，可能导致频繁重试影响效率。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let consumerFetchMaxWaitMs: Int64?
+
+        public init(cluster: String? = nil, database: String? = nil, table: String? = nil, schema: [ClickHouseSchema]? = nil, resource: String? = nil, ip: String? = nil, port: Int64? = nil, userName: String? = nil, password: String? = nil, serviceVip: String? = nil, uniqVpcId: String? = nil, selfBuilt: Bool? = nil, dropInvalidMessage: Bool? = nil, type: String? = nil, dropCls: DropCls? = nil, batchSize: Int64? = nil, consumerFetchMinBytes: Int64? = nil, consumerFetchMaxWaitMs: Int64? = nil) {
             self.cluster = cluster
             self.database = database
             self.table = table
@@ -575,6 +605,9 @@ extension Ckafka {
             self.dropInvalidMessage = dropInvalidMessage
             self.type = type
             self.dropCls = dropCls
+            self.batchSize = batchSize
+            self.consumerFetchMinBytes = consumerFetchMinBytes
+            self.consumerFetchMaxWaitMs = consumerFetchMaxWaitMs
         }
 
         enum CodingKeys: String, CodingKey {
@@ -593,6 +626,9 @@ extension Ckafka {
             case dropInvalidMessage = "DropInvalidMessage"
             case type = "Type"
             case dropCls = "DropCls"
+            case batchSize = "BatchSize"
+            case consumerFetchMinBytes = "ConsumerFetchMinBytes"
+            case consumerFetchMaxWaitMs = "ConsumerFetchMaxWaitMs"
         }
     }
 
@@ -2433,7 +2469,10 @@ extension Ckafka {
         /// 消息要映射为 es 索引中 @timestamp 的字段，如果当前配置为空，则使用消息的时间戳进行映射
         public let dateField: String?
 
-        public init(resource: String, port: Int64? = nil, userName: String? = nil, password: String? = nil, selfBuilt: Bool? = nil, serviceVip: String? = nil, uniqVpcId: String? = nil, dropInvalidMessage: Bool? = nil, index: String? = nil, dateFormat: String? = nil, contentKey: String? = nil, dropInvalidJsonMessage: Bool? = nil, documentIdField: String? = nil, indexType: String? = nil, dropCls: DropCls? = nil, databasePrimaryKey: String? = nil, dropDlq: FailureParam? = nil, recordMappingList: [EsRecordMapping]? = nil, dateField: String? = nil) {
+        /// 用来区分当前索引映射，属于新建索引还是存量索引。"EXIST_MAPPING"：从存量索引中选择；"NEW_MAPPING"：新建索引
+        public let recordMappingMode: String?
+
+        public init(resource: String, port: Int64? = nil, userName: String? = nil, password: String? = nil, selfBuilt: Bool? = nil, serviceVip: String? = nil, uniqVpcId: String? = nil, dropInvalidMessage: Bool? = nil, index: String? = nil, dateFormat: String? = nil, contentKey: String? = nil, dropInvalidJsonMessage: Bool? = nil, documentIdField: String? = nil, indexType: String? = nil, dropCls: DropCls? = nil, databasePrimaryKey: String? = nil, dropDlq: FailureParam? = nil, recordMappingList: [EsRecordMapping]? = nil, dateField: String? = nil, recordMappingMode: String? = nil) {
             self.resource = resource
             self.port = port
             self.userName = userName
@@ -2453,6 +2492,7 @@ extension Ckafka {
             self.dropDlq = dropDlq
             self.recordMappingList = recordMappingList
             self.dateField = dateField
+            self.recordMappingMode = recordMappingMode
         }
 
         enum CodingKeys: String, CodingKey {
@@ -2475,6 +2515,7 @@ extension Ckafka {
             case dropDlq = "DropDlq"
             case recordMappingList = "RecordMappingList"
             case dateField = "DateField"
+            case recordMappingMode = "RecordMappingMode"
         }
     }
 
@@ -3205,6 +3246,10 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dynamicDiskConfig: DynamicDiskConfig?
 
+        /// 实例计费类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceChargeType: String?
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case instanceName = "InstanceName"
@@ -3241,6 +3286,7 @@ extension Ckafka {
             case remainingPartitions = "RemainingPartitions"
             case remainingTopics = "RemainingTopics"
             case dynamicDiskConfig = "DynamicDiskConfig"
+            case instanceChargeType = "InstanceChargeType"
         }
     }
 
@@ -4643,32 +4689,41 @@ extension Ckafka {
     }
 
     /// record 与数据库表的映射关系
-    public struct RecordMapping: TCInputModel {
+    public struct RecordMapping: TCInputModel, TCOutputModel {
         /// 消息的 key 名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let jsonKey: String?
 
         /// 消息类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
 
         /// 消息是否允许为空
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let allowNull: Bool?
 
         /// 对应映射列名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let columnName: String?
 
         /// 数据库表额外字段
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extraInfo: String?
 
         /// 当前列大小
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let columnSize: String?
 
         /// 当前列精度
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let decimalDigits: String?
 
         /// 是否为自增列
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoIncrement: Bool?
 
         /// 数据库表默认参数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let defaultValue: String?
 
         public init(jsonKey: String? = nil, type: String? = nil, allowNull: Bool? = nil, columnName: String? = nil, extraInfo: String? = nil, columnSize: String? = nil, decimalDigits: String? = nil, autoIncrement: Bool? = nil, defaultValue: String? = nil) {
@@ -4755,6 +4810,22 @@ extension Ckafka {
             case support = "Support"
             case ipv6 = "Ipv6"
             case multiZone = "MultiZone"
+        }
+    }
+
+    /// RenewCkafkaInstance接口出参bigDealIds
+    public struct RenewCkafkaInstanceResp: TCOutputModel {
+        /// 订单号
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bigDealId: String?
+
+        /// 子订单号
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dealName: String?
+
+        enum CodingKeys: String, CodingKey {
+            case bigDealId = "BigDealId"
+            case dealName = "DealName"
         }
     }
 

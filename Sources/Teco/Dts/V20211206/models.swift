@@ -1178,7 +1178,11 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let databaseNetEnv: String?
 
-        public init(region: String? = nil, role: String? = nil, dbKernel: String? = nil, instanceId: String? = nil, ip: String? = nil, port: UInt64? = nil, user: String? = nil, password: String? = nil, dbName: String? = nil, vpcId: String? = nil, subnetId: String? = nil, cvmInstanceId: String? = nil, uniqDcgId: String? = nil, uniqVpnGwId: String? = nil, ccnId: String? = nil, supplier: String? = nil, engineVersion: String? = nil, account: String? = nil, accountMode: String? = nil, accountRole: String? = nil, roleExternalId: String? = nil, tmpSecretId: String? = nil, tmpSecretKey: String? = nil, tmpToken: String? = nil, encryptConn: String? = nil, databaseNetEnv: String? = nil) {
+        /// 数据库为跨账号云联网下的实例时、表示云联网所属主账号
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ccnOwnerUin: String?
+
+        public init(region: String? = nil, role: String? = nil, dbKernel: String? = nil, instanceId: String? = nil, ip: String? = nil, port: UInt64? = nil, user: String? = nil, password: String? = nil, dbName: String? = nil, vpcId: String? = nil, subnetId: String? = nil, cvmInstanceId: String? = nil, uniqDcgId: String? = nil, uniqVpnGwId: String? = nil, ccnId: String? = nil, supplier: String? = nil, engineVersion: String? = nil, account: String? = nil, accountMode: String? = nil, accountRole: String? = nil, roleExternalId: String? = nil, tmpSecretId: String? = nil, tmpSecretKey: String? = nil, tmpToken: String? = nil, encryptConn: String? = nil, databaseNetEnv: String? = nil, ccnOwnerUin: String? = nil) {
             self.region = region
             self.role = role
             self.dbKernel = dbKernel
@@ -1205,6 +1209,7 @@ extension Dts {
             self.tmpToken = tmpToken
             self.encryptConn = encryptConn
             self.databaseNetEnv = databaseNetEnv
+            self.ccnOwnerUin = ccnOwnerUin
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1234,6 +1239,27 @@ extension Dts {
             case tmpToken = "TmpToken"
             case encryptConn = "EncryptConn"
             case databaseNetEnv = "DatabaseNetEnv"
+            case ccnOwnerUin = "CcnOwnerUin"
+        }
+    }
+
+    /// 错误信息及其解决方案
+    public struct ErrInfo: TCOutputModel {
+        /// 错误原因
+        public let reason: String?
+
+        /// 错误信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let message: String?
+
+        /// 解决方案
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let solution: String?
+
+        enum CodingKeys: String, CodingKey {
+            case reason = "Reason"
+            case message = "Message"
+            case solution = "Solution"
         }
     }
 
@@ -1339,6 +1365,10 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoRetryTimeRangeMinutes: Int64?
 
+        /// 全量导出可重入标识：enum::"yes"/"no"。yes表示当前任务可重入、no表示当前任务处于全量导出且不可重入阶段；如果在该值为no时重启任务导出流程不支持断点续传
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dumperResumeCtrl: String?
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case jobName = "JobName"
@@ -1358,6 +1388,7 @@ extension Dts {
             case tradeInfo = "TradeInfo"
             case tags = "Tags"
             case autoRetryTimeRangeMinutes = "AutoRetryTimeRangeMinutes"
+            case dumperResumeCtrl = "DumperResumeCtrl"
         }
     }
 
@@ -1574,10 +1605,14 @@ extension Dts {
     }
 
     /// OnlineDDL类型
-    public struct OnlineDDL: TCOutputModel {
+    public struct OnlineDDL: TCInputModel, TCOutputModel {
         /// 状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
+
+        public init(status: String) {
+            self.status = status
+        }
 
         enum CodingKeys: String, CodingKey {
             case status = "Status"
@@ -1618,7 +1653,15 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kafkaOption: KafkaOption?
 
-        public init(initType: String? = nil, dealOfExistSameTable: String? = nil, conflictHandleType: String? = nil, addAdditionalColumn: Bool? = nil, opTypes: [String]? = nil, conflictHandleOption: ConflictHandleOption? = nil, ddlOptions: [DdlOption]? = nil, kafkaOption: KafkaOption? = nil) {
+        /// 任务限速信息、该字段仅用作出参、入参该字段无效
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rateLimitOption: RateLimitOption?
+
+        /// 自动重试的时间窗口设置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let autoRetryTimeRangeMinutes: Int64?
+
+        public init(initType: String? = nil, dealOfExistSameTable: String? = nil, conflictHandleType: String? = nil, addAdditionalColumn: Bool? = nil, opTypes: [String]? = nil, conflictHandleOption: ConflictHandleOption? = nil, ddlOptions: [DdlOption]? = nil, kafkaOption: KafkaOption? = nil, rateLimitOption: RateLimitOption? = nil, autoRetryTimeRangeMinutes: Int64? = nil) {
             self.initType = initType
             self.dealOfExistSameTable = dealOfExistSameTable
             self.conflictHandleType = conflictHandleType
@@ -1627,6 +1670,8 @@ extension Dts {
             self.conflictHandleOption = conflictHandleOption
             self.ddlOptions = ddlOptions
             self.kafkaOption = kafkaOption
+            self.rateLimitOption = rateLimitOption
+            self.autoRetryTimeRangeMinutes = autoRetryTimeRangeMinutes
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1638,6 +1683,8 @@ extension Dts {
             case conflictHandleOption = "ConflictHandleOption"
             case ddlOptions = "DdlOptions"
             case kafkaOption = "KafkaOption"
+            case rateLimitOption = "RateLimitOption"
+            case autoRetryTimeRangeMinutes = "AutoRetryTimeRangeMinutes"
         }
     }
 
@@ -1695,6 +1742,81 @@ extension Dts {
             case message = "Message"
             case solution = "Solution"
             case helpDoc = "HelpDoc"
+        }
+    }
+
+    /// 迁移和同步任务限速的详细信息
+    public struct RateLimitOption: TCInputModel, TCOutputModel {
+        /// 当前生效的全量导出线程数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let currentDumpThread: Int64?
+
+        /// 默认的全量导出线程数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let defaultDumpThread: Int64?
+
+        /// 当前生效的全量导出Rps
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let currentDumpRps: Int64?
+
+        /// 默认的全量导出Rps
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let defaultDumpRps: Int64?
+
+        /// 当前生效的全量导入线程数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let currentLoadThread: Int64?
+
+        /// 默认的全量导入线程数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let defaultLoadThread: Int64?
+
+        /// 当前生效的全量导入Rps
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let currentLoadRps: Int64?
+
+        /// 默认的全量导入Rps
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let defaultLoadRps: Int64?
+
+        /// 当前生效的增量导入线程数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let currentSinkerThread: Int64?
+
+        /// 默认的增量导入线程数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let defaultSinkerThread: Int64?
+
+        /// enum:"no"/"yes"、no表示用户未设置过限速、yes表示设置过限速
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hasUserSetRateLimit: String?
+
+        public init(currentDumpThread: Int64, defaultDumpThread: Int64, currentDumpRps: Int64, defaultDumpRps: Int64, currentLoadThread: Int64, defaultLoadThread: Int64, currentLoadRps: Int64, defaultLoadRps: Int64, currentSinkerThread: Int64, defaultSinkerThread: Int64, hasUserSetRateLimit: String) {
+            self.currentDumpThread = currentDumpThread
+            self.defaultDumpThread = defaultDumpThread
+            self.currentDumpRps = currentDumpRps
+            self.defaultDumpRps = defaultDumpRps
+            self.currentLoadThread = currentLoadThread
+            self.defaultLoadThread = defaultLoadThread
+            self.currentLoadRps = currentLoadRps
+            self.defaultLoadRps = defaultLoadRps
+            self.currentSinkerThread = currentSinkerThread
+            self.defaultSinkerThread = defaultSinkerThread
+            self.hasUserSetRateLimit = hasUserSetRateLimit
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case currentDumpThread = "CurrentDumpThread"
+            case defaultDumpThread = "DefaultDumpThread"
+            case currentDumpRps = "CurrentDumpRps"
+            case defaultDumpRps = "DefaultDumpRps"
+            case currentLoadThread = "CurrentLoadThread"
+            case defaultLoadThread = "DefaultLoadThread"
+            case currentLoadRps = "CurrentLoadRps"
+            case defaultLoadRps = "DefaultLoadRps"
+            case currentSinkerThread = "CurrentSinkerThread"
+            case defaultSinkerThread = "DefaultSinkerThread"
+            case hasUserSetRateLimit = "HasUserSetRateLimit"
         }
     }
 
@@ -1950,7 +2072,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let progress: Int64?
 
-        /// 当前步骤进度
+        /// 当前步骤进度，范围为[0-100]，若为-1表示当前步骤不支持查看进度
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let currentStepProgress: Int64?
 
@@ -1974,6 +2096,10 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let causeOfCompareDisable: String?
 
+        /// 任务的错误和解决方案信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let errInfo: ErrInfo?
+
         enum CodingKeys: String, CodingKey {
             case stepAll = "StepAll"
             case stepNow = "StepNow"
@@ -1984,6 +2110,7 @@ extension Dts {
             case message = "Message"
             case stepInfos = "StepInfos"
             case causeOfCompareDisable = "CauseOfCompareDisable"
+            case errInfo = "ErrInfo"
         }
     }
 
@@ -2049,6 +2176,14 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let srcInfo: Endpoint?
 
+        /// 枚举值：cluster、single。源库为单节点数据库使用single，多节点使用cluster
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let srcNodeType: String?
+
+        /// 源端信息，多节点数据库使用
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let srcInfos: SyncDBEndpointInfos?
+
         /// 目标端地域，如：ap-guangzhou等
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dstRegion: String?
@@ -2064,6 +2199,14 @@ extension Dts {
         /// 目标端信息，单节点数据库使用
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dstInfo: Endpoint?
+
+        /// 枚举值：cluster、single。目标库为单节点数据库使用single，多节点使用cluster
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dstNodeType: String?
+
+        /// 目标端信息，多节点数据库使用
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dstInfos: SyncDBEndpointInfos?
 
         /// 创建时间，格式为 yyyy-mm-dd hh:mm:ss
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2109,6 +2252,10 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoRetryTimeRangeMinutes: Int64?
 
+        /// 全量导出可重入标识：enum::"yes"/"no"。yes表示当前任务可重入、no表示当前任务处于全量导出且不可重入阶段；如果在该值为no时重启任务导出流程不支持断点续传
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dumperResumeCtrl: String?
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case jobName = "JobName"
@@ -2125,10 +2272,14 @@ extension Dts {
             case srcDatabaseType = "SrcDatabaseType"
             case srcAccessType = "SrcAccessType"
             case srcInfo = "SrcInfo"
+            case srcNodeType = "SrcNodeType"
+            case srcInfos = "SrcInfos"
             case dstRegion = "DstRegion"
             case dstDatabaseType = "DstDatabaseType"
             case dstAccessType = "DstAccessType"
             case dstInfo = "DstInfo"
+            case dstNodeType = "DstNodeType"
+            case dstInfos = "DstInfos"
             case createTime = "CreateTime"
             case startTime = "StartTime"
             case status = "Status"
@@ -2140,6 +2291,7 @@ extension Dts {
             case autoRenew = "AutoRenew"
             case offlineTime = "OfflineTime"
             case autoRetryTimeRangeMinutes = "AutoRetryTimeRangeMinutes"
+            case dumperResumeCtrl = "DumperResumeCtrl"
         }
     }
 

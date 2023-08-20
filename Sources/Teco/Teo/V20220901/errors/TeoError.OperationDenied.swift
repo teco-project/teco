@@ -25,6 +25,7 @@ extension TCTeoError {
             case domainInShareCnameGroup = "OperationDenied.DomainInShareCnameGroup"
             case domainIsBlocked = "OperationDenied.DomainIsBlocked"
             case domainNoICP = "OperationDenied.DomainNoICP"
+            case domainNumberIsNotZero = "OperationDenied.DomainNumberIsNotZero"
             case errZoneIsAlreadyPaused = "OperationDenied.ErrZoneIsAlreadyPaused"
             case invalidAdvancedDefenseSecurityType = "OperationDenied.InvalidAdvancedDefenseSecurityType"
             case invalidAdvancedDefenseZoneArea = "OperationDenied.InvalidAdvancedDefenseZoneArea"
@@ -89,6 +90,10 @@ extension TCTeoError {
         /// 域名尚未备案。
         public static var domainNoICP: OperationDenied {
             OperationDenied(.domainNoICP)
+        }
+
+        public static var domainNumberIsNotZero: OperationDenied {
+            OperationDenied(.domainNumberIsNotZero)
         }
 
         /// 站点处于停用状态，请开启后重试。
@@ -168,6 +173,8 @@ extension TCTeoError {
                 code = .operationDenied_DomainIsBlocked
             case .domainNoICP:
                 code = .operationDenied_DomainNoICP
+            case .domainNumberIsNotZero:
+                code = .operationDenied_DomainNumberIsNotZero
             case .errZoneIsAlreadyPaused:
                 code = .operationDenied_ErrZoneIsAlreadyPaused
             case .invalidAdvancedDefenseSecurityType:

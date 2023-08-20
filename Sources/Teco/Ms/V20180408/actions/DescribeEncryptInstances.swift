@@ -139,55 +139,49 @@ extension Ms {
     /// 查询渠道合作加固任务
     ///
     /// 该接口供渠道合作应用加固使用，接口调用有白名单用户限制，用于查询加固任务，入参中的条件过滤字段均为精准匹配。支持功能点：1. 多任务分页查询  2.根据任务Id唯一值查询单记录
-    @available(*, unavailable, message: "上错服务器了")
     @inlinable
     public func describeEncryptInstances(_ input: DescribeEncryptInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEncryptInstancesResponse> {
-        fatalError("DescribeEncryptInstances is no longer available.")
+        self.client.execute(action: "DescribeEncryptInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询渠道合作加固任务
     ///
     /// 该接口供渠道合作应用加固使用，接口调用有白名单用户限制，用于查询加固任务，入参中的条件过滤字段均为精准匹配。支持功能点：1. 多任务分页查询  2.根据任务Id唯一值查询单记录
-    @available(*, unavailable, message: "上错服务器了")
     @inlinable
     public func describeEncryptInstances(_ input: DescribeEncryptInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEncryptInstancesResponse {
-        fatalError("DescribeEncryptInstances is no longer available.")
+        try await self.client.execute(action: "DescribeEncryptInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询渠道合作加固任务
     ///
     /// 该接口供渠道合作应用加固使用，接口调用有白名单用户限制，用于查询加固任务，入参中的条件过滤字段均为精准匹配。支持功能点：1. 多任务分页查询  2.根据任务Id唯一值查询单记录
-    @available(*, unavailable, message: "上错服务器了")
     @inlinable
     public func describeEncryptInstances(pageNumber: Int64? = nil, pageSize: Int64? = nil, orderField: String? = nil, orderDirection: String? = nil, platformType: Int64? = nil, orderType: Int64? = nil, encryptOpType: Int64? = nil, resultId: String? = nil, orderId: String? = nil, resourceId: String? = nil, appType: String? = nil, appPkgName: String? = nil, encryptState: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEncryptInstancesResponse> {
-        fatalError("DescribeEncryptInstances is no longer available.")
+        self.describeEncryptInstances(.init(pageNumber: pageNumber, pageSize: pageSize, orderField: orderField, orderDirection: orderDirection, platformType: platformType, orderType: orderType, encryptOpType: encryptOpType, resultId: resultId, orderId: orderId, resourceId: resourceId, appType: appType, appPkgName: appPkgName, encryptState: encryptState), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询渠道合作加固任务
     ///
     /// 该接口供渠道合作应用加固使用，接口调用有白名单用户限制，用于查询加固任务，入参中的条件过滤字段均为精准匹配。支持功能点：1. 多任务分页查询  2.根据任务Id唯一值查询单记录
-    @available(*, unavailable, message: "上错服务器了")
     @inlinable
     public func describeEncryptInstances(pageNumber: Int64? = nil, pageSize: Int64? = nil, orderField: String? = nil, orderDirection: String? = nil, platformType: Int64? = nil, orderType: Int64? = nil, encryptOpType: Int64? = nil, resultId: String? = nil, orderId: String? = nil, resourceId: String? = nil, appType: String? = nil, appPkgName: String? = nil, encryptState: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEncryptInstancesResponse {
-        fatalError("DescribeEncryptInstances is no longer available.")
+        try await self.describeEncryptInstances(.init(pageNumber: pageNumber, pageSize: pageSize, orderField: orderField, orderDirection: orderDirection, platformType: platformType, orderType: orderType, encryptOpType: encryptOpType, resultId: resultId, orderId: orderId, resourceId: resourceId, appType: appType, appPkgName: appPkgName, encryptState: encryptState), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询渠道合作加固任务
     ///
     /// 该接口供渠道合作应用加固使用，接口调用有白名单用户限制，用于查询加固任务，入参中的条件过滤字段均为精准匹配。支持功能点：1. 多任务分页查询  2.根据任务Id唯一值查询单记录
-    @available(*, unavailable, message: "上错服务器了")
     @inlinable
     public func describeEncryptInstancesPaginated(_ input: DescribeEncryptInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [EncryptResults])> {
-        fatalError("DescribeEncryptInstances is no longer available.")
+        self.client.paginate(input: input, region: region, command: self.describeEncryptInstances, logger: logger, on: eventLoop)
     }
 
     /// 查询渠道合作加固任务
     ///
     /// 该接口供渠道合作应用加固使用，接口调用有白名单用户限制，用于查询加固任务，入参中的条件过滤字段均为精准匹配。支持功能点：1. 多任务分页查询  2.根据任务Id唯一值查询单记录
-    @available(*, unavailable, message: "上错服务器了")
     @inlinable @discardableResult
     public func describeEncryptInstancesPaginated(_ input: DescribeEncryptInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEncryptInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
-        fatalError("DescribeEncryptInstances is no longer available.")
+        self.client.paginate(input: input, region: region, command: self.describeEncryptInstances, callback: onResponse, logger: logger, on: eventLoop)
     }
 
     /// 查询渠道合作加固任务
@@ -195,9 +189,8 @@ extension Ms {
     /// 该接口供渠道合作应用加固使用，接口调用有白名单用户限制，用于查询加固任务，入参中的条件过滤字段均为精准匹配。支持功能点：1. 多任务分页查询  2.根据任务Id唯一值查询单记录
     ///
     /// - Returns: `AsyncSequence`s of ``EncryptResults`` and ``DescribeEncryptInstancesResponse`` that can be iterated over asynchronously on demand.
-    @available(*, unavailable, message: "上错服务器了")
     @inlinable
     public func describeEncryptInstancesPaginator(_ input: DescribeEncryptInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEncryptInstancesRequest> {
-        fatalError("DescribeEncryptInstances is no longer available.")
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEncryptInstances, logger: logger, on: eventLoop)
     }
 }

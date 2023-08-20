@@ -63,87 +63,10 @@ extension Iss {
         }
     }
 
-    /// 查询取回任务详情返回数据
+    /// AddRecordRetrieveTask返回参数结构体
     public struct AddRecordRetrieveTaskResponse: TCResponse {
-        private let data: Wrapped
-
-        private struct Wrapped: Codable {
-            public let taskId: String
-
-            public let taskName: String
-
-            public let startTime: UInt64
-
-            public let endTime: UInt64
-
-            public let mode: Int64
-
-            public let expiration: Int64
-
-            public let status: Int64
-
-            public let capacity: Float
-
-            public let describe: String?
-
-            enum CodingKeys: String, CodingKey {
-                case taskId = "TaskId"
-                case taskName = "TaskName"
-                case startTime = "StartTime"
-                case endTime = "EndTime"
-                case mode = "Mode"
-                case expiration = "Expiration"
-                case status = "Status"
-                case capacity = "Capacity"
-                case describe = "Describe"
-            }
-        }
-
-        /// 任务ID
-        public var taskId: String {
-            self.data.taskId
-        }
-
-        /// 任务名称
-        public var taskName: String {
-            self.data.taskName
-        }
-
-        /// 取回录像的开始时间
-        public var startTime: UInt64 {
-            self.data.startTime
-        }
-
-        /// 取回录像的结束时间
-        public var endTime: UInt64 {
-            self.data.endTime
-        }
-
-        /// 取回模式，1:极速模式，其他暂不支持
-        public var mode: Int64 {
-            self.data.mode
-        }
-
-        /// 副本有效期
-        public var expiration: Int64 {
-            self.data.expiration
-        }
-
-        /// 任务状态，0:已取回，1:取回中，2:待取回
-        public var status: Int64 {
-            self.data.status
-        }
-
-        /// 取回容量，单位MB
-        public var capacity: Float {
-            self.data.capacity
-        }
-
-        /// 任务描述
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var describe: String? {
-            self.data.describe
-        }
+        /// 返回结果
+        public let data: AddRecordRetrieveTaskData
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String

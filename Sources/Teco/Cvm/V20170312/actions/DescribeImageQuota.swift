@@ -41,7 +41,7 @@ extension Cvm {
 
     /// 查询镜像配额上限
     ///
-    /// 本接口(DescribeImageQuota)用于查询用户帐号的镜像配额。
+    /// 本接口(DescribeImageQuota)用于查询用户账号的镜像配额。
     @inlinable
     public func describeImageQuota(_ input: DescribeImageQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageQuotaResponse> {
         self.client.execute(action: "DescribeImageQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -49,7 +49,7 @@ extension Cvm {
 
     /// 查询镜像配额上限
     ///
-    /// 本接口(DescribeImageQuota)用于查询用户帐号的镜像配额。
+    /// 本接口(DescribeImageQuota)用于查询用户账号的镜像配额。
     @inlinable
     public func describeImageQuota(_ input: DescribeImageQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageQuotaResponse {
         try await self.client.execute(action: "DescribeImageQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -57,7 +57,7 @@ extension Cvm {
 
     /// 查询镜像配额上限
     ///
-    /// 本接口(DescribeImageQuota)用于查询用户帐号的镜像配额。
+    /// 本接口(DescribeImageQuota)用于查询用户账号的镜像配额。
     @inlinable
     public func describeImageQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageQuotaResponse> {
         self.describeImageQuota(.init(), region: region, logger: logger, on: eventLoop)
@@ -65,7 +65,7 @@ extension Cvm {
 
     /// 查询镜像配额上限
     ///
-    /// 本接口(DescribeImageQuota)用于查询用户帐号的镜像配额。
+    /// 本接口(DescribeImageQuota)用于查询用户账号的镜像配额。
     @inlinable
     public func describeImageQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageQuotaResponse {
         try await self.describeImageQuota(.init(), region: region, logger: logger, on: eventLoop)

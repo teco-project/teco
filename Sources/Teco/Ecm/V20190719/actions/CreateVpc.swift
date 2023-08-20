@@ -45,7 +45,10 @@ extension Ecm {
         /// 描述信息
         public let description: String?
 
-        public init(vpcName: String, cidrBlock: String, ecmRegion: String, enableMulticast: String? = nil, dnsServers: [String]? = nil, domainName: String? = nil, tags: [Tag]? = nil, description: String? = nil) {
+        /// 网络运营商类型 取值范围:'CMCC'-中国移动, 'CTCC'-中国电信, 'CUCC'-中国联调
+        public let ispTypes: [ISPTypeItem]?
+
+        public init(vpcName: String, cidrBlock: String, ecmRegion: String, enableMulticast: String? = nil, dnsServers: [String]? = nil, domainName: String? = nil, tags: [Tag]? = nil, description: String? = nil, ispTypes: [ISPTypeItem]? = nil) {
             self.vpcName = vpcName
             self.cidrBlock = cidrBlock
             self.ecmRegion = ecmRegion
@@ -54,6 +57,7 @@ extension Ecm {
             self.domainName = domainName
             self.tags = tags
             self.description = description
+            self.ispTypes = ispTypes
         }
 
         enum CodingKeys: String, CodingKey {
@@ -65,6 +69,7 @@ extension Ecm {
             case domainName = "DomainName"
             case tags = "Tags"
             case description = "Description"
+            case ispTypes = "ISPTypes"
         }
     }
 
@@ -102,15 +107,15 @@ extension Ecm {
     ///
     /// 创建私有网络
     @inlinable
-    public func createVpc(vpcName: String, cidrBlock: String, ecmRegion: String, enableMulticast: String? = nil, dnsServers: [String]? = nil, domainName: String? = nil, tags: [Tag]? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcResponse> {
-        self.createVpc(.init(vpcName: vpcName, cidrBlock: cidrBlock, ecmRegion: ecmRegion, enableMulticast: enableMulticast, dnsServers: dnsServers, domainName: domainName, tags: tags, description: description), region: region, logger: logger, on: eventLoop)
+    public func createVpc(vpcName: String, cidrBlock: String, ecmRegion: String, enableMulticast: String? = nil, dnsServers: [String]? = nil, domainName: String? = nil, tags: [Tag]? = nil, description: String? = nil, ispTypes: [ISPTypeItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcResponse> {
+        self.createVpc(.init(vpcName: vpcName, cidrBlock: cidrBlock, ecmRegion: ecmRegion, enableMulticast: enableMulticast, dnsServers: dnsServers, domainName: domainName, tags: tags, description: description, ispTypes: ispTypes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建VPC
     ///
     /// 创建私有网络
     @inlinable
-    public func createVpc(vpcName: String, cidrBlock: String, ecmRegion: String, enableMulticast: String? = nil, dnsServers: [String]? = nil, domainName: String? = nil, tags: [Tag]? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcResponse {
-        try await self.createVpc(.init(vpcName: vpcName, cidrBlock: cidrBlock, ecmRegion: ecmRegion, enableMulticast: enableMulticast, dnsServers: dnsServers, domainName: domainName, tags: tags, description: description), region: region, logger: logger, on: eventLoop)
+    public func createVpc(vpcName: String, cidrBlock: String, ecmRegion: String, enableMulticast: String? = nil, dnsServers: [String]? = nil, domainName: String? = nil, tags: [Tag]? = nil, description: String? = nil, ispTypes: [ISPTypeItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcResponse {
+        try await self.createVpc(.init(vpcName: vpcName, cidrBlock: cidrBlock, ecmRegion: ecmRegion, enableMulticast: enableMulticast, dnsServers: dnsServers, domainName: domainName, tags: tags, description: description, ispTypes: ispTypes), region: region, logger: logger, on: eventLoop)
     }
 }

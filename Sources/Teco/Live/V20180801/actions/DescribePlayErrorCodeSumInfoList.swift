@@ -127,6 +127,7 @@ extension Live {
 
     /// 查询播放http错误码汇总数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询下行播放错误码信息。
     @inlinable
     public func describePlayErrorCodeSumInfoList(_ input: DescribePlayErrorCodeSumInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePlayErrorCodeSumInfoListResponse> {
@@ -135,6 +136,7 @@ extension Live {
 
     /// 查询播放http错误码汇总数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询下行播放错误码信息。
     @inlinable
     public func describePlayErrorCodeSumInfoList(_ input: DescribePlayErrorCodeSumInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlayErrorCodeSumInfoListResponse {
@@ -143,6 +145,7 @@ extension Live {
 
     /// 查询播放http错误码汇总数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询下行播放错误码信息。
     @inlinable
     public func describePlayErrorCodeSumInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, mainlandOrOversea: String? = nil, groupType: String? = nil, outLanguage: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePlayErrorCodeSumInfoListResponse> {
@@ -151,6 +154,7 @@ extension Live {
 
     /// 查询播放http错误码汇总数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询下行播放错误码信息。
     @inlinable
     public func describePlayErrorCodeSumInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, mainlandOrOversea: String? = nil, groupType: String? = nil, outLanguage: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlayErrorCodeSumInfoListResponse {

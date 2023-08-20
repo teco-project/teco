@@ -314,6 +314,7 @@ public struct TCScfError: TCScfErrorType {
         case unsupportedOperation_AliasBind = "UnsupportedOperation.AliasBind"
         case unsupportedOperation_AsyncRunEnable = "UnsupportedOperation.AsyncRunEnable"
         case unsupportedOperation_Cdn = "UnsupportedOperation.Cdn"
+        case unsupportedOperation_CopyFunction = "UnsupportedOperation.CopyFunction"
         case unsupportedOperation_Cos = "UnsupportedOperation.Cos"
         case unsupportedOperation_EipFixed = "UnsupportedOperation.EipFixed"
         case unsupportedOperation_NotSupportRegion = "UnsupportedOperation.NotSupportRegion"
@@ -1830,6 +1831,11 @@ public struct TCScfError: TCScfErrorType {
     /// Cdn不支持。
     public static var unsupportedOperation_Cdn: TCScfError {
         TCScfError(.unsupportedOperation_Cdn)
+    }
+
+    /// 请检查函数状态。
+    public static var unsupportedOperation_CopyFunction: TCScfError {
+        TCScfError(.unsupportedOperation_CopyFunction)
     }
 
     /// Cos操作不支持。

@@ -43,7 +43,7 @@ extension Iotcloud {
         /// 设备名
         public let deviceName: String
 
-        /// 设备是否在线，0不在线，1在线
+        /// 设备是否在线，0不在线，1在线，3未激活
         public let online: UInt64
 
         /// 设备登录时间
@@ -77,6 +77,7 @@ extension Iotcloud {
         public let connIP: UInt64
 
         /// NB IoT运营商处的DeviceID
+        @available(*, deprecated)
         public let nbiotDeviceID: String
 
         /// Lora设备的dev eui
@@ -125,6 +126,9 @@ extension Iotcloud {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createUserId: UInt64?
 
+        /// NB IoT运营商处的DeviceID
+        public let nbIoTDeviceID: String
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -154,6 +158,7 @@ extension Iotcloud {
             case clientIP = "ClientIP"
             case firmwareUpdateTime = "FirmwareUpdateTime"
             case createUserId = "CreateUserId"
+            case nbIoTDeviceID = "NBIoTDeviceID"
             case requestId = "RequestId"
         }
     }

@@ -79,6 +79,7 @@ public struct TCTdmqError: TCTdmqErrorType {
         case internalError_SystemError = "InternalError.SystemError"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
+        case invalidParameterValue_AtLeastOne = "InvalidParameterValue.AtLeastOne"
         case invalidParameterValue_ClusterNameDuplication = "InvalidParameterValue.ClusterNameDuplication"
         case invalidParameterValue_InvalidParams = "InvalidParameterValue.InvalidParams"
         case invalidParameterValue_NeedMoreParams = "InvalidParameterValue.NeedMoreParams"
@@ -451,6 +452,13 @@ public struct TCTdmqError: TCTdmqErrorType {
     /// 参数取值错误。
     public static var invalidParameterValue: TCTdmqError {
         TCTdmqError(.invalidParameterValue)
+    }
+
+    /// 至少需要提供一个参数。
+    ///
+    /// 一般情况下可选参数都没有传入引起。
+    public static var invalidParameterValue_AtLeastOne: TCTdmqError {
+        TCTdmqError(.invalidParameterValue_AtLeastOne)
     }
 
     /// 与现有集群名称重复。

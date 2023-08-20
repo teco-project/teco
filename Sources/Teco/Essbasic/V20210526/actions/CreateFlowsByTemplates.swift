@@ -24,7 +24,7 @@ extension Essbasic {
         /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 均必填。
         public let agent: Agent
 
-        /// 多个合同（签署流程）信息，最多支持20个
+        /// 要创建的合同信息列表，最多支持一次创建20个合同
         public let flowInfos: [FlowInfo]
 
         /// 是否为预览模式；默认为false，即非预览模式，此时发起合同并返回FlowIds；若为预览模式，不会发起合同，会返回PreviewUrls；
@@ -68,7 +68,7 @@ extension Essbasic {
         /// 多个合同ID
         public let flowIds: [String]
 
-        /// 业务信息，限制1024字符
+        /// 第三方应用平台的业务信息, 与创建合同的FlowInfos数组中的CustomerData一一对应
         public let customerData: [String]
 
         /// 创建消息，对应多个合同ID，

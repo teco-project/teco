@@ -64,6 +64,7 @@ public struct TCApigatewayError: TCApigatewayErrorType {
         case failedOperation_FormatError = "FailedOperation.FormatError"
         case failedOperation_GetRoleError = "FailedOperation.GetRoleError"
         case failedOperation_InstanceNotExist = "FailedOperation.InstanceNotExist"
+        case failedOperation_InvalidInputJSON = "FailedOperation.InvalidInputJSON"
         case failedOperation_IsDefaultMapping = "FailedOperation.IsDefaultMapping"
         case failedOperation_NetSubDomainError = "FailedOperation.NetSubDomainError"
         case failedOperation_OperateUpstream = "FailedOperation.OperateUpstream"
@@ -130,6 +131,7 @@ public struct TCApigatewayError: TCApigatewayErrorType {
         case invalidParameterValue_ParameterNotMatch = "InvalidParameterValue.ParameterNotMatch"
         case invalidParameterValue_ParameterValueLimitExceeded = "InvalidParameterValue.ParameterValueLimitExceeded"
         case invalidParameterValue_RangeExceeded = "InvalidParameterValue.RangeExceeded"
+        case invalidParameterValue_TrafficControl = "InvalidParameterValue.TrafficControl"
         case invalidParameterValue_UnsupportedParameter = "InvalidParameterValue.UnsupportedParameter"
         case invalidParameter_BasicServiceNotAllowAttachPlugin = "InvalidParameter.BasicServiceNotAllowAttachPlugin"
         case invalidParameter_DuplicatePluginConfig = "InvalidParameter.DuplicatePluginConfig"
@@ -194,6 +196,7 @@ public struct TCApigatewayError: TCApigatewayErrorType {
         case unsupportedOperation_ResourceAssociated = "UnsupportedOperation.ResourceAssociated"
         case unsupportedOperation_ResourceIsInUse = "UnsupportedOperation.ResourceIsInUse"
         case unsupportedOperation_ResourceUnassociated = "UnsupportedOperation.ResourceUnassociated"
+        case unsupportedOperation_ServiceExist = "UnsupportedOperation.ServiceExist"
         case unsupportedOperation_TagsNotEmpty = "UnsupportedOperation.TagsNotEmpty"
         case unsupportedOperation_UinNotInWhiteList = "UnsupportedOperation.UinNotInWhiteList"
         case unsupportedOperation_UnpackError = "UnsupportedOperation.UnpackError"
@@ -431,6 +434,10 @@ public struct TCApigatewayError: TCApigatewayErrorType {
     /// 实例不存在，或者无效状态。
     public static var failedOperation_InstanceNotExist: TCApigatewayError {
         TCApigatewayError(.failedOperation_InstanceNotExist)
+    }
+
+    public static var failedOperation_InvalidInputJSON: TCApigatewayError {
+        TCApigatewayError(.failedOperation_InvalidInputJSON)
     }
 
     /// Apis 自定义路径与默认路径冲突。
@@ -775,6 +782,10 @@ public struct TCApigatewayError: TCApigatewayErrorType {
         TCApigatewayError(.invalidParameterValue_RangeExceeded)
     }
 
+    public static var invalidParameterValue_TrafficControl: TCApigatewayError {
+        TCApigatewayError(.invalidParameterValue_TrafficControl)
+    }
+
     /// 参数取值错误。
     public static var invalidParameterValue_UnsupportedParameter: TCApigatewayError {
         TCApigatewayError(.invalidParameterValue_UnsupportedParameter)
@@ -1091,6 +1102,10 @@ public struct TCApigatewayError: TCApigatewayErrorType {
     /// 资源未关联。
     public static var unsupportedOperation_ResourceUnassociated: TCApigatewayError {
         TCApigatewayError(.unsupportedOperation_ResourceUnassociated)
+    }
+
+    public static var unsupportedOperation_ServiceExist: TCApigatewayError {
+        TCApigatewayError(.unsupportedOperation_ServiceExist)
     }
 
     public static var unsupportedOperation_TagsNotEmpty: TCApigatewayError {

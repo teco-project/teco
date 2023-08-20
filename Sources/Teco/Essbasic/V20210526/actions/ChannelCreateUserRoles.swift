@@ -24,13 +24,13 @@ extension Essbasic {
         /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
 
-        /// 绑定角色的角色id列表
+        /// 绑定角色的角色id列表，最多 100 个
         public let roleIds: [String]
 
-        /// 电子签用户ID列表，与OpenIds参数二选一,优先UserIds参数
+        /// 电子签用户ID列表，与OpenIds参数二选一,优先UserIds参数，最多 100 个
         public let userIds: [String]?
 
-        /// 客户系统用户ID列表，与UserIds参数二选一,优先UserIds参数
+        /// 客户系统用户ID列表，与UserIds参数二选一,优先UserIds参数，最多 100 个
         public let openIds: [String]?
 
         /// 操作者信息

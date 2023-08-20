@@ -91,6 +91,7 @@ extension TCTsfError {
             case fileConfigExistsPathOther = "InvalidParameterValue.FileConfigExistsPathOther"
             case fileConfigFileNameInvalid = "InvalidParameterValue.FileConfigFileNameInvalid"
             case fileConfigFilePathInvalid = "InvalidParameterValue.FileConfigFilePathInvalid"
+            case fileConfigFixedFieldUnchangeable = "InvalidParameterValue.FileConfigFixedFieldUnchangeable"
             case fileConfigNameInvalid = "InvalidParameterValue.FileConfigNameInvalid"
             case fileConfigNotExistsOrPermissionDenied = "InvalidParameterValue.FileConfigNotExistsOrPermissionDenied"
             case fileConfigPathExists = "InvalidParameterValue.FileConfigPathExists"
@@ -536,6 +537,11 @@ extension TCTsfError {
         /// 文件配置项文件路径不合规。
         public static var fileConfigFilePathInvalid: InvalidParameterValue {
             InvalidParameterValue(.fileConfigFilePathInvalid)
+        }
+
+        /// 文件配置项固定字段不可变更。
+        public static var fileConfigFixedFieldUnchangeable: InvalidParameterValue {
+            InvalidParameterValue(.fileConfigFixedFieldUnchangeable)
         }
 
         /// 文件配置项名称不合规。
@@ -1000,6 +1006,8 @@ extension TCTsfError {
                 code = .invalidParameterValue_FileConfigFileNameInvalid
             case .fileConfigFilePathInvalid:
                 code = .invalidParameterValue_FileConfigFilePathInvalid
+            case .fileConfigFixedFieldUnchangeable:
+                code = .invalidParameterValue_FileConfigFixedFieldUnchangeable
             case .fileConfigNameInvalid:
                 code = .invalidParameterValue_FileConfigNameInvalid
             case .fileConfigNotExistsOrPermissionDenied:

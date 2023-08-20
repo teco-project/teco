@@ -50,13 +50,16 @@ extension Faceid {
         /// 意愿核身（朗读模式）使用的文案，若未使用意愿核身（朗读模式），则该字段无需传入。默认为空，最长可接受120的字符串长度。
         public let intentionVerifyText: String?
 
-        /// 意愿核身（问答模式）使用的文案，包括：系统语音播报的文本、需要核验的标准文本。当前仅支持一个播报文本+回答文本。
+        /// 意愿核身语音问答模式（即语音播报+语音回答）使用的文案，包括：系统语音播报的文本、需要核验的标准文本。当前仅支持1轮问答。
         public let intentionQuestions: [IntentionQuestion]?
 
         /// RuleId相关配置
         public let config: RuleIdConfig?
 
-        public init(ruleId: String, terminalType: String? = nil, idCard: String? = nil, name: String? = nil, redirectUrl: String? = nil, extra: String? = nil, imageBase64: String? = nil, encryption: Encryption? = nil, intentionVerifyText: String? = nil, intentionQuestions: [IntentionQuestion]? = nil, config: RuleIdConfig? = nil) {
+        /// 意愿核身（点头确认模式）使用的文案，若未使用意愿核身（点头确认模式），则该字段无需传入。当前仅支持一个提示文本。
+        public let intentionActions: [IntentionActionConfig]?
+
+        public init(ruleId: String, terminalType: String? = nil, idCard: String? = nil, name: String? = nil, redirectUrl: String? = nil, extra: String? = nil, imageBase64: String? = nil, encryption: Encryption? = nil, intentionVerifyText: String? = nil, intentionQuestions: [IntentionQuestion]? = nil, config: RuleIdConfig? = nil, intentionActions: [IntentionActionConfig]? = nil) {
             self.ruleId = ruleId
             self.terminalType = terminalType
             self.idCard = idCard
@@ -68,6 +71,7 @@ extension Faceid {
             self.intentionVerifyText = intentionVerifyText
             self.intentionQuestions = intentionQuestions
             self.config = config
+            self.intentionActions = intentionActions
         }
 
         enum CodingKeys: String, CodingKey {
@@ -82,6 +86,7 @@ extension Faceid {
             case intentionVerifyText = "IntentionVerifyText"
             case intentionQuestions = "IntentionQuestions"
             case config = "Config"
+            case intentionActions = "IntentionActions"
         }
     }
 
@@ -124,15 +129,15 @@ extension Faceid {
     ///
     /// 每次调用人脸核身SaaS化服务前，需先调用本接口获取BizToken，用来串联核身流程，在验证完成后，用于获取验证结果信息。
     @inlinable
-    public func detectAuth(ruleId: String, terminalType: String? = nil, idCard: String? = nil, name: String? = nil, redirectUrl: String? = nil, extra: String? = nil, imageBase64: String? = nil, encryption: Encryption? = nil, intentionVerifyText: String? = nil, intentionQuestions: [IntentionQuestion]? = nil, config: RuleIdConfig? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectAuthResponse> {
-        self.detectAuth(.init(ruleId: ruleId, terminalType: terminalType, idCard: idCard, name: name, redirectUrl: redirectUrl, extra: extra, imageBase64: imageBase64, encryption: encryption, intentionVerifyText: intentionVerifyText, intentionQuestions: intentionQuestions, config: config), region: region, logger: logger, on: eventLoop)
+    public func detectAuth(ruleId: String, terminalType: String? = nil, idCard: String? = nil, name: String? = nil, redirectUrl: String? = nil, extra: String? = nil, imageBase64: String? = nil, encryption: Encryption? = nil, intentionVerifyText: String? = nil, intentionQuestions: [IntentionQuestion]? = nil, config: RuleIdConfig? = nil, intentionActions: [IntentionActionConfig]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectAuthResponse> {
+        self.detectAuth(.init(ruleId: ruleId, terminalType: terminalType, idCard: idCard, name: name, redirectUrl: redirectUrl, extra: extra, imageBase64: imageBase64, encryption: encryption, intentionVerifyText: intentionVerifyText, intentionQuestions: intentionQuestions, config: config, intentionActions: intentionActions), region: region, logger: logger, on: eventLoop)
     }
 
     /// 实名核身鉴权
     ///
     /// 每次调用人脸核身SaaS化服务前，需先调用本接口获取BizToken，用来串联核身流程，在验证完成后，用于获取验证结果信息。
     @inlinable
-    public func detectAuth(ruleId: String, terminalType: String? = nil, idCard: String? = nil, name: String? = nil, redirectUrl: String? = nil, extra: String? = nil, imageBase64: String? = nil, encryption: Encryption? = nil, intentionVerifyText: String? = nil, intentionQuestions: [IntentionQuestion]? = nil, config: RuleIdConfig? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectAuthResponse {
-        try await self.detectAuth(.init(ruleId: ruleId, terminalType: terminalType, idCard: idCard, name: name, redirectUrl: redirectUrl, extra: extra, imageBase64: imageBase64, encryption: encryption, intentionVerifyText: intentionVerifyText, intentionQuestions: intentionQuestions, config: config), region: region, logger: logger, on: eventLoop)
+    public func detectAuth(ruleId: String, terminalType: String? = nil, idCard: String? = nil, name: String? = nil, redirectUrl: String? = nil, extra: String? = nil, imageBase64: String? = nil, encryption: Encryption? = nil, intentionVerifyText: String? = nil, intentionQuestions: [IntentionQuestion]? = nil, config: RuleIdConfig? = nil, intentionActions: [IntentionActionConfig]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectAuthResponse {
+        try await self.detectAuth(.init(ruleId: ruleId, terminalType: terminalType, idCard: idCard, name: name, redirectUrl: redirectUrl, extra: extra, imageBase64: imageBase64, encryption: encryption, intentionVerifyText: intentionVerifyText, intentionQuestions: intentionQuestions, config: config, intentionActions: intentionActions), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -37,6 +37,7 @@ public struct TCTrtcError: TCTrtcErrorType {
         case failedOperation_RestrictedConcurrency = "FailedOperation.RestrictedConcurrency"
         case failedOperation_RoomNotExist = "FailedOperation.RoomNotExist"
         case failedOperation_SdkAppIdNotExist = "FailedOperation.SdkAppIdNotExist"
+        case failedOperation_TaskFinished = "FailedOperation.TaskFinished"
         case internalError = "InternalError"
         case internalError_CRInternalError = "InternalError.CRInternalError"
         case internalError_DBError = "InternalError.DBError"
@@ -215,6 +216,10 @@ public struct TCTrtcError: TCTrtcErrorType {
     /// 应用ID不存在。
     public static var failedOperation_SdkAppIdNotExist: TCTrtcError {
         TCTrtcError(.failedOperation_SdkAppIdNotExist)
+    }
+
+    public static var failedOperation_TaskFinished: TCTrtcError {
+        TCTrtcError(.failedOperation_TaskFinished)
     }
 
     /// 内部错误。

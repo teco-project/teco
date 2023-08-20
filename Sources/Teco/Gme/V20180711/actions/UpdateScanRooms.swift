@@ -27,7 +27,7 @@ extension Gme {
         /// 需要送检的所有房间号。多个房间号之间用","分隔。示例："0001,0002,0003"
         public let roomIdString: String?
 
-        /// 符合此正则表达式规则的房间号将被送检。示例：["^6.*"] 表示所有以6开头的房间号将被送检
+        /// 符合此正则表达式规则的房间号将被送检。示例：^6.*（表示所有以6开头的房间号将被送检）
         public let roomIdRegex: [String]?
 
         public init(bizId: UInt64, roomIdString: String? = nil, roomIdRegex: [String]? = nil) {
@@ -60,7 +60,7 @@ extension Gme {
 
     /// 更新送检房间号
     ///
-    /// 更新自定义送检房间号
+    /// 更新自定义送检房间号。**接口使用前提**：目前 UpdateScanRooms 接口通过白名单开放，如需使用，需要 [提交工单申请](https://console.cloud.tencent.com/workorder/category?level1_id=438&level2_id=445&source=0&data_title=%E6%B8%B8%E6%88%8F%E5%A4%9A%E5%AA%92%E4%BD%93%E5%BC%95%E6%93%8EGME&step=1)。
     @inlinable
     public func updateScanRooms(_ input: UpdateScanRoomsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateScanRoomsResponse> {
         self.client.execute(action: "UpdateScanRooms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -68,7 +68,7 @@ extension Gme {
 
     /// 更新送检房间号
     ///
-    /// 更新自定义送检房间号
+    /// 更新自定义送检房间号。**接口使用前提**：目前 UpdateScanRooms 接口通过白名单开放，如需使用，需要 [提交工单申请](https://console.cloud.tencent.com/workorder/category?level1_id=438&level2_id=445&source=0&data_title=%E6%B8%B8%E6%88%8F%E5%A4%9A%E5%AA%92%E4%BD%93%E5%BC%95%E6%93%8EGME&step=1)。
     @inlinable
     public func updateScanRooms(_ input: UpdateScanRoomsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateScanRoomsResponse {
         try await self.client.execute(action: "UpdateScanRooms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -76,7 +76,7 @@ extension Gme {
 
     /// 更新送检房间号
     ///
-    /// 更新自定义送检房间号
+    /// 更新自定义送检房间号。**接口使用前提**：目前 UpdateScanRooms 接口通过白名单开放，如需使用，需要 [提交工单申请](https://console.cloud.tencent.com/workorder/category?level1_id=438&level2_id=445&source=0&data_title=%E6%B8%B8%E6%88%8F%E5%A4%9A%E5%AA%92%E4%BD%93%E5%BC%95%E6%93%8EGME&step=1)。
     @inlinable
     public func updateScanRooms(bizId: UInt64, roomIdString: String? = nil, roomIdRegex: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateScanRoomsResponse> {
         self.updateScanRooms(.init(bizId: bizId, roomIdString: roomIdString, roomIdRegex: roomIdRegex), region: region, logger: logger, on: eventLoop)
@@ -84,7 +84,7 @@ extension Gme {
 
     /// 更新送检房间号
     ///
-    /// 更新自定义送检房间号
+    /// 更新自定义送检房间号。**接口使用前提**：目前 UpdateScanRooms 接口通过白名单开放，如需使用，需要 [提交工单申请](https://console.cloud.tencent.com/workorder/category?level1_id=438&level2_id=445&source=0&data_title=%E6%B8%B8%E6%88%8F%E5%A4%9A%E5%AA%92%E4%BD%93%E5%BC%95%E6%93%8EGME&step=1)。
     @inlinable
     public func updateScanRooms(bizId: UInt64, roomIdString: String? = nil, roomIdRegex: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateScanRoomsResponse {
         try await self.updateScanRooms(.init(bizId: bizId, roomIdString: roomIdString, roomIdRegex: roomIdRegex), region: region, logger: logger, on: eventLoop)

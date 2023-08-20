@@ -52,6 +52,7 @@ extension TCTeoError {
             case errInvalidConditionValueTooManyValues = "InvalidParameter.ErrInvalidConditionValueTooManyValues"
             case errInvalidConditionValueTooManyWildcard = "InvalidParameter.ErrInvalidConditionValueTooManyWildcard"
             case errInvalidConditionValueZeroLength = "InvalidParameter.ErrInvalidConditionValueZeroLength"
+            case errInvalidElseWhenModifyOriginActionConfigured = "InvalidParameter.ErrInvalidElseWhenModifyOriginActionConfigured"
             case grpcRequireHttp2 = "InvalidParameter.GrpcRequireHttp2"
             case hostNotFound = "InvalidParameter.HostNotFound"
             case hostStatusNotAllowApplyCertificate = "InvalidParameter.HostStatusNotAllowApplyCertificate"
@@ -108,6 +109,7 @@ extension TCTeoError {
             case invalidStandardDebugClientIp = "InvalidParameter.InvalidStandardDebugClientIp"
             case invalidStandardDebugExpireTimeLimit = "InvalidParameter.InvalidStandardDebugExpireTimeLimit"
             case invalidUpstreamRequestQueryStringValue = "InvalidParameter.InvalidUpstreamRequestQueryStringValue"
+            case invalidUrlRedirect = "InvalidParameter.InvalidUrlRedirect"
             case invalidUrlRedirectHost = "InvalidParameter.InvalidUrlRedirectHost"
             case invalidUrlRedirectUrl = "InvalidParameter.InvalidUrlRedirectUrl"
             case invalidWebSocketTimeout = "InvalidParameter.InvalidWebSocketTimeout"
@@ -115,6 +117,7 @@ extension TCTeoError {
             case lengthExceedsLimit = "InvalidParameter.LengthExceedsLimit"
             case multiplyLayerNotSupportSmartRouting = "InvalidParameter.MultiplyLayerNotSupportSmartRouting"
             case notSupportThisPreset = "InvalidParameter.NotSupportThisPreset"
+            case ocDirectOriginRequiresSmartRouting = "InvalidParameter.OCDirectOriginRequiresSmartRouting"
             case originIsInnerIp = "InvalidParameter.OriginIsInnerIp"
             case originOriginGroupIdIsRequired = "InvalidParameter.OriginOriginGroupIdIsRequired"
             case parameterError = "InvalidParameter.ParameterError"
@@ -315,6 +318,11 @@ extension TCTeoError {
         /// 非法条件-非法参数值-参数值数量为0。
         public static var errInvalidConditionValueZeroLength: InvalidParameter {
             InvalidParameter(.errInvalidConditionValueZeroLength)
+        }
+
+        /// 修改源站操作不支持ELSE。
+        public static var errInvalidElseWhenModifyOriginActionConfigured: InvalidParameter {
+            InvalidParameter(.errInvalidElseWhenModifyOriginActionConfigured)
         }
 
         /// 开启 Grpc 协议支持需要同时开启 HTTP/2 协议支持。
@@ -597,6 +605,11 @@ extension TCTeoError {
             InvalidParameter(.invalidUpstreamRequestQueryStringValue)
         }
 
+        /// 无效的URL重写。
+        public static var invalidUrlRedirect: InvalidParameter {
+            InvalidParameter(.invalidUrlRedirect)
+        }
+
         /// URL重写的目标HOST无效。
         public static var invalidUrlRedirectHost: InvalidParameter {
             InvalidParameter(.invalidUrlRedirectHost)
@@ -629,6 +642,10 @@ extension TCTeoError {
 
         public static var notSupportThisPreset: InvalidParameter {
             InvalidParameter(.notSupportThisPreset)
+        }
+
+        public static var ocDirectOriginRequiresSmartRouting: InvalidParameter {
+            InvalidParameter(.ocDirectOriginRequiresSmartRouting)
         }
 
         /// 源站是内网IP。
@@ -770,6 +787,8 @@ extension TCTeoError {
                 code = .invalidParameter_ErrInvalidConditionValueTooManyWildcard
             case .errInvalidConditionValueZeroLength:
                 code = .invalidParameter_ErrInvalidConditionValueZeroLength
+            case .errInvalidElseWhenModifyOriginActionConfigured:
+                code = .invalidParameter_ErrInvalidElseWhenModifyOriginActionConfigured
             case .grpcRequireHttp2:
                 code = .invalidParameter_GrpcRequireHttp2
             case .hostNotFound:
@@ -882,6 +901,8 @@ extension TCTeoError {
                 code = .invalidParameter_InvalidStandardDebugExpireTimeLimit
             case .invalidUpstreamRequestQueryStringValue:
                 code = .invalidParameter_InvalidUpstreamRequestQueryStringValue
+            case .invalidUrlRedirect:
+                code = .invalidParameter_InvalidUrlRedirect
             case .invalidUrlRedirectHost:
                 code = .invalidParameter_InvalidUrlRedirectHost
             case .invalidUrlRedirectUrl:
@@ -896,6 +917,8 @@ extension TCTeoError {
                 code = .invalidParameter_MultiplyLayerNotSupportSmartRouting
             case .notSupportThisPreset:
                 code = .invalidParameter_NotSupportThisPreset
+            case .ocDirectOriginRequiresSmartRouting:
+                code = .invalidParameter_OCDirectOriginRequiresSmartRouting
             case .originIsInnerIp:
                 code = .invalidParameter_OriginIsInnerIp
             case .originOriginGroupIdIsRequired:

@@ -610,6 +610,8 @@ public struct TCFaceidError: TCFaceidErrorType {
     }
 
     /// 帐号已欠费。
+    ///
+    /// None
     public static var unauthorizedOperation_Arrears: TCFaceidError {
         TCFaceidError(.unauthorizedOperation_Arrears)
     }

@@ -30,16 +30,21 @@ extension Wedata {
         /// 111
         public let projectId: String?
 
-        public init(taskType: UInt64? = nil, typeName: String? = nil, projectId: String? = nil) {
+        /// 1
+        public let inCharge: String?
+
+        public init(taskType: UInt64? = nil, typeName: String? = nil, projectId: String? = nil, inCharge: String? = nil) {
             self.taskType = taskType
             self.typeName = typeName
             self.projectId = projectId
+            self.inCharge = inCharge
         }
 
         enum CodingKeys: String, CodingKey {
             case taskType = "TaskType"
             case typeName = "TypeName"
             case projectId = "ProjectId"
+            case inCharge = "InCharge"
         }
     }
 
@@ -72,13 +77,13 @@ extension Wedata {
 
     /// 任务状态统计
     @inlinable
-    public func describeSchedulerTaskCntByStatus(taskType: UInt64? = nil, typeName: String? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSchedulerTaskCntByStatusResponse> {
-        self.describeSchedulerTaskCntByStatus(.init(taskType: taskType, typeName: typeName, projectId: projectId), region: region, logger: logger, on: eventLoop)
+    public func describeSchedulerTaskCntByStatus(taskType: UInt64? = nil, typeName: String? = nil, projectId: String? = nil, inCharge: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSchedulerTaskCntByStatusResponse> {
+        self.describeSchedulerTaskCntByStatus(.init(taskType: taskType, typeName: typeName, projectId: projectId, inCharge: inCharge), region: region, logger: logger, on: eventLoop)
     }
 
     /// 任务状态统计
     @inlinable
-    public func describeSchedulerTaskCntByStatus(taskType: UInt64? = nil, typeName: String? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSchedulerTaskCntByStatusResponse {
-        try await self.describeSchedulerTaskCntByStatus(.init(taskType: taskType, typeName: typeName, projectId: projectId), region: region, logger: logger, on: eventLoop)
+    public func describeSchedulerTaskCntByStatus(taskType: UInt64? = nil, typeName: String? = nil, projectId: String? = nil, inCharge: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSchedulerTaskCntByStatusResponse {
+        try await self.describeSchedulerTaskCntByStatus(.init(taskType: taskType, typeName: typeName, projectId: projectId, inCharge: inCharge), region: region, logger: logger, on: eventLoop)
     }
 }

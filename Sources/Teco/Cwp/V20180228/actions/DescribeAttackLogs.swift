@@ -98,7 +98,7 @@ extension Cwp {
         }
     }
 
-    /// 网络攻击日志列表
+    /// 网络攻击日志列表(待下线,请使用DescribeAttackEvents代替)
     ///
     /// 按分页形式展示网络攻击日志列表
     @inlinable
@@ -106,7 +106,7 @@ extension Cwp {
         self.client.execute(action: "DescribeAttackLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 网络攻击日志列表
+    /// 网络攻击日志列表(待下线,请使用DescribeAttackEvents代替)
     ///
     /// 按分页形式展示网络攻击日志列表
     @inlinable
@@ -114,7 +114,7 @@ extension Cwp {
         try await self.client.execute(action: "DescribeAttackLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 网络攻击日志列表
+    /// 网络攻击日志列表(待下线,请使用DescribeAttackEvents代替)
     ///
     /// 按分页形式展示网络攻击日志列表
     @inlinable
@@ -122,7 +122,7 @@ extension Cwp {
         self.describeAttackLogs(.init(limit: limit, offset: offset, filters: filters, uuid: uuid, quuid: quuid), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 网络攻击日志列表
+    /// 网络攻击日志列表(待下线,请使用DescribeAttackEvents代替)
     ///
     /// 按分页形式展示网络攻击日志列表
     @inlinable
@@ -130,7 +130,7 @@ extension Cwp {
         try await self.describeAttackLogs(.init(limit: limit, offset: offset, filters: filters, uuid: uuid, quuid: quuid), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 网络攻击日志列表
+    /// 网络攻击日志列表(待下线,请使用DescribeAttackEvents代替)
     ///
     /// 按分页形式展示网络攻击日志列表
     @inlinable
@@ -138,7 +138,7 @@ extension Cwp {
         self.client.paginate(input: input, region: region, command: self.describeAttackLogs, logger: logger, on: eventLoop)
     }
 
-    /// 网络攻击日志列表
+    /// 网络攻击日志列表(待下线,请使用DescribeAttackEvents代替)
     ///
     /// 按分页形式展示网络攻击日志列表
     @inlinable @discardableResult
@@ -146,7 +146,7 @@ extension Cwp {
         self.client.paginate(input: input, region: region, command: self.describeAttackLogs, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 网络攻击日志列表
+    /// 网络攻击日志列表(待下线,请使用DescribeAttackEvents代替)
     ///
     /// 按分页形式展示网络攻击日志列表
     ///

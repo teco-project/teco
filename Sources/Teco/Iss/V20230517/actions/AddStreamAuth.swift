@@ -63,86 +63,10 @@ extension Iss {
         }
     }
 
-    /// 设置推拉流鉴权返回数据结构
+    /// AddStreamAuth返回参数结构体
     public struct AddStreamAuthResponse: TCResponse {
-        private let data: Wrapped
-
-        private struct Wrapped: Codable {
-            public let id: String?
-
-            public let pullState: Int64?
-
-            public let pullSecret: String?
-
-            public let pullExpired: Int64?
-
-            public let pushState: Int64?
-
-            public let pushSecret: String?
-
-            public let pushExpired: Int64?
-
-            public let appId: Int64?
-
-            enum CodingKeys: String, CodingKey {
-                case id = "Id"
-                case pullState = "PullState"
-                case pullSecret = "PullSecret"
-                case pullExpired = "PullExpired"
-                case pushState = "PushState"
-                case pushSecret = "PushSecret"
-                case pushExpired = "PushExpired"
-                case appId = "AppId"
-            }
-        }
-
-        /// 鉴权配置ID（uuid）
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var id: String? {
-            self.data.id
-        }
-
-        /// 是否开播放鉴权（1:开启,0:关闭）
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var pullState: Int64? {
-            self.data.pullState
-        }
-
-        /// 播放密钥（仅支持字母数字，长度0-10位）
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var pullSecret: String? {
-            self.data.pullSecret
-        }
-
-        /// 播放过期时间（单位：分钟）
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var pullExpired: Int64? {
-            self.data.pullExpired
-        }
-
-        /// 是否开启推流鉴权（1:开启,0:关闭）
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var pushState: Int64? {
-            self.data.pushState
-        }
-
-        /// 推流密钥（仅支持字母数字，长度0-10位）
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var pushSecret: String? {
-            self.data.pushSecret
-        }
-
-        /// 推流过期时间（单位：分钟）
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var pushExpired: Int64? {
-            self.data.pushExpired
-        }
-
-        /// 用户ID
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var appId: Int64? {
-            self.data.appId
-        }
+        /// 设置推拉流鉴权返回数据
+        public let data: AddStreamAuthData
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String

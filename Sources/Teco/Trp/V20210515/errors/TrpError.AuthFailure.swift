@@ -19,6 +19,7 @@ import TecoCore
 extension TCTrpError {
     public struct AuthFailure: TCTrpErrorType {
         enum Code: String {
+            case agentExpired = "AuthFailure.AgentExpired"
             case corpEmpty = "AuthFailure.CorpEmpty"
             case corpExpired = "AuthFailure.CorpExpired"
             case other = "AuthFailure"
@@ -46,6 +47,13 @@ extension TCTrpError {
             self.context = context
         }
 
+        /// 渠道商服务时间已到期。
+        ///
+        /// 您的服务时间已到期，为不影响您的使用，请您联系企业管理员，继续服务。
+        public static var agentExpired: AuthFailure {
+            AuthFailure(.agentExpired)
+        }
+
         /// 当前没有创建任何企业。
         ///
         /// 当前没有创建任何企业，请先创建企业以进行后续操作。
@@ -68,6 +76,8 @@ extension TCTrpError {
         public func asTrpError() -> TCTrpError {
             let code: TCTrpError.Code
             switch self.error {
+            case .agentExpired:
+                code = .authFailure_AgentExpired
             case .corpEmpty:
                 code = .authFailure_CorpEmpty
             case .corpExpired:

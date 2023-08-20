@@ -23,12 +23,12 @@ extension Live {
     /// DescribeCallbackRecordsList请求参数结构体
     public struct DescribeCallbackRecordsListRequest: TCPaginatedRequest {
         /// 起始时间点，接口查询支持两种时间格式：
-        /// 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见IOS日期格式说明文档: https://cloud.tencent.com/document/product/266/11732#I
+        /// 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)
         /// 2）YYYY-MM-DD hh:mm:ss：使用此格式时，默认代表北京时间。
         public let startTime: String
 
         /// 结束时间点，接口查询支持两种时间格式：
-        /// 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见IOS日期格式说明文档: https://cloud.tencent.com/document/product/266/11732#I
+        /// 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)
         /// 2）YYYY-MM-DD hh:mm:ss：使用此格式时，默认代表北京时间。
         ///
         /// 查询的起始和结束时间跨度不支持超过1天。仅支持查询最近14天的数据。
@@ -125,6 +125,7 @@ extension Live {
 
     /// 回调事件查询
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 用于查询回调事件。
     @inlinable
     public func describeCallbackRecordsList(_ input: DescribeCallbackRecordsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCallbackRecordsListResponse> {
@@ -133,6 +134,7 @@ extension Live {
 
     /// 回调事件查询
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 用于查询回调事件。
     @inlinable
     public func describeCallbackRecordsList(_ input: DescribeCallbackRecordsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallbackRecordsListResponse {
@@ -141,6 +143,7 @@ extension Live {
 
     /// 回调事件查询
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 用于查询回调事件。
     @inlinable
     public func describeCallbackRecordsList(startTime: String, endTime: String, streamName: String, pageNum: UInt64, pageSize: UInt64, eventType: UInt64? = nil, resultCode: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCallbackRecordsListResponse> {
@@ -149,6 +152,7 @@ extension Live {
 
     /// 回调事件查询
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 用于查询回调事件。
     @inlinable
     public func describeCallbackRecordsList(startTime: String, endTime: String, streamName: String, pageNum: UInt64, pageSize: UInt64, eventType: UInt64? = nil, resultCode: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallbackRecordsListResponse {
@@ -157,6 +161,7 @@ extension Live {
 
     /// 回调事件查询
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 用于查询回调事件。
     @inlinable
     public func describeCallbackRecordsListPaginated(_ input: DescribeCallbackRecordsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CallbackEventInfo])> {
@@ -165,6 +170,7 @@ extension Live {
 
     /// 回调事件查询
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 用于查询回调事件。
     @inlinable @discardableResult
     public func describeCallbackRecordsListPaginated(_ input: DescribeCallbackRecordsListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCallbackRecordsListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
@@ -173,6 +179,7 @@ extension Live {
 
     /// 回调事件查询
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 用于查询回调事件。
     ///
     /// - Returns: `AsyncSequence`s of ``CallbackEventInfo`` and ``DescribeCallbackRecordsListResponse`` that can be iterated over asynchronously on demand.

@@ -663,11 +663,20 @@ extension Yinsuda {
         /// 用户唯一标识。
         public let userId: String
 
-        public init(sign: String, roomId: String, sdkAppId: String, userId: String) {
+        /// TRTC房间号的类型：
+        ///
+        /// Integer：数字类型
+        /// String：字符串类型
+        /// 默认为：Integer 。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let roomIdType: String?
+
+        public init(sign: String, roomId: String, sdkAppId: String, userId: String, roomIdType: String? = nil) {
             self.sign = sign
             self.roomId = roomId
             self.sdkAppId = sdkAppId
             self.userId = userId
+            self.roomIdType = roomIdType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -675,6 +684,7 @@ extension Yinsuda {
             case roomId = "RoomId"
             case sdkAppId = "SdkAppId"
             case userId = "UserId"
+            case roomIdType = "RoomIdType"
         }
     }
 

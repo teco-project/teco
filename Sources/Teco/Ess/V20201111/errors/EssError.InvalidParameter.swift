@@ -53,14 +53,12 @@ extension TCEssError {
             case invalidMobile = "InvalidParameter.InvalidMobile"
             case invalidName = "InvalidParameter.InvalidName"
             case invalidOffset = "InvalidParameter.InvalidOffset"
-            case invalidOpenId = "InvalidParameter.InvalidOpenId"
             case invalidOperatorId = "InvalidParameter.InvalidOperatorId"
             case invalidOrganizationId = "InvalidParameter.InvalidOrganizationId"
             case invalidOrganizationName = "InvalidParameter.InvalidOrganizationName"
             case invalidRoleId = "InvalidParameter.InvalidRoleId"
             case invalidRoleName = "InvalidParameter.InvalidRoleName"
             case invalidVerifyChannel = "InvalidParameter.InvalidVerifyChannel"
-            case invalidVerifyCode = "InvalidParameter.InvalidVerifyCode"
             case limit = "InvalidParameter.Limit"
             case missingRequiredComponentValue = "InvalidParameter.MissingRequiredComponentValue"
             case mobile = "InvalidParameter.Mobile"
@@ -276,11 +274,6 @@ extension TCEssError {
             InvalidParameter(.invalidOffset)
         }
 
-        /// OpenId不正确。
-        public static var invalidOpenId: InvalidParameter {
-            InvalidParameter(.invalidOpenId)
-        }
-
         /// 操作人ID不正确。
         public static var invalidOperatorId: InvalidParameter {
             InvalidParameter(.invalidOperatorId)
@@ -309,11 +302,6 @@ extension TCEssError {
         /// 实名认证渠道不正确。
         public static var invalidVerifyChannel: InvalidParameter {
             InvalidParameter(.invalidVerifyChannel)
-        }
-
-        /// 验证码不正确。
-        public static var invalidVerifyCode: InvalidParameter {
-            InvalidParameter(.invalidVerifyCode)
         }
 
         public static var limit: InvalidParameter {
@@ -500,8 +488,6 @@ extension TCEssError {
                 code = .invalidParameter_InvalidName
             case .invalidOffset:
                 code = .invalidParameter_InvalidOffset
-            case .invalidOpenId:
-                code = .invalidParameter_InvalidOpenId
             case .invalidOperatorId:
                 code = .invalidParameter_InvalidOperatorId
             case .invalidOrganizationId:
@@ -514,8 +500,6 @@ extension TCEssError {
                 code = .invalidParameter_InvalidRoleName
             case .invalidVerifyChannel:
                 code = .invalidParameter_InvalidVerifyChannel
-            case .invalidVerifyCode:
-                code = .invalidParameter_InvalidVerifyCode
             case .limit:
                 code = .invalidParameter_Limit
             case .missingRequiredComponentValue:

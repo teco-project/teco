@@ -996,6 +996,8 @@ public struct TCTkeError: TCTkeErrorType {
     }
 
     /// 询价错误。
+    ///
+    /// None
     public static var internalError_TradeCommon: TCTkeError {
         TCTkeError(.internalError_TradeCommon)
     }

@@ -39,16 +39,20 @@ extension Ssl {
         /// 证书用途/证书来源。“CLB，CDN，WAF，LIVE，DDOS”
         public let certificateUse: String?
 
+        /// 标签列表
+        public let tags: [Tags]?
+
         /// 相同的证书是否允许重复上传
         public let repeatable: Bool?
 
-        public init(certificatePublicKey: String, certificatePrivateKey: String? = nil, certificateType: String? = nil, alias: String? = nil, projectId: UInt64? = nil, certificateUse: String? = nil, repeatable: Bool? = nil) {
+        public init(certificatePublicKey: String, certificatePrivateKey: String? = nil, certificateType: String? = nil, alias: String? = nil, projectId: UInt64? = nil, certificateUse: String? = nil, tags: [Tags]? = nil, repeatable: Bool? = nil) {
             self.certificatePublicKey = certificatePublicKey
             self.certificatePrivateKey = certificatePrivateKey
             self.certificateType = certificateType
             self.alias = alias
             self.projectId = projectId
             self.certificateUse = certificateUse
+            self.tags = tags
             self.repeatable = repeatable
         }
 
@@ -59,6 +63,7 @@ extension Ssl {
             case alias = "Alias"
             case projectId = "ProjectId"
             case certificateUse = "CertificateUse"
+            case tags = "Tags"
             case repeatable = "Repeatable"
         }
     }
@@ -102,15 +107,15 @@ extension Ssl {
     ///
     /// 本接口（UploadCertificate）用于上传证书。
     @inlinable
-    public func uploadCertificate(certificatePublicKey: String, certificatePrivateKey: String? = nil, certificateType: String? = nil, alias: String? = nil, projectId: UInt64? = nil, certificateUse: String? = nil, repeatable: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadCertificateResponse> {
-        self.uploadCertificate(.init(certificatePublicKey: certificatePublicKey, certificatePrivateKey: certificatePrivateKey, certificateType: certificateType, alias: alias, projectId: projectId, certificateUse: certificateUse, repeatable: repeatable), region: region, logger: logger, on: eventLoop)
+    public func uploadCertificate(certificatePublicKey: String, certificatePrivateKey: String? = nil, certificateType: String? = nil, alias: String? = nil, projectId: UInt64? = nil, certificateUse: String? = nil, tags: [Tags]? = nil, repeatable: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadCertificateResponse> {
+        self.uploadCertificate(.init(certificatePublicKey: certificatePublicKey, certificatePrivateKey: certificatePrivateKey, certificateType: certificateType, alias: alias, projectId: projectId, certificateUse: certificateUse, tags: tags, repeatable: repeatable), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上传证书
     ///
     /// 本接口（UploadCertificate）用于上传证书。
     @inlinable
-    public func uploadCertificate(certificatePublicKey: String, certificatePrivateKey: String? = nil, certificateType: String? = nil, alias: String? = nil, projectId: UInt64? = nil, certificateUse: String? = nil, repeatable: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadCertificateResponse {
-        try await self.uploadCertificate(.init(certificatePublicKey: certificatePublicKey, certificatePrivateKey: certificatePrivateKey, certificateType: certificateType, alias: alias, projectId: projectId, certificateUse: certificateUse, repeatable: repeatable), region: region, logger: logger, on: eventLoop)
+    public func uploadCertificate(certificatePublicKey: String, certificatePrivateKey: String? = nil, certificateType: String? = nil, alias: String? = nil, projectId: UInt64? = nil, certificateUse: String? = nil, tags: [Tags]? = nil, repeatable: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadCertificateResponse {
+        try await self.uploadCertificate(.init(certificatePublicKey: certificatePublicKey, certificatePrivateKey: certificatePrivateKey, certificateType: certificateType, alias: alias, projectId: projectId, certificateUse: certificateUse, tags: tags, repeatable: repeatable), region: region, logger: logger, on: eventLoop)
     }
 }

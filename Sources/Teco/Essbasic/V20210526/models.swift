@@ -128,6 +128,45 @@ extension Essbasic {
         }
     }
 
+    /// 自动签开启、签署相关配置
+    public struct AutoSignConfig: TCInputModel {
+        /// 自动签开通个人用户的三要素
+        public let userInfo: UserThreeFactor
+
+        /// 是否回调证书信息
+        public let certInfoCallback: Bool?
+
+        /// 是否支持用户自定义签名印章
+        public let userDefineSeal: Bool?
+
+        /// 是否需要回调的时候返回印章(签名) 图片的 base64
+        public let sealImgCallback: Bool?
+
+        /// 回调链接，如果渠道已经配置了，可以不传
+        public let callbackUrl: String?
+
+        /// 开通时候的验证方式，取值：WEIXINAPP（微信人脸识别），INSIGHT（慧眼人脸认别），TELECOM（运营商三要素验证）。如果是小程序开通链接，支持传 WEIXINAPP / TELECOM。如果是 H5 开通链接，支持传 INSIGHT / TELECOM。默认值 WEIXINAPP / INSIGHT。
+        public let verifyChannels: [String]?
+
+        public init(userInfo: UserThreeFactor, certInfoCallback: Bool? = nil, userDefineSeal: Bool? = nil, sealImgCallback: Bool? = nil, callbackUrl: String? = nil, verifyChannels: [String]? = nil) {
+            self.userInfo = userInfo
+            self.certInfoCallback = certInfoCallback
+            self.userDefineSeal = userDefineSeal
+            self.sealImgCallback = sealImgCallback
+            self.callbackUrl = callbackUrl
+            self.verifyChannels = verifyChannels
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case userInfo = "UserInfo"
+            case certInfoCallback = "CertInfoCallback"
+            case userDefineSeal = "UserDefineSeal"
+            case sealImgCallback = "SealImgCallback"
+            case callbackUrl = "CallbackUrl"
+            case verifyChannels = "VerifyChannels"
+        }
+    }
+
     /// 基础流程信息
     public struct BaseFlowInfo: TCInputModel {
         /// 合同流程名称
@@ -949,13 +988,14 @@ extension Essbasic {
         /// 签署人姓名，最大长度50个字符
         public let name: String?
 
-        /// 签署人身份证件类型
+        /// 签署人的证件类型
         /// 1.ID_CARD 居民身份证
         /// 2.HONGKONG_MACAO_AND_TAIWAN 港澳台居民居住证
         /// 3.HONGKONG_AND_MACAO 港澳居民来往内地通行证
+        /// 4.OTHER_CARD_TYPE 其他（需要使用该类型请先联系运营经理）
         public let idCardType: String?
 
-        /// 签署人证件号
+        /// 签署人证件号（长度不超过18位）
         public let idCardNumber: String?
 
         /// 签署人手机号，脱敏显示。大陆手机号为11位，暂不支持海外手机号。
@@ -977,7 +1017,8 @@ extension Essbasic {
 
         /// 签署人类型
         /// PERSON-个人/自然人；
-        /// PERSON_AUTO_SIGN-个人自动签（定制化场景下使用）；
+        /// PERSON_AUTO_SIGN-个人自动签署，适用于个人自动签场景
+        /// 注: 个人自动签场景为白名单功能, 使用前请联系对接的客户经理沟通。
         /// ORGANIZATION-企业（企业签署方或模板发起时的企业静默签）；
         /// ENTERPRISESERVER-企业静默签（文件发起时的企业静默签字）。
         public let approverType: String?
@@ -1261,6 +1302,31 @@ extension Essbasic {
             case components = "Components"
             case customShowMap = "CustomShowMap"
             case needSignReview = "NeedSignReview"
+        }
+    }
+
+    /// 合同组的配置项信息包括：在合同组签署过程中，是否需要对每个子合同进行独立的意愿确认。
+    public struct FlowGroupOptions: TCInputModel {
+        /// 发起方企业经办人（即签署人为发起方企业员工）是否需要对子合同进行独立的意愿确认：
+        /// fasle：发起方企业经办人签署时对所有子合同进行统一的意愿确认
+        /// true：发起方企业经办人签署时需要对子合同进行独立的意愿确认
+        /// 默认为fasle。
+        public let selfOrganizationApproverSignEach: Bool?
+
+        /// 非发起方企业经办人（即：签署人为个人或者不为发起方企业的员工）是否需要对子合同进行独立的意愿确认：
+        /// fasle：非发起方企业经办人签署时对所有子合同进行统一的意愿确认
+        /// true：非发起方企业经办人签署时需要对子合同进行独立的意愿确认
+        /// 默认为false。
+        public let otherApproverSignEach: Bool?
+
+        public init(selfOrganizationApproverSignEach: Bool? = nil, otherApproverSignEach: Bool? = nil) {
+            self.selfOrganizationApproverSignEach = selfOrganizationApproverSignEach
+            self.otherApproverSignEach = otherApproverSignEach
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case selfOrganizationApproverSignEach = "SelfOrganizationApproverSignEach"
+            case otherApproverSignEach = "OtherApproverSignEach"
         }
     }
 
@@ -2357,6 +2423,33 @@ extension Essbasic {
             case customUserId = "CustomUserId"
             case clientIp = "ClientIp"
             case proxyIp = "ProxyIp"
+        }
+    }
+
+    /// 用户的三要素：姓名，证件号，证件类型
+    public struct UserThreeFactor: TCInputModel {
+        /// 姓名
+        public let name: String
+
+        /// 证件类型:
+        /// ID_CARD 身份证
+        /// HONGKONG_AND_MACAO 港澳居民来往内地通行证
+        /// HONGKONG_MACAO_AND_TAIWAN 港澳台居民居住证(格式同居民身份证)
+        public let idCardType: String
+
+        /// 证件号，如果有 X 请大写
+        public let idCardNumber: String
+
+        public init(name: String, idCardType: String, idCardNumber: String) {
+            self.name = name
+            self.idCardType = idCardType
+            self.idCardNumber = idCardNumber
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case idCardType = "IdCardType"
+            case idCardNumber = "IdCardNumber"
         }
     }
 

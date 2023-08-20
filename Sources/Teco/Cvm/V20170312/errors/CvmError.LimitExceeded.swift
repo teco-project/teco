@@ -34,6 +34,7 @@ extension TCCvmError {
             case launchTemplateVersionQuota = "LimitExceeded.LaunchTemplateVersionQuota"
             case preheatImageSnapshotOutOfQuota = "LimitExceeded.PreheatImageSnapshotOutOfQuota"
             case prepayQuota = "LimitExceeded.PrepayQuota"
+            case prepayUnderwriteQuota = "LimitExceeded.PrepayUnderwriteQuota"
             case singleUSGQuota = "LimitExceeded.SingleUSGQuota"
             case spotQuota = "LimitExceeded.SpotQuota"
             case tagResourceQuota = "LimitExceeded.TagResourceQuota"
@@ -141,6 +142,11 @@ extension TCCvmError {
             LimitExceeded(.prepayQuota)
         }
 
+        /// 包销付费实例已购买数量已达到最大配额。
+        public static var prepayUnderwriteQuota: LimitExceeded {
+            LimitExceeded(.prepayUnderwriteQuota)
+        }
+
         /// 安全组限额不足
         public static var singleUSGQuota: LimitExceeded {
             LimitExceeded(.singleUSGQuota)
@@ -204,6 +210,8 @@ extension TCCvmError {
                 code = .limitExceeded_PreheatImageSnapshotOutOfQuota
             case .prepayQuota:
                 code = .limitExceeded_PrepayQuota
+            case .prepayUnderwriteQuota:
+                code = .limitExceeded_PrepayUnderwriteQuota
             case .singleUSGQuota:
                 code = .limitExceeded_SingleUSGQuota
             case .spotQuota:

@@ -43,104 +43,10 @@ extension Iss {
         }
     }
 
-    /// 修改网关信息返回结果
+    /// UpdateGateway返回参数结构体
     public struct UpdateGatewayResponse: TCResponse {
-        private let data: Wrapped
-
-        private struct Wrapped: Codable {
-            public let gatewayId: String?
-
-            public let gwId: String?
-
-            public let name: String?
-
-            public let description: String?
-
-            public let clusterId: String?
-
-            public let clusterName: String?
-
-            public let status: Int64?
-
-            public let createdAt: Int64?
-
-            public let secret: String?
-
-            public let version: String?
-
-            enum CodingKeys: String, CodingKey {
-                case gatewayId = "GatewayId"
-                case gwId = "GwId"
-                case name = "Name"
-                case description = "Description"
-                case clusterId = "ClusterId"
-                case clusterName = "ClusterName"
-                case status = "Status"
-                case createdAt = "CreatedAt"
-                case secret = "Secret"
-                case version = "Version"
-            }
-        }
-
-        /// 网关索引ID
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var gatewayId: String? {
-            self.data.gatewayId
-        }
-
-        /// 网关编码
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var gwId: String? {
-            self.data.gwId
-        }
-
-        /// 网关名称，仅支持中文、英文、数字、_、-，长度不超过32个字符
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var name: String? {
-            self.data.name
-        }
-
-        /// 网关描述，仅支持中文、英文、数字、_、-，长度不超过128个字符
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var description: String? {
-            self.data.description
-        }
-
-        /// 服务节点ID
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var clusterId: String? {
-            self.data.clusterId
-        }
-
-        /// 服务节点名称
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var clusterName: String? {
-            self.data.clusterName
-        }
-
-        /// 网关状态，0：离线，1:在线
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var status: Int64? {
-            self.data.status
-        }
-
-        /// 激活时间
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var createdAt: Int64? {
-            self.data.createdAt
-        }
-
-        /// 网关密钥
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var secret: String? {
-            self.data.secret
-        }
-
-        /// 网关版本信息
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var version: String? {
-            self.data.version
-        }
+        /// 返回数据
+        public let data: UpdateGatewayData
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String

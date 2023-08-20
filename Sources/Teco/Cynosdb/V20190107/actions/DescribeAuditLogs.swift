@@ -49,7 +49,7 @@ extension Cynosdb {
         /// 分页偏移量。
         public let offset: Int64?
 
-        /// 审计日志过滤条件。
+        /// 过滤条件。多个值之前是且的关系。
         public let logFilter: [InstanceAuditLogFilter]?
 
         public init(instanceId: String, startTime: String, endTime: String, order: String? = nil, orderBy: String? = nil, filter: AuditLogFilter? = nil, limit: Int64? = nil, offset: Int64? = nil, logFilter: [InstanceAuditLogFilter]? = nil) {

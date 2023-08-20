@@ -61,6 +61,7 @@ extension TCApigatewayError {
             case parameterNotMatch = "InvalidParameterValue.ParameterNotMatch"
             case parameterValueLimitExceeded = "InvalidParameterValue.ParameterValueLimitExceeded"
             case rangeExceeded = "InvalidParameterValue.RangeExceeded"
+            case trafficControl = "InvalidParameterValue.TrafficControl"
             case unsupportedParameter = "InvalidParameterValue.UnsupportedParameter"
             case other = "InvalidParameterValue"
         }
@@ -307,6 +308,10 @@ extension TCApigatewayError {
             InvalidParameterValue(.rangeExceeded)
         }
 
+        public static var trafficControl: InvalidParameterValue {
+            InvalidParameterValue(.trafficControl)
+        }
+
         /// 参数取值错误。
         public static var unsupportedParameter: InvalidParameterValue {
             InvalidParameterValue(.unsupportedParameter)
@@ -404,6 +409,8 @@ extension TCApigatewayError {
                 code = .invalidParameterValue_ParameterValueLimitExceeded
             case .rangeExceeded:
                 code = .invalidParameterValue_RangeExceeded
+            case .trafficControl:
+                code = .invalidParameterValue_TrafficControl
             case .unsupportedParameter:
                 code = .invalidParameterValue_UnsupportedParameter
             case .other:

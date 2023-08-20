@@ -27,6 +27,7 @@ extension TCLcicError {
             case originIdExists = "FailedOperation.OriginIdExists"
             case requestTimedOut = "FailedOperation.RequestTimedOut"
             case roomNotEnd = "FailedOperation.RoomNotEnd"
+            case userIsAlreadyInGroup = "FailedOperation.UserIsAlreadyInGroup"
             case other = "FailedOperation"
         }
 
@@ -98,6 +99,11 @@ extension TCLcicError {
             FailedOperation(.roomNotEnd)
         }
 
+        /// 在群组中删除该成员。
+        public static var userIsAlreadyInGroup: FailedOperation {
+            FailedOperation(.userIsAlreadyInGroup)
+        }
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
@@ -122,6 +128,8 @@ extension TCLcicError {
                 code = .failedOperation_RequestTimedOut
             case .roomNotEnd:
                 code = .failedOperation_RoomNotEnd
+            case .userIsAlreadyInGroup:
+                code = .failedOperation_UserIsAlreadyInGroup
             case .other:
                 code = .failedOperation
             }

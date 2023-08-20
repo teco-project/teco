@@ -64,47 +64,10 @@ extension Iss {
         }
     }
 
-    /// 查询组织目录下的通道列表返回数据
+    /// ListOrganizationChannels返回参数结构体
     public struct ListOrganizationChannelsResponse: TCPaginatedResponse {
-        private let data: Wrapped
-
-        private struct Wrapped: Codable {
-            public let pageNumber: Int64?
-
-            public let pageSize: Int64?
-
-            public let totalCount: Int64?
-
-            public let list: [OrganizationChannelInfo]?
-
-            enum CodingKeys: String, CodingKey {
-                case pageNumber = "PageNumber"
-                case pageSize = "PageSize"
-                case totalCount = "TotalCount"
-                case list = "List"
-            }
-        }
-
-        /// 第几页
-        public var pageNumber: Int64? {
-            self.data.pageNumber
-        }
-
-        /// 当前页的设备数量
-        public var pageSize: Int64? {
-            self.data.pageSize
-        }
-
-        /// 本次查询的设备通道总数
-        public var totalCount: Int64? {
-            self.data.totalCount
-        }
-
-        /// 设备通道信息列表
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var list: [OrganizationChannelInfo]? {
-            self.data.list
-        }
+        /// 返回结果
+        public let data: ListOrganizationChannelsData
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -116,12 +79,12 @@ extension Iss {
 
         /// Extract the returned ``OrganizationChannelInfo`` list from the paginated response.
         public func getItems() -> [OrganizationChannelInfo] {
-            self.list ?? []
+            self.data.list ?? []
         }
 
         /// Extract the total count from the paginated response.
         public func getTotalCount() -> Int64? {
-            self.totalCount
+            self.data.totalCount
         }
     }
 

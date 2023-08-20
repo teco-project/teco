@@ -37,7 +37,7 @@ extension Ssa {
         /// 排序参数
         public let sorter: [QuerySort]?
 
-        /// 是否导出
+        /// 是否导出；默认为否，如量级超过1000，则使用单独的导出接口
         public let exportFlag: Bool?
 
         public init(pageSize: Int64, pageIndex: Int64, scenes: Int64, filter: [QueryFilter]? = nil, sorter: [QuerySort]? = nil, exportFlag: Bool? = nil) {

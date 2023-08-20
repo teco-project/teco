@@ -107,33 +107,33 @@ extension Cls {
         }
     }
 
-    /// 创建ScheduledSql任务
+    /// 创建定时SQL分析任务
     ///
-    /// 本接口用于创建ScheduledSql任务
+    /// 本接口用于创建定时SQL分析任务
     @inlinable
     public func createScheduledSql(_ input: CreateScheduledSqlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScheduledSqlResponse> {
         self.client.execute(action: "CreateScheduledSql", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 创建ScheduledSql任务
+    /// 创建定时SQL分析任务
     ///
-    /// 本接口用于创建ScheduledSql任务
+    /// 本接口用于创建定时SQL分析任务
     @inlinable
     public func createScheduledSql(_ input: CreateScheduledSqlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScheduledSqlResponse {
         try await self.client.execute(action: "CreateScheduledSql", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 创建ScheduledSql任务
+    /// 创建定时SQL分析任务
     ///
-    /// 本接口用于创建ScheduledSql任务
+    /// 本接口用于创建定时SQL分析任务
     @inlinable
     public func createScheduledSql(srcTopicId: String, name: String, enableFlag: Int64, dstResource: ScheduledSqlResouceInfo, scheduledSqlContent: String, processStartTime: UInt64, processType: Int64, processPeriod: Int64, processTimeWindow: String, processDelay: Int64, srcTopicRegion: String, processEndTime: UInt64? = nil, syntaxRule: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScheduledSqlResponse> {
         self.createScheduledSql(.init(srcTopicId: srcTopicId, name: name, enableFlag: enableFlag, dstResource: dstResource, scheduledSqlContent: scheduledSqlContent, processStartTime: processStartTime, processType: processType, processPeriod: processPeriod, processTimeWindow: processTimeWindow, processDelay: processDelay, srcTopicRegion: srcTopicRegion, processEndTime: processEndTime, syntaxRule: syntaxRule), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 创建ScheduledSql任务
+    /// 创建定时SQL分析任务
     ///
-    /// 本接口用于创建ScheduledSql任务
+    /// 本接口用于创建定时SQL分析任务
     @inlinable
     public func createScheduledSql(srcTopicId: String, name: String, enableFlag: Int64, dstResource: ScheduledSqlResouceInfo, scheduledSqlContent: String, processStartTime: UInt64, processType: Int64, processPeriod: Int64, processTimeWindow: String, processDelay: Int64, srcTopicRegion: String, processEndTime: UInt64? = nil, syntaxRule: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScheduledSqlResponse {
         try await self.createScheduledSql(.init(srcTopicId: srcTopicId, name: name, enableFlag: enableFlag, dstResource: dstResource, scheduledSqlContent: scheduledSqlContent, processStartTime: processStartTime, processType: processType, processPeriod: processPeriod, processTimeWindow: processTimeWindow, processDelay: processDelay, srcTopicRegion: srcTopicRegion, processEndTime: processEndTime, syntaxRule: syntaxRule), region: region, logger: logger, on: eventLoop)

@@ -27,6 +27,7 @@ public protocol TCTrpErrorType: TCServiceErrorType {
 public struct TCTrpError: TCTrpErrorType {
     enum Code: String {
         case authFailure = "AuthFailure"
+        case authFailure_AgentExpired = "AuthFailure.AgentExpired"
         case authFailure_CorpEmpty = "AuthFailure.CorpEmpty"
         case authFailure_CorpExpired = "AuthFailure.CorpExpired"
         case failedOperation = "FailedOperation"
@@ -63,6 +64,13 @@ public struct TCTrpError: TCTrpErrorType {
     /// CAM签名/鉴权错误。
     public static var authFailure: TCTrpError {
         TCTrpError(.authFailure)
+    }
+
+    /// 渠道商服务时间已到期。
+    ///
+    /// 您的服务时间已到期，为不影响您的使用，请您联系企业管理员，继续服务。
+    public static var authFailure_AgentExpired: TCTrpError {
+        TCTrpError(.authFailure_AgentExpired)
     }
 
     /// 当前没有创建任何企业。
