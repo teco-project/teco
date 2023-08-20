@@ -83,7 +83,19 @@ extension Wedata {
         /// 1
         public let tenantId: String?
 
-        public init(projectId: String, page: String, size: String, statusList: [String]? = nil, ownerNameList: [String]? = nil, workflowIdList: [String]? = nil, taskNameFilter: String? = nil, taskTypeList: [String]? = nil, fordIdList: [String]? = nil, taskIdFilter: String? = nil, ownerNameFilter: String? = nil, sortItem: String? = nil, sortType: String? = nil, dataEngineList: [String]? = nil, userId: String? = nil, ownerId: String? = nil, tenantId: String? = nil) {
+        /// 数据源ID列表
+        public let datasourceIdList: [String]?
+
+        /// 数据源类型列表
+        public let datasourceTypeList: [String]?
+
+        /// 调度单位类型列表
+        public let cycleUnitList: [String]?
+
+        /// 是否筛选出可提交的任务
+        public let canSubmit: Bool?
+
+        public init(projectId: String, page: String, size: String, statusList: [String]? = nil, ownerNameList: [String]? = nil, workflowIdList: [String]? = nil, taskNameFilter: String? = nil, taskTypeList: [String]? = nil, fordIdList: [String]? = nil, taskIdFilter: String? = nil, ownerNameFilter: String? = nil, sortItem: String? = nil, sortType: String? = nil, dataEngineList: [String]? = nil, userId: String? = nil, ownerId: String? = nil, tenantId: String? = nil, datasourceIdList: [String]? = nil, datasourceTypeList: [String]? = nil, cycleUnitList: [String]? = nil, canSubmit: Bool? = nil) {
             self.projectId = projectId
             self.page = page
             self.size = size
@@ -101,6 +113,10 @@ extension Wedata {
             self.userId = userId
             self.ownerId = ownerId
             self.tenantId = tenantId
+            self.datasourceIdList = datasourceIdList
+            self.datasourceTypeList = datasourceTypeList
+            self.cycleUnitList = cycleUnitList
+            self.canSubmit = canSubmit
         }
 
         enum CodingKeys: String, CodingKey {
@@ -121,6 +137,10 @@ extension Wedata {
             case userId = "UserId"
             case ownerId = "OwnerId"
             case tenantId = "TenantId"
+            case datasourceIdList = "DatasourceIdList"
+            case datasourceTypeList = "DatasourceTypeList"
+            case cycleUnitList = "CycleUnitList"
+            case canSubmit = "CanSubmit"
         }
     }
 
@@ -153,13 +173,13 @@ extension Wedata {
 
     /// 批量操作任务列表
     @inlinable
-    public func describeBatchOperateTask(projectId: String, page: String, size: String, statusList: [String]? = nil, ownerNameList: [String]? = nil, workflowIdList: [String]? = nil, taskNameFilter: String? = nil, taskTypeList: [String]? = nil, fordIdList: [String]? = nil, taskIdFilter: String? = nil, ownerNameFilter: String? = nil, sortItem: String? = nil, sortType: String? = nil, dataEngineList: [String]? = nil, userId: String? = nil, ownerId: String? = nil, tenantId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchOperateTaskResponse> {
-        self.describeBatchOperateTask(.init(projectId: projectId, page: page, size: size, statusList: statusList, ownerNameList: ownerNameList, workflowIdList: workflowIdList, taskNameFilter: taskNameFilter, taskTypeList: taskTypeList, fordIdList: fordIdList, taskIdFilter: taskIdFilter, ownerNameFilter: ownerNameFilter, sortItem: sortItem, sortType: sortType, dataEngineList: dataEngineList, userId: userId, ownerId: ownerId, tenantId: tenantId), region: region, logger: logger, on: eventLoop)
+    public func describeBatchOperateTask(projectId: String, page: String, size: String, statusList: [String]? = nil, ownerNameList: [String]? = nil, workflowIdList: [String]? = nil, taskNameFilter: String? = nil, taskTypeList: [String]? = nil, fordIdList: [String]? = nil, taskIdFilter: String? = nil, ownerNameFilter: String? = nil, sortItem: String? = nil, sortType: String? = nil, dataEngineList: [String]? = nil, userId: String? = nil, ownerId: String? = nil, tenantId: String? = nil, datasourceIdList: [String]? = nil, datasourceTypeList: [String]? = nil, cycleUnitList: [String]? = nil, canSubmit: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchOperateTaskResponse> {
+        self.describeBatchOperateTask(.init(projectId: projectId, page: page, size: size, statusList: statusList, ownerNameList: ownerNameList, workflowIdList: workflowIdList, taskNameFilter: taskNameFilter, taskTypeList: taskTypeList, fordIdList: fordIdList, taskIdFilter: taskIdFilter, ownerNameFilter: ownerNameFilter, sortItem: sortItem, sortType: sortType, dataEngineList: dataEngineList, userId: userId, ownerId: ownerId, tenantId: tenantId, datasourceIdList: datasourceIdList, datasourceTypeList: datasourceTypeList, cycleUnitList: cycleUnitList, canSubmit: canSubmit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量操作任务列表
     @inlinable
-    public func describeBatchOperateTask(projectId: String, page: String, size: String, statusList: [String]? = nil, ownerNameList: [String]? = nil, workflowIdList: [String]? = nil, taskNameFilter: String? = nil, taskTypeList: [String]? = nil, fordIdList: [String]? = nil, taskIdFilter: String? = nil, ownerNameFilter: String? = nil, sortItem: String? = nil, sortType: String? = nil, dataEngineList: [String]? = nil, userId: String? = nil, ownerId: String? = nil, tenantId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchOperateTaskResponse {
-        try await self.describeBatchOperateTask(.init(projectId: projectId, page: page, size: size, statusList: statusList, ownerNameList: ownerNameList, workflowIdList: workflowIdList, taskNameFilter: taskNameFilter, taskTypeList: taskTypeList, fordIdList: fordIdList, taskIdFilter: taskIdFilter, ownerNameFilter: ownerNameFilter, sortItem: sortItem, sortType: sortType, dataEngineList: dataEngineList, userId: userId, ownerId: ownerId, tenantId: tenantId), region: region, logger: logger, on: eventLoop)
+    public func describeBatchOperateTask(projectId: String, page: String, size: String, statusList: [String]? = nil, ownerNameList: [String]? = nil, workflowIdList: [String]? = nil, taskNameFilter: String? = nil, taskTypeList: [String]? = nil, fordIdList: [String]? = nil, taskIdFilter: String? = nil, ownerNameFilter: String? = nil, sortItem: String? = nil, sortType: String? = nil, dataEngineList: [String]? = nil, userId: String? = nil, ownerId: String? = nil, tenantId: String? = nil, datasourceIdList: [String]? = nil, datasourceTypeList: [String]? = nil, cycleUnitList: [String]? = nil, canSubmit: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchOperateTaskResponse {
+        try await self.describeBatchOperateTask(.init(projectId: projectId, page: page, size: size, statusList: statusList, ownerNameList: ownerNameList, workflowIdList: workflowIdList, taskNameFilter: taskNameFilter, taskTypeList: taskTypeList, fordIdList: fordIdList, taskIdFilter: taskIdFilter, ownerNameFilter: ownerNameFilter, sortItem: sortItem, sortType: sortType, dataEngineList: dataEngineList, userId: userId, ownerId: ownerId, tenantId: tenantId, datasourceIdList: datasourceIdList, datasourceTypeList: datasourceTypeList, cycleUnitList: cycleUnitList, canSubmit: canSubmit), region: region, logger: logger, on: eventLoop)
     }
 }

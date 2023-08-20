@@ -102,6 +102,7 @@ extension TCVpcError {
             case notPostpaidCcnOperation = "UnsupportedOperation.NotPostpaidCcnOperation"
             case notSupportAttachEdgeAndCrossBorderInstance = "UnsupportedOperation.NotSupportAttachEdgeAndCrossBorderInstance"
             case notSupportDeleteDefaultRouteTable = "UnsupportedOperation.NotSupportDeleteDefaultRouteTable"
+            case notSupportDeleteVpcBmPeer = "UnsupportedOperation.NotSupportDeleteVpcBmPeer"
             case notSupportedAddressIpsChargeType = "UnsupportedOperation.NotSupportedAddressIpsChargeType"
             case notSupportedPurchaseCenterEgressResource = "UnsupportedOperation.NotSupportedPurchaseCenterEgressResource"
             case notSupportedUpdateCcnRoutePublish = "UnsupportedOperation.NotSupportedUpdateCcnRoutePublish"
@@ -151,6 +152,10 @@ extension TCVpcError {
             case userAndCcnChargeTypeNotMatch = "UnsupportedOperation.UserAndCcnChargeTypeNotMatch"
             case versionMismatch = "UnsupportedOperation.VersionMismatch"
             case vpcMismatch = "UnsupportedOperation.VpcMismatch"
+            case vpcPeerAlreadyExist = "UnsupportedOperation.VpcPeerAlreadyExist"
+            case vpcPeerCidrConflict = "UnsupportedOperation.VpcPeerCidrConflict"
+            case vpcPeerInvalidStateChange = "UnsupportedOperation.VpcPeerInvalidStateChange"
+            case vpcPeerPurviewError = "UnsupportedOperation.VpcPeerPurviewError"
             case vpnConnInvalidState = "UnsupportedOperation.VpnConnInvalidState"
             case vpnGwVpcIdMustHave = "UnsupportedOperation.VpnGwVpcIdMustHave"
             case zoneMismatch = "UnsupportedOperation.ZoneMismatch"
@@ -601,6 +606,11 @@ extension TCVpcError {
             UnsupportedOperation(.notSupportDeleteDefaultRouteTable)
         }
 
+        /// 公有云到黑石的对等连接不支持删除。
+        public static var notSupportDeleteVpcBmPeer: UnsupportedOperation {
+            UnsupportedOperation(.notSupportDeleteVpcBmPeer)
+        }
+
         /// 该地址类型不支持释放操作。
         public static var notSupportedAddressIpsChargeType: UnsupportedOperation {
             UnsupportedOperation(.notSupportedAddressIpsChargeType)
@@ -852,6 +862,26 @@ extension TCVpcError {
             UnsupportedOperation(.vpcMismatch)
         }
 
+        /// 对等连接已存在。
+        public static var vpcPeerAlreadyExist: UnsupportedOperation {
+            UnsupportedOperation(.vpcPeerAlreadyExist)
+        }
+
+        /// VPC网段存在CIDR冲突。
+        public static var vpcPeerCidrConflict: UnsupportedOperation {
+            UnsupportedOperation(.vpcPeerCidrConflict)
+        }
+
+        /// 对等连接状态错误。
+        public static var vpcPeerInvalidStateChange: UnsupportedOperation {
+            UnsupportedOperation(.vpcPeerInvalidStateChange)
+        }
+
+        /// 该账不能发起操作。
+        public static var vpcPeerPurviewError: UnsupportedOperation {
+            UnsupportedOperation(.vpcPeerPurviewError)
+        }
+
         /// 当前通道为非可用状态，不支持该操作。
         public static var vpnConnInvalidState: UnsupportedOperation {
             UnsupportedOperation(.vpnConnInvalidState)
@@ -1041,6 +1071,8 @@ extension TCVpcError {
                 code = .unsupportedOperation_NotSupportAttachEdgeAndCrossBorderInstance
             case .notSupportDeleteDefaultRouteTable:
                 code = .unsupportedOperation_NotSupportDeleteDefaultRouteTable
+            case .notSupportDeleteVpcBmPeer:
+                code = .unsupportedOperation_NotSupportDeleteVpcBmPeer
             case .notSupportedAddressIpsChargeType:
                 code = .unsupportedOperation_NotSupportedAddressIpsChargeType
             case .notSupportedPurchaseCenterEgressResource:
@@ -1139,6 +1171,14 @@ extension TCVpcError {
                 code = .unsupportedOperation_VersionMismatch
             case .vpcMismatch:
                 code = .unsupportedOperation_VpcMismatch
+            case .vpcPeerAlreadyExist:
+                code = .unsupportedOperation_VpcPeerAlreadyExist
+            case .vpcPeerCidrConflict:
+                code = .unsupportedOperation_VpcPeerCidrConflict
+            case .vpcPeerInvalidStateChange:
+                code = .unsupportedOperation_VpcPeerInvalidStateChange
+            case .vpcPeerPurviewError:
+                code = .unsupportedOperation_VpcPeerPurviewError
             case .vpnConnInvalidState:
                 code = .unsupportedOperation_VpnConnInvalidState
             case .vpnGwVpcIdMustHave:

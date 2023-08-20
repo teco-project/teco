@@ -42,6 +42,7 @@ extension TCApigatewayError {
             case resourceAssociated = "UnsupportedOperation.ResourceAssociated"
             case resourceIsInUse = "UnsupportedOperation.ResourceIsInUse"
             case resourceUnassociated = "UnsupportedOperation.ResourceUnassociated"
+            case serviceExist = "UnsupportedOperation.ServiceExist"
             case tagsNotEmpty = "UnsupportedOperation.TagsNotEmpty"
             case uinNotInWhiteList = "UnsupportedOperation.UinNotInWhiteList"
             case unpackError = "UnsupportedOperation.UnpackError"
@@ -192,6 +193,10 @@ extension TCApigatewayError {
             UnsupportedOperation(.resourceUnassociated)
         }
 
+        public static var serviceExist: UnsupportedOperation {
+            UnsupportedOperation(.serviceExist)
+        }
+
         public static var tagsNotEmpty: UnsupportedOperation {
             UnsupportedOperation(.tagsNotEmpty)
         }
@@ -304,6 +309,8 @@ extension TCApigatewayError {
                 code = .unsupportedOperation_ResourceIsInUse
             case .resourceUnassociated:
                 code = .unsupportedOperation_ResourceUnassociated
+            case .serviceExist:
+                code = .unsupportedOperation_ServiceExist
             case .tagsNotEmpty:
                 code = .unsupportedOperation_TagsNotEmpty
             case .uinNotInWhiteList:

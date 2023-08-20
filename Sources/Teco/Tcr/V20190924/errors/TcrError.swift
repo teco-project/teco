@@ -39,6 +39,7 @@ public struct TCTcrError: TCTcrErrorType {
         case failedOperation_GetSecurityPolicyFail = "FailedOperation.GetSecurityPolicyFail"
         case failedOperation_GetTcrClient = "FailedOperation.GetTcrClient"
         case failedOperation_OperationCancel = "FailedOperation.OperationCancel"
+        case failedOperation_PreconditionFailed = "FailedOperation.PreconditionFailed"
         case failedOperation_TradeFailed = "FailedOperation.TradeFailed"
         case failedOperation_ValidateRegistryNameFail = "FailedOperation.ValidateRegistryNameFail"
         case failedOperation_ValidateSupportedRegionFail = "FailedOperation.ValidateSupportedRegionFail"
@@ -212,6 +213,10 @@ public struct TCTcrError: TCTcrErrorType {
     /// 操作取消。
     public static var failedOperation_OperationCancel: TCTcrError {
         TCTcrError(.failedOperation_OperationCancel)
+    }
+
+    public static var failedOperation_PreconditionFailed: TCTcrError {
+        TCTcrError(.failedOperation_PreconditionFailed)
     }
 
     /// 交易失败。

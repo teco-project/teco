@@ -21,6 +21,7 @@ extension TCEssbasicError {
         enum Code: String {
             case ageNotAchieveNormalLegal = "FailedOperation.AgeNotAchieveNormalLegal"
             case authFail = "FailedOperation.AuthFail"
+            case errNotSyncProxyOrganization = "FailedOperation.ErrNotSyncProxyOrganization"
             case existSameSealName = "FailedOperation.ExistSameSealName"
             case flowNumExceed = "FailedOperation.FlowNumExceed"
             case hasAuthorized = "FailedOperation.HasAuthorized"
@@ -30,6 +31,8 @@ extension TCEssbasicError {
             case qrCodeSignUsers = "FailedOperation.QrCodeSignUsers"
             case qrCodeTemplateId = "FailedOperation.QrCodeTemplateId"
             case staffAlreadyVerify = "FailedOperation.StaffAlreadyVerify"
+            case userAutoSignEnableAlready = "FailedOperation.UserAutoSignEnableAlready"
+            case userAutoSignEnableUrlNotExist = "FailedOperation.UserAutoSignEnableUrlNotExist"
             case other = "FailedOperation"
         }
 
@@ -67,6 +70,11 @@ extension TCEssbasicError {
         /// 请检查参数，确保账号信息正确。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var authFail: FailedOperation {
             FailedOperation(.authFail)
+        }
+
+        /// 使用“同步企业信息”接口同步企业信息
+        public static var errNotSyncProxyOrganization: FailedOperation {
+            FailedOperation(.errNotSyncProxyOrganization)
         }
 
         /// 存在同名印章。
@@ -121,6 +129,14 @@ extension TCEssbasicError {
             FailedOperation(.staffAlreadyVerify)
         }
 
+        public static var userAutoSignEnableAlready: FailedOperation {
+            FailedOperation(.userAutoSignEnableAlready)
+        }
+
+        public static var userAutoSignEnableUrlNotExist: FailedOperation {
+            FailedOperation(.userAutoSignEnableUrlNotExist)
+        }
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
@@ -133,6 +149,8 @@ extension TCEssbasicError {
                 code = .failedOperation_AgeNotAchieveNormalLegal
             case .authFail:
                 code = .failedOperation_AuthFail
+            case .errNotSyncProxyOrganization:
+                code = .failedOperation_ErrNotSyncProxyOrganization
             case .existSameSealName:
                 code = .failedOperation_ExistSameSealName
             case .flowNumExceed:
@@ -151,6 +169,10 @@ extension TCEssbasicError {
                 code = .failedOperation_QrCodeTemplateId
             case .staffAlreadyVerify:
                 code = .failedOperation_StaffAlreadyVerify
+            case .userAutoSignEnableAlready:
+                code = .failedOperation_UserAutoSignEnableAlready
+            case .userAutoSignEnableUrlNotExist:
+                code = .failedOperation_UserAutoSignEnableUrlNotExist
             case .other:
                 code = .failedOperation
             }

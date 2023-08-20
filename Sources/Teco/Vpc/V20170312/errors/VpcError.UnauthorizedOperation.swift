@@ -24,6 +24,7 @@ extension TCVpcError {
             case invalidAccount = "UnauthorizedOperation.InvalidAccount"
             case noRealNameAuthentication = "UnauthorizedOperation.NoRealNameAuthentication"
             case primaryIp = "UnauthorizedOperation.PrimaryIp"
+            case vpcPeerCidrConflict = "UnauthorizedOperation.VpcPeerCidrConflict"
             case other = "UnauthorizedOperation"
         }
 
@@ -74,6 +75,11 @@ extension TCVpcError {
             UnauthorizedOperation(.primaryIp)
         }
 
+        /// 对等连接本端VPC与对端VPC存在CIDR冲突,或一端与已建立的对等连接某一端冲突。
+        public static var vpcPeerCidrConflict: UnauthorizedOperation {
+            UnauthorizedOperation(.vpcPeerCidrConflict)
+        }
+
         /// 未授权操作。
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
@@ -92,6 +98,8 @@ extension TCVpcError {
                 code = .unauthorizedOperation_NoRealNameAuthentication
             case .primaryIp:
                 code = .unauthorizedOperation_PrimaryIp
+            case .vpcPeerCidrConflict:
+                code = .unauthorizedOperation_VpcPeerCidrConflict
             case .other:
                 code = .unauthorizedOperation
             }

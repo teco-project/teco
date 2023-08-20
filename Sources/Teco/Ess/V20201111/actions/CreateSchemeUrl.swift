@@ -33,10 +33,10 @@ extension Ess {
         /// 手机号，大陆手机号11位
         public let mobile: String?
 
-        /// 链接类型
-        /// HTTP：跳转电子签小程序的http_url，
-        /// APP：第三方APP或小程序跳转电子签小程序的path。
-        /// 默认为HTTP类型
+        /// 要跳转的链接类型
+        ///
+        /// - HTTP：跳转电子签小程序的http_url, 短信通知或者H5跳转适合此类型  (默认)
+        /// - APP： 第三方APP或小程序跳转电子签小程序的path,  APP或者小程序跳转适合此类型
         public let endPoint: String?
 
         /// 签署流程编号 (PathType=1时必传)
@@ -45,7 +45,11 @@ extension Ess {
         /// 合同组ID
         public let flowGroupId: String?
 
-        /// 跳转页面 1: 小程序合同详情 2: 小程序合同列表页 0: 不传, 默认主页
+        /// 要跳转到的页面类型
+        ///
+        /// - 0: 不传, 主页 (默认)
+        /// - 1: 小程序合同详情
+        /// - 2: 小程序合同列表页
         public let pathType: UInt64?
 
         /// 是否自动回跳
@@ -59,10 +63,10 @@ extension Ess {
 
         /// 生成的签署链接在签署过程隐藏的按钮列表, 可以设置隐藏的按钮列表如下
         ///
-        /// 0:合同签署页面更多操作按钮
-        /// 1:合同签署页面更多操作的拒绝签署按钮
-        /// 2:合同签署页面更多操作的转他人处理按钮
-        /// 3:签署成功页的查看详情按钮
+        /// - 0:合同签署页面更多操作按钮
+        /// - 1:合同签署页面更多操作的拒绝签署按钮
+        /// - 2:合同签署页面更多操作的转他人处理按钮
+        /// - 3:签署成功页的查看详情按钮
         public let hides: [Int64]?
 
         public init(operator: UserInfo, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, endPoint: String? = nil, flowId: String? = nil, flowGroupId: String? = nil, pathType: UInt64? = nil, autoJumpBack: Bool? = nil, agent: Agent? = nil, hides: [Int64]? = nil) {
@@ -96,7 +100,7 @@ extension Ess {
 
     /// CreateSchemeUrl返回参数结构体
     public struct CreateSchemeUrlResponse: TCResponse {
-        /// 小程序链接地址，有效期5分钟
+        /// 小程序链接地址，有效期30天
         public let schemeUrl: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

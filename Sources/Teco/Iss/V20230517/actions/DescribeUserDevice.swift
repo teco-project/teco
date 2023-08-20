@@ -36,7 +36,7 @@ extension Iss {
     /// DescribeUserDevice返回参数结构体
     public struct DescribeUserDeviceResponse: TCResponse {
         /// 返回结果
-        public let data: DescribeDeviceResponse
+        public let data: DescribeDeviceData
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String

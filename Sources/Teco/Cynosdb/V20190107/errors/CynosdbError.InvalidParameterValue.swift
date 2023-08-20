@@ -42,6 +42,7 @@ extension TCCynosdbError {
             case paramError = "InvalidParameterValue.ParamError"
             case parameterOutRangeError = "InvalidParameterValue.ParameterOutRangeError"
             case prePayPayModeError = "InvalidParameterValue.PrePayPayModeError"
+            case projectIdNotFound = "InvalidParameterValue.ProjectIdNotFound"
             case regionZoneUnavailable = "InvalidParameterValue.RegionZoneUnavailable"
             case storagePoolNotFound = "InvalidParameterValue.StoragePoolNotFound"
             case subnetNotFound = "InvalidParameterValue.SubnetNotFound"
@@ -187,6 +188,10 @@ extension TCCynosdbError {
             InvalidParameterValue(.prePayPayModeError)
         }
 
+        public static var projectIdNotFound: InvalidParameterValue {
+            InvalidParameterValue(.projectIdNotFound)
+        }
+
         /// 所选地域和可用区不可用。
         public static var regionZoneUnavailable: InvalidParameterValue {
             InvalidParameterValue(.regionZoneUnavailable)
@@ -266,6 +271,8 @@ extension TCCynosdbError {
                 code = .invalidParameterValue_ParameterOutRangeError
             case .prePayPayModeError:
                 code = .invalidParameterValue_PrePayPayModeError
+            case .projectIdNotFound:
+                code = .invalidParameterValue_ProjectIdNotFound
             case .regionZoneUnavailable:
                 code = .invalidParameterValue_RegionZoneUnavailable
             case .storagePoolNotFound:

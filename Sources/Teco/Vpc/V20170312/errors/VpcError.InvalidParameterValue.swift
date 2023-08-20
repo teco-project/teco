@@ -43,6 +43,7 @@ extension TCVpcError {
             case combination = "InvalidParameterValue.Combination"
             case duplicate = "InvalidParameterValue.Duplicate"
             case duplicatePara = "InvalidParameterValue.DuplicatePara"
+            case duplicateRegion = "InvalidParameterValue.DuplicateRegion"
             case eipBrandWidthOutInvalid = "InvalidParameterValue.EIPBrandWidthOutInvalid"
             case empty = "InvalidParameterValue.Empty"
             case iPv6RuleIdExisted = "InvalidParameterValue.IPv6RuleIdExisted"
@@ -271,6 +272,11 @@ extension TCVpcError {
         /// 参数值存在重复。
         public static var duplicatePara: InvalidParameterValue {
             InvalidParameterValue(.duplicatePara)
+        }
+
+        /// 本端地域和端地域重复。
+        public static var duplicateRegion: InvalidParameterValue {
+            InvalidParameterValue(.duplicateRegion)
         }
 
         /// 值超过上限。
@@ -755,6 +761,8 @@ extension TCVpcError {
                 code = .invalidParameterValue_Duplicate
             case .duplicatePara:
                 code = .invalidParameterValue_DuplicatePara
+            case .duplicateRegion:
+                code = .invalidParameterValue_DuplicateRegion
             case .eipBrandWidthOutInvalid:
                 code = .invalidParameterValue_EIPBrandWidthOutInvalid
             case .empty:

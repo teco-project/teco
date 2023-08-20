@@ -72,7 +72,7 @@ extension Iss {
     public struct DescribeAITaskResultResponse: TCResponse {
         /// AI识别结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: AITaskResultResponse?
+        public let data: AITaskResultData?
 
         /// AI识别结果数量
         public let totalCount: UInt64

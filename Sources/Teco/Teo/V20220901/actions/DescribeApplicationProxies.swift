@@ -37,6 +37,10 @@ extension Teo {
         ///   按照【**站点ID**】进行过滤。站点ID形如：zone-vawer2vadg。
         ///   类型：String
         ///   必选：否
+        /// - rule-tag
+        ///   按照【**规则标签**】对应用代理下的规则进行过滤。规则标签形如：rule-service-1。
+        ///   类型：String
+        ///   必选：否
         public let filters: [Filter]?
 
         public init(offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil) {

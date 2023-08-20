@@ -20,6 +20,7 @@ extension TCCamError {
     public struct LimitExceeded: TCCamErrorType {
         enum Code: String {
             case identityFull = "LimitExceeded.IdentityFull"
+            case uin = "LimitExceeded.Uin"
         }
 
         private let error: Code
@@ -49,11 +50,17 @@ extension TCCamError {
             LimitExceeded(.identityFull)
         }
 
+        public static var uin: LimitExceeded {
+            LimitExceeded(.uin)
+        }
+
         public func asCamError() -> TCCamError {
             let code: TCCamError.Code
             switch self.error {
             case .identityFull:
                 code = .limitExceeded_IdentityFull
+            case .uin:
+                code = .limitExceeded_Uin
             }
             return TCCamError(code, context: self.context)
         }

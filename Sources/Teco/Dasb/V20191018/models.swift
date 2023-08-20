@@ -19,6 +19,33 @@ import TecoCore
 import TecoDateHelpers
 
 extension Dasb {
+    /// 权限控制模版对象
+    public struct ACTemplate: TCInputModel, TCOutputModel {
+        /// 模版id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let templateId: String?
+
+        /// 模版名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let templateName: String?
+
+        /// 模版描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let description: String?
+
+        public init(templateId: String? = nil, templateName: String? = nil, description: String? = nil) {
+            self.templateId = templateId
+            self.templateName = templateName
+            self.description = description
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case templateId = "TemplateId"
+            case templateName = "TemplateName"
+            case description = "Description"
+        }
+    }
+
     /// 访问权限
     public struct Acl: TCOutputModel {
         /// 访问权限ID
@@ -111,6 +138,14 @@ extension Dasb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let department: Department?
 
+        /// 是否允许使用访问串，默认允许
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let allowAccessCredential: Bool?
+
+        /// 关联的数据库高危命令列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let acTemplateSet: [ACTemplate]?
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
@@ -139,6 +174,8 @@ extension Dasb {
             case validateTo = "ValidateTo"
             case status = "Status"
             case department = "Department"
+            case allowAccessCredential = "AllowAccessCredential"
+            case acTemplateSet = "ACTemplateSet"
         }
     }
 
@@ -317,10 +354,36 @@ extension Dasb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let managers: [String]?
 
+        /// 管理员用户
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let managerUsers: [DepartmentManagerUser]?
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
             case managers = "Managers"
+            case managerUsers = "ManagerUsers"
+        }
+    }
+
+    /// 部门管理员信息
+    public struct DepartmentManagerUser: TCInputModel, TCOutputModel {
+        /// 管理员Id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let managerId: String?
+
+        /// 管理员姓名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let managerName: String?
+
+        public init(managerId: String? = nil, managerName: String? = nil) {
+            self.managerId = managerId
+            self.managerName = managerName
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case managerId = "ManagerId"
+            case managerName = "ManagerName"
         }
     }
 
@@ -1100,7 +1163,19 @@ extension Dasb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let departmentId: String?
 
-        public init(userName: String, realName: String, id: UInt64? = nil, phone: String? = nil, email: String? = nil, validateFrom: Date? = nil, validateTo: Date? = nil, groupSet: [Group]? = nil, authType: UInt64? = nil, validateTime: String? = nil, department: Department? = nil, departmentId: String? = nil) {
+        /// 激活状态 0 - 未激活 1 - 激活
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let activeStatus: UInt64?
+
+        /// 锁定状态 0 - 未锁定 1 - 锁定
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lockStatus: UInt64?
+
+        /// 状态 与Filter中一致
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: String?
+
+        public init(userName: String, realName: String, id: UInt64? = nil, phone: String? = nil, email: String? = nil, validateFrom: Date? = nil, validateTo: Date? = nil, groupSet: [Group]? = nil, authType: UInt64? = nil, validateTime: String? = nil, department: Department? = nil, departmentId: String? = nil, activeStatus: UInt64? = nil, lockStatus: UInt64? = nil, status: String? = nil) {
             self.userName = userName
             self.realName = realName
             self.id = id
@@ -1113,6 +1188,9 @@ extension Dasb {
             self.validateTime = validateTime
             self.department = department
             self.departmentId = departmentId
+            self.activeStatus = activeStatus
+            self.lockStatus = lockStatus
+            self.status = status
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1128,6 +1206,9 @@ extension Dasb {
             case validateTime = "ValidateTime"
             case department = "Department"
             case departmentId = "DepartmentId"
+            case activeStatus = "ActiveStatus"
+            case lockStatus = "LockStatus"
+            case status = "Status"
         }
     }
 }

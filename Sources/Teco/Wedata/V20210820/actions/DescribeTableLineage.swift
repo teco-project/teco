@@ -39,13 +39,17 @@ extension Wedata {
         /// 是否过滤临时表,默认true
         public let ignoreTemp: Bool?
 
-        public init(direction: String, data: TableLineageInfo, inputDepth: Int64? = nil, outputDepth: Int64? = nil, extParams: [LineageParamRecord]? = nil, ignoreTemp: Bool? = nil) {
+        /// 是否递归查询二级节点数目，默认为true
+        public let recursiveSecond: Bool?
+
+        public init(direction: String, data: TableLineageInfo, inputDepth: Int64? = nil, outputDepth: Int64? = nil, extParams: [LineageParamRecord]? = nil, ignoreTemp: Bool? = nil, recursiveSecond: Bool? = nil) {
             self.direction = direction
             self.data = data
             self.inputDepth = inputDepth
             self.outputDepth = outputDepth
             self.extParams = extParams
             self.ignoreTemp = ignoreTemp
+            self.recursiveSecond = recursiveSecond
         }
 
         enum CodingKeys: String, CodingKey {
@@ -55,6 +59,7 @@ extension Wedata {
             case outputDepth = "OutputDepth"
             case extParams = "ExtParams"
             case ignoreTemp = "IgnoreTemp"
+            case recursiveSecond = "RecursiveSecond"
         }
     }
 
@@ -87,13 +92,13 @@ extension Wedata {
 
     /// 列出表血缘信息
     @inlinable
-    public func describeTableLineage(direction: String, data: TableLineageInfo, inputDepth: Int64? = nil, outputDepth: Int64? = nil, extParams: [LineageParamRecord]? = nil, ignoreTemp: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableLineageResponse> {
-        self.describeTableLineage(.init(direction: direction, data: data, inputDepth: inputDepth, outputDepth: outputDepth, extParams: extParams, ignoreTemp: ignoreTemp), region: region, logger: logger, on: eventLoop)
+    public func describeTableLineage(direction: String, data: TableLineageInfo, inputDepth: Int64? = nil, outputDepth: Int64? = nil, extParams: [LineageParamRecord]? = nil, ignoreTemp: Bool? = nil, recursiveSecond: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableLineageResponse> {
+        self.describeTableLineage(.init(direction: direction, data: data, inputDepth: inputDepth, outputDepth: outputDepth, extParams: extParams, ignoreTemp: ignoreTemp, recursiveSecond: recursiveSecond), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列出表血缘信息
     @inlinable
-    public func describeTableLineage(direction: String, data: TableLineageInfo, inputDepth: Int64? = nil, outputDepth: Int64? = nil, extParams: [LineageParamRecord]? = nil, ignoreTemp: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableLineageResponse {
-        try await self.describeTableLineage(.init(direction: direction, data: data, inputDepth: inputDepth, outputDepth: outputDepth, extParams: extParams, ignoreTemp: ignoreTemp), region: region, logger: logger, on: eventLoop)
+    public func describeTableLineage(direction: String, data: TableLineageInfo, inputDepth: Int64? = nil, outputDepth: Int64? = nil, extParams: [LineageParamRecord]? = nil, ignoreTemp: Bool? = nil, recursiveSecond: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableLineageResponse {
+        try await self.describeTableLineage(.init(direction: direction, data: data, inputDepth: inputDepth, outputDepth: outputDepth, extParams: extParams, ignoreTemp: ignoreTemp, recursiveSecond: recursiveSecond), region: region, logger: logger, on: eventLoop)
     }
 }

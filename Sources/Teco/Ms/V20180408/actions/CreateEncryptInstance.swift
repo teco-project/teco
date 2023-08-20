@@ -80,36 +80,32 @@ extension Ms {
     /// 创建渠道合作应用加固任务
     ///
     /// 该接口供渠道合作应用加固使用，接口调用有白名单用户限制，用于创建加固任务。
-    @available(*, unavailable, message: "上错服务器了")
     @inlinable
     public func createEncryptInstance(_ input: CreateEncryptInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEncryptInstanceResponse> {
-        fatalError("CreateEncryptInstance is no longer available.")
+        self.client.execute(action: "CreateEncryptInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建渠道合作应用加固任务
     ///
     /// 该接口供渠道合作应用加固使用，接口调用有白名单用户限制，用于创建加固任务。
-    @available(*, unavailable, message: "上错服务器了")
     @inlinable
     public func createEncryptInstance(_ input: CreateEncryptInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEncryptInstanceResponse {
-        fatalError("CreateEncryptInstance is no longer available.")
+        try await self.client.execute(action: "CreateEncryptInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建渠道合作应用加固任务
     ///
     /// 该接口供渠道合作应用加固使用，接口调用有白名单用户限制，用于创建加固任务。
-    @available(*, unavailable, message: "上错服务器了")
     @inlinable
     public func createEncryptInstance(platformType: Int64, orderType: Int64, encryptOpType: Int64, resourceId: String, androidAppInfo: AndroidAppInfo? = nil, androidPlan: AndroidPlan? = nil, appletInfo: AppletInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEncryptInstanceResponse> {
-        fatalError("CreateEncryptInstance is no longer available.")
+        self.createEncryptInstance(.init(platformType: platformType, orderType: orderType, encryptOpType: encryptOpType, resourceId: resourceId, androidAppInfo: androidAppInfo, androidPlan: androidPlan, appletInfo: appletInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建渠道合作应用加固任务
     ///
     /// 该接口供渠道合作应用加固使用，接口调用有白名单用户限制，用于创建加固任务。
-    @available(*, unavailable, message: "上错服务器了")
     @inlinable
     public func createEncryptInstance(platformType: Int64, orderType: Int64, encryptOpType: Int64, resourceId: String, androidAppInfo: AndroidAppInfo? = nil, androidPlan: AndroidPlan? = nil, appletInfo: AppletInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEncryptInstanceResponse {
-        fatalError("CreateEncryptInstance is no longer available.")
+        try await self.createEncryptInstance(.init(platformType: platformType, orderType: orderType, encryptOpType: encryptOpType, resourceId: resourceId, androidAppInfo: androidAppInfo, androidPlan: androidPlan, appletInfo: appletInfo), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -25,7 +25,7 @@ extension Ess {
         /// 操作人信息，userId必填
         public let `operator`: UserInfo
 
-        /// 返回最大数量，最大为20
+        /// 指定每页多少条数据，单页最大20
         public let limit: Int64
 
         /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
@@ -35,7 +35,7 @@ extension Ess {
         /// 根据第三方系统openId过滤查询员工时,Key为StaffOpenId,Values为["OpenId","OpenId",...]
         public let filters: [Filter]?
 
-        /// 偏移量，默认为0，最大为20000
+        /// 查询结果分页返回，此处指定第几页，如果不传默认从第一页返回。页码从 0 开始，即首页为 0，最大20000
         public let offset: Int64?
 
         public init(operator: UserInfo, limit: Int64, agent: Agent? = nil, filters: [Filter]? = nil, offset: Int64? = nil) {
@@ -69,11 +69,11 @@ extension Ess {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let employees: [Staff]?
 
-        /// 偏移量，默认为0，最大为20000
+        /// 查询结果分页返回，此处指定第几页，如果不传默认从第一页返回。页码从 0 开始，即首页为 0，最大20000
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let offset: Int64?
 
-        /// 返回最大数量，最大为20
+        /// 指定每页多少条数据，单页最大20
         public let limit: Int64
 
         /// 符合条件的员工数量

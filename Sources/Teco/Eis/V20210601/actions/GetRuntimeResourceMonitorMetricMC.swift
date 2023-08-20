@@ -42,7 +42,10 @@ extension Eis {
         /// 环境运行类型：0:运行时类型、1:api类型
         public let runtimeClass: Int64?
 
-        public init(runtimeId: Int64, startTime: Int64, endTime: Int64, metricType: Int64, rateType: Bool, interval: Int64? = nil, runtimeClass: Int64? = nil) {
+        /// 资源指标聚合类型：0: 环境维度 1:执行引擎维度 2:datatwaypy维度 3.datawayjava维度
+        public let aggregationType: Int64?
+
+        public init(runtimeId: Int64, startTime: Int64, endTime: Int64, metricType: Int64, rateType: Bool, interval: Int64? = nil, runtimeClass: Int64? = nil, aggregationType: Int64? = nil) {
             self.runtimeId = runtimeId
             self.startTime = startTime
             self.endTime = endTime
@@ -50,6 +53,7 @@ extension Eis {
             self.rateType = rateType
             self.interval = interval
             self.runtimeClass = runtimeClass
+            self.aggregationType = aggregationType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -60,6 +64,7 @@ extension Eis {
             case rateType = "RateType"
             case interval = "Interval"
             case runtimeClass = "RuntimeClass"
+            case aggregationType = "AggregationType"
         }
     }
 
@@ -101,15 +106,15 @@ extension Eis {
     ///
     /// 获取运行时资源监控详情，cpu，memory，bandwidth
     @inlinable
-    public func getRuntimeResourceMonitorMetricMC(runtimeId: Int64, startTime: Int64, endTime: Int64, metricType: Int64, rateType: Bool, interval: Int64? = nil, runtimeClass: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRuntimeResourceMonitorMetricMCResponse> {
-        self.getRuntimeResourceMonitorMetricMC(.init(runtimeId: runtimeId, startTime: startTime, endTime: endTime, metricType: metricType, rateType: rateType, interval: interval, runtimeClass: runtimeClass), region: region, logger: logger, on: eventLoop)
+    public func getRuntimeResourceMonitorMetricMC(runtimeId: Int64, startTime: Int64, endTime: Int64, metricType: Int64, rateType: Bool, interval: Int64? = nil, runtimeClass: Int64? = nil, aggregationType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRuntimeResourceMonitorMetricMCResponse> {
+        self.getRuntimeResourceMonitorMetricMC(.init(runtimeId: runtimeId, startTime: startTime, endTime: endTime, metricType: metricType, rateType: rateType, interval: interval, runtimeClass: runtimeClass, aggregationType: aggregationType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取运行时资源监控详情
     ///
     /// 获取运行时资源监控详情，cpu，memory，bandwidth
     @inlinable
-    public func getRuntimeResourceMonitorMetricMC(runtimeId: Int64, startTime: Int64, endTime: Int64, metricType: Int64, rateType: Bool, interval: Int64? = nil, runtimeClass: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRuntimeResourceMonitorMetricMCResponse {
-        try await self.getRuntimeResourceMonitorMetricMC(.init(runtimeId: runtimeId, startTime: startTime, endTime: endTime, metricType: metricType, rateType: rateType, interval: interval, runtimeClass: runtimeClass), region: region, logger: logger, on: eventLoop)
+    public func getRuntimeResourceMonitorMetricMC(runtimeId: Int64, startTime: Int64, endTime: Int64, metricType: Int64, rateType: Bool, interval: Int64? = nil, runtimeClass: Int64? = nil, aggregationType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRuntimeResourceMonitorMetricMCResponse {
+        try await self.getRuntimeResourceMonitorMetricMC(.init(runtimeId: runtimeId, startTime: startTime, endTime: endTime, metricType: metricType, rateType: rateType, interval: interval, runtimeClass: runtimeClass, aggregationType: aggregationType), region: region, logger: logger, on: eventLoop)
     }
 }

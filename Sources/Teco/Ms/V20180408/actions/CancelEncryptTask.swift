@@ -50,36 +50,32 @@ extension Ms {
     /// 取消渠道合作加固任务
     ///
     /// 该接口供渠道合作应用加固使用，接口调用有白名单用户限制，取消渠道合作加固中的任务。
-    @available(*, unavailable, message: "上错服务器了")
     @inlinable
     public func cancelEncryptTask(_ input: CancelEncryptTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelEncryptTaskResponse> {
-        fatalError("CancelEncryptTask is no longer available.")
+        self.client.execute(action: "CancelEncryptTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取消渠道合作加固任务
     ///
     /// 该接口供渠道合作应用加固使用，接口调用有白名单用户限制，取消渠道合作加固中的任务。
-    @available(*, unavailable, message: "上错服务器了")
     @inlinable
     public func cancelEncryptTask(_ input: CancelEncryptTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelEncryptTaskResponse {
-        fatalError("CancelEncryptTask is no longer available.")
+        try await self.client.execute(action: "CancelEncryptTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 取消渠道合作加固任务
     ///
     /// 该接口供渠道合作应用加固使用，接口调用有白名单用户限制，取消渠道合作加固中的任务。
-    @available(*, unavailable, message: "上错服务器了")
     @inlinable
     public func cancelEncryptTask(resultId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelEncryptTaskResponse> {
-        fatalError("CancelEncryptTask is no longer available.")
+        self.cancelEncryptTask(.init(resultId: resultId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 取消渠道合作加固任务
     ///
     /// 该接口供渠道合作应用加固使用，接口调用有白名单用户限制，取消渠道合作加固中的任务。
-    @available(*, unavailable, message: "上错服务器了")
     @inlinable
     public func cancelEncryptTask(resultId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelEncryptTaskResponse {
-        fatalError("CancelEncryptTask is no longer available.")
+        try await self.cancelEncryptTask(.init(resultId: resultId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -45,7 +45,10 @@ extension Cls {
         /// 机器组元数据信息列表
         public let metaTags: [MetaTagInfo]?
 
-        public init(groupName: String, machineGroupType: MachineGroupTypeInfo, tags: [Tag]? = nil, autoUpdate: Bool? = nil, updateStartTime: String? = nil, updateEndTime: String? = nil, serviceLogging: Bool? = nil, metaTags: [MetaTagInfo]? = nil) {
+        /// 系统类型，默认0，0：Linux，1: windows
+        public let osType: UInt64?
+
+        public init(groupName: String, machineGroupType: MachineGroupTypeInfo, tags: [Tag]? = nil, autoUpdate: Bool? = nil, updateStartTime: String? = nil, updateEndTime: String? = nil, serviceLogging: Bool? = nil, metaTags: [MetaTagInfo]? = nil, osType: UInt64? = nil) {
             self.groupName = groupName
             self.machineGroupType = machineGroupType
             self.tags = tags
@@ -54,6 +57,7 @@ extension Cls {
             self.updateEndTime = updateEndTime
             self.serviceLogging = serviceLogging
             self.metaTags = metaTags
+            self.osType = osType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -65,6 +69,7 @@ extension Cls {
             case updateEndTime = "UpdateEndTime"
             case serviceLogging = "ServiceLogging"
             case metaTags = "MetaTags"
+            case osType = "OSType"
         }
     }
 
@@ -96,13 +101,13 @@ extension Cls {
 
     /// 创建机器组
     @inlinable
-    public func createMachineGroup(groupName: String, machineGroupType: MachineGroupTypeInfo, tags: [Tag]? = nil, autoUpdate: Bool? = nil, updateStartTime: String? = nil, updateEndTime: String? = nil, serviceLogging: Bool? = nil, metaTags: [MetaTagInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMachineGroupResponse> {
-        self.createMachineGroup(.init(groupName: groupName, machineGroupType: machineGroupType, tags: tags, autoUpdate: autoUpdate, updateStartTime: updateStartTime, updateEndTime: updateEndTime, serviceLogging: serviceLogging, metaTags: metaTags), region: region, logger: logger, on: eventLoop)
+    public func createMachineGroup(groupName: String, machineGroupType: MachineGroupTypeInfo, tags: [Tag]? = nil, autoUpdate: Bool? = nil, updateStartTime: String? = nil, updateEndTime: String? = nil, serviceLogging: Bool? = nil, metaTags: [MetaTagInfo]? = nil, osType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMachineGroupResponse> {
+        self.createMachineGroup(.init(groupName: groupName, machineGroupType: machineGroupType, tags: tags, autoUpdate: autoUpdate, updateStartTime: updateStartTime, updateEndTime: updateEndTime, serviceLogging: serviceLogging, metaTags: metaTags, osType: osType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建机器组
     @inlinable
-    public func createMachineGroup(groupName: String, machineGroupType: MachineGroupTypeInfo, tags: [Tag]? = nil, autoUpdate: Bool? = nil, updateStartTime: String? = nil, updateEndTime: String? = nil, serviceLogging: Bool? = nil, metaTags: [MetaTagInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMachineGroupResponse {
-        try await self.createMachineGroup(.init(groupName: groupName, machineGroupType: machineGroupType, tags: tags, autoUpdate: autoUpdate, updateStartTime: updateStartTime, updateEndTime: updateEndTime, serviceLogging: serviceLogging, metaTags: metaTags), region: region, logger: logger, on: eventLoop)
+    public func createMachineGroup(groupName: String, machineGroupType: MachineGroupTypeInfo, tags: [Tag]? = nil, autoUpdate: Bool? = nil, updateStartTime: String? = nil, updateEndTime: String? = nil, serviceLogging: Bool? = nil, metaTags: [MetaTagInfo]? = nil, osType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMachineGroupResponse {
+        try await self.createMachineGroup(.init(groupName: groupName, machineGroupType: machineGroupType, tags: tags, autoUpdate: autoUpdate, updateStartTime: updateStartTime, updateEndTime: updateEndTime, serviceLogging: serviceLogging, metaTags: metaTags, osType: osType), region: region, logger: logger, on: eventLoop)
     }
 }

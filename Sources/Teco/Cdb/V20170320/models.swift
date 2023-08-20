@@ -1135,16 +1135,6 @@ extension Cdb {
         }
     }
 
-    /// 数据库表名
-    public struct DatabaseName: TCOutputModel {
-        /// 数据库表名
-        public let databaseName: String
-
-        enum CodingKeys: String, CodingKey {
-            case databaseName = "DatabaseName"
-        }
-    }
-
     /// 数据库权限
     public struct DatabasePrivilege: TCInputModel, TCOutputModel {
         /// 权限信息
@@ -1465,7 +1455,10 @@ extension Cdb {
 
     /// 审计日志搜索过滤器
     public struct InstanceAuditLogFilters: TCInputModel {
-        /// 过滤项。sql 暂时不支持搜索。目前支持以下搜索条件：
+        /// 过滤项。目前支持以下搜索条件：
+        ///
+        /// 包含、不包含、包含（分词维度）、不包含（分词维度）:
+        /// sql - SQL详情
         ///
         /// 等于、不等于、包含、不包含：
         /// host - 客户端地址；
@@ -1477,7 +1470,7 @@ extension Cdb {
         /// errCode - 错误码；
         /// threadId - 线程ID；
         ///
-        /// 范围搜索（时间类型统一为微妙）：
+        /// 范围搜索（时间类型统一为微秒）：
         /// execTime - 执行时间；
         /// lockWaitTime - 执行时间；
         /// ioWaitTime - IO等待时间；
@@ -1489,6 +1482,8 @@ extension Cdb {
         public let type: String?
 
         /// 过滤条件。支持以下条件：
+        /// WINC-包含（分词维度），
+        /// WEXC-不包含（分词维度）,
         /// INC - 包含,
         /// EXC - 不包含,
         /// EQS - 等于,
@@ -1496,7 +1491,7 @@ extension Cdb {
         /// RA - 范围。
         public let compare: String?
 
-        /// 过滤的值。
+        /// 过滤的值。反向查询时，多个值之前是且的关系，正向查询多个值是或的关系
         public let value: [String]?
 
         public init(type: String? = nil, compare: String? = nil, value: [String]? = nil) {

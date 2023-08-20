@@ -53,6 +53,7 @@ public struct TCTeoError: TCTeoErrorType {
         case invalidParameterValue_DomainNotMatchZone = "InvalidParameterValue.DomainNotMatchZone"
         case invalidParameterValue_InvalidDNSContent = "InvalidParameterValue.InvalidDNSContent"
         case invalidParameterValue_InvalidDNSName = "InvalidParameterValue.InvalidDNSName"
+        case invalidParameterValue_InvalidDomainName = "InvalidParameterValue.InvalidDomainName"
         case invalidParameterValue_InvalidDomainStatus = "InvalidParameterValue.InvalidDomainStatus"
         case invalidParameterValue_ZoneSameAsName = "InvalidParameterValue.ZoneSameAsName"
         case invalidParameter_ActionInProgress = "InvalidParameter.ActionInProgress"
@@ -88,6 +89,7 @@ public struct TCTeoError: TCTeoErrorType {
         case invalidParameter_ErrInvalidConditionValueTooManyValues = "InvalidParameter.ErrInvalidConditionValueTooManyValues"
         case invalidParameter_ErrInvalidConditionValueTooManyWildcard = "InvalidParameter.ErrInvalidConditionValueTooManyWildcard"
         case invalidParameter_ErrInvalidConditionValueZeroLength = "InvalidParameter.ErrInvalidConditionValueZeroLength"
+        case invalidParameter_ErrInvalidElseWhenModifyOriginActionConfigured = "InvalidParameter.ErrInvalidElseWhenModifyOriginActionConfigured"
         case invalidParameter_GrpcRequireHttp2 = "InvalidParameter.GrpcRequireHttp2"
         case invalidParameter_HostNotFound = "InvalidParameter.HostNotFound"
         case invalidParameter_HostStatusNotAllowApplyCertificate = "InvalidParameter.HostStatusNotAllowApplyCertificate"
@@ -144,6 +146,7 @@ public struct TCTeoError: TCTeoErrorType {
         case invalidParameter_InvalidStandardDebugClientIp = "InvalidParameter.InvalidStandardDebugClientIp"
         case invalidParameter_InvalidStandardDebugExpireTimeLimit = "InvalidParameter.InvalidStandardDebugExpireTimeLimit"
         case invalidParameter_InvalidUpstreamRequestQueryStringValue = "InvalidParameter.InvalidUpstreamRequestQueryStringValue"
+        case invalidParameter_InvalidUrlRedirect = "InvalidParameter.InvalidUrlRedirect"
         case invalidParameter_InvalidUrlRedirectHost = "InvalidParameter.InvalidUrlRedirectHost"
         case invalidParameter_InvalidUrlRedirectUrl = "InvalidParameter.InvalidUrlRedirectUrl"
         case invalidParameter_InvalidWebSocketTimeout = "InvalidParameter.InvalidWebSocketTimeout"
@@ -151,6 +154,7 @@ public struct TCTeoError: TCTeoErrorType {
         case invalidParameter_LengthExceedsLimit = "InvalidParameter.LengthExceedsLimit"
         case invalidParameter_MultiplyLayerNotSupportSmartRouting = "InvalidParameter.MultiplyLayerNotSupportSmartRouting"
         case invalidParameter_NotSupportThisPreset = "InvalidParameter.NotSupportThisPreset"
+        case invalidParameter_OCDirectOriginRequiresSmartRouting = "InvalidParameter.OCDirectOriginRequiresSmartRouting"
         case invalidParameter_OriginIsInnerIp = "InvalidParameter.OriginIsInnerIp"
         case invalidParameter_OriginOriginGroupIdIsRequired = "InvalidParameter.OriginOriginGroupIdIsRequired"
         case invalidParameter_ParameterError = "InvalidParameter.ParameterError"
@@ -177,6 +181,7 @@ public struct TCTeoError: TCTeoErrorType {
         case operationDenied_DomainInShareCnameGroup = "OperationDenied.DomainInShareCnameGroup"
         case operationDenied_DomainIsBlocked = "OperationDenied.DomainIsBlocked"
         case operationDenied_DomainNoICP = "OperationDenied.DomainNoICP"
+        case operationDenied_DomainNumberIsNotZero = "OperationDenied.DomainNumberIsNotZero"
         case operationDenied_ErrZoneIsAlreadyPaused = "OperationDenied.ErrZoneIsAlreadyPaused"
         case operationDenied_InvalidAdvancedDefenseSecurityType = "OperationDenied.InvalidAdvancedDefenseSecurityType"
         case operationDenied_InvalidAdvancedDefenseZoneArea = "OperationDenied.InvalidAdvancedDefenseZoneArea"
@@ -400,6 +405,11 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.invalidParameterValue_InvalidDNSName)
     }
 
+    /// 加速域名名称不合法，加速域名应该由数字、英文字母、连词符组成，且连词符不能位于开头和结尾处。
+    public static var invalidParameterValue_InvalidDomainName: TCTeoError {
+        TCTeoError(.invalidParameterValue_InvalidDomainName)
+    }
+
     /// 加速域名状态不符合要求。
     public static var invalidParameterValue_InvalidDomainStatus: TCTeoError {
         TCTeoError(.invalidParameterValue_InvalidDomainStatus)
@@ -574,6 +584,11 @@ public struct TCTeoError: TCTeoErrorType {
     /// 非法条件-非法参数值-参数值数量为0。
     public static var invalidParameter_ErrInvalidConditionValueZeroLength: TCTeoError {
         TCTeoError(.invalidParameter_ErrInvalidConditionValueZeroLength)
+    }
+
+    /// 修改源站操作不支持ELSE。
+    public static var invalidParameter_ErrInvalidElseWhenModifyOriginActionConfigured: TCTeoError {
+        TCTeoError(.invalidParameter_ErrInvalidElseWhenModifyOriginActionConfigured)
     }
 
     /// 开启 Grpc 协议支持需要同时开启 HTTP/2 协议支持。
@@ -856,6 +871,11 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.invalidParameter_InvalidUpstreamRequestQueryStringValue)
     }
 
+    /// 无效的URL重写。
+    public static var invalidParameter_InvalidUrlRedirect: TCTeoError {
+        TCTeoError(.invalidParameter_InvalidUrlRedirect)
+    }
+
     /// URL重写的目标HOST无效。
     public static var invalidParameter_InvalidUrlRedirectHost: TCTeoError {
         TCTeoError(.invalidParameter_InvalidUrlRedirectHost)
@@ -888,6 +908,10 @@ public struct TCTeoError: TCTeoErrorType {
 
     public static var invalidParameter_NotSupportThisPreset: TCTeoError {
         TCTeoError(.invalidParameter_NotSupportThisPreset)
+    }
+
+    public static var invalidParameter_OCDirectOriginRequiresSmartRouting: TCTeoError {
+        TCTeoError(.invalidParameter_OCDirectOriginRequiresSmartRouting)
     }
 
     /// 源站是内网IP。
@@ -1019,6 +1043,10 @@ public struct TCTeoError: TCTeoErrorType {
     /// 域名尚未备案。
     public static var operationDenied_DomainNoICP: TCTeoError {
         TCTeoError(.operationDenied_DomainNoICP)
+    }
+
+    public static var operationDenied_DomainNumberIsNotZero: TCTeoError {
+        TCTeoError(.operationDenied_DomainNumberIsNotZero)
     }
 
     /// 站点处于停用状态，请开启后重试。

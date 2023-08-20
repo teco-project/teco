@@ -233,6 +233,7 @@ public struct TCTsfError: TCTsfErrorType {
         case invalidParameterValue_FileConfigExistsPathOther = "InvalidParameterValue.FileConfigExistsPathOther"
         case invalidParameterValue_FileConfigFileNameInvalid = "InvalidParameterValue.FileConfigFileNameInvalid"
         case invalidParameterValue_FileConfigFilePathInvalid = "InvalidParameterValue.FileConfigFilePathInvalid"
+        case invalidParameterValue_FileConfigFixedFieldUnchangeable = "InvalidParameterValue.FileConfigFixedFieldUnchangeable"
         case invalidParameterValue_FileConfigNameInvalid = "InvalidParameterValue.FileConfigNameInvalid"
         case invalidParameterValue_FileConfigNotExistsOrPermissionDenied = "InvalidParameterValue.FileConfigNotExistsOrPermissionDenied"
         case invalidParameterValue_FileConfigPathExists = "InvalidParameterValue.FileConfigPathExists"
@@ -1487,6 +1488,11 @@ public struct TCTsfError: TCTsfErrorType {
     /// 文件配置项文件路径不合规。
     public static var invalidParameterValue_FileConfigFilePathInvalid: TCTsfError {
         TCTsfError(.invalidParameterValue_FileConfigFilePathInvalid)
+    }
+
+    /// 文件配置项固定字段不可变更。
+    public static var invalidParameterValue_FileConfigFixedFieldUnchangeable: TCTsfError {
+        TCTsfError(.invalidParameterValue_FileConfigFixedFieldUnchangeable)
     }
 
     /// 文件配置项名称不合规。

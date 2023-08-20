@@ -25,10 +25,10 @@ extension Ess {
         /// 操作人信息，userId必填
         public let `operator`: UserInfo
 
-        /// 单次查询成员企业最大返回数量
+        /// 指定每页多少条数据，单页最大1000
         public let limit: UInt64
 
-        /// 页面偏移量
+        /// 查询结果分页返回，此处指定第几页，如果不传默认从第一页返回。页码从 0 开始，即首页为 0
         public let offset: UInt64
 
         /// 查询成员企业的企业名，模糊匹配
@@ -40,7 +40,7 @@ extension Ess {
         /// 是否导出当前成员企业数据
         public let export: Bool?
 
-        /// 成员企业id
+        /// 成员企业机构 ID，在PC控制台 集团管理可获取
         public let id: String?
 
         public init(operator: UserInfo, limit: UInt64, offset: UInt64, name: String? = nil, status: UInt64? = nil, export: Bool? = nil, id: String? = nil) {
@@ -87,7 +87,7 @@ extension Ess {
         @available(*, deprecated)
         public let activedTotal: UInt64?
 
-        /// 导出文件的url
+        /// 如果入参Export为 true 时使用，表示导出Excel的url
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let exportUrl: String?
 

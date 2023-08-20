@@ -88,6 +88,7 @@ public struct TCCynosdbError: TCCynosdbErrorType {
         case invalidParameterValue_ParamError = "InvalidParameterValue.ParamError"
         case invalidParameterValue_ParameterOutRangeError = "InvalidParameterValue.ParameterOutRangeError"
         case invalidParameterValue_PrePayPayModeError = "InvalidParameterValue.PrePayPayModeError"
+        case invalidParameterValue_ProjectIdNotFound = "InvalidParameterValue.ProjectIdNotFound"
         case invalidParameterValue_RegionZoneUnavailable = "InvalidParameterValue.RegionZoneUnavailable"
         case invalidParameterValue_StoragePoolNotFound = "InvalidParameterValue.StoragePoolNotFound"
         case invalidParameterValue_SubnetNotFound = "InvalidParameterValue.SubnetNotFound"
@@ -463,6 +464,10 @@ public struct TCCynosdbError: TCCynosdbErrorType {
     /// 预付费类型不允许该操作。
     public static var invalidParameterValue_PrePayPayModeError: TCCynosdbError {
         TCCynosdbError(.invalidParameterValue_PrePayPayModeError)
+    }
+
+    public static var invalidParameterValue_ProjectIdNotFound: TCCynosdbError {
+        TCCynosdbError(.invalidParameterValue_ProjectIdNotFound)
     }
 
     /// 所选地域和可用区不可用。

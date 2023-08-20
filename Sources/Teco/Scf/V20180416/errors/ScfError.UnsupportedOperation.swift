@@ -22,6 +22,7 @@ extension TCScfError {
             case aliasBind = "UnsupportedOperation.AliasBind"
             case asyncRunEnable = "UnsupportedOperation.AsyncRunEnable"
             case cdn = "UnsupportedOperation.Cdn"
+            case copyFunction = "UnsupportedOperation.CopyFunction"
             case cos = "UnsupportedOperation.Cos"
             case eipFixed = "UnsupportedOperation.EipFixed"
             case notSupportRegion = "UnsupportedOperation.NotSupportRegion"
@@ -69,6 +70,11 @@ extension TCScfError {
         /// Cdn不支持。
         public static var cdn: UnsupportedOperation {
             UnsupportedOperation(.cdn)
+        }
+
+        /// 请检查函数状态。
+        public static var copyFunction: UnsupportedOperation {
+            UnsupportedOperation(.copyFunction)
         }
 
         /// Cos操作不支持。
@@ -132,6 +138,8 @@ extension TCScfError {
                 code = .unsupportedOperation_AsyncRunEnable
             case .cdn:
                 code = .unsupportedOperation_Cdn
+            case .copyFunction:
+                code = .unsupportedOperation_CopyFunction
             case .cos:
                 code = .unsupportedOperation_Cos
             case .eipFixed:

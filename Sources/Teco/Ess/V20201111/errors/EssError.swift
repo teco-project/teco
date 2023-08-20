@@ -27,9 +27,7 @@ public protocol TCEssErrorType: TCServiceErrorType {
 public struct TCEssError: TCEssErrorType {
     enum Code: String {
         case authFailure = "AuthFailure"
-        case dryRunOperation = "DryRunOperation"
         case failedOperation = "FailedOperation"
-        case failedOperation_AccountVerifyFail = "FailedOperation.AccountVerifyFail"
         case failedOperation_AgeNotAchieveNormalLegal = "FailedOperation.AgeNotAchieveNormalLegal"
         case failedOperation_FlowHasDocument = "FailedOperation.FlowHasDocument"
         case failedOperation_FlowHasNoDocument = "FailedOperation.FlowHasNoDocument"
@@ -104,14 +102,12 @@ public struct TCEssError: TCEssErrorType {
         case invalidParameter_InvalidMobile = "InvalidParameter.InvalidMobile"
         case invalidParameter_InvalidName = "InvalidParameter.InvalidName"
         case invalidParameter_InvalidOffset = "InvalidParameter.InvalidOffset"
-        case invalidParameter_InvalidOpenId = "InvalidParameter.InvalidOpenId"
         case invalidParameter_InvalidOperatorId = "InvalidParameter.InvalidOperatorId"
         case invalidParameter_InvalidOrganizationId = "InvalidParameter.InvalidOrganizationId"
         case invalidParameter_InvalidOrganizationName = "InvalidParameter.InvalidOrganizationName"
         case invalidParameter_InvalidRoleId = "InvalidParameter.InvalidRoleId"
         case invalidParameter_InvalidRoleName = "InvalidParameter.InvalidRoleName"
         case invalidParameter_InvalidVerifyChannel = "InvalidParameter.InvalidVerifyChannel"
-        case invalidParameter_InvalidVerifyCode = "InvalidParameter.InvalidVerifyCode"
         case invalidParameter_Limit = "InvalidParameter.Limit"
         case invalidParameter_MissingRequiredComponentValue = "InvalidParameter.MissingRequiredComponentValue"
         case invalidParameter_Mobile = "InvalidParameter.Mobile"
@@ -275,19 +271,9 @@ public struct TCEssError: TCEssErrorType {
         TCEssError(.authFailure)
     }
 
-    /// DryRun 操作，代表请求将会是成功的，只是多传了 DryRun 参数。
-    public static var dryRunOperation: TCEssError {
-        TCEssError(.dryRunOperation)
-    }
-
     /// 操作失败。
     public static var failedOperation: TCEssError {
         TCEssError(.failedOperation)
-    }
-
-    /// 实名认证失败。
-    public static var failedOperation_AccountVerifyFail: TCEssError {
-        TCEssError(.failedOperation_AccountVerifyFail)
     }
 
     /// 年龄限制无法使用电子签服务，请联系客服咨询处理。
@@ -662,11 +648,6 @@ public struct TCEssError: TCEssErrorType {
         TCEssError(.invalidParameter_InvalidOffset)
     }
 
-    /// OpenId不正确。
-    public static var invalidParameter_InvalidOpenId: TCEssError {
-        TCEssError(.invalidParameter_InvalidOpenId)
-    }
-
     /// 操作人ID不正确。
     public static var invalidParameter_InvalidOperatorId: TCEssError {
         TCEssError(.invalidParameter_InvalidOperatorId)
@@ -695,11 +676,6 @@ public struct TCEssError: TCEssErrorType {
     /// 实名认证渠道不正确。
     public static var invalidParameter_InvalidVerifyChannel: TCEssError {
         TCEssError(.invalidParameter_InvalidVerifyChannel)
-    }
-
-    /// 验证码不正确。
-    public static var invalidParameter_InvalidVerifyCode: TCEssError {
-        TCEssError(.invalidParameter_InvalidVerifyCode)
     }
 
     public static var invalidParameter_Limit: TCEssError {

@@ -27,20 +27,28 @@ extension Ssl {
         /// 一键更新原证书ID
         public let oldCertificateId: String
 
-        /// 需要部署的资源类型
+        /// 需要部署的资源类型，参数值可选：clb、cdn、waf、live、ddos、teo、apigateway、vod、tke、tcb
         public let resourceTypes: [String]
 
         /// 需要部署的地域列表（废弃）
-        public let regions: [String]?
+        @available(*, deprecated)
+        public let regions: [String]? = nil
 
         /// 云资源需要部署的地域列表
         public let resourceTypesRegions: [ResourceTypeRegions]?
 
+        public init(certificateId: String, oldCertificateId: String, resourceTypes: [String], resourceTypesRegions: [ResourceTypeRegions]? = nil) {
+            self.certificateId = certificateId
+            self.oldCertificateId = oldCertificateId
+            self.resourceTypes = resourceTypes
+            self.resourceTypesRegions = resourceTypesRegions
+        }
+
+        @available(*, deprecated, renamed: "init(certificateId:oldCertificateId:resourceTypes:resourceTypesRegions:)", message: "'regions' is deprecated in 'UpdateCertificateInstanceRequest'. Setting this parameter has no effect.")
         public init(certificateId: String, oldCertificateId: String, resourceTypes: [String], regions: [String]? = nil, resourceTypesRegions: [ResourceTypeRegions]? = nil) {
             self.certificateId = certificateId
             self.oldCertificateId = oldCertificateId
             self.resourceTypes = resourceTypes
-            self.regions = regions
             self.resourceTypesRegions = resourceTypesRegions
         }
 
@@ -73,24 +81,50 @@ extension Ssl {
     }
 
     /// 一键更新旧证书资源
+    ///
+    /// 一键更新旧证书资源，本接口为异步接口， 调用之后DeployRecordId为0表示任务进行中， 当返回DeployRecordId大于0则表示任务创建成功。 未创建成功则会抛出异常
     @inlinable
     public func updateCertificateInstance(_ input: UpdateCertificateInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCertificateInstanceResponse> {
         self.client.execute(action: "UpdateCertificateInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 一键更新旧证书资源
+    ///
+    /// 一键更新旧证书资源，本接口为异步接口， 调用之后DeployRecordId为0表示任务进行中， 当返回DeployRecordId大于0则表示任务创建成功。 未创建成功则会抛出异常
     @inlinable
     public func updateCertificateInstance(_ input: UpdateCertificateInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCertificateInstanceResponse {
         try await self.client.execute(action: "UpdateCertificateInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 一键更新旧证书资源
+    ///
+    /// 一键更新旧证书资源，本接口为异步接口， 调用之后DeployRecordId为0表示任务进行中， 当返回DeployRecordId大于0则表示任务创建成功。 未创建成功则会抛出异常
+    @inlinable
+    public func updateCertificateInstance(certificateId: String, oldCertificateId: String, resourceTypes: [String], resourceTypesRegions: [ResourceTypeRegions]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCertificateInstanceResponse> {
+        self.updateCertificateInstance(.init(certificateId: certificateId, oldCertificateId: oldCertificateId, resourceTypes: resourceTypes, resourceTypesRegions: resourceTypesRegions), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 一键更新旧证书资源
+    ///
+    /// 一键更新旧证书资源，本接口为异步接口， 调用之后DeployRecordId为0表示任务进行中， 当返回DeployRecordId大于0则表示任务创建成功。 未创建成功则会抛出异常
+    @available(*, deprecated, renamed: "updateCertificateInstance(certificateId:oldCertificateId:resourceTypes:resourceTypesRegions:region:logger:on:)", message: "'regions' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func updateCertificateInstance(certificateId: String, oldCertificateId: String, resourceTypes: [String], regions: [String]? = nil, resourceTypesRegions: [ResourceTypeRegions]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCertificateInstanceResponse> {
         self.updateCertificateInstance(.init(certificateId: certificateId, oldCertificateId: oldCertificateId, resourceTypes: resourceTypes, regions: regions, resourceTypesRegions: resourceTypesRegions), region: region, logger: logger, on: eventLoop)
     }
 
     /// 一键更新旧证书资源
+    ///
+    /// 一键更新旧证书资源，本接口为异步接口， 调用之后DeployRecordId为0表示任务进行中， 当返回DeployRecordId大于0则表示任务创建成功。 未创建成功则会抛出异常
+    @inlinable
+    public func updateCertificateInstance(certificateId: String, oldCertificateId: String, resourceTypes: [String], resourceTypesRegions: [ResourceTypeRegions]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCertificateInstanceResponse {
+        try await self.updateCertificateInstance(.init(certificateId: certificateId, oldCertificateId: oldCertificateId, resourceTypes: resourceTypes, resourceTypesRegions: resourceTypesRegions), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 一键更新旧证书资源
+    ///
+    /// 一键更新旧证书资源，本接口为异步接口， 调用之后DeployRecordId为0表示任务进行中， 当返回DeployRecordId大于0则表示任务创建成功。 未创建成功则会抛出异常
+    @available(*, deprecated, renamed: "updateCertificateInstance(certificateId:oldCertificateId:resourceTypes:resourceTypesRegions:region:logger:on:)", message: "'regions' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func updateCertificateInstance(certificateId: String, oldCertificateId: String, resourceTypes: [String], regions: [String]? = nil, resourceTypesRegions: [ResourceTypeRegions]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCertificateInstanceResponse {
         try await self.updateCertificateInstance(.init(certificateId: certificateId, oldCertificateId: oldCertificateId, resourceTypes: resourceTypes, regions: regions, resourceTypesRegions: resourceTypesRegions), region: region, logger: logger, on: eventLoop)

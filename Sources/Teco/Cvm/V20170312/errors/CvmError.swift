@@ -233,6 +233,7 @@ public struct TCCvmError: TCCvmErrorType {
         case limitExceeded_LaunchTemplateVersionQuota = "LimitExceeded.LaunchTemplateVersionQuota"
         case limitExceeded_PreheatImageSnapshotOutOfQuota = "LimitExceeded.PreheatImageSnapshotOutOfQuota"
         case limitExceeded_PrepayQuota = "LimitExceeded.PrepayQuota"
+        case limitExceeded_PrepayUnderwriteQuota = "LimitExceeded.PrepayUnderwriteQuota"
         case limitExceeded_SingleUSGQuota = "LimitExceeded.SingleUSGQuota"
         case limitExceeded_SpotQuota = "LimitExceeded.SpotQuota"
         case limitExceeded_TagResourceQuota = "LimitExceeded.TagResourceQuota"
@@ -1485,6 +1486,11 @@ public struct TCCvmError: TCCvmErrorType {
     /// 预付费实例已购买数量已达到最大配额，请提升配额后重试。
     public static var limitExceeded_PrepayQuota: TCCvmError {
         TCCvmError(.limitExceeded_PrepayQuota)
+    }
+
+    /// 包销付费实例已购买数量已达到最大配额。
+    public static var limitExceeded_PrepayUnderwriteQuota: TCCvmError {
+        TCCvmError(.limitExceeded_PrepayUnderwriteQuota)
     }
 
     /// 安全组限额不足

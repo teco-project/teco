@@ -39,13 +39,22 @@ extension Ssl {
         /// 重颁发原因。
         public let reason: String?
 
-        public init(certificateId: String, validType: String, csrType: String? = nil, csrContent: String? = nil, csrkeyPassword: String? = nil, reason: String? = nil) {
+        /// CSR加密方式，可选：RSA、ECC、SM2
+        /// （CsrType为Online才可选）， 默认为RSA
+        public let certCSREncryptAlgo: String?
+
+        /// CSR加密参数，CsrEncryptAlgo为RSA时， 可选2048、4096等默认为2048；CsrEncryptAlgo为ECC时，可选prime256v1，secp384r1等，默认为prime256v1;
+        public let certCSRKeyParameter: String?
+
+        public init(certificateId: String, validType: String, csrType: String? = nil, csrContent: String? = nil, csrkeyPassword: String? = nil, reason: String? = nil, certCSREncryptAlgo: String? = nil, certCSRKeyParameter: String? = nil) {
             self.certificateId = certificateId
             self.validType = validType
             self.csrType = csrType
             self.csrContent = csrContent
             self.csrkeyPassword = csrkeyPassword
             self.reason = reason
+            self.certCSREncryptAlgo = certCSREncryptAlgo
+            self.certCSRKeyParameter = certCSRKeyParameter
         }
 
         enum CodingKeys: String, CodingKey {
@@ -55,6 +64,8 @@ extension Ssl {
             case csrContent = "CsrContent"
             case csrkeyPassword = "CsrkeyPassword"
             case reason = "Reason"
+            case certCSREncryptAlgo = "CertCSREncryptAlgo"
+            case certCSRKeyParameter = "CertCSRKeyParameter"
         }
     }
 
@@ -92,15 +103,15 @@ extension Ssl {
     ///
     /// 本接口（ReplaceCertificate）用于重颁发证书。已申请的免费证书仅支持 RSA 算法、密钥对参数为2048的证书重颁发，并且目前仅支持1次重颁发。
     @inlinable
-    public func replaceCertificate(certificateId: String, validType: String, csrType: String? = nil, csrContent: String? = nil, csrkeyPassword: String? = nil, reason: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceCertificateResponse> {
-        self.replaceCertificate(.init(certificateId: certificateId, validType: validType, csrType: csrType, csrContent: csrContent, csrkeyPassword: csrkeyPassword, reason: reason), region: region, logger: logger, on: eventLoop)
+    public func replaceCertificate(certificateId: String, validType: String, csrType: String? = nil, csrContent: String? = nil, csrkeyPassword: String? = nil, reason: String? = nil, certCSREncryptAlgo: String? = nil, certCSRKeyParameter: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceCertificateResponse> {
+        self.replaceCertificate(.init(certificateId: certificateId, validType: validType, csrType: csrType, csrContent: csrContent, csrkeyPassword: csrkeyPassword, reason: reason, certCSREncryptAlgo: certCSREncryptAlgo, certCSRKeyParameter: certCSRKeyParameter), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重颁发证书
     ///
     /// 本接口（ReplaceCertificate）用于重颁发证书。已申请的免费证书仅支持 RSA 算法、密钥对参数为2048的证书重颁发，并且目前仅支持1次重颁发。
     @inlinable
-    public func replaceCertificate(certificateId: String, validType: String, csrType: String? = nil, csrContent: String? = nil, csrkeyPassword: String? = nil, reason: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceCertificateResponse {
-        try await self.replaceCertificate(.init(certificateId: certificateId, validType: validType, csrType: csrType, csrContent: csrContent, csrkeyPassword: csrkeyPassword, reason: reason), region: region, logger: logger, on: eventLoop)
+    public func replaceCertificate(certificateId: String, validType: String, csrType: String? = nil, csrContent: String? = nil, csrkeyPassword: String? = nil, reason: String? = nil, certCSREncryptAlgo: String? = nil, certCSRKeyParameter: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceCertificateResponse {
+        try await self.replaceCertificate(.init(certificateId: certificateId, validType: validType, csrType: csrType, csrContent: csrContent, csrkeyPassword: csrkeyPassword, reason: reason, certCSREncryptAlgo: certCSREncryptAlgo, certCSRKeyParameter: certCSRKeyParameter), region: region, logger: logger, on: eventLoop)
     }
 }

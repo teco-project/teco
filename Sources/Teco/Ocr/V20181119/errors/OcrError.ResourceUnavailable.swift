@@ -19,6 +19,8 @@ import TecoCore
 extension TCOcrError {
     public struct ResourceUnavailable: TCOcrErrorType {
         enum Code: String {
+            case inArrears = "ResourceUnavailable.InArrears"
+            case resourcePackageRunOut = "ResourceUnavailable.ResourcePackageRunOut"
             case taxNetworkError = "ResourceUnavailable.TaxNetworkError"
         }
 
@@ -44,6 +46,16 @@ extension TCOcrError {
             self.context = context
         }
 
+        /// 账号充值。
+        public static var inArrears: ResourceUnavailable {
+            ResourceUnavailable(.inArrears)
+        }
+
+        /// 账号充值资源包。
+        public static var resourcePackageRunOut: ResourceUnavailable {
+            ResourceUnavailable(.resourcePackageRunOut)
+        }
+
         /// 税务局网络异常，请稍后访问。
         ///
         /// 增值税发票核验依赖于税务局接口，可能出现网络波动，请稍后重试。
@@ -54,6 +66,10 @@ extension TCOcrError {
         public func asOcrError() -> TCOcrError {
             let code: TCOcrError.Code
             switch self.error {
+            case .inArrears:
+                code = .resourceUnavailable_InArrears
+            case .resourcePackageRunOut:
+                code = .resourceUnavailable_ResourcePackageRunOut
             case .taxNetworkError:
                 code = .resourceUnavailable_TaxNetworkError
             }

@@ -37,6 +37,7 @@ public struct TCLcicError: TCLcicErrorType {
         case failedOperation_OriginIdExists = "FailedOperation.OriginIdExists"
         case failedOperation_RequestTimedOut = "FailedOperation.RequestTimedOut"
         case failedOperation_RoomNotEnd = "FailedOperation.RoomNotEnd"
+        case failedOperation_UserIsAlreadyInGroup = "FailedOperation.UserIsAlreadyInGroup"
         case internalError = "InternalError"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
@@ -53,6 +54,7 @@ public struct TCLcicError: TCLcicErrorType {
         case limitExceeded = "LimitExceeded"
         case missingParameter = "MissingParameter"
         case operationDenied = "OperationDenied"
+        case regionError = "RegionError"
         case requestLimitExceeded = "RequestLimitExceeded"
         case resourceInUse = "ResourceInUse"
         case resourceInsufficient = "ResourceInsufficient"
@@ -160,6 +162,11 @@ public struct TCLcicError: TCLcicErrorType {
         TCLcicError(.failedOperation_RoomNotEnd)
     }
 
+    /// 在群组中删除该成员。
+    public static var failedOperation_UserIsAlreadyInGroup: TCLcicError {
+        TCLcicError(.failedOperation_UserIsAlreadyInGroup)
+    }
+
     /// 内部错误。
     public static var internalError: TCLcicError {
         TCLcicError(.internalError)
@@ -246,6 +253,10 @@ public struct TCLcicError: TCLcicErrorType {
     /// 操作被拒绝。
     public static var operationDenied: TCLcicError {
         TCLcicError(.operationDenied)
+    }
+
+    public static var regionError: TCLcicError {
+        TCLcicError(.regionError)
     }
 
     /// 请求的次数超过了频率限制。

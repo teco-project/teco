@@ -19,11 +19,13 @@ import TecoCore
 extension TCEssbasicError {
     public struct OperationDenied: TCEssbasicErrorType {
         enum Code: String {
+            case approverRepeat = "OperationDenied.ApproverRepeat"
             case authTag = "OperationDenied.AuthTag"
             case bannedApplication = "OperationDenied.BannedApplication"
             case byFilesServerSignForbid = "OperationDenied.ByFilesServerSignForbid"
             case downLoadMoreThanOne = "OperationDenied.DownLoadMoreThanOne"
             case errNoResourceAccess = "OperationDenied.ErrNoResourceAccess"
+            case errNotOpenWeakAuthorization = "OperationDenied.ErrNotOpenWeakAuthorization"
             case fileDeleted = "OperationDenied.FileDeleted"
             case flowHasTerminated = "OperationDenied.FlowHasTerminated"
             case flowStatusForbid = "OperationDenied.FlowStatusForbid"
@@ -36,6 +38,7 @@ extension TCEssbasicError {
             case noPermissionUseResource = "OperationDenied.NoPermissionUseResource"
             case noQuota = "OperationDenied.NoQuota"
             case notBelongSuperAdminOrLegalPerson = "OperationDenied.NotBelongSuperAdminOrLegalPerson"
+            case notSupportOrgType = "OperationDenied.NotSupportOrgType"
             case operateType = "OperationDenied.OperateType"
             case operatorHasNoPermission = "OperationDenied.OperatorHasNoPermission"
             case outQueryLimit = "OperationDenied.OutQueryLimit"
@@ -70,6 +73,11 @@ extension TCEssbasicError {
             self.context = context
         }
 
+        /// 请检查参与人的姓名、手机号、证件信息是否有重复
+        public static var approverRepeat: OperationDenied {
+            OperationDenied(.approverRepeat)
+        }
+
         /// 不支持的可见性标识。
         public static var authTag: OperationDenied {
             OperationDenied(.authTag)
@@ -95,6 +103,11 @@ extension TCEssbasicError {
         /// 无资源访问权限。
         public static var errNoResourceAccess: OperationDenied {
             OperationDenied(.errNoResourceAccess)
+        }
+
+        /// 请联系第三方应用开通“平台子客企业实名认证（信任第三方认证源）”能力或指定其他授权方式重新发起
+        public static var errNotOpenWeakAuthorization: OperationDenied {
+            OperationDenied(.errNotOpenWeakAuthorization)
         }
 
         /// 文件已删除。
@@ -166,6 +179,10 @@ extension TCEssbasicError {
             OperationDenied(.notBelongSuperAdminOrLegalPerson)
         }
 
+        public static var notSupportOrgType: OperationDenied {
+            OperationDenied(.notSupportOrgType)
+        }
+
         /// 操作类型不支持。
         public static var operateType: OperationDenied {
             OperationDenied(.operateType)
@@ -222,6 +239,8 @@ extension TCEssbasicError {
         public func asEssbasicError() -> TCEssbasicError {
             let code: TCEssbasicError.Code
             switch self.error {
+            case .approverRepeat:
+                code = .operationDenied_ApproverRepeat
             case .authTag:
                 code = .operationDenied_AuthTag
             case .bannedApplication:
@@ -232,6 +251,8 @@ extension TCEssbasicError {
                 code = .operationDenied_DownLoadMoreThanOne
             case .errNoResourceAccess:
                 code = .operationDenied_ErrNoResourceAccess
+            case .errNotOpenWeakAuthorization:
+                code = .operationDenied_ErrNotOpenWeakAuthorization
             case .fileDeleted:
                 code = .operationDenied_FileDeleted
             case .flowHasTerminated:
@@ -256,6 +277,8 @@ extension TCEssbasicError {
                 code = .operationDenied_NoQuota
             case .notBelongSuperAdminOrLegalPerson:
                 code = .operationDenied_NotBelongSuperAdminOrLegalPerson
+            case .notSupportOrgType:
+                code = .operationDenied_NotSupportOrgType
             case .operateType:
                 code = .operationDenied_OperateType
             case .operatorHasNoPermission:

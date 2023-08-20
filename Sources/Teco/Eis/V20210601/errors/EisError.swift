@@ -41,6 +41,7 @@ public struct TCEisError: TCEisErrorType {
         case invalidParameterValue_InvalidRuntimeMetricSearchCondition = "InvalidParameterValue.InvalidRuntimeMetricSearchCondition"
         case invalidParameterValue_NotSupportedActionForPublicRuntime = "InvalidParameterValue.NotSupportedActionForPublicRuntime"
         case invalidParameterValue_PilotZoneNotSupported = "InvalidParameterValue.PilotZoneNotSupported"
+        case invalidParameterValue_ProjectAndInstanceNotMatch = "InvalidParameterValue.ProjectAndInstanceNotMatch"
         case invalidParameterValue_RuntimeAlreadyDeleted = "InvalidParameterValue.RuntimeAlreadyDeleted"
         case invalidParameterValue_RuntimeIdNotExist = "InvalidParameterValue.RuntimeIdNotExist"
         case invalidParameterValue_RuntimeMetricRateNotSupport = "InvalidParameterValue.RuntimeMetricRateNotSupport"
@@ -149,6 +150,11 @@ public struct TCEisError: TCEisErrorType {
     /// 不支持的Zone。
     public static var invalidParameterValue_PilotZoneNotSupported: TCEisError {
         TCEisError(.invalidParameterValue_PilotZoneNotSupported)
+    }
+
+    /// 应用和实例不匹配。
+    public static var invalidParameterValue_ProjectAndInstanceNotMatch: TCEisError {
+        TCEisError(.invalidParameterValue_ProjectAndInstanceNotMatch)
     }
 
     /// 运行时已删除。

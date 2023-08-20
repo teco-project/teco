@@ -24,7 +24,7 @@ extension Apigateway {
         /// API 所在的服务唯一 ID。
         public let serviceId: String
 
-        /// API 的后端服务类型。支持HTTP、MOCK、TSF、SCF、WEBSOCKET、TARGET（内测）。
+        /// API 的后端服务类型。支持HTTP、MOCK、TSF、SCF、EB、TARGET、VPC、UPSTREAM、GRPC、COS、WEBSOCKET。
         public let serviceType: String
 
         /// API 的后端服务超时时间，单位是秒。

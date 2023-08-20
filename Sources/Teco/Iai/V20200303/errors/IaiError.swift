@@ -559,6 +559,8 @@ public struct TCIaiError: TCIaiErrorType {
     }
 
     /// 帐号已欠费。
+    ///
+    /// None
     public static var resourceUnavailable_ChargeStatusException: TCIaiError {
         TCIaiError(.resourceUnavailable_ChargeStatusException)
     }
@@ -569,6 +571,8 @@ public struct TCIaiError: TCIaiErrorType {
     }
 
     /// 帐号已被冻结。
+    ///
+    /// None
     public static var resourceUnavailable_Freeze: TCIaiError {
         TCIaiError(.resourceUnavailable_Freeze)
     }
@@ -579,6 +583,8 @@ public struct TCIaiError: TCIaiErrorType {
     }
 
     /// 帐号已欠费。
+    ///
+    /// None
     public static var resourceUnavailable_InArrears: TCIaiError {
         TCIaiError(.resourceUnavailable_InArrears)
     }
@@ -604,6 +610,8 @@ public struct TCIaiError: TCIaiErrorType {
     }
 
     /// 帐号已停服。
+    ///
+    /// None
     public static var resourceUnavailable_StopUsing: TCIaiError {
         TCIaiError(.resourceUnavailable_StopUsing)
     }

@@ -25,41 +25,10 @@ extension Iss {
         }
     }
 
-    /// 查询网关所支持的接入协议
+    /// DescribeGatewayProtocol返回参数结构体
     public struct DescribeGatewayProtocolResponse: TCResponse {
-        private let data: Wrapped
-
-        private struct Wrapped: Codable {
-            public let typeCode: String?
-
-            public let value: Int64?
-
-            public let label: String?
-
-            enum CodingKeys: String, CodingKey {
-                case typeCode = "TypeCode"
-                case value = "Value"
-                case label = "Label"
-            }
-        }
-
-        /// 接入协议的字典码
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var typeCode: String? {
-            self.data.typeCode
-        }
-
-        /// 接入协议类型值
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var value: Int64? {
-            self.data.value
-        }
-
-        /// 接入协议的类型描述
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var label: String? {
-            self.data.label
-        }
+        /// 返回数据
+        public let data: [DescribeGatewayProtocolData]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String

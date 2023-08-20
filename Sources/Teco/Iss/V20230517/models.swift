@@ -95,6 +95,25 @@ extension Iss {
         }
     }
 
+    /// AI识别结果
+    public struct AITaskResultData: TCOutputModel {
+        /// AI 任务 ID
+        public let taskId: String
+
+        /// 在 BeginTime 和 EndTime 时间之内，有识别结果的 AI 调用次数（分页依据此数值）
+        public let aiResultCount: UInt64
+
+        /// AI 任务执行结果详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let aiResults: AITaskResultInfo?
+
+        enum CodingKeys: String, CodingKey {
+            case taskId = "TaskId"
+            case aiResultCount = "AIResultCount"
+            case aiResults = "AIResults"
+        }
+    }
+
     /// AI分析结果详情
     public struct AITaskResultInfo: TCOutputModel {
         /// 人体识别结果列表
@@ -141,25 +160,6 @@ extension Iss {
         }
     }
 
-    /// AI识别结果
-    public struct AITaskResultResponse: TCOutputModel {
-        /// AI 任务 ID
-        public let taskId: String?
-
-        /// 在 BeginTime 和 EndTime 时间之内，有识别结果的 AI 调用次数（分页依据此数值）
-        public let aiResultCount: UInt64?
-
-        /// AI 任务执行结果详情
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let aiResults: AITaskResultInfo?
-
-        enum CodingKeys: String, CodingKey {
-            case taskId = "TaskId"
-            case aiResultCount = "AIResultCount"
-            case aiResults = "AIResults"
-        }
-    }
-
     /// AI模板信息
     public struct AITemplates: TCInputModel, TCOutputModel {
         /// AI 类别。可选值 AI(AI 分析)和 Snapshot(截图)，Templates 列表中只能出现一种类型。
@@ -185,7 +185,7 @@ extension Iss {
     }
 
     /// 增加设备接口返回数据
-    public struct AddDeviceResponse: TCOutputModel {
+    public struct AddDeviceData: TCOutputModel {
         /// 设备iD
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deviceId: String?
@@ -282,7 +282,7 @@ extension Iss {
     }
 
     /// 增加组织接口返回数据
-    public struct AddOrgResponse: TCOutputModel {
+    public struct AddOrgData: TCOutputModel {
         /// 组织 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let organizationId: String?
@@ -324,6 +324,178 @@ extension Iss {
             case parentIds = "ParentIds"
             case total = "Total"
             case online = "Online"
+        }
+    }
+
+    /// 新增录像上云计划返回数据
+    public struct AddRecordBackupPlanData: TCOutputModel {
+        /// 录像上云计划ID
+        public let planId: String
+
+        /// 录像上云计划名称
+        public let planName: String
+
+        /// 录像上云模板ID
+        public let templateId: String
+
+        /// 录像上云计划描述
+        public let describe: String
+
+        /// 云文件生命周期
+        public let lifeCycle: LifeCycleData
+
+        /// 录像上云计划状态，1:正常使用中，0:删除中，无法使用
+        public let status: Int64
+
+        /// 通道数量
+        public let channelCount: Int64
+
+        /// 创建时间
+        public let createAt: String
+
+        /// 修改时间
+        public let updateAt: String
+
+        enum CodingKeys: String, CodingKey {
+            case planId = "PlanId"
+            case planName = "PlanName"
+            case templateId = "TemplateId"
+            case describe = "Describe"
+            case lifeCycle = "LifeCycle"
+            case status = "Status"
+            case channelCount = "ChannelCount"
+            case createAt = "CreateAt"
+            case updateAt = "UpdateAt"
+        }
+    }
+
+    /// 新增录像上云模版返回数据
+    public struct AddRecordBackupTemplateData: TCOutputModel {
+        /// 模板ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let templateId: String?
+
+        /// 模板名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let templateName: String?
+
+        /// 上云时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let timeSections: [RecordTemplateTimeSections]?
+
+        /// 录像时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let devTimeSections: [RecordTemplateTimeSections]?
+
+        /// 上云倍速（支持1，2，4倍速）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scale: Int64?
+
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createAt: String?
+
+        /// 更新时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updateAt: String?
+
+        enum CodingKeys: String, CodingKey {
+            case templateId = "TemplateId"
+            case templateName = "TemplateName"
+            case timeSections = "TimeSections"
+            case devTimeSections = "DevTimeSections"
+            case scale = "Scale"
+            case createAt = "CreateAt"
+            case updateAt = "UpdateAt"
+        }
+    }
+
+    /// 查询取回任务详情返回数据
+    public struct AddRecordRetrieveTaskData: TCOutputModel {
+        /// 任务ID
+        public let taskId: String
+
+        /// 任务名称
+        public let taskName: String
+
+        /// 取回录像的开始时间
+        public let startTime: UInt64
+
+        /// 取回录像的结束时间
+        public let endTime: UInt64
+
+        /// 取回模式，1:极速模式，其他暂不支持
+        public let mode: Int64
+
+        /// 副本有效期
+        public let expiration: Int64
+
+        /// 任务状态，0:已取回，1:取回中，2:待取回
+        public let status: Int64
+
+        /// 取回容量，单位MB
+        public let capacity: Float
+
+        /// 任务描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let describe: String?
+
+        enum CodingKeys: String, CodingKey {
+            case taskId = "TaskId"
+            case taskName = "TaskName"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+            case mode = "Mode"
+            case expiration = "Expiration"
+            case status = "Status"
+            case capacity = "Capacity"
+            case describe = "Describe"
+        }
+    }
+
+    /// 设置推拉流鉴权返回数据结构
+    public struct AddStreamAuthData: TCOutputModel {
+        /// 鉴权配置ID（uuid）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: String?
+
+        /// 是否开播放鉴权（1:开启,0:关闭）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pullState: Int64?
+
+        /// 播放密钥（仅支持字母数字，长度0-10位）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pullSecret: String?
+
+        /// 播放过期时间（单位：分钟）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pullExpired: Int64?
+
+        /// 是否开启推流鉴权（1:开启,0:关闭）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pushState: Int64?
+
+        /// 推流密钥（仅支持字母数字，长度0-10位）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pushSecret: String?
+
+        /// 推流过期时间（单位：分钟）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pushExpired: Int64?
+
+        /// 用户ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let appId: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case pullState = "PullState"
+            case pullSecret = "PullSecret"
+            case pullExpired = "PullExpired"
+            case pushState = "PushState"
+            case pushSecret = "PushSecret"
+            case pushExpired = "PushExpired"
+            case appId = "AppId"
         }
     }
 
@@ -456,29 +628,85 @@ extension Iss {
         }
     }
 
-    /// 查询设备可接入集群信息
-    public struct DescribeDeviceRegion: TCOutputModel {
-        /// 服务节点描述
+    /// 获取开流地址返回数据
+    public struct ControlDeviceStreamData: TCOutputModel {
+        /// flv 流地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let label: String?
+        public let flv: String?
 
-        /// 服务节点 ID（对应为其他接口中所需的 ClusterId）
+        /// hls 流地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let value: String?
+        public let hls: String?
 
-        /// 地域信息
+        /// rtmp 流地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rtmp: String?
+
+        enum CodingKeys: String, CodingKey {
+            case flv = "Flv"
+            case hls = "Hls"
+            case rtmp = "Rtmp"
+        }
+    }
+
+    /// 查询设备通道信息返回结果
+    public struct DescribeDeviceChannelData: TCOutputModel {
+        /// 设备 ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let deviceId: String?
+
+        /// 通道 ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let channelId: String?
+
+        /// 通道编码
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let channelCode: String?
+
+        /// 通道名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 流状态（0:未传输,1:传输中）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: Int64?
+
+        /// 是否可控 Ptz（0:不可控,1:可控）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ptzType: Int64?
+
+        /// 通道厂商
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let manufacturer: String?
+
+        /// 通道支持分辨率（分辨率列表由‘/’隔开，国标协议样例（6/3），自定义样例（12800960/640480））
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resolution: String?
+
+        /// 通道在离线状态（0:离线,1:在线）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let state: Int64?
+
+        /// 所在地域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: String?
 
         enum CodingKeys: String, CodingKey {
-            case label = "Label"
-            case value = "Value"
+            case deviceId = "DeviceId"
+            case channelId = "ChannelId"
+            case channelCode = "ChannelCode"
+            case name = "Name"
+            case status = "Status"
+            case ptzType = "PTZType"
+            case manufacturer = "Manufacturer"
+            case resolution = "Resolution"
+            case state = "State"
             case region = "Region"
         }
     }
 
     /// 查询设备接口返回数据
-    public struct DescribeDeviceResponse: TCOutputModel {
+    public struct DescribeDeviceData: TCOutputModel {
         /// 设备ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deviceId: String?
@@ -614,6 +842,166 @@ extension Iss {
         }
     }
 
+    /// 查询设备预置位返回数据
+    public struct DescribeDevicePresetData: TCOutputModel {
+        /// 预置位索引    只支持1-10的索引
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let index: Int64?
+
+        /// 预置位名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        enum CodingKeys: String, CodingKey {
+            case index = "Index"
+            case name = "Name"
+        }
+    }
+
+    /// 查询设备可接入集群信息
+    public struct DescribeDeviceRegion: TCOutputModel {
+        /// 服务节点描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let label: String?
+
+        /// 服务节点 ID（对应为其他接口中所需的 ClusterId）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let value: String?
+
+        /// 地域信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let region: String?
+
+        enum CodingKeys: String, CodingKey {
+            case label = "Label"
+            case value = "Value"
+            case region = "Region"
+        }
+    }
+
+    /// 查询域名详情数据
+    public struct DescribeDomainData: TCOutputModel {
+        /// 域名ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: String?
+
+        /// 播放域名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let playDomain: String?
+
+        /// CNAME 记录值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let internalDomain: String?
+
+        /// 是否上传证书（0：否，1：是）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let haveCert: Int64?
+
+        /// 服务节点 ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterId: String?
+
+        /// 服务节点名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterName: String?
+
+        /// 用户ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let appId: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case playDomain = "PlayDomain"
+            case internalDomain = "InternalDomain"
+            case haveCert = "HaveCert"
+            case clusterId = "ClusterId"
+            case clusterName = "ClusterName"
+            case appId = "AppId"
+        }
+    }
+
+    /// 查询域名可绑定集群数据
+    public struct DescribeDomainRegionData: TCOutputModel {
+        /// 服务节点描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let label: String?
+
+        /// 服务节点 ID（对应为其他接口中所需的 ClusterId）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let value: String?
+
+        /// 地域信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let region: String?
+
+        enum CodingKeys: String, CodingKey {
+            case label = "Label"
+            case value = "Value"
+            case region = "Region"
+        }
+    }
+
+    /// 查询网关信息返回结果
+    public struct DescribeGatewayData: TCOutputModel {
+        /// 网关索引ID，用于网关查询，更新，删除操作
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gatewayId: String?
+
+        /// 网关编码，由网关设备生成的唯一编码
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gwId: String?
+
+        /// 网关名称，仅支持中文、英文、数字、_、-，长度不超过32个字符
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 网关描述，仅支持中文、英文、数字、_、-，长度不超过128个字符
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let description: String?
+
+        /// 服务节点id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterId: String?
+
+        /// 服务节点名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterName: String?
+
+        /// 网关状态，0：离线，1:在线
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: Int64?
+
+        /// 网关版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let version: [GatewayVersion]?
+
+        /// 网关下挂设备数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let deviceNum: Int64?
+
+        /// 激活时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createdAt: String?
+
+        /// 所属地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let region: String?
+
+        enum CodingKeys: String, CodingKey {
+            case gatewayId = "GatewayId"
+            case gwId = "GwId"
+            case name = "Name"
+            case description = "Description"
+            case clusterId = "ClusterId"
+            case clusterName = "ClusterName"
+            case status = "Status"
+            case version = "Version"
+            case deviceNum = "DeviceNum"
+            case createdAt = "CreatedAt"
+            case region = "Region"
+        }
+    }
+
     /// 查询网关监控信息返回结果
     public struct DescribeGatewayMonitor: TCOutputModel {
         /// 设备接入总数
@@ -665,6 +1053,27 @@ extension Iss {
         }
     }
 
+    /// 查询网关所支持的接入协议
+    public struct DescribeGatewayProtocolData: TCOutputModel {
+        /// 接入协议的字典码
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let typeCode: String?
+
+        /// 接入协议类型值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let value: Int64?
+
+        /// 接入协议的类型描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let label: String?
+
+        enum CodingKeys: String, CodingKey {
+            case typeCode = "TypeCode"
+            case value = "Value"
+            case label = "Label"
+        }
+    }
+
     /// 查询网关服务版本信息返回数据
     public struct DescribeGatewayVersion: TCOutputModel {
         /// 服务名
@@ -693,6 +1102,282 @@ extension Iss {
             case latestVersion = "LatestVersion"
             case isUpdate = "IsUpdate"
             case upgradeInfo = "UpgradeInfo"
+        }
+    }
+
+    /// 查询网关服务版本信息返回数据
+    public struct DescribeGatewayVersionData: TCOutputModel {
+        /// 网关服务列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let services: [DescribeGatewayVersion]?
+
+        enum CodingKeys: String, CodingKey {
+            case services = "Services"
+        }
+    }
+
+    /// 查询组织数据返回结果
+    public struct DescribeOrganizationData: TCOutputModel {
+        /// 组织 ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let organizationId: String?
+
+        /// 组织名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 组织父节点 ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let parentId: String?
+
+        /// 组织层级
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let level: Int64?
+
+        /// 用户id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let appId: Int64?
+
+        /// 组织结构
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let parentIds: String?
+
+        /// 设备总数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let total: Int64?
+
+        /// 设备在线数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let online: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case organizationId = "OrganizationId"
+            case name = "Name"
+            case parentId = "ParentId"
+            case level = "Level"
+            case appId = "AppId"
+            case parentIds = "ParentIds"
+            case total = "Total"
+            case online = "Online"
+        }
+    }
+
+    /// 查询录像上云计划返回数据
+    public struct DescribeRecordBackupPlanData: TCOutputModel {
+        /// 录像上云计划ID
+        public let planId: String
+
+        /// 录像上云计划名称
+        public let planName: String
+
+        /// 录像上云模板ID
+        public let templateId: String
+
+        /// 录像上云计划描述
+        public let describe: String
+
+        /// 云文件生命周期
+        public let lifeCycle: LifeCycleData
+
+        /// 录像上云计划状态，1:正常使用中，0:删除中，无法使用
+        public let status: Int64
+
+        /// 通道数量
+        public let channelCount: Int64
+
+        /// 创建时间
+        public let createAt: String
+
+        /// 修改时间
+        public let updateAt: String
+
+        enum CodingKeys: String, CodingKey {
+            case planId = "PlanId"
+            case planName = "PlanName"
+            case templateId = "TemplateId"
+            case describe = "Describe"
+            case lifeCycle = "LifeCycle"
+            case status = "Status"
+            case channelCount = "ChannelCount"
+            case createAt = "CreateAt"
+            case updateAt = "UpdateAt"
+        }
+    }
+
+    /// 查询录像上云模版返回数据
+    public struct DescribeRecordBackupTemplateData: TCOutputModel {
+        /// 模板ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let templateId: String?
+
+        /// 模板名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let templateName: String?
+
+        /// 上云时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let timeSections: [RecordTemplateTimeSections]?
+
+        /// 录像时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let devTimeSections: [RecordTemplateTimeSections]?
+
+        /// 上云倍速（支持1，2，4倍速）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scale: Int64?
+
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createAt: String?
+
+        /// 更新时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updateAt: String?
+
+        enum CodingKeys: String, CodingKey {
+            case templateId = "TemplateId"
+            case templateName = "TemplateName"
+            case timeSections = "TimeSections"
+            case devTimeSections = "DevTimeSections"
+            case scale = "Scale"
+            case createAt = "CreateAt"
+            case updateAt = "UpdateAt"
+        }
+    }
+
+    /// 用于查询设备云端录像时间轴信息返回数据
+    public struct DescribeRecordFileData: TCOutputModel {
+        /// 提示类型，0:时间段内无归档录像，1:时间段内有归档录像
+        public let tips: Int64
+
+        /// 存在为数组格式，不存在字段内容为空
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let list: [RecordTimeLine]?
+
+        enum CodingKeys: String, CodingKey {
+            case tips = "Tips"
+            case list = "List"
+        }
+    }
+
+    /// 查询云录像取回任务详情返回数据
+    public struct DescribeRecordRetrieveTaskData: TCOutputModel {
+        /// 取回任务ID
+        public let taskId: String
+
+        /// 取回任务名称
+        public let taskName: String
+
+        /// 取回录像的开始时间
+        public let startTime: UInt64
+
+        /// 取回录像的结束时间
+        public let endTime: UInt64
+
+        /// 取回模式，1:极速模式，其他暂不支持
+        public let mode: Int64
+
+        /// 副本有效期
+        public let expiration: Int64
+
+        /// 任务状态，0:已取回，1:取回中，2:待取回
+        public let status: Int64
+
+        /// 取回容量，单位MB
+        public let capacity: Float
+
+        /// 任务的设备通道id
+        public let channels: [RecordRetrieveTaskChannelInfo]
+
+        /// 任务描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let describe: String?
+
+        /// 任务通道数量
+        public let channelCount: Int64
+
+        enum CodingKeys: String, CodingKey {
+            case taskId = "TaskId"
+            case taskName = "TaskName"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+            case mode = "Mode"
+            case expiration = "Expiration"
+            case status = "Status"
+            case capacity = "Capacity"
+            case channels = "Channels"
+            case describe = "Describe"
+            case channelCount = "ChannelCount"
+        }
+    }
+
+    /// 查询推拉流鉴权返回数据结构
+    public struct DescribeStreamAuthData: TCOutputModel {
+        /// 鉴权配置ID（uuid）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: String?
+
+        /// 是否开播放鉴权（1:开启,0:关闭）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pullState: Int64?
+
+        /// 播放密钥（仅支持字母数字，长度0-10位）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pullSecret: String?
+
+        /// 播放过期时间（单位：分钟）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pullExpired: Int64?
+
+        /// 是否开启推流鉴权（1:开启,0:关闭）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pushState: Int64?
+
+        /// 推流密钥（仅支持字母数字，长度0-10位）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pushSecret: String?
+
+        /// 推流过期时间（单位：分钟）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pushExpired: Int64?
+
+        /// 用户ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let appId: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case pullState = "PullState"
+            case pullSecret = "PullSecret"
+            case pullExpired = "PullExpired"
+            case pushState = "PushState"
+            case pushSecret = "PushSecret"
+            case pushExpired = "PushExpired"
+            case appId = "AppId"
+        }
+    }
+
+    /// 获取云录像下载URL返回的数据
+    public struct DescribeVideoDownloadUrlData: TCOutputModel {
+        /// 录像文件下载 URL
+        /// 注意：
+        /// URL 有效期是10分钟，过期后将拒绝访问，若需再用请重新获取
+        /// 录像文件下载采用分块传输编码，响应头Transfer-Encoding:chunked
+        /// 下载文件命名格式为{ChannelId}-{BeginTime}-{EndTime}.{FileType}
+        public let url: String
+
+        /// 实际下载录像的开始时间
+        /// 注意：当请求中指定IsRespActualTime参数为true时，才有该字段
+        public let actualBeginTime: String
+
+        /// 实际下载录像的结束时间
+        /// 注意：当请求中指定IsRespActualTime参数为true时，才有该字段
+        public let actualEndTime: String
+
+        enum CodingKeys: String, CodingKey {
+            case url = "Url"
+            case actualBeginTime = "ActualBeginTime"
+            case actualEndTime = "ActualEndTime"
         }
     }
 
@@ -874,8 +1559,61 @@ extension Iss {
         }
     }
 
+    /// 查询网关列表返回结果
+    public struct ListGatewaysData: TCOutputModel {
+        /// 网关列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let list: [GatewaysData]?
+
+        /// 网关数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalCount: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case list = "List"
+            case totalCount = "TotalCount"
+        }
+    }
+
+    /// 组织目录下的未添加到实时上云计划中的通道数量返回数据
+    public struct ListOrganizationChannelNumbersData: TCOutputModel {
+        /// 组织下通道总数
+        public let totalCount: Int64
+
+        /// 组织下未添加到计划的通道总数
+        public let notInPlanCount: Int64
+
+        enum CodingKeys: String, CodingKey {
+            case totalCount = "TotalCount"
+            case notInPlanCount = "NotInPlanCount"
+        }
+    }
+
+    /// 查询组织目录下的通道列表返回数据
+    public struct ListOrganizationChannelsData: TCOutputModel {
+        /// 第几页
+        public let pageNumber: Int64
+
+        /// 当前页的设备数量
+        public let pageSize: Int64
+
+        /// 本次查询的设备通道总数
+        public let totalCount: Int64
+
+        /// 设备通道信息列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let list: [OrganizationChannelInfo]?
+
+        enum CodingKeys: String, CodingKey {
+            case pageNumber = "PageNumber"
+            case pageSize = "PageSize"
+            case totalCount = "TotalCount"
+            case list = "List"
+        }
+    }
+
     /// 查询录像上云计划列表返回数据
-    public struct ListRecordBackupPlanResponse: TCOutputModel {
+    public struct ListRecordBackupPlanData: TCOutputModel {
         /// 录像上云计划ID
         public let planId: String
 
@@ -913,6 +1651,107 @@ extension Iss {
             case channelCount = "ChannelCount"
             case createAt = "CreateAt"
             case updateAt = "UpdateAt"
+        }
+    }
+
+    /// 查询录像上云计划关联通道的返回数据
+    public struct ListRecordBackupPlanDevicesData: TCOutputModel {
+        /// 第几页
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pageNumber: Int64?
+
+        /// 当前页的设备数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pageSize: Int64?
+
+        /// 本次查询的设备通道总数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalCount: Int64?
+
+        /// 设备通道信息列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let list: RecordPlanChannelInfo?
+
+        enum CodingKeys: String, CodingKey {
+            case pageNumber = "PageNumber"
+            case pageSize = "PageSize"
+            case totalCount = "TotalCount"
+            case list = "List"
+        }
+    }
+
+    /// 查询录像上云模板列表返回数据
+    public struct ListRecordBackupTemplatesData: TCOutputModel {
+        /// 模板ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let templateId: String?
+
+        /// 模板名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let templateName: String?
+
+        /// 上云时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let timeSections: [RecordTemplateTimeSections]?
+
+        /// 录像时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let devTimeSections: [RecordTemplateTimeSections]?
+
+        /// 上云倍速（支持1，2，4倍速）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scale: Int64?
+
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createAt: String?
+
+        /// 更新时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updateAt: String?
+
+        enum CodingKeys: String, CodingKey {
+            case templateId = "TemplateId"
+            case templateName = "TemplateName"
+            case timeSections = "TimeSections"
+            case devTimeSections = "DevTimeSections"
+            case scale = "Scale"
+            case createAt = "CreateAt"
+            case updateAt = "UpdateAt"
+        }
+    }
+
+    /// 用户下所有实时上云计划中的通道id列表返回数据
+    public struct ListRecordPlanChannelsData: TCOutputModel {
+        /// 用户所有计划下通道id，存在通道是为数组格式，不存在时，字段数据为空
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let list: [String]?
+
+        enum CodingKeys: String, CodingKey {
+            case list = "List"
+        }
+    }
+
+    /// 云计划下的设备通道列表返回数据
+    public struct ListRecordPlanDevicesData: TCOutputModel {
+        /// 第几页
+        public let pageNumber: Int64
+
+        /// 当前页的设备数量
+        public let pageSize: Int64
+
+        /// 本次查询的设备通道总数
+        public let totalCount: Int64
+
+        /// 设备通道信息列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let list: [RecordPlanChannelInfo]?
+
+        enum CodingKeys: String, CodingKey {
+            case pageNumber = "PageNumber"
+            case pageSize = "PageSize"
+            case totalCount = "TotalCount"
+            case list = "List"
         }
     }
 
@@ -1043,6 +1882,17 @@ extension Iss {
         }
     }
 
+    /// 本地录像播放url数据结构
+    public struct PlayRecordData: TCOutputModel {
+        /// 录像播放地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let flv: String?
+
+        enum CodingKeys: String, CodingKey {
+            case flv = "Flv"
+        }
+    }
+
     /// 实时上云计划基础信息
     public struct RecordPlanBaseInfo: TCOutputModel {
         /// 上云计划ID
@@ -1113,7 +1963,7 @@ extension Iss {
     }
 
     /// 实时上云计划添加和修改的返回数据
-    public struct RecordPlanOptResponse: TCOutputModel {
+    public struct RecordPlanOptData: TCOutputModel {
         /// 上云计划ID
         public let planId: String
 
@@ -1337,7 +2187,7 @@ extension Iss {
     }
 
     /// 修改设备接口返回数据
-    public struct UpdateDeviceResponse: TCOutputModel {
+    public struct UpdateDeviceData: TCOutputModel {
         /// 设备ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deviceId: String?
@@ -1433,8 +2283,64 @@ extension Iss {
         }
     }
 
+    /// 修改网关信息返回结果
+    public struct UpdateGatewayData: TCOutputModel {
+        /// 网关索引ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gatewayId: String?
+
+        /// 网关编码
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gwId: String?
+
+        /// 网关名称，仅支持中文、英文、数字、_、-，长度不超过32个字符
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 网关描述，仅支持中文、英文、数字、_、-，长度不超过128个字符
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let description: String?
+
+        /// 服务节点ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterId: String?
+
+        /// 服务节点名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterName: String?
+
+        /// 网关状态，0：离线，1:在线
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: Int64?
+
+        /// 激活时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createdAt: Int64?
+
+        /// 网关密钥
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let secret: String?
+
+        /// 网关版本信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let version: String?
+
+        enum CodingKeys: String, CodingKey {
+            case gatewayId = "GatewayId"
+            case gwId = "GwId"
+            case name = "Name"
+            case description = "Description"
+            case clusterId = "ClusterId"
+            case clusterName = "ClusterName"
+            case status = "Status"
+            case createdAt = "CreatedAt"
+            case secret = "Secret"
+            case version = "Version"
+        }
+    }
+
     /// 修改组织接口返回数据
-    public struct UpdateOrgResponse: TCOutputModel {
+    public struct UpdateOrgData: TCOutputModel {
         /// 组织 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let organizationId: String?
@@ -1479,6 +2385,48 @@ extension Iss {
         }
     }
 
+    /// 修改录像上云计划返回数据
+    public struct UpdateRecordBackupPlanData: TCOutputModel {
+        /// 录像上云计划ID
+        public let planId: String
+
+        /// 录像上云计划名称
+        public let planName: String
+
+        /// 录像上云模板ID
+        public let templateId: String
+
+        /// 录像上云计划描述
+        public let describe: String
+
+        /// 云文件生命周期
+        public let lifeCycle: LifeCycleData
+
+        /// 录像上云计划状态，1:正常使用中，0:删除中，无法使用
+        public let status: Int64
+
+        /// 通道数量
+        public let channelCount: Int64
+
+        /// 创建时间
+        public let createAt: String
+
+        /// 修改时间
+        public let updateAt: String
+
+        enum CodingKeys: String, CodingKey {
+            case planId = "PlanId"
+            case planName = "PlanName"
+            case templateId = "TemplateId"
+            case describe = "Describe"
+            case lifeCycle = "LifeCycle"
+            case status = "Status"
+            case channelCount = "ChannelCount"
+            case createAt = "CreateAt"
+            case updateAt = "UpdateAt"
+        }
+    }
+
     /// 修改录像上云计划数据结构
     public struct UpdateRecordBackupPlanModify: TCInputModel {
         /// 录像计划名称（仅支持中文、英文、数字、_、-，长度不超过32个字符，计划名称全局唯一，不能为空，不能重复，不修改名称时，不需要该字段）
@@ -1520,6 +2468,47 @@ extension Iss {
             case add = "Add"
             case del = "Del"
             case organizationId = "OrganizationId"
+        }
+    }
+
+    /// 修改录像上云模版返回数据
+    public struct UpdateRecordBackupTemplateData: TCOutputModel {
+        /// 模板ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let templateId: String?
+
+        /// 模板名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let templateName: String?
+
+        /// 上云时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let timeSections: [RecordTemplateTimeSections]?
+
+        /// 录像时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let devTimeSections: [RecordTemplateTimeSections]?
+
+        /// 上云倍速（支持1，2，4倍速）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scale: Int64?
+
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createAt: String?
+
+        /// 更新时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updateAt: String?
+
+        enum CodingKeys: String, CodingKey {
+            case templateId = "TemplateId"
+            case templateName = "TemplateName"
+            case timeSections = "TimeSections"
+            case devTimeSections = "DevTimeSections"
+            case scale = "Scale"
+            case createAt = "CreateAt"
+            case updateAt = "UpdateAt"
         }
     }
 

@@ -586,6 +586,18 @@ extension Ssl {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let port: Int64?
 
+        /// TCB环境ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let envId: String?
+
+        /// 部署的TCB类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tcbType: String?
+
+        /// 部署的TCB地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let region: String?
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case certId = "CertId"
@@ -605,6 +617,9 @@ extension Ssl {
             case namespace = "Namespace"
             case secretName = "SecretName"
             case port = "Port"
+            case envId = "EnvId"
+            case tcbType = "TCBType"
+            case region = "Region"
         }
     }
 
@@ -1469,6 +1484,14 @@ extension Ssl {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let secretName: String?
 
+        /// 环境ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let envId: String?
+
+        /// TCB部署类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tcbType: String?
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case certId = "CertId"
@@ -1490,6 +1513,8 @@ extension Ssl {
             case port = "Port"
             case namespace = "Namespace"
             case secretName = "SecretName"
+            case envId = "EnvId"
+            case tcbType = "TCBType"
         }
     }
 

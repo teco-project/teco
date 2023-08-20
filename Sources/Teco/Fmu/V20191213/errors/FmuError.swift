@@ -372,6 +372,8 @@ public struct TCFmuError: TCFmuErrorType {
     }
 
     /// 帐号已被冻结。
+    ///
+    /// None
     public static var resourceUnavailable_Freeze: TCFmuError {
         TCFmuError(.resourceUnavailable_Freeze)
     }
@@ -382,6 +384,8 @@ public struct TCFmuError: TCFmuErrorType {
     }
 
     /// 帐号已欠费。
+    ///
+    /// None
     public static var resourceUnavailable_InArrears: TCFmuError {
         TCFmuError(.resourceUnavailable_InArrears)
     }
@@ -407,6 +411,8 @@ public struct TCFmuError: TCFmuErrorType {
     }
 
     /// 帐号已停服。
+    ///
+    /// None
     public static var resourceUnavailable_StopUsing: TCFmuError {
         TCFmuError(.resourceUnavailable_StopUsing)
     }
@@ -417,6 +423,8 @@ public struct TCFmuError: TCFmuErrorType {
     }
 
     /// 帐号已欠费。
+    ///
+    /// None
     public static var resourcesSoldOut_ChargeStatusException: TCFmuError {
         TCFmuError(.resourcesSoldOut_ChargeStatusException)
     }

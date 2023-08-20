@@ -769,7 +769,11 @@ extension Teo {
         /// - 端口段：81-82，表示81，82两个端口。
         public let originPort: String?
 
-        public init(proto: String, port: [String], originType: String, originValue: [String], ruleId: String? = nil, status: String? = nil, forwardClientIp: String? = nil, sessionPersist: Bool? = nil, sessionPersistTime: UInt64? = nil, originPort: String? = nil) {
+        /// 规则标签。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ruleTag: String?
+
+        public init(proto: String, port: [String], originType: String, originValue: [String], ruleId: String? = nil, status: String? = nil, forwardClientIp: String? = nil, sessionPersist: Bool? = nil, sessionPersistTime: UInt64? = nil, originPort: String? = nil, ruleTag: String? = nil) {
             self.proto = proto
             self.port = port
             self.originType = originType
@@ -780,6 +784,7 @@ extension Teo {
             self.sessionPersist = sessionPersist
             self.sessionPersistTime = sessionPersistTime
             self.originPort = originPort
+            self.ruleTag = ruleTag
         }
 
         enum CodingKeys: String, CodingKey {
@@ -793,6 +798,7 @@ extension Teo {
             case sessionPersist = "SessionPersist"
             case sessionPersistTime = "SessionPersistTime"
             case originPort = "OriginPort"
+            case ruleTag = "RuleTag"
         }
     }
 

@@ -28,7 +28,7 @@ extension Wedata {
         /// 页码
         public let pageIndex: Int64
 
-        /// 页大小
+        /// 一页展示的条数
         public let pageSize: Int64
 
         /// 周期列表（如天，一次性），可选
@@ -46,7 +46,11 @@ extension Wedata {
         /// 排序列（costTime 运行耗时，startTime 开始时间，state 实例状态，curRunDate 数据时间）
         public let sortCol: String
 
-        /// 类型列表（如35 shell任务），可选
+        /// 类型列表（如python任务类型：30
+        /// pyspark任务类型：31
+        /// hivesql任务类型：34
+        /// shell任务类型：35
+        /// sparksql任务类型：36 jdbcsql任务类型：21 dlc任务类型：32），可选
         public let taskTypeList: [Int64]
 
         /// 状态列表（如成功 2，正在执行 1），可选

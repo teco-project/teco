@@ -39,13 +39,25 @@ extension Wedata {
         /// 结束时间
         public let endTime: String?
 
-        public init(projectId: String, type: String? = nil, taskType: String? = nil, typeName: String? = nil, startTime: String? = nil, endTime: String? = nil) {
+        public let aggregationUnit: String?
+
+        public let cycleUnit: String?
+
+        public let status: String?
+
+        public let inCharge: String?
+
+        public init(projectId: String, type: String? = nil, taskType: String? = nil, typeName: String? = nil, startTime: String? = nil, endTime: String? = nil, aggregationUnit: String? = nil, cycleUnit: String? = nil, status: String? = nil, inCharge: String? = nil) {
             self.projectId = projectId
             self.type = type
             self.taskType = taskType
             self.typeName = typeName
             self.startTime = startTime
             self.endTime = endTime
+            self.aggregationUnit = aggregationUnit
+            self.cycleUnit = cycleUnit
+            self.status = status
+            self.inCharge = inCharge
         }
 
         enum CodingKeys: String, CodingKey {
@@ -55,6 +67,10 @@ extension Wedata {
             case typeName = "TypeName"
             case startTime = "StartTime"
             case endTime = "EndTime"
+            case aggregationUnit = "AggregationUnit"
+            case cycleUnit = "CycleUnit"
+            case status = "Status"
+            case inCharge = "InCharge"
         }
     }
 
@@ -87,13 +103,13 @@ extension Wedata {
 
     /// 任务状态趋势
     @inlinable
-    public func describeTaskByStatusReport(projectId: String, type: String? = nil, taskType: String? = nil, typeName: String? = nil, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskByStatusReportResponse> {
-        self.describeTaskByStatusReport(.init(projectId: projectId, type: type, taskType: taskType, typeName: typeName, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+    public func describeTaskByStatusReport(projectId: String, type: String? = nil, taskType: String? = nil, typeName: String? = nil, startTime: String? = nil, endTime: String? = nil, aggregationUnit: String? = nil, cycleUnit: String? = nil, status: String? = nil, inCharge: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskByStatusReportResponse> {
+        self.describeTaskByStatusReport(.init(projectId: projectId, type: type, taskType: taskType, typeName: typeName, startTime: startTime, endTime: endTime, aggregationUnit: aggregationUnit, cycleUnit: cycleUnit, status: status, inCharge: inCharge), region: region, logger: logger, on: eventLoop)
     }
 
     /// 任务状态趋势
     @inlinable
-    public func describeTaskByStatusReport(projectId: String, type: String? = nil, taskType: String? = nil, typeName: String? = nil, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskByStatusReportResponse {
-        try await self.describeTaskByStatusReport(.init(projectId: projectId, type: type, taskType: taskType, typeName: typeName, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+    public func describeTaskByStatusReport(projectId: String, type: String? = nil, taskType: String? = nil, typeName: String? = nil, startTime: String? = nil, endTime: String? = nil, aggregationUnit: String? = nil, cycleUnit: String? = nil, status: String? = nil, inCharge: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskByStatusReportResponse {
+        try await self.describeTaskByStatusReport(.init(projectId: projectId, type: type, taskType: taskType, typeName: typeName, startTime: startTime, endTime: endTime, aggregationUnit: aggregationUnit, cycleUnit: cycleUnit, status: status, inCharge: inCharge), region: region, logger: logger, on: eventLoop)
     }
 }

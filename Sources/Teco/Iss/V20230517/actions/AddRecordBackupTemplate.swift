@@ -48,77 +48,10 @@ extension Iss {
         }
     }
 
-    /// 新增录像上云模版返回数据
+    /// AddRecordBackupTemplate返回参数结构体
     public struct AddRecordBackupTemplateResponse: TCResponse {
-        private let data: Wrapped
-
-        private struct Wrapped: Codable {
-            public let templateId: String?
-
-            public let templateName: String?
-
-            public let timeSections: [RecordTemplateTimeSections]?
-
-            public let devTimeSections: [RecordTemplateTimeSections]?
-
-            public let scale: Int64?
-
-            public let createAt: String?
-
-            public let updateAt: String?
-
-            enum CodingKeys: String, CodingKey {
-                case templateId = "TemplateId"
-                case templateName = "TemplateName"
-                case timeSections = "TimeSections"
-                case devTimeSections = "DevTimeSections"
-                case scale = "Scale"
-                case createAt = "CreateAt"
-                case updateAt = "UpdateAt"
-            }
-        }
-
-        /// 模板ID
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var templateId: String? {
-            self.data.templateId
-        }
-
-        /// 模板名称
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var templateName: String? {
-            self.data.templateName
-        }
-
-        /// 上云时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var timeSections: [RecordTemplateTimeSections]? {
-            self.data.timeSections
-        }
-
-        /// 录像时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var devTimeSections: [RecordTemplateTimeSections]? {
-            self.data.devTimeSections
-        }
-
-        /// 上云倍速（支持1，2，4倍速）
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var scale: Int64? {
-            self.data.scale
-        }
-
-        /// 创建时间
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var createAt: String? {
-            self.data.createAt
-        }
-
-        /// 更新时间
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var updateAt: String? {
-            self.data.updateAt
-        }
+        /// 返回数据
+        public let data: AddRecordBackupTemplateData
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String

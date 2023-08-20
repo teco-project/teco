@@ -433,6 +433,8 @@ extension TCTkeError {
         }
 
         /// 询价错误。
+        ///
+        /// None
         public static var tradeCommon: InternalError {
             InternalError(.tradeCommon)
         }

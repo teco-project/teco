@@ -93,33 +93,33 @@ extension Cls {
         }
     }
 
-    /// 修改ScheduledSql任务
+    /// 修改定时SQL分析任务
     ///
-    /// 本接口用于修改ScheduledSql任务
+    /// 本接口用于修改定时SQL分析任务
     @inlinable @discardableResult
     public func modifyScheduledSql(_ input: ModifyScheduledSqlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyScheduledSqlResponse> {
         self.client.execute(action: "ModifyScheduledSql", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 修改ScheduledSql任务
+    /// 修改定时SQL分析任务
     ///
-    /// 本接口用于修改ScheduledSql任务
+    /// 本接口用于修改定时SQL分析任务
     @inlinable @discardableResult
     public func modifyScheduledSql(_ input: ModifyScheduledSqlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyScheduledSqlResponse {
         try await self.client.execute(action: "ModifyScheduledSql", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 修改ScheduledSql任务
+    /// 修改定时SQL分析任务
     ///
-    /// 本接口用于修改ScheduledSql任务
+    /// 本接口用于修改定时SQL分析任务
     @inlinable @discardableResult
     public func modifyScheduledSql(taskId: String, srcTopicId: String? = nil, enableFlag: Int64? = nil, dstResource: ScheduledSqlResouceInfo? = nil, scheduledSqlContent: String? = nil, processPeriod: Int64? = nil, processTimeWindow: String? = nil, processDelay: Int64? = nil, srcTopicRegion: String? = nil, name: String? = nil, syntaxRule: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyScheduledSqlResponse> {
         self.modifyScheduledSql(.init(taskId: taskId, srcTopicId: srcTopicId, enableFlag: enableFlag, dstResource: dstResource, scheduledSqlContent: scheduledSqlContent, processPeriod: processPeriod, processTimeWindow: processTimeWindow, processDelay: processDelay, srcTopicRegion: srcTopicRegion, name: name, syntaxRule: syntaxRule), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 修改ScheduledSql任务
+    /// 修改定时SQL分析任务
     ///
-    /// 本接口用于修改ScheduledSql任务
+    /// 本接口用于修改定时SQL分析任务
     @inlinable @discardableResult
     public func modifyScheduledSql(taskId: String, srcTopicId: String? = nil, enableFlag: Int64? = nil, dstResource: ScheduledSqlResouceInfo? = nil, scheduledSqlContent: String? = nil, processPeriod: Int64? = nil, processTimeWindow: String? = nil, processDelay: Int64? = nil, srcTopicRegion: String? = nil, name: String? = nil, syntaxRule: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyScheduledSqlResponse {
         try await self.modifyScheduledSql(.init(taskId: taskId, srcTopicId: srcTopicId, enableFlag: enableFlag, dstResource: dstResource, scheduledSqlContent: scheduledSqlContent, processPeriod: processPeriod, processTimeWindow: processTimeWindow, processDelay: processDelay, srcTopicRegion: srcTopicRegion, name: name, syntaxRule: syntaxRule), region: region, logger: logger, on: eventLoop)

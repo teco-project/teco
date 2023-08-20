@@ -45,6 +45,8 @@ extension TCFtError {
         }
 
         /// 帐号已欠费。
+        ///
+        /// None
         public static var chargeStatusException: ResourcesSoldOut {
             ResourcesSoldOut(.chargeStatusException)
         }

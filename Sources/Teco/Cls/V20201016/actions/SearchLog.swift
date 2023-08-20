@@ -36,17 +36,17 @@ extension Cls {
         /// - 如需同时检索多个日志主题，请使用Topics参数。
         public let topicId: String?
 
-        /// 表示单次查询返回的原始日志条数，最大值为1000，获取后续日志需使用Context参数
+        /// 表示单次查询返回的原始日志条数，默认为100，最大值为1000，获取后续日志需使用Context参数
         /// 注意：
         /// * 仅当检索分析语句(Query)不包含SQL时有效
         /// * SQL结果条数指定方式参考[SQL LIMIT语法](https://cloud.tencent.com/document/product/614/58977)
         public let limit: Int64?
 
-        /// 透传上次接口返回的Context值，可获取后续更多日志，总计最多可获取1万条原始日志，过期时间1小时
+        /// 透传上次接口返回的Context值，可获取后续更多日志，总计最多可获取1万条原始日志，过期时间1小时。
         /// 注意：
         /// * 透传该参数时，请勿修改除该参数外的其它参数
-        /// * 仅当检索分析语句(Query)不包含SQL时有效
-        /// * SQL获取后续结果参考[SQL LIMIT语法](https://cloud.tencent.com/document/product/614/58977)
+        /// * 仅适用于单日志主题检索，检索多个日志主题时，请使用Topics中的Context
+        /// * 仅当检索分析语句(Query)不包含SQL时有效，SQL获取后续结果参考[SQL LIMIT语法](https://cloud.tencent.com/document/product/614/58977)
         public let context: String?
 
         /// 原始日志是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc
@@ -108,7 +108,9 @@ extension Cls {
 
     /// SearchLog返回参数结构体
     public struct SearchLogResponse: TCResponse {
-        /// 透传本次接口返回的Context值，可获取后续更多日志，过期时间1小时
+        /// 透传本次接口返回的Context值，可获取后续更多日志，过期时间1小时。
+        /// 注意：
+        /// * 仅适用于单日志主题检索，检索多个日志主题时，请使用Topics中的Context
         public let context: String
 
         /// 符合检索条件的日志是否已全部返回，如未全部返回可使用Context参数获取后续更多日志
@@ -146,6 +148,10 @@ extension Cls {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let samplingRate: Float?
 
+        /// 使用多日志主题检索时，各个日志主题的基本信息，例如报错信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let topics: SearchLogTopics?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -159,6 +165,7 @@ extension Cls {
             case analysisRecords = "AnalysisRecords"
             case columns = "Columns"
             case samplingRate = "SamplingRate"
+            case topics = "Topics"
             case requestId = "RequestId"
         }
     }
@@ -166,6 +173,8 @@ extension Cls {
     /// 检索分析日志
     ///
     /// 本接口用于检索分析日志, 该接口除受默认接口请求频率限制外，针对单个日志主题，查询并发数不能超过15。
+    ///
+    /// API返回数据包最大49MB，建议启用 gzip 压缩（HTTP Request Header Accept-Encoding:gzip）。
     @inlinable
     public func searchLog(_ input: SearchLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchLogResponse> {
         self.client.execute(action: "SearchLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -174,6 +183,8 @@ extension Cls {
     /// 检索分析日志
     ///
     /// 本接口用于检索分析日志, 该接口除受默认接口请求频率限制外，针对单个日志主题，查询并发数不能超过15。
+    ///
+    /// API返回数据包最大49MB，建议启用 gzip 压缩（HTTP Request Header Accept-Encoding:gzip）。
     @inlinable
     public func searchLog(_ input: SearchLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchLogResponse {
         try await self.client.execute(action: "SearchLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -182,6 +193,8 @@ extension Cls {
     /// 检索分析日志
     ///
     /// 本接口用于检索分析日志, 该接口除受默认接口请求频率限制外，针对单个日志主题，查询并发数不能超过15。
+    ///
+    /// API返回数据包最大49MB，建议启用 gzip 压缩（HTTP Request Header Accept-Encoding:gzip）。
     @inlinable
     public func searchLog(from: Int64, to: Int64, query: String, topicId: String? = nil, limit: Int64? = nil, context: String? = nil, sort: String? = nil, useNewAnalysis: Bool? = nil, samplingRate: Float? = nil, syntaxRule: UInt64? = nil, topics: [MultiTopicSearchInformation]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchLogResponse> {
         self.searchLog(.init(from: from, to: to, query: query, topicId: topicId, limit: limit, context: context, sort: sort, useNewAnalysis: useNewAnalysis, samplingRate: samplingRate, syntaxRule: syntaxRule, topics: topics), region: region, logger: logger, on: eventLoop)
@@ -190,6 +203,8 @@ extension Cls {
     /// 检索分析日志
     ///
     /// 本接口用于检索分析日志, 该接口除受默认接口请求频率限制外，针对单个日志主题，查询并发数不能超过15。
+    ///
+    /// API返回数据包最大49MB，建议启用 gzip 压缩（HTTP Request Header Accept-Encoding:gzip）。
     @inlinable
     public func searchLog(from: Int64, to: Int64, query: String, topicId: String? = nil, limit: Int64? = nil, context: String? = nil, sort: String? = nil, useNewAnalysis: Bool? = nil, samplingRate: Float? = nil, syntaxRule: UInt64? = nil, topics: [MultiTopicSearchInformation]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchLogResponse {
         try await self.searchLog(.init(from: from, to: to, query: query, topicId: topicId, limit: limit, context: context, sort: sort, useNewAnalysis: useNewAnalysis, samplingRate: samplingRate, syntaxRule: syntaxRule, topics: topics), region: region, logger: logger, on: eventLoop)

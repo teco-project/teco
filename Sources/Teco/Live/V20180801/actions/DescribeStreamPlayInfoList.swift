@@ -83,6 +83,7 @@ extension Live {
 
     /// 查询流的播放信息列表
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询播放数据，支持按流名称查询详细播放数据，也可按播放域名查询详细总数据，数据延迟4分钟左右。
     @inlinable
     public func describeStreamPlayInfoList(_ input: DescribeStreamPlayInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamPlayInfoListResponse> {
@@ -91,6 +92,7 @@ extension Live {
 
     /// 查询流的播放信息列表
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询播放数据，支持按流名称查询详细播放数据，也可按播放域名查询详细总数据，数据延迟4分钟左右。
     @inlinable
     public func describeStreamPlayInfoList(_ input: DescribeStreamPlayInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamPlayInfoListResponse {
@@ -99,6 +101,7 @@ extension Live {
 
     /// 查询流的播放信息列表
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询播放数据，支持按流名称查询详细播放数据，也可按播放域名查询详细总数据，数据延迟4分钟左右。
     @inlinable
     public func describeStreamPlayInfoList(startTime: String, endTime: String, playDomain: String? = nil, streamName: String? = nil, appName: String? = nil, serviceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamPlayInfoListResponse> {
@@ -107,6 +110,7 @@ extension Live {
 
     /// 查询流的播放信息列表
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询播放数据，支持按流名称查询详细播放数据，也可按播放域名查询详细总数据，数据延迟4分钟左右。
     @inlinable
     public func describeStreamPlayInfoList(startTime: String, endTime: String, playDomain: String? = nil, streamName: String? = nil, appName: String? = nil, serviceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamPlayInfoListResponse {

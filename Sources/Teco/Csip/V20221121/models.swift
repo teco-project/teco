@@ -171,23 +171,23 @@ extension Csip {
     /// 集群pod列表
     public struct AssetClusterPod: TCOutputModel {
         /// 租户id
-        public let appId: Int64?
+        public let appId: Int64
 
         /// 租户uin
-        public let uin: String?
+        public let uin: String
 
         /// 租户昵称
-        public let nick: String?
+        public let nick: String
 
         /// 地域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: String?
 
         /// pod id
-        public let assetId: String?
+        public let assetId: String
 
         /// pod名称
-        public let assetName: String?
+        public let assetName: String
 
         /// pod创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -241,6 +241,10 @@ extension Csip {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isCore: Int64?
 
+        /// 是否新资产 1新
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isNewAsset: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case appId = "AppId"
             case uin = "Uin"
@@ -261,6 +265,7 @@ extension Csip {
             case publicIp = "PublicIp"
             case privateIp = "PrivateIp"
             case isCore = "IsCore"
+            case isNewAsset = "IsNewAsset"
         }
     }
 
@@ -691,7 +696,11 @@ extension Csip {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let basAgentStatus: Int64?
 
-        public init(assetId: String? = nil, assetName: String? = nil, assetType: String? = nil, region: String? = nil, cwpStatus: UInt64? = nil, assetCreateTime: String? = nil, publicIp: String? = nil, privateIp: String? = nil, vpcId: String? = nil, vpcName: String? = nil, appId: UInt64? = nil, uin: String? = nil, nickName: String? = nil, availableArea: String? = nil, isCore: UInt64? = nil, subnetId: String? = nil, subnetName: String? = nil, instanceUuid: String? = nil, instanceQUuid: String? = nil, osName: String? = nil, partitionCount: UInt64? = nil, cpuInfo: String? = nil, cpuSize: UInt64? = nil, cpuLoad: String? = nil, memorySize: String? = nil, memoryLoad: String? = nil, diskSize: String? = nil, diskLoad: String? = nil, accountCount: String? = nil, processCount: String? = nil, appCount: String? = nil, portCount: UInt64? = nil, attack: UInt64? = nil, access: UInt64? = nil, intercept: UInt64? = nil, inBandwidth: String? = nil, outBandwidth: String? = nil, inFlow: String? = nil, outFlow: String? = nil, lastScanTime: String? = nil, netWorkOut: UInt64? = nil, portRisk: UInt64? = nil, vulnerabilityRisk: UInt64? = nil, configurationRisk: UInt64? = nil, scanTask: UInt64? = nil, tag: [Tag]? = nil, memberId: String? = nil, os: String? = nil, riskExposure: Int64? = nil, basAgentStatus: Int64? = nil) {
+        /// 1新资产；0 非新资产
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isNewAsset: UInt64?
+
+        public init(assetId: String? = nil, assetName: String? = nil, assetType: String? = nil, region: String? = nil, cwpStatus: UInt64? = nil, assetCreateTime: String? = nil, publicIp: String? = nil, privateIp: String? = nil, vpcId: String? = nil, vpcName: String? = nil, appId: UInt64? = nil, uin: String? = nil, nickName: String? = nil, availableArea: String? = nil, isCore: UInt64? = nil, subnetId: String? = nil, subnetName: String? = nil, instanceUuid: String? = nil, instanceQUuid: String? = nil, osName: String? = nil, partitionCount: UInt64? = nil, cpuInfo: String? = nil, cpuSize: UInt64? = nil, cpuLoad: String? = nil, memorySize: String? = nil, memoryLoad: String? = nil, diskSize: String? = nil, diskLoad: String? = nil, accountCount: String? = nil, processCount: String? = nil, appCount: String? = nil, portCount: UInt64? = nil, attack: UInt64? = nil, access: UInt64? = nil, intercept: UInt64? = nil, inBandwidth: String? = nil, outBandwidth: String? = nil, inFlow: String? = nil, outFlow: String? = nil, lastScanTime: String? = nil, netWorkOut: UInt64? = nil, portRisk: UInt64? = nil, vulnerabilityRisk: UInt64? = nil, configurationRisk: UInt64? = nil, scanTask: UInt64? = nil, tag: [Tag]? = nil, memberId: String? = nil, os: String? = nil, riskExposure: Int64? = nil, basAgentStatus: Int64? = nil, isNewAsset: UInt64? = nil) {
             self.assetId = assetId
             self.assetName = assetName
             self.assetType = assetType
@@ -742,6 +751,7 @@ extension Csip {
             self.os = os
             self.riskExposure = riskExposure
             self.basAgentStatus = basAgentStatus
+            self.isNewAsset = isNewAsset
         }
 
         enum CodingKeys: String, CodingKey {
@@ -795,6 +805,73 @@ extension Csip {
             case os = "Os"
             case riskExposure = "RiskExposure"
             case basAgentStatus = "BASAgentStatus"
+            case isNewAsset = "IsNewAsset"
+        }
+    }
+
+    /// clb实例和监听器信息
+    public struct ClbListenerListInfo: TCOutputModel {
+        /// 监听器id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let listenerId: String?
+
+        /// 监听器名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let listenerName: String?
+
+        /// 负载均衡Id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let loadBalancerId: String?
+
+        /// 负载均衡名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let loadBalancerName: String?
+
+        /// 协议
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let `protocol`: String?
+
+        /// 地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let region: String?
+
+        /// 负载均衡ip
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vip: String?
+
+        /// 端口
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vPort: Int64?
+
+        /// 区域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let zone: String?
+
+        /// 私有网络id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let numericalVpcId: Int64?
+
+        /// 负载均衡类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let loadBalancerType: String?
+
+        /// 监听器域名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let domain: String?
+
+        enum CodingKeys: String, CodingKey {
+            case listenerId = "ListenerId"
+            case listenerName = "ListenerName"
+            case loadBalancerId = "LoadBalancerId"
+            case loadBalancerName = "LoadBalancerName"
+            case `protocol` = "Protocol"
+            case region = "Region"
+            case vip = "Vip"
+            case vPort = "VPort"
+            case zone = "Zone"
+            case numericalVpcId = "NumericalVpcId"
+            case loadBalancerType = "LoadBalancerType"
+            case domain = "Domain"
         }
     }
 
@@ -888,6 +965,10 @@ extension Csip {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isCore: UInt64?
 
+        /// 是否新资产: 1新
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isNewAsset: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case assetId = "AssetId"
             case assetName = "AssetName"
@@ -911,6 +992,7 @@ extension Csip {
             case publicIp = "PublicIp"
             case status = "Status"
             case isCore = "IsCore"
+            case isNewAsset = "IsNewAsset"
         }
     }
 
@@ -1113,6 +1195,22 @@ extension Csip {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceRisk: UInt64?
 
+        /// 是否新资产 1新
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isNewAsset: UInt64?
+
+        /// 待确认资产的随机三级域名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let verifyDomain: String?
+
+        /// 待确认资产的TXT记录内容
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let verifyTXTRecord: String?
+
+        /// 待确认资产的认证状态，0-待认证，1-认证成功，2-认证中，3-txt认证失败，4-人工认证失败
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let verifyStatus: Int64?
+
         enum CodingKeys: String, CodingKey {
             case assetId = "AssetId"
             case assetName = "AssetName"
@@ -1148,6 +1246,10 @@ extension Csip {
             case ccAttack = "CCAttack"
             case webAttack = "WebAttack"
             case serviceRisk = "ServiceRisk"
+            case isNewAsset = "IsNewAsset"
+            case verifyDomain = "VerifyDomain"
+            case verifyTXTRecord = "VerifyTXTRecord"
+            case verifyStatus = "VerifyStatus"
         }
     }
 
@@ -1343,6 +1445,14 @@ extension Csip {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let riskExposure: Int64?
 
+        /// 是否新资产 1新
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isNewAsset: UInt64?
+
+        /// 资产认证状态，0-待认证，1-认证成功，2-认证中，3+-认证失败
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let verifyStatus: Int64?
+
         enum CodingKeys: String, CodingKey {
             case assetId = "AssetId"
             case assetName = "AssetName"
@@ -1377,6 +1487,8 @@ extension Csip {
             case addressId = "AddressId"
             case memberId = "MemberId"
             case riskExposure = "RiskExposure"
+            case isNewAsset = "IsNewAsset"
+            case verifyStatus = "VerifyStatus"
         }
     }
 
@@ -1449,60 +1561,64 @@ extension Csip {
     /// 子网资产
     public struct SubnetAsset: TCOutputModel {
         /// appid
-        public let appId: String?
+        public let appId: String
 
         /// uin
-        public let uin: String?
+        public let uin: String
 
         /// 资产ID
-        public let assetId: String?
+        public let assetId: String
 
         /// 资产名
-        public let assetName: String?
+        public let assetName: String
 
         /// 区域
-        public let region: String?
+        public let region: String
 
         /// 私有网络id
-        public let vpcId: String?
+        public let vpcId: String
 
         /// 私有网络名
-        public let vpcName: String?
+        public let vpcName: String
 
         /// 标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tag: [Tag]?
 
         /// 昵称
-        public let nick: String?
+        public let nick: String
 
         /// cidr
-        public let cidr: String?
+        public let cidr: String
 
         /// 可用区
-        public let zone: String?
+        public let zone: String
 
         /// cvm数
-        public let cvm: Int64?
+        public let cvm: Int64
 
         /// 可用ip数
-        public let availableIp: Int64?
+        public let availableIp: Int64
 
         /// 创建时间
-        public let createTime: String?
+        public let createTime: String
 
         /// 配置风险
-        public let configureRisk: Int64?
+        public let configureRisk: Int64
 
         /// 任务数
-        public let scanTask: Int64?
+        public let scanTask: Int64
 
         /// 最后扫描时间
-        public let lastScanTime: String?
+        public let lastScanTime: String
 
         /// 是否核心
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isCore: UInt64?
+
+        /// 是否新资产 1新
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isNewAsset: UInt64?
 
         enum CodingKeys: String, CodingKey {
             case appId = "AppId"
@@ -1523,6 +1639,7 @@ extension Csip {
             case scanTask = "ScanTask"
             case lastScanTime = "LastScanTime"
             case isCore = "IsCore"
+            case isNewAsset = "IsNewAsset"
         }
     }
 
@@ -1672,19 +1789,19 @@ extension Csip {
     /// vpc列表数据
     public struct Vpc: TCOutputModel {
         /// 子网(只支持32位)
-        public let subnet: UInt64?
+        public let subnet: UInt64
 
         /// 互通vpc(只支持32位)
-        public let connectedVpc: UInt64?
+        public let connectedVpc: UInt64
 
         /// 资产id
-        public let assetId: String?
+        public let assetId: String
 
         /// region区域
-        public let region: String?
+        public let region: String
 
         /// 云服务器(只支持32位)
-        public let cvm: UInt64?
+        public let cvm: UInt64
 
         /// 标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1695,22 +1812,30 @@ extension Csip {
         public let dns: [String]?
 
         /// 资产名称
-        public let assetName: String?
+        public let assetName: String
 
         /// cidr网段
-        public let cidr: String?
+        public let cidr: String
 
         /// 资产创建时间
-        public let createTime: String?
+        public let createTime: String
 
         /// appid
-        public let appId: String?
+        public let appId: String
 
         /// uin
-        public let uin: String?
+        public let uin: String
 
         /// 昵称
-        public let nick: String?
+        public let nick: String
+
+        /// 是否新资产 1新
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isNewAsset: UInt64?
+
+        /// 是否核心资产1是 2不是
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isCore: UInt64?
 
         enum CodingKeys: String, CodingKey {
             case subnet = "Subnet"
@@ -1726,18 +1851,22 @@ extension Csip {
             case appId = "AppId"
             case uin = "Uin"
             case nick = "Nick"
+            case isNewAsset = "IsNewAsset"
+            case isCore = "IsCore"
         }
     }
 
     /// 过滤条件
     public struct WhereFilter: TCInputModel {
         /// 过滤的项
-        public let name: String?
+        public let name: String
 
         /// 过滤的值
-        public let values: [String]?
+        public let values: [String]
 
-        /// 精确匹配填 7 模糊匹配填9 ， 兼容 中台定的结构
+        /// 中台定义：
+        /// 1等于 2大于 3小于 4大于等于 5小于等于 6不等于 9模糊匹配 13非模糊匹配 14按位与
+        /// 精确匹配填 7 模糊匹配填9 兼容 中台定的结构
         public let operatorType: Int64?
 
         public init(name: String, values: [String], operatorType: Int64? = nil) {

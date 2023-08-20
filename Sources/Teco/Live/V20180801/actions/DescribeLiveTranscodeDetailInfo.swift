@@ -122,6 +122,7 @@ extension Live {
 
     /// 查询直播转码统计信息
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 支持查询某天或某段时间的转码详细信息。由于转码数据量较大，如果查询时间跨度太长可能会拉不到数据，可以尝试将查询时间范围缩小些再重试。
     @inlinable
     public func describeLiveTranscodeDetailInfo(_ input: DescribeLiveTranscodeDetailInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveTranscodeDetailInfoResponse> {
@@ -130,6 +131,7 @@ extension Live {
 
     /// 查询直播转码统计信息
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 支持查询某天或某段时间的转码详细信息。由于转码数据量较大，如果查询时间跨度太长可能会拉不到数据，可以尝试将查询时间范围缩小些再重试。
     @inlinable
     public func describeLiveTranscodeDetailInfo(_ input: DescribeLiveTranscodeDetailInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeDetailInfoResponse {
@@ -138,6 +140,7 @@ extension Live {
 
     /// 查询直播转码统计信息
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 支持查询某天或某段时间的转码详细信息。由于转码数据量较大，如果查询时间跨度太长可能会拉不到数据，可以尝试将查询时间范围缩小些再重试。
     @inlinable
     public func describeLiveTranscodeDetailInfo(pushDomain: String? = nil, streamName: String? = nil, dayTime: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, startDayTime: String? = nil, endDayTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveTranscodeDetailInfoResponse> {
@@ -146,6 +149,7 @@ extension Live {
 
     /// 查询直播转码统计信息
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 支持查询某天或某段时间的转码详细信息。由于转码数据量较大，如果查询时间跨度太长可能会拉不到数据，可以尝试将查询时间范围缩小些再重试。
     @inlinable
     public func describeLiveTranscodeDetailInfo(pushDomain: String? = nil, streamName: String? = nil, dayTime: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, startDayTime: String? = nil, endDayTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeDetailInfoResponse {
@@ -154,6 +158,7 @@ extension Live {
 
     /// 查询直播转码统计信息
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 支持查询某天或某段时间的转码详细信息。由于转码数据量较大，如果查询时间跨度太长可能会拉不到数据，可以尝试将查询时间范围缩小些再重试。
     @inlinable
     public func describeLiveTranscodeDetailInfoPaginated(_ input: DescribeLiveTranscodeDetailInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [TranscodeDetailInfo])> {
@@ -162,6 +167,7 @@ extension Live {
 
     /// 查询直播转码统计信息
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 支持查询某天或某段时间的转码详细信息。由于转码数据量较大，如果查询时间跨度太长可能会拉不到数据，可以尝试将查询时间范围缩小些再重试。
     @inlinable @discardableResult
     public func describeLiveTranscodeDetailInfoPaginated(_ input: DescribeLiveTranscodeDetailInfoRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLiveTranscodeDetailInfoResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
@@ -170,6 +176,7 @@ extension Live {
 
     /// 查询直播转码统计信息
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 支持查询某天或某段时间的转码详细信息。由于转码数据量较大，如果查询时间跨度太长可能会拉不到数据，可以尝试将查询时间范围缩小些再重试。
     ///
     /// - Returns: `AsyncSequence`s of ``TranscodeDetailInfo`` and ``DescribeLiveTranscodeDetailInfoResponse`` that can be iterated over asynchronously on demand.

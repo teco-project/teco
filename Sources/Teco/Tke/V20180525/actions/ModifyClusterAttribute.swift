@@ -42,7 +42,10 @@ extension Tke {
         /// 是否开启QGPU共享
         public let qgpuShareEnable: Bool?
 
-        public init(clusterId: String, projectId: Int64? = nil, clusterName: String? = nil, clusterDesc: String? = nil, clusterLevel: String? = nil, autoUpgradeClusterLevel: AutoUpgradeClusterLevel? = nil, qgpuShareEnable: Bool? = nil) {
+        /// 集群属性
+        public let clusterProperty: ClusterProperty?
+
+        public init(clusterId: String, projectId: Int64? = nil, clusterName: String? = nil, clusterDesc: String? = nil, clusterLevel: String? = nil, autoUpgradeClusterLevel: AutoUpgradeClusterLevel? = nil, qgpuShareEnable: Bool? = nil, clusterProperty: ClusterProperty? = nil) {
             self.clusterId = clusterId
             self.projectId = projectId
             self.clusterName = clusterName
@@ -50,6 +53,7 @@ extension Tke {
             self.clusterLevel = clusterLevel
             self.autoUpgradeClusterLevel = autoUpgradeClusterLevel
             self.qgpuShareEnable = qgpuShareEnable
+            self.clusterProperty = clusterProperty
         }
 
         enum CodingKeys: String, CodingKey {
@@ -60,6 +64,7 @@ extension Tke {
             case clusterLevel = "ClusterLevel"
             case autoUpgradeClusterLevel = "AutoUpgradeClusterLevel"
             case qgpuShareEnable = "QGPUShareEnable"
+            case clusterProperty = "ClusterProperty"
         }
     }
 
@@ -89,6 +94,10 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let qgpuShareEnable: Bool?
 
+        /// 集群属性
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterProperty: ClusterProperty?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -99,6 +108,7 @@ extension Tke {
             case clusterLevel = "ClusterLevel"
             case autoUpgradeClusterLevel = "AutoUpgradeClusterLevel"
             case qgpuShareEnable = "QGPUShareEnable"
+            case clusterProperty = "ClusterProperty"
             case requestId = "RequestId"
         }
     }
@@ -117,13 +127,13 @@ extension Tke {
 
     /// 修改集群属性
     @inlinable
-    public func modifyClusterAttribute(clusterId: String, projectId: Int64? = nil, clusterName: String? = nil, clusterDesc: String? = nil, clusterLevel: String? = nil, autoUpgradeClusterLevel: AutoUpgradeClusterLevel? = nil, qgpuShareEnable: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterAttributeResponse> {
-        self.modifyClusterAttribute(.init(clusterId: clusterId, projectId: projectId, clusterName: clusterName, clusterDesc: clusterDesc, clusterLevel: clusterLevel, autoUpgradeClusterLevel: autoUpgradeClusterLevel, qgpuShareEnable: qgpuShareEnable), region: region, logger: logger, on: eventLoop)
+    public func modifyClusterAttribute(clusterId: String, projectId: Int64? = nil, clusterName: String? = nil, clusterDesc: String? = nil, clusterLevel: String? = nil, autoUpgradeClusterLevel: AutoUpgradeClusterLevel? = nil, qgpuShareEnable: Bool? = nil, clusterProperty: ClusterProperty? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterAttributeResponse> {
+        self.modifyClusterAttribute(.init(clusterId: clusterId, projectId: projectId, clusterName: clusterName, clusterDesc: clusterDesc, clusterLevel: clusterLevel, autoUpgradeClusterLevel: autoUpgradeClusterLevel, qgpuShareEnable: qgpuShareEnable, clusterProperty: clusterProperty), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改集群属性
     @inlinable
-    public func modifyClusterAttribute(clusterId: String, projectId: Int64? = nil, clusterName: String? = nil, clusterDesc: String? = nil, clusterLevel: String? = nil, autoUpgradeClusterLevel: AutoUpgradeClusterLevel? = nil, qgpuShareEnable: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterAttributeResponse {
-        try await self.modifyClusterAttribute(.init(clusterId: clusterId, projectId: projectId, clusterName: clusterName, clusterDesc: clusterDesc, clusterLevel: clusterLevel, autoUpgradeClusterLevel: autoUpgradeClusterLevel, qgpuShareEnable: qgpuShareEnable), region: region, logger: logger, on: eventLoop)
+    public func modifyClusterAttribute(clusterId: String, projectId: Int64? = nil, clusterName: String? = nil, clusterDesc: String? = nil, clusterLevel: String? = nil, autoUpgradeClusterLevel: AutoUpgradeClusterLevel? = nil, qgpuShareEnable: Bool? = nil, clusterProperty: ClusterProperty? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterAttributeResponse {
+        try await self.modifyClusterAttribute(.init(clusterId: clusterId, projectId: projectId, clusterName: clusterName, clusterDesc: clusterDesc, clusterLevel: clusterLevel, autoUpgradeClusterLevel: autoUpgradeClusterLevel, qgpuShareEnable: qgpuShareEnable, clusterProperty: clusterProperty), region: region, logger: logger, on: eventLoop)
     }
 }

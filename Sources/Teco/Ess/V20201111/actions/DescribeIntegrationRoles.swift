@@ -25,7 +25,7 @@ extension Ess {
         /// 操作人信息，UserId必填
         public let `operator`: UserInfo
 
-        /// 返回最大数量，最大为200
+        /// 指定每页多少条数据，单页最大200
         public let limit: UInt64
 
         /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
@@ -37,7 +37,7 @@ extension Ess {
         /// Key:"IsGroupRole"，Values:["0"],查询非集团角色，Values:["1"]表示查询集团角色
         public let filters: [Filter]?
 
-        /// 偏移量，默认为0，最大为2000
+        /// 查询结果分页返回，此处指定第几页，如果不传默认从第一页返回。页码从 0 开始，即首页为 0，最大2000
         public let offset: UInt64?
 
         public init(operator: UserInfo, limit: UInt64, agent: Agent? = nil, filters: [Filter]? = nil, offset: UInt64? = nil) {
@@ -67,10 +67,10 @@ extension Ess {
 
     /// DescribeIntegrationRoles返回参数结构体
     public struct DescribeIntegrationRolesResponse: TCPaginatedResponse {
-        /// 偏移量，默认为0，最大为2000
+        /// 查询结果分页返回，此处指定第几页，如果不传默认从第一页返回。页码从 0 开始，即首页为 0，最大2000
         public let offset: UInt64
 
-        /// 返回最大数量，最大为200
+        /// 指定每页多少条数据，单页最大200
         public let limit: UInt64
 
         /// 符合查询条件的总的角色数
@@ -102,42 +102,56 @@ extension Ess {
     }
 
     /// 查询企业角色列表
+    ///
+    /// 分页查询企业角色列表，法人的角色是系统保留角色，不会返回，按照角色创建时间升序排列
     @inlinable
     public func describeIntegrationRoles(_ input: DescribeIntegrationRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationRolesResponse> {
         self.client.execute(action: "DescribeIntegrationRoles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询企业角色列表
+    ///
+    /// 分页查询企业角色列表，法人的角色是系统保留角色，不会返回，按照角色创建时间升序排列
     @inlinable
     public func describeIntegrationRoles(_ input: DescribeIntegrationRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationRolesResponse {
         try await self.client.execute(action: "DescribeIntegrationRoles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询企业角色列表
+    ///
+    /// 分页查询企业角色列表，法人的角色是系统保留角色，不会返回，按照角色创建时间升序排列
     @inlinable
     public func describeIntegrationRoles(operator: UserInfo, limit: UInt64, agent: Agent? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationRolesResponse> {
         self.describeIntegrationRoles(.init(operator: `operator`, limit: limit, agent: agent, filters: filters, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询企业角色列表
+    ///
+    /// 分页查询企业角色列表，法人的角色是系统保留角色，不会返回，按照角色创建时间升序排列
     @inlinable
     public func describeIntegrationRoles(operator: UserInfo, limit: UInt64, agent: Agent? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationRolesResponse {
         try await self.describeIntegrationRoles(.init(operator: `operator`, limit: limit, agent: agent, filters: filters, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询企业角色列表
+    ///
+    /// 分页查询企业角色列表，法人的角色是系统保留角色，不会返回，按照角色创建时间升序排列
     @inlinable
     public func describeIntegrationRolesPaginated(_ input: DescribeIntegrationRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [IntegrateRole])> {
         self.client.paginate(input: input, region: region, command: self.describeIntegrationRoles, logger: logger, on: eventLoop)
     }
 
     /// 查询企业角色列表
+    ///
+    /// 分页查询企业角色列表，法人的角色是系统保留角色，不会返回，按照角色创建时间升序排列
     @inlinable @discardableResult
     public func describeIntegrationRolesPaginated(_ input: DescribeIntegrationRolesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeIntegrationRolesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeIntegrationRoles, callback: onResponse, logger: logger, on: eventLoop)
     }
 
     /// 查询企业角色列表
+    ///
+    /// 分页查询企业角色列表，法人的角色是系统保留角色，不会返回，按照角色创建时间升序排列
     ///
     /// - Returns: `AsyncSequence`s of ``IntegrateRole`` and ``DescribeIntegrationRolesResponse`` that can be iterated over asynchronously on demand.
     @inlinable

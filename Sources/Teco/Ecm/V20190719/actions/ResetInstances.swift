@@ -30,7 +30,7 @@ extension Ecm {
         /// 密码设置，若未指定，则后续将以站内信的形式通知密码。
         public let password: String?
 
-        /// 是否开启云监控和云镜服务，未指定时默认开启。
+        /// 是否开启腾讯云可观测平台和主机安全服务，未指定时默认开启。
         public let enhancedService: EnhancedService?
 
         /// 是否保留数据盘数据，取值"true"/"false"。默认为"true"

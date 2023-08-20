@@ -100,7 +100,7 @@ extension Cynosdb {
 
     /// 数据库地址
     public struct Addr: TCOutputModel {
-        /// IP
+        /// IP地址
         public let ip: String
 
         /// 端口
@@ -432,7 +432,7 @@ extension Cynosdb {
 
     /// 资源包绑定的实例信息
     public struct BindInstanceInfo: TCOutputModel {
-        /// 绑定的实例ID
+        /// 绑定的集群ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?
 
@@ -444,10 +444,15 @@ extension Cynosdb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceType: String?
 
+        /// 绑定集群下的实例ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let extendIds: [String]?
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case instanceRegion = "InstanceRegion"
             case instanceType = "InstanceType"
+            case extendIds = "ExtendIds"
         }
     }
 
@@ -518,6 +523,10 @@ extension Cynosdb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maintainWeekDays: [String]?
 
+        /// serverless实例子状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let serverlessStatus: String?
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case instanceName = "InstanceName"
@@ -531,6 +540,7 @@ extension Cynosdb {
             case maintainStartTime = "MaintainStartTime"
             case maintainDuration = "MaintainDuration"
             case maintainWeekDays = "MaintainWeekDays"
+            case serverlessStatus = "ServerlessStatus"
         }
     }
 
@@ -940,7 +950,7 @@ extension Cynosdb {
         /// vport端口
         public let vport: Int64
 
-        /// 读写分离Vport
+        /// 集群只读实例的vip地址和vport端口
         public let roAddr: [Addr]
 
         /// 集群支持的功能
@@ -1762,7 +1772,10 @@ extension Cynosdb {
 
     /// 审计日志搜索条件
     public struct InstanceAuditLogFilter: TCInputModel {
-        /// 过滤项。支持以下搜索条件:
+        /// 过滤项。目前支持以下搜索条件：
+        ///
+        /// 包含、不包含、包含（分词维度）、不包含（分词维度）:
+        /// sql - SQL详情
         ///
         /// 等于、不等于、包含、不包含：
         /// host - 客户端地址；
@@ -1776,7 +1789,7 @@ extension Cynosdb {
         ///
         /// 范围搜索（时间类型统一为微妙）：
         /// execTime - 执行时间；
-        /// lockWaitTime - 执行时间；
+        /// lockWaitTime - 锁等待时间；
         /// ioWaitTime - IO等待时间；
         /// trxLivingTime - 事物持续时间；
         /// cpuTime - cpu时间；
@@ -1785,15 +1798,17 @@ extension Cynosdb {
         /// sentRows - 返回行数。
         public let type: String
 
-        /// 过滤条件。支持以下选项:
+        /// 过滤条件。支持以下条件：
+        /// WINC-包含（分词维度），
+        /// WEXC-不包含（分词维度）,
         /// INC - 包含,
         /// EXC - 不包含,
         /// EQS - 等于,
         /// NEQ - 不等于,
-        /// RA - 范围.
+        /// RA - 范围。
         public let compare: String
 
-        /// 过滤的值。
+        /// 过滤的值。反向查询时，多个值之前是且的关系，正向查询多个值是或的关系。
         public let value: [String]
 
         public init(type: String, compare: String, value: [String]) {
@@ -1843,11 +1858,27 @@ extension Cynosdb {
         /// 实例个数,范围[1,15]
         public let instanceCount: Int64
 
-        public init(cpu: Int64, memory: Int64, instanceType: String, instanceCount: Int64) {
+        /// Serverless实例个数最小值，范围[1,15]
+        public let minRoCount: Int64?
+
+        /// Serverless实例个数最大值，范围[1,15]
+        public let maxRoCount: Int64?
+
+        /// Serverless实例最小规格
+        public let minRoCpu: Float?
+
+        /// Serverless实例最大规格
+        public let maxRoCpu: Float?
+
+        public init(cpu: Int64, memory: Int64, instanceType: String, instanceCount: Int64, minRoCount: Int64? = nil, maxRoCount: Int64? = nil, minRoCpu: Float? = nil, maxRoCpu: Float? = nil) {
             self.cpu = cpu
             self.memory = memory
             self.instanceType = instanceType
             self.instanceCount = instanceCount
+            self.minRoCount = minRoCount
+            self.maxRoCount = maxRoCount
+            self.minRoCpu = minRoCpu
+            self.maxRoCpu = maxRoCpu
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1855,6 +1886,10 @@ extension Cynosdb {
             case memory = "Memory"
             case instanceType = "InstanceType"
             case instanceCount = "InstanceCount"
+            case minRoCount = "MinRoCount"
+            case maxRoCount = "MaxRoCount"
+            case minRoCpu = "MinRoCpu"
+            case maxRoCpu = "MaxRoCpu"
         }
     }
 

@@ -66,43 +66,39 @@ extension Ms {
     ///
     /// 该接口供渠道合作应用加固使用，接口调用有白名单用户限制。
     /// 订单类型有：免费试用、按年收费、按次收费。
-    /// 应用加固支持的平台类型有：android加固 、ios源码混淆 、sdk加固、applet小程序加固。
-    @available(*, unavailable, message: "上错服务器了")
+    /// 应用加固支持的平台类型有：android加固 、ios源码混淆 、sdk加固、applet小程序加固
     @inlinable
     public func createOrderInstance(_ input: CreateOrderInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOrderInstanceResponse> {
-        fatalError("CreateOrderInstance is no longer available.")
+        self.client.execute(action: "CreateOrderInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建渠道合作应用加固订单
     ///
     /// 该接口供渠道合作应用加固使用，接口调用有白名单用户限制。
     /// 订单类型有：免费试用、按年收费、按次收费。
-    /// 应用加固支持的平台类型有：android加固 、ios源码混淆 、sdk加固、applet小程序加固。
-    @available(*, unavailable, message: "上错服务器了")
+    /// 应用加固支持的平台类型有：android加固 、ios源码混淆 、sdk加固、applet小程序加固
     @inlinable
     public func createOrderInstance(_ input: CreateOrderInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrderInstanceResponse {
-        fatalError("CreateOrderInstance is no longer available.")
+        try await self.client.execute(action: "CreateOrderInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建渠道合作应用加固订单
     ///
     /// 该接口供渠道合作应用加固使用，接口调用有白名单用户限制。
     /// 订单类型有：免费试用、按年收费、按次收费。
-    /// 应用加固支持的平台类型有：android加固 、ios源码混淆 、sdk加固、applet小程序加固。
-    @available(*, unavailable, message: "上错服务器了")
+    /// 应用加固支持的平台类型有：android加固 、ios源码混淆 、sdk加固、applet小程序加固
     @inlinable
     public func createOrderInstance(platformType: Int64, orderType: Int64, appPkgNameList: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOrderInstanceResponse> {
-        fatalError("CreateOrderInstance is no longer available.")
+        self.createOrderInstance(.init(platformType: platformType, orderType: orderType, appPkgNameList: appPkgNameList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建渠道合作应用加固订单
     ///
     /// 该接口供渠道合作应用加固使用，接口调用有白名单用户限制。
     /// 订单类型有：免费试用、按年收费、按次收费。
-    /// 应用加固支持的平台类型有：android加固 、ios源码混淆 、sdk加固、applet小程序加固。
-    @available(*, unavailable, message: "上错服务器了")
+    /// 应用加固支持的平台类型有：android加固 、ios源码混淆 、sdk加固、applet小程序加固
     @inlinable
     public func createOrderInstance(platformType: Int64, orderType: Int64, appPkgNameList: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrderInstanceResponse {
-        fatalError("CreateOrderInstance is no longer available.")
+        try await self.createOrderInstance(.init(platformType: platformType, orderType: orderType, appPkgNameList: appPkgNameList), region: region, logger: logger, on: eventLoop)
     }
 }

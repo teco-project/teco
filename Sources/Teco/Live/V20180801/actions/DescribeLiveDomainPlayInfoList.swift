@@ -69,6 +69,7 @@ extension Live {
 
     /// 查询实时的域名维度下行播放数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询实时的域名维度下行播放数据，由于数据处理有耗时，接口默认查询4分钟前的准实时数据。
     @inlinable
     public func describeLiveDomainPlayInfoList(_ input: DescribeLiveDomainPlayInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveDomainPlayInfoListResponse> {
@@ -77,6 +78,7 @@ extension Live {
 
     /// 查询实时的域名维度下行播放数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询实时的域名维度下行播放数据，由于数据处理有耗时，接口默认查询4分钟前的准实时数据。
     @inlinable
     public func describeLiveDomainPlayInfoList(_ input: DescribeLiveDomainPlayInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDomainPlayInfoListResponse {
@@ -85,6 +87,7 @@ extension Live {
 
     /// 查询实时的域名维度下行播放数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询实时的域名维度下行播放数据，由于数据处理有耗时，接口默认查询4分钟前的准实时数据。
     @inlinable
     public func describeLiveDomainPlayInfoList(playDomains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveDomainPlayInfoListResponse> {
@@ -93,6 +96,7 @@ extension Live {
 
     /// 查询实时的域名维度下行播放数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询实时的域名维度下行播放数据，由于数据处理有耗时，接口默认查询4分钟前的准实时数据。
     @inlinable
     public func describeLiveDomainPlayInfoList(playDomains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDomainPlayInfoListResponse {

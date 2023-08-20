@@ -80,7 +80,7 @@ extension Lcic {
         /// 观看类型。互动观看 （默认）
         public let audienceType: UInt64?
 
-        /// 录制布局。录制模板枚举值参考：https://cloud.tencent.com/document/product/1639/89744
+        /// 录制模板。录制模板枚举值参考：https://cloud.tencent.com/document/product/1639/89744
         public let recordLayout: UInt64?
 
         /// 房间绑定的群组ID,非空时限制组成员进入

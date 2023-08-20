@@ -771,7 +771,7 @@ extension Tcss {
     }
 
     /// 受影响的节点类型结构体
-    public struct AffectedNodeItem: TCOutputModel {
+    public struct AffectedNodeItem: TCInputModel, TCOutputModel {
         /// 集群ID
         public let clusterId: String
 
@@ -800,7 +800,20 @@ extension Tcss {
         public let verifyInfo: String
 
         /// 节点名称
-        public let nodeName: String?
+        public let nodeName: String
+
+        public init(clusterId: String, clusterName: String, instanceId: String, privateIpAddresses: String, instanceRole: String, clusterVersion: String, containerRuntime: String, region: String, verifyInfo: String, nodeName: String) {
+            self.clusterId = clusterId
+            self.clusterName = clusterName
+            self.instanceId = instanceId
+            self.privateIpAddresses = privateIpAddresses
+            self.instanceRole = instanceRole
+            self.clusterVersion = clusterVersion
+            self.containerRuntime = containerRuntime
+            self.region = region
+            self.verifyInfo = verifyInfo
+            self.nodeName = nodeName
+        }
 
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
@@ -817,7 +830,7 @@ extension Tcss {
     }
 
     /// 集群安全检查受影响的工作负载Item
-    public struct AffectedWorkloadItem: TCOutputModel {
+    public struct AffectedWorkloadItem: TCInputModel, TCOutputModel {
         /// 集群Id
         public let clusterId: String
 
@@ -835,6 +848,15 @@ extension Tcss {
 
         /// 检测结果的验证信息
         public let verifyInfo: String
+
+        public init(clusterId: String, clusterName: String, workloadName: String, workloadType: String, region: String, verifyInfo: String) {
+            self.clusterId = clusterId
+            self.clusterName = clusterName
+            self.workloadName = workloadName
+            self.workloadType = workloadType
+            self.region = region
+            self.verifyInfo = verifyInfo
+        }
 
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
@@ -1391,6 +1413,26 @@ extension Tcss {
         /// 任务创建时间,检查时间
         public let taskCreateTime: String
 
+        /// 接入状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let accessedStatus: String?
+
+        /// 接入失败原因
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let accessedSubStatus: String?
+
+        /// 节点总数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nodeCount: UInt64?
+
+        /// 离线节点数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let offLineNodeCount: UInt64?
+
+        /// 未安装agent节点数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let unInstallAgentNodeCount: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case clusterName = "ClusterName"
@@ -1412,6 +1454,11 @@ extension Tcss {
             case checkFailReason = "CheckFailReason"
             case checkStatus = "CheckStatus"
             case taskCreateTime = "TaskCreateTime"
+            case accessedStatus = "AccessedStatus"
+            case accessedSubStatus = "AccessedSubStatus"
+            case nodeCount = "NodeCount"
+            case offLineNodeCount = "OffLineNodeCount"
+            case unInstallAgentNodeCount = "UnInstallAgentNodeCount"
         }
     }
 
@@ -3047,7 +3094,13 @@ extension Tcss {
         public let tags: [TagInfo]?
 
         /// 集群id
-        public let clusterID: String?
+        public let clusterID: String
+
+        /// 集群名称
+        public let clusterName: String
+
+        /// 集群接入状态
+        public let clusterAccessedStatus: String
 
         enum CodingKeys: String, CodingKey {
             case hostID = "HostID"
@@ -3068,6 +3121,8 @@ extension Tcss {
             case project = "Project"
             case tags = "Tags"
             case clusterID = "ClusterID"
+            case clusterName = "ClusterName"
+            case clusterAccessedStatus = "ClusterAccessedStatus"
         }
     }
 
@@ -5254,6 +5309,156 @@ extension Tcss {
             case processName = "ProcessName"
             case imageIds = "ImageIds"
             case id = "Id"
+        }
+    }
+
+    /// 恶意请求事件信息
+    public struct RiskDnsEventInfo: TCOutputModel {
+        /// 事件ID
+        public let eventID: UInt64
+
+        /// 事件类型，恶意域名请求：DOMAIN，恶意IP请求：IP
+        public let eventType: String
+
+        /// 恶意请求域名/IP
+        public let address: String
+
+        /// 容器ID
+        public let containerID: String
+
+        /// 容器名称
+        public let containerName: String
+
+        /// 隔离状态
+        /// 未隔离  	NORMAL
+        /// 已隔离		ISOLATED
+        /// 隔离中		ISOLATING
+        /// 隔离失败	ISOLATE_FAILED
+        /// 解除隔离中  RESTORING
+        /// 解除隔离失败 RESTORE_FAILED
+        public let containerNetStatus: String
+
+        /// 容器状态
+        /// 正在运行: RUNNING
+        /// 暂停: PAUSED
+        /// 停止: STOPPED
+        /// 已经创建: CREATED
+        /// 已经销毁: DESTROYED
+        /// 正在重启中: RESTARTING
+        /// 迁移中: REMOVING
+        public let containerStatus: String
+
+        /// 容器子状态
+        /// "AGENT_OFFLINE"       //Agent离线
+        /// "NODE_DESTROYED"      //节点已销毁
+        /// "CONTAINER_EXITED"    //容器已退出
+        /// "CONTAINER_DESTROYED" //容器已销毁
+        /// "SHARED_HOST"         // 容器与主机共享网络
+        /// "RESOURCE_LIMIT"      //隔离操作资源超限
+        /// "UNKNOW"              // 原因未知
+        public let containerNetSubStatus: String
+
+        /// 容器隔离操作来源
+        public let containerIsolateOperationSrc: String
+
+        /// 镜像ID
+        public let imageID: String
+
+        /// 镜像名称
+        public let imageName: String
+
+        /// 首次发现时间
+        public let foundTime: String
+
+        /// 最近生成时间
+        public let latestFoundTime: String
+
+        /// 事件状态
+        /// EVENT_UNDEAL： 待处理
+        /// EVENT_DEALED：已处理
+        /// EVENT_IGNORE： 已忽略
+        /// EVENT_ADD_WHITE：已加白
+        public let eventStatus: String
+
+        /// 恶意请求次数
+        public let eventCount: Int64
+
+        /// 事件描述
+        public let description: String
+
+        /// 解决方案
+        public let solution: String
+
+        /// 恶意IP所属城市
+        public let city: String
+
+        /// 主机名称
+        public let hostName: String
+
+        /// 主机ID
+        public let hostID: String
+
+        /// 内网IP
+        public let hostIP: String
+
+        /// 外网IP
+        public let publicIP: String
+
+        /// 节点类型：NORMAL普通节点、SUPER超级节点
+        public let nodeType: String?
+
+        /// 节点名称
+        public let nodeName: String?
+
+        /// pod ip
+        public let podIP: String?
+
+        /// pod 名称
+        public let podName: String?
+
+        /// 集群ID
+        public let clusterID: String?
+
+        /// 节点id
+        public let nodeID: String?
+
+        /// 节点唯一id
+        public let nodeUniqueID: String?
+
+        /// 集群名称
+        public let clusterName: String?
+
+        enum CodingKeys: String, CodingKey {
+            case eventID = "EventID"
+            case eventType = "EventType"
+            case address = "Address"
+            case containerID = "ContainerID"
+            case containerName = "ContainerName"
+            case containerNetStatus = "ContainerNetStatus"
+            case containerStatus = "ContainerStatus"
+            case containerNetSubStatus = "ContainerNetSubStatus"
+            case containerIsolateOperationSrc = "ContainerIsolateOperationSrc"
+            case imageID = "ImageID"
+            case imageName = "ImageName"
+            case foundTime = "FoundTime"
+            case latestFoundTime = "LatestFoundTime"
+            case eventStatus = "EventStatus"
+            case eventCount = "EventCount"
+            case description = "Description"
+            case solution = "Solution"
+            case city = "City"
+            case hostName = "HostName"
+            case hostID = "HostID"
+            case hostIP = "HostIP"
+            case publicIP = "PublicIP"
+            case nodeType = "NodeType"
+            case nodeName = "NodeName"
+            case podIP = "PodIP"
+            case podName = "PodName"
+            case clusterID = "ClusterID"
+            case nodeID = "NodeID"
+            case nodeUniqueID = "NodeUniqueID"
+            case clusterName = "ClusterName"
         }
     }
 

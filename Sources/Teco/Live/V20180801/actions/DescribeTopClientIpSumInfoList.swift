@@ -22,10 +22,16 @@ import TecoPaginationHelpers
 extension Live {
     /// DescribeTopClientIpSumInfoList请求参数结构体
     public struct DescribeTopClientIpSumInfoListRequest: TCPaginatedRequest {
-        /// 起始时间点，格式为yyyy-mm-dd HH:MM:SS。
+        /// 起始时间点，
+        /// 使用UTC格式时间，
+        /// 例如：2019-01-08T10:00:00Z。
+        /// 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         public let startTime: String
 
-        /// 结束时间点，格式为yyyy-mm-dd HH:MM:SS
+        /// 结束时间点，
+        /// 使用UTC格式时间，
+        /// 例如：2019-01-08T10:00:00Z。
+        /// 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         /// 时间跨度在[0,4小时]，支持最近1天数据查询。
         public let endTime: String
 
@@ -124,6 +130,7 @@ extension Live {
 
     /// 查询某段时间top n客户端ip汇总信息
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询某段时间top n客户端ip汇总信息（暂支持top 1000）
     @inlinable
     public func describeTopClientIpSumInfoList(_ input: DescribeTopClientIpSumInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopClientIpSumInfoListResponse> {
@@ -132,6 +139,7 @@ extension Live {
 
     /// 查询某段时间top n客户端ip汇总信息
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询某段时间top n客户端ip汇总信息（暂支持top 1000）
     @inlinable
     public func describeTopClientIpSumInfoList(_ input: DescribeTopClientIpSumInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopClientIpSumInfoListResponse {
@@ -140,6 +148,7 @@ extension Live {
 
     /// 查询某段时间top n客户端ip汇总信息
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询某段时间top n客户端ip汇总信息（暂支持top 1000）
     @inlinable
     public func describeTopClientIpSumInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, orderParam: String? = nil, mainlandOrOversea: String? = nil, outLanguage: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopClientIpSumInfoListResponse> {
@@ -148,6 +157,7 @@ extension Live {
 
     /// 查询某段时间top n客户端ip汇总信息
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询某段时间top n客户端ip汇总信息（暂支持top 1000）
     @inlinable
     public func describeTopClientIpSumInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, orderParam: String? = nil, mainlandOrOversea: String? = nil, outLanguage: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopClientIpSumInfoListResponse {
@@ -156,6 +166,7 @@ extension Live {
 
     /// 查询某段时间top n客户端ip汇总信息
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询某段时间top n客户端ip汇总信息（暂支持top 1000）
     @inlinable
     public func describeTopClientIpSumInfoListPaginated(_ input: DescribeTopClientIpSumInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ClientIpPlaySumInfo])> {
@@ -164,6 +175,7 @@ extension Live {
 
     /// 查询某段时间top n客户端ip汇总信息
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询某段时间top n客户端ip汇总信息（暂支持top 1000）
     @inlinable @discardableResult
     public func describeTopClientIpSumInfoListPaginated(_ input: DescribeTopClientIpSumInfoListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTopClientIpSumInfoListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
@@ -172,6 +184,7 @@ extension Live {
 
     /// 查询某段时间top n客户端ip汇总信息
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询某段时间top n客户端ip汇总信息（暂支持top 1000）
     ///
     /// - Returns: `AsyncSequence`s of ``ClientIpPlaySumInfo`` and ``DescribeTopClientIpSumInfoListResponse`` that can be iterated over asynchronously on demand.

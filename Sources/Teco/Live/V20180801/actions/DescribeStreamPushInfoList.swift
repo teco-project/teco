@@ -24,10 +24,17 @@ extension Live {
         /// 流名称。
         public let streamName: String
 
-        /// 起始时间点，北京时间，格式为yyyy-mm-dd HH:MM:SS。
+        /// 起始时间点，
+        /// 使用UTC格式时间，
+        /// 例如：2019-01-08T10:00:00Z。
+        /// 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         public let startTime: String
 
-        /// 结束时间点，北京时间，格式为yyyy-mm-dd HH:MM:SS，支持查询最近7天数据，建议查询时间跨度在3小时之内。
+        /// 结束时间点，
+        /// 使用UTC格式时间，
+        /// 例如：2019-01-08T10:00:00Z。
+        /// 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        /// 支持查询最近7天数据，建议查询时间跨度在3小时之内。
         public let endTime: String
 
         /// 推流域名。
@@ -69,6 +76,7 @@ extension Live {
 
     /// 查询某条流上行推流质量数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询流id的上行推流质量数据，包括音视频的帧率，码率，流逝时间，编码格式等。
     @inlinable
     public func describeStreamPushInfoList(_ input: DescribeStreamPushInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamPushInfoListResponse> {
@@ -77,6 +85,7 @@ extension Live {
 
     /// 查询某条流上行推流质量数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询流id的上行推流质量数据，包括音视频的帧率，码率，流逝时间，编码格式等。
     @inlinable
     public func describeStreamPushInfoList(_ input: DescribeStreamPushInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamPushInfoListResponse {
@@ -85,6 +94,7 @@ extension Live {
 
     /// 查询某条流上行推流质量数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询流id的上行推流质量数据，包括音视频的帧率，码率，流逝时间，编码格式等。
     @inlinable
     public func describeStreamPushInfoList(streamName: String, startTime: String, endTime: String, pushDomain: String? = nil, appName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamPushInfoListResponse> {
@@ -93,6 +103,7 @@ extension Live {
 
     /// 查询某条流上行推流质量数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询流id的上行推流质量数据，包括音视频的帧率，码率，流逝时间，编码格式等。
     @inlinable
     public func describeStreamPushInfoList(streamName: String, startTime: String, endTime: String, pushDomain: String? = nil, appName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamPushInfoListResponse {

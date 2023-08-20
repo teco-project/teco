@@ -125,7 +125,7 @@ extension Essbasic {
     /// 合同用量查询
     ///
     /// 此接口（DescribeUsage）用于获取第三方平台所有合作企业流量消耗情况。
-    ///  注: 此接口每日限频2次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
+    ///  注: 此接口每日限频50次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
     @inlinable
     public func describeUsage(_ input: DescribeUsageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsageResponse> {
         self.client.execute(action: "DescribeUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -134,7 +134,7 @@ extension Essbasic {
     /// 合同用量查询
     ///
     /// 此接口（DescribeUsage）用于获取第三方平台所有合作企业流量消耗情况。
-    ///  注: 此接口每日限频2次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
+    ///  注: 此接口每日限频50次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
     @inlinable
     public func describeUsage(_ input: DescribeUsageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsageResponse {
         try await self.client.execute(action: "DescribeUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -143,7 +143,7 @@ extension Essbasic {
     /// 合同用量查询
     ///
     /// 此接口（DescribeUsage）用于获取第三方平台所有合作企业流量消耗情况。
-    ///  注: 此接口每日限频2次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
+    ///  注: 此接口每日限频50次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
     @inlinable
     public func describeUsage(agent: Agent, startDate: Date, endDate: Date, needAggregate: Bool? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsageResponse> {
         self.describeUsage(.init(agent: agent, startDate: startDate, endDate: endDate, needAggregate: needAggregate, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
@@ -152,7 +152,7 @@ extension Essbasic {
     /// 合同用量查询
     ///
     /// 此接口（DescribeUsage）用于获取第三方平台所有合作企业流量消耗情况。
-    ///  注: 此接口每日限频2次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
+    ///  注: 此接口每日限频50次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
     @available(*, deprecated, renamed: "describeUsage(agent:startDate:endDate:needAggregate:limit:offset:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func describeUsage(agent: Agent, startDate: Date, endDate: Date, needAggregate: Bool? = nil, limit: UInt64? = nil, offset: UInt64? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsageResponse> {
@@ -162,7 +162,7 @@ extension Essbasic {
     /// 合同用量查询
     ///
     /// 此接口（DescribeUsage）用于获取第三方平台所有合作企业流量消耗情况。
-    ///  注: 此接口每日限频2次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
+    ///  注: 此接口每日限频50次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
     @inlinable
     public func describeUsage(agent: Agent, startDate: Date, endDate: Date, needAggregate: Bool? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsageResponse {
         try await self.describeUsage(.init(agent: agent, startDate: startDate, endDate: endDate, needAggregate: needAggregate, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
@@ -171,7 +171,7 @@ extension Essbasic {
     /// 合同用量查询
     ///
     /// 此接口（DescribeUsage）用于获取第三方平台所有合作企业流量消耗情况。
-    ///  注: 此接口每日限频2次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
+    ///  注: 此接口每日限频50次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
     @available(*, deprecated, renamed: "describeUsage(agent:startDate:endDate:needAggregate:limit:offset:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func describeUsage(agent: Agent, startDate: Date, endDate: Date, needAggregate: Bool? = nil, limit: UInt64? = nil, offset: UInt64? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsageResponse {
@@ -181,7 +181,7 @@ extension Essbasic {
     /// 合同用量查询
     ///
     /// 此接口（DescribeUsage）用于获取第三方平台所有合作企业流量消耗情况。
-    ///  注: 此接口每日限频2次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
+    ///  注: 此接口每日限频50次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
     @inlinable
     public func describeUsagePaginated(_ input: DescribeUsageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [UsageDetail])> {
         self.client.paginate(input: input, region: region, command: self.describeUsage, logger: logger, on: eventLoop)
@@ -190,7 +190,7 @@ extension Essbasic {
     /// 合同用量查询
     ///
     /// 此接口（DescribeUsage）用于获取第三方平台所有合作企业流量消耗情况。
-    ///  注: 此接口每日限频2次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
+    ///  注: 此接口每日限频50次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
     @inlinable @discardableResult
     public func describeUsagePaginated(_ input: DescribeUsageRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUsageResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeUsage, callback: onResponse, logger: logger, on: eventLoop)
@@ -199,7 +199,7 @@ extension Essbasic {
     /// 合同用量查询
     ///
     /// 此接口（DescribeUsage）用于获取第三方平台所有合作企业流量消耗情况。
-    ///  注: 此接口每日限频2次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
+    ///  注: 此接口每日限频50次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
     ///
     /// - Returns: `AsyncSequence`s of ``UsageDetail`` and ``DescribeUsageResponse`` that can be iterated over asynchronously on demand.
     @inlinable

@@ -358,13 +358,18 @@ extension Mps {
         /// 转自适应码流（仅 HLS）后，分片文件的输出路径，只能为相对路径。如果不填，则默认为相对路径：`{inputName}_adaptiveDynamicStreaming_{definition}_{subStreamNumber}_{segmentNumber}.{format}`。
         public let segmentObjectName: String?
 
-        public init(definition: UInt64, watermarkSet: [WatermarkInput]? = nil, outputStorage: TaskOutputStorage? = nil, outputObjectPath: String? = nil, subStreamObjectName: String? = nil, segmentObjectName: String? = nil) {
+        /// 要插入的字幕文件。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let addOnSubtitles: [AddOnSubtitle]?
+
+        public init(definition: UInt64, watermarkSet: [WatermarkInput]? = nil, outputStorage: TaskOutputStorage? = nil, outputObjectPath: String? = nil, subStreamObjectName: String? = nil, segmentObjectName: String? = nil, addOnSubtitles: [AddOnSubtitle]? = nil) {
             self.definition = definition
             self.watermarkSet = watermarkSet
             self.outputStorage = outputStorage
             self.outputObjectPath = outputObjectPath
             self.subStreamObjectName = subStreamObjectName
             self.segmentObjectName = segmentObjectName
+            self.addOnSubtitles = addOnSubtitles
         }
 
         enum CodingKeys: String, CodingKey {
@@ -374,6 +379,7 @@ extension Mps {
             case outputObjectPath = "OutputObjectPath"
             case subStreamObjectName = "SubStreamObjectName"
             case segmentObjectName = "SegmentObjectName"
+            case addOnSubtitles = "AddOnSubtitles"
         }
     }
 
@@ -461,6 +467,30 @@ extension Mps {
             case audio = "Audio"
             case removeAudio = "RemoveAudio"
             case removeVideo = "RemoveVideo"
+        }
+    }
+
+    /// 外挂字幕。
+    public struct AddOnSubtitle: TCInputModel, TCOutputModel {
+        /// 插入形式，可选值：
+        /// - subtitle-stream：插入字幕轨道
+        /// - close-caption：编码到SEI帧
+        ///
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let type: String?
+
+        /// 字幕文件。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subtitle: MediaInputInfo?
+
+        public init(type: String? = nil, subtitle: MediaInputInfo? = nil) {
+            self.type = type
+            self.subtitle = subtitle
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case subtitle = "Subtitle"
         }
     }
 
@@ -6998,7 +7028,11 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let stdExtInfo: String?
 
-        public init(container: String? = nil, removeVideo: UInt64? = nil, removeAudio: UInt64? = nil, videoTemplate: VideoTemplateInfoForUpdate? = nil, audioTemplate: AudioTemplateInfoForUpdate? = nil, tehdConfig: TEHDConfigForUpdate? = nil, subtitleTemplate: SubtitleTemplate? = nil, addonAudioStream: [MediaInputInfo]? = nil, stdExtInfo: String? = nil) {
+        /// 要插入的字幕文件。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let addOnSubtitles: [AddOnSubtitle]?
+
+        public init(container: String? = nil, removeVideo: UInt64? = nil, removeAudio: UInt64? = nil, videoTemplate: VideoTemplateInfoForUpdate? = nil, audioTemplate: AudioTemplateInfoForUpdate? = nil, tehdConfig: TEHDConfigForUpdate? = nil, subtitleTemplate: SubtitleTemplate? = nil, addonAudioStream: [MediaInputInfo]? = nil, stdExtInfo: String? = nil, addOnSubtitles: [AddOnSubtitle]? = nil) {
             self.container = container
             self.removeVideo = removeVideo
             self.removeAudio = removeAudio
@@ -7008,6 +7042,7 @@ extension Mps {
             self.subtitleTemplate = subtitleTemplate
             self.addonAudioStream = addonAudioStream
             self.stdExtInfo = stdExtInfo
+            self.addOnSubtitles = addOnSubtitles
         }
 
         enum CodingKeys: String, CodingKey {
@@ -7020,6 +7055,7 @@ extension Mps {
             case subtitleTemplate = "SubtitleTemplate"
             case addonAudioStream = "AddonAudioStream"
             case stdExtInfo = "StdExtInfo"
+            case addOnSubtitles = "AddOnSubtitles"
         }
     }
 
@@ -7967,20 +8003,24 @@ extension Mps {
     }
 
     /// AWS S3 输出位置
-    public struct S3OutputStorage: TCInputModel {
+    public struct S3OutputStorage: TCInputModel, TCOutputModel {
         /// S3 bucket。
-        public let s3Bucket: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let s3Bucket: String?
 
         /// S3 bucket 对应的区域。
-        public let s3Region: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let s3Region: String?
 
         /// AWS 内网上传 媒体资源的秘钥id。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let s3SecretId: String?
 
         /// AWS 内网上传 媒体资源的秘钥key。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let s3SecretKey: String?
 
-        public init(s3Bucket: String, s3Region: String, s3SecretId: String? = nil, s3SecretKey: String? = nil) {
+        public init(s3Bucket: String? = nil, s3Region: String? = nil, s3SecretId: String? = nil, s3SecretKey: String? = nil) {
             self.s3Bucket = s3Bucket
             self.s3Region = s3Region
             self.s3SecretId = s3SecretId
@@ -9799,7 +9839,7 @@ extension Mps {
         /// 注意：av1 编码容器目前只支持 mp4 。
         public let codec: String
 
-        /// 视频帧率，取值范围：[0, 100]，单位：Hz。
+        /// 视频帧率，取值范围：[0, 120]，单位：Hz。
         /// 当取值为 0，表示帧率和原始视频保持一致。
         /// 注意：自适应码率时取值范围是 [0, 60]
         public let fps: UInt64

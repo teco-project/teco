@@ -24,7 +24,7 @@ extension Cynosdb {
         /// 资源包唯一ID
         public let packageId: String
 
-        /// 实例ID
+        /// 集群ID
         public let clusterIds: [String]?
 
         /// 开始时间
@@ -39,13 +39,17 @@ extension Cynosdb {
         /// 限制
         public let limit: String?
 
-        public init(packageId: String, clusterIds: [String]? = nil, startTime: String? = nil, endTime: String? = nil, offset: String? = nil, limit: String? = nil) {
+        /// 实例D
+        public let instanceIds: [String]?
+
+        public init(packageId: String, clusterIds: [String]? = nil, startTime: String? = nil, endTime: String? = nil, offset: String? = nil, limit: String? = nil, instanceIds: [String]? = nil) {
             self.packageId = packageId
             self.clusterIds = clusterIds
             self.startTime = startTime
             self.endTime = endTime
             self.offset = offset
             self.limit = limit
+            self.instanceIds = instanceIds
         }
 
         enum CodingKeys: String, CodingKey {
@@ -55,12 +59,13 @@ extension Cynosdb {
             case endTime = "EndTime"
             case offset = "Offset"
             case limit = "Limit"
+            case instanceIds = "InstanceIds"
         }
     }
 
     /// DescribeResourcePackageDetail返回参数结构体
     public struct DescribeResourcePackageDetailResponse: TCResponse {
-        /// 总使用明细数
+        /// 资源包抵扣总数
         public let total: Int64
 
         /// 资源包明细说明
@@ -90,13 +95,13 @@ extension Cynosdb {
 
     /// 查询资源包使用详情
     @inlinable
-    public func describeResourcePackageDetail(packageId: String, clusterIds: [String]? = nil, startTime: String? = nil, endTime: String? = nil, offset: String? = nil, limit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourcePackageDetailResponse> {
-        self.describeResourcePackageDetail(.init(packageId: packageId, clusterIds: clusterIds, startTime: startTime, endTime: endTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+    public func describeResourcePackageDetail(packageId: String, clusterIds: [String]? = nil, startTime: String? = nil, endTime: String? = nil, offset: String? = nil, limit: String? = nil, instanceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourcePackageDetailResponse> {
+        self.describeResourcePackageDetail(.init(packageId: packageId, clusterIds: clusterIds, startTime: startTime, endTime: endTime, offset: offset, limit: limit, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询资源包使用详情
     @inlinable
-    public func describeResourcePackageDetail(packageId: String, clusterIds: [String]? = nil, startTime: String? = nil, endTime: String? = nil, offset: String? = nil, limit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcePackageDetailResponse {
-        try await self.describeResourcePackageDetail(.init(packageId: packageId, clusterIds: clusterIds, startTime: startTime, endTime: endTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+    public func describeResourcePackageDetail(packageId: String, clusterIds: [String]? = nil, startTime: String? = nil, endTime: String? = nil, offset: String? = nil, limit: String? = nil, instanceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcePackageDetailResponse {
+        try await self.describeResourcePackageDetail(.init(packageId: packageId, clusterIds: clusterIds, startTime: startTime, endTime: endTime, offset: offset, limit: limit, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -46,7 +46,7 @@ extension Cdb {
         /// "execTime" - 执行时间。
         public let orderBy: String?
 
-        /// 过滤条件。可按设置的过滤条件过滤日志。
+        /// 过滤条件。多个值之前是且的关系。
         public let logFilter: [InstanceAuditLogFilters]?
 
         public init(instanceId: String, startTime: String, endTime: String, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, orderBy: String? = nil, logFilter: [InstanceAuditLogFilters]? = nil) {

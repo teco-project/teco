@@ -34,6 +34,7 @@ public struct TCGmeError: TCGmeErrorType {
         case internalError = "InternalError"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue_InvalidBizId = "InvalidParameterValue.InvalidBizId"
+        case invalidParameterValue_InvalidDeleteType = "InvalidParameterValue.InvalidDeleteType"
         case invalidParameterValue_InvalidRecordMode = "InvalidParameterValue.InvalidRecordMode"
         case invalidParameterValue_InvalidRoomId = "InvalidParameterValue.InvalidRoomId"
         case invalidParameterValue_InvalidSubscribeRecordUserIds = "InvalidParameterValue.InvalidSubscribeRecordUserIds"
@@ -140,6 +141,11 @@ public struct TCGmeError: TCGmeErrorType {
     /// BizId 参数错误
     public static var invalidParameterValue_InvalidBizId: TCGmeError {
         TCGmeError(.invalidParameterValue_InvalidBizId)
+    }
+
+    /// 输入删除类型应为1或2。
+    public static var invalidParameterValue_InvalidDeleteType: TCGmeError {
+        TCGmeError(.invalidParameterValue_InvalidDeleteType)
     }
 
     /// RecordMode参数错误

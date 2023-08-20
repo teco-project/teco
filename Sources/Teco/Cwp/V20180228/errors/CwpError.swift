@@ -64,6 +64,7 @@ public struct TCCwpError: TCCwpErrorType {
         case resourceNotFound_MachineNotFound = "ResourceNotFound.MachineNotFound"
         case resourceUnavailable = "ResourceUnavailable"
         case unknownParameter = "UnknownParameter"
+        case unsupportedOperation = "UnsupportedOperation"
     }
 
     /// Error domains affliated to ``TCCwpError``.
@@ -288,6 +289,11 @@ public struct TCCwpError: TCCwpErrorType {
     /// 未知参数错误。
     public static var unknownParameter: TCCwpError {
         TCCwpError(.unknownParameter)
+    }
+
+    /// 操作不支持。
+    public static var unsupportedOperation: TCCwpError {
+        TCCwpError(.unsupportedOperation)
     }
 
     public func asCwpError() -> TCCwpError {

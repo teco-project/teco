@@ -24,7 +24,7 @@ extension Ess {
         /// 操作人信息，userId必填
         public let `operator`: UserInfo
 
-        /// 待移除员工的信息，userId和openId二选一，必填一个
+        /// 待移除员工的信息，userId和openId二选一，必填一个，如果需要指定交接人的话，ReceiveUserId或者ReceiveOpenId字段二选一
         public let employees: [Staff]
 
         /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId需填充子企业Id
@@ -60,6 +60,9 @@ extension Ess {
     /// 移除企业员工
     ///
     /// 移除员工
+    /// 这里分两个场景
+    /// 如果不传交接人的ReceiveUserId或者ReceiveOpenId，则会直接把这个人进行离职
+    /// 如果传了交接人，会把离职人未处理完的合同交接给交接人后再离职
     @inlinable
     public func deleteIntegrationEmployees(_ input: DeleteIntegrationEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIntegrationEmployeesResponse> {
         self.client.execute(action: "DeleteIntegrationEmployees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -68,6 +71,9 @@ extension Ess {
     /// 移除企业员工
     ///
     /// 移除员工
+    /// 这里分两个场景
+    /// 如果不传交接人的ReceiveUserId或者ReceiveOpenId，则会直接把这个人进行离职
+    /// 如果传了交接人，会把离职人未处理完的合同交接给交接人后再离职
     @inlinable
     public func deleteIntegrationEmployees(_ input: DeleteIntegrationEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIntegrationEmployeesResponse {
         try await self.client.execute(action: "DeleteIntegrationEmployees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -76,6 +82,9 @@ extension Ess {
     /// 移除企业员工
     ///
     /// 移除员工
+    /// 这里分两个场景
+    /// 如果不传交接人的ReceiveUserId或者ReceiveOpenId，则会直接把这个人进行离职
+    /// 如果传了交接人，会把离职人未处理完的合同交接给交接人后再离职
     @inlinable
     public func deleteIntegrationEmployees(operator: UserInfo, employees: [Staff], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIntegrationEmployeesResponse> {
         self.deleteIntegrationEmployees(.init(operator: `operator`, employees: employees, agent: agent), region: region, logger: logger, on: eventLoop)
@@ -84,6 +93,9 @@ extension Ess {
     /// 移除企业员工
     ///
     /// 移除员工
+    /// 这里分两个场景
+    /// 如果不传交接人的ReceiveUserId或者ReceiveOpenId，则会直接把这个人进行离职
+    /// 如果传了交接人，会把离职人未处理完的合同交接给交接人后再离职
     @inlinable
     public func deleteIntegrationEmployees(operator: UserInfo, employees: [Staff], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIntegrationEmployeesResponse {
         try await self.deleteIntegrationEmployees(.init(operator: `operator`, employees: employees, agent: agent), region: region, logger: logger, on: eventLoop)

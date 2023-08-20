@@ -25,23 +25,10 @@ extension Iss {
         }
     }
 
-    /// 用户下所有实时上云计划中的通道id列表返回数据
+    /// ListRecordPlanChannels返回参数结构体
     public struct ListRecordPlanChannelsResponse: TCResponse {
-        private let data: Wrapped
-
-        private struct Wrapped: Codable {
-            public let list: [String]?
-
-            enum CodingKeys: String, CodingKey {
-                case list = "List"
-            }
-        }
-
-        /// 用户所有计划下通道id，存在通道是为数组格式，不存在时，字段数据为空
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var list: [String]? {
-            self.data.list
-        }
+        /// 返回结果
+        public let data: ListRecordPlanChannelsData
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -55,7 +42,7 @@ extension Iss {
     /// 查询用户下所有实时上云计划中的通道列表
     ///
     /// 用于查询用户下所有实时上云计划中的通道列表
-    @inlinable @discardableResult
+    @inlinable
     public func listRecordPlanChannels(_ input: ListRecordPlanChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListRecordPlanChannelsResponse> {
         self.client.execute(action: "ListRecordPlanChannels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -63,7 +50,7 @@ extension Iss {
     /// 查询用户下所有实时上云计划中的通道列表
     ///
     /// 用于查询用户下所有实时上云计划中的通道列表
-    @inlinable @discardableResult
+    @inlinable
     public func listRecordPlanChannels(_ input: ListRecordPlanChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListRecordPlanChannelsResponse {
         try await self.client.execute(action: "ListRecordPlanChannels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -71,7 +58,7 @@ extension Iss {
     /// 查询用户下所有实时上云计划中的通道列表
     ///
     /// 用于查询用户下所有实时上云计划中的通道列表
-    @inlinable @discardableResult
+    @inlinable
     public func listRecordPlanChannels(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListRecordPlanChannelsResponse> {
         self.listRecordPlanChannels(.init(), region: region, logger: logger, on: eventLoop)
     }
@@ -79,7 +66,7 @@ extension Iss {
     /// 查询用户下所有实时上云计划中的通道列表
     ///
     /// 用于查询用户下所有实时上云计划中的通道列表
-    @inlinable @discardableResult
+    @inlinable
     public func listRecordPlanChannels(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListRecordPlanChannelsResponse {
         try await self.listRecordPlanChannels(.init(), region: region, logger: logger, on: eventLoop)
     }

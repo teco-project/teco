@@ -22,7 +22,7 @@ import TecoPaginationHelpers
 extension Ssl {
     /// DescribeHostDeployRecordDetail请求参数结构体
     public struct DescribeHostDeployRecordDetailRequest: TCPaginatedRequest {
-        /// 待部署的证书ID
+        /// 部署记录ID
         public let deployRecordId: String
 
         /// 分页偏移量，从0开始。

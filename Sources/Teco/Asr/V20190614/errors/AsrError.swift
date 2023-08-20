@@ -188,6 +188,8 @@ public struct TCAsrError: TCAsrErrorType {
     }
 
     /// 账号本月免费额度已用完。
+    ///
+    /// None
     public static var failedOperation_UserHasNoFreeAmount: TCAsrError {
         TCAsrError(.failedOperation_UserHasNoFreeAmount)
     }

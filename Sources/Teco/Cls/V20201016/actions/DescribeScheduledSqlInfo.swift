@@ -85,57 +85,57 @@ extension Cls {
         }
     }
 
-    /// 获取ScheduledSql任务列表
+    /// 获取定时SQL分析任务列表
     ///
-    /// 本接口用于获取ScheduledSql任务列表
+    /// 本接口用于获取定时SQL分析任务列表
     @inlinable
     public func describeScheduledSqlInfo(_ input: DescribeScheduledSqlInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScheduledSqlInfoResponse> {
         self.client.execute(action: "DescribeScheduledSqlInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取ScheduledSql任务列表
+    /// 获取定时SQL分析任务列表
     ///
-    /// 本接口用于获取ScheduledSql任务列表
+    /// 本接口用于获取定时SQL分析任务列表
     @inlinable
     public func describeScheduledSqlInfo(_ input: DescribeScheduledSqlInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScheduledSqlInfoResponse {
         try await self.client.execute(action: "DescribeScheduledSqlInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取ScheduledSql任务列表
+    /// 获取定时SQL分析任务列表
     ///
-    /// 本接口用于获取ScheduledSql任务列表
+    /// 本接口用于获取定时SQL分析任务列表
     @inlinable
     public func describeScheduledSqlInfo(offset: UInt64? = nil, limit: UInt64? = nil, name: String? = nil, taskId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScheduledSqlInfoResponse> {
         self.describeScheduledSqlInfo(.init(offset: offset, limit: limit, name: name, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取ScheduledSql任务列表
+    /// 获取定时SQL分析任务列表
     ///
-    /// 本接口用于获取ScheduledSql任务列表
+    /// 本接口用于获取定时SQL分析任务列表
     @inlinable
     public func describeScheduledSqlInfo(offset: UInt64? = nil, limit: UInt64? = nil, name: String? = nil, taskId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScheduledSqlInfoResponse {
         try await self.describeScheduledSqlInfo(.init(offset: offset, limit: limit, name: name, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取ScheduledSql任务列表
+    /// 获取定时SQL分析任务列表
     ///
-    /// 本接口用于获取ScheduledSql任务列表
+    /// 本接口用于获取定时SQL分析任务列表
     @inlinable
     public func describeScheduledSqlInfoPaginated(_ input: DescribeScheduledSqlInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ScheduledSqlTaskInfo])> {
         self.client.paginate(input: input, region: region, command: self.describeScheduledSqlInfo, logger: logger, on: eventLoop)
     }
 
-    /// 获取ScheduledSql任务列表
+    /// 获取定时SQL分析任务列表
     ///
-    /// 本接口用于获取ScheduledSql任务列表
+    /// 本接口用于获取定时SQL分析任务列表
     @inlinable @discardableResult
     public func describeScheduledSqlInfoPaginated(_ input: DescribeScheduledSqlInfoRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeScheduledSqlInfoResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeScheduledSqlInfo, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 获取ScheduledSql任务列表
+    /// 获取定时SQL分析任务列表
     ///
-    /// 本接口用于获取ScheduledSql任务列表
+    /// 本接口用于获取定时SQL分析任务列表
     ///
     /// - Returns: `AsyncSequence`s of ``ScheduledSqlTaskInfo`` and ``DescribeScheduledSqlInfoResponse`` that can be iterated over asynchronously on demand.
     @inlinable

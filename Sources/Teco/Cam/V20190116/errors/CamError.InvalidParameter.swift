@@ -37,6 +37,7 @@ extension TCCamError {
             case groupNotExist = "InvalidParameter.GroupNotExist"
             case groupUserFull = "InvalidParameter.GroupUserFull"
             case identityNameInUse = "InvalidParameter.IdentityNameInUse"
+            case interfaceNotExist = "InvalidParameter.InterfaceNotExist"
             case keywordError = "InvalidParameter.KeywordError"
             case mfaTokenError = "InvalidParameter.MFATokenError"
             case notSupportProduct = "InvalidParameter.NotSupportProduct"
@@ -55,6 +56,7 @@ extension TCCamError {
             case principalQcsError = "InvalidParameter.PrincipalQcsError"
             case principalQcsNotExist = "InvalidParameter.PrincipalQcsNotExist"
             case principalServiceNotExist = "InvalidParameter.PrincipalServiceNotExist"
+            case receiverOverLimit = "InvalidParameter.ReceiverOverLimit"
             case resourceContentError = "InvalidParameter.ResourceContentError"
             case resourceError = "InvalidParameter.ResourceError"
             case resourceProjectError = "InvalidParameter.ResourceProjectError"
@@ -79,6 +81,7 @@ extension TCCamError {
             case uinError = "InvalidParameter.UinError"
             case userGroupFull = "InvalidParameter.UserGroupFull"
             case userNameIllegal = "InvalidParameter.UserNameIllegal"
+            case userNotAuth = "InvalidParameter.UserNotAuth"
             case userNotExist = "InvalidParameter.UserNotExist"
             case userUinAndUinNotAllNull = "InvalidParameter.UserUinAndUinNotAllNull"
             case versionError = "InvalidParameter.VersionError"
@@ -197,6 +200,11 @@ extension TCCamError {
             InvalidParameter(.identityNameInUse)
         }
 
+        /// 接口不存在。
+        public static var interfaceNotExist: InvalidParameter {
+            InvalidParameter(.interfaceNotExist)
+        }
+
         /// Keyword字段不合法。
         public static var keywordError: InvalidParameter {
             InvalidParameter(.keywordError)
@@ -285,6 +293,10 @@ extension TCCamError {
         /// PrincipalService不存在。
         public static var principalServiceNotExist: InvalidParameter {
             InvalidParameter(.principalServiceNotExist)
+        }
+
+        public static var receiverOverLimit: InvalidParameter {
+            InvalidParameter(.receiverOverLimit)
         }
 
         /// 策略语法中资源内容不正确。
@@ -407,6 +419,11 @@ extension TCCamError {
             InvalidParameter(.userNameIllegal)
         }
 
+        /// 用户未实名。
+        public static var userNotAuth: InvalidParameter {
+            InvalidParameter(.userNotAuth)
+        }
+
         /// 用户对象不存在。
         public static var userNotExist: InvalidParameter {
             InvalidParameter(.userNotExist)
@@ -466,6 +483,8 @@ extension TCCamError {
                 code = .invalidParameter_GroupUserFull
             case .identityNameInUse:
                 code = .invalidParameter_IdentityNameInUse
+            case .interfaceNotExist:
+                code = .invalidParameter_InterfaceNotExist
             case .keywordError:
                 code = .invalidParameter_KeywordError
             case .mfaTokenError:
@@ -502,6 +521,8 @@ extension TCCamError {
                 code = .invalidParameter_PrincipalQcsNotExist
             case .principalServiceNotExist:
                 code = .invalidParameter_PrincipalServiceNotExist
+            case .receiverOverLimit:
+                code = .invalidParameter_ReceiverOverLimit
             case .resourceContentError:
                 code = .invalidParameter_ResourceContentError
             case .resourceError:
@@ -550,6 +571,8 @@ extension TCCamError {
                 code = .invalidParameter_UserGroupFull
             case .userNameIllegal:
                 code = .invalidParameter_UserNameIllegal
+            case .userNotAuth:
+                code = .invalidParameter_UserNotAuth
             case .userNotExist:
                 code = .invalidParameter_UserNotExist
             case .userUinAndUinNotAllNull:

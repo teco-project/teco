@@ -1563,6 +1563,55 @@ extension Emr {
         }
     }
 
+    /// 强制修改标签
+    public struct ModifyResourceTags: TCInputModel {
+        /// 集群id 或者 cvm id
+        public let resourceId: String
+
+        /// 资源6段式表达式
+        public let resource: String
+
+        /// 资源前缀
+        public let resourcePrefix: String
+
+        /// ap-beijing
+        public let resourceRegion: String
+
+        /// emr
+        public let serviceType: String
+
+        /// 删除的标签列表
+        public let deleteTags: [Tag]?
+
+        /// 添加的标签列表
+        public let addTags: [Tag]?
+
+        /// 修改的标签列表
+        public let modifyTags: [Tag]?
+
+        public init(resourceId: String, resource: String, resourcePrefix: String, resourceRegion: String, serviceType: String, deleteTags: [Tag]? = nil, addTags: [Tag]? = nil, modifyTags: [Tag]? = nil) {
+            self.resourceId = resourceId
+            self.resource = resource
+            self.resourcePrefix = resourcePrefix
+            self.resourceRegion = resourceRegion
+            self.serviceType = serviceType
+            self.deleteTags = deleteTags
+            self.addTags = addTags
+            self.modifyTags = modifyTags
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case resourceId = "ResourceId"
+            case resource = "Resource"
+            case resourcePrefix = "ResourcePrefix"
+            case resourceRegion = "ResourceRegion"
+            case serviceType = "ServiceType"
+            case deleteTags = "DeleteTags"
+            case addTags = "AddTags"
+            case modifyTags = "ModifyTags"
+        }
+    }
+
     /// 多云盘参数
     public struct MultiDisk: TCInputModel, TCOutputModel {
         /// 云盘类型

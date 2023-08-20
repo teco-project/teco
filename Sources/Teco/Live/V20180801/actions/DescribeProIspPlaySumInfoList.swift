@@ -22,12 +22,16 @@ import TecoPaginationHelpers
 extension Live {
     /// DescribeProIspPlaySumInfoList请求参数结构体
     public struct DescribeProIspPlaySumInfoListRequest: TCPaginatedRequest {
-        /// 起始时间，北京时间，
-        /// 格式：yyyy-mm-dd HH:MM:SS。
+        /// 起始时间，
+        /// 使用UTC格式时间，
+        /// 例如：2019-01-08T10:00:00Z。
+        /// 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         public let startTime: String
 
-        /// 结束时间，北京时间，
-        /// 格式：yyyy-mm-dd HH:MM:SS。
+        /// 结束时间，
+        /// 使用UTC格式时间，
+        /// 例如：2019-01-08T10:00:00Z。
+        /// 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         /// 注：EndTime 和 StartTime 只支持最近1天的数据查询。
         public let endTime: String
 
@@ -138,6 +142,7 @@ extension Live {
 
     /// 查询分省份分运营商播放汇总数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询某段时间内每个国家地区每个省份每个运营商的平均每秒流量，总流量，总请求数信息。
     @inlinable
     public func describeProIspPlaySumInfoList(_ input: DescribeProIspPlaySumInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProIspPlaySumInfoListResponse> {
@@ -146,6 +151,7 @@ extension Live {
 
     /// 查询分省份分运营商播放汇总数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询某段时间内每个国家地区每个省份每个运营商的平均每秒流量，总流量，总请求数信息。
     @inlinable
     public func describeProIspPlaySumInfoList(_ input: DescribeProIspPlaySumInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProIspPlaySumInfoListResponse {
@@ -154,6 +160,7 @@ extension Live {
 
     /// 查询分省份分运营商播放汇总数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询某段时间内每个国家地区每个省份每个运营商的平均每秒流量，总流量，总请求数信息。
     @inlinable
     public func describeProIspPlaySumInfoList(startTime: String, endTime: String, statType: String, playDomains: [String]? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, mainlandOrOversea: String? = nil, outLanguage: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProIspPlaySumInfoListResponse> {
@@ -162,6 +169,7 @@ extension Live {
 
     /// 查询分省份分运营商播放汇总数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询某段时间内每个国家地区每个省份每个运营商的平均每秒流量，总流量，总请求数信息。
     @inlinable
     public func describeProIspPlaySumInfoList(startTime: String, endTime: String, statType: String, playDomains: [String]? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, mainlandOrOversea: String? = nil, outLanguage: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProIspPlaySumInfoListResponse {
@@ -170,6 +178,7 @@ extension Live {
 
     /// 查询分省份分运营商播放汇总数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询某段时间内每个国家地区每个省份每个运营商的平均每秒流量，总流量，总请求数信息。
     @inlinable
     public func describeProIspPlaySumInfoListPaginated(_ input: DescribeProIspPlaySumInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ProIspPlaySumInfo])> {
@@ -178,6 +187,7 @@ extension Live {
 
     /// 查询分省份分运营商播放汇总数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询某段时间内每个国家地区每个省份每个运营商的平均每秒流量，总流量，总请求数信息。
     @inlinable @discardableResult
     public func describeProIspPlaySumInfoListPaginated(_ input: DescribeProIspPlaySumInfoListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeProIspPlaySumInfoListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
@@ -186,6 +196,7 @@ extension Live {
 
     /// 查询分省份分运营商播放汇总数据
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询某段时间内每个国家地区每个省份每个运营商的平均每秒流量，总流量，总请求数信息。
     ///
     /// - Returns: `AsyncSequence`s of ``ProIspPlaySumInfo`` and ``DescribeProIspPlaySumInfoListResponse`` that can be iterated over asynchronously on demand.

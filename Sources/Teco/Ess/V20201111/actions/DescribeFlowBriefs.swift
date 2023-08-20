@@ -61,7 +61,7 @@ extension Ess {
     ///
     /// 查询流程基础信息
     /// 适用场景：可用于主动查询某个合同流程的签署状态信息。可以配合回调通知使用。
-    /// 每个企业限制日调用量限制：10W，当日超过此限制后再调用接口返回错误
+    /// 每个企业限制日调用量限制：100W，当日超过此限制后再调用接口返回错误
     @inlinable
     public func describeFlowBriefs(_ input: DescribeFlowBriefsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowBriefsResponse> {
         self.client.execute(action: "DescribeFlowBriefs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -71,7 +71,7 @@ extension Ess {
     ///
     /// 查询流程基础信息
     /// 适用场景：可用于主动查询某个合同流程的签署状态信息。可以配合回调通知使用。
-    /// 每个企业限制日调用量限制：10W，当日超过此限制后再调用接口返回错误
+    /// 每个企业限制日调用量限制：100W，当日超过此限制后再调用接口返回错误
     @inlinable
     public func describeFlowBriefs(_ input: DescribeFlowBriefsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowBriefsResponse {
         try await self.client.execute(action: "DescribeFlowBriefs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -81,7 +81,7 @@ extension Ess {
     ///
     /// 查询流程基础信息
     /// 适用场景：可用于主动查询某个合同流程的签署状态信息。可以配合回调通知使用。
-    /// 每个企业限制日调用量限制：10W，当日超过此限制后再调用接口返回错误
+    /// 每个企业限制日调用量限制：100W，当日超过此限制后再调用接口返回错误
     @inlinable
     public func describeFlowBriefs(operator: UserInfo, flowIds: [String], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowBriefsResponse> {
         self.describeFlowBriefs(.init(operator: `operator`, flowIds: flowIds, agent: agent), region: region, logger: logger, on: eventLoop)
@@ -91,7 +91,7 @@ extension Ess {
     ///
     /// 查询流程基础信息
     /// 适用场景：可用于主动查询某个合同流程的签署状态信息。可以配合回调通知使用。
-    /// 每个企业限制日调用量限制：10W，当日超过此限制后再调用接口返回错误
+    /// 每个企业限制日调用量限制：100W，当日超过此限制后再调用接口返回错误
     @inlinable
     public func describeFlowBriefs(operator: UserInfo, flowIds: [String], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowBriefsResponse {
         try await self.describeFlowBriefs(.init(operator: `operator`, flowIds: flowIds, agent: agent), region: region, logger: logger, on: eventLoop)

@@ -21,7 +21,7 @@ import TecoCore
 extension Bi {
     /// CreateEmbedToken请求参数结构体
     public struct CreateEmbedTokenRequest: TCRequest {
-        /// 分享项目id，必选
+        /// 分享项目id
         public let projectId: UInt64?
 
         /// 分享页面id，嵌出看板时此为空值0

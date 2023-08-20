@@ -62,32 +62,10 @@ extension Iss {
         }
     }
 
-    /// 查询网关列表返回结果
+    /// ListGateways返回参数结构体
     public struct ListGatewaysResponse: TCPaginatedResponse {
-        private let data: Wrapped
-
-        private struct Wrapped: Codable {
-            public let list: [GatewaysData]?
-
-            public let totalCount: Int64?
-
-            enum CodingKeys: String, CodingKey {
-                case list = "List"
-                case totalCount = "TotalCount"
-            }
-        }
-
-        /// 网关列表
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var list: [GatewaysData]? {
-            self.data.list
-        }
-
-        /// 网关数量
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var totalCount: Int64? {
-            self.data.totalCount
-        }
+        /// 返回数据
+        public let data: ListGatewaysData
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -99,12 +77,12 @@ extension Iss {
 
         /// Extract the returned ``GatewaysData`` list from the paginated response.
         public func getItems() -> [GatewaysData] {
-            self.list ?? []
+            self.data.list ?? []
         }
 
         /// Extract the total count from the paginated response.
         public func getTotalCount() -> Int64? {
-            self.totalCount
+            self.data.totalCount
         }
     }
 

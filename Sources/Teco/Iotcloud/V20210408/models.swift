@@ -111,7 +111,11 @@ extension Iotcloud {
         public let time: String
 
         /// 腾讯云账号
+        @available(*, deprecated)
         public let userid: String
+
+        /// 腾讯云账号
+        public let userId: String
 
         enum CodingKeys: String, CodingKey {
             case content = "Content"
@@ -122,6 +126,7 @@ extension Iotcloud {
             case scene = "Scene"
             case time = "Time"
             case userid = "Userid"
+            case userId = "UserId"
         }
     }
 
@@ -207,6 +212,7 @@ extension Iotcloud {
         public let isp: UInt64
 
         /// NB IOT运营商处的DeviceID
+        @available(*, deprecated)
         public let nbiotDeviceID: String
 
         /// IP地址
@@ -261,6 +267,9 @@ extension Iotcloud {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createUserId: UInt64?
 
+        /// NB IOT运营商处的DeviceID
+        public let nbIoTDeviceID: String
+
         enum CodingKeys: String, CodingKey {
             case deviceName = "DeviceName"
             case online = "Online"
@@ -287,6 +296,7 @@ extension Iotcloud {
             case clientIP = "ClientIP"
             case firmwareUpdateTime = "FirmwareUpdateTime"
             case createUserId = "CreateUserId"
+            case nbIoTDeviceID = "NBIoTDeviceID"
         }
     }
 
@@ -608,7 +618,8 @@ extension Iotcloud {
         public let platform: String?
 
         /// LoRa产品运营侧APPEUI，只有LoRa产品需要填写
-        public let appeui: String?
+        @available(*, deprecated)
+        public let appeui: String? = nil
 
         /// 产品绑定的物模型ID，-1表示不绑定
         public let modelId: String?
@@ -643,14 +654,16 @@ extension Iotcloud {
         /// 产品禁用状态
         public let forbiddenStatus: UInt64?
 
-        public init(productDescription: String? = nil, encryptionType: String? = nil, region: String? = nil, productType: UInt64? = nil, format: String? = nil, platform: String? = nil, appeui: String? = nil, modelId: String? = nil, modelName: String? = nil, productKey: String? = nil, registerType: UInt64? = nil, productSecret: String? = nil, registerLimit: UInt64? = nil, originProductId: String? = nil, privateCAName: String? = nil, originUserId: UInt64? = nil, deviceLimit: UInt64? = nil, forbiddenStatus: UInt64? = nil) {
+        /// LoRa产品运营侧APPEUI，只有LoRa产品需要填写
+        public let appEUI: String?
+
+        public init(productDescription: String? = nil, encryptionType: String? = nil, region: String? = nil, productType: UInt64? = nil, format: String? = nil, platform: String? = nil, modelId: String? = nil, modelName: String? = nil, productKey: String? = nil, registerType: UInt64? = nil, productSecret: String? = nil, registerLimit: UInt64? = nil, originProductId: String? = nil, privateCAName: String? = nil, originUserId: UInt64? = nil, deviceLimit: UInt64? = nil, forbiddenStatus: UInt64? = nil, appEUI: String? = nil) {
             self.productDescription = productDescription
             self.encryptionType = encryptionType
             self.region = region
             self.productType = productType
             self.format = format
             self.platform = platform
-            self.appeui = appeui
             self.modelId = modelId
             self.modelName = modelName
             self.productKey = productKey
@@ -662,6 +675,29 @@ extension Iotcloud {
             self.originUserId = originUserId
             self.deviceLimit = deviceLimit
             self.forbiddenStatus = forbiddenStatus
+            self.appEUI = appEUI
+        }
+
+        @available(*, deprecated, renamed: "init(productDescription:encryptionType:region:productType:format:platform:modelId:modelName:productKey:registerType:productSecret:registerLimit:originProductId:privateCAName:originUserId:deviceLimit:forbiddenStatus:appEUI:)", message: "'appeui' is deprecated in 'ProductProperties'. Setting this parameter has no effect.")
+        public init(productDescription: String? = nil, encryptionType: String? = nil, region: String? = nil, productType: UInt64? = nil, format: String? = nil, platform: String? = nil, appeui: String? = nil, modelId: String? = nil, modelName: String? = nil, productKey: String? = nil, registerType: UInt64? = nil, productSecret: String? = nil, registerLimit: UInt64? = nil, originProductId: String? = nil, privateCAName: String? = nil, originUserId: UInt64? = nil, deviceLimit: UInt64? = nil, forbiddenStatus: UInt64? = nil, appEUI: String? = nil) {
+            self.productDescription = productDescription
+            self.encryptionType = encryptionType
+            self.region = region
+            self.productType = productType
+            self.format = format
+            self.platform = platform
+            self.modelId = modelId
+            self.modelName = modelName
+            self.productKey = productKey
+            self.registerType = registerType
+            self.productSecret = productSecret
+            self.registerLimit = registerLimit
+            self.originProductId = originProductId
+            self.privateCAName = privateCAName
+            self.originUserId = originUserId
+            self.deviceLimit = deviceLimit
+            self.forbiddenStatus = forbiddenStatus
+            self.appEUI = appEUI
         }
 
         enum CodingKeys: String, CodingKey {
@@ -683,6 +719,7 @@ extension Iotcloud {
             case originUserId = "OriginUserId"
             case deviceLimit = "DeviceLimit"
             case forbiddenStatus = "ForbiddenStatus"
+            case appEUI = "AppEUI"
         }
     }
 

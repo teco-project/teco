@@ -22,6 +22,7 @@ extension TCEisError {
             case invalidRuntimeMetricSearchCondition = "InvalidParameterValue.InvalidRuntimeMetricSearchCondition"
             case notSupportedActionForPublicRuntime = "InvalidParameterValue.NotSupportedActionForPublicRuntime"
             case pilotZoneNotSupported = "InvalidParameterValue.PilotZoneNotSupported"
+            case projectAndInstanceNotMatch = "InvalidParameterValue.ProjectAndInstanceNotMatch"
             case runtimeAlreadyDeleted = "InvalidParameterValue.RuntimeAlreadyDeleted"
             case runtimeIdNotExist = "InvalidParameterValue.RuntimeIdNotExist"
             case runtimeMetricRateNotSupport = "InvalidParameterValue.RuntimeMetricRateNotSupport"
@@ -66,6 +67,11 @@ extension TCEisError {
             InvalidParameterValue(.pilotZoneNotSupported)
         }
 
+        /// 应用和实例不匹配。
+        public static var projectAndInstanceNotMatch: InvalidParameterValue {
+            InvalidParameterValue(.projectAndInstanceNotMatch)
+        }
+
         /// 运行时已删除。
         public static var runtimeAlreadyDeleted: InvalidParameterValue {
             InvalidParameterValue(.runtimeAlreadyDeleted)
@@ -100,6 +106,8 @@ extension TCEisError {
                 code = .invalidParameterValue_NotSupportedActionForPublicRuntime
             case .pilotZoneNotSupported:
                 code = .invalidParameterValue_PilotZoneNotSupported
+            case .projectAndInstanceNotMatch:
+                code = .invalidParameterValue_ProjectAndInstanceNotMatch
             case .runtimeAlreadyDeleted:
                 code = .invalidParameterValue_RuntimeAlreadyDeleted
             case .runtimeIdNotExist:

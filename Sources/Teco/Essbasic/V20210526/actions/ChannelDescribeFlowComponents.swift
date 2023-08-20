@@ -40,7 +40,7 @@ extension Essbasic {
 
     /// ChannelDescribeFlowComponents返回参数结构体
     public struct ChannelDescribeFlowComponentsResponse: TCResponse {
-        /// 流程关联的填写控件信息
+        /// 流程关联的填写控件信息，控件会按照参与方进行分类。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recipientComponentInfos: [RecipientComponentInfo]?
 
@@ -55,7 +55,7 @@ extension Essbasic {
 
     /// 查询流程填写控件内容
     ///
-    /// 查询流程填写控件内容，可以根据流程Id查询该流程相关联的填写控件信息
+    /// 查询流程填写控件内容，可以根据流程Id查询该流程相关联的填写控件信息和填写内容。 注意：使用此接口前，需要在【企业应用管理】-【应用集成】-【第三方应用管理】中开通【下载应用内全量合同文件及内容数据】功能。
     @inlinable
     public func channelDescribeFlowComponents(_ input: ChannelDescribeFlowComponentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelDescribeFlowComponentsResponse> {
         self.client.execute(action: "ChannelDescribeFlowComponents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -63,7 +63,7 @@ extension Essbasic {
 
     /// 查询流程填写控件内容
     ///
-    /// 查询流程填写控件内容，可以根据流程Id查询该流程相关联的填写控件信息
+    /// 查询流程填写控件内容，可以根据流程Id查询该流程相关联的填写控件信息和填写内容。 注意：使用此接口前，需要在【企业应用管理】-【应用集成】-【第三方应用管理】中开通【下载应用内全量合同文件及内容数据】功能。
     @inlinable
     public func channelDescribeFlowComponents(_ input: ChannelDescribeFlowComponentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelDescribeFlowComponentsResponse {
         try await self.client.execute(action: "ChannelDescribeFlowComponents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -71,7 +71,7 @@ extension Essbasic {
 
     /// 查询流程填写控件内容
     ///
-    /// 查询流程填写控件内容，可以根据流程Id查询该流程相关联的填写控件信息
+    /// 查询流程填写控件内容，可以根据流程Id查询该流程相关联的填写控件信息和填写内容。 注意：使用此接口前，需要在【企业应用管理】-【应用集成】-【第三方应用管理】中开通【下载应用内全量合同文件及内容数据】功能。
     @inlinable
     public func channelDescribeFlowComponents(agent: Agent, flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelDescribeFlowComponentsResponse> {
         self.channelDescribeFlowComponents(.init(agent: agent, flowId: flowId), region: region, logger: logger, on: eventLoop)
@@ -79,7 +79,7 @@ extension Essbasic {
 
     /// 查询流程填写控件内容
     ///
-    /// 查询流程填写控件内容，可以根据流程Id查询该流程相关联的填写控件信息
+    /// 查询流程填写控件内容，可以根据流程Id查询该流程相关联的填写控件信息和填写内容。 注意：使用此接口前，需要在【企业应用管理】-【应用集成】-【第三方应用管理】中开通【下载应用内全量合同文件及内容数据】功能。
     @inlinable
     public func channelDescribeFlowComponents(agent: Agent, flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelDescribeFlowComponentsResponse {
         try await self.channelDescribeFlowComponents(.init(agent: agent, flowId: flowId), region: region, logger: logger, on: eventLoop)

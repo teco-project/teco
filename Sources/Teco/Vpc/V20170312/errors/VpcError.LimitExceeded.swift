@@ -47,6 +47,8 @@ extension TCVpcError {
             case tagQuotaExceeded = "LimitExceeded.TagQuotaExceeded"
             case tagTagsExceeded = "LimitExceeded.TagTagsExceeded"
             case trafficPackageQuota = "LimitExceeded.TrafficPackageQuota"
+            case vpcPeerAvaLimitExceeded = "LimitExceeded.VpcPeerAvaLimitExceeded"
+            case vpcPeerTotalLimitExceeded = "LimitExceeded.VpcPeerTotalLimitExceeded"
             case other = "LimitExceeded"
         }
 
@@ -212,6 +214,16 @@ extension TCVpcError {
             LimitExceeded(.trafficPackageQuota)
         }
 
+        /// 有效的对等个数超过配额上限。
+        public static var vpcPeerAvaLimitExceeded: LimitExceeded {
+            LimitExceeded(.vpcPeerAvaLimitExceeded)
+        }
+
+        /// 可创建的对等连接个数超过总上限。
+        public static var vpcPeerTotalLimitExceeded: LimitExceeded {
+            LimitExceeded(.vpcPeerTotalLimitExceeded)
+        }
+
         /// 超过配额限制。
         public static var other: LimitExceeded {
             LimitExceeded(.other)
@@ -276,6 +288,10 @@ extension TCVpcError {
                 code = .limitExceeded_TagTagsExceeded
             case .trafficPackageQuota:
                 code = .limitExceeded_TrafficPackageQuota
+            case .vpcPeerAvaLimitExceeded:
+                code = .limitExceeded_VpcPeerAvaLimitExceeded
+            case .vpcPeerTotalLimitExceeded:
+                code = .limitExceeded_VpcPeerTotalLimitExceeded
             case .other:
                 code = .limitExceeded
             }

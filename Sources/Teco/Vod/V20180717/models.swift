@@ -8600,6 +8600,7 @@ extension Vod {
         /// - Transcode：普通转码资源包。
         /// - TESHD：极速高清转码资源包。
         /// - Review：音视频审核转码资源包。
+        /// - MediaProcess：媒体处理时长资源包。
         public let resourceType: String
 
         /// 资源包额度。
@@ -8608,6 +8609,7 @@ extension Vod {
         /// - 音视频审核资源包，单位为秒。
         /// - 音视频极速高清资源包，单位为秒。
         /// - 音视频加速资源包，单位为字节。
+        /// - 媒体处理时长资源包，单位为秒。
         public let amount: Int64
 
         /// 资源包余量。
@@ -8616,6 +8618,7 @@ extension Vod {
         /// - 音视频审核资源包，单位为秒。
         /// - 音视频极速高清资源包，单位为秒。
         /// - 音视频加速资源包，单位为字节。
+        /// - 媒体处理时长资源包，单位为秒。
         public let left: Int64
 
         enum CodingKeys: String, CodingKey {
@@ -11559,6 +11562,7 @@ extension Vod {
         /// - ExtractTraceWatermark: 提取水印
         /// - AddTraceWatermark: 添加水印
         /// - RebuildMedia: 音画质重生
+        /// - QualityInspect: 音画质检测
         /// - Transcode: 转码，包含普通转码、极速高清和视频编辑（不推荐使用）
         public let taskType: String
 

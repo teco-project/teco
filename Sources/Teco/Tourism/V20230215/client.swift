@@ -17,7 +17,7 @@
 import NIOCore
 import TecoCore
 
-/// 文旅客情平台 (tourism)
+/// 文旅客情大数据 (tourism)
 ///
 /// 查询用户资源列表、进行续费、变配等api
 public struct Tourism: TCService {

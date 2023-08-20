@@ -77,6 +77,7 @@ public struct TCVpcError: TCVpcErrorType {
         case invalidParameterValue_Combination = "InvalidParameterValue.Combination"
         case invalidParameterValue_Duplicate = "InvalidParameterValue.Duplicate"
         case invalidParameterValue_DuplicatePara = "InvalidParameterValue.DuplicatePara"
+        case invalidParameterValue_DuplicateRegion = "InvalidParameterValue.DuplicateRegion"
         case invalidParameterValue_EIPBrandWidthOutInvalid = "InvalidParameterValue.EIPBrandWidthOutInvalid"
         case invalidParameterValue_Empty = "InvalidParameterValue.Empty"
         case invalidParameterValue_IPv6RuleIdExisted = "InvalidParameterValue.IPv6RuleIdExisted"
@@ -207,6 +208,8 @@ public struct TCVpcError: TCVpcErrorType {
         case limitExceeded_TagQuotaExceeded = "LimitExceeded.TagQuotaExceeded"
         case limitExceeded_TagTagsExceeded = "LimitExceeded.TagTagsExceeded"
         case limitExceeded_TrafficPackageQuota = "LimitExceeded.TrafficPackageQuota"
+        case limitExceeded_VpcPeerAvaLimitExceeded = "LimitExceeded.VpcPeerAvaLimitExceeded"
+        case limitExceeded_VpcPeerTotalLimitExceeded = "LimitExceeded.VpcPeerTotalLimitExceeded"
         case missingParameter = "MissingParameter"
         case operationDenied_AddressInArrears = "OperationDenied.AddressInArrears"
         case operationDenied_MutexTaskRunning = "OperationDenied.MutexTaskRunning"
@@ -225,6 +228,7 @@ public struct TCVpcError: TCVpcErrorType {
         case unauthorizedOperation_InvalidAccount = "UnauthorizedOperation.InvalidAccount"
         case unauthorizedOperation_NoRealNameAuthentication = "UnauthorizedOperation.NoRealNameAuthentication"
         case unauthorizedOperation_PrimaryIp = "UnauthorizedOperation.PrimaryIp"
+        case unauthorizedOperation_VpcPeerCidrConflict = "UnauthorizedOperation.VpcPeerCidrConflict"
         case unknownParameter = "UnknownParameter"
         case unknownParameter_WithGuess = "UnknownParameter.WithGuess"
         case unsupportedOperation = "UnsupportedOperation"
@@ -311,6 +315,7 @@ public struct TCVpcError: TCVpcErrorType {
         case unsupportedOperation_NotPostpaidCcnOperation = "UnsupportedOperation.NotPostpaidCcnOperation"
         case unsupportedOperation_NotSupportAttachEdgeAndCrossBorderInstance = "UnsupportedOperation.NotSupportAttachEdgeAndCrossBorderInstance"
         case unsupportedOperation_NotSupportDeleteDefaultRouteTable = "UnsupportedOperation.NotSupportDeleteDefaultRouteTable"
+        case unsupportedOperation_NotSupportDeleteVpcBmPeer = "UnsupportedOperation.NotSupportDeleteVpcBmPeer"
         case unsupportedOperation_NotSupportedAddressIpsChargeType = "UnsupportedOperation.NotSupportedAddressIpsChargeType"
         case unsupportedOperation_NotSupportedPurchaseCenterEgressResource = "UnsupportedOperation.NotSupportedPurchaseCenterEgressResource"
         case unsupportedOperation_NotSupportedUpdateCcnRoutePublish = "UnsupportedOperation.NotSupportedUpdateCcnRoutePublish"
@@ -360,6 +365,10 @@ public struct TCVpcError: TCVpcErrorType {
         case unsupportedOperation_UserAndCcnChargeTypeNotMatch = "UnsupportedOperation.UserAndCcnChargeTypeNotMatch"
         case unsupportedOperation_VersionMismatch = "UnsupportedOperation.VersionMismatch"
         case unsupportedOperation_VpcMismatch = "UnsupportedOperation.VpcMismatch"
+        case unsupportedOperation_VpcPeerAlreadyExist = "UnsupportedOperation.VpcPeerAlreadyExist"
+        case unsupportedOperation_VpcPeerCidrConflict = "UnsupportedOperation.VpcPeerCidrConflict"
+        case unsupportedOperation_VpcPeerInvalidStateChange = "UnsupportedOperation.VpcPeerInvalidStateChange"
+        case unsupportedOperation_VpcPeerPurviewError = "UnsupportedOperation.VpcPeerPurviewError"
         case unsupportedOperation_VpnConnInvalidState = "UnsupportedOperation.VpnConnInvalidState"
         case unsupportedOperation_VpnGwVpcIdMustHave = "UnsupportedOperation.VpnGwVpcIdMustHave"
         case unsupportedOperation_ZoneMismatch = "UnsupportedOperation.ZoneMismatch"
@@ -676,6 +685,11 @@ public struct TCVpcError: TCVpcErrorType {
     /// 参数值存在重复。
     public static var invalidParameterValue_DuplicatePara: TCVpcError {
         TCVpcError(.invalidParameterValue_DuplicatePara)
+    }
+
+    /// 本端地域和端地域重复。
+    public static var invalidParameterValue_DuplicateRegion: TCVpcError {
+        TCVpcError(.invalidParameterValue_DuplicateRegion)
     }
 
     /// 值超过上限。
@@ -1341,6 +1355,16 @@ public struct TCVpcError: TCVpcErrorType {
         TCVpcError(.limitExceeded_TrafficPackageQuota)
     }
 
+    /// 有效的对等个数超过配额上限。
+    public static var limitExceeded_VpcPeerAvaLimitExceeded: TCVpcError {
+        TCVpcError(.limitExceeded_VpcPeerAvaLimitExceeded)
+    }
+
+    /// 可创建的对等连接个数超过总上限。
+    public static var limitExceeded_VpcPeerTotalLimitExceeded: TCVpcError {
+        TCVpcError(.limitExceeded_VpcPeerTotalLimitExceeded)
+    }
+
     /// 缺少参数错误。
     public static var missingParameter: TCVpcError {
         TCVpcError(.missingParameter)
@@ -1429,6 +1453,11 @@ public struct TCVpcError: TCVpcErrorType {
     /// 主IP不支持指定操作。
     public static var unauthorizedOperation_PrimaryIp: TCVpcError {
         TCVpcError(.unauthorizedOperation_PrimaryIp)
+    }
+
+    /// 对等连接本端VPC与对端VPC存在CIDR冲突,或一端与已建立的对等连接某一端冲突。
+    public static var unauthorizedOperation_VpcPeerCidrConflict: TCVpcError {
+        TCVpcError(.unauthorizedOperation_VpcPeerCidrConflict)
     }
 
     /// 未知参数错误。
@@ -1868,6 +1897,11 @@ public struct TCVpcError: TCVpcErrorType {
         TCVpcError(.unsupportedOperation_NotSupportDeleteDefaultRouteTable)
     }
 
+    /// 公有云到黑石的对等连接不支持删除。
+    public static var unsupportedOperation_NotSupportDeleteVpcBmPeer: TCVpcError {
+        TCVpcError(.unsupportedOperation_NotSupportDeleteVpcBmPeer)
+    }
+
     /// 该地址类型不支持释放操作。
     public static var unsupportedOperation_NotSupportedAddressIpsChargeType: TCVpcError {
         TCVpcError(.unsupportedOperation_NotSupportedAddressIpsChargeType)
@@ -2117,6 +2151,26 @@ public struct TCVpcError: TCVpcErrorType {
     /// 资源不属于同一个VPC。
     public static var unsupportedOperation_VpcMismatch: TCVpcError {
         TCVpcError(.unsupportedOperation_VpcMismatch)
+    }
+
+    /// 对等连接已存在。
+    public static var unsupportedOperation_VpcPeerAlreadyExist: TCVpcError {
+        TCVpcError(.unsupportedOperation_VpcPeerAlreadyExist)
+    }
+
+    /// VPC网段存在CIDR冲突。
+    public static var unsupportedOperation_VpcPeerCidrConflict: TCVpcError {
+        TCVpcError(.unsupportedOperation_VpcPeerCidrConflict)
+    }
+
+    /// 对等连接状态错误。
+    public static var unsupportedOperation_VpcPeerInvalidStateChange: TCVpcError {
+        TCVpcError(.unsupportedOperation_VpcPeerInvalidStateChange)
+    }
+
+    /// 该账不能发起操作。
+    public static var unsupportedOperation_VpcPeerPurviewError: TCVpcError {
+        TCVpcError(.unsupportedOperation_VpcPeerPurviewError)
     }
 
     /// 当前通道为非可用状态，不支持该操作。

@@ -33,104 +33,10 @@ extension Iss {
         }
     }
 
-    /// 查询设备通道信息返回结果
+    /// DescribeDeviceChannel返回参数结构体
     public struct DescribeDeviceChannelResponse: TCResponse {
-        private let data: Wrapped
-
-        private struct Wrapped: Codable {
-            public let deviceId: String?
-
-            public let channelId: String?
-
-            public let channelCode: String?
-
-            public let name: String?
-
-            public let status: Int64?
-
-            public let ptzType: Int64?
-
-            public let manufacturer: String?
-
-            public let resolution: String?
-
-            public let state: Int64?
-
-            public let region: String?
-
-            enum CodingKeys: String, CodingKey {
-                case deviceId = "DeviceId"
-                case channelId = "ChannelId"
-                case channelCode = "ChannelCode"
-                case name = "Name"
-                case status = "Status"
-                case ptzType = "PTZType"
-                case manufacturer = "Manufacturer"
-                case resolution = "Resolution"
-                case state = "State"
-                case region = "Region"
-            }
-        }
-
-        /// 设备 ID
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var deviceId: String? {
-            self.data.deviceId
-        }
-
-        /// 通道 ID
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var channelId: String? {
-            self.data.channelId
-        }
-
-        /// 通道编码
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var channelCode: String? {
-            self.data.channelCode
-        }
-
-        /// 通道名称
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var name: String? {
-            self.data.name
-        }
-
-        /// 流状态（0:未传输,1:传输中）
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var status: Int64? {
-            self.data.status
-        }
-
-        /// 是否可控 Ptz（0:不可控,1:可控）
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var ptzType: Int64? {
-            self.data.ptzType
-        }
-
-        /// 通道厂商
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var manufacturer: String? {
-            self.data.manufacturer
-        }
-
-        /// 通道支持分辨率（分辨率列表由‘/’隔开，国标协议样例（6/3），自定义样例（12800960/640480））
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var resolution: String? {
-            self.data.resolution
-        }
-
-        /// 通道在离线状态（0:离线,1:在线）
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var state: Int64? {
-            self.data.state
-        }
-
-        /// 所在地域
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var region: String? {
-            self.data.region
-        }
+        /// 返回结果
+        public let data: [DescribeDeviceChannelData]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String

@@ -19,6 +19,7 @@ import TecoCore
 extension TCCdbError {
     public struct UnsupportedOperation: TCCdbErrorType {
         enum Code: String {
+            case notSupportNormalInstance = "UnsupportedOperation.NotSupportNormalInstance"
             case privilegesUnsupportedError = "UnsupportedOperation.PrivilegesUnsupportedError"
             case other = "UnsupportedOperation"
         }
@@ -45,6 +46,11 @@ extension TCCdbError {
             self.context = context
         }
 
+        /// 非强隔离实例不支持当前操作。
+        public static var notSupportNormalInstance: UnsupportedOperation {
+            UnsupportedOperation(.notSupportNormalInstance)
+        }
+
         /// 权限不支持。
         public static var privilegesUnsupportedError: UnsupportedOperation {
             UnsupportedOperation(.privilegesUnsupportedError)
@@ -58,6 +64,8 @@ extension TCCdbError {
         public func asCdbError() -> TCCdbError {
             let code: TCCdbError.Code
             switch self.error {
+            case .notSupportNormalInstance:
+                code = .unsupportedOperation_NotSupportNormalInstance
             case .privilegesUnsupportedError:
                 code = .unsupportedOperation_PrivilegesUnsupportedError
             case .other:

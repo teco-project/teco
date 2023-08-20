@@ -33,32 +33,10 @@ extension Iss {
         }
     }
 
-    /// 查询设备预置位返回数据
+    /// DescribeDevicePreset返回参数结构体
     public struct DescribeDevicePresetResponse: TCResponse {
-        private let data: Wrapped
-
-        private struct Wrapped: Codable {
-            public let index: Int64?
-
-            public let name: String?
-
-            enum CodingKeys: String, CodingKey {
-                case index = "Index"
-                case name = "Name"
-            }
-        }
-
-        /// 预置位索引    只支持1-10的索引
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var index: Int64? {
-            self.data.index
-        }
-
-        /// 预置位名称
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var name: String? {
-            self.data.name
-        }
+        /// 返回数据
+        public let data: [DescribeDevicePresetData]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String

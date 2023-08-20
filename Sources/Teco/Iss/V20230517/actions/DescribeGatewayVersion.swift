@@ -33,23 +33,10 @@ extension Iss {
         }
     }
 
-    /// 查询网关服务版本信息返回数据
+    /// DescribeGatewayVersion返回参数结构体
     public struct DescribeGatewayVersionResponse: TCResponse {
-        private let data: Wrapped
-
-        private struct Wrapped: Codable {
-            public let services: [DescribeGatewayVersion]?
-
-            enum CodingKeys: String, CodingKey {
-                case services = "Services"
-            }
-        }
-
-        /// 网关服务列表
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var services: [DescribeGatewayVersion]? {
-            self.data.services
-        }
+        /// 返回数据
+        public let data: DescribeGatewayVersionData
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -61,25 +48,25 @@ extension Iss {
     }
 
     /// 查询网关服务版本
-    @inlinable @discardableResult
+    @inlinable
     public func describeGatewayVersion(_ input: DescribeGatewayVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGatewayVersionResponse> {
         self.client.execute(action: "DescribeGatewayVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询网关服务版本
-    @inlinable @discardableResult
+    @inlinable
     public func describeGatewayVersion(_ input: DescribeGatewayVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayVersionResponse {
         try await self.client.execute(action: "DescribeGatewayVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询网关服务版本
-    @inlinable @discardableResult
+    @inlinable
     public func describeGatewayVersion(gatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGatewayVersionResponse> {
         self.describeGatewayVersion(.init(gatewayId: gatewayId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询网关服务版本
-    @inlinable @discardableResult
+    @inlinable
     public func describeGatewayVersion(gatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayVersionResponse {
         try await self.describeGatewayVersion(.init(gatewayId: gatewayId), region: region, logger: logger, on: eventLoop)
     }

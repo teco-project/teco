@@ -27,7 +27,7 @@ extension Csip {
         /// 0-全扫，1-指定资产扫，2-排除资产扫，3-手动填写扫；1和2则Assets字段必填，3则SelfDefiningAssets必填
         public let scanAssetType: Int64
 
-        /// 扫描项目；port/poc/weakpass/webcontent/configrisk
+        /// 扫描项目；port/poc/weakpass/webcontent/configrisk/exposedserver
         public let scanItem: [String]
 
         /// 0-周期任务,1-立即扫描,2-定时扫描,3-自定义；0,2,3则ScanPlanContent必填
@@ -78,11 +78,19 @@ extension Csip {
         /// 任务id
         public let taskId: String
 
+        /// 0,任务创建成功；小于0失败；-1为存在资产未认证
+        public let status: Int64?
+
+        /// 未认证资产列表
+        public let unAuthAsset: [String]?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
+            case status = "Status"
+            case unAuthAsset = "UnAuthAsset"
             case requestId = "RequestId"
         }
     }

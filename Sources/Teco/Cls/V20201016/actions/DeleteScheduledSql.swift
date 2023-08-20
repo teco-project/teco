@@ -48,33 +48,33 @@ extension Cls {
         }
     }
 
-    /// 删除ScheduledSql任务
+    /// 删除定时SQL分析任务
     ///
-    /// 本接口用于删除ScheduledSql任务
+    /// 本接口用于删除定时SQL分析任务
     @inlinable @discardableResult
     public func deleteScheduledSql(_ input: DeleteScheduledSqlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScheduledSqlResponse> {
         self.client.execute(action: "DeleteScheduledSql", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 删除ScheduledSql任务
+    /// 删除定时SQL分析任务
     ///
-    /// 本接口用于删除ScheduledSql任务
+    /// 本接口用于删除定时SQL分析任务
     @inlinable @discardableResult
     public func deleteScheduledSql(_ input: DeleteScheduledSqlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScheduledSqlResponse {
         try await self.client.execute(action: "DeleteScheduledSql", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 删除ScheduledSql任务
+    /// 删除定时SQL分析任务
     ///
-    /// 本接口用于删除ScheduledSql任务
+    /// 本接口用于删除定时SQL分析任务
     @inlinable @discardableResult
     public func deleteScheduledSql(taskId: String, srcTopicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScheduledSqlResponse> {
         self.deleteScheduledSql(.init(taskId: taskId, srcTopicId: srcTopicId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 删除ScheduledSql任务
+    /// 删除定时SQL分析任务
     ///
-    /// 本接口用于删除ScheduledSql任务
+    /// 本接口用于删除定时SQL分析任务
     @inlinable @discardableResult
     public func deleteScheduledSql(taskId: String, srcTopicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScheduledSqlResponse {
         try await self.deleteScheduledSql(.init(taskId: taskId, srcTopicId: srcTopicId), region: region, logger: logger, on: eventLoop)

@@ -36,6 +36,7 @@ extension TCLighthouseError {
             case firewallRulesOperationFailed = "FailedOperation.FirewallRulesOperationFailed"
             case importKeyPairFailed = "FailedOperation.ImportKeyPairFailed"
             case instanceOperationFailed = "FailedOperation.InstanceOperationFailed"
+            case insufficientBalance = "FailedOperation.InsufficientBalance"
             case invalidCommandNotFound = "FailedOperation.InvalidCommandNotFound"
             case isolateResourcesFailed = "FailedOperation.IsolateResourcesFailed"
             case modifyInstancesBundleFailed = "FailedOperation.ModifyInstancesBundleFailed"
@@ -158,6 +159,10 @@ extension TCLighthouseError {
             FailedOperation(.instanceOperationFailed)
         }
 
+        public static var insufficientBalance: FailedOperation {
+            FailedOperation(.insufficientBalance)
+        }
+
         /// 命令无法找到。
         public static var invalidCommandNotFound: FailedOperation {
             FailedOperation(.invalidCommandNotFound)
@@ -262,6 +267,8 @@ extension TCLighthouseError {
                 code = .failedOperation_ImportKeyPairFailed
             case .instanceOperationFailed:
                 code = .failedOperation_InstanceOperationFailed
+            case .insufficientBalance:
+                code = .failedOperation_InsufficientBalance
             case .invalidCommandNotFound:
                 code = .failedOperation_InvalidCommandNotFound
             case .isolateResourcesFailed:

@@ -290,6 +290,27 @@ extension Dlc {
         }
     }
 
+    /// cos权限描述
+    public struct CosPermission: TCInputModel, TCOutputModel {
+        /// cos路径
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cosPath: String?
+
+        /// 权限【"read","write"】
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let permissions: [String]?
+
+        public init(cosPath: String? = nil, permissions: [String]? = nil) {
+            self.cosPath = cosPath
+            self.permissions = permissions
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case cosPath = "CosPath"
+            case permissions = "Permissions"
+        }
+    }
+
     /// 定时启停策略信息
     public struct CrontabResumeSuspendStrategy: TCInputModel, TCOutputModel {
         /// 定时拉起时间：如：周一8点
@@ -2929,6 +2950,56 @@ extension Dlc {
             case creator = "Creator"
             case createTime = "CreateTime"
             case userAlias = "UserAlias"
+        }
+    }
+
+    /// 用户角色
+    public struct UserRole: TCOutputModel {
+        /// 角色ID
+        public let roleId: Int64
+
+        /// 用户app ID
+        public let appId: String
+
+        /// 用户ID
+        public let uin: String
+
+        /// 角色权限
+        public let arn: String
+
+        /// 最近修改时间戳
+        public let modifyTime: Int64
+
+        /// 角色描述信息
+        public let desc: String
+
+        /// 角色名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let roleName: String?
+
+        /// 创建者UIN
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let creator: String?
+
+        /// cos授权路径列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cosPermissionList: [CosPermission]?
+
+        /// cam策略json
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let permissionJson: String?
+
+        enum CodingKeys: String, CodingKey {
+            case roleId = "RoleId"
+            case appId = "AppId"
+            case uin = "Uin"
+            case arn = "Arn"
+            case modifyTime = "ModifyTime"
+            case desc = "Desc"
+            case roleName = "RoleName"
+            case creator = "Creator"
+            case cosPermissionList = "CosPermissionList"
+            case permissionJson = "PermissionJson"
         }
     }
 

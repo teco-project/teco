@@ -161,29 +161,6 @@ extension Ocr {
         }
     }
 
-    /// 验真接口
-    public struct BizLicenseVerifyResult: TCOutputModel {
-        /// “0“：一致
-        /// “-1”：不一致
-        public let regNum: String
-
-        /// “0“：一致
-        /// “-1”：不一致
-        /// “”：不验真
-        public let name: String
-
-        /// “0“：一致
-        /// “-1”：不一致
-        /// “”：不验真
-        public let address: String
-
-        enum CodingKeys: String, CodingKey {
-            case regNum = "RegNum"
-            case name = "Name"
-            case address = "Address"
-        }
-    }
-
     /// 汽车票
     public struct BusInvoice: TCOutputModel {
         /// 发票名称

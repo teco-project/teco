@@ -75,7 +75,10 @@ extension Ess {
         /// 填写的FileId通过UploadFiles接口上传文件获取。
         public let fileId: String?
 
-        public init(userName: String, idCardNumber: String, sealName: String, operator: UserInfo? = nil, idCardType: String? = nil, sealImageCompress: Bool? = nil, mobile: String? = nil, enableAutoSign: Bool? = nil, sealColor: String? = nil, processSeal: Bool? = nil, fileId: String? = nil) {
+        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        public let agent: Agent?
+
+        public init(userName: String, idCardNumber: String, sealName: String, operator: UserInfo? = nil, idCardType: String? = nil, sealImageCompress: Bool? = nil, mobile: String? = nil, enableAutoSign: Bool? = nil, sealColor: String? = nil, processSeal: Bool? = nil, fileId: String? = nil, agent: Agent? = nil) {
             self.userName = userName
             self.idCardNumber = idCardNumber
             self.sealName = sealName
@@ -87,10 +90,11 @@ extension Ess {
             self.sealColor = sealColor
             self.processSeal = processSeal
             self.fileId = fileId
+            self.agent = agent
         }
 
-        @available(*, deprecated, renamed: "init(userName:idCardNumber:sealName:operator:idCardType:sealImageCompress:mobile:enableAutoSign:sealColor:processSeal:fileId:)", message: "'sealImage' is deprecated in 'CreatePreparedPersonalEsignRequest'. Setting this parameter has no effect.")
-        public init(userName: String, idCardNumber: String, sealName: String, operator: UserInfo? = nil, idCardType: String? = nil, sealImage: String? = nil, sealImageCompress: Bool? = nil, mobile: String? = nil, enableAutoSign: Bool? = nil, sealColor: String? = nil, processSeal: Bool? = nil, fileId: String? = nil) {
+        @available(*, deprecated, renamed: "init(userName:idCardNumber:sealName:operator:idCardType:sealImageCompress:mobile:enableAutoSign:sealColor:processSeal:fileId:agent:)", message: "'sealImage' is deprecated in 'CreatePreparedPersonalEsignRequest'. Setting this parameter has no effect.")
+        public init(userName: String, idCardNumber: String, sealName: String, operator: UserInfo? = nil, idCardType: String? = nil, sealImage: String? = nil, sealImageCompress: Bool? = nil, mobile: String? = nil, enableAutoSign: Bool? = nil, sealColor: String? = nil, processSeal: Bool? = nil, fileId: String? = nil, agent: Agent? = nil) {
             self.userName = userName
             self.idCardNumber = idCardNumber
             self.sealName = sealName
@@ -102,6 +106,7 @@ extension Ess {
             self.sealColor = sealColor
             self.processSeal = processSeal
             self.fileId = fileId
+            self.agent = agent
         }
 
         enum CodingKeys: String, CodingKey {
@@ -117,6 +122,7 @@ extension Ess {
             case sealColor = "SealColor"
             case processSeal = "ProcessSeal"
             case fileId = "FileId"
+            case agent = "Agent"
         }
     }
 
@@ -154,33 +160,33 @@ extension Ess {
     ///
     /// 本接口（CreatePreparedPersonalEsign）用于创建导入个人印章（处方单场景专用，使用此接口请与客户经理确认）。
     @inlinable
-    public func createPreparedPersonalEsign(userName: String, idCardNumber: String, sealName: String, operator: UserInfo? = nil, idCardType: String? = nil, sealImageCompress: Bool? = nil, mobile: String? = nil, enableAutoSign: Bool? = nil, sealColor: String? = nil, processSeal: Bool? = nil, fileId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePreparedPersonalEsignResponse> {
-        self.createPreparedPersonalEsign(.init(userName: userName, idCardNumber: idCardNumber, sealName: sealName, operator: `operator`, idCardType: idCardType, sealImageCompress: sealImageCompress, mobile: mobile, enableAutoSign: enableAutoSign, sealColor: sealColor, processSeal: processSeal, fileId: fileId), region: region, logger: logger, on: eventLoop)
+    public func createPreparedPersonalEsign(userName: String, idCardNumber: String, sealName: String, operator: UserInfo? = nil, idCardType: String? = nil, sealImageCompress: Bool? = nil, mobile: String? = nil, enableAutoSign: Bool? = nil, sealColor: String? = nil, processSeal: Bool? = nil, fileId: String? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePreparedPersonalEsignResponse> {
+        self.createPreparedPersonalEsign(.init(userName: userName, idCardNumber: idCardNumber, sealName: sealName, operator: `operator`, idCardType: idCardType, sealImageCompress: sealImageCompress, mobile: mobile, enableAutoSign: enableAutoSign, sealColor: sealColor, processSeal: processSeal, fileId: fileId, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建导入处方单个人印章
     ///
     /// 本接口（CreatePreparedPersonalEsign）用于创建导入个人印章（处方单场景专用，使用此接口请与客户经理确认）。
-    @available(*, deprecated, renamed: "createPreparedPersonalEsign(userName:idCardNumber:sealName:operator:idCardType:sealImageCompress:mobile:enableAutoSign:sealColor:processSeal:fileId:region:logger:on:)", message: "'sealImage' is deprecated. Setting this parameter has no effect.")
+    @available(*, deprecated, renamed: "createPreparedPersonalEsign(userName:idCardNumber:sealName:operator:idCardType:sealImageCompress:mobile:enableAutoSign:sealColor:processSeal:fileId:agent:region:logger:on:)", message: "'sealImage' is deprecated. Setting this parameter has no effect.")
     @inlinable
-    public func createPreparedPersonalEsign(userName: String, idCardNumber: String, sealName: String, operator: UserInfo? = nil, idCardType: String? = nil, sealImage: String? = nil, sealImageCompress: Bool? = nil, mobile: String? = nil, enableAutoSign: Bool? = nil, sealColor: String? = nil, processSeal: Bool? = nil, fileId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePreparedPersonalEsignResponse> {
-        self.createPreparedPersonalEsign(.init(userName: userName, idCardNumber: idCardNumber, sealName: sealName, operator: `operator`, idCardType: idCardType, sealImage: sealImage, sealImageCompress: sealImageCompress, mobile: mobile, enableAutoSign: enableAutoSign, sealColor: sealColor, processSeal: processSeal, fileId: fileId), region: region, logger: logger, on: eventLoop)
+    public func createPreparedPersonalEsign(userName: String, idCardNumber: String, sealName: String, operator: UserInfo? = nil, idCardType: String? = nil, sealImage: String? = nil, sealImageCompress: Bool? = nil, mobile: String? = nil, enableAutoSign: Bool? = nil, sealColor: String? = nil, processSeal: Bool? = nil, fileId: String? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePreparedPersonalEsignResponse> {
+        self.createPreparedPersonalEsign(.init(userName: userName, idCardNumber: idCardNumber, sealName: sealName, operator: `operator`, idCardType: idCardType, sealImage: sealImage, sealImageCompress: sealImageCompress, mobile: mobile, enableAutoSign: enableAutoSign, sealColor: sealColor, processSeal: processSeal, fileId: fileId, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建导入处方单个人印章
     ///
     /// 本接口（CreatePreparedPersonalEsign）用于创建导入个人印章（处方单场景专用，使用此接口请与客户经理确认）。
     @inlinable
-    public func createPreparedPersonalEsign(userName: String, idCardNumber: String, sealName: String, operator: UserInfo? = nil, idCardType: String? = nil, sealImageCompress: Bool? = nil, mobile: String? = nil, enableAutoSign: Bool? = nil, sealColor: String? = nil, processSeal: Bool? = nil, fileId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePreparedPersonalEsignResponse {
-        try await self.createPreparedPersonalEsign(.init(userName: userName, idCardNumber: idCardNumber, sealName: sealName, operator: `operator`, idCardType: idCardType, sealImageCompress: sealImageCompress, mobile: mobile, enableAutoSign: enableAutoSign, sealColor: sealColor, processSeal: processSeal, fileId: fileId), region: region, logger: logger, on: eventLoop)
+    public func createPreparedPersonalEsign(userName: String, idCardNumber: String, sealName: String, operator: UserInfo? = nil, idCardType: String? = nil, sealImageCompress: Bool? = nil, mobile: String? = nil, enableAutoSign: Bool? = nil, sealColor: String? = nil, processSeal: Bool? = nil, fileId: String? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePreparedPersonalEsignResponse {
+        try await self.createPreparedPersonalEsign(.init(userName: userName, idCardNumber: idCardNumber, sealName: sealName, operator: `operator`, idCardType: idCardType, sealImageCompress: sealImageCompress, mobile: mobile, enableAutoSign: enableAutoSign, sealColor: sealColor, processSeal: processSeal, fileId: fileId, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建导入处方单个人印章
     ///
     /// 本接口（CreatePreparedPersonalEsign）用于创建导入个人印章（处方单场景专用，使用此接口请与客户经理确认）。
-    @available(*, deprecated, renamed: "createPreparedPersonalEsign(userName:idCardNumber:sealName:operator:idCardType:sealImageCompress:mobile:enableAutoSign:sealColor:processSeal:fileId:region:logger:on:)", message: "'sealImage' is deprecated. Setting this parameter has no effect.")
+    @available(*, deprecated, renamed: "createPreparedPersonalEsign(userName:idCardNumber:sealName:operator:idCardType:sealImageCompress:mobile:enableAutoSign:sealColor:processSeal:fileId:agent:region:logger:on:)", message: "'sealImage' is deprecated. Setting this parameter has no effect.")
     @inlinable
-    public func createPreparedPersonalEsign(userName: String, idCardNumber: String, sealName: String, operator: UserInfo? = nil, idCardType: String? = nil, sealImage: String? = nil, sealImageCompress: Bool? = nil, mobile: String? = nil, enableAutoSign: Bool? = nil, sealColor: String? = nil, processSeal: Bool? = nil, fileId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePreparedPersonalEsignResponse {
-        try await self.createPreparedPersonalEsign(.init(userName: userName, idCardNumber: idCardNumber, sealName: sealName, operator: `operator`, idCardType: idCardType, sealImage: sealImage, sealImageCompress: sealImageCompress, mobile: mobile, enableAutoSign: enableAutoSign, sealColor: sealColor, processSeal: processSeal, fileId: fileId), region: region, logger: logger, on: eventLoop)
+    public func createPreparedPersonalEsign(userName: String, idCardNumber: String, sealName: String, operator: UserInfo? = nil, idCardType: String? = nil, sealImage: String? = nil, sealImageCompress: Bool? = nil, mobile: String? = nil, enableAutoSign: Bool? = nil, sealColor: String? = nil, processSeal: Bool? = nil, fileId: String? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePreparedPersonalEsignResponse {
+        try await self.createPreparedPersonalEsign(.init(userName: userName, idCardNumber: idCardNumber, sealName: sealName, operator: `operator`, idCardType: idCardType, sealImage: sealImage, sealImageCompress: sealImageCompress, mobile: mobile, enableAutoSign: enableAutoSign, sealColor: sealColor, processSeal: processSeal, fileId: fileId, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 }

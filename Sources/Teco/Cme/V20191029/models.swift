@@ -977,12 +977,17 @@ extension Cme {
         /// 视频配置。
         public let videoSetting: MediaCastVideoSetting
 
-        public init(videoSetting: MediaCastVideoSetting) {
+        /// 视频配置是否和第一个输入源的视频配置相同，默认值：false。如果 FollowSourceInfo 的值为 true，忽略 VideoSetting 参数。
+        public let followSourceInfo: Bool?
+
+        public init(videoSetting: MediaCastVideoSetting, followSourceInfo: Bool? = nil) {
             self.videoSetting = videoSetting
+            self.followSourceInfo = followSourceInfo
         }
 
         enum CodingKeys: String, CodingKey {
             case videoSetting = "VideoSetting"
+            case followSourceInfo = "FollowSourceInfo"
         }
     }
 

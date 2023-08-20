@@ -473,6 +473,25 @@ extension Tione {
         }
     }
 
+    /// 对话结果
+    public struct Choice: TCOutputModel {
+        /// 对话结果
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let message: Message?
+
+        /// 结束理由: stop, length, content_filter, null
+        public let finishReason: String?
+
+        /// 序号
+        public let index: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case message = "Message"
+            case finishReason = "FinishReason"
+            case index = "Index"
+        }
+    }
+
     /// 容器信息
     public struct Container: TCOutputModel {
         /// 名字
@@ -1662,6 +1681,27 @@ extension Tione {
             case message = "Message"
             case podName = "PodName"
             case timestamp = "Timestamp"
+        }
+    }
+
+    /// 对话输入内容
+    public struct Message: TCInputModel, TCOutputModel {
+        /// 角色名。支持三个角色：system、user、assistant，其中system仅开头可出现一次，也可忽略。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let role: String?
+
+        /// 对话输入内容。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let content: String?
+
+        public init(role: String? = nil, content: String? = nil) {
+            self.role = role
+            self.content = content
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case role = "Role"
+            case content = "Content"
         }
     }
 
@@ -4185,6 +4225,27 @@ extension Tione {
             case message = "Message"
             case tags = "Tags"
             case callbackUrl = "CallbackUrl"
+        }
+    }
+
+    /// 大模型生成Token统计
+    public struct Usage: TCOutputModel {
+        /// 生成的token数目
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let completionTokens: Int64?
+
+        /// 输入的token数目
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let promptTokens: Int64?
+
+        /// 总共token数目
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalTokens: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case completionTokens = "CompletionTokens"
+            case promptTokens = "PromptTokens"
+            case totalTokens = "TotalTokens"
         }
     }
 

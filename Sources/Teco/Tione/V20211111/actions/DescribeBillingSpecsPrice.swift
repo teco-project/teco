@@ -49,7 +49,7 @@ extension Tione {
 
     /// 查询计费项价格
     ///
-    /// 本接口(DescribeBillingSpecsPrice)用于查询计费项价格。
+    /// 本接口(DescribeBillingSpecsPrice)用于查询按量计费计费项价格。
     @inlinable
     public func describeBillingSpecsPrice(_ input: DescribeBillingSpecsPriceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillingSpecsPriceResponse> {
         self.client.execute(action: "DescribeBillingSpecsPrice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -57,7 +57,7 @@ extension Tione {
 
     /// 查询计费项价格
     ///
-    /// 本接口(DescribeBillingSpecsPrice)用于查询计费项价格。
+    /// 本接口(DescribeBillingSpecsPrice)用于查询按量计费计费项价格。
     @inlinable
     public func describeBillingSpecsPrice(_ input: DescribeBillingSpecsPriceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillingSpecsPriceResponse {
         try await self.client.execute(action: "DescribeBillingSpecsPrice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -65,7 +65,7 @@ extension Tione {
 
     /// 查询计费项价格
     ///
-    /// 本接口(DescribeBillingSpecsPrice)用于查询计费项价格。
+    /// 本接口(DescribeBillingSpecsPrice)用于查询按量计费计费项价格。
     @inlinable
     public func describeBillingSpecsPrice(specsParam: [SpecUnit], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillingSpecsPriceResponse> {
         self.describeBillingSpecsPrice(.init(specsParam: specsParam), region: region, logger: logger, on: eventLoop)
@@ -73,7 +73,7 @@ extension Tione {
 
     /// 查询计费项价格
     ///
-    /// 本接口(DescribeBillingSpecsPrice)用于查询计费项价格。
+    /// 本接口(DescribeBillingSpecsPrice)用于查询按量计费计费项价格。
     @inlinable
     public func describeBillingSpecsPrice(specsParam: [SpecUnit], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillingSpecsPriceResponse {
         try await self.describeBillingSpecsPrice(.init(specsParam: specsParam), region: region, logger: logger, on: eventLoop)

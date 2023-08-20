@@ -42,6 +42,7 @@ public struct TCOrganizationError: TCOrganizationErrorType {
         case failedOperation_CreateRecordAlreadySuccess = "FailedOperation.CreateRecordAlreadySuccess"
         case failedOperation_CreateRecordNotExist = "FailedOperation.CreateRecordNotExist"
         case failedOperation_CreateRole = "FailedOperation.CreateRole"
+        case failedOperation_DeletePolicy = "FailedOperation.DeletePolicy"
         case failedOperation_DisableQuitSelfCreatedOrganization = "FailedOperation.DisableQuitSelfCreatedOrganization"
         case failedOperation_EmailAlreadyUsed = "FailedOperation.EmailAlreadyUsed"
         case failedOperation_EmailBindRecordInvalid = "FailedOperation.EmailBindRecordInvalid"
@@ -50,6 +51,7 @@ public struct TCOrganizationError: TCOrganizationErrorType {
         case failedOperation_MemberBindPhoneError = "FailedOperation.MemberBindPhoneError"
         case failedOperation_MemberEmailExist = "FailedOperation.MemberEmailExist"
         case failedOperation_MemberExistDelegatePayerNotAllowDelete = "FailedOperation.MemberExistDelegatePayerNotAllowDelete"
+        case failedOperation_MemberIdentityAuthUsed = "FailedOperation.MemberIdentityAuthUsed"
         case failedOperation_MemberIsDelegatePayerNotAllowDelete = "FailedOperation.MemberIsDelegatePayerNotAllowDelete"
         case failedOperation_MemberNameUsed = "FailedOperation.MemberNameUsed"
         case failedOperation_MemberPolicyNameExist = "FailedOperation.MemberPolicyNameExist"
@@ -58,6 +60,7 @@ public struct TCOrganizationError: TCOrganizationErrorType {
         case failedOperation_OperateBillingPermissionErr = "FailedOperation.OperateBillingPermissionErr"
         case failedOperation_OperatePolicy = "FailedOperation.OperatePolicy"
         case failedOperation_OrganizationAuthManageNotAllowDelete = "FailedOperation.OrganizationAuthManageNotAllowDelete"
+        case failedOperation_OrganizationIdentityPolicyError = "FailedOperation.OrganizationIdentityPolicyError"
         case failedOperation_OrganizationMemberNameUsed = "FailedOperation.OrganizationMemberNameUsed"
         case failedOperation_OrganizationNodeDeleteOverLimit = "FailedOperation.OrganizationNodeDeleteOverLimit"
         case failedOperation_OrganizationNodeNameUsed = "FailedOperation.OrganizationNodeNameUsed"
@@ -90,6 +93,7 @@ public struct TCOrganizationError: TCOrganizationErrorType {
         case resourceNotFound_MemberIdentityNotExist = "ResourceNotFound.MemberIdentityNotExist"
         case resourceNotFound_MemberNotExist = "ResourceNotFound.MemberNotExist"
         case resourceNotFound_MemberPolicyNotExist = "ResourceNotFound.MemberPolicyNotExist"
+        case resourceNotFound_OrganizationIdentityNotExist = "ResourceNotFound.OrganizationIdentityNotExist"
         case resourceNotFound_OrganizationMemberNotExist = "ResourceNotFound.OrganizationMemberNotExist"
         case resourceNotFound_OrganizationNodeNotExist = "ResourceNotFound.OrganizationNodeNotExist"
         case resourceNotFound_OrganizationNotExist = "ResourceNotFound.OrganizationNotExist"
@@ -225,6 +229,11 @@ public struct TCOrganizationError: TCOrganizationErrorType {
         TCOrganizationError(.failedOperation_CreateRole)
     }
 
+    /// 删除授权策略异常。
+    public static var failedOperation_DeletePolicy: TCOrganizationError {
+        TCOrganizationError(.failedOperation_DeletePolicy)
+    }
+
     /// 不能退出自己创建的企业组织。
     public static var failedOperation_DisableQuitSelfCreatedOrganization: TCOrganizationError {
         TCOrganizationError(.failedOperation_DisableQuitSelfCreatedOrganization)
@@ -265,6 +274,11 @@ public struct TCOrganizationError: TCOrganizationErrorType {
         TCOrganizationError(.failedOperation_MemberExistDelegatePayerNotAllowDelete)
     }
 
+    /// 成员授权在使用。
+    public static var failedOperation_MemberIdentityAuthUsed: TCOrganizationError {
+        TCOrganizationError(.failedOperation_MemberIdentityAuthUsed)
+    }
+
     /// 成员是代付者，不允许删除。
     public static var failedOperation_MemberIsDelegatePayerNotAllowDelete: TCOrganizationError {
         TCOrganizationError(.failedOperation_MemberIsDelegatePayerNotAllowDelete)
@@ -303,6 +317,11 @@ public struct TCOrganizationError: TCOrganizationErrorType {
     /// 成员是主体管理账号不允许删除。
     public static var failedOperation_OrganizationAuthManageNotAllowDelete: TCOrganizationError {
         TCOrganizationError(.failedOperation_OrganizationAuthManageNotAllowDelete)
+    }
+
+    /// 组织身份策略不合法。
+    public static var failedOperation_OrganizationIdentityPolicyError: TCOrganizationError {
+        TCOrganizationError(.failedOperation_OrganizationIdentityPolicyError)
     }
 
     /// 成员名已存在。
@@ -463,6 +482,11 @@ public struct TCOrganizationError: TCOrganizationErrorType {
     /// 组织成员策略不存在。
     public static var resourceNotFound_MemberPolicyNotExist: TCOrganizationError {
         TCOrganizationError(.resourceNotFound_MemberPolicyNotExist)
+    }
+
+    /// 组织身份不存在。
+    public static var resourceNotFound_OrganizationIdentityNotExist: TCOrganizationError {
+        TCOrganizationError(.resourceNotFound_OrganizationIdentityNotExist)
     }
 
     /// 组织成员不存在。

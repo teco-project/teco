@@ -46,11 +46,11 @@ extension Cynosdb {
         public let cpu: Int64?
 
         /// 当DbMode为NORMAL或不填时必选
-        /// 普通实例内存,单位G
+        /// 普通实例内存,单位GB
         public let memory: Int64?
 
         /// 该参数无实际意义，已废弃。
-        /// 存储大小，单位G。
+        /// 存储大小，单位GB。
         public let storage: Int64?
 
         /// 集群名称，长度小于64个字符，每个字符取值范围：大/小写字母，数字，特殊符号（'-','_','.'）

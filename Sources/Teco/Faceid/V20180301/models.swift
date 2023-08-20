@@ -503,12 +503,82 @@ extension Faceid {
         }
     }
 
+    /// 意愿核身（点头确认模式）配置
+    public struct IntentionActionConfig: TCInputModel {
+        /// 点头确认模式下，系统语音播报使用的问题文本，问题最大长度为150个字符。
+        public let text: String
+
+        public init(text: String) {
+            self.text = text
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+        }
+    }
+
+    /// 意愿核身点头确认模式结果
+    public struct IntentionActionResult: TCOutputModel {
+        /// 意愿核身错误码：
+        /// 0: "成功"
+        /// -1: "参数错误"
+        /// -2: "系统异常"
+        /// -101: "请保持人脸在框内"
+        /// -102: "检测到多张人脸"
+        /// -103: "人脸检测失败"
+        /// -104: "人脸检测不完整"
+        /// -105: "请勿遮挡眼睛"
+        /// -106: "请勿遮挡嘴巴"
+        /// -107: "请勿遮挡鼻子"
+        /// -201: "人脸比对相似度低"
+        /// -202: "人脸比对失败"
+        /// -301: "意愿核验不通过"
+        /// -800: "前端不兼容错误"
+        /// -801: "用户未授权摄像头和麦克风权限"
+        /// -802: "获取视频流失败"
+        /// -803: "用户主动关闭链接/异常断开链接"
+        /// -998: "系统数据异常"
+        /// -999: "系统未知错误，请联系人工核实"
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let finalResultDetailCode: Int64?
+
+        /// 意愿核身错误信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let finalResultMessage: String?
+
+        /// 意愿核身结果详细数据，与每段点头确认过程一一对应
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let details: [IntentionActionResultDetail]?
+
+        enum CodingKeys: String, CodingKey {
+            case finalResultDetailCode = "FinalResultDetailCode"
+            case finalResultMessage = "FinalResultMessage"
+            case details = "Details"
+        }
+    }
+
+    /// 意愿核身点头确认模式结果详细数据
+    public struct IntentionActionResultDetail: TCOutputModel {
+        /// 视频base64编码（其中包含全程提示文本和点头音频，mp4格式）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let video: String?
+
+        /// 屏幕截图base64编码列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let screenShot: [String]?
+
+        enum CodingKeys: String, CodingKey {
+            case video = "Video"
+            case screenShot = "ScreenShot"
+        }
+    }
+
     /// 意愿核身过程中播报的问题文本、用户回答的标准文本。
     public struct IntentionQuestion: TCInputModel {
-        /// 系统播报的问题文本，问题最大长度为150个字符。
+        /// 当选择语音问答模式时，系统自动播报的问题文本，最大长度为150个字符。
         public let question: String
 
-        /// 用户答案的标准文本列表，用于识别用户回答的语音与标准文本是否一致。列表长度最大为50，单个答案长度限制10个字符。
+        /// 当选择语音问答模式时，用于判断用户回答是否通过的标准答案列表，传入后可自动判断用户回答文本是否在标准文本列表中。列表长度最大为50，单个答案长度限制10个字符。
         public let answers: [String]
 
         public init(question: String, answers: [String]) {
@@ -630,12 +700,19 @@ extension Faceid {
         /// 意愿核身过程中识别用户的回答意图，开启后除了IntentionQuestions的Answers列表中的标准回答会通过，近似意图的回答也会通过，默认不开启。
         public let intentionRecognition: Bool?
 
-        public init(intentionRecognition: Bool? = nil) {
+        /// 意愿核身类型，默认为0：
+        /// 0：问答模式，DetectAuth接口需要传入IntentionQuestions字段；
+        /// 1：点头模式，DetectAuth接口需要传入IntentionActions字段；
+        public let intentionType: Int64?
+
+        public init(intentionRecognition: Bool? = nil, intentionType: Int64? = nil) {
             self.intentionRecognition = intentionRecognition
+            self.intentionType = intentionType
         }
 
         enum CodingKeys: String, CodingKey {
             case intentionRecognition = "IntentionRecognition"
+            case intentionType = "IntentionType"
         }
     }
 

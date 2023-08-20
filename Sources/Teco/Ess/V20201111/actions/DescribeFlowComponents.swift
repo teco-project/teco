@@ -24,10 +24,10 @@ extension Ess {
         /// 操作者信息
         public let `operator`: UserInfo
 
-        /// 电子签流程的Id
+        /// 流程(合同)的编号
         public let flowId: String
 
-        /// 应用相关信息
+        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         public let agent: Agent?
 
         public init(operator: UserInfo, flowId: String, agent: Agent? = nil) {
@@ -45,7 +45,7 @@ extension Ess {
 
     /// DescribeFlowComponents返回参数结构体
     public struct DescribeFlowComponentsResponse: TCResponse {
-        /// 流程关联的填写控件信息
+        /// 流程关联的填写控件信息，按照参与方进行分类返回。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recipientComponentInfos: [RecipientComponentInfo]?
 
@@ -60,7 +60,7 @@ extension Ess {
 
     /// 查询流程填写控件内容
     ///
-    /// 查询流程填写控件内容，可以根据流程Id查询该流程相关联的填写控件信息
+    /// 查询流程填写控件内容，可以根据流程Id查询该流程相关联的填写控件信息和填写内容。
     @inlinable
     public func describeFlowComponents(_ input: DescribeFlowComponentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowComponentsResponse> {
         self.client.execute(action: "DescribeFlowComponents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -68,7 +68,7 @@ extension Ess {
 
     /// 查询流程填写控件内容
     ///
-    /// 查询流程填写控件内容，可以根据流程Id查询该流程相关联的填写控件信息
+    /// 查询流程填写控件内容，可以根据流程Id查询该流程相关联的填写控件信息和填写内容。
     @inlinable
     public func describeFlowComponents(_ input: DescribeFlowComponentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowComponentsResponse {
         try await self.client.execute(action: "DescribeFlowComponents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -76,7 +76,7 @@ extension Ess {
 
     /// 查询流程填写控件内容
     ///
-    /// 查询流程填写控件内容，可以根据流程Id查询该流程相关联的填写控件信息
+    /// 查询流程填写控件内容，可以根据流程Id查询该流程相关联的填写控件信息和填写内容。
     @inlinable
     public func describeFlowComponents(operator: UserInfo, flowId: String, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowComponentsResponse> {
         self.describeFlowComponents(.init(operator: `operator`, flowId: flowId, agent: agent), region: region, logger: logger, on: eventLoop)
@@ -84,7 +84,7 @@ extension Ess {
 
     /// 查询流程填写控件内容
     ///
-    /// 查询流程填写控件内容，可以根据流程Id查询该流程相关联的填写控件信息
+    /// 查询流程填写控件内容，可以根据流程Id查询该流程相关联的填写控件信息和填写内容。
     @inlinable
     public func describeFlowComponents(operator: UserInfo, flowId: String, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowComponentsResponse {
         try await self.describeFlowComponents(.init(operator: `operator`, flowId: flowId, agent: agent), region: region, logger: logger, on: eventLoop)

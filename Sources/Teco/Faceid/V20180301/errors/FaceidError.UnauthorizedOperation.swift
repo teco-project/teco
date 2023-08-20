@@ -61,6 +61,8 @@ extension TCFaceidError {
         }
 
         /// 帐号已欠费。
+        ///
+        /// None
         public static var arrears: UnauthorizedOperation {
             UnauthorizedOperation(.arrears)
         }

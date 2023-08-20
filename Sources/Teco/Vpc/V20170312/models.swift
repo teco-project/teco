@@ -4064,7 +4064,7 @@ extension Vpc {
         /// 2 更新中
         /// 3 更新出错
         /// 4 销毁中
-        /// 5 销毁出粗
+        /// 5 销毁出错
         /// 6 已连通
         /// 7 未知
         public let state: String
@@ -4081,7 +4081,7 @@ extension Vpc {
         }
     }
 
-    /// SSL-VPN-SERVER 信息 SET
+    /// SSL-VPN-SERVER 出参
     public struct SslVpnSever: TCOutputModel {
         /// VPC实例ID.
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -4132,7 +4132,7 @@ extension Vpc {
         /// 2 更新中
         /// 3 更新出错
         /// 4 销毁中
-        /// 5 销毁出粗
+        /// 5 销毁出错
         /// 6 已连通
         /// 7 未知
         public let state: UInt64

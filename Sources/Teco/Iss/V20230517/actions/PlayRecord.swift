@@ -53,23 +53,10 @@ extension Iss {
         }
     }
 
-    /// 本地录像播放url数据结构
+    /// PlayRecord返回参数结构体
     public struct PlayRecordResponse: TCResponse {
-        private let data: Wrapped
-
-        private struct Wrapped: Codable {
-            public let flv: String?
-
-            enum CodingKeys: String, CodingKey {
-                case flv = "Flv"
-            }
-        }
-
-        /// 录像播放地址
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public var flv: String? {
-            self.data.flv
-        }
+        /// 返回结果
+        public let data: PlayRecordData
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -83,7 +70,7 @@ extension Iss {
     /// 获取本地录像URL地址
     ///
     /// 用于获取设备本地录像 URL 地址。
-    @inlinable @discardableResult
+    @inlinable
     public func playRecord(_ input: PlayRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PlayRecordResponse> {
         self.client.execute(action: "PlayRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -91,7 +78,7 @@ extension Iss {
     /// 获取本地录像URL地址
     ///
     /// 用于获取设备本地录像 URL 地址。
-    @inlinable @discardableResult
+    @inlinable
     public func playRecord(_ input: PlayRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PlayRecordResponse {
         try await self.client.execute(action: "PlayRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -99,7 +86,7 @@ extension Iss {
     /// 获取本地录像URL地址
     ///
     /// 用于获取设备本地录像 URL 地址。
-    @inlinable @discardableResult
+    @inlinable
     public func playRecord(channelId: String, start: Int64, end: Int64, streamType: Int64? = nil, resolution: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PlayRecordResponse> {
         self.playRecord(.init(channelId: channelId, start: start, end: end, streamType: streamType, resolution: resolution), region: region, logger: logger, on: eventLoop)
     }
@@ -107,7 +94,7 @@ extension Iss {
     /// 获取本地录像URL地址
     ///
     /// 用于获取设备本地录像 URL 地址。
-    @inlinable @discardableResult
+    @inlinable
     public func playRecord(channelId: String, start: Int64, end: Int64, streamType: Int64? = nil, resolution: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PlayRecordResponse {
         try await self.playRecord(.init(channelId: channelId, start: start, end: end, streamType: streamType, resolution: resolution), region: region, logger: logger, on: eventLoop)
     }

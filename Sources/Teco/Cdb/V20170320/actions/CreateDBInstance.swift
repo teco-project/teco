@@ -57,7 +57,7 @@ extension Cdb {
         /// MySQL 版本，值包括：5.5、5.6 、5.7和8.0，请使用 [获取云数据库可售卖规格](https://cloud.tencent.com/document/api/236/17229) 接口获取可创建的实例版本。
         public let engineVersion: String?
 
-        /// 设置 root 帐号密码，密码规则：8 - 64 个字符，至少包含字母、数字、字符（支持的字符：_+-&=!@#$%^*()）中的两种，购买主实例时可指定该参数，购买只读实例或者灾备实例时指定该参数无意义。
+        /// 设置 root 账号密码，密码规则：8 - 64 个字符，至少包含字母、数字、字符（支持的字符：_+-&=!@#$%^*()）中的两种，购买主实例时可指定该参数，购买只读实例或者灾备实例时指定该参数无意义。
         public let password: String?
 
         /// 数据复制方式，默认为 0，支持值包括：0 - 表示异步复制，1 - 表示半同步复制，2 - 表示强同步复制。
@@ -105,7 +105,7 @@ extension Cdb {
         /// 参数模板id。
         public let paramTemplateId: Int64?
 
-        /// 告警策略id数组。云监控DescribeAlarmPolicy接口返回的OriginId。
+        /// 告警策略id数组。腾讯云可观测平台DescribeAlarmPolicy接口返回的OriginId。
         public let alarmPolicyList: [Int64]?
 
         /// 实例节点数。对于 RO 和 基础版实例， 该值默认为1。 如果需要购买三节点实例， 请将该值设置为3 或指定 BackupZone 参数。当购买主实例，且未指定该参数和 BackupZone 参数时，该值默认是 2， 即购买两节点实例。

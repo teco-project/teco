@@ -64,6 +64,7 @@ public struct TCCamError: TCCamErrorType {
         case invalidParameter_GroupNotExist = "InvalidParameter.GroupNotExist"
         case invalidParameter_GroupUserFull = "InvalidParameter.GroupUserFull"
         case invalidParameter_IdentityNameInUse = "InvalidParameter.IdentityNameInUse"
+        case invalidParameter_InterfaceNotExist = "InvalidParameter.InterfaceNotExist"
         case invalidParameter_KeywordError = "InvalidParameter.KeywordError"
         case invalidParameter_MFATokenError = "InvalidParameter.MFATokenError"
         case invalidParameter_NotSupportProduct = "InvalidParameter.NotSupportProduct"
@@ -82,6 +83,7 @@ public struct TCCamError: TCCamErrorType {
         case invalidParameter_PrincipalQcsError = "InvalidParameter.PrincipalQcsError"
         case invalidParameter_PrincipalQcsNotExist = "InvalidParameter.PrincipalQcsNotExist"
         case invalidParameter_PrincipalServiceNotExist = "InvalidParameter.PrincipalServiceNotExist"
+        case invalidParameter_ReceiverOverLimit = "InvalidParameter.ReceiverOverLimit"
         case invalidParameter_ResourceContentError = "InvalidParameter.ResourceContentError"
         case invalidParameter_ResourceError = "InvalidParameter.ResourceError"
         case invalidParameter_ResourceProjectError = "InvalidParameter.ResourceProjectError"
@@ -106,10 +108,12 @@ public struct TCCamError: TCCamErrorType {
         case invalidParameter_UinError = "InvalidParameter.UinError"
         case invalidParameter_UserGroupFull = "InvalidParameter.UserGroupFull"
         case invalidParameter_UserNameIllegal = "InvalidParameter.UserNameIllegal"
+        case invalidParameter_UserNotAuth = "InvalidParameter.UserNotAuth"
         case invalidParameter_UserNotExist = "InvalidParameter.UserNotExist"
         case invalidParameter_UserUinAndUinNotAllNull = "InvalidParameter.UserUinAndUinNotAllNull"
         case invalidParameter_VersionError = "InvalidParameter.VersionError"
         case limitExceeded_IdentityFull = "LimitExceeded.IdentityFull"
+        case limitExceeded_Uin = "LimitExceeded.Uin"
         case operationDenied_AccessKeyOverLimit = "OperationDenied.AccessKeyOverLimit"
         case operationDenied_HaveKeys = "OperationDenied.HaveKeys"
         case operationDenied_SubUin = "OperationDenied.SubUin"
@@ -354,6 +358,11 @@ public struct TCCamError: TCCamErrorType {
         TCCamError(.invalidParameter_IdentityNameInUse)
     }
 
+    /// 接口不存在。
+    public static var invalidParameter_InterfaceNotExist: TCCamError {
+        TCCamError(.invalidParameter_InterfaceNotExist)
+    }
+
     /// Keyword字段不合法。
     public static var invalidParameter_KeywordError: TCCamError {
         TCCamError(.invalidParameter_KeywordError)
@@ -442,6 +451,10 @@ public struct TCCamError: TCCamErrorType {
     /// PrincipalService不存在。
     public static var invalidParameter_PrincipalServiceNotExist: TCCamError {
         TCCamError(.invalidParameter_PrincipalServiceNotExist)
+    }
+
+    public static var invalidParameter_ReceiverOverLimit: TCCamError {
+        TCCamError(.invalidParameter_ReceiverOverLimit)
     }
 
     /// 策略语法中资源内容不正确。
@@ -564,6 +577,11 @@ public struct TCCamError: TCCamErrorType {
         TCCamError(.invalidParameter_UserNameIllegal)
     }
 
+    /// 用户未实名。
+    public static var invalidParameter_UserNotAuth: TCCamError {
+        TCCamError(.invalidParameter_UserNotAuth)
+    }
+
     /// 用户对象不存在。
     public static var invalidParameter_UserNotExist: TCCamError {
         TCCamError(.invalidParameter_UserNotExist)
@@ -582,6 +600,10 @@ public struct TCCamError: TCCamErrorType {
     /// 身份提供商已达到上限。
     public static var limitExceeded_IdentityFull: TCCamError {
         TCCamError(.limitExceeded_IdentityFull)
+    }
+
+    public static var limitExceeded_Uin: TCCamError {
+        TCCamError(.limitExceeded_Uin)
     }
 
     /// 每个账号最多支持两个AccessKey。

@@ -34,12 +34,14 @@ extension TCCdbError {
             case instanceQueryError = "FailedOperation.InstanceQueryError"
             case jsonMarshalError = "FailedOperation.JsonMarshalError"
             case jsonUnmarshalError = "FailedOperation.JsonUnmarshalError"
+            case notChangeStrategy = "FailedOperation.NotChangeStrategy"
             case notDelayRo = "FailedOperation.NotDelayRo"
             case operationInConflictErr = "FailedOperation.OperationInConflictErr"
             case privilegeDataIllegal = "FailedOperation.PrivilegeDataIllegal"
             case proxyGroupStatusError = "FailedOperation.ProxyGroupStatusError"
             case queryAuditTaskFailError = "FailedOperation.QueryAuditTaskFailError"
             case queryLogError = "FailedOperation.QueryLogError"
+            case remoteCallUnmarshalError = "FailedOperation.RemoteCallUnmarshalError"
             case repeatCreateProxyError = "FailedOperation.RepeatCreateProxyError"
             case responseValueError = "FailedOperation.ResponseValueError"
             case startFlowError = "FailedOperation.StartFlowError"
@@ -151,6 +153,11 @@ extension TCCdbError {
             FailedOperation(.jsonUnmarshalError)
         }
 
+        /// 检查到改动前后策略一致，无改动点。
+        public static var notChangeStrategy: FailedOperation {
+            FailedOperation(.notChangeStrategy)
+        }
+
         /// 不是延迟复制RO。
         public static var notDelayRo: FailedOperation {
             FailedOperation(.notDelayRo)
@@ -179,6 +186,11 @@ extension TCCdbError {
         /// 查询日志失败。
         public static var queryLogError: FailedOperation {
             FailedOperation(.queryLogError)
+        }
+
+        /// 高可用版服务跨区调用反序列化失败。
+        public static var remoteCallUnmarshalError: FailedOperation {
+            FailedOperation(.remoteCallUnmarshalError)
         }
 
         /// 代理创建中或则已存在，请勿重复创建。
@@ -266,6 +278,8 @@ extension TCCdbError {
                 code = .failedOperation_JsonMarshalError
             case .jsonUnmarshalError:
                 code = .failedOperation_JsonUnmarshalError
+            case .notChangeStrategy:
+                code = .failedOperation_NotChangeStrategy
             case .notDelayRo:
                 code = .failedOperation_NotDelayRo
             case .operationInConflictErr:
@@ -278,6 +292,8 @@ extension TCCdbError {
                 code = .failedOperation_QueryAuditTaskFailError
             case .queryLogError:
                 code = .failedOperation_QueryLogError
+            case .remoteCallUnmarshalError:
+                code = .failedOperation_RemoteCallUnmarshalError
             case .repeatCreateProxyError:
                 code = .failedOperation_RepeatCreateProxyError
             case .responseValueError:

@@ -27,7 +27,7 @@ extension Ess {
         /// 角色id
         public let roleId: String
 
-        /// 用户信息
+        /// 用户信息,最多 200 个用户，并且 UserId 和 OpenId 二选一，其他字段不需要传
         public let users: [UserInfo]
 
         /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填

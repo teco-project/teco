@@ -21,12 +21,16 @@ import TecoCore
 extension Live {
     /// DescribeProvinceIspPlayInfoList请求参数结构体
     public struct DescribeProvinceIspPlayInfoListRequest: TCRequest {
-        /// 起始时间点，当前使用北京时间，
-        /// 例：2019-02-21 10:00:00。
+        /// 起始时间点，
+        /// 使用UTC格式时间，
+        /// 例如：2019-01-08T10:00:00Z。
+        /// 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         public let startTime: String
 
-        /// 结束时间点，当前使用北京时间，
-        /// 例：2019-02-21 12:00:00。
+        /// 结束时间点，
+        /// 使用UTC格式时间，
+        /// 例如：2019-01-08T10:00:00Z。
+        /// 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         /// 注：EndTime 和 StartTime 只支持最近1天的数据查询。
         public let endTime: String
 
@@ -104,6 +108,7 @@ extension Live {
 
     /// 按省份运营商查询播放信息
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询某省份某运营商下行播放数据，包括带宽，流量，请求数，并发连接数信息。
     @inlinable
     public func describeProvinceIspPlayInfoList(_ input: DescribeProvinceIspPlayInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProvinceIspPlayInfoListResponse> {
@@ -112,6 +117,7 @@ extension Live {
 
     /// 按省份运营商查询播放信息
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询某省份某运营商下行播放数据，包括带宽，流量，请求数，并发连接数信息。
     @inlinable
     public func describeProvinceIspPlayInfoList(_ input: DescribeProvinceIspPlayInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProvinceIspPlayInfoListResponse {
@@ -120,6 +126,7 @@ extension Live {
 
     /// 按省份运营商查询播放信息
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询某省份某运营商下行播放数据，包括带宽，流量，请求数，并发连接数信息。
     @inlinable
     public func describeProvinceIspPlayInfoList(startTime: String, endTime: String, granularity: UInt64, statType: String, playDomains: [String]? = nil, provinceNames: [String]? = nil, ispNames: [String]? = nil, mainlandOrOversea: String? = nil, ipType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProvinceIspPlayInfoListResponse> {
@@ -128,6 +135,7 @@ extension Live {
 
     /// 按省份运营商查询播放信息
     ///
+    /// 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
     /// 查询某省份某运营商下行播放数据，包括带宽，流量，请求数，并发连接数信息。
     @inlinable
     public func describeProvinceIspPlayInfoList(startTime: String, endTime: String, granularity: UInt64, statType: String, playDomains: [String]? = nil, provinceNames: [String]? = nil, ispNames: [String]? = nil, mainlandOrOversea: String? = nil, ipType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProvinceIspPlayInfoListResponse {

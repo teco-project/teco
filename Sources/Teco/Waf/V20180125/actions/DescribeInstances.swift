@@ -22,7 +22,7 @@ import TecoPaginationHelpers
 extension Waf {
     /// DescribeInstances请求参数结构体
     public struct DescribeInstancesRequest: TCPaginatedRequest {
-        /// 偏移
+        /// 偏移量
         public let offset: UInt64
 
         /// 容量

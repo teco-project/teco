@@ -26,6 +26,7 @@ extension TCTeoError {
             case domainNotMatchZone = "InvalidParameterValue.DomainNotMatchZone"
             case invalidDNSContent = "InvalidParameterValue.InvalidDNSContent"
             case invalidDNSName = "InvalidParameterValue.InvalidDNSName"
+            case invalidDomainName = "InvalidParameterValue.InvalidDomainName"
             case invalidDomainStatus = "InvalidParameterValue.InvalidDomainStatus"
             case zoneSameAsName = "InvalidParameterValue.ZoneSameAsName"
             case other = "InvalidParameterValue"
@@ -88,6 +89,11 @@ extension TCTeoError {
             InvalidParameterValue(.invalidDNSName)
         }
 
+        /// 加速域名名称不合法，加速域名应该由数字、英文字母、连词符组成，且连词符不能位于开头和结尾处。
+        public static var invalidDomainName: InvalidParameterValue {
+            InvalidParameterValue(.invalidDomainName)
+        }
+
         /// 加速域名状态不符合要求。
         public static var invalidDomainStatus: InvalidParameterValue {
             InvalidParameterValue(.invalidDomainStatus)
@@ -122,6 +128,8 @@ extension TCTeoError {
                 code = .invalidParameterValue_InvalidDNSContent
             case .invalidDNSName:
                 code = .invalidParameterValue_InvalidDNSName
+            case .invalidDomainName:
+                code = .invalidParameterValue_InvalidDomainName
             case .invalidDomainStatus:
                 code = .invalidParameterValue_InvalidDomainStatus
             case .zoneSameAsName:

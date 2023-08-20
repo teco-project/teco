@@ -61,7 +61,8 @@ extension Ess {
 
     /// 创建企业员工
     ///
-    /// 创建员工,此接口会发送提醒员工实名的短信
+    /// 创建员工,此接口会发送提醒员工实名的短信，如果通过手机号发现员工已经创建，则不会重新创建，会发送短信提醒员工实名
+    /// 注意：此接口支持企微组织架构的 openid 创建员工，这种场景下传递明文的企微 openid 到WeworkOpenId字段即可（企微明文的 openid 一定要在应用的可见范围内才行），通过企微创建的员工，会发送企微消息去提醒实名
     @inlinable
     public func createIntegrationEmployees(_ input: CreateIntegrationEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIntegrationEmployeesResponse> {
         self.client.execute(action: "CreateIntegrationEmployees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -69,7 +70,8 @@ extension Ess {
 
     /// 创建企业员工
     ///
-    /// 创建员工,此接口会发送提醒员工实名的短信
+    /// 创建员工,此接口会发送提醒员工实名的短信，如果通过手机号发现员工已经创建，则不会重新创建，会发送短信提醒员工实名
+    /// 注意：此接口支持企微组织架构的 openid 创建员工，这种场景下传递明文的企微 openid 到WeworkOpenId字段即可（企微明文的 openid 一定要在应用的可见范围内才行），通过企微创建的员工，会发送企微消息去提醒实名
     @inlinable
     public func createIntegrationEmployees(_ input: CreateIntegrationEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIntegrationEmployeesResponse {
         try await self.client.execute(action: "CreateIntegrationEmployees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -77,7 +79,8 @@ extension Ess {
 
     /// 创建企业员工
     ///
-    /// 创建员工,此接口会发送提醒员工实名的短信
+    /// 创建员工,此接口会发送提醒员工实名的短信，如果通过手机号发现员工已经创建，则不会重新创建，会发送短信提醒员工实名
+    /// 注意：此接口支持企微组织架构的 openid 创建员工，这种场景下传递明文的企微 openid 到WeworkOpenId字段即可（企微明文的 openid 一定要在应用的可见范围内才行），通过企微创建的员工，会发送企微消息去提醒实名
     @inlinable
     public func createIntegrationEmployees(operator: UserInfo, employees: [Staff], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIntegrationEmployeesResponse> {
         self.createIntegrationEmployees(.init(operator: `operator`, employees: employees, agent: agent), region: region, logger: logger, on: eventLoop)
@@ -85,7 +88,8 @@ extension Ess {
 
     /// 创建企业员工
     ///
-    /// 创建员工,此接口会发送提醒员工实名的短信
+    /// 创建员工,此接口会发送提醒员工实名的短信，如果通过手机号发现员工已经创建，则不会重新创建，会发送短信提醒员工实名
+    /// 注意：此接口支持企微组织架构的 openid 创建员工，这种场景下传递明文的企微 openid 到WeworkOpenId字段即可（企微明文的 openid 一定要在应用的可见范围内才行），通过企微创建的员工，会发送企微消息去提醒实名
     @inlinable
     public func createIntegrationEmployees(operator: UserInfo, employees: [Staff], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIntegrationEmployeesResponse {
         try await self.createIntegrationEmployees(.init(operator: `operator`, employees: employees, agent: agent), region: region, logger: logger, on: eventLoop)

@@ -53,7 +53,10 @@ extension Dlc {
         /// 3.dlc.sql.set.config：用户配置的集群配置信息，可以用过该字段设置；
         public let arguments: [KVPair]?
 
-        public init(dataEngineName: String, executeSQL: String, driverSize: String? = nil, executorSize: String? = nil, executorNumbers: UInt64? = nil, executorMaxNumbers: UInt64? = nil, timeoutInSecond: Int64? = nil, sessionId: String? = nil, sessionName: String? = nil, arguments: [KVPair]? = nil) {
+        /// 是否继承集群的资源类配置：0：自定义（默认），1：继承集群；
+        public let isInherit: Int64?
+
+        public init(dataEngineName: String, executeSQL: String, driverSize: String? = nil, executorSize: String? = nil, executorNumbers: UInt64? = nil, executorMaxNumbers: UInt64? = nil, timeoutInSecond: Int64? = nil, sessionId: String? = nil, sessionName: String? = nil, arguments: [KVPair]? = nil, isInherit: Int64? = nil) {
             self.dataEngineName = dataEngineName
             self.executeSQL = executeSQL
             self.driverSize = driverSize
@@ -64,6 +67,7 @@ extension Dlc {
             self.sessionId = sessionId
             self.sessionName = sessionName
             self.arguments = arguments
+            self.isInherit = isInherit
         }
 
         enum CodingKeys: String, CodingKey {
@@ -77,6 +81,7 @@ extension Dlc {
             case sessionId = "SessionId"
             case sessionName = "SessionName"
             case arguments = "Arguments"
+            case isInherit = "IsInherit"
         }
     }
 
@@ -114,15 +119,15 @@ extension Dlc {
     ///
     /// 本接口（CreateSparkSessionBatchSQL）用于向Spark作业引擎提交Spark SQL批任务。
     @inlinable
-    public func createSparkSessionBatchSQL(dataEngineName: String, executeSQL: String, driverSize: String? = nil, executorSize: String? = nil, executorNumbers: UInt64? = nil, executorMaxNumbers: UInt64? = nil, timeoutInSecond: Int64? = nil, sessionId: String? = nil, sessionName: String? = nil, arguments: [KVPair]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSparkSessionBatchSQLResponse> {
-        self.createSparkSessionBatchSQL(.init(dataEngineName: dataEngineName, executeSQL: executeSQL, driverSize: driverSize, executorSize: executorSize, executorNumbers: executorNumbers, executorMaxNumbers: executorMaxNumbers, timeoutInSecond: timeoutInSecond, sessionId: sessionId, sessionName: sessionName, arguments: arguments), region: region, logger: logger, on: eventLoop)
+    public func createSparkSessionBatchSQL(dataEngineName: String, executeSQL: String, driverSize: String? = nil, executorSize: String? = nil, executorNumbers: UInt64? = nil, executorMaxNumbers: UInt64? = nil, timeoutInSecond: Int64? = nil, sessionId: String? = nil, sessionName: String? = nil, arguments: [KVPair]? = nil, isInherit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSparkSessionBatchSQLResponse> {
+        self.createSparkSessionBatchSQL(.init(dataEngineName: dataEngineName, executeSQL: executeSQL, driverSize: driverSize, executorSize: executorSize, executorNumbers: executorNumbers, executorMaxNumbers: executorMaxNumbers, timeoutInSecond: timeoutInSecond, sessionId: sessionId, sessionName: sessionName, arguments: arguments, isInherit: isInherit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建并执行Spark SQL批任务
     ///
     /// 本接口（CreateSparkSessionBatchSQL）用于向Spark作业引擎提交Spark SQL批任务。
     @inlinable
-    public func createSparkSessionBatchSQL(dataEngineName: String, executeSQL: String, driverSize: String? = nil, executorSize: String? = nil, executorNumbers: UInt64? = nil, executorMaxNumbers: UInt64? = nil, timeoutInSecond: Int64? = nil, sessionId: String? = nil, sessionName: String? = nil, arguments: [KVPair]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSparkSessionBatchSQLResponse {
-        try await self.createSparkSessionBatchSQL(.init(dataEngineName: dataEngineName, executeSQL: executeSQL, driverSize: driverSize, executorSize: executorSize, executorNumbers: executorNumbers, executorMaxNumbers: executorMaxNumbers, timeoutInSecond: timeoutInSecond, sessionId: sessionId, sessionName: sessionName, arguments: arguments), region: region, logger: logger, on: eventLoop)
+    public func createSparkSessionBatchSQL(dataEngineName: String, executeSQL: String, driverSize: String? = nil, executorSize: String? = nil, executorNumbers: UInt64? = nil, executorMaxNumbers: UInt64? = nil, timeoutInSecond: Int64? = nil, sessionId: String? = nil, sessionName: String? = nil, arguments: [KVPair]? = nil, isInherit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSparkSessionBatchSQLResponse {
+        try await self.createSparkSessionBatchSQL(.init(dataEngineName: dataEngineName, executeSQL: executeSQL, driverSize: driverSize, executorSize: executorSize, executorNumbers: executorNumbers, executorMaxNumbers: executorMaxNumbers, timeoutInSecond: timeoutInSecond, sessionId: sessionId, sessionName: sessionName, arguments: arguments, isInherit: isInherit), region: region, logger: logger, on: eventLoop)
     }
 }

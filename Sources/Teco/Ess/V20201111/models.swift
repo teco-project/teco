@@ -69,81 +69,142 @@ extension Ess {
 
     /// 参与者信息
     public struct ApproverInfo: TCInputModel {
-        /// 参与者类型：
-        /// 0：企业
-        /// 1：个人
-        /// 3：企业静默签署
-        /// 注：类型为3（企业静默签署）时，此接口会默认完成该签署方的签署。静默签署仅进行盖章操作，不能自动签名。
+        /// 在指定签署方时，可选择企业B端或个人C端等不同的参与者类型，可选类型如下:
+        /// **0**：企业
+        /// **1**：个人
+        /// **3**：企业静默签署
+        /// 注：`类型为3（企业静默签署）时，此接口会默认完成该签署方的签署。静默签署仅进行盖章操作，不能自动签名。`
+        /// **7**: 个人自动签署，适用于个人自动签场景。
+        /// 注: `个人自动签场景为白名单功能，使用前请联系对接的客户经理沟通。`
         public let approverType: Int64
 
-        /// 签署人的姓名
+        /// 签署方经办人的姓名。
+        /// 经办人的姓名将用于身份认证和电子签名，请确保填写的姓名为签署方的真实姓名，而非昵称等代名。
         public let approverName: String
 
-        /// 签署人的手机号，11位数字
+        /// 本企业的签署方经办人的员工UserId
+        /// 可登录腾讯电子签控制台，在 "更多能力"->"组织管理" 中查看某位员工的UserId(在页面中展示为用户ID)。
+        ///
+        /// 注: `若传该字段，则签署方经办人的其他信息（如签署方经办人的姓名、证件号码、手机号码等）将被忽略。`
         public let approverMobile: String
 
-        /// 如果签署方是企业签署方，则为企业名
+        /// 组织机构名称。
+        /// 如果签署方是企业签署方(approverType = 1 或者 approverType = 3)， 则企业名称必填。
+        ///
+        /// 注: `请确认该名称与企业营业执照中注册的名称一致 ; 如果名称中包含英文括号()，请使用中文括号（）代替。`
         public let organizationName: String?
 
-        /// 签署人的签署控件列表
+        /// 合同中的签署控件列表，列表中可支持下列多种签署控件,控件的详细定义参考开发者中心的Component结构体
+        ///
+        /// - 个人签名/印章
+        /// - 企业印章
+        /// - 骑缝章等签署控件
         public let signComponents: [Component]?
 
-        /// 签署人的身份证号
-        public let approverIdCardNumber: String?
-
-        /// 签署人的身份证件类型
-        /// ID_CARD 身份证
-        /// HONGKONG_AND_MACAO 港澳居民来往内地通行证
-        /// HONGKONG_MACAO_AND_TAIWAN 港澳台居民居住证(格式同居民身份证)
+        /// 签署方经办人的证件类型，支持以下类型
+        ///
+        /// - ID_CARD 居民身份证  (默认值)
+        /// - HONGKONG_AND_MACAO 港澳居民来往内地通行证
+        /// - HONGKONG_MACAO_AND_TAIWAN 港澳台居民居住证(格式同居民身份证)
+        /// - OTHER_CARD_TYPE 其他证件
+        ///
+        /// 注: `其他证件类型为白名单功能，使用前请联系对接的客户经理沟通。`
         public let approverIdCardType: String?
 
-        /// 签署通知类型：sms--短信，none--不通知
+        /// 签署方经办人的证件号码，应符合以下规则
+        ///
+        /// - 居民身份证号码应为18位字符串，由数字和大写字母X组成（如存在X，请大写）。
+        /// - 港澳居民来往内地通行证号码应为9位字符串，第1位为“C”，第2位为英文字母（但“I”、“O”除外），后7位为阿拉伯数字。
+        /// - 港澳台居民居住证号码编码规则与中国大陆身份证相同，应为18位字符串。
+        public let approverIdCardNumber: String?
+
+        /// 通知签署方经办人的方式,  有以下途径:
+        ///
+        /// - **sms**  :  (默认)短信
+        /// - **none**   : 不通知
         public let notifyType: String?
 
-        /// 签署人角色类型：1--收款人、2--开具人、3--见证人
+        /// 收据场景设置签署人角色类型, 可以设置如下****类型****:
+        ///
+        /// - **1**  :收款人
+        /// - **2**   :开具人
+        /// - **3** :见证人
+        /// 注: `收据场景为白名单功能，使用前请联系对接的客户经理沟通。`
         public let approverRole: Int64?
 
         /// 签署意愿确认渠道，默认为WEIXINAPP:人脸识别
+        ///
+        /// 注: 将要废弃, 用ApproverSignTypes签署人签署合同时的认证方式代替, 新客户可请用ApproverSignTypes来设置
         public let verifyChannel: [String]?
 
-        /// 合同的强制预览时间：3~300s，未指定则按合同页数计算
+        /// 签署方在签署合同之前，需要强制阅读合同的时长，可指定为3秒至300秒之间的任意值。
+        ///
+        /// 若未指定阅读时间，则会按照合同页数大小计算阅读时间，计算规则如下：
+        ///
+        /// - 合同页数少于等于2页，阅读时间为3秒；
+        /// - 合同页数为3到5页，阅读时间为5秒；
+        /// - 合同页数大于等于6页，阅读时间为10秒。
         public let preReadTime: Int64?
 
-        /// 签署人userId，传此字段则不用传姓名、手机号
+        /// 签署人userId，仅支持本企业的员工userid， 可在控制台组织管理处获得
+        ///
+        /// 注: `若传此字段 则以userid的信息为主，会覆盖传递过来的签署人基本信息， 包括姓名，手机号，证件类型等信息`
         public let userId: String?
 
-        /// 签署人用户来源，企微侧用户请传入：WEWORKAPP
+        /// 在企微场景下使用，需设置参数为**WEWORKAPP**，以表明合同来源于企微。
         public let approverSource: String?
 
-        /// 企业签署方或签标识，客户自定义，64位长度。用于发起含有或签签署人的合同。或签参与人必须有此字段。合同内不同或签参与人CustomApproverTag需要保证唯一。如果或签签署人为本方企微参与人，ApproverSource参数需要指定WEWORKAPP
+        /// 在企业微信场景下，表明该合同流程为或签，其最大长度为64位字符串。
+        /// 所有参与或签的人员均需具备该标识。
+        /// 注意，在合同中，不同的或签参与人必须保证其CustomApproverTag唯一。
+        /// 如果或签签署人为本方企业微信参与人，则需要指定ApproverSource参数为WEWORKAPP。
         public let customApproverTag: String?
 
-        /// 签署人个性化能力值
+        /// 可以控制签署方在签署合同时能否进行某些操作，例如拒签、转交他人等。
+        /// 详细操作可以参考开发者中心的ApproverOption结构体。
         public let approverOption: ApproverOption?
 
-        /// 签署人查看合同时认证方式,
-        /// 1-实名查看 2-短信验证码查看(企业签署方不支持该方式)
-        /// 如果不传默认为1
-        /// 模板发起的时候,认证方式以模板配置为主
+        /// 指定个人签署方查看合同的校验方式,可以传值如下:
+        ///
+        /// - **1**   : （默认）人脸识别,人脸识别后才能合同内容
+        /// - **2**  : 手机号验证, 用户手机号和参与方手机号(ApproverMobile)相同即可查看合同内容
+        /// 注:
+        ///
+        /// - 如果合同流程设置ApproverVerifyType查看合同的校验方式,    则忽略此签署人的查看合同的校验方式
+        /// - 此字段不可传多个校验方式
         public let approverVerifyTypes: [Int64]?
 
-        /// 签署人签署合同时的认证方式
-        /// 1-人脸认证 2-签署密码 3-运营商三要素(默认为1,2)
-        /// 合同签署认证方式的优先级 verifyChannel>approverSignTypes
-        /// 模板发起的时候,认证方式以模板配置为主
+        /// 您可以指定签署方签署合同的认证校验方式，可传递以下值：
+        ///
+        /// - **1**：人脸认证，需进行人脸识别成功后才能签署合同；
+        /// - **2**：签署密码，需输入与用户在腾讯电子签设置的密码一致才能校验成功进行合同签署；
+        /// - **3**：运营商三要素，需到运营商处比对手机号实名信息（名字、手机号、证件号）校验一致才能成功进行合同签署。
+        /// 注：
+        ///
+        /// - 默认情况下，认证校验方式为人脸认证和签署密码两种形式；
+        /// - 您可以传递多种值，表示可用多种认证校验方式。
         public let approverSignTypes: [Int64]?
 
-        /// 当前签署方进行签署操作是否需要企业内部审批，true 则为需要。为个人签署方时则由发起方企业审核。
+        /// 发起方企业的签署人进行签署操作前，是否需要企业内部走审批流程，取值如下：
+        ///
+        /// - **false**：（默认）不需要审批，直接签署。
+        /// - **true**：需要走审批流程。当到对应参与人签署时，会阻塞其签署操作，等待企业内部审批完成。
+        /// 企业可以通过CreateFlowSignReview审批接口通知腾讯电子签平台企业内部审批结果
+        ///
+        /// - 如果企业通知腾讯电子签平台审核通过，签署方可继续签署动作。
+        /// - 如果企业通知腾讯电子签平台审核未通过，平台将继续阻塞签署方的签署动作，直到企业通知平台审核通过。
+        ///
+        /// 注：`此功能可用于与企业内部的审批流程进行关联，支持手动、静默签署合同`
         public let approverNeedSignReview: Bool?
 
-        public init(approverType: Int64, approverName: String, approverMobile: String, organizationName: String? = nil, signComponents: [Component]? = nil, approverIdCardNumber: String? = nil, approverIdCardType: String? = nil, notifyType: String? = nil, approverRole: Int64? = nil, verifyChannel: [String]? = nil, preReadTime: Int64? = nil, userId: String? = nil, approverSource: String? = nil, customApproverTag: String? = nil, approverOption: ApproverOption? = nil, approverVerifyTypes: [Int64]? = nil, approverSignTypes: [Int64]? = nil, approverNeedSignReview: Bool? = nil) {
+        public init(approverType: Int64, approverName: String, approverMobile: String, organizationName: String? = nil, signComponents: [Component]? = nil, approverIdCardType: String? = nil, approverIdCardNumber: String? = nil, notifyType: String? = nil, approverRole: Int64? = nil, verifyChannel: [String]? = nil, preReadTime: Int64? = nil, userId: String? = nil, approverSource: String? = nil, customApproverTag: String? = nil, approverOption: ApproverOption? = nil, approverVerifyTypes: [Int64]? = nil, approverSignTypes: [Int64]? = nil, approverNeedSignReview: Bool? = nil) {
             self.approverType = approverType
             self.approverName = approverName
             self.approverMobile = approverMobile
             self.organizationName = organizationName
             self.signComponents = signComponents
-            self.approverIdCardNumber = approverIdCardNumber
             self.approverIdCardType = approverIdCardType
+            self.approverIdCardNumber = approverIdCardNumber
             self.notifyType = notifyType
             self.approverRole = approverRole
             self.verifyChannel = verifyChannel
@@ -163,8 +224,8 @@ extension Ess {
             case approverMobile = "ApproverMobile"
             case organizationName = "OrganizationName"
             case signComponents = "SignComponents"
-            case approverIdCardNumber = "ApproverIdCardNumber"
             case approverIdCardType = "ApproverIdCardType"
+            case approverIdCardNumber = "ApproverIdCardNumber"
             case notifyType = "NotifyType"
             case approverRole = "ApproverRole"
             case verifyChannel = "VerifyChannel"
@@ -181,10 +242,16 @@ extension Ess {
 
     /// 签署人个性化能力信息
     public struct ApproverOption: TCInputModel {
-        /// 是否可以拒签 默认false-可以拒签 true-不可以拒签
+        /// 签署方是否可以拒签
+        ///
+        /// - **false** : ( 默认)可以拒签
+        /// - **true** :不可以拒签
         public let noRefuse: Bool?
 
-        /// 是否可以转发 默认false-可以转发 true-不可以转发
+        /// 签署方是否可以转他人处理
+        ///
+        /// - **false** : ( 默认)可以转他人处理
+        /// - **true** :不可以转他人处理
         public let noTransfer: Bool?
 
         public init(noRefuse: Bool? = nil, noTransfer: Bool? = nil) {
@@ -365,23 +432,30 @@ extension Ess {
 
     /// 抄送信息
     public struct CcInfo: TCInputModel {
-        /// 被抄送人手机号，11位数字
+        /// 被抄送方手机号码， 支持国内手机号11位数字(无需加+86前缀或其他字符)。
+        /// 请确认手机号所有方为此业务通知方。
         public let mobile: String?
 
-        /// 被抄送人姓名
+        /// 被抄送方姓名。
+        /// 抄送方的姓名将用于身份认证，请确保填写的姓名为抄送方的真实姓名，而非昵称等代名。
         public let name: String?
 
-        /// 被抄送人类型,
-        /// 0--个人
-        /// 1--员工
+        /// 被抄送方类型, 可设置以下类型:
+        ///
+        /// - **0** :个人抄送方
+        /// - **1** :企业员工抄送方
         public let ccType: Int64?
 
-        /// 被抄送人权限
-        /// 0--可查看
-        /// 1--可查看也可下载
+        /// 被抄送方权限, 可设置如下权限:
+        ///
+        /// - **0** :可查看合同内容
+        /// - **1** :可查看合同内容也可下载原文
         public let ccPermission: Int64?
 
-        /// 关注方通知类型：sms--短信，none--不通知
+        /// 通知签署方经办人的方式,  有以下途径:
+        ///
+        /// - **sms** :  (默认)短信
+        /// - **none** : 不通知
         public let notifyType: String?
 
         public init(mobile: String? = nil, name: String? = nil, ccType: Int64? = nil, ccPermission: Int64? = nil, notifyType: String? = nil) {
@@ -1328,6 +1402,8 @@ extension Ess {
         /// 自动签署仅进行盖章操作，不能是手写签名。
         /// 本方企业自动签署的签署人会默认是当前的发起人
         /// 他方企业自动签署的签署人是自动签模板的他方企业授权人
+        /// 7: 个人自动签署，适用于个人自动签场景。
+        /// 注: 个人自动签场景为白名单功能, 使用前请联系对接的客户经理沟通。
         public let approverType: Int64
 
         /// 签署人企业名称
@@ -1345,12 +1421,14 @@ extension Ess {
         /// 在未指定签署人电子签UserId情况下，为必填参数
         public let approverMobile: String?
 
-        /// 签署方经办人证件类型ID_CARD 身份证
+        /// 签署人的证件类型
+        /// ID_CARD 身份证
         /// HONGKONG_AND_MACAO 港澳居民来往内地通行证
         /// HONGKONG_MACAO_AND_TAIWAN 港澳台居民居住证(格式同居民身份证)
+        /// OTHER_CARD_TYPE 其他（需要使用该类型请先联系运营经理）
         public let approverIdCardType: String?
 
-        /// 签署方经办人证件号码
+        /// 签署人证件号（长度不超过18位）
         public let approverIdCardNumber: String?
 
         /// 签署方经办人在模板中的参与方ID
@@ -1380,15 +1458,15 @@ extension Ess {
         /// 合同的强制预览时间：3~300s，未指定则按合同页数计算
         public let preReadTime: UInt64?
 
-        /// 签署方经办人的电子签用户ID
+        /// 签署人userId，仅支持本企业的员工userid， 可在控制台组织管理处获得
         ///
-        /// 当未指定签署人姓名+手机号的情况下，该字段毕传
+        /// 若传此字段 则以userid的信息为主，会覆盖传递过来的签署人基本信息， 包括姓名，手机号，证件类型等信息
         public let userId: String?
 
         /// 当前只支持true，默认为true
         public let required: Bool?
 
-        /// 签署人用户来源
+        /// 签署人用户来源，此参数仅针对企微用户开放
         ///
         /// 企微侧用户请传入：WEWORKAPP
         public let approverSource: String?
@@ -1426,12 +1504,12 @@ extension Ess {
         /// 为个人签署方时则由发起方企业审核。
         public let approverNeedSignReview: Bool?
 
-        /// 签署人签署控件
+        /// 签署人签署控件， 此参数仅针对文件发起（CreateFlowByFiles）生效
         ///
         /// 文件发起时，可通过该参数为签署人指定签署控件类型以及位置
         public let signComponents: [Component]?
 
-        /// 签署人填写控件
+        /// 签署人填写控件 此参数仅针对文件发起（CreateFlowByFiles）生效
         ///
         /// 文件发起时，可通过该参数为签署人指定填写控件类型以及位置
         public let components: [Component]?
@@ -1958,7 +2036,7 @@ extension Ess {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let joinTime: UInt64?
 
-        /// 是否使用审批流引擎，true-是，false-否
+        /// 是否使用自建审批流引擎（即不是企微审批流引擎），true-是，false-否
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowEngineEnable: Bool?
 
@@ -2323,14 +2401,16 @@ extension Ess {
         public let recipientId: String?
 
         /// 参与方填写状态
+        /// 0-未填写
+        /// 1-已填写
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recipientFillStatus: String?
 
-        /// 是否发起方
+        /// 是否为发起方
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isPromoter: Bool?
 
-        /// 填写控件内容
+        /// 填写控件列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let components: [FilledComponent]?
 

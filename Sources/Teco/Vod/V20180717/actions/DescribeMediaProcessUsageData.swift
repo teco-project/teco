@@ -42,6 +42,12 @@ extension Vod {
         /// - ExtractTraceWatermark: 提取水印
         /// - AddTraceWatermark: 添加水印
         /// - RebuildMedia: 音画质重生
+        /// - QualityInspect: 音画质检测
+        /// - VideoHighlight: 视频智能集锦
+        /// - VideoTag: 视频智能标签
+        /// - VideoClassification:  视频智能分类
+        /// - VideoCover: 视频智能封面
+        /// - VideoSegment: 视频智能拆条
         /// - Transcode: 转码，包含普通转码、极速高清和视频编辑（不推荐使用）
         public let type: String?
 

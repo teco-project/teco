@@ -27,7 +27,7 @@ extension Wedata {
         /// 数据库
         public let database: String
 
-        /// 建hive表ddl
+        /// base64转码之后的建表语句
         public let ddlSql: String
 
         /// 表权限 ，默认为0:项目共享;1:仅个人与管理员

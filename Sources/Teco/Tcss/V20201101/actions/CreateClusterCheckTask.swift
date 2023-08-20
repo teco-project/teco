@@ -41,12 +41,17 @@ extension Tcss {
         /// 创建检查任务的结果，"Succ"为成功，其他的为失败原因
         public let createResult: String
 
+        /// 返回创建的集群新任务ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let newTaskID: String?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case createResult = "CreateResult"
+            case newTaskID = "NewTaskID"
             case requestId = "RequestId"
         }
     }

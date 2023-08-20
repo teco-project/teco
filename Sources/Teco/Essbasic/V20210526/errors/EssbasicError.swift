@@ -30,6 +30,7 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         case failedOperation = "FailedOperation"
         case failedOperation_AgeNotAchieveNormalLegal = "FailedOperation.AgeNotAchieveNormalLegal"
         case failedOperation_AuthFail = "FailedOperation.AuthFail"
+        case failedOperation_ErrNotSyncProxyOrganization = "FailedOperation.ErrNotSyncProxyOrganization"
         case failedOperation_ExistSameSealName = "FailedOperation.ExistSameSealName"
         case failedOperation_FlowNumExceed = "FailedOperation.FlowNumExceed"
         case failedOperation_HasAuthorized = "FailedOperation.HasAuthorized"
@@ -39,6 +40,8 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         case failedOperation_QrCodeSignUsers = "FailedOperation.QrCodeSignUsers"
         case failedOperation_QrCodeTemplateId = "FailedOperation.QrCodeTemplateId"
         case failedOperation_StaffAlreadyVerify = "FailedOperation.StaffAlreadyVerify"
+        case failedOperation_UserAutoSignEnableAlready = "FailedOperation.UserAutoSignEnableAlready"
+        case failedOperation_UserAutoSignEnableUrlNotExist = "FailedOperation.UserAutoSignEnableUrlNotExist"
         case internalError = "InternalError"
         case internalError_Api = "InternalError.Api"
         case internalError_Db = "InternalError.Db"
@@ -65,6 +68,7 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         case invalidParameter_BizApproverAlreadyExists = "InvalidParameter.BizApproverAlreadyExists"
         case invalidParameter_BusinessLicense = "InvalidParameter.BusinessLicense"
         case invalidParameter_CancelReason = "InvalidParameter.CancelReason"
+        case invalidParameter_CardNumber = "InvalidParameter.CardNumber"
         case invalidParameter_CardType = "InvalidParameter.CardType"
         case invalidParameter_ComponentValue = "InvalidParameter.ComponentValue"
         case invalidParameter_ContentType = "InvalidParameter.ContentType"
@@ -139,11 +143,13 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         case missingParameter_UserId = "MissingParameter.UserId"
         case missingParameter_UserOpenId = "MissingParameter.UserOpenId"
         case operationDenied = "OperationDenied"
+        case operationDenied_ApproverRepeat = "OperationDenied.ApproverRepeat"
         case operationDenied_AuthTag = "OperationDenied.AuthTag"
         case operationDenied_BannedApplication = "OperationDenied.BannedApplication"
         case operationDenied_ByFilesServerSignForbid = "OperationDenied.ByFilesServerSignForbid"
         case operationDenied_DownLoadMoreThanOne = "OperationDenied.DownLoadMoreThanOne"
         case operationDenied_ErrNoResourceAccess = "OperationDenied.ErrNoResourceAccess"
+        case operationDenied_ErrNotOpenWeakAuthorization = "OperationDenied.ErrNotOpenWeakAuthorization"
         case operationDenied_FileDeleted = "OperationDenied.FileDeleted"
         case operationDenied_FlowHasTerminated = "OperationDenied.FlowHasTerminated"
         case operationDenied_FlowStatusForbid = "OperationDenied.FlowStatusForbid"
@@ -156,6 +162,7 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         case operationDenied_NoPermissionUseResource = "OperationDenied.NoPermissionUseResource"
         case operationDenied_NoQuota = "OperationDenied.NoQuota"
         case operationDenied_NotBelongSuperAdminOrLegalPerson = "OperationDenied.NotBelongSuperAdminOrLegalPerson"
+        case operationDenied_NotSupportOrgType = "OperationDenied.NotSupportOrgType"
         case operationDenied_OperateType = "OperationDenied.OperateType"
         case operationDenied_OperatorHasNoPermission = "OperationDenied.OperatorHasNoPermission"
         case operationDenied_OutQueryLimit = "OperationDenied.OutQueryLimit"
@@ -251,6 +258,11 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.failedOperation_AuthFail)
     }
 
+    /// 使用“同步企业信息”接口同步企业信息
+    public static var failedOperation_ErrNotSyncProxyOrganization: TCEssbasicError {
+        TCEssbasicError(.failedOperation_ErrNotSyncProxyOrganization)
+    }
+
     /// 存在同名印章。
     public static var failedOperation_ExistSameSealName: TCEssbasicError {
         TCEssbasicError(.failedOperation_ExistSameSealName)
@@ -301,6 +313,14 @@ public struct TCEssbasicError: TCEssbasicErrorType {
     /// 员工已实名，如有其他疑问，请联系客服。
     public static var failedOperation_StaffAlreadyVerify: TCEssbasicError {
         TCEssbasicError(.failedOperation_StaffAlreadyVerify)
+    }
+
+    public static var failedOperation_UserAutoSignEnableAlready: TCEssbasicError {
+        TCEssbasicError(.failedOperation_UserAutoSignEnableAlready)
+    }
+
+    public static var failedOperation_UserAutoSignEnableUrlNotExist: TCEssbasicError {
+        TCEssbasicError(.failedOperation_UserAutoSignEnableUrlNotExist)
     }
 
     /// 内部错误。
@@ -444,6 +464,7 @@ public struct TCEssbasicError: TCEssbasicErrorType {
 
     /// 1:上传授权书
     /// 2:法人授权
+    /// 4:信任第三方认证源
     public static var invalidParameter_AuthorizationType: TCEssbasicError {
         TCEssbasicError(.invalidParameter_AuthorizationType)
     }
@@ -463,6 +484,13 @@ public struct TCEssbasicError: TCEssbasicErrorType {
     /// 撤销理由填写格式错误。
     public static var invalidParameter_CancelReason: TCEssbasicError {
         TCEssbasicError(.invalidParameter_CancelReason)
+    }
+
+    /// 证件号码错误。
+    ///
+    /// 请检查证件号码是否规范。
+    public static var invalidParameter_CardNumber: TCEssbasicError {
+        TCEssbasicError(.invalidParameter_CardNumber)
     }
 
     /// 证件类型错误。
@@ -841,6 +869,11 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.operationDenied)
     }
 
+    /// 请检查参与人的姓名、手机号、证件信息是否有重复
+    public static var operationDenied_ApproverRepeat: TCEssbasicError {
+        TCEssbasicError(.operationDenied_ApproverRepeat)
+    }
+
     /// 不支持的可见性标识。
     public static var operationDenied_AuthTag: TCEssbasicError {
         TCEssbasicError(.operationDenied_AuthTag)
@@ -866,6 +899,11 @@ public struct TCEssbasicError: TCEssbasicErrorType {
     /// 无资源访问权限。
     public static var operationDenied_ErrNoResourceAccess: TCEssbasicError {
         TCEssbasicError(.operationDenied_ErrNoResourceAccess)
+    }
+
+    /// 请联系第三方应用开通“平台子客企业实名认证（信任第三方认证源）”能力或指定其他授权方式重新发起
+    public static var operationDenied_ErrNotOpenWeakAuthorization: TCEssbasicError {
+        TCEssbasicError(.operationDenied_ErrNotOpenWeakAuthorization)
     }
 
     /// 文件已删除。
@@ -935,6 +973,10 @@ public struct TCEssbasicError: TCEssbasicErrorType {
     /// 不属于企业超管或者法人，请超管/法人权限用户操作
     public static var operationDenied_NotBelongSuperAdminOrLegalPerson: TCEssbasicError {
         TCEssbasicError(.operationDenied_NotBelongSuperAdminOrLegalPerson)
+    }
+
+    public static var operationDenied_NotSupportOrgType: TCEssbasicError {
+        TCEssbasicError(.operationDenied_NotSupportOrgType)
     }
 
     /// 操作类型不支持。

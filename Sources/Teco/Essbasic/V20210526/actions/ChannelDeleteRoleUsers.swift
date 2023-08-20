@@ -27,14 +27,14 @@ extension Essbasic {
         /// 角色Id（非超管或法人角色Id）
         public let roleId: String
 
-        /// 电子签用户ID列表，与OpenIds参数二选一,优先UserIds参数
+        /// 电子签用户ID列表，与OpenIds参数二选一,优先UserIds参数，最多两百
         public let userIds: [String]?
 
         /// 操作人信息
         @available(*, deprecated)
         public let `operator`: UserInfo? = nil
 
-        /// 客户系统用户ID列表，与UserIds参数二选一,优先UserIds参数
+        /// 客户系统用户ID列表，与UserIds参数二选一,优先UserIds参数，最多两百
         public let openIds: [String]?
 
         public init(agent: Agent, roleId: String, userIds: [String]? = nil, openIds: [String]? = nil) {

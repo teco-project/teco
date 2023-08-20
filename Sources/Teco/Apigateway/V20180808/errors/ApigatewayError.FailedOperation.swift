@@ -54,6 +54,7 @@ extension TCApigatewayError {
             case formatError = "FailedOperation.FormatError"
             case getRoleError = "FailedOperation.GetRoleError"
             case instanceNotExist = "FailedOperation.InstanceNotExist"
+            case invalidInputJSON = "FailedOperation.InvalidInputJSON"
             case isDefaultMapping = "FailedOperation.IsDefaultMapping"
             case netSubDomainError = "FailedOperation.NetSubDomainError"
             case operateUpstream = "FailedOperation.OperateUpstream"
@@ -264,6 +265,10 @@ extension TCApigatewayError {
             FailedOperation(.instanceNotExist)
         }
 
+        public static var invalidInputJSON: FailedOperation {
+            FailedOperation(.invalidInputJSON)
+        }
+
         /// Apis 自定义路径与默认路径冲突。
         public static var isDefaultMapping: FailedOperation {
             FailedOperation(.isDefaultMapping)
@@ -404,6 +409,8 @@ extension TCApigatewayError {
                 code = .failedOperation_GetRoleError
             case .instanceNotExist:
                 code = .failedOperation_InstanceNotExist
+            case .invalidInputJSON:
+                code = .failedOperation_InvalidInputJSON
             case .isDefaultMapping:
                 code = .failedOperation_IsDefaultMapping
             case .netSubDomainError:

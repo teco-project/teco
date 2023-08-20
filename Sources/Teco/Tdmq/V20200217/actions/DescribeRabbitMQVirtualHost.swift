@@ -37,12 +37,24 @@ extension Tdmq {
         /// search-virtual-host：vhost名称模糊查询，之前前缀和后缀匹配
         public let filters: Filter?
 
-        public init(instanceId: String, virtualHost: String? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: Filter? = nil) {
+        /// 排序依据的字段：
+        /// MessageHeapCount - 消息堆积数；
+        /// MessageRateInOut - 生产消费速率之和；
+        /// MessageRateIn - 生产速率；
+        /// MessageRateOut - 消费速率；
+        public let sortElement: String?
+
+        /// 排序顺序，ascend 或 descend
+        public let sortOrder: String?
+
+        public init(instanceId: String, virtualHost: String? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: Filter? = nil, sortElement: String? = nil, sortOrder: String? = nil) {
             self.instanceId = instanceId
             self.virtualHost = virtualHost
             self.offset = offset
             self.limit = limit
             self.filters = filters
+            self.sortElement = sortElement
+            self.sortOrder = sortOrder
         }
 
         enum CodingKeys: String, CodingKey {
@@ -51,6 +63,8 @@ extension Tdmq {
             case offset = "Offset"
             case limit = "Limit"
             case filters = "Filters"
+            case sortElement = "SortElement"
+            case sortOrder = "SortOrder"
         }
 
         /// Compute the next request based on API response.
@@ -58,7 +72,7 @@ extension Tdmq {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return .init(instanceId: self.instanceId, virtualHost: self.virtualHost, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters)
+            return .init(instanceId: self.instanceId, virtualHost: self.virtualHost, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters, sortElement: self.sortElement, sortOrder: self.sortOrder)
         }
     }
 
@@ -104,14 +118,14 @@ extension Tdmq {
 
     /// 查询RabbitMQ vhost列表
     @inlinable
-    public func describeRabbitMQVirtualHost(instanceId: String, virtualHost: String? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: Filter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRabbitMQVirtualHostResponse> {
-        self.describeRabbitMQVirtualHost(.init(instanceId: instanceId, virtualHost: virtualHost, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+    public func describeRabbitMQVirtualHost(instanceId: String, virtualHost: String? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: Filter? = nil, sortElement: String? = nil, sortOrder: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRabbitMQVirtualHostResponse> {
+        self.describeRabbitMQVirtualHost(.init(instanceId: instanceId, virtualHost: virtualHost, offset: offset, limit: limit, filters: filters, sortElement: sortElement, sortOrder: sortOrder), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询RabbitMQ vhost列表
     @inlinable
-    public func describeRabbitMQVirtualHost(instanceId: String, virtualHost: String? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: Filter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRabbitMQVirtualHostResponse {
-        try await self.describeRabbitMQVirtualHost(.init(instanceId: instanceId, virtualHost: virtualHost, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+    public func describeRabbitMQVirtualHost(instanceId: String, virtualHost: String? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: Filter? = nil, sortElement: String? = nil, sortOrder: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRabbitMQVirtualHostResponse {
+        try await self.describeRabbitMQVirtualHost(.init(instanceId: instanceId, virtualHost: virtualHost, offset: offset, limit: limit, filters: filters, sortElement: sortElement, sortOrder: sortOrder), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询RabbitMQ vhost列表
