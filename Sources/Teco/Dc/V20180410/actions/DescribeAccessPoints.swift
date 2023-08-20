@@ -50,7 +50,7 @@ extension Dc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAccessPointsRequest(regionId: self.regionId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(regionId: self.regionId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

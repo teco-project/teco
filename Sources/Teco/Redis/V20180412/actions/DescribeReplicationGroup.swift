@@ -53,7 +53,7 @@ extension Redis {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeReplicationGroupRequest(limit: self.limit, offset: self.offset + .init(response.getItems().count), groupId: self.groupId, searchKey: self.searchKey)
+            return .init(limit: self.limit, offset: self.offset + .init(response.getItems().count), groupId: self.groupId, searchKey: self.searchKey)
         }
     }
 

@@ -58,7 +58,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeGatewayApisRequest(groupId: self.groupId, offset: self.offset + .init(response.getItems().count), limit: self.limit, searchWord: self.searchWord, gatewayDeployGroupId: self.gatewayDeployGroupId)
+            return .init(groupId: self.groupId, offset: self.offset + .init(response.getItems().count), limit: self.limit, searchWord: self.searchWord, gatewayDeployGroupId: self.gatewayDeployGroupId)
         }
     }
 

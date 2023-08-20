@@ -58,7 +58,7 @@ extension Cmq {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeQueueDetailRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters, tagKey: self.tagKey, queueName: self.queueName)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters, tagKey: self.tagKey, queueName: self.queueName)
         }
     }
 

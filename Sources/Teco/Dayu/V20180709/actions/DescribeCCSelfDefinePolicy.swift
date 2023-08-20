@@ -53,7 +53,7 @@ extension Dayu {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCCSelfDefinePolicyRequest(business: self.business, id: self.id, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(business: self.business, id: self.id, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

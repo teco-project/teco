@@ -81,7 +81,7 @@ extension Eis {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListRuntimeDeployedInstancesMCRequest(runtimeId: self.runtimeId, limit: self.limit, offset: self.offset + .init(response.getItems().count), sortType: self.sortType, sort: self.sort, zone: self.zone, apiVersion: self.apiVersion, groupId: self.groupId, status: self.status)
+            return .init(runtimeId: self.runtimeId, limit: self.limit, offset: self.offset + .init(response.getItems().count), sortType: self.sortType, sort: self.sort, zone: self.zone, apiVersion: self.apiVersion, groupId: self.groupId, status: self.status)
         }
     }
 

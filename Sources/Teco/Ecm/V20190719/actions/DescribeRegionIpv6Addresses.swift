@@ -60,7 +60,7 @@ extension Ecm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeRegionIpv6AddressesRequest(ecmRegion: self.ecmRegion, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(ecmRegion: self.ecmRegion, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

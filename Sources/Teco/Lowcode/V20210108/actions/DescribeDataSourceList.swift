@@ -98,7 +98,7 @@ extension Lowcode {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDataSourceListRequest(pageSize: self.pageSize, pageIndex: self.pageIndex + 1, envId: self.envId, appids: self.appids, dataSourceIds: self.dataSourceIds, dataSourceNames: self.dataSourceNames, dataSourceType: self.dataSourceType, queryOption: self.queryOption, viewIds: self.viewIds, appLinkStatus: self.appLinkStatus, queryBindToApp: self.queryBindToApp, queryConnector: self.queryConnector, notQuerySubTypeList: self.notQuerySubTypeList)
+            return .init(pageSize: self.pageSize, pageIndex: self.pageIndex + 1, envId: self.envId, appids: self.appids, dataSourceIds: self.dataSourceIds, dataSourceNames: self.dataSourceNames, dataSourceType: self.dataSourceType, queryOption: self.queryOption, viewIds: self.viewIds, appLinkStatus: self.appLinkStatus, queryBindToApp: self.queryBindToApp, queryConnector: self.queryConnector, notQuerySubTypeList: self.notQuerySubTypeList)
         }
     }
 

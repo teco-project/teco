@@ -83,7 +83,7 @@ extension Iotvideoindustry {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeLiveVideoListRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, liveChannelId: self.liveChannelId, startRecordTime: self.startRecordTime, endRecordTime: self.endRecordTime, startExpireTime: self.startExpireTime, endExpireTime: self.endExpireTime, startFileSize: self.startFileSize, endFileSize: self.endFileSize, isRecording: self.isRecording)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, liveChannelId: self.liveChannelId, startRecordTime: self.startRecordTime, endRecordTime: self.endRecordTime, startExpireTime: self.startExpireTime, endExpireTime: self.endExpireTime, startFileSize: self.startFileSize, endFileSize: self.endFileSize, isRecording: self.isRecording)
         }
     }
 

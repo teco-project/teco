@@ -58,7 +58,7 @@ extension Trp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCodePacksRequest(pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1, keyword: self.keyword, corpId: self.corpId, serialType: self.serialType)
+            return .init(pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1, keyword: self.keyword, corpId: self.corpId, serialType: self.serialType)
         }
     }
 

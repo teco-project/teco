@@ -63,7 +63,7 @@ extension Iotvideoindustry {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDeviceEventRequest(startTime: self.startTime, endTime: self.endTime, deviceId: self.deviceId, eventTypes: self.eventTypes, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(startTime: self.startTime, endTime: self.endTime, deviceId: self.deviceId, eventTypes: self.eventTypes, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

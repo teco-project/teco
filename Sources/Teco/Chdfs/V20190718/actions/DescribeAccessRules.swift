@@ -48,7 +48,7 @@ extension Chdfs {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAccessRulesRequest(accessGroupId: self.accessGroupId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(accessGroupId: self.accessGroupId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

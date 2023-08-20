@@ -63,7 +63,7 @@ extension Tcr {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCustomAccountsRequest(registryId: self.registryId, all: self.all, embedPermission: self.embedPermission, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(registryId: self.registryId, all: self.all, embedPermission: self.embedPermission, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

@@ -48,7 +48,7 @@ extension Partners {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeRebateInfosRequest(rebateMonth: self.rebateMonth, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(rebateMonth: self.rebateMonth, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

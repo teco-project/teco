@@ -68,7 +68,7 @@ extension Dlc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSparkAppJobsRequest(sortBy: self.sortBy, sorting: self.sorting, filters: self.filters, startTime: self.startTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(sortBy: self.sortBy, sorting: self.sorting, filters: self.filters, startTime: self.startTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

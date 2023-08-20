@@ -58,7 +58,7 @@ extension Privatedns {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAuditLogRequest(timeRangeBegin: self.timeRangeBegin, filters: self.filters, timeRangeEnd: self.timeRangeEnd, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(timeRangeBegin: self.timeRangeBegin, filters: self.filters, timeRangeEnd: self.timeRangeEnd, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

@@ -53,7 +53,7 @@ extension Ckafka {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTopicSubscribeGroupRequest(instanceId: self.instanceId, topicName: self.topicName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(instanceId: self.instanceId, topicName: self.topicName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

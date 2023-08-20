@@ -48,7 +48,7 @@ extension Clb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeIdleLoadBalancersRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, loadBalancerRegion: self.loadBalancerRegion)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, loadBalancerRegion: self.loadBalancerRegion)
         }
     }
 

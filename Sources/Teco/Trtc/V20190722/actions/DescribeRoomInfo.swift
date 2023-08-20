@@ -67,7 +67,7 @@ extension Trtc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeRoomInfoRequest(sdkAppId: self.sdkAppId, startTime: self.startTime, endTime: self.endTime, roomId: self.roomId, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize)
+            return .init(sdkAppId: self.sdkAppId, startTime: self.startTime, endTime: self.endTime, roomId: self.roomId, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize)
         }
     }
 

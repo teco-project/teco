@@ -78,7 +78,7 @@ extension Mongodb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBackupDownloadTaskRequest(instanceId: self.instanceId, backupName: self.backupName, startTime: self.startTime, endTime: self.endTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), orderBy: self.orderBy, orderByType: self.orderByType, status: self.status)
+            return .init(instanceId: self.instanceId, backupName: self.backupName, startTime: self.startTime, endTime: self.endTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), orderBy: self.orderBy, orderByType: self.orderByType, status: self.status)
         }
     }
 

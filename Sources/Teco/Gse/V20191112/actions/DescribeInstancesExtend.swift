@@ -53,7 +53,7 @@ extension Gse {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeInstancesExtendRequest(fleetId: self.fleetId, offset: self.offset + .init(response.getItems().count), limit: self.limit, ipAddress: self.ipAddress)
+            return .init(fleetId: self.fleetId, offset: self.offset + .init(response.getItems().count), limit: self.limit, ipAddress: self.ipAddress)
         }
     }
 

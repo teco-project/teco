@@ -59,7 +59,7 @@ extension Tat {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAutomationAgentStatusRequest(instanceIds: self.instanceIds, filters: self.filters, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(instanceIds: self.instanceIds, filters: self.filters, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

@@ -53,7 +53,7 @@ extension Cpdp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return QueryMerchantInfoForManagementRequest(invoicePlatformId: self.invoicePlatformId, offset: self.offset + .init(response.getItems().count), limit: self.limit, profile: self.profile)
+            return .init(invoicePlatformId: self.invoicePlatformId, offset: self.offset + .init(response.getItems().count), limit: self.limit, profile: self.profile)
         }
     }
 

@@ -58,7 +58,7 @@ extension Ckafka {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeConnectResourcesRequest(type: self.type, searchWord: self.searchWord, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, resourceRegion: self.resourceRegion)
+            return .init(type: self.type, searchWord: self.searchWord, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, resourceRegion: self.resourceRegion)
         }
     }
 

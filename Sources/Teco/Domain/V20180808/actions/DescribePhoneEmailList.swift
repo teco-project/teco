@@ -53,7 +53,7 @@ extension Domain {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePhoneEmailListRequest(type: self.type, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, code: self.code)
+            return .init(type: self.type, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, code: self.code)
         }
     }
 

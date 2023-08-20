@@ -70,7 +70,7 @@ extension Scf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListTriggersRequest(functionName: self.functionName, namespace: self.namespace, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderBy: self.orderBy, order: self.order, filters: self.filters)
+            return .init(functionName: self.functionName, namespace: self.namespace, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderBy: self.orderBy, order: self.order, filters: self.filters)
         }
     }
 

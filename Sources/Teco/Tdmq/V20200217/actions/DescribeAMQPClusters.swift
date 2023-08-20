@@ -68,7 +68,7 @@ extension Tdmq {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAMQPClustersRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, idKeyword: self.idKeyword, nameKeyword: self.nameKeyword, clusterIdList: self.clusterIdList, isTagFilter: self.isTagFilter, filters: self.filters)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, idKeyword: self.idKeyword, nameKeyword: self.nameKeyword, clusterIdList: self.clusterIdList, isTagFilter: self.isTagFilter, filters: self.filters)
         }
     }
 

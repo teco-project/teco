@@ -53,7 +53,7 @@ extension Iot {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return GetDevicesRequest(productId: self.productId, offset: (self.offset ?? 0) + .init(response.getItems().count), length: self.length, keyword: self.keyword)
+            return .init(productId: self.productId, offset: (self.offset ?? 0) + .init(response.getItems().count), length: self.length, keyword: self.keyword)
         }
     }
 

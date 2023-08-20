@@ -48,7 +48,7 @@ extension Ame {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeKTVSingerMusicsRequest(singerId: self.singerId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(singerId: self.singerId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

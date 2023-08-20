@@ -66,7 +66,7 @@ extension Mps {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeWordSamplesRequest(keywords: self.keywords, usages: self.usages, tags: self.tags, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(keywords: self.keywords, usages: self.usages, tags: self.tags, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

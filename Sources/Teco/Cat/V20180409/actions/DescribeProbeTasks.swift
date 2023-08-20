@@ -120,7 +120,7 @@ extension Cat {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeProbeTasksRequest(taskIDs: self.taskIDs, taskName: self.taskName, targetAddress: self.targetAddress, taskStatus: self.taskStatus, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, payMode: self.payMode, orderState: self.orderState, taskType: self.taskType, taskCategory: self.taskCategory, orderBy: self.orderBy, ascend: self.ascend, tagFilters: self.tagFilters)
+            return .init(taskIDs: self.taskIDs, taskName: self.taskName, targetAddress: self.targetAddress, taskStatus: self.taskStatus, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, payMode: self.payMode, orderState: self.orderState, taskType: self.taskType, taskCategory: self.taskCategory, orderBy: self.orderBy, ascend: self.ascend, tagFilters: self.tagFilters)
         }
     }
 

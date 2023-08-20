@@ -72,7 +72,7 @@ extension Live {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeVisitTopSumInfoListRequest(startTime: self.startTime, endTime: self.endTime, topIndex: self.topIndex, playDomains: self.playDomains, pageNum: (self.pageNum ?? 0) + 1, pageSize: self.pageSize, orderParam: self.orderParam)
+            return .init(startTime: self.startTime, endTime: self.endTime, topIndex: self.topIndex, playDomains: self.playDomains, pageNum: (self.pageNum ?? 0) + 1, pageSize: self.pageSize, orderParam: self.orderParam)
         }
     }
 

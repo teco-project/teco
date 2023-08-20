@@ -53,7 +53,7 @@ extension Vpc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeNatGatewayDirectConnectGatewayRouteRequest(natGatewayId: self.natGatewayId, vpcId: self.vpcId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(natGatewayId: self.natGatewayId, vpcId: self.vpcId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

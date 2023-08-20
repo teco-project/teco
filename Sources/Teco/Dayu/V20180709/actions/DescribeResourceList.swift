@@ -98,7 +98,7 @@ extension Dayu {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeResourceListRequest(business: self.business, regionList: self.regionList, line: self.line, idList: self.idList, name: self.name, ipList: self.ipList, status: self.status, expire: self.expire, oderBy: self.oderBy, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), cName: self.cName, domain: self.domain)
+            return .init(business: self.business, regionList: self.regionList, line: self.line, idList: self.idList, name: self.name, ipList: self.ipList, status: self.status, expire: self.expire, oderBy: self.oderBy, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), cName: self.cName, domain: self.domain)
         }
     }
 

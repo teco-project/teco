@@ -43,7 +43,7 @@ extension Chdfs {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeFileSystemsRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

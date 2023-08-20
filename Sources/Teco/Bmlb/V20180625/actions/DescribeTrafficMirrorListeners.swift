@@ -83,7 +83,7 @@ extension Bmlb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTrafficMirrorListenersRequest(trafficMirrorId: self.trafficMirrorId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchLoadBalancerIds: self.searchLoadBalancerIds, searchLoadBalancerNames: self.searchLoadBalancerNames, searchVips: self.searchVips, searchListenerIds: self.searchListenerIds, searchListenerNames: self.searchListenerNames, searchProtocols: self.searchProtocols, searchLoadBalancerPorts: self.searchLoadBalancerPorts)
+            return .init(trafficMirrorId: self.trafficMirrorId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchLoadBalancerIds: self.searchLoadBalancerIds, searchLoadBalancerNames: self.searchLoadBalancerNames, searchVips: self.searchVips, searchListenerIds: self.searchListenerIds, searchListenerNames: self.searchListenerNames, searchProtocols: self.searchProtocols, searchLoadBalancerPorts: self.searchLoadBalancerPorts)
         }
     }
 

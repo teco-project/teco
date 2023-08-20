@@ -48,7 +48,7 @@ extension Tdcpg {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeClusterBackupsRequest(clusterId: self.clusterId, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize)
+            return .init(clusterId: self.clusterId, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize)
         }
     }
 

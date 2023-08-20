@@ -83,7 +83,7 @@ extension Cynosdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ExportInstanceErrorLogsRequest(instanceId: self.instanceId, startTime: self.startTime, endTime: self.endTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), logLevels: self.logLevels, keyWords: self.keyWords, fileType: self.fileType, orderBy: self.orderBy, orderByType: self.orderByType)
+            return .init(instanceId: self.instanceId, startTime: self.startTime, endTime: self.endTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), logLevels: self.logLevels, keyWords: self.keyWords, fileType: self.fileType, orderBy: self.orderBy, orderByType: self.orderByType)
         }
     }
 

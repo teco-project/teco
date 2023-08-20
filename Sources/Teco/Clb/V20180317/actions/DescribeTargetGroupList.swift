@@ -53,7 +53,7 @@ extension Clb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTargetGroupListRequest(targetGroupIds: self.targetGroupIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(targetGroupIds: self.targetGroupIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

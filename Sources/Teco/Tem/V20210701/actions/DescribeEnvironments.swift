@@ -63,7 +63,7 @@ extension Tem {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeEnvironmentsRequest(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), sourceChannel: self.sourceChannel, filters: self.filters, sortInfo: self.sortInfo, environmentId: self.environmentId)
+            return .init(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), sourceChannel: self.sourceChannel, filters: self.filters, sortInfo: self.sortInfo, environmentId: self.environmentId)
         }
     }
 

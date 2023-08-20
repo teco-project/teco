@@ -71,7 +71,7 @@ extension Vod {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeWordSamplesRequest(subAppId: self.subAppId, usages: self.usages, keywords: self.keywords, tags: self.tags, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(subAppId: self.subAppId, usages: self.usages, keywords: self.keywords, tags: self.tags, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

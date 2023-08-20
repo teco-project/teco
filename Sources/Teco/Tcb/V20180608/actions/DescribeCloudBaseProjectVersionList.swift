@@ -63,7 +63,7 @@ extension Tcb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCloudBaseProjectVersionListRequest(envId: self.envId, projectName: self.projectName, pageSize: self.pageSize, pageNum: (self.pageNum ?? 0) + 1, startTime: self.startTime, endTime: self.endTime)
+            return .init(envId: self.envId, projectName: self.projectName, pageSize: self.pageSize, pageNum: (self.pageNum ?? 0) + 1, startTime: self.startTime, endTime: self.endTime)
         }
     }
 

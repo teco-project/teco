@@ -63,7 +63,7 @@ extension Cloudhsm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeVsmsRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, searchWord: self.searchWord, tagFilters: self.tagFilters, manufacturer: self.manufacturer, hsmType: self.hsmType)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, searchWord: self.searchWord, tagFilters: self.tagFilters, manufacturer: self.manufacturer, hsmType: self.hsmType)
         }
     }
 

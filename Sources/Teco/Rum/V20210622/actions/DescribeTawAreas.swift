@@ -58,7 +58,7 @@ extension Rum {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTawAreasRequest(areaIds: self.areaIds, areaKeys: self.areaKeys, limit: self.limit, areaStatuses: self.areaStatuses, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(areaIds: self.areaIds, areaKeys: self.areaKeys, limit: self.limit, areaStatuses: self.areaStatuses, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

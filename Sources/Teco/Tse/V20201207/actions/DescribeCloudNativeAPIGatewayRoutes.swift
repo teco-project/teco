@@ -63,7 +63,7 @@ extension Tse {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCloudNativeAPIGatewayRoutesRequest(gatewayId: self.gatewayId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), serviceName: self.serviceName, routeName: self.routeName, filters: self.filters)
+            return .init(gatewayId: self.gatewayId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), serviceName: self.serviceName, routeName: self.routeName, filters: self.filters)
         }
     }
 

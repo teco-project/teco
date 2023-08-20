@@ -43,7 +43,7 @@ extension Mps {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeStreamLinkEventsRequest(pageNum: (self.pageNum ?? 0) + 1, pageSize: self.pageSize)
+            return .init(pageNum: (self.pageNum ?? 0) + 1, pageSize: self.pageSize)
         }
     }
 

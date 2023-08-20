@@ -63,7 +63,7 @@ extension Tdmq {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCmqQueuesRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, queueName: self.queueName, queueNameList: self.queueNameList, isTagFilter: self.isTagFilter, filters: self.filters)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, queueName: self.queueName, queueNameList: self.queueNameList, isTagFilter: self.isTagFilter, filters: self.filters)
         }
     }
 

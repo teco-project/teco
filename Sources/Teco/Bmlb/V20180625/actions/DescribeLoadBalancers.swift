@@ -113,7 +113,7 @@ extension Bmlb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeLoadBalancersRequest(loadBalancerIds: self.loadBalancerIds, loadBalancerType: self.loadBalancerType, loadBalancerName: self.loadBalancerName, domain: self.domain, loadBalancerVips: self.loadBalancerVips, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchKey: self.searchKey, orderBy: self.orderBy, orderType: self.orderType, projectId: self.projectId, exclusive: self.exclusive, tgwSetType: self.tgwSetType, vpcId: self.vpcId, queryType: self.queryType, confId: self.confId)
+            return .init(loadBalancerIds: self.loadBalancerIds, loadBalancerType: self.loadBalancerType, loadBalancerName: self.loadBalancerName, domain: self.domain, loadBalancerVips: self.loadBalancerVips, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchKey: self.searchKey, orderBy: self.orderBy, orderType: self.orderType, projectId: self.projectId, exclusive: self.exclusive, tgwSetType: self.tgwSetType, vpcId: self.vpcId, queryType: self.queryType, confId: self.confId)
         }
     }
 

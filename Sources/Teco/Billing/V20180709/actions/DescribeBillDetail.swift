@@ -138,7 +138,7 @@ extension Billing {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBillDetailRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, periodType: self.periodType, month: self.month, beginTime: self.beginTime, endTime: self.endTime, needRecordNum: self.needRecordNum, productCode: self.productCode, payMode: self.payMode, resourceId: self.resourceId, actionType: self.actionType, projectId: self.projectId, businessCode: self.businessCode, context: self.context, payerUin: self.payerUin)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, periodType: self.periodType, month: self.month, beginTime: self.beginTime, endTime: self.endTime, needRecordNum: self.needRecordNum, productCode: self.productCode, payMode: self.payMode, resourceId: self.resourceId, actionType: self.actionType, projectId: self.projectId, businessCode: self.businessCode, context: self.context, payerUin: self.payerUin)
         }
     }
 

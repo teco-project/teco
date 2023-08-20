@@ -88,7 +88,7 @@ extension Ms {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeOrderInstancesRequest(pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, orderField: self.orderField, orderDirection: self.orderDirection, platformType: self.platformType, orderType: self.orderType, approvalStatus: self.approvalStatus, resourceStatus: self.resourceStatus, orderId: self.orderId, resourceId: self.resourceId, appPkgName: self.appPkgName)
+            return .init(pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, orderField: self.orderField, orderDirection: self.orderDirection, platformType: self.platformType, orderType: self.orderType, approvalStatus: self.approvalStatus, resourceStatus: self.resourceStatus, orderId: self.orderId, resourceId: self.resourceId, appPkgName: self.appPkgName)
         }
     }
 

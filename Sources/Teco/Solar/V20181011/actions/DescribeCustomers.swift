@@ -98,7 +98,7 @@ extension Solar {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCustomersRequest(queryType: self.queryType, groupId: self.groupId, markFlag: self.markFlag, tagIds: self.tagIds, relChannelFlag: self.relChannelFlag, needPhoneFlag: self.needPhoneFlag, province: self.province, city: self.city, sex: self.sex, keyWord: self.keyWord, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, subProjectId: self.subProjectId)
+            return .init(queryType: self.queryType, groupId: self.groupId, markFlag: self.markFlag, tagIds: self.tagIds, relChannelFlag: self.relChannelFlag, needPhoneFlag: self.needPhoneFlag, province: self.province, city: self.city, sex: self.sex, keyWord: self.keyWord, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, subProjectId: self.subProjectId)
         }
     }
 

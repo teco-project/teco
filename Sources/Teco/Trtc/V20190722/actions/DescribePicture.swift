@@ -53,7 +53,7 @@ extension Trtc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePictureRequest(sdkAppId: self.sdkAppId, pictureId: self.pictureId, pageSize: self.pageSize, pageNo: (self.pageNo ?? 0) + 1)
+            return .init(sdkAppId: self.sdkAppId, pictureId: self.pictureId, pageSize: self.pageSize, pageNo: (self.pageNo ?? 0) + 1)
         }
     }
 

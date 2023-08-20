@@ -56,7 +56,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeLanesRequest(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), searchWord: self.searchWord, laneIdList: self.laneIdList, disableProgramAuthCheck: self.disableProgramAuthCheck)
+            return .init(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), searchWord: self.searchWord, laneIdList: self.laneIdList, disableProgramAuthCheck: self.disableProgramAuthCheck)
         }
     }
 

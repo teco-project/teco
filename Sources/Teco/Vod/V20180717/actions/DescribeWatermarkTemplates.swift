@@ -63,7 +63,7 @@ extension Vod {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeWatermarkTemplatesRequest(subAppId: self.subAppId, type: self.type, offset: (self.offset ?? 0) + .init(response.getItems().count), definitions: self.definitions, limit: self.limit)
+            return .init(subAppId: self.subAppId, type: self.type, offset: (self.offset ?? 0) + .init(response.getItems().count), definitions: self.definitions, limit: self.limit)
         }
     }
 

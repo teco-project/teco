@@ -75,7 +75,7 @@ extension Vod {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTasksRequest(subAppId: self.subAppId, status: self.status, fileId: self.fileId, createTime: self.createTime, finishTime: self.finishTime, sort: self.sort, limit: self.limit, scrollToken: response.scrollToken)
+            return .init(subAppId: self.subAppId, status: self.status, fileId: self.fileId, createTime: self.createTime, finishTime: self.finishTime, sort: self.sort, limit: self.limit, scrollToken: response.scrollToken)
         }
     }
 

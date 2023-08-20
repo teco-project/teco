@@ -89,7 +89,7 @@ extension Monitor {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePrometheusInstancesRequest(instanceIds: self.instanceIds, instanceStatus: self.instanceStatus, instanceName: self.instanceName, zones: self.zones, tagFilters: self.tagFilters, iPv4Address: self.iPv4Address, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), instanceChargeType: self.instanceChargeType)
+            return .init(instanceIds: self.instanceIds, instanceStatus: self.instanceStatus, instanceName: self.instanceName, zones: self.zones, tagFilters: self.tagFilters, iPv4Address: self.iPv4Address, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), instanceChargeType: self.instanceChargeType)
         }
     }
 

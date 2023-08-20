@@ -55,7 +55,7 @@ extension Tcss {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeK8sApiAbnormalRuleScopeListRequest(ruleID: self.ruleID, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters)
+            return .init(ruleID: self.ruleID, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters)
         }
     }
 

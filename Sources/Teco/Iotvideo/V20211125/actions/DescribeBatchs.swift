@@ -48,7 +48,7 @@ extension Iotvideo {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBatchsRequest(productId: self.productId, limit: self.limit, offset: self.offset + .init(response.getItems().count))
+            return .init(productId: self.productId, limit: self.limit, offset: self.offset + .init(response.getItems().count))
         }
     }
 

@@ -128,7 +128,7 @@ extension Wedata {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAllByFolderNewRequest(folder: self.folder, workflows: self.workflows, targetFolderId: self.targetFolderId, keyWords: self.keyWords, parentsFolderId: self.parentsFolderId, isAddWorkflow: self.isAddWorkflow, taskStates: self.taskStates, findType: self.findType, optType: self.optType, operatorName: self.operatorName, operatorId: self.operatorId, projectId: self.projectId, projectIdent: self.projectIdent, projectName: self.projectName, pageIndex: (self.pageIndex ?? 0) + 1, pageSize: self.pageSize, count: self.count, requestBaseInfo: self.requestBaseInfo, isCount: self.isCount)
+            return .init(folder: self.folder, workflows: self.workflows, targetFolderId: self.targetFolderId, keyWords: self.keyWords, parentsFolderId: self.parentsFolderId, isAddWorkflow: self.isAddWorkflow, taskStates: self.taskStates, findType: self.findType, optType: self.optType, operatorName: self.operatorName, operatorId: self.operatorId, projectId: self.projectId, projectIdent: self.projectIdent, projectName: self.projectName, pageIndex: (self.pageIndex ?? 0) + 1, pageSize: self.pageSize, count: self.count, requestBaseInfo: self.requestBaseInfo, isCount: self.isCount)
         }
     }
 

@@ -73,7 +73,7 @@ extension Wedata {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTableQualityDetailsRequest(statisticsDate: self.statisticsDate, projectId: self.projectId, pageNumber: self.pageNumber + 1, pageSize: self.pageSize, filters: self.filters, orderFields: self.orderFields, datasourceId: self.datasourceId, scoreType: self.scoreType)
+            return .init(statisticsDate: self.statisticsDate, projectId: self.projectId, pageNumber: self.pageNumber + 1, pageSize: self.pageSize, filters: self.filters, orderFields: self.orderFields, datasourceId: self.datasourceId, scoreType: self.scoreType)
         }
     }
 

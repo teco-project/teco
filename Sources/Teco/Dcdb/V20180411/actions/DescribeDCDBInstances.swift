@@ -123,7 +123,7 @@ extension Dcdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDCDBInstancesRequest(instanceIds: self.instanceIds, searchName: self.searchName, searchKey: self.searchKey, projectIds: self.projectIds, isFilterVpc: self.isFilterVpc, vpcId: self.vpcId, subnetId: self.subnetId, orderBy: self.orderBy, orderByType: self.orderByType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, exclusterType: self.exclusterType, isFilterExcluster: self.isFilterExcluster, exclusterIds: self.exclusterIds, tagKeys: self.tagKeys, filterInstanceType: self.filterInstanceType, status: self.status, excludeStatus: self.excludeStatus)
+            return .init(instanceIds: self.instanceIds, searchName: self.searchName, searchKey: self.searchKey, projectIds: self.projectIds, isFilterVpc: self.isFilterVpc, vpcId: self.vpcId, subnetId: self.subnetId, orderBy: self.orderBy, orderByType: self.orderByType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, exclusterType: self.exclusterType, isFilterExcluster: self.isFilterExcluster, exclusterIds: self.exclusterIds, tagKeys: self.tagKeys, filterInstanceType: self.filterInstanceType, status: self.status, excludeStatus: self.excludeStatus)
         }
     }
 

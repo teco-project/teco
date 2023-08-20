@@ -53,7 +53,7 @@ extension Cynosdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeProjectSecurityGroupsRequest(projectId: self.projectId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), searchKey: self.searchKey)
+            return .init(projectId: self.projectId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), searchKey: self.searchKey)
         }
     }
 

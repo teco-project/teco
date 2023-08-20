@@ -86,7 +86,7 @@ extension Dbbrain {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDBDiagReportTasksRequest(startTime: self.startTime, endTime: self.endTime, instanceIds: self.instanceIds, sources: self.sources, healthLevels: self.healthLevels, taskStatuses: self.taskStatuses, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, product: self.product)
+            return .init(startTime: self.startTime, endTime: self.endTime, instanceIds: self.instanceIds, sources: self.sources, healthLevels: self.healthLevels, taskStatuses: self.taskStatuses, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, product: self.product)
         }
     }
 

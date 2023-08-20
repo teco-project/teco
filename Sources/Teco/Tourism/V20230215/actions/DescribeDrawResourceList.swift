@@ -43,7 +43,7 @@ extension Tourism {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDrawResourceListRequest(pageNumber: self.pageNumber + 1, pageSize: self.pageSize)
+            return .init(pageNumber: self.pageNumber + 1, pageSize: self.pageSize)
         }
     }
 

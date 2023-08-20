@@ -63,7 +63,7 @@ extension Dlc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDatabasesRequest(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), keyWord: self.keyWord, datasourceConnectionName: self.datasourceConnectionName, sort: self.sort, asc: self.asc)
+            return .init(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), keyWord: self.keyWord, datasourceConnectionName: self.datasourceConnectionName, sort: self.sort, asc: self.asc)
         }
     }
 

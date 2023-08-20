@@ -55,7 +55,7 @@ extension Chdfs {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeMountPointsRequest(fileSystemId: self.fileSystemId, accessGroupId: self.accessGroupId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(fileSystemId: self.fileSystemId, accessGroupId: self.accessGroupId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

@@ -48,7 +48,7 @@ extension Tci {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePersonsRequest(libraryId: self.libraryId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(libraryId: self.libraryId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

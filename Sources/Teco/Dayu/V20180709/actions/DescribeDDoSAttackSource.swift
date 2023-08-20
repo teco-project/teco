@@ -76,7 +76,7 @@ extension Dayu {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDDoSAttackSourceRequest(business: self.business, id: self.id, startTime: self.startTime, endTime: self.endTime, limit: self.limit, offset: self.offset + .init(response.getItems().count), ipList: self.ipList)
+            return .init(business: self.business, id: self.id, startTime: self.startTime, endTime: self.endTime, limit: self.limit, offset: self.offset + .init(response.getItems().count), ipList: self.ipList)
         }
     }
 

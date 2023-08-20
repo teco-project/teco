@@ -105,7 +105,7 @@ extension Vpc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeFlowLogsRequest(vpcId: self.vpcId, flowLogId: self.flowLogId, flowLogName: self.flowLogName, resourceType: self.resourceType, resourceId: self.resourceId, trafficType: self.trafficType, cloudLogId: self.cloudLogId, cloudLogState: self.cloudLogState, orderField: self.orderField, orderDirection: self.orderDirection, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters, cloudLogRegion: self.cloudLogRegion)
+            return .init(vpcId: self.vpcId, flowLogId: self.flowLogId, flowLogName: self.flowLogName, resourceType: self.resourceType, resourceId: self.resourceId, trafficType: self.trafficType, cloudLogId: self.cloudLogId, cloudLogState: self.cloudLogState, orderField: self.orderField, orderDirection: self.orderDirection, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters, cloudLogRegion: self.cloudLogRegion)
         }
     }
 

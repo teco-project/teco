@@ -58,7 +58,7 @@ extension Emr {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeYarnApplicationsRequest(instanceId: self.instanceId, startTime: self.startTime, endTime: self.endTime, offset: self.offset + .init(response.getItems().count), limit: self.limit)
+            return .init(instanceId: self.instanceId, startTime: self.startTime, endTime: self.endTime, offset: self.offset + .init(response.getItems().count), limit: self.limit)
         }
     }
 

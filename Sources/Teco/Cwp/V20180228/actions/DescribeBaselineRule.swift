@@ -68,7 +68,7 @@ extension Cwp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBaselineRuleRequest(baselineId: self.baselineId, limit: self.limit, offset: self.offset + .init(response.getItems().count), level: self.level, status: self.status, quuid: self.quuid, uuid: self.uuid)
+            return .init(baselineId: self.baselineId, limit: self.limit, offset: self.offset + .init(response.getItems().count), level: self.level, status: self.status, quuid: self.quuid, uuid: self.uuid)
         }
     }
 

@@ -68,7 +68,7 @@ extension Essbasic {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ChannelDescribeRolesRequest(agent: self.agent, offset: self.offset + response.limit, limit: self.limit, filters: self.filters)
+            return .init(agent: self.agent, offset: self.offset + response.limit, limit: self.limit, filters: self.filters)
         }
     }
 

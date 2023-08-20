@@ -68,7 +68,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeInvocationMetricDataDimensionRequest(startTime: self.startTime, endTime: self.endTime, offset: self.offset + .init(response.getItems().count), limit: self.limit, dimensionName: self.dimensionName, searchWord: self.searchWord, metricDimensionValues: self.metricDimensionValues)
+            return .init(startTime: self.startTime, endTime: self.endTime, offset: self.offset + .init(response.getItems().count), limit: self.limit, dimensionName: self.dimensionName, searchWord: self.searchWord, metricDimensionValues: self.metricDimensionValues)
         }
     }
 

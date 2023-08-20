@@ -43,7 +43,7 @@ extension Wav {
             guard response.hasMore == 1 else {
                 return nil
             }
-            return QueryVehicleInfoListRequest(cursor: response.nextCursor, limit: self.limit)
+            return .init(cursor: response.nextCursor, limit: self.limit)
         }
     }
 

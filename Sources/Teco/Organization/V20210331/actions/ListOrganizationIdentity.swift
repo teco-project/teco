@@ -58,7 +58,7 @@ extension Organization {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListOrganizationIdentityRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, searchKey: self.searchKey, identityId: self.identityId, identityType: self.identityType)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, searchKey: self.searchKey, identityId: self.identityId, identityType: self.identityType)
         }
     }
 

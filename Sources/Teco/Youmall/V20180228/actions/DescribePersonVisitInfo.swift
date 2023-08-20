@@ -92,7 +92,7 @@ extension Youmall {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePersonVisitInfoRequest(companyId: self.companyId, shopId: self.shopId, offset: self.offset + .init(response.getItems().count), limit: self.limit, startDate: self.startDate, endDate: self.endDate, pictureExpires: self.pictureExpires, startDateTime: self.startDateTime, endDateTime: self.endDateTime)
+            return .init(companyId: self.companyId, shopId: self.shopId, offset: self.offset + .init(response.getItems().count), limit: self.limit, startDate: self.startDate, endDate: self.endDate, pictureExpires: self.pictureExpires, startDateTime: self.startDateTime, endDateTime: self.endDateTime)
         }
     }
 

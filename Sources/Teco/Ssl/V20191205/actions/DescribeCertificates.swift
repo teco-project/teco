@@ -98,7 +98,7 @@ extension Ssl {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCertificatesRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchKey: self.searchKey, certificateType: self.certificateType, projectId: self.projectId, expirationSort: self.expirationSort, certificateStatus: self.certificateStatus, deployable: self.deployable, upload: self.upload, renew: self.renew, filterSource: self.filterSource, isSM: self.isSM, filterExpiring: self.filterExpiring)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchKey: self.searchKey, certificateType: self.certificateType, projectId: self.projectId, expirationSort: self.expirationSort, certificateStatus: self.certificateStatus, deployable: self.deployable, upload: self.upload, renew: self.renew, filterSource: self.filterSource, isSM: self.isSM, filterExpiring: self.filterExpiring)
         }
     }
 

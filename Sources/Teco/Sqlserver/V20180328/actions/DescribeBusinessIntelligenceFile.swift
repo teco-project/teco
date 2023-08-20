@@ -73,7 +73,7 @@ extension Sqlserver {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBusinessIntelligenceFileRequest(instanceId: self.instanceId, fileName: self.fileName, statusSet: self.statusSet, fileType: self.fileType, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), orderBy: self.orderBy, orderByType: self.orderByType)
+            return .init(instanceId: self.instanceId, fileName: self.fileName, statusSet: self.statusSet, fileType: self.fileType, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), orderBy: self.orderBy, orderByType: self.orderByType)
         }
     }
 

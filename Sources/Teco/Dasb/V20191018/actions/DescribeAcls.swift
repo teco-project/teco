@@ -78,7 +78,7 @@ extension Dasb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAclsRequest(idSet: self.idSet, name: self.name, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, exact: self.exact, authorizedUserIdSet: self.authorizedUserIdSet, authorizedDeviceIdSet: self.authorizedDeviceIdSet, status: self.status, departmentId: self.departmentId)
+            return .init(idSet: self.idSet, name: self.name, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, exact: self.exact, authorizedUserIdSet: self.authorizedUserIdSet, authorizedDeviceIdSet: self.authorizedDeviceIdSet, status: self.status, departmentId: self.departmentId)
         }
     }
 

@@ -71,7 +71,7 @@ extension Youmall {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeShopHourTrafficInfoRequest(companyId: self.companyId, shopId: self.shopId, startDate: self.startDate, endDate: self.endDate, offset: self.offset + .init(response.getItems().count), limit: self.limit)
+            return .init(companyId: self.companyId, shopId: self.shopId, startDate: self.startDate, endDate: self.endDate, offset: self.offset + .init(response.getItems().count), limit: self.limit)
         }
     }
 

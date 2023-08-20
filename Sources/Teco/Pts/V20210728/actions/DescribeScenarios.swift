@@ -78,7 +78,7 @@ extension Pts {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeScenariosRequest(scenarioIds: self.scenarioIds, scenarioName: self.scenarioName, scenarioStatus: self.scenarioStatus, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderBy: self.orderBy, ascend: self.ascend, projectIds: self.projectIds, scenarioType: self.scenarioType)
+            return .init(scenarioIds: self.scenarioIds, scenarioName: self.scenarioName, scenarioStatus: self.scenarioStatus, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderBy: self.orderBy, ascend: self.ascend, projectIds: self.projectIds, scenarioType: self.scenarioType)
         }
     }
 

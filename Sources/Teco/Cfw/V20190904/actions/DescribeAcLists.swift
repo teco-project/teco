@@ -83,7 +83,7 @@ extension Cfw {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAcListsRequest(protocol: self.protocol, strategy: self.strategy, searchValue: self.searchValue, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), direction: self.direction, edgeId: self.edgeId, status: self.status, area: self.area, instanceId: self.instanceId)
+            return .init(protocol: self.protocol, strategy: self.strategy, searchValue: self.searchValue, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), direction: self.direction, edgeId: self.edgeId, status: self.status, area: self.area, instanceId: self.instanceId)
         }
     }
 

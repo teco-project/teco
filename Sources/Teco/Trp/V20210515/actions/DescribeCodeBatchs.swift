@@ -68,7 +68,7 @@ extension Trp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCodeBatchsRequest(merchantId: self.merchantId, productId: self.productId, keyword: self.keyword, pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1, batchType: self.batchType, corpId: self.corpId)
+            return .init(merchantId: self.merchantId, productId: self.productId, keyword: self.keyword, pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1, batchType: self.batchType, corpId: self.corpId)
         }
     }
 

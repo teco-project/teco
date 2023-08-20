@@ -81,7 +81,7 @@ extension Mps {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTranscodeTemplatesRequest(definitions: self.definitions, type: self.type, containerType: self.containerType, tehdType: self.tehdType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, transcodeType: self.transcodeType)
+            return .init(definitions: self.definitions, type: self.type, containerType: self.containerType, tehdType: self.tehdType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, transcodeType: self.transcodeType)
         }
     }
 

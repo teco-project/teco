@@ -83,7 +83,7 @@ extension Es {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeIndexListRequest(indexType: self.indexType, instanceId: self.instanceId, indexName: self.indexName, username: self.username, password: self.password, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderBy: self.orderBy, indexStatusList: self.indexStatusList, order: self.order)
+            return .init(indexType: self.indexType, instanceId: self.instanceId, indexName: self.indexName, username: self.username, password: self.password, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderBy: self.orderBy, indexStatusList: self.indexStatusList, order: self.order)
         }
     }
 

@@ -86,7 +86,7 @@ extension Cr {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return QueryRecordListRequest(module: self.module, operation: self.operation, offset: self.offset + .init(response.getItems().count), limit: self.limit, botId: self.botId, botName: self.botName, calledPhone: self.calledPhone, startBizDate: self.startBizDate, endBizDate: self.endBizDate)
+            return .init(module: self.module, operation: self.operation, offset: self.offset + .init(response.getItems().count), limit: self.limit, botId: self.botId, botName: self.botName, calledPhone: self.calledPhone, startBizDate: self.startBizDate, endBizDate: self.endBizDate)
         }
     }
 

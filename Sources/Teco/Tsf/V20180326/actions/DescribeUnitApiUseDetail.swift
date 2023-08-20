@@ -86,7 +86,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeUnitApiUseDetailRequest(gatewayDeployGroupId: self.gatewayDeployGroupId, apiId: self.apiId, startTime: self.startTime, endTime: self.endTime, gatewayInstanceId: self.gatewayInstanceId, groupId: self.groupId, offset: self.offset + .init(response.getItems().count), limit: self.limit, period: self.period)
+            return .init(gatewayDeployGroupId: self.gatewayDeployGroupId, apiId: self.apiId, startTime: self.startTime, endTime: self.endTime, gatewayInstanceId: self.gatewayInstanceId, groupId: self.groupId, offset: self.offset + .init(response.getItems().count), limit: self.limit, period: self.period)
         }
     }
 

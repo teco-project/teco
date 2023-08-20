@@ -58,7 +58,7 @@ extension Wedata {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeRuleTablesByPageRequest(projectId: self.projectId, pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1, filters: self.filters, orderFields: self.orderFields)
+            return .init(projectId: self.projectId, pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1, filters: self.filters, orderFields: self.orderFields)
         }
     }
 

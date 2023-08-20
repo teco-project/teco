@@ -98,7 +98,7 @@ extension Redis {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCommonDBInstancesRequest(vpcIds: self.vpcIds, subnetIds: self.subnetIds, payMode: self.payMode, instanceIds: self.instanceIds, instanceNames: self.instanceNames, status: self.status, orderBy: self.orderBy, orderByType: self.orderByType, vips: self.vips, uniqVpcIds: self.uniqVpcIds, uniqSubnetIds: self.uniqSubnetIds, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(vpcIds: self.vpcIds, subnetIds: self.subnetIds, payMode: self.payMode, instanceIds: self.instanceIds, instanceNames: self.instanceNames, status: self.status, orderBy: self.orderBy, orderByType: self.orderByType, vips: self.vips, uniqVpcIds: self.uniqVpcIds, uniqSubnetIds: self.uniqSubnetIds, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

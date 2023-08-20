@@ -58,7 +58,7 @@ extension Ses {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListSendTasksRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, status: self.status, receiverId: self.receiverId, taskType: self.taskType)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, status: self.status, receiverId: self.receiverId, taskType: self.taskType)
         }
     }
 

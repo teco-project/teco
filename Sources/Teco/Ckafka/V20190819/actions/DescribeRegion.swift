@@ -53,7 +53,7 @@ extension Ckafka {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeRegionRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, business: self.business, cdcId: self.cdcId)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, business: self.business, cdcId: self.cdcId)
         }
     }
 

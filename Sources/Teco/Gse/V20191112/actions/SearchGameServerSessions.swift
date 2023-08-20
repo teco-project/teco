@@ -105,7 +105,7 @@ extension Gse {
             guard response.nextToken != nil else {
                 return nil
             }
-            return SearchGameServerSessionsRequest(aliasId: self.aliasId, fleetId: self.fleetId, limit: self.limit, nextToken: response.nextToken, filterExpression: self.filterExpression, sortExpression: self.sortExpression)
+            return .init(aliasId: self.aliasId, fleetId: self.fleetId, limit: self.limit, nextToken: response.nextToken, filterExpression: self.filterExpression, sortExpression: self.sortExpression)
         }
     }
 

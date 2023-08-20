@@ -48,7 +48,7 @@ extension Youmall {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePersonRequest(mallId: self.mallId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(mallId: self.mallId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

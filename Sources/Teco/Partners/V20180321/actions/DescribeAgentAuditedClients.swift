@@ -98,7 +98,7 @@ extension Partners {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAgentAuditedClientsRequest(clientUin: self.clientUin, clientName: self.clientName, clientFlag: self.clientFlag, orderDirection: self.orderDirection, clientUins: self.clientUins, hasOverdueBill: self.hasOverdueBill, clientRemark: self.clientRemark, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, clientType: self.clientType, projectType: self.projectType, salesUin: self.salesUin, salesName: self.salesName)
+            return .init(clientUin: self.clientUin, clientName: self.clientName, clientFlag: self.clientFlag, orderDirection: self.orderDirection, clientUins: self.clientUins, hasOverdueBill: self.hasOverdueBill, clientRemark: self.clientRemark, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, clientType: self.clientType, projectType: self.projectType, salesUin: self.salesUin, salesName: self.salesName)
         }
     }
 

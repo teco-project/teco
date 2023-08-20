@@ -68,7 +68,7 @@ extension Bm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePsaRegulationsRequest(limit: self.limit, offset: self.offset + .init(response.getItems().count), psaIds: self.psaIds, psaNames: self.psaNames, tags: self.tags, orderField: self.orderField, order: self.order)
+            return .init(limit: self.limit, offset: self.offset + .init(response.getItems().count), psaIds: self.psaIds, psaNames: self.psaNames, tags: self.tags, orderField: self.orderField, order: self.order)
         }
     }
 

@@ -48,7 +48,7 @@ extension Ic {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCardsRequest(sdkappid: self.sdkappid, offset: self.offset + .init(response.getItems().count), limit: self.limit)
+            return .init(sdkappid: self.sdkappid, offset: self.offset + .init(response.getItems().count), limit: self.limit)
         }
     }
 

@@ -61,7 +61,7 @@ extension As {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeLaunchConfigurationsRequest(launchConfigurationIds: self.launchConfigurationIds, filters: self.filters, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(launchConfigurationIds: self.launchConfigurationIds, filters: self.filters, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

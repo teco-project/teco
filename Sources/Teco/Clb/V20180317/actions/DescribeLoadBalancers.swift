@@ -141,7 +141,7 @@ extension Clb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeLoadBalancersRequest(loadBalancerIds: self.loadBalancerIds, loadBalancerType: self.loadBalancerType, forward: self.forward, loadBalancerName: self.loadBalancerName, domain: self.domain, loadBalancerVips: self.loadBalancerVips, backendPublicIps: self.backendPublicIps, backendPrivateIps: self.backendPrivateIps, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderBy: self.orderBy, orderType: self.orderType, searchKey: self.searchKey, projectId: self.projectId, withRs: self.withRs, vpcId: self.vpcId, securityGroup: self.securityGroup, masterZone: self.masterZone, filters: self.filters)
+            return .init(loadBalancerIds: self.loadBalancerIds, loadBalancerType: self.loadBalancerType, forward: self.forward, loadBalancerName: self.loadBalancerName, domain: self.domain, loadBalancerVips: self.loadBalancerVips, backendPublicIps: self.backendPublicIps, backendPrivateIps: self.backendPrivateIps, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderBy: self.orderBy, orderType: self.orderType, searchKey: self.searchKey, projectId: self.projectId, withRs: self.withRs, vpcId: self.vpcId, securityGroup: self.securityGroup, masterZone: self.masterZone, filters: self.filters)
         }
     }
 

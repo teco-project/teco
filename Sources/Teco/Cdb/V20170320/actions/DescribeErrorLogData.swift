@@ -68,7 +68,7 @@ extension Cdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeErrorLogDataRequest(instanceId: self.instanceId, startTime: self.startTime, endTime: self.endTime, keyWords: self.keyWords, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), instType: self.instType)
+            return .init(instanceId: self.instanceId, startTime: self.startTime, endTime: self.endTime, keyWords: self.keyWords, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), instType: self.instType)
         }
     }
 

@@ -63,7 +63,7 @@ extension Trro {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePolicyRequest(projectId: self.projectId, policyMode: self.policyMode, searchMode: self.searchMode, searchWords: self.searchWords, pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1)
+            return .init(projectId: self.projectId, policyMode: self.policyMode, searchMode: self.searchMode, searchWords: self.searchWords, pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1)
         }
     }
 

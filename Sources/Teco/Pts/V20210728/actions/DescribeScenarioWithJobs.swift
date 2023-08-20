@@ -98,7 +98,7 @@ extension Pts {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeScenarioWithJobsRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, projectIds: self.projectIds, scenarioIds: self.scenarioIds, scenarioName: self.scenarioName, scenarioStatus: self.scenarioStatus, orderBy: self.orderBy, ascend: self.ascend, scenarioRelatedJobsParams: self.scenarioRelatedJobsParams, ignoreScript: self.ignoreScript, ignoreDataset: self.ignoreDataset, scenarioType: self.scenarioType, owner: self.owner)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, projectIds: self.projectIds, scenarioIds: self.scenarioIds, scenarioName: self.scenarioName, scenarioStatus: self.scenarioStatus, orderBy: self.orderBy, ascend: self.ascend, scenarioRelatedJobsParams: self.scenarioRelatedJobsParams, ignoreScript: self.ignoreScript, ignoreDataset: self.ignoreDataset, scenarioType: self.scenarioType, owner: self.owner)
         }
     }
 

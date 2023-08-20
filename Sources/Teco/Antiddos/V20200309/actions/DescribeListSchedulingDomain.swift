@@ -53,7 +53,7 @@ extension Antiddos {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeListSchedulingDomainRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, filterDomain: self.filterDomain, status: self.status)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, filterDomain: self.filterDomain, status: self.status)
         }
     }
 

@@ -58,7 +58,7 @@ extension Partners {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSalesmansRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, salesName: self.salesName, salesUin: self.salesUin, orderDirection: self.orderDirection)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, salesName: self.salesName, salesUin: self.salesUin, orderDirection: self.orderDirection)
         }
     }
 

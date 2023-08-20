@@ -58,7 +58,7 @@ extension Ccc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeProtectedTelCdrRequest(startTimeStamp: self.startTimeStamp, endTimeStamp: self.endTimeStamp, sdkAppId: self.sdkAppId, pageSize: self.pageSize, pageNumber: self.pageNumber + 1)
+            return .init(startTimeStamp: self.startTimeStamp, endTimeStamp: self.endTimeStamp, sdkAppId: self.sdkAppId, pageSize: self.pageSize, pageNumber: self.pageNumber + 1)
         }
     }
 

@@ -48,7 +48,7 @@ extension Iotvideoindustry {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeChannelsByLiveRecordPlanRequest(planId: self.planId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(planId: self.planId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

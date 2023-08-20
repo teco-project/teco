@@ -83,7 +83,7 @@ extension Vpc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSpecificTrafficPackageUsedDetailsRequest(trafficPackageId: self.trafficPackageId, filters: self.filters, orderField: self.orderField, orderType: self.orderType, startTime: self.startTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(trafficPackageId: self.trafficPackageId, filters: self.filters, orderField: self.orderField, orderType: self.orderType, startTime: self.startTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

@@ -78,7 +78,7 @@ extension Antiddos {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCcBlackWhiteIpListRequest(business: self.business, instanceId: self.instanceId, offset: self.offset + .init(response.getItems().count), limit: self.limit, ip: self.ip, domain: self.domain, protocol: self.protocol, filterIp: self.filterIp, filterType: self.filterType)
+            return .init(business: self.business, instanceId: self.instanceId, offset: self.offset + .init(response.getItems().count), limit: self.limit, ip: self.ip, domain: self.domain, protocol: self.protocol, filterIp: self.filterIp, filterType: self.filterType)
         }
     }
 

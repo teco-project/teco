@@ -48,7 +48,7 @@ extension Clb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBlockIPListRequest(loadBalancerId: self.loadBalancerId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(loadBalancerId: self.loadBalancerId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

@@ -64,7 +64,7 @@ extension Oceanus {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeResourcesRequest(resourceIds: self.resourceIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters, workSpaceId: self.workSpaceId)
+            return .init(resourceIds: self.resourceIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters, workSpaceId: self.workSpaceId)
         }
     }
 

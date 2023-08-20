@@ -83,7 +83,7 @@ extension Kms {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListKeyDetailRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, role: self.role, orderType: self.orderType, keyState: self.keyState, searchKeyAlias: self.searchKeyAlias, origin: self.origin, keyUsage: self.keyUsage, tagFilters: self.tagFilters, hsmClusterId: self.hsmClusterId)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, role: self.role, orderType: self.orderType, keyState: self.keyState, searchKeyAlias: self.searchKeyAlias, origin: self.origin, keyUsage: self.keyUsage, tagFilters: self.tagFilters, hsmClusterId: self.hsmClusterId)
         }
     }
 

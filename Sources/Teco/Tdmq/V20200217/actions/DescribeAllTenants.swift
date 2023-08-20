@@ -73,7 +73,7 @@ extension Tdmq {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAllTenantsRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, clusterName: self.clusterName, tenantId: self.tenantId, tenantName: self.tenantName, types: self.types, sortBy: self.sortBy, sortOrder: self.sortOrder)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, clusterName: self.clusterName, tenantId: self.tenantId, tenantName: self.tenantName, types: self.types, sortBy: self.sortBy, sortOrder: self.sortOrder)
         }
     }
 

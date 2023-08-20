@@ -48,7 +48,7 @@ extension Tcr {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeReplicationInstancesRequest(registryId: self.registryId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(registryId: self.registryId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

@@ -53,7 +53,7 @@ extension Bma {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCRMonitorDetailRequest(workId: self.workId, pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1, filters: self.filters)
+            return .init(workId: self.workId, pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1, filters: self.filters)
         }
     }
 

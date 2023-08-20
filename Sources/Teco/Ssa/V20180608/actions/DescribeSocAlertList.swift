@@ -63,7 +63,7 @@ extension Ssa {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSocAlertListRequest(pageSize: self.pageSize, pageIndex: self.pageIndex + 1, scenes: self.scenes, filter: self.filter, sorter: self.sorter, exportFlag: self.exportFlag)
+            return .init(pageSize: self.pageSize, pageIndex: self.pageIndex + 1, scenes: self.scenes, filter: self.filter, sorter: self.sorter, exportFlag: self.exportFlag)
         }
     }
 

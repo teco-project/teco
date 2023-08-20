@@ -63,7 +63,7 @@ extension Cdc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDedicatedClusterOrdersRequest(dedicatedClusterIds: self.dedicatedClusterIds, dedicatedClusterOrderIds: self.dedicatedClusterOrderIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, status: self.status, actionType: self.actionType)
+            return .init(dedicatedClusterIds: self.dedicatedClusterIds, dedicatedClusterOrderIds: self.dedicatedClusterOrderIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, status: self.status, actionType: self.actionType)
         }
     }
 

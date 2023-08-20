@@ -91,7 +91,7 @@ extension Partners {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAgentDealsByCacheRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, creatTimeRangeStart: self.creatTimeRangeStart, creatTimeRangeEnd: self.creatTimeRangeEnd, order: self.order, status: self.status, ownerUins: self.ownerUins, dealNames: self.dealNames, bigDealIds: self.bigDealIds, payerMode: self.payerMode)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, creatTimeRangeStart: self.creatTimeRangeStart, creatTimeRangeEnd: self.creatTimeRangeEnd, order: self.order, status: self.status, ownerUins: self.ownerUins, dealNames: self.dealNames, bigDealIds: self.bigDealIds, payerMode: self.payerMode)
         }
     }
 

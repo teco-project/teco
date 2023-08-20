@@ -53,7 +53,7 @@ extension Tione {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeNotebookImageRecordsRequest(notebookId: self.notebookId, offset: self.offset + .init(response.getItems().count), limit: self.limit, filters: self.filters)
+            return .init(notebookId: self.notebookId, offset: self.offset + .init(response.getItems().count), limit: self.limit, filters: self.filters)
         }
     }
 

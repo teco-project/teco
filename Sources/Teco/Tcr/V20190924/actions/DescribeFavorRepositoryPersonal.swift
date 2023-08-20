@@ -48,7 +48,7 @@ extension Tcr {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeFavorRepositoryPersonalRequest(repoName: self.repoName, limit: self.limit, offset: self.offset + .init(response.getItems().count))
+            return .init(repoName: self.repoName, limit: self.limit, offset: self.offset + .init(response.getItems().count))
         }
     }
 

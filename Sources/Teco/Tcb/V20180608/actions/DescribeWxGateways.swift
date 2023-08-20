@@ -53,7 +53,7 @@ extension Tcb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeWxGatewaysRequest(envId: self.envId, gatewayName: self.gatewayName, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(envId: self.envId, gatewayName: self.gatewayName, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

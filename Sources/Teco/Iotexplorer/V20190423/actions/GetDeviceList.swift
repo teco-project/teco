@@ -63,7 +63,7 @@ extension Iotexplorer {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return GetDeviceListRequest(productId: self.productId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, firmwareVersion: self.firmwareVersion, deviceName: self.deviceName, projectId: self.projectId)
+            return .init(productId: self.productId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, firmwareVersion: self.firmwareVersion, deviceName: self.deviceName, projectId: self.projectId)
         }
     }
 

@@ -78,7 +78,7 @@ extension Dlc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTasksRequest(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters, sortBy: self.sortBy, sorting: self.sorting, startTime: self.startTime, endTime: self.endTime, dataEngineName: self.dataEngineName)
+            return .init(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters, sortBy: self.sortBy, sorting: self.sorting, startTime: self.startTime, endTime: self.endTime, dataEngineName: self.dataEngineName)
         }
     }
 

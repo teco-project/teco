@@ -78,7 +78,7 @@ extension Yinsuda {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeLiveVipTradeInfosRequest(appName: self.appName, startTime: self.startTime, endTime: self.endTime, tradeSerialNos: self.tradeSerialNos, userIds: self.userIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(appName: self.appName, startTime: self.startTime, endTime: self.endTime, tradeSerialNos: self.tradeSerialNos, userIds: self.userIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

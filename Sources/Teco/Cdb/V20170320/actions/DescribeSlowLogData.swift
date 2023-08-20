@@ -88,7 +88,7 @@ extension Cdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSlowLogDataRequest(instanceId: self.instanceId, startTime: self.startTime, endTime: self.endTime, userHosts: self.userHosts, userNames: self.userNames, dataBases: self.dataBases, sortBy: self.sortBy, orderBy: self.orderBy, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, instType: self.instType)
+            return .init(instanceId: self.instanceId, startTime: self.startTime, endTime: self.endTime, userHosts: self.userHosts, userNames: self.userNames, dataBases: self.dataBases, sortBy: self.sortBy, orderBy: self.orderBy, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, instType: self.instType)
         }
     }
 

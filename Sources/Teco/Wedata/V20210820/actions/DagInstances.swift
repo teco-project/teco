@@ -123,7 +123,7 @@ extension Wedata {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DagInstancesRequest(instances: self.instances, checkFather: self.checkFather, rerunType: self.rerunType, dependentWay: self.dependentWay, skipEventListening: self.skipEventListening, sonInstanceType: self.sonInstanceType, searchCondition: self.searchCondition, optType: self.optType, operatorName: self.operatorName, operatorId: self.operatorId, projectId: self.projectId, projectIdent: self.projectIdent, projectName: self.projectName, pageIndex: (self.pageIndex ?? 0) + 1, pageSize: self.pageSize, count: self.count, requestBaseInfo: self.requestBaseInfo, isCount: self.isCount)
+            return .init(instances: self.instances, checkFather: self.checkFather, rerunType: self.rerunType, dependentWay: self.dependentWay, skipEventListening: self.skipEventListening, sonInstanceType: self.sonInstanceType, searchCondition: self.searchCondition, optType: self.optType, operatorName: self.operatorName, operatorId: self.operatorId, projectId: self.projectId, projectIdent: self.projectIdent, projectName: self.projectName, pageIndex: (self.pageIndex ?? 0) + 1, pageSize: self.pageSize, count: self.count, requestBaseInfo: self.requestBaseInfo, isCount: self.isCount)
         }
     }
 

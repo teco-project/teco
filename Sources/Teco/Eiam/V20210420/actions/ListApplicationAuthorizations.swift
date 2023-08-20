@@ -58,7 +58,7 @@ extension Eiam {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListApplicationAuthorizationsRequest(entityType: self.entityType, searchCondition: self.searchCondition, sort: self.sort, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(entityType: self.entityType, searchCondition: self.searchCondition, sort: self.sort, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

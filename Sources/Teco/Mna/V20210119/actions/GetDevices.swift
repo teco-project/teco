@@ -56,7 +56,7 @@ extension Mna {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return GetDevicesRequest(pageSize: self.pageSize, pageNumber: self.pageNumber + 1, keyword: self.keyword, deviceType: self.deviceType)
+            return .init(pageSize: self.pageSize, pageNumber: self.pageNumber + 1, keyword: self.keyword, deviceType: self.deviceType)
         }
     }
 

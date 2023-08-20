@@ -73,7 +73,7 @@ extension Tdmq {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeRabbitMQNodeListRequest(instanceId: self.instanceId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, nodeName: self.nodeName, filters: self.filters, sortElement: self.sortElement, sortOrder: self.sortOrder)
+            return .init(instanceId: self.instanceId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, nodeName: self.nodeName, filters: self.filters, sortElement: self.sortElement, sortOrder: self.sortOrder)
         }
     }
 

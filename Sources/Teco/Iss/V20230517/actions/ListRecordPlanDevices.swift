@@ -66,7 +66,7 @@ extension Iss {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListRecordPlanDevicesRequest(planId: self.planId, pageSize: self.pageSize, pageNumber: self.pageNumber + 1, deviceName: self.deviceName, channelName: self.channelName, organizationName: self.organizationName)
+            return .init(planId: self.planId, pageSize: self.pageSize, pageNumber: self.pageNumber + 1, deviceName: self.deviceName, channelName: self.channelName, organizationName: self.organizationName)
         }
     }
 

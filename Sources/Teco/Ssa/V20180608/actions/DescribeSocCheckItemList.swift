@@ -53,7 +53,7 @@ extension Ssa {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSocCheckItemListRequest(filter: self.filter, sorter: self.sorter, pageSize: self.pageSize, pageIndex: (self.pageIndex ?? 0) + 1)
+            return .init(filter: self.filter, sorter: self.sorter, pageSize: self.pageSize, pageIndex: (self.pageIndex ?? 0) + 1)
         }
     }
 

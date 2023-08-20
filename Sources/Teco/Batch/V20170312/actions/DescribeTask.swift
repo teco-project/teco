@@ -59,7 +59,7 @@ extension Batch {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTaskRequest(jobId: self.jobId, taskName: self.taskName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters)
+            return .init(jobId: self.jobId, taskName: self.taskName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters)
         }
     }
 

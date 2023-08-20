@@ -71,7 +71,7 @@ extension Postgres {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDBBackupsRequest(dbInstanceId: self.dbInstanceId, type: self.type, startTime: self.startTime, endTime: self.endTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(dbInstanceId: self.dbInstanceId, type: self.type, startTime: self.startTime, endTime: self.endTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

@@ -53,7 +53,7 @@ extension Trp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCorpQuotasRequest(agentId: self.agentId, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, keyword: self.keyword)
+            return .init(agentId: self.agentId, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, keyword: self.keyword)
         }
     }
 

@@ -48,7 +48,7 @@ extension Cdn {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeUrlViolationsRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, domains: self.domains)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, domains: self.domains)
         }
     }
 

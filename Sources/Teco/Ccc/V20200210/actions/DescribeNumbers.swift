@@ -48,7 +48,7 @@ extension Ccc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeNumbersRequest(sdkAppId: self.sdkAppId, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize)
+            return .init(sdkAppId: self.sdkAppId, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize)
         }
     }
 

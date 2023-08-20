@@ -108,7 +108,7 @@ extension Bmeip {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeEipsRequest(eipIds: self.eipIds, eips: self.eips, instanceIds: self.instanceIds, searchKey: self.searchKey, status: self.status, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderField: self.orderField, order: self.order, payMode: self.payMode, vpcId: self.vpcId, bindTypes: self.bindTypes, exclusiveTag: self.exclusiveTag, aclId: self.aclId, bindAcl: self.bindAcl)
+            return .init(eipIds: self.eipIds, eips: self.eips, instanceIds: self.instanceIds, searchKey: self.searchKey, status: self.status, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderField: self.orderField, order: self.order, payMode: self.payMode, vpcId: self.vpcId, bindTypes: self.bindTypes, exclusiveTag: self.exclusiveTag, aclId: self.aclId, bindAcl: self.bindAcl)
         }
     }
 

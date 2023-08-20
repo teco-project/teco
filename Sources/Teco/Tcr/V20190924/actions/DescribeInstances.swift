@@ -59,7 +59,7 @@ extension Tcr {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeInstancesRequest(registryids: self.registryids, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters, allRegion: self.allRegion)
+            return .init(registryids: self.registryids, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters, allRegion: self.allRegion)
         }
     }
 

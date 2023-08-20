@@ -63,7 +63,7 @@ extension Apigateway {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePluginsRequest(pluginIds: self.pluginIds, pluginName: self.pluginName, pluginType: self.pluginType, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters)
+            return .init(pluginIds: self.pluginIds, pluginName: self.pluginName, pluginType: self.pluginType, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters)
         }
     }
 

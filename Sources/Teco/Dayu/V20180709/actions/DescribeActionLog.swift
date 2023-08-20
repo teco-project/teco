@@ -71,7 +71,7 @@ extension Dayu {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeActionLogRequest(startTime: self.startTime, endTime: self.endTime, business: self.business, filter: self.filter, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(startTime: self.startTime, endTime: self.endTime, business: self.business, filter: self.filter, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

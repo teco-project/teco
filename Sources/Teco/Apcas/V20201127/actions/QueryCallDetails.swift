@@ -58,7 +58,7 @@ extension Apcas {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return QueryCallDetailsRequest(type: self.type, startTime: self.startTime, endTime: self.endTime, pageNumber: self.pageNumber + 1, pageSize: self.pageSize)
+            return .init(type: self.type, startTime: self.startTime, endTime: self.endTime, pageNumber: self.pageNumber + 1, pageSize: self.pageSize)
         }
     }
 

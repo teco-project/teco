@@ -48,7 +48,7 @@ extension Wedata {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeEventConsumeTasksRequest(eventCaseId: self.eventCaseId, pageNumber: self.pageNumber + 1, pageSize: self.pageSize)
+            return .init(eventCaseId: self.eventCaseId, pageNumber: self.pageNumber + 1, pageSize: self.pageSize)
         }
     }
 

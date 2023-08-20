@@ -64,7 +64,7 @@ extension Tdmq {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCmqSubscriptionDetailRequest(topicName: self.topicName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, subscriptionName: self.subscriptionName, queueName: self.queueName, queryType: self.queryType)
+            return .init(topicName: self.topicName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, subscriptionName: self.subscriptionName, queueName: self.queueName, queryType: self.queryType)
         }
     }
 

@@ -63,7 +63,7 @@ extension Trp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCustomRulesRequest(keyword: self.keyword, pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1, corpId: self.corpId, status: self.status, merchantId: self.merchantId)
+            return .init(keyword: self.keyword, pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1, corpId: self.corpId, status: self.status, merchantId: self.merchantId)
         }
     }
 

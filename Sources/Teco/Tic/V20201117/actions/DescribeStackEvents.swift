@@ -71,7 +71,7 @@ extension Tic {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeStackEventsRequest(eventIds: self.eventIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(eventIds: self.eventIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

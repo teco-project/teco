@@ -63,7 +63,7 @@ extension Iecp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeConfigMapsRequest(edgeUnitID: self.edgeUnitID, offset: self.offset + .init(response.getItems().count), limit: self.limit, configMapNamespace: self.configMapNamespace, namePattern: self.namePattern, sort: self.sort)
+            return .init(edgeUnitID: self.edgeUnitID, offset: self.offset + .init(response.getItems().count), limit: self.limit, configMapNamespace: self.configMapNamespace, namePattern: self.namePattern, sort: self.sort)
         }
     }
 

@@ -48,7 +48,7 @@ extension Iotvideoindustry {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBindSceneDevicesRequest(sceneId: self.sceneId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(sceneId: self.sceneId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

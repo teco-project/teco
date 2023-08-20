@@ -62,7 +62,7 @@ extension Cfs {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeMigrationTasksRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters)
         }
     }
 

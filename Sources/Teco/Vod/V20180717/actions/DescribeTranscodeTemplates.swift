@@ -74,7 +74,7 @@ extension Vod {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTranscodeTemplatesRequest(subAppId: self.subAppId, definitions: self.definitions, type: self.type, containerType: self.containerType, tehdType: self.tehdType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(subAppId: self.subAppId, definitions: self.definitions, type: self.type, containerType: self.containerType, tehdType: self.tehdType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

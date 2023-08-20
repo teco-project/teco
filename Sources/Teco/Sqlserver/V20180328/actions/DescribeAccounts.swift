@@ -63,7 +63,7 @@ extension Sqlserver {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAccountsRequest(instanceId: self.instanceId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), name: self.name, orderBy: self.orderBy, orderByType: self.orderByType)
+            return .init(instanceId: self.instanceId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), name: self.name, orderBy: self.orderBy, orderByType: self.orderByType)
         }
     }
 

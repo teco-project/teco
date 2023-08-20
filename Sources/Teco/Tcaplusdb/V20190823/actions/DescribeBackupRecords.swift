@@ -58,7 +58,7 @@ extension Tcaplusdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBackupRecordsRequest(clusterId: self.clusterId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), tableGroupId: self.tableGroupId, tableName: self.tableName)
+            return .init(clusterId: self.clusterId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), tableGroupId: self.tableGroupId, tableName: self.tableName)
         }
     }
 

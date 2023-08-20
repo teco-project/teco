@@ -58,7 +58,7 @@ extension Ckafka {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDatahubGroupOffsetsRequest(name: self.name, group: self.group, searchWord: self.searchWord, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(name: self.name, group: self.group, searchWord: self.searchWord, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

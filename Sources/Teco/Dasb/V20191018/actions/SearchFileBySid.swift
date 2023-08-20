@@ -68,7 +68,7 @@ extension Dasb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return SearchFileBySidRequest(sid: self.sid, auditLog: self.auditLog, limit: self.limit, fileName: self.fileName, offset: (self.offset ?? 0) + .init(response.getItems().count), auditAction: self.auditAction, typeFilters: self.typeFilters)
+            return .init(sid: self.sid, auditLog: self.auditLog, limit: self.limit, fileName: self.fileName, offset: (self.offset ?? 0) + .init(response.getItems().count), auditAction: self.auditAction, typeFilters: self.typeFilters)
         }
     }
 

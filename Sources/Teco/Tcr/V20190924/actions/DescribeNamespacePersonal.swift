@@ -48,7 +48,7 @@ extension Tcr {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeNamespacePersonalRequest(namespace: self.namespace, limit: self.limit, offset: self.offset + .init(response.getItems().count))
+            return .init(namespace: self.namespace, limit: self.limit, offset: self.offset + .init(response.getItems().count))
         }
     }
 

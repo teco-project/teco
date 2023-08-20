@@ -116,7 +116,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeStatisticsRequest(type: self.type, timeStep: self.timeStep, offset: self.offset + .init(response.getItems().count), limit: self.limit, namespaceId: self.namespaceId, orderBy: self.orderBy, orderType: self.orderType, endTime: self.endTime, startTime: self.startTime, serviceName: self.serviceName, searchWord: self.searchWord, metricDimensionValues: self.metricDimensionValues, bucketKey: self.bucketKey, dbName: self.dbName, namespaceIdList: self.namespaceIdList)
+            return .init(type: self.type, timeStep: self.timeStep, offset: self.offset + .init(response.getItems().count), limit: self.limit, namespaceId: self.namespaceId, orderBy: self.orderBy, orderType: self.orderType, endTime: self.endTime, startTime: self.startTime, serviceName: self.serviceName, searchWord: self.searchWord, metricDimensionValues: self.metricDimensionValues, bucketKey: self.bucketKey, dbName: self.dbName, namespaceIdList: self.namespaceIdList)
         }
     }
 

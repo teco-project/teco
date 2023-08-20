@@ -53,7 +53,7 @@ extension Iotexplorer {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDevicePositionListRequest(productIdList: self.productIdList, coordinateType: self.coordinateType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(productIdList: self.productIdList, coordinateType: self.coordinateType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

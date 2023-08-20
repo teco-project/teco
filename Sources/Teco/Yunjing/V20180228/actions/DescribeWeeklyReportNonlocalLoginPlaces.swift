@@ -53,7 +53,7 @@ extension Yunjing {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeWeeklyReportNonlocalLoginPlacesRequest(beginDate: self.beginDate, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(beginDate: self.beginDate, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

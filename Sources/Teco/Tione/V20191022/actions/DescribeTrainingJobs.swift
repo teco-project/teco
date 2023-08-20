@@ -78,7 +78,7 @@ extension Tione {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTrainingJobsRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, creationTimeAfter: self.creationTimeAfter, creationTimeBefore: self.creationTimeBefore, nameContains: self.nameContains, statusEquals: self.statusEquals, filters: self.filters)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, creationTimeAfter: self.creationTimeAfter, creationTimeBefore: self.creationTimeBefore, nameContains: self.nameContains, statusEquals: self.statusEquals, filters: self.filters)
         }
     }
 

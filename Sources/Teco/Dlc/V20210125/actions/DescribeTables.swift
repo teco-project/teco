@@ -90,7 +90,7 @@ extension Dlc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTablesRequest(databaseName: self.databaseName, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters, datasourceConnectionName: self.datasourceConnectionName, startTime: self.startTime, endTime: self.endTime, sort: self.sort, asc: self.asc, tableType: self.tableType, tableFormat: self.tableFormat)
+            return .init(databaseName: self.databaseName, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters, datasourceConnectionName: self.datasourceConnectionName, startTime: self.startTime, endTime: self.endTime, sort: self.sort, asc: self.asc, tableType: self.tableType, tableFormat: self.tableFormat)
         }
     }
 

@@ -119,7 +119,7 @@ extension Tiia {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return SearchImageRequest(groupId: self.groupId, imageUrl: self.imageUrl, imageBase64: self.imageBase64, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), matchThreshold: self.matchThreshold, filter: self.filter, imageRect: self.imageRect, enableDetect: self.enableDetect, categoryId: self.categoryId)
+            return .init(groupId: self.groupId, imageUrl: self.imageUrl, imageBase64: self.imageBase64, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), matchThreshold: self.matchThreshold, filter: self.filter, imageRect: self.imageRect, enableDetect: self.enableDetect, categoryId: self.categoryId)
         }
     }
 

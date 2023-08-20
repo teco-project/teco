@@ -63,7 +63,7 @@ extension Vpc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeVpcEndPointServiceRequest(filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, endPointServiceIds: self.endPointServiceIds, isListAuthorizedEndPointService: self.isListAuthorizedEndPointService)
+            return .init(filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, endPointServiceIds: self.endPointServiceIds, isListAuthorizedEndPointService: self.isListAuthorizedEndPointService)
         }
     }
 

@@ -78,7 +78,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeMicroservicesRequest(namespaceId: self.namespaceId, searchWord: self.searchWord, orderBy: self.orderBy, orderType: self.orderType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, status: self.status, microserviceIdList: self.microserviceIdList, microserviceNameList: self.microserviceNameList)
+            return .init(namespaceId: self.namespaceId, searchWord: self.searchWord, orderBy: self.orderBy, orderType: self.orderType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, status: self.status, microserviceIdList: self.microserviceIdList, microserviceNameList: self.microserviceNameList)
         }
     }
 

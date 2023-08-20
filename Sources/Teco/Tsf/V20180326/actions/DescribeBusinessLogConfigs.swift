@@ -56,7 +56,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBusinessLogConfigsRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchWord: self.searchWord, disableProgramAuthCheck: self.disableProgramAuthCheck, configIdList: self.configIdList)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchWord: self.searchWord, disableProgramAuthCheck: self.disableProgramAuthCheck, configIdList: self.configIdList)
         }
     }
 

@@ -58,7 +58,7 @@ extension Iss {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListGatewaysRequest(pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, name: self.name, clusterId: self.clusterId, status: self.status)
+            return .init(pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, name: self.name, clusterId: self.clusterId, status: self.status)
         }
     }
 

@@ -48,7 +48,7 @@ extension Ssl {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeHostDeployRecordDetailRequest(deployRecordId: self.deployRecordId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(deployRecordId: self.deployRecordId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

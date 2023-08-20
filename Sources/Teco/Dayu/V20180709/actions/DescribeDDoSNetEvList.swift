@@ -71,7 +71,7 @@ extension Dayu {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDDoSNetEvListRequest(business: self.business, id: self.id, startTime: self.startTime, endTime: self.endTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(business: self.business, id: self.id, startTime: self.startTime, endTime: self.endTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

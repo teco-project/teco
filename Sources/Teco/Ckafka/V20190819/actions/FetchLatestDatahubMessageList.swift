@@ -53,7 +53,7 @@ extension Ckafka {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return FetchLatestDatahubMessageListRequest(name: self.name, partition: self.partition, offset: (self.offset ?? 0) + .init(response.getItems().count), messageCount: self.messageCount)
+            return .init(name: self.name, partition: self.partition, offset: (self.offset ?? 0) + .init(response.getItems().count), messageCount: self.messageCount)
         }
     }
 

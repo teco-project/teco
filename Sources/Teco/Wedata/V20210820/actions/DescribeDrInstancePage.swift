@@ -98,7 +98,7 @@ extension Wedata {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDrInstancePageRequest(projectId: self.projectId, taskSource: self.taskSource, pageIndex: (self.pageIndex ?? 0) + 1, pageSize: self.pageSize, taskName: self.taskName, startTime: self.startTime, endTime: self.endTime, folderIds: self.folderIds, workflowIds: self.workflowIds, justMe: self.justMe, taskTypes: self.taskTypes, submitUsers: self.submitUsers, statusList: self.statusList)
+            return .init(projectId: self.projectId, taskSource: self.taskSource, pageIndex: (self.pageIndex ?? 0) + 1, pageSize: self.pageSize, taskName: self.taskName, startTime: self.startTime, endTime: self.endTime, folderIds: self.folderIds, workflowIds: self.workflowIds, justMe: self.justMe, taskTypes: self.taskTypes, submitUsers: self.submitUsers, statusList: self.statusList)
         }
     }
 

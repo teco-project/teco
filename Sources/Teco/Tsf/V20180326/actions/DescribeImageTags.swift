@@ -68,7 +68,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeImageTagsRequest(applicationId: self.applicationId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, queryImageIdFlag: self.queryImageIdFlag, searchWord: self.searchWord, repoType: self.repoType, tcrRepoInfo: self.tcrRepoInfo)
+            return .init(applicationId: self.applicationId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, queryImageIdFlag: self.queryImageIdFlag, searchWord: self.searchWord, repoType: self.repoType, tcrRepoInfo: self.tcrRepoInfo)
         }
     }
 

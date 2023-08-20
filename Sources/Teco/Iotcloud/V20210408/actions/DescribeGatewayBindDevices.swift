@@ -58,7 +58,7 @@ extension Iotcloud {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeGatewayBindDevicesRequest(gatewayProductId: self.gatewayProductId, gatewayDeviceName: self.gatewayDeviceName, offset: self.offset + .init(response.getItems().count), limit: self.limit, productId: self.productId)
+            return .init(gatewayProductId: self.gatewayProductId, gatewayDeviceName: self.gatewayDeviceName, offset: self.offset + .init(response.getItems().count), limit: self.limit, productId: self.productId)
         }
     }
 

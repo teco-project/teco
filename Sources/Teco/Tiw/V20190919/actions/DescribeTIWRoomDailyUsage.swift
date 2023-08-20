@@ -78,7 +78,7 @@ extension Tiw {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTIWRoomDailyUsageRequest(sdkAppId: self.sdkAppId, subProduct: self.subProduct, startTime: self.startTime, endTime: self.endTime, roomIDs: self.roomIDs, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(sdkAppId: self.sdkAppId, subProduct: self.subProduct, startTime: self.startTime, endTime: self.endTime, roomIDs: self.roomIDs, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

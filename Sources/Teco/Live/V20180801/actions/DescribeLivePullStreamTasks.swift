@@ -51,7 +51,7 @@ extension Live {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeLivePullStreamTasksRequest(taskId: self.taskId, pageNum: (self.pageNum ?? 0) + 1, pageSize: self.pageSize)
+            return .init(taskId: self.taskId, pageNum: (self.pageNum ?? 0) + 1, pageSize: self.pageSize)
         }
     }
 

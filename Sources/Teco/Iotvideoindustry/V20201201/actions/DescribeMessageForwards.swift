@@ -43,7 +43,7 @@ extension Iotvideoindustry {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeMessageForwardsRequest(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

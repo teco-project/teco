@@ -98,7 +98,7 @@ extension Cpdp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return QueryOrderRequest(midasAppId: self.midasAppId, userId: self.userId, type: self.type, midasSecretId: self.midasSecretId, midasSignature: self.midasSignature, count: self.count, offset: (self.offset ?? 0) + .init(response.getItems().count), startTime: self.startTime, endTime: self.endTime, outTradeNo: self.outTradeNo, transactionId: self.transactionId, midasEnvironment: self.midasEnvironment)
+            return .init(midasAppId: self.midasAppId, userId: self.userId, type: self.type, midasSecretId: self.midasSecretId, midasSignature: self.midasSignature, count: self.count, offset: (self.offset ?? 0) + .init(response.getItems().count), startTime: self.startTime, endTime: self.endTime, outTradeNo: self.outTradeNo, transactionId: self.transactionId, midasEnvironment: self.midasEnvironment)
         }
     }
 

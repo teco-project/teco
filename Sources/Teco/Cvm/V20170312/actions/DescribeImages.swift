@@ -125,7 +125,7 @@ extension Cvm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeImagesRequest(imageIds: self.imageIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, instanceType: self.instanceType)
+            return .init(imageIds: self.imageIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, instanceType: self.instanceType)
         }
     }
 

@@ -53,7 +53,7 @@ extension Vod {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSubAppIdsRequest(name: self.name, tags: self.tags, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(name: self.name, tags: self.tags, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

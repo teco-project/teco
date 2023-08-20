@@ -68,7 +68,7 @@ extension Tcb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCloudBaseProjectLatestVersionListRequest(offset: self.offset + .init(response.getItems().count), pageSize: self.pageSize, envId: self.envId, projectName: self.projectName, projectType: self.projectType, tags: self.tags, ciId: self.ciId)
+            return .init(offset: self.offset + .init(response.getItems().count), pageSize: self.pageSize, envId: self.envId, projectName: self.projectName, projectType: self.projectType, tags: self.tags, ciId: self.ciId)
         }
     }
 

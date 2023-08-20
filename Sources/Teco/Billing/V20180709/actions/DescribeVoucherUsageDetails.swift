@@ -53,7 +53,7 @@ extension Billing {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeVoucherUsageDetailsRequest(limit: self.limit, offset: self.offset + .init(response.getItems().count), voucherId: self.voucherId, operator: self.operator)
+            return .init(limit: self.limit, offset: self.offset + .init(response.getItems().count), voucherId: self.voucherId, operator: self.operator)
         }
     }
 

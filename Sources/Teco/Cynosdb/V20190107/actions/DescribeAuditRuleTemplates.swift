@@ -53,7 +53,7 @@ extension Cynosdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAuditRuleTemplatesRequest(ruleTemplateIds: self.ruleTemplateIds, ruleTemplateNames: self.ruleTemplateNames, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(ruleTemplateIds: self.ruleTemplateIds, ruleTemplateNames: self.ruleTemplateNames, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

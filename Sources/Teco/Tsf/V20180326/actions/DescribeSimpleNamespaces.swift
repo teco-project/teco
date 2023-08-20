@@ -87,7 +87,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSimpleNamespacesRequest(namespaceIdList: self.namespaceIdList, clusterId: self.clusterId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), namespaceId: self.namespaceId, namespaceResourceTypeList: self.namespaceResourceTypeList, searchWord: self.searchWord, namespaceTypeList: self.namespaceTypeList, namespaceName: self.namespaceName, isDefault: self.isDefault, disableProgramAuthCheck: self.disableProgramAuthCheck)
+            return .init(namespaceIdList: self.namespaceIdList, clusterId: self.clusterId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), namespaceId: self.namespaceId, namespaceResourceTypeList: self.namespaceResourceTypeList, searchWord: self.searchWord, namespaceTypeList: self.namespaceTypeList, namespaceName: self.namespaceName, isDefault: self.isDefault, disableProgramAuthCheck: self.disableProgramAuthCheck)
         }
     }
 

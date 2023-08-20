@@ -63,7 +63,7 @@ extension Dlc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeWorkGroupsRequest(workGroupId: self.workGroupId, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, sortBy: self.sortBy, sorting: self.sorting)
+            return .init(workGroupId: self.workGroupId, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, sortBy: self.sortBy, sorting: self.sorting)
         }
     }
 

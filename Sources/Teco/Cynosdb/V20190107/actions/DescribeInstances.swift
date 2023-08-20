@@ -84,7 +84,7 @@ extension Cynosdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeInstancesRequest(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), orderBy: self.orderBy, orderByType: self.orderByType, filters: self.filters, dbType: self.dbType, status: self.status, instanceIds: self.instanceIds)
+            return .init(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), orderBy: self.orderBy, orderByType: self.orderByType, filters: self.filters, dbType: self.dbType, status: self.status, instanceIds: self.instanceIds)
         }
     }
 

@@ -48,7 +48,7 @@ extension Cloudhsm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeVpcRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, searchWord: self.searchWord)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, searchWord: self.searchWord)
         }
     }
 

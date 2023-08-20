@@ -58,7 +58,7 @@ extension Zj {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return GetCrowdPackListRequest(license: self.license, offset: self.offset + .init(response.getItems().count), limit: self.limit, name: self.name, status: self.status)
+            return .init(license: self.license, offset: self.offset + .init(response.getItems().count), limit: self.limit, name: self.name, status: self.status)
         }
     }
 

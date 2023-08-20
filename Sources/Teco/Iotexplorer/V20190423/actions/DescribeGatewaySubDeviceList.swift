@@ -53,7 +53,7 @@ extension Iotexplorer {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeGatewaySubDeviceListRequest(gatewayProductId: self.gatewayProductId, gatewayDeviceName: self.gatewayDeviceName, offset: self.offset + .init(response.getItems().count), limit: self.limit)
+            return .init(gatewayProductId: self.gatewayProductId, gatewayDeviceName: self.gatewayDeviceName, offset: self.offset + .init(response.getItems().count), limit: self.limit)
         }
     }
 

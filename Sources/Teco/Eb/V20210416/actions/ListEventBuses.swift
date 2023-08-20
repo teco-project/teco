@@ -58,7 +58,7 @@ extension Eb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListEventBusesRequest(orderBy: self.orderBy, limit: self.limit, order: self.order, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(orderBy: self.orderBy, limit: self.limit, order: self.order, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

@@ -78,7 +78,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePkgsRequest(applicationId: self.applicationId, searchWord: self.searchWord, orderBy: self.orderBy, orderType: self.orderType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, repositoryType: self.repositoryType, repositoryId: self.repositoryId, packageTypeList: self.packageTypeList)
+            return .init(applicationId: self.applicationId, searchWord: self.searchWord, orderBy: self.orderBy, orderType: self.orderType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, repositoryType: self.repositoryType, repositoryId: self.repositoryId, packageTypeList: self.packageTypeList)
         }
     }
 

@@ -77,7 +77,7 @@ extension As {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAutoScalingActivitiesRequest(activityIds: self.activityIds, filters: self.filters, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), startTime: self.startTime, endTime: self.endTime)
+            return .init(activityIds: self.activityIds, filters: self.filters, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), startTime: self.startTime, endTime: self.endTime)
         }
     }
 

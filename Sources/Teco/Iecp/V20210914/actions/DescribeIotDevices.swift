@@ -63,7 +63,7 @@ extension Iecp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeIotDevicesRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, productId: self.productId, namePattern: self.namePattern, versions: self.versions, order: self.order)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, productId: self.productId, namePattern: self.namePattern, versions: self.versions, order: self.order)
         }
     }
 

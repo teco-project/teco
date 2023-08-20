@@ -58,7 +58,7 @@ extension Cdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBackupSummariesRequest(product: self.product, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderBy: self.orderBy, orderDirection: self.orderDirection)
+            return .init(product: self.product, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderBy: self.orderBy, orderDirection: self.orderDirection)
         }
     }
 

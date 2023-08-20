@@ -68,7 +68,7 @@ extension Iotexplorer {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return GetProjectListRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, instanceId: self.instanceId, projectId: self.projectId, productId: self.productId, includes: self.includes, projectName: self.projectName)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, instanceId: self.instanceId, projectId: self.projectId, productId: self.productId, includes: self.includes, projectName: self.projectName)
         }
     }
 

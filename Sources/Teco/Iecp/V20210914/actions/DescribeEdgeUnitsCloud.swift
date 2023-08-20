@@ -53,7 +53,7 @@ extension Iecp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeEdgeUnitsCloudRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, namePattern: self.namePattern, order: self.order)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, namePattern: self.namePattern, order: self.order)
         }
     }
 

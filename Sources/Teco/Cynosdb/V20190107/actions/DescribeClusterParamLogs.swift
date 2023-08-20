@@ -63,7 +63,7 @@ extension Cynosdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeClusterParamLogsRequest(clusterId: self.clusterId, instanceIds: self.instanceIds, orderBy: self.orderBy, orderByType: self.orderByType, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(clusterId: self.clusterId, instanceIds: self.instanceIds, orderBy: self.orderBy, orderByType: self.orderByType, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

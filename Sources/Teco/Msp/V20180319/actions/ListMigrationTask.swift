@@ -48,7 +48,7 @@ extension Msp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListMigrationTaskRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, projectId: self.projectId)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, projectId: self.projectId)
         }
     }
 

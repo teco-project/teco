@@ -58,7 +58,7 @@ extension Cdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBinlogsRequest(instanceId: self.instanceId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, minStartTime: self.minStartTime, maxStartTime: self.maxStartTime)
+            return .init(instanceId: self.instanceId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, minStartTime: self.minStartTime, maxStartTime: self.maxStartTime)
         }
     }
 

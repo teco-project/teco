@@ -63,7 +63,7 @@ extension Ckafka {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeACLRequest(instanceId: self.instanceId, resourceType: self.resourceType, resourceName: self.resourceName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchWord: self.searchWord)
+            return .init(instanceId: self.instanceId, resourceType: self.resourceType, resourceName: self.resourceName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchWord: self.searchWord)
         }
     }
 

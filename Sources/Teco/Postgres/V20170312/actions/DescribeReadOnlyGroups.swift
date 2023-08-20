@@ -60,7 +60,7 @@ extension Postgres {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeReadOnlyGroupsRequest(filters: self.filters, pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1, orderBy: self.orderBy, orderByType: self.orderByType)
+            return .init(filters: self.filters, pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1, orderBy: self.orderBy, orderByType: self.orderByType)
         }
     }
 

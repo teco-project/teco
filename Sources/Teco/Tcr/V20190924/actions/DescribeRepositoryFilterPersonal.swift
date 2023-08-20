@@ -58,7 +58,7 @@ extension Tcr {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeRepositoryFilterPersonalRequest(repoName: self.repoName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, public: self.public, namespace: self.namespace)
+            return .init(repoName: self.repoName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, public: self.public, namespace: self.namespace)
         }
     }
 

@@ -93,7 +93,7 @@ extension Cdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTasksRequest(instanceId: self.instanceId, asyncRequestId: self.asyncRequestId, taskTypes: self.taskTypes, taskStatus: self.taskStatus, startTimeBegin: self.startTimeBegin, startTimeEnd: self.startTimeEnd, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(instanceId: self.instanceId, asyncRequestId: self.asyncRequestId, taskTypes: self.taskTypes, taskStatus: self.taskStatus, startTimeBegin: self.startTimeBegin, startTimeEnd: self.startTimeEnd, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

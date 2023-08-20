@@ -74,7 +74,7 @@ extension Redis {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeInstanceBackupsRequest(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), instanceId: self.instanceId, beginTime: self.beginTime, endTime: self.endTime, status: self.status, instanceName: self.instanceName)
+            return .init(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), instanceId: self.instanceId, beginTime: self.beginTime, endTime: self.endTime, status: self.status, instanceName: self.instanceName)
         }
     }
 

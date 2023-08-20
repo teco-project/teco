@@ -59,7 +59,7 @@ extension Cwp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeVulEffectHostListRequest(limit: self.limit, offset: self.offset + .init(response.getItems().count), vulId: self.vulId, filters: self.filters)
+            return .init(limit: self.limit, offset: self.offset + .init(response.getItems().count), vulId: self.vulId, filters: self.filters)
         }
     }
 

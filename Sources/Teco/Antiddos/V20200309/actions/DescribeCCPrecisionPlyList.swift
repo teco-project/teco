@@ -68,7 +68,7 @@ extension Antiddos {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCCPrecisionPlyListRequest(business: self.business, offset: self.offset + .init(response.getItems().count), limit: self.limit, instanceId: self.instanceId, ip: self.ip, domain: self.domain, protocol: self.protocol)
+            return .init(business: self.business, offset: self.offset + .init(response.getItems().count), limit: self.limit, instanceId: self.instanceId, ip: self.ip, domain: self.domain, protocol: self.protocol)
         }
     }
 

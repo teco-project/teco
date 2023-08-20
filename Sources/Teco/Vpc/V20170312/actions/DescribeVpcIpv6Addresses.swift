@@ -58,7 +58,7 @@ extension Vpc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeVpcIpv6AddressesRequest(vpcId: self.vpcId, ipv6Addresses: self.ipv6Addresses, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, subnetId: self.subnetId)
+            return .init(vpcId: self.vpcId, ipv6Addresses: self.ipv6Addresses, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, subnetId: self.subnetId)
         }
     }
 

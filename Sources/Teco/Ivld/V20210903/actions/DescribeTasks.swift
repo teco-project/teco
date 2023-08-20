@@ -53,7 +53,7 @@ extension Ivld {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTasksRequest(pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, taskFilter: self.taskFilter, sortBy: self.sortBy)
+            return .init(pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, taskFilter: self.taskFilter, sortBy: self.sortBy)
         }
     }
 

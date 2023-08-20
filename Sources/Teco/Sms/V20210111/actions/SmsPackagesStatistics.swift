@@ -60,7 +60,7 @@ extension Sms {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return SmsPackagesStatisticsRequest(smsSdkAppId: self.smsSdkAppId, limit: self.limit, offset: self.offset + .init(response.getItems().count), beginTime: self.beginTime, endTime: self.endTime)
+            return .init(smsSdkAppId: self.smsSdkAppId, limit: self.limit, offset: self.offset + .init(response.getItems().count), beginTime: self.beginTime, endTime: self.endTime)
         }
     }
 

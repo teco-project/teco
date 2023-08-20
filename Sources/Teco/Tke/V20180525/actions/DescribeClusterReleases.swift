@@ -68,7 +68,7 @@ extension Tke {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeClusterReleasesRequest(clusterId: self.clusterId, limit: self.limit, offset: (self.offset ?? 0) + (response.limit ?? 0), clusterType: self.clusterType, namespace: self.namespace, releaseName: self.releaseName, chartName: self.chartName)
+            return .init(clusterId: self.clusterId, limit: self.limit, offset: (self.offset ?? 0) + (response.limit ?? 0), clusterType: self.clusterType, namespace: self.namespace, releaseName: self.releaseName, chartName: self.chartName)
         }
     }
 

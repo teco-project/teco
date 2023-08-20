@@ -58,7 +58,7 @@ extension Postgres {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeServerlessDBInstancesRequest(filter: self.filter, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), orderBy: self.orderBy, orderByType: self.orderByType)
+            return .init(filter: self.filter, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), orderBy: self.orderBy, orderByType: self.orderByType)
         }
     }
 

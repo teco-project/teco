@@ -48,7 +48,7 @@ extension Mongodb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeClientConnectionsRequest(instanceId: self.instanceId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(instanceId: self.instanceId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

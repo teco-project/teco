@@ -106,7 +106,7 @@ extension Sqlserver {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBackupsRequest(startTime: self.startTime, endTime: self.endTime, instanceId: self.instanceId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), backupName: self.backupName, strategy: self.strategy, backupWay: self.backupWay, backupId: self.backupId, databaseName: self.databaseName, group: self.group, type: self.type, backupFormat: self.backupFormat)
+            return .init(startTime: self.startTime, endTime: self.endTime, instanceId: self.instanceId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), backupName: self.backupName, strategy: self.strategy, backupWay: self.backupWay, backupId: self.backupId, databaseName: self.databaseName, group: self.group, type: self.type, backupFormat: self.backupFormat)
         }
     }
 

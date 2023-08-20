@@ -66,7 +66,7 @@ extension Tbm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBrandNegCommentsRequest(brandId: self.brandId, startDate: self.startDate, endDate: self.endDate, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(brandId: self.brandId, startDate: self.startDate, endDate: self.endDate, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

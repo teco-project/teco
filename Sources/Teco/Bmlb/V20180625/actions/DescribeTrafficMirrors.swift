@@ -73,7 +73,7 @@ extension Bmlb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTrafficMirrorsRequest(trafficMirrorIds: self.trafficMirrorIds, aliases: self.aliases, vpcIds: self.vpcIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderField: self.orderField, order: self.order, searchKey: self.searchKey)
+            return .init(trafficMirrorIds: self.trafficMirrorIds, aliases: self.aliases, vpcIds: self.vpcIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderField: self.orderField, order: self.order, searchKey: self.searchKey)
         }
     }
 

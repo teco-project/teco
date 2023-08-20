@@ -108,7 +108,7 @@ extension Wedata {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTaskInstancesRequest(projectId: self.projectId, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, workflowIdList: self.workflowIdList, workflowNameList: self.workflowNameList, dateFrom: self.dateFrom, dateTo: self.dateTo, taskIdList: self.taskIdList, taskNameList: self.taskNameList, inChargeList: self.inChargeList, taskTypeIdList: self.taskTypeIdList, stateList: self.stateList, taskCycleUnitList: self.taskCycleUnitList, instanceType: self.instanceType, orderFields: self.orderFields)
+            return .init(projectId: self.projectId, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, workflowIdList: self.workflowIdList, workflowNameList: self.workflowNameList, dateFrom: self.dateFrom, dateTo: self.dateTo, taskIdList: self.taskIdList, taskNameList: self.taskNameList, inChargeList: self.inChargeList, taskTypeIdList: self.taskTypeIdList, stateList: self.stateList, taskCycleUnitList: self.taskCycleUnitList, instanceType: self.instanceType, orderFields: self.orderFields)
         }
     }
 

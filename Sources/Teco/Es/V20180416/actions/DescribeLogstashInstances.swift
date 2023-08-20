@@ -86,7 +86,7 @@ extension Es {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeLogstashInstancesRequest(zone: self.zone, instanceIds: self.instanceIds, instanceNames: self.instanceNames, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderByKey: self.orderByKey, orderByType: self.orderByType, vpcIds: self.vpcIds, tagList: self.tagList)
+            return .init(zone: self.zone, instanceIds: self.instanceIds, instanceNames: self.instanceNames, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderByKey: self.orderByKey, orderByType: self.orderByType, vpcIds: self.vpcIds, tagList: self.tagList)
         }
     }
 

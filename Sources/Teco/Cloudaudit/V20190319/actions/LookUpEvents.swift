@@ -63,7 +63,7 @@ extension Cloudaudit {
             guard response.nextToken != nil else {
                 return nil
             }
-            return LookUpEventsRequest(startTime: self.startTime, endTime: self.endTime, lookupAttributes: self.lookupAttributes, nextToken: response.nextToken, maxResults: self.maxResults, mode: self.mode)
+            return .init(startTime: self.startTime, endTime: self.endTime, lookupAttributes: self.lookupAttributes, nextToken: response.nextToken, maxResults: self.maxResults, mode: self.mode)
         }
     }
 

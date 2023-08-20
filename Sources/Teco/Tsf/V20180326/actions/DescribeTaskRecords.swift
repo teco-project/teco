@@ -72,7 +72,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTaskRecordsRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchWord: self.searchWord, taskState: self.taskState, groupId: self.groupId, taskType: self.taskType, executeType: self.executeType, ids: self.ids)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchWord: self.searchWord, taskState: self.taskState, groupId: self.groupId, taskType: self.taskType, executeType: self.executeType, ids: self.ids)
         }
     }
 

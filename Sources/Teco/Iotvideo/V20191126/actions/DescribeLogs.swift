@@ -68,7 +68,7 @@ extension Iotvideo {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeLogsRequest(tid: self.tid, limit: self.limit, offset: self.offset + .init(response.getItems().count), logType: self.logType, startTime: self.startTime, dataObject: self.dataObject, endTime: self.endTime)
+            return .init(tid: self.tid, limit: self.limit, offset: self.offset + .init(response.getItems().count), logType: self.logType, startTime: self.startTime, dataObject: self.dataObject, endTime: self.endTime)
         }
     }
 

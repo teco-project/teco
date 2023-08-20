@@ -125,7 +125,7 @@ extension Sqlserver {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDBInstancesRequest(projectId: self.projectId, status: self.status, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, instanceIdSet: self.instanceIdSet, payMode: self.payMode, vpcId: self.vpcId, subnetId: self.subnetId, vipSet: self.vipSet, instanceNameSet: self.instanceNameSet, versionSet: self.versionSet, zone: self.zone, tagKeys: self.tagKeys, searchKey: self.searchKey, uidSet: self.uidSet, instanceType: self.instanceType)
+            return .init(projectId: self.projectId, status: self.status, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, instanceIdSet: self.instanceIdSet, payMode: self.payMode, vpcId: self.vpcId, subnetId: self.subnetId, vipSet: self.vipSet, instanceNameSet: self.instanceNameSet, versionSet: self.versionSet, zone: self.zone, tagKeys: self.tagKeys, searchKey: self.searchKey, uidSet: self.uidSet, instanceType: self.instanceType)
         }
     }
 

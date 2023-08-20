@@ -63,7 +63,7 @@ extension Monitor {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBindingPolicyObjectListRequest(module: self.module, groupId: self.groupId, policyId: self.policyId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), dimensions: self.dimensions)
+            return .init(module: self.module, groupId: self.groupId, policyId: self.policyId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), dimensions: self.dimensions)
         }
     }
 

@@ -48,7 +48,7 @@ extension Mps {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTasksRequest(status: self.status, limit: self.limit, scrollToken: response.scrollToken)
+            return .init(status: self.status, limit: self.limit, scrollToken: response.scrollToken)
         }
     }
 

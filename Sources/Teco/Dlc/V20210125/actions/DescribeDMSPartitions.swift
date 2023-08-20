@@ -93,7 +93,7 @@ extension Dlc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDMSPartitionsRequest(databaseName: self.databaseName, tableName: self.tableName, schemaName: self.schemaName, name: self.name, values: self.values, partitionNames: self.partitionNames, partValues: self.partValues, filter: self.filter, maxParts: self.maxParts, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, expression: self.expression)
+            return .init(databaseName: self.databaseName, tableName: self.tableName, schemaName: self.schemaName, name: self.name, values: self.values, partitionNames: self.partitionNames, partValues: self.partValues, filter: self.filter, maxParts: self.maxParts, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, expression: self.expression)
         }
     }
 

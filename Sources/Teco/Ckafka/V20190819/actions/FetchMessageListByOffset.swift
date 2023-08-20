@@ -58,7 +58,7 @@ extension Ckafka {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return FetchMessageListByOffsetRequest(instanceId: self.instanceId, topic: self.topic, partition: self.partition, offset: self.offset + .init(response.getItems().count), singlePartitionRecordNumber: self.singlePartitionRecordNumber)
+            return .init(instanceId: self.instanceId, topic: self.topic, partition: self.partition, offset: self.offset + .init(response.getItems().count), singlePartitionRecordNumber: self.singlePartitionRecordNumber)
         }
     }
 

@@ -113,7 +113,7 @@ extension Wedata {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeEventCasesRequest(projectId: self.projectId, category: self.category, pageNumber: self.pageNumber + 1, pageSize: self.pageSize, eventName: self.eventName, eventType: self.eventType, eventSubType: self.eventSubType, eventBroadcastType: self.eventBroadcastType, status: self.status, creationTimeStart: self.creationTimeStart, creationTimeEnd: self.creationTimeEnd, eventTriggeredTimeStart: self.eventTriggeredTimeStart, eventTriggeredTimeEnd: self.eventTriggeredTimeEnd, logTimeStart: self.logTimeStart, logTimeEnd: self.logTimeEnd, dimension: self.dimension)
+            return .init(projectId: self.projectId, category: self.category, pageNumber: self.pageNumber + 1, pageSize: self.pageSize, eventName: self.eventName, eventType: self.eventType, eventSubType: self.eventSubType, eventBroadcastType: self.eventBroadcastType, status: self.status, creationTimeStart: self.creationTimeStart, creationTimeEnd: self.creationTimeEnd, eventTriggeredTimeStart: self.eventTriggeredTimeStart, eventTriggeredTimeEnd: self.eventTriggeredTimeEnd, logTimeStart: self.logTimeStart, logTimeEnd: self.logTimeEnd, dimension: self.dimension)
         }
     }
 

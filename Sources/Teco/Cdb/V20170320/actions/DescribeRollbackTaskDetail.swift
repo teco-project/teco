@@ -53,7 +53,7 @@ extension Cdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeRollbackTaskDetailRequest(instanceId: self.instanceId, asyncRequestId: self.asyncRequestId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(instanceId: self.instanceId, asyncRequestId: self.asyncRequestId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

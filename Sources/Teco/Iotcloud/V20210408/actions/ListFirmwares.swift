@@ -53,7 +53,7 @@ extension Iotcloud {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListFirmwaresRequest(pageNum: self.pageNum + 1, pageSize: self.pageSize, productId: self.productId, filters: self.filters)
+            return .init(pageNum: self.pageNum + 1, pageSize: self.pageSize, productId: self.productId, filters: self.filters)
         }
     }
 

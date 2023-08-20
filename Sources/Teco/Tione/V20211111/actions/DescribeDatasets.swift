@@ -70,7 +70,7 @@ extension Tione {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDatasetsRequest(datasetIds: self.datasetIds, filters: self.filters, tagFilters: self.tagFilters, order: self.order, orderField: self.orderField, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(datasetIds: self.datasetIds, filters: self.filters, tagFilters: self.tagFilters, order: self.order, orderField: self.orderField, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

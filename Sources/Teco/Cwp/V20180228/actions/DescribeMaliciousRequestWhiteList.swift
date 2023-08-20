@@ -50,7 +50,7 @@ extension Cwp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeMaliciousRequestWhiteListRequest(limit: self.limit, offset: self.offset + .init(response.getItems().count), filters: self.filters)
+            return .init(limit: self.limit, offset: self.offset + .init(response.getItems().count), filters: self.filters)
         }
     }
 

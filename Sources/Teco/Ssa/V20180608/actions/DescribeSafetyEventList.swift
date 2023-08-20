@@ -81,7 +81,7 @@ extension Ssa {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSafetyEventListRequest(filter: self.filter, limit: self.limit, offset: self.offset + .init(response.getItems().count), order: self.order, by: self.by, startTime: self.startTime, endTime: self.endTime, isFilterResponseTime: self.isFilterResponseTime)
+            return .init(filter: self.filter, limit: self.limit, offset: self.offset + .init(response.getItems().count), order: self.order, by: self.by, startTime: self.startTime, endTime: self.endTime, isFilterResponseTime: self.isFilterResponseTime)
         }
     }
 

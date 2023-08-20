@@ -80,7 +80,7 @@ extension Dlc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeViewsRequest(databaseName: self.databaseName, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters, datasourceConnectionName: self.datasourceConnectionName, sort: self.sort, asc: self.asc, startTime: self.startTime, endTime: self.endTime)
+            return .init(databaseName: self.databaseName, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters, datasourceConnectionName: self.datasourceConnectionName, sort: self.sort, asc: self.asc, startTime: self.startTime, endTime: self.endTime)
         }
     }
 

@@ -59,7 +59,7 @@ extension Keewidb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeProjectSecurityGroupsRequest(product: self.product, projectId: self.projectId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchKey: self.searchKey)
+            return .init(product: self.product, projectId: self.projectId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchKey: self.searchKey)
         }
     }
 

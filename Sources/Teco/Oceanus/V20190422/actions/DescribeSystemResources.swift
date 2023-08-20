@@ -63,7 +63,7 @@ extension Oceanus {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSystemResourcesRequest(resourceIds: self.resourceIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters, clusterId: self.clusterId, flinkVersion: self.flinkVersion)
+            return .init(resourceIds: self.resourceIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters, clusterId: self.clusterId, flinkVersion: self.flinkVersion)
         }
     }
 

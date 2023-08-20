@@ -73,7 +73,7 @@ extension Tcr {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeImagesRequest(registryId: self.registryId, namespaceName: self.namespaceName, repositoryName: self.repositoryName, imageVersion: self.imageVersion, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), digest: self.digest, exactMatch: self.exactMatch)
+            return .init(registryId: self.registryId, namespaceName: self.namespaceName, repositoryName: self.repositoryName, imageVersion: self.imageVersion, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), digest: self.digest, exactMatch: self.exactMatch)
         }
     }
 

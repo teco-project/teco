@@ -63,7 +63,7 @@ extension Iotexplorer {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return SearchStudioProductRequest(projectId: self.projectId, productName: self.productName, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), devStatus: self.devStatus, productId: self.productId)
+            return .init(projectId: self.projectId, productName: self.productName, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), devStatus: self.devStatus, productId: self.productId)
         }
     }
 

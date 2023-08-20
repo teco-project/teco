@@ -78,7 +78,7 @@ extension Cdn {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return GetDisableRecordsRequest(url: self.url, startTime: self.startTime, endTime: self.endTime, status: self.status, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, taskId: self.taskId)
+            return .init(url: self.url, startTime: self.startTime, endTime: self.endTime, status: self.status, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, taskId: self.taskId)
         }
     }
 

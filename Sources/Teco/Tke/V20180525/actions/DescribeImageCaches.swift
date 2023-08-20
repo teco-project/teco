@@ -61,7 +61,7 @@ extension Tke {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeImageCachesRequest(imageCacheIds: self.imageCacheIds, imageCacheNames: self.imageCacheNames, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters)
+            return .init(imageCacheIds: self.imageCacheIds, imageCacheNames: self.imageCacheNames, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters)
         }
     }
 

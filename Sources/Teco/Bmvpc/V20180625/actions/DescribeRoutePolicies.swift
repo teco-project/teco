@@ -67,7 +67,7 @@ extension Bmvpc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeRoutePoliciesRequest(routeTableId: self.routeTableId, routePolicyIds: self.routePolicyIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(routeTableId: self.routeTableId, routePolicyIds: self.routePolicyIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

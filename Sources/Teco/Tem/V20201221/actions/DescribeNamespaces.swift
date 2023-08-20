@@ -48,7 +48,7 @@ extension Tem {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeNamespacesRequest(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), sourceChannel: self.sourceChannel)
+            return .init(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), sourceChannel: self.sourceChannel)
         }
     }
 

@@ -73,7 +73,7 @@ extension Monitor {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeConditionsTemplateListRequest(module: self.module, viewName: self.viewName, groupName: self.groupName, groupID: self.groupID, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), updateTimeOrder: self.updateTimeOrder, policyCountOrder: self.policyCountOrder)
+            return .init(module: self.module, viewName: self.viewName, groupName: self.groupName, groupID: self.groupID, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), updateTimeOrder: self.updateTimeOrder, policyCountOrder: self.policyCountOrder)
         }
     }
 

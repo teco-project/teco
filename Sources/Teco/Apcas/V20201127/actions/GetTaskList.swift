@@ -63,7 +63,7 @@ extension Apcas {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return GetTaskListRequest(pageNumber: self.pageNumber + 1, pageSize: self.pageSize, startTime: self.startTime, endTime: self.endTime, taskName: self.taskName, taskStatus: self.taskStatus)
+            return .init(pageNumber: self.pageNumber + 1, pageSize: self.pageSize, startTime: self.startTime, endTime: self.endTime, taskName: self.taskName, taskStatus: self.taskStatus)
         }
     }
 

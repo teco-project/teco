@@ -53,7 +53,7 @@ extension Ivld {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeMediasRequest(pageNumber: self.pageNumber + 1, pageSize: self.pageSize, mediaFilter: self.mediaFilter, sortBy: self.sortBy)
+            return .init(pageNumber: self.pageNumber + 1, pageSize: self.pageSize, mediaFilter: self.mediaFilter, sortBy: self.sortBy)
         }
     }
 

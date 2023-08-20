@@ -58,7 +58,7 @@ extension Tcss {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAutoAuthorizedRuleHostRequest(ruleId: self.ruleId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), order: self.order, by: self.by)
+            return .init(ruleId: self.ruleId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), order: self.order, by: self.by)
         }
     }
 

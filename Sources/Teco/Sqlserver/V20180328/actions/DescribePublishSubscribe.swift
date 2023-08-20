@@ -78,7 +78,7 @@ extension Sqlserver {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePublishSubscribeRequest(instanceId: self.instanceId, pubOrSubInstanceId: self.pubOrSubInstanceId, pubOrSubInstanceIp: self.pubOrSubInstanceIp, publishSubscribeId: self.publishSubscribeId, publishSubscribeName: self.publishSubscribeName, publishDBName: self.publishDBName, subscribeDBName: self.subscribeDBName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(instanceId: self.instanceId, pubOrSubInstanceId: self.pubOrSubInstanceId, pubOrSubInstanceIp: self.pubOrSubInstanceIp, publishSubscribeId: self.publishSubscribeId, publishSubscribeName: self.publishSubscribeName, publishDBName: self.publishDBName, subscribeDBName: self.subscribeDBName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

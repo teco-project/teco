@@ -71,7 +71,7 @@ extension Tbm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBrandSocialOpinionRequest(brandId: self.brandId, startDate: self.startDate, endDate: self.endDate, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, showList: self.showList)
+            return .init(brandId: self.brandId, startDate: self.startDate, endDate: self.endDate, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, showList: self.showList)
         }
     }
 

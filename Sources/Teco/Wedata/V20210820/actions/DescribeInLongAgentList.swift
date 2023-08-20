@@ -83,7 +83,7 @@ extension Wedata {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeInLongAgentListRequest(projectId: self.projectId, agentId: self.agentId, agentName: self.agentName, agentType: self.agentType, status: self.status, vpcId: self.vpcId, pageIndex: (self.pageIndex ?? 0) + 1, pageSize: self.pageSize, like: self.like, agentTypes: self.agentTypes)
+            return .init(projectId: self.projectId, agentId: self.agentId, agentName: self.agentName, agentType: self.agentType, status: self.status, vpcId: self.vpcId, pageIndex: (self.pageIndex ?? 0) + 1, pageSize: self.pageSize, like: self.like, agentTypes: self.agentTypes)
         }
     }
 

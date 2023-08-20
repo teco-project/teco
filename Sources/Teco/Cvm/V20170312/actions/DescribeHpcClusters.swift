@@ -58,7 +58,7 @@ extension Cvm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeHpcClustersRequest(hpcClusterIds: self.hpcClusterIds, name: self.name, zone: self.zone, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(hpcClusterIds: self.hpcClusterIds, name: self.name, zone: self.zone, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

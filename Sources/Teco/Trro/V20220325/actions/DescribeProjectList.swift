@@ -43,7 +43,7 @@ extension Trro {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeProjectListRequest(pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1)
+            return .init(pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1)
         }
     }
 

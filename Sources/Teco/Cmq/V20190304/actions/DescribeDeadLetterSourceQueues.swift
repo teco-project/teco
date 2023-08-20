@@ -53,7 +53,7 @@ extension Cmq {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDeadLetterSourceQueuesRequest(deadLetterQueueName: self.deadLetterQueueName, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters)
+            return .init(deadLetterQueueName: self.deadLetterQueueName, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters)
         }
     }
 

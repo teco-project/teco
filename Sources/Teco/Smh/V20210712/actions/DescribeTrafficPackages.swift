@@ -63,7 +63,7 @@ extension Smh {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTrafficPackagesRequest(resourceIds: self.resourceIds, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, orderBy: self.orderBy, orderByType: self.orderByType, type: self.type)
+            return .init(resourceIds: self.resourceIds, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, orderBy: self.orderBy, orderByType: self.orderByType, type: self.type)
         }
     }
 

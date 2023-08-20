@@ -95,7 +95,7 @@ extension Sslpod {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDomainsRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, searchType: self.searchType, tag: self.tag, grade: self.grade, brand: self.brand, code: self.code, hash: self.hash, item: self.item, status: self.status, domain: self.domain)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, searchType: self.searchType, tag: self.tag, grade: self.grade, brand: self.brand, code: self.code, hash: self.hash, item: self.item, status: self.status, domain: self.domain)
         }
     }
 

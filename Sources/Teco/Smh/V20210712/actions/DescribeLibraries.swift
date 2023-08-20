@@ -48,7 +48,7 @@ extension Smh {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeLibrariesRequest(libraryIds: self.libraryIds, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize)
+            return .init(libraryIds: self.libraryIds, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize)
         }
     }
 

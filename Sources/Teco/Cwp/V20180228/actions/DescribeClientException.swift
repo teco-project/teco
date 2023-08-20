@@ -58,7 +58,7 @@ extension Cwp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeClientExceptionRequest(exceptionType: self.exceptionType, offset: self.offset + .init(response.getItems().count), limit: self.limit, startTime: self.startTime, endTime: self.endTime)
+            return .init(exceptionType: self.exceptionType, offset: self.offset + .init(response.getItems().count), limit: self.limit, startTime: self.startTime, endTime: self.endTime)
         }
     }
 

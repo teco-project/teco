@@ -75,7 +75,7 @@ extension Gaap {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeUDPListenersRequest(proxyId: self.proxyId, listenerId: self.listenerId, listenerName: self.listenerName, port: self.port, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, groupId: self.groupId, searchValue: self.searchValue)
+            return .init(proxyId: self.proxyId, listenerId: self.listenerId, listenerName: self.listenerName, port: self.port, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, groupId: self.groupId, searchValue: self.searchValue)
         }
     }
 

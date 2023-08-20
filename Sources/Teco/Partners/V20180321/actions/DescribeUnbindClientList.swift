@@ -76,7 +76,7 @@ extension Partners {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeUnbindClientListRequest(status: self.status, offset: self.offset + .init(response.getItems().count), limit: self.limit, unbindUin: self.unbindUin, applyTimeStart: self.applyTimeStart, applyTimeEnd: self.applyTimeEnd, orderDirection: self.orderDirection)
+            return .init(status: self.status, offset: self.offset + .init(response.getItems().count), limit: self.limit, unbindUin: self.unbindUin, applyTimeStart: self.applyTimeStart, applyTimeEnd: self.applyTimeEnd, orderDirection: self.orderDirection)
         }
     }
 

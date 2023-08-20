@@ -89,7 +89,7 @@ extension Cdn {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePushTasksRequest(startTime: self.startTime, endTime: self.endTime, taskId: self.taskId, keyword: self.keyword, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, area: self.area, status: self.status)
+            return .init(startTime: self.startTime, endTime: self.endTime, taskId: self.taskId, keyword: self.keyword, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, area: self.area, status: self.status)
         }
     }
 

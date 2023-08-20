@@ -63,7 +63,7 @@ extension Pts {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeFilesRequest(projectIds: self.projectIds, fileIds: self.fileIds, fileName: self.fileName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, kind: self.kind)
+            return .init(projectIds: self.projectIds, fileIds: self.fileIds, fileName: self.fileName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, kind: self.kind)
         }
     }
 

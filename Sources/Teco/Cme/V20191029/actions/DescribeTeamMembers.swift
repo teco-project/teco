@@ -63,7 +63,7 @@ extension Cme {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTeamMembersRequest(platform: self.platform, teamId: self.teamId, memberIds: self.memberIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, operator: self.operator)
+            return .init(platform: self.platform, teamId: self.teamId, memberIds: self.memberIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, operator: self.operator)
         }
     }
 

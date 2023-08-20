@@ -61,7 +61,7 @@ extension Postgres {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBackupSummariesRequest(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters, orderBy: self.orderBy, orderByType: self.orderByType)
+            return .init(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters, orderBy: self.orderBy, orderByType: self.orderByType)
         }
     }
 

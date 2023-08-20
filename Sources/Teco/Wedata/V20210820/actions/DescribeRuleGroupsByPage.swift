@@ -58,7 +58,7 @@ extension Wedata {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeRuleGroupsByPageRequest(pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, filters: self.filters, orderFields: self.orderFields, projectId: self.projectId)
+            return .init(pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, filters: self.filters, orderFields: self.orderFields, projectId: self.projectId)
         }
     }
 

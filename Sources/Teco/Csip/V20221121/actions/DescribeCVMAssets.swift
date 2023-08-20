@@ -21,7 +21,6 @@ import TecoCore
 extension Csip {
     /// DescribeCVMAssets请求参数结构体
     public struct DescribeCVMAssetsRequest: TCRequest {
-        /// -
         public let filter: Filter?
 
         public init(filter: Filter? = nil) {

@@ -63,7 +63,7 @@ extension Cls {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAlertRecordHistoryRequest(from: self.from, to: self.to, offset: self.offset + .init(response.getItems().count), limit: self.limit, filters: self.filters)
+            return .init(from: self.from, to: self.to, offset: self.offset + .init(response.getItems().count), limit: self.limit, filters: self.filters)
         }
     }
 

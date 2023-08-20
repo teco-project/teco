@@ -48,7 +48,7 @@ extension Cdn {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListScdnDomainsRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, domain: self.domain)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, domain: self.domain)
         }
     }
 

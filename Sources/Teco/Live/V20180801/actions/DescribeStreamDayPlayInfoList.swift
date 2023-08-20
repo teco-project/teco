@@ -67,7 +67,7 @@ extension Live {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeStreamDayPlayInfoListRequest(dayTime: self.dayTime, playDomain: self.playDomain, pageNum: (self.pageNum ?? 0) + 1, pageSize: self.pageSize, mainlandOrOversea: self.mainlandOrOversea, serviceName: self.serviceName)
+            return .init(dayTime: self.dayTime, playDomain: self.playDomain, pageNum: (self.pageNum ?? 0) + 1, pageSize: self.pageSize, mainlandOrOversea: self.mainlandOrOversea, serviceName: self.serviceName)
         }
     }
 

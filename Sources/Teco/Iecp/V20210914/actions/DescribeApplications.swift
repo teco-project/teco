@@ -53,7 +53,7 @@ extension Iecp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeApplicationsRequest(namePattern: self.namePattern, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, sort: self.sort)
+            return .init(namePattern: self.namePattern, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, sort: self.sort)
         }
     }
 

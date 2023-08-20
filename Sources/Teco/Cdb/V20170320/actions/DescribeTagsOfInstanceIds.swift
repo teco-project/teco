@@ -48,7 +48,7 @@ extension Cdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTagsOfInstanceIdsRequest(instanceIds: self.instanceIds, offset: (self.offset ?? 0) + response.limit, limit: self.limit)
+            return .init(instanceIds: self.instanceIds, offset: (self.offset ?? 0) + response.limit, limit: self.limit)
         }
     }
 

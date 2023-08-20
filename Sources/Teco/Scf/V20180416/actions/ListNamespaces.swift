@@ -58,7 +58,7 @@ extension Scf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListNamespacesRequest(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), orderby: self.orderby, order: self.order, searchKey: self.searchKey)
+            return .init(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), orderby: self.orderby, order: self.order, searchKey: self.searchKey)
         }
     }
 

@@ -66,7 +66,7 @@ extension Gse {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeFleetStatisticDetailsRequest(fleetId: self.fleetId, beginTime: self.beginTime, endTime: self.endTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(fleetId: self.fleetId, beginTime: self.beginTime, endTime: self.endTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

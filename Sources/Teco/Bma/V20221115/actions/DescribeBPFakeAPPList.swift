@@ -48,7 +48,7 @@ extension Bma {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBPFakeAPPListRequest(filters: self.filters, pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1)
+            return .init(filters: self.filters, pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1)
         }
     }
 

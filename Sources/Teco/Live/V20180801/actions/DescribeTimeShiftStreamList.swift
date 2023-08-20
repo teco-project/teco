@@ -69,7 +69,7 @@ extension Live {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTimeShiftStreamListRequest(startTime: self.startTime, endTime: self.endTime, streamName: self.streamName, domain: self.domain, domainGroup: self.domainGroup, pageSize: self.pageSize, pageNum: (self.pageNum ?? 0) + 1)
+            return .init(startTime: self.startTime, endTime: self.endTime, streamName: self.streamName, domain: self.domain, domainGroup: self.domainGroup, pageSize: self.pageSize, pageNum: (self.pageNum ?? 0) + 1)
         }
     }
 

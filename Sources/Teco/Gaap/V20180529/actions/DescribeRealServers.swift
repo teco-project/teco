@@ -64,7 +64,7 @@ extension Gaap {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeRealServersRequest(projectId: self.projectId, searchValue: self.searchValue, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, tagSet: self.tagSet, filters: self.filters)
+            return .init(projectId: self.projectId, searchValue: self.searchValue, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, tagSet: self.tagSet, filters: self.filters)
         }
     }
 

@@ -68,7 +68,7 @@ extension Partners {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAgentBillsRequest(settleMonth: self.settleMonth, clientUin: self.clientUin, payMode: self.payMode, orderId: self.orderId, clientRemark: self.clientRemark, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(settleMonth: self.settleMonth, clientUin: self.clientUin, payMode: self.payMode, orderId: self.orderId, clientRemark: self.clientRemark, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

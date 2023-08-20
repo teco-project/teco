@@ -53,7 +53,7 @@ extension Iotvideoindustry {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeIPCChannelsRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, deviceId: self.deviceId, channelTypes: self.channelTypes)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, deviceId: self.deviceId, channelTypes: self.channelTypes)
         }
     }
 

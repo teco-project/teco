@@ -48,7 +48,7 @@ extension Apigateway {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePluginRequest(pluginId: self.pluginId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(pluginId: self.pluginId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

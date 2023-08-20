@@ -65,7 +65,7 @@ extension Cwp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBaselineEffectHostListRequest(limit: self.limit, offset: self.offset + .init(response.getItems().count), baselineId: self.baselineId, filters: self.filters, strategyId: self.strategyId, uuidList: self.uuidList)
+            return .init(limit: self.limit, offset: self.offset + .init(response.getItems().count), baselineId: self.baselineId, filters: self.filters, strategyId: self.strategyId, uuidList: self.uuidList)
         }
     }
 

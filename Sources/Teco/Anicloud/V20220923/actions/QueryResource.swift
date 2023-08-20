@@ -48,7 +48,7 @@ extension Anicloud {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return QueryResourceRequest(type: self.type, pageNumber: self.pageNumber + 1, pageSize: self.pageSize)
+            return .init(type: self.type, pageNumber: self.pageNumber + 1, pageSize: self.pageSize)
         }
     }
 

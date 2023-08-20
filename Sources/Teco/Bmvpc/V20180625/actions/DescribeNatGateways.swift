@@ -78,7 +78,7 @@ extension Bmvpc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeNatGatewaysRequest(natId: self.natId, natName: self.natName, searchKey: self.searchKey, vpcId: self.vpcId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, zone: self.zone, orderField: self.orderField, orderDirection: self.orderDirection)
+            return .init(natId: self.natId, natName: self.natName, searchKey: self.searchKey, vpcId: self.vpcId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, zone: self.zone, orderField: self.orderField, orderDirection: self.orderDirection)
         }
     }
 

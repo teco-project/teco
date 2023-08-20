@@ -72,7 +72,7 @@ extension Dasb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return SearchSessionCommandRequest(cmd: self.cmd, startTime: self.startTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, encoding: self.encoding, endTime: self.endTime)
+            return .init(cmd: self.cmd, startTime: self.startTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, encoding: self.encoding, endTime: self.endTime)
         }
     }
 

@@ -50,7 +50,7 @@ extension Thpc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeClustersRequest(clusterIds: self.clusterIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(clusterIds: self.clusterIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

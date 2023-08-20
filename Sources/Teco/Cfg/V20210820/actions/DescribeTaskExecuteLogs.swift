@@ -48,7 +48,7 @@ extension Cfg {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTaskExecuteLogsRequest(taskId: self.taskId, limit: self.limit, offset: self.offset + .init(response.getItems().count))
+            return .init(taskId: self.taskId, limit: self.limit, offset: self.offset + .init(response.getItems().count))
         }
     }
 

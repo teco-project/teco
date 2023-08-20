@@ -68,7 +68,7 @@ extension Cls {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeMachineGroupsRequest(filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

@@ -48,7 +48,7 @@ extension Gpm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeMatchCodesRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, matchCode: self.matchCode)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, matchCode: self.matchCode)
         }
     }
 

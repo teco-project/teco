@@ -63,7 +63,7 @@ extension Oceanus {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeResourceRelatedJobsRequest(resourceId: self.resourceId, descByJobConfigCreateTime: self.descByJobConfigCreateTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, resourceConfigVersion: self.resourceConfigVersion, workSpaceId: self.workSpaceId)
+            return .init(resourceId: self.resourceId, descByJobConfigCreateTime: self.descByJobConfigCreateTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, resourceConfigVersion: self.resourceConfigVersion, workSpaceId: self.workSpaceId)
         }
     }
 

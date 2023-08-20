@@ -48,7 +48,7 @@ extension Cdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeUploadedFilesRequest(path: self.path, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(path: self.path, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

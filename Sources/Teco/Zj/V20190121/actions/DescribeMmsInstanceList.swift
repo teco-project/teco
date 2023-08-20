@@ -58,7 +58,7 @@ extension Zj {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeMmsInstanceListRequest(license: self.license, offset: self.offset + .init(response.getItems().count), limit: self.limit, appSubId: self.appSubId, title: self.title)
+            return .init(license: self.license, offset: self.offset + .init(response.getItems().count), limit: self.limit, appSubId: self.appSubId, title: self.title)
         }
     }
 

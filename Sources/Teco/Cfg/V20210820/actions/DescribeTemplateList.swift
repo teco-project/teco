@@ -78,7 +78,7 @@ extension Cfg {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTemplateListRequest(limit: self.limit, offset: self.offset + .init(response.getItems().count), title: self.title, tag: self.tag, isUsed: self.isUsed, tags: self.tags, templateSource: self.templateSource, templateIdList: self.templateIdList, filters: self.filters)
+            return .init(limit: self.limit, offset: self.offset + .init(response.getItems().count), title: self.title, tag: self.tag, isUsed: self.isUsed, tags: self.tags, templateSource: self.templateSource, templateIdList: self.templateIdList, filters: self.filters)
         }
     }
 

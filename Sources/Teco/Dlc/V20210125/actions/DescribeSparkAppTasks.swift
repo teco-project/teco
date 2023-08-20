@@ -68,7 +68,7 @@ extension Dlc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSparkAppTasksRequest(jobId: self.jobId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, taskId: self.taskId, startTime: self.startTime, endTime: self.endTime, filters: self.filters)
+            return .init(jobId: self.jobId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, taskId: self.taskId, startTime: self.startTime, endTime: self.endTime, filters: self.filters)
         }
     }
 

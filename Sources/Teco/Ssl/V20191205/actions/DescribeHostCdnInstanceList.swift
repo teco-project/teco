@@ -73,7 +73,7 @@ extension Ssl {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeHostCdnInstanceListRequest(certificateId: self.certificateId, resourceType: self.resourceType, isCache: self.isCache, filters: self.filters, oldCertificateId: self.oldCertificateId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, asyncCache: self.asyncCache)
+            return .init(certificateId: self.certificateId, resourceType: self.resourceType, isCache: self.isCache, filters: self.filters, oldCertificateId: self.oldCertificateId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, asyncCache: self.asyncCache)
         }
     }
 

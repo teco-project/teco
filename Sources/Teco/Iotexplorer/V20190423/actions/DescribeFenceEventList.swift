@@ -68,7 +68,7 @@ extension Iotexplorer {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeFenceEventListRequest(startTime: self.startTime, endTime: self.endTime, fenceId: self.fenceId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, productId: self.productId, deviceName: self.deviceName)
+            return .init(startTime: self.startTime, endTime: self.endTime, fenceId: self.fenceId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, productId: self.productId, deviceName: self.deviceName)
         }
     }
 

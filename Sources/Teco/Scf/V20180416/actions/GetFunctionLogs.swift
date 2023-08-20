@@ -103,7 +103,7 @@ extension Scf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return GetFunctionLogsRequest(functionName: self.functionName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, order: self.order, orderBy: self.orderBy, filter: self.filter, namespace: self.namespace, qualifier: self.qualifier, functionRequestId: self.functionRequestId, startTime: self.startTime, endTime: self.endTime, searchContext: self.searchContext)
+            return .init(functionName: self.functionName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, order: self.order, orderBy: self.orderBy, filter: self.filter, namespace: self.namespace, qualifier: self.qualifier, functionRequestId: self.functionRequestId, startTime: self.startTime, endTime: self.endTime, searchContext: self.searchContext)
         }
     }
 

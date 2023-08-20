@@ -57,7 +57,7 @@ extension Dc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDirectConnectTunnelsRequest(filters: self.filters, directConnectTunnelIds: self.directConnectTunnelIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(filters: self.filters, directConnectTunnelIds: self.directConnectTunnelIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

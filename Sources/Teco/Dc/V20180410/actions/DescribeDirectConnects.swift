@@ -53,7 +53,7 @@ extension Dc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDirectConnectsRequest(filters: self.filters, directConnectIds: self.directConnectIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(filters: self.filters, directConnectIds: self.directConnectIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

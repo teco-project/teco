@@ -58,7 +58,7 @@ extension Keewidb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeInstanceBinlogsRequest(instanceId: self.instanceId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), beginTime: self.beginTime, endTime: self.endTime)
+            return .init(instanceId: self.instanceId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), beginTime: self.beginTime, endTime: self.endTime)
         }
     }
 

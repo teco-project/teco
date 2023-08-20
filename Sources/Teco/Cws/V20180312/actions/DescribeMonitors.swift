@@ -53,7 +53,7 @@ extension Cws {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeMonitorsRequest(monitorIds: self.monitorIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(monitorIds: self.monitorIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

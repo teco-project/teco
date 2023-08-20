@@ -68,7 +68,7 @@ extension Wedata {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTaskAlarmRegulationsRequest(projectId: self.projectId, pageNumber: self.pageNumber + 1, pageSize: self.pageSize, filters: self.filters, orderFields: self.orderFields, taskId: self.taskId, taskType: self.taskType)
+            return .init(projectId: self.projectId, pageNumber: self.pageNumber + 1, pageSize: self.pageSize, filters: self.filters, orderFields: self.orderFields, taskId: self.taskId, taskType: self.taskType)
         }
     }
 

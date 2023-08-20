@@ -63,7 +63,7 @@ extension Dasb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeUserGroupMembersRequest(id: self.id, bound: self.bound, name: self.name, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, departmentId: self.departmentId)
+            return .init(id: self.id, bound: self.bound, name: self.name, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, departmentId: self.departmentId)
         }
     }
 

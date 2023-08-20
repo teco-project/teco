@@ -94,7 +94,7 @@ extension Cpdp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return QueryTransferBatchRequest(merchantId: self.merchantId, needQueryDetail: self.needQueryDetail, merchantBatchNo: self.merchantBatchNo, batchId: self.batchId, profile: self.profile, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, detailStatus: self.detailStatus)
+            return .init(merchantId: self.merchantId, needQueryDetail: self.needQueryDetail, merchantBatchNo: self.merchantBatchNo, batchId: self.batchId, profile: self.profile, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, detailStatus: self.detailStatus)
         }
     }
 

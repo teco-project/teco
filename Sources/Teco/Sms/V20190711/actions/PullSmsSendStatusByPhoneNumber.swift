@@ -65,7 +65,7 @@ extension Sms {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return PullSmsSendStatusByPhoneNumberRequest(sendDateTime: self.sendDateTime, offset: self.offset + .init(response.getItems().count), limit: self.limit, phoneNumber: self.phoneNumber, smsSdkAppid: self.smsSdkAppid, endDateTime: self.endDateTime)
+            return .init(sendDateTime: self.sendDateTime, offset: self.offset + .init(response.getItems().count), limit: self.limit, phoneNumber: self.phoneNumber, smsSdkAppid: self.smsSdkAppid, endDateTime: self.endDateTime)
         }
     }
 

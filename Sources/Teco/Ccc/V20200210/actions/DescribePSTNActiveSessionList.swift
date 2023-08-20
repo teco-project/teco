@@ -48,7 +48,7 @@ extension Ccc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePSTNActiveSessionListRequest(sdkAppId: self.sdkAppId, offset: self.offset + .init(response.getItems().count), limit: self.limit)
+            return .init(sdkAppId: self.sdkAppId, offset: self.offset + .init(response.getItems().count), limit: self.limit)
         }
     }
 

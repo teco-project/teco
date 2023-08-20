@@ -87,7 +87,7 @@ extension Ssm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListSecretsRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderType: self.orderType, state: self.state, searchSecretName: self.searchSecretName, tagFilters: self.tagFilters, secretType: self.secretType, productName: self.productName)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderType: self.orderType, state: self.state, searchSecretName: self.searchSecretName, tagFilters: self.tagFilters, secretType: self.secretType, productName: self.productName)
         }
     }
 

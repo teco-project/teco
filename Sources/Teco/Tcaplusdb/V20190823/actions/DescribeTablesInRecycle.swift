@@ -58,7 +58,7 @@ extension Tcaplusdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTablesInRecycleRequest(clusterId: self.clusterId, tableGroupIds: self.tableGroupIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(clusterId: self.clusterId, tableGroupIds: self.tableGroupIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

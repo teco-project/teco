@@ -48,7 +48,7 @@ extension Wav {
             guard response.nextCursor != nil else {
                 return nil
             }
-            return QueryActivityJoinListRequest(activityId: self.activityId, cursor: response.nextCursor, limit: self.limit)
+            return .init(activityId: self.activityId, cursor: response.nextCursor, limit: self.limit)
         }
     }
 

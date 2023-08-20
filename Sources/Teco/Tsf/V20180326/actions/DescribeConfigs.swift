@@ -68,7 +68,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeConfigsRequest(applicationId: self.applicationId, configId: self.configId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, configIdList: self.configIdList, configName: self.configName, configVersion: self.configVersion)
+            return .init(applicationId: self.applicationId, configId: self.configId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, configIdList: self.configIdList, configName: self.configName, configVersion: self.configVersion)
         }
     }
 

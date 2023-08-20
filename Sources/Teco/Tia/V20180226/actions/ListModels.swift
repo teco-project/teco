@@ -53,7 +53,7 @@ extension Tia {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListModelsRequest(cluster: self.cluster, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), servType: self.servType)
+            return .init(cluster: self.cluster, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), servType: self.servType)
         }
     }
 

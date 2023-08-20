@@ -48,7 +48,7 @@ extension Cds {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDbauditInstancesRequest(searchRegion: self.searchRegion, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(searchRegion: self.searchRegion, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

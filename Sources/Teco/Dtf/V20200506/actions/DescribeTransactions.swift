@@ -73,7 +73,7 @@ extension Dtf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTransactionsRequest(groupId: self.groupId, transactionBeginFrom: self.transactionBeginFrom, transactionBeginTo: self.transactionBeginTo, searchError: self.searchError, transactionId: self.transactionId, transactionIdList: self.transactionIdList, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(groupId: self.groupId, transactionBeginFrom: self.transactionBeginFrom, transactionBeginTo: self.transactionBeginTo, searchError: self.searchError, transactionId: self.transactionId, transactionIdList: self.transactionIdList, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

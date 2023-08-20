@@ -63,7 +63,7 @@ extension Dbbrain {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAuditInstanceListRequest(product: self.product, nodeRequestType: self.nodeRequestType, auditSwitch: self.auditSwitch, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters)
+            return .init(product: self.product, nodeRequestType: self.nodeRequestType, auditSwitch: self.auditSwitch, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters)
         }
     }
 

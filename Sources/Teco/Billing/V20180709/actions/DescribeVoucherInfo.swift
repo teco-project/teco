@@ -108,7 +108,7 @@ extension Billing {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeVoucherInfoRequest(limit: self.limit, offset: self.offset + .init(response.getItems().count), status: self.status, voucherId: self.voucherId, codeId: self.codeId, productCode: self.productCode, activityId: self.activityId, voucherName: self.voucherName, timeFrom: self.timeFrom, timeTo: self.timeTo, sortField: self.sortField, sortOrder: self.sortOrder, payMode: self.payMode, payScene: self.payScene, operator: self.operator)
+            return .init(limit: self.limit, offset: self.offset + .init(response.getItems().count), status: self.status, voucherId: self.voucherId, codeId: self.codeId, productCode: self.productCode, activityId: self.activityId, voucherName: self.voucherName, timeFrom: self.timeFrom, timeTo: self.timeTo, sortField: self.sortField, sortOrder: self.sortOrder, payMode: self.payMode, payScene: self.payScene, operator: self.operator)
         }
     }
 

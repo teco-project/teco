@@ -79,7 +79,7 @@ extension Yinsuda {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return SearchKTVMusicsRequest(appName: self.appName, userId: self.userId, keyWord: self.keyWord, scrollToken: response.scrollToken, limit: self.limit, rightFilters: self.rightFilters, playScene: self.playScene, materialFilters: self.materialFilters)
+            return .init(appName: self.appName, userId: self.userId, keyWord: self.keyWord, scrollToken: response.scrollToken, limit: self.limit, rightFilters: self.rightFilters, playScene: self.playScene, materialFilters: self.materialFilters)
         }
     }
 

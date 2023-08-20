@@ -72,7 +72,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSimpleApplicationsRequest(applicationIdList: self.applicationIdList, applicationType: self.applicationType, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), microserviceType: self.microserviceType, applicationResourceTypeList: self.applicationResourceTypeList, searchWord: self.searchWord, disableProgramAuthCheck: self.disableProgramAuthCheck)
+            return .init(applicationIdList: self.applicationIdList, applicationType: self.applicationType, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), microserviceType: self.microserviceType, applicationResourceTypeList: self.applicationResourceTypeList, searchWord: self.searchWord, disableProgramAuthCheck: self.disableProgramAuthCheck)
         }
     }
 

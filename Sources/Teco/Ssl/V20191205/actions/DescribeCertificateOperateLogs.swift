@@ -61,7 +61,7 @@ extension Ssl {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCertificateOperateLogsRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, startTime: self.startTime, endTime: self.endTime)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, startTime: self.startTime, endTime: self.endTime)
         }
     }
 

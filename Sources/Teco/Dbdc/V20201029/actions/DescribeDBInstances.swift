@@ -58,7 +58,7 @@ extension Dbdc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDBInstancesRequest(instanceId: self.instanceId, hostId: self.hostId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), shardType: self.shardType)
+            return .init(instanceId: self.instanceId, hostId: self.hostId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), shardType: self.shardType)
         }
     }
 

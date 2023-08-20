@@ -58,7 +58,7 @@ extension Cdc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDedicatedClusterTypesRequest(name: self.name, dedicatedClusterTypeIds: self.dedicatedClusterTypeIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, isCompute: self.isCompute)
+            return .init(name: self.name, dedicatedClusterTypeIds: self.dedicatedClusterTypeIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, isCompute: self.isCompute)
         }
     }
 

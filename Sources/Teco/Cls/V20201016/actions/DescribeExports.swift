@@ -48,7 +48,7 @@ extension Cls {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeExportsRequest(topicId: self.topicId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(topicId: self.topicId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

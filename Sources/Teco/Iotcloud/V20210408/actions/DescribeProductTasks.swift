@@ -48,7 +48,7 @@ extension Iotcloud {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeProductTasksRequest(productId: self.productId, offset: self.offset + .init(response.getItems().count), limit: self.limit)
+            return .init(productId: self.productId, offset: self.offset + .init(response.getItems().count), limit: self.limit)
         }
     }
 

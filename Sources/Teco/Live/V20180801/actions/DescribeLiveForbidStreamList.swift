@@ -50,7 +50,7 @@ extension Live {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeLiveForbidStreamListRequest(pageNum: (self.pageNum ?? 0) + 1, pageSize: self.pageSize, streamName: self.streamName)
+            return .init(pageNum: (self.pageNum ?? 0) + 1, pageSize: self.pageSize, streamName: self.streamName)
         }
     }
 

@@ -76,7 +76,7 @@ extension Live {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeProIspPlaySumInfoListRequest(startTime: self.startTime, endTime: self.endTime, statType: self.statType, playDomains: self.playDomains, pageNum: (self.pageNum ?? 0) + 1, pageSize: self.pageSize, mainlandOrOversea: self.mainlandOrOversea, outLanguage: self.outLanguage)
+            return .init(startTime: self.startTime, endTime: self.endTime, statType: self.statType, playDomains: self.playDomains, pageNum: (self.pageNum ?? 0) + 1, pageSize: self.pageSize, mainlandOrOversea: self.mainlandOrOversea, outLanguage: self.outLanguage)
         }
     }
 

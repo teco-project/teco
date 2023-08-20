@@ -158,7 +158,7 @@ extension Keewidb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeInstancesRequest(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), instanceId: self.instanceId, orderBy: self.orderBy, orderType: self.orderType, vpcIds: self.vpcIds, subnetIds: self.subnetIds, projectIds: self.projectIds, searchKey: self.searchKey, instanceName: self.instanceName, uniqVpcIds: self.uniqVpcIds, uniqSubnetIds: self.uniqSubnetIds, status: self.status, autoRenew: self.autoRenew, billingMode: self.billingMode, type: self.type, searchKeys: self.searchKeys, typeList: self.typeList, monitorVersion: self.monitorVersion, instanceTags: self.instanceTags, tagKeys: self.tagKeys)
+            return .init(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), instanceId: self.instanceId, orderBy: self.orderBy, orderType: self.orderType, vpcIds: self.vpcIds, subnetIds: self.subnetIds, projectIds: self.projectIds, searchKey: self.searchKey, instanceName: self.instanceName, uniqVpcIds: self.uniqVpcIds, uniqSubnetIds: self.uniqSubnetIds, status: self.status, autoRenew: self.autoRenew, billingMode: self.billingMode, type: self.type, searchKeys: self.searchKeys, typeList: self.typeList, monitorVersion: self.monitorVersion, instanceTags: self.instanceTags, tagKeys: self.tagKeys)
         }
     }
 

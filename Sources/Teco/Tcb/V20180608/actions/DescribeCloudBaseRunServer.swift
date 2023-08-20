@@ -58,7 +58,7 @@ extension Tcb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCloudBaseRunServerRequest(envId: self.envId, serverName: self.serverName, offset: self.offset + .init(response.getItems().count), limit: self.limit, versionName: self.versionName)
+            return .init(envId: self.envId, serverName: self.serverName, offset: self.offset + .init(response.getItems().count), limit: self.limit, versionName: self.versionName)
         }
     }
 

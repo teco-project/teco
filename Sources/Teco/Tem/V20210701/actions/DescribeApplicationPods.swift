@@ -71,7 +71,7 @@ extension Tem {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeApplicationPodsRequest(environmentId: self.environmentId, applicationId: self.applicationId, limit: self.limit, offset: (self.offset ?? 0) + response.result.limit, status: self.status, podName: self.podName, sourceChannel: self.sourceChannel)
+            return .init(environmentId: self.environmentId, applicationId: self.applicationId, limit: self.limit, offset: (self.offset ?? 0) + response.result.limit, status: self.status, podName: self.podName, sourceChannel: self.sourceChannel)
         }
     }
 

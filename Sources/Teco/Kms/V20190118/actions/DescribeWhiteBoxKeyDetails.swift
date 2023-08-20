@@ -53,7 +53,7 @@ extension Kms {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeWhiteBoxKeyDetailsRequest(keyStatus: self.keyStatus, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, tagFilters: self.tagFilters)
+            return .init(keyStatus: self.keyStatus, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, tagFilters: self.tagFilters)
         }
     }
 

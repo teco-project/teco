@@ -101,7 +101,7 @@ extension Es {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeInstancesRequest(zone: self.zone, instanceIds: self.instanceIds, instanceNames: self.instanceNames, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderByKey: self.orderByKey, orderByType: self.orderByType, tagList: self.tagList, ipList: self.ipList, zoneList: self.zoneList, healthStatus: self.healthStatus, vpcIds: self.vpcIds)
+            return .init(zone: self.zone, instanceIds: self.instanceIds, instanceNames: self.instanceNames, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderByKey: self.orderByKey, orderByType: self.orderByType, tagList: self.tagList, ipList: self.ipList, zoneList: self.zoneList, healthStatus: self.healthStatus, vpcIds: self.vpcIds)
         }
     }
 

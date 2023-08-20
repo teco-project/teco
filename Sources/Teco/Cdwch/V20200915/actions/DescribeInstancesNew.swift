@@ -63,7 +63,7 @@ extension Cdwch {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeInstancesNewRequest(searchInstanceId: self.searchInstanceId, searchInstanceName: self.searchInstanceName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchTags: self.searchTags, isSimple: self.isSimple)
+            return .init(searchInstanceId: self.searchInstanceId, searchInstanceName: self.searchInstanceName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchTags: self.searchTags, isSimple: self.isSimple)
         }
     }
 

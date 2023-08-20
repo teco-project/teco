@@ -63,7 +63,7 @@ extension Trro {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeRecentSessionListRequest(projectId: self.projectId, pageNumber: self.pageNumber + 1, pageSize: self.pageSize, deviceId: self.deviceId, startTime: self.startTime, endTime: self.endTime)
+            return .init(projectId: self.projectId, pageNumber: self.pageNumber + 1, pageSize: self.pageSize, deviceId: self.deviceId, startTime: self.startTime, endTime: self.endTime)
         }
     }
 

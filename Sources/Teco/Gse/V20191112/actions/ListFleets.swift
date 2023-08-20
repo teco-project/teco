@@ -53,7 +53,7 @@ extension Gse {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListFleetsRequest(assetId: self.assetId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters)
+            return .init(assetId: self.assetId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters)
         }
     }
 

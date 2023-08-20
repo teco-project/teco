@@ -104,7 +104,7 @@ extension Ms {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeEncryptInstancesRequest(pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, orderField: self.orderField, orderDirection: self.orderDirection, platformType: self.platformType, orderType: self.orderType, encryptOpType: self.encryptOpType, resultId: self.resultId, orderId: self.orderId, resourceId: self.resourceId, appType: self.appType, appPkgName: self.appPkgName, encryptState: self.encryptState)
+            return .init(pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, orderField: self.orderField, orderDirection: self.orderDirection, platformType: self.platformType, orderType: self.orderType, encryptOpType: self.encryptOpType, resultId: self.resultId, orderId: self.orderId, resourceId: self.resourceId, appType: self.appType, appPkgName: self.appPkgName, encryptState: self.encryptState)
         }
     }
 

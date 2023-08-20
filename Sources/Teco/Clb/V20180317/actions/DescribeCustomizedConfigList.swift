@@ -65,7 +65,7 @@ extension Clb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCustomizedConfigListRequest(configType: self.configType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, configName: self.configName, uconfigIds: self.uconfigIds, filters: self.filters)
+            return .init(configType: self.configType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, configName: self.configName, uconfigIds: self.uconfigIds, filters: self.filters)
         }
     }
 

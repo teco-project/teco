@@ -68,7 +68,7 @@ extension Tione {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeNotebookInstancesRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, sortOrder: self.sortOrder, filters: self.filters, sortBy: self.sortBy)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, sortOrder: self.sortOrder, filters: self.filters, sortBy: self.sortBy)
         }
     }
 

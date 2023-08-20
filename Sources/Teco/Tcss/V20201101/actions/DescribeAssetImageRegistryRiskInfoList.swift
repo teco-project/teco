@@ -70,7 +70,7 @@ extension Tcss {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAssetImageRegistryRiskInfoListRequest(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters, imageInfo: self.imageInfo, by: self.by, order: self.order, id: self.id)
+            return .init(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters, imageInfo: self.imageInfo, by: self.by, order: self.order, id: self.id)
         }
     }
 

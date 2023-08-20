@@ -136,7 +136,7 @@ extension Bm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDevicesRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, deviceClassCode: self.deviceClassCode, instanceIds: self.instanceIds, wanIps: self.wanIps, lanIps: self.lanIps, alias: self.alias, vagueIp: self.vagueIp, deadlineStartTime: self.deadlineStartTime, deadlineEndTime: self.deadlineEndTime, autoRenewFlag: self.autoRenewFlag, vpcId: self.vpcId, subnetId: self.subnetId, tags: self.tags, deviceType: self.deviceType, isLuckyDevice: self.isLuckyDevice, orderField: self.orderField, order: self.order, maintainStatus: self.maintainStatus)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, deviceClassCode: self.deviceClassCode, instanceIds: self.instanceIds, wanIps: self.wanIps, lanIps: self.lanIps, alias: self.alias, vagueIp: self.vagueIp, deadlineStartTime: self.deadlineStartTime, deadlineEndTime: self.deadlineEndTime, autoRenewFlag: self.autoRenewFlag, vpcId: self.vpcId, subnetId: self.subnetId, tags: self.tags, deviceType: self.deviceType, isLuckyDevice: self.isLuckyDevice, orderField: self.orderField, order: self.order, maintainStatus: self.maintainStatus)
         }
     }
 

@@ -70,7 +70,7 @@ extension Redis {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSlowLogRequest(instanceId: self.instanceId, beginTime: self.beginTime, endTime: self.endTime, minQueryTime: self.minQueryTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), role: self.role)
+            return .init(instanceId: self.instanceId, beginTime: self.beginTime, endTime: self.endTime, minQueryTime: self.minQueryTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), role: self.role)
         }
     }
 

@@ -91,7 +91,7 @@ extension Ecdn {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeEcdnDomainStatisticsRequest(startTime: self.startTime, endTime: self.endTime, metrics: self.metrics, domains: self.domains, projects: self.projects, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, area: self.area)
+            return .init(startTime: self.startTime, endTime: self.endTime, metrics: self.metrics, domains: self.domains, projects: self.projects, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, area: self.area)
         }
     }
 

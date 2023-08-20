@@ -63,7 +63,7 @@ extension Cme {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return FlattenListMediaRequest(platform: self.platform, classPath: self.classPath, owner: self.owner, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, operator: self.operator)
+            return .init(platform: self.platform, classPath: self.classPath, owner: self.owner, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, operator: self.operator)
         }
     }
 

@@ -58,7 +58,7 @@ extension Tcr {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeApplicationTriggerLogPersonalRequest(repoName: self.repoName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, order: self.order, orderBy: self.orderBy)
+            return .init(repoName: self.repoName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, order: self.order, orderBy: self.orderBy)
         }
     }
 

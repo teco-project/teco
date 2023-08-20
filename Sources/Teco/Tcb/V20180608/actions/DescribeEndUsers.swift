@@ -53,7 +53,7 @@ extension Tcb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeEndUsersRequest(envId: self.envId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, uuIds: self.uuIds)
+            return .init(envId: self.envId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, uuIds: self.uuIds)
         }
     }
 

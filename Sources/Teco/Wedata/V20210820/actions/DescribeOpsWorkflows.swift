@@ -98,7 +98,7 @@ extension Wedata {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeOpsWorkflowsRequest(projectId: self.projectId, productNameList: self.productNameList, folderIdList: self.folderIdList, workFlowIdList: self.workFlowIdList, workFlowNameList: self.workFlowNameList, taskNameList: self.taskNameList, taskIdList: self.taskIdList, statusList: self.statusList, inChargeList: self.inChargeList, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, sortItem: self.sortItem, sortType: self.sortType)
+            return .init(projectId: self.projectId, productNameList: self.productNameList, folderIdList: self.folderIdList, workFlowIdList: self.workFlowIdList, workFlowNameList: self.workFlowNameList, taskNameList: self.taskNameList, taskIdList: self.taskIdList, statusList: self.statusList, inChargeList: self.inChargeList, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, sortItem: self.sortItem, sortType: self.sortType)
         }
     }
 

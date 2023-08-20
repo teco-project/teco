@@ -70,7 +70,7 @@ extension Tat {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeInvocationTasksRequest(invocationTaskIds: self.invocationTaskIds, filters: self.filters, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), hideOutput: self.hideOutput)
+            return .init(invocationTaskIds: self.invocationTaskIds, filters: self.filters, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), hideOutput: self.hideOutput)
         }
     }
 

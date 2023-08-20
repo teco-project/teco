@@ -93,7 +93,7 @@ extension Monitor {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAccidentEventListRequest(module: self.module, startTime: self.startTime, endTime: self.endTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), updateTimeOrder: self.updateTimeOrder, occurTimeOrder: self.occurTimeOrder, accidentType: self.accidentType, accidentEvent: self.accidentEvent, accidentStatus: self.accidentStatus, accidentRegion: self.accidentRegion, affectResource: self.affectResource)
+            return .init(module: self.module, startTime: self.startTime, endTime: self.endTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), updateTimeOrder: self.updateTimeOrder, occurTimeOrder: self.occurTimeOrder, accidentType: self.accidentType, accidentEvent: self.accidentEvent, accidentStatus: self.accidentStatus, accidentRegion: self.accidentRegion, affectResource: self.affectResource)
         }
     }
 

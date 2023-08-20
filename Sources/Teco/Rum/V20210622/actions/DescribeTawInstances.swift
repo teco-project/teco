@@ -78,7 +78,7 @@ extension Rum {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTawInstancesRequest(chargeStatuses: self.chargeStatuses, chargeTypes: self.chargeTypes, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), areaIds: self.areaIds, instanceStatuses: self.instanceStatuses, instanceIds: self.instanceIds, filters: self.filters, isDemo: self.isDemo)
+            return .init(chargeStatuses: self.chargeStatuses, chargeTypes: self.chargeTypes, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), areaIds: self.areaIds, instanceStatuses: self.instanceStatuses, instanceIds: self.instanceIds, filters: self.filters, isDemo: self.isDemo)
         }
     }
 

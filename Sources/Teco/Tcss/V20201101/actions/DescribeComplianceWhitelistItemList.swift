@@ -63,7 +63,7 @@ extension Tcss {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeComplianceWhitelistItemListRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, assetTypeSet: self.assetTypeSet, filters: self.filters, by: self.by, order: self.order)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, assetTypeSet: self.assetTypeSet, filters: self.filters, by: self.by, order: self.order)
         }
     }
 

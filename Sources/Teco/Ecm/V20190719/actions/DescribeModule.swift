@@ -68,7 +68,7 @@ extension Ecm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeModuleRequest(filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderByField: self.orderByField, orderDirection: self.orderDirection)
+            return .init(filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderByField: self.orderByField, orderDirection: self.orderDirection)
         }
     }
 

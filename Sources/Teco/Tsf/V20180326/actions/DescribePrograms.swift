@@ -48,7 +48,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeProgramsRequest(searchWord: self.searchWord, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(searchWord: self.searchWord, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

@@ -70,7 +70,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePublicConfigSummaryRequest(searchWord: self.searchWord, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderBy: self.orderBy, orderType: self.orderType, configTagList: self.configTagList, disableProgramAuthCheck: self.disableProgramAuthCheck, configIdList: self.configIdList)
+            return .init(searchWord: self.searchWord, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderBy: self.orderBy, orderType: self.orderType, configTagList: self.configTagList, disableProgramAuthCheck: self.disableProgramAuthCheck, configIdList: self.configIdList)
         }
     }
 

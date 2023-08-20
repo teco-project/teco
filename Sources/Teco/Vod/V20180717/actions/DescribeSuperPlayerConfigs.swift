@@ -60,7 +60,7 @@ extension Vod {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSuperPlayerConfigsRequest(subAppId: self.subAppId, names: self.names, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, type: self.type)
+            return .init(subAppId: self.subAppId, names: self.names, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, type: self.type)
         }
     }
 

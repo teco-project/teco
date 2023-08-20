@@ -58,7 +58,7 @@ extension Trro {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDeviceListRequest(projectId: self.projectId, deviceType: self.deviceType, searchWords: self.searchWords, pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1)
+            return .init(projectId: self.projectId, deviceType: self.deviceType, searchWords: self.searchWords, pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1)
         }
     }
 

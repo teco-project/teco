@@ -63,7 +63,7 @@ extension Dbbrain {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeNoPrimaryKeyTablesRequest(instanceId: self.instanceId, date: self.date, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), product: self.product)
+            return .init(instanceId: self.instanceId, date: self.date, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), product: self.product)
         }
     }
 

@@ -63,7 +63,7 @@ extension Dcdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDCDBShardsRequest(instanceId: self.instanceId, shardInstanceIds: self.shardInstanceIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderBy: self.orderBy, orderByType: self.orderByType)
+            return .init(instanceId: self.instanceId, shardInstanceIds: self.shardInstanceIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderBy: self.orderBy, orderByType: self.orderByType)
         }
     }
 

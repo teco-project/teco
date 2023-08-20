@@ -58,7 +58,7 @@ extension Domain {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTemplateListRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, type: self.type, status: self.status, keyword: self.keyword)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, type: self.type, status: self.status, keyword: self.keyword)
         }
     }
 

@@ -77,7 +77,7 @@ extension Live {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeLiveStreamPublishedListRequest(domainName: self.domainName, endTime: self.endTime, startTime: self.startTime, appName: self.appName, pageNum: (self.pageNum ?? 0) + 1, pageSize: self.pageSize, streamName: self.streamName)
+            return .init(domainName: self.domainName, endTime: self.endTime, startTime: self.startTime, appName: self.appName, pageNum: (self.pageNum ?? 0) + 1, pageSize: self.pageSize, streamName: self.streamName)
         }
     }
 

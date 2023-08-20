@@ -48,7 +48,7 @@ extension Organization {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeOrganizationAuthNodeRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, authName: self.authName)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, authName: self.authName)
         }
     }
 

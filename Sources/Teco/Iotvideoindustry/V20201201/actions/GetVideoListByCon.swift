@@ -69,7 +69,7 @@ extension Iotvideoindustry {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return GetVideoListByConRequest(deviceId: self.deviceId, offset: self.offset + .init(response.getItems().count), limit: self.limit, channelId: self.channelId, latestDay: self.latestDay, date: self.date, type: self.type)
+            return .init(deviceId: self.deviceId, offset: self.offset + .init(response.getItems().count), limit: self.limit, channelId: self.channelId, latestDay: self.latestDay, date: self.date, type: self.type)
         }
     }
 

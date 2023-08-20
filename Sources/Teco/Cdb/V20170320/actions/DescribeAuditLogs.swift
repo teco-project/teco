@@ -76,7 +76,7 @@ extension Cdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAuditLogsRequest(instanceId: self.instanceId, startTime: self.startTime, endTime: self.endTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), order: self.order, orderBy: self.orderBy, logFilter: self.logFilter)
+            return .init(instanceId: self.instanceId, startTime: self.startTime, endTime: self.endTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), order: self.order, orderBy: self.orderBy, logFilter: self.logFilter)
         }
     }
 

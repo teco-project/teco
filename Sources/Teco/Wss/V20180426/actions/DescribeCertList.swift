@@ -73,7 +73,7 @@ extension Wss {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCertListRequest(moduleType: self.moduleType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchKey: self.searchKey, certType: self.certType, id: self.id, withCert: self.withCert, altDomain: self.altDomain)
+            return .init(moduleType: self.moduleType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchKey: self.searchKey, certType: self.certType, id: self.id, withCert: self.withCert, altDomain: self.altDomain)
         }
     }
 

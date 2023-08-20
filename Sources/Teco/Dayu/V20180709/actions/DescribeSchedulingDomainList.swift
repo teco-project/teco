@@ -48,7 +48,7 @@ extension Dayu {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSchedulingDomainListRequest(limit: self.limit, offset: self.offset + .init(response.getItems().count), domain: self.domain)
+            return .init(limit: self.limit, offset: self.offset + .init(response.getItems().count), domain: self.domain)
         }
     }
 

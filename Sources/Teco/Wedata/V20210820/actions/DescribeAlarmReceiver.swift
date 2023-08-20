@@ -78,7 +78,7 @@ extension Wedata {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAlarmReceiverRequest(alarmId: self.alarmId, pageNumber: self.pageNumber + 1, pageSize: self.pageSize, projectId: self.projectId, messageId: self.messageId, taskType: self.taskType, alarmRecipient: self.alarmRecipient, alarmRecipientName: self.alarmRecipientName, alarmTime: self.alarmTime)
+            return .init(alarmId: self.alarmId, pageNumber: self.pageNumber + 1, pageSize: self.pageSize, projectId: self.projectId, messageId: self.messageId, taskType: self.taskType, alarmRecipient: self.alarmRecipient, alarmRecipientName: self.alarmRecipientName, alarmTime: self.alarmTime)
         }
     }
 

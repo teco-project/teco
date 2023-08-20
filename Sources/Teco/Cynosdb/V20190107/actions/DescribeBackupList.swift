@@ -99,7 +99,7 @@ extension Cynosdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBackupListRequest(clusterId: self.clusterId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), dbType: self.dbType, backupIds: self.backupIds, backupType: self.backupType, backupMethod: self.backupMethod, snapShotType: self.snapShotType, startTime: self.startTime, endTime: self.endTime, fileNames: self.fileNames, backupNames: self.backupNames, snapshotIdList: self.snapshotIdList)
+            return .init(clusterId: self.clusterId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), dbType: self.dbType, backupIds: self.backupIds, backupType: self.backupType, backupMethod: self.backupMethod, snapShotType: self.snapShotType, startTime: self.startTime, endTime: self.endTime, fileNames: self.fileNames, backupNames: self.backupNames, snapshotIdList: self.snapshotIdList)
         }
     }
 

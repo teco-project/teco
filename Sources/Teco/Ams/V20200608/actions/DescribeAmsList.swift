@@ -53,7 +53,7 @@ extension Ams {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAmsListRequest(pageToken: response.pageToken, limit: self.limit, pageDirection: self.pageDirection, filters: self.filters)
+            return .init(pageToken: response.pageToken, limit: self.limit, pageDirection: self.pageDirection, filters: self.filters)
         }
     }
 

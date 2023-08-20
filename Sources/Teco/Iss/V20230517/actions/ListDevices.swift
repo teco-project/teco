@@ -83,7 +83,7 @@ extension Iss {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListDevicesRequest(organizationId: self.organizationId, isContainSubLevel: self.isContainSubLevel, accessProtocol: self.accessProtocol, type: self.type, status: self.status, clusterId: self.clusterId, keyword: self.keyword, currentUin: self.currentUin, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize)
+            return .init(organizationId: self.organizationId, isContainSubLevel: self.isContainSubLevel, accessProtocol: self.accessProtocol, type: self.type, status: self.status, clusterId: self.clusterId, keyword: self.keyword, currentUin: self.currentUin, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize)
         }
     }
 

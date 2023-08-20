@@ -53,7 +53,7 @@ extension Iotexplorer {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return SearchPositionSpaceRequest(projectId: self.projectId, spaceName: self.spaceName, offset: self.offset + .init(response.getItems().count), limit: self.limit)
+            return .init(projectId: self.projectId, spaceName: self.spaceName, offset: self.offset + .init(response.getItems().count), limit: self.limit)
         }
     }
 
