@@ -76,7 +76,7 @@ extension Live {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeLiveTranscodeDetailInfoRequest(pushDomain: self.pushDomain, streamName: self.streamName, dayTime: self.dayTime, pageNum: (self.pageNum ?? 0) + 1, pageSize: self.pageSize, startDayTime: self.startDayTime, endDayTime: self.endDayTime)
+            return .init(pushDomain: self.pushDomain, streamName: self.streamName, dayTime: self.dayTime, pageNum: (self.pageNum ?? 0) + 1, pageSize: self.pageSize, startDayTime: self.startDayTime, endDayTime: self.endDayTime)
         }
     }
 

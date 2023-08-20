@@ -68,7 +68,7 @@ extension Dbbrain {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeProxyProcessStatisticsRequest(instanceId: self.instanceId, instanceProxyId: self.instanceProxyId, limit: self.limit, product: self.product, offset: (self.offset ?? 0) + .init(response.getItems().count), sortBy: self.sortBy, orderDirection: self.orderDirection)
+            return .init(instanceId: self.instanceId, instanceProxyId: self.instanceProxyId, limit: self.limit, product: self.product, offset: (self.offset ?? 0) + .init(response.getItems().count), sortBy: self.sortBy, orderDirection: self.orderDirection)
         }
     }
 

@@ -58,7 +58,7 @@ extension Dbbrain {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAuditLogFilesRequest(product: self.product, nodeRequestType: self.nodeRequestType, instanceId: self.instanceId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(product: self.product, nodeRequestType: self.nodeRequestType, instanceId: self.instanceId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

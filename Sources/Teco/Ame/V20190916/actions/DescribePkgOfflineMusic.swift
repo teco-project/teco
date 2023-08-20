@@ -48,7 +48,7 @@ extension Ame {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePkgOfflineMusicRequest(packageOrderId: self.packageOrderId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(packageOrderId: self.packageOrderId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

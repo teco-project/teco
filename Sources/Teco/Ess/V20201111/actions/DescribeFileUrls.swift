@@ -105,7 +105,7 @@ extension Ess {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeFileUrlsRequest(operator: self.operator, businessType: self.businessType, businessIds: self.businessIds, fileName: self.fileName, fileType: self.fileType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, urlTtl: self.urlTtl)
+            return .init(operator: self.operator, businessType: self.businessType, businessIds: self.businessIds, fileName: self.fileName, fileType: self.fileType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, urlTtl: self.urlTtl)
         }
     }
 

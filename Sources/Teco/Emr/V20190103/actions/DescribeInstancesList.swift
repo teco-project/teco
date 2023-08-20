@@ -72,7 +72,7 @@ extension Emr {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeInstancesListRequest(displayStrategy: self.displayStrategy, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderField: self.orderField, asc: self.asc, filters: self.filters)
+            return .init(displayStrategy: self.displayStrategy, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderField: self.orderField, asc: self.asc, filters: self.filters)
         }
     }
 

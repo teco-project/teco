@@ -48,7 +48,7 @@ extension Asr {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return GetCustomizationListRequest(tagInfos: self.tagInfos, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(tagInfos: self.tagInfos, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

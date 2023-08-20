@@ -68,7 +68,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeClustersRequest(searchWord: self.searchWord, orderBy: self.orderBy, orderType: self.orderType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, clusterType: self.clusterType, clusterIdList: self.clusterIdList)
+            return .init(searchWord: self.searchWord, orderBy: self.orderBy, orderType: self.orderType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, clusterType: self.clusterType, clusterIdList: self.clusterIdList)
         }
     }
 

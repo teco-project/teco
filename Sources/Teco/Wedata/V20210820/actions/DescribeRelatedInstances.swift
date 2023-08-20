@@ -63,7 +63,7 @@ extension Wedata {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeRelatedInstancesRequest(projectId: self.projectId, curRunDate: self.curRunDate, taskId: self.taskId, depth: self.depth, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize)
+            return .init(projectId: self.projectId, curRunDate: self.curRunDate, taskId: self.taskId, depth: self.depth, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize)
         }
     }
 

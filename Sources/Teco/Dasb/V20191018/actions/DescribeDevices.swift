@@ -99,7 +99,7 @@ extension Dasb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDevicesRequest(idSet: self.idSet, name: self.name, ip: self.ip, apCodeSet: self.apCodeSet, kind: self.kind, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, authorizedUserIdSet: self.authorizedUserIdSet, resourceIdSet: self.resourceIdSet, kindSet: self.kindSet, departmentId: self.departmentId, tagFilters: self.tagFilters, filters: self.filters)
+            return .init(idSet: self.idSet, name: self.name, ip: self.ip, apCodeSet: self.apCodeSet, kind: self.kind, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, authorizedUserIdSet: self.authorizedUserIdSet, resourceIdSet: self.resourceIdSet, kindSet: self.kindSet, departmentId: self.departmentId, tagFilters: self.tagFilters, filters: self.filters)
         }
     }
 

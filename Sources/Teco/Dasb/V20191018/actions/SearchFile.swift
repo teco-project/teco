@@ -106,7 +106,7 @@ extension Dasb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return SearchFileRequest(startTime: self.startTime, endTime: self.endTime, userName: self.userName, realName: self.realName, instanceId: self.instanceId, deviceName: self.deviceName, publicIp: self.publicIp, privateIp: self.privateIp, method: self.method, fileName: self.fileName, auditAction: self.auditAction, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(startTime: self.startTime, endTime: self.endTime, userName: self.userName, realName: self.realName, instanceId: self.instanceId, deviceName: self.deviceName, publicIp: self.publicIp, privateIp: self.privateIp, method: self.method, fileName: self.fileName, auditAction: self.auditAction, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

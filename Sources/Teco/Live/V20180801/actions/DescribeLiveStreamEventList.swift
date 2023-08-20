@@ -101,7 +101,7 @@ extension Live {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeLiveStreamEventListRequest(startTime: self.startTime, endTime: self.endTime, appName: self.appName, domainName: self.domainName, streamName: self.streamName, pageNum: (self.pageNum ?? 0) + 1, pageSize: self.pageSize, isFilter: self.isFilter, isStrict: self.isStrict, isAsc: self.isAsc)
+            return .init(startTime: self.startTime, endTime: self.endTime, appName: self.appName, domainName: self.domainName, streamName: self.streamName, pageNum: (self.pageNum ?? 0) + 1, pageSize: self.pageSize, isFilter: self.isFilter, isStrict: self.isStrict, isAsc: self.isAsc)
         }
     }
 

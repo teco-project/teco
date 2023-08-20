@@ -55,7 +55,7 @@ extension Vpc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBandwidthPackageResourcesRequest(bandwidthPackageId: self.bandwidthPackageId, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(bandwidthPackageId: self.bandwidthPackageId, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

@@ -43,7 +43,7 @@ extension Iotvideo {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBonusesRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit)
         }
     }
 

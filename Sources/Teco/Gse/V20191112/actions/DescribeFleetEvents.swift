@@ -71,7 +71,7 @@ extension Gse {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeFleetEventsRequest(fleetId: self.fleetId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), eventCode: self.eventCode, startTime: self.startTime, endTime: self.endTime)
+            return .init(fleetId: self.fleetId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), eventCode: self.eventCode, startTime: self.startTime, endTime: self.endTime)
         }
     }
 

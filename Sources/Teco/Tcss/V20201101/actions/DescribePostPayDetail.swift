@@ -43,7 +43,7 @@ extension Tcss {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePostPayDetailRequest(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

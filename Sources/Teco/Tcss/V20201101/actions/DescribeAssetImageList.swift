@@ -62,7 +62,7 @@ extension Tcss {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAssetImageListRequest(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters, by: self.by, order: self.order)
+            return .init(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters, by: self.by, order: self.order)
         }
     }
 

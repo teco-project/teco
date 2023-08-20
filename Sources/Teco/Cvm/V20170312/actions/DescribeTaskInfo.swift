@@ -140,7 +140,7 @@ extension Cvm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTaskInfoRequest(limit: self.limit, offset: self.offset + .init(response.getItems().count), product: self.product, taskStatus: self.taskStatus, taskTypeIds: self.taskTypeIds, taskIds: self.taskIds, instanceIds: self.instanceIds, aliases: self.aliases, startDate: self.startDate, endDate: self.endDate, orderField: self.orderField, order: self.order)
+            return .init(limit: self.limit, offset: self.offset + .init(response.getItems().count), product: self.product, taskStatus: self.taskStatus, taskTypeIds: self.taskTypeIds, taskIds: self.taskIds, instanceIds: self.instanceIds, aliases: self.aliases, startDate: self.startDate, endDate: self.endDate, orderField: self.orderField, order: self.order)
         }
     }
 

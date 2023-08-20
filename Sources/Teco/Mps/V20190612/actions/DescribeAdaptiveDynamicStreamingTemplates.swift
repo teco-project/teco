@@ -55,7 +55,7 @@ extension Mps {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAdaptiveDynamicStreamingTemplatesRequest(definitions: self.definitions, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, type: self.type)
+            return .init(definitions: self.definitions, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, type: self.type)
         }
     }
 

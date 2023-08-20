@@ -87,7 +87,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeGroupsRequest(searchWord: self.searchWord, applicationId: self.applicationId, orderBy: self.orderBy, orderType: self.orderType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, namespaceId: self.namespaceId, clusterId: self.clusterId, groupResourceTypeList: self.groupResourceTypeList, status: self.status, groupIdList: self.groupIdList)
+            return .init(searchWord: self.searchWord, applicationId: self.applicationId, orderBy: self.orderBy, orderType: self.orderType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, namespaceId: self.namespaceId, clusterId: self.clusterId, groupResourceTypeList: self.groupResourceTypeList, status: self.status, groupIdList: self.groupIdList)
         }
     }
 

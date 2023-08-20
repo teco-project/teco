@@ -55,7 +55,7 @@ extension Yunjing {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBruteAttacksRequest(uuid: self.uuid, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters, limit: self.limit)
+            return .init(uuid: self.uuid, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters, limit: self.limit)
         }
     }
 

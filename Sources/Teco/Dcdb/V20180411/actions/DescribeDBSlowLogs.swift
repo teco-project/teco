@@ -91,7 +91,7 @@ extension Dcdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDBSlowLogsRequest(instanceId: self.instanceId, offset: self.offset + .init(response.getItems().count), limit: self.limit, startTime: self.startTime, shardId: self.shardId, endTime: self.endTime, db: self.db, orderBy: self.orderBy, orderByType: self.orderByType, slave: self.slave)
+            return .init(instanceId: self.instanceId, offset: self.offset + .init(response.getItems().count), limit: self.limit, startTime: self.startTime, shardId: self.shardId, endTime: self.endTime, db: self.db, orderBy: self.orderBy, orderByType: self.orderByType, slave: self.slave)
         }
     }
 

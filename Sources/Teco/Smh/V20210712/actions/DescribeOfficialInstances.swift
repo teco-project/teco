@@ -73,7 +73,7 @@ extension Smh {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeOfficialInstancesRequest(superAdminAccount: self.superAdminAccount, instanceIds: self.instanceIds, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, orderBy: self.orderBy, orderByType: self.orderByType, autoRenew: self.autoRenew, bindPhone: self.bindPhone)
+            return .init(superAdminAccount: self.superAdminAccount, instanceIds: self.instanceIds, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, orderBy: self.orderBy, orderByType: self.orderByType, autoRenew: self.autoRenew, bindPhone: self.bindPhone)
         }
     }
 

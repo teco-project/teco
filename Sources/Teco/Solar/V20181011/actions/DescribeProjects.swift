@@ -58,7 +58,7 @@ extension Solar {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeProjectsRequest(pageNo: self.pageNo + 1, pageSize: self.pageSize, searchWord: self.searchWord, filters: self.filters, projectStatus: self.projectStatus)
+            return .init(pageNo: self.pageNo + 1, pageSize: self.pageSize, searchWord: self.searchWord, filters: self.filters, projectStatus: self.projectStatus)
         }
     }
 

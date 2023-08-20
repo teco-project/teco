@@ -56,7 +56,7 @@ extension Vpc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCustomerGatewaysRequest(customerGatewayIds: self.customerGatewayIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(customerGatewayIds: self.customerGatewayIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

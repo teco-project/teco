@@ -59,7 +59,7 @@ extension Sms {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSmsTemplateListRequest(international: self.international, templateIdSet: self.templateIdSet, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(international: self.international, templateIdSet: self.templateIdSet, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

@@ -53,7 +53,7 @@ extension Oceanus {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeWorkSpacesRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), orderType: self.orderType, limit: self.limit, filters: self.filters)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), orderType: self.orderType, limit: self.limit, filters: self.filters)
         }
     }
 

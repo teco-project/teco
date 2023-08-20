@@ -53,7 +53,7 @@ extension Iotvideo {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBalanceTransactionsRequest(accountType: self.accountType, offset: self.offset + .init(response.getItems().count), limit: self.limit, operation: self.operation)
+            return .init(accountType: self.accountType, offset: self.offset + .init(response.getItems().count), limit: self.limit, operation: self.operation)
         }
     }
 

@@ -53,7 +53,7 @@ extension Tcss {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAssetComponentListRequest(containerID: self.containerID, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters)
+            return .init(containerID: self.containerID, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters)
         }
     }
 

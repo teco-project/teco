@@ -74,7 +74,7 @@ extension Tione {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBillingResourceGroupsRequest(type: self.type, filters: self.filters, tagFilters: self.tagFilters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchWord: self.searchWord, dontShowInstanceSet: self.dontShowInstanceSet)
+            return .init(type: self.type, filters: self.filters, tagFilters: self.tagFilters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchWord: self.searchWord, dontShowInstanceSet: self.dontShowInstanceSet)
         }
     }
 

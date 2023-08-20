@@ -61,7 +61,7 @@ extension Ess {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeIntegrationRolesRequest(operator: self.operator, limit: self.limit, agent: self.agent, filters: self.filters, offset: (self.offset ?? 0) + response.limit)
+            return .init(operator: self.operator, limit: self.limit, agent: self.agent, filters: self.filters, offset: (self.offset ?? 0) + response.limit)
         }
     }
 

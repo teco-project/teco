@@ -75,7 +75,7 @@ extension Mps {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeStreamLinkFlowLogsRequest(flowId: self.flowId, startTime: self.startTime, endTime: self.endTime, type: self.type, pipeline: self.pipeline, pageSize: self.pageSize, sortType: self.sortType, pageNum: (self.pageNum ?? 0) + 1)
+            return .init(flowId: self.flowId, startTime: self.startTime, endTime: self.endTime, type: self.type, pipeline: self.pipeline, pageSize: self.pageSize, sortType: self.sortType, pageNum: (self.pageNum ?? 0) + 1)
         }
     }
 

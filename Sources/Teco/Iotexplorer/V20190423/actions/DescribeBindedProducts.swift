@@ -53,7 +53,7 @@ extension Iotexplorer {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBindedProductsRequest(gatewayProductId: self.gatewayProductId, offset: self.offset + .init(response.getItems().count), limit: self.limit, productSource: self.productSource)
+            return .init(gatewayProductId: self.gatewayProductId, offset: self.offset + .init(response.getItems().count), limit: self.limit, productSource: self.productSource)
         }
     }
 

@@ -116,7 +116,7 @@ extension Redis {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTaskListRequest(instanceId: self.instanceId, instanceName: self.instanceName, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), projectIds: self.projectIds, taskTypes: self.taskTypes, beginTime: self.beginTime, endTime: self.endTime, taskStatus: self.taskStatus, result: self.result, operatorUin: self.operatorUin, operateUin: self.operateUin)
+            return .init(instanceId: self.instanceId, instanceName: self.instanceName, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), projectIds: self.projectIds, taskTypes: self.taskTypes, beginTime: self.beginTime, endTime: self.endTime, taskStatus: self.taskStatus, result: self.result, operatorUin: self.operatorUin, operateUin: self.operateUin)
         }
     }
 

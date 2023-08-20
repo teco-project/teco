@@ -63,7 +63,7 @@ extension Cwp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeLicenseBindListRequest(licenseId: self.licenseId, licenseType: self.licenseType, resourceId: self.resourceId, filters: self.filters, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(licenseId: self.licenseId, licenseType: self.licenseType, resourceId: self.resourceId, filters: self.filters, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

@@ -48,7 +48,7 @@ extension Dlc {
             guard response.nextToken != nil else {
                 return nil
             }
-            return DescribeNotebookSessionStatementSqlResultRequest(taskId: self.taskId, maxResults: self.maxResults, nextToken: response.nextToken)
+            return .init(taskId: self.taskId, maxResults: self.maxResults, nextToken: response.nextToken)
         }
     }
 

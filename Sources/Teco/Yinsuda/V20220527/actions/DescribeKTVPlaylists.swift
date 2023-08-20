@@ -62,7 +62,7 @@ extension Yinsuda {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeKTVPlaylistsRequest(appName: self.appName, userId: self.userId, types: self.types, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(appName: self.appName, userId: self.userId, types: self.types, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

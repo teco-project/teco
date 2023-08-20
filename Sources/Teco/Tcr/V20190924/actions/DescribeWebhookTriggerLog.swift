@@ -58,7 +58,7 @@ extension Tcr {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeWebhookTriggerLogRequest(registryId: self.registryId, namespace: self.namespace, id: self.id, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(registryId: self.registryId, namespace: self.namespace, id: self.id, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

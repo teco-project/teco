@@ -53,7 +53,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeGroupBindedGatewaysRequest(groupId: self.groupId, offset: self.offset + .init(response.getItems().count), limit: self.limit, searchWord: self.searchWord)
+            return .init(groupId: self.groupId, offset: self.offset + .init(response.getItems().count), limit: self.limit, searchWord: self.searchWord)
         }
     }
 

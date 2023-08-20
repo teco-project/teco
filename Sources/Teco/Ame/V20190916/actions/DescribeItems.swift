@@ -53,7 +53,7 @@ extension Ame {
             guard response.haveMore > 0 else {
                 return nil
             }
-            return DescribeItemsRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, categoryId: self.categoryId, categoryCode: self.categoryCode)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, categoryId: self.categoryId, categoryCode: self.categoryCode)
         }
     }
 

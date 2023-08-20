@@ -58,7 +58,7 @@ extension Iotvideoindustry {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeLiveChannelListRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, liveChannelType: self.liveChannelType, recordPlanId: self.recordPlanId, liveChannelName: self.liveChannelName)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, liveChannelType: self.liveChannelType, recordPlanId: self.recordPlanId, liveChannelName: self.liveChannelName)
         }
     }
 

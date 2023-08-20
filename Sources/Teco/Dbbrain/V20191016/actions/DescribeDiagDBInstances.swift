@@ -68,7 +68,7 @@ extension Dbbrain {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDiagDBInstancesRequest(isSupported: self.isSupported, product: self.product, offset: self.offset + .init(response.getItems().count), limit: self.limit, instanceNames: self.instanceNames, instanceIds: self.instanceIds, regions: self.regions)
+            return .init(isSupported: self.isSupported, product: self.product, offset: self.offset + .init(response.getItems().count), limit: self.limit, instanceNames: self.instanceNames, instanceIds: self.instanceIds, regions: self.regions)
         }
     }
 

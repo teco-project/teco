@@ -68,7 +68,7 @@ extension Dts {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeMigrateJobsRequest(jobId: self.jobId, jobName: self.jobName, order: self.order, orderSeq: self.orderSeq, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, tagFilters: self.tagFilters)
+            return .init(jobId: self.jobId, jobName: self.jobName, order: self.order, orderSeq: self.orderSeq, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, tagFilters: self.tagFilters)
         }
     }
 

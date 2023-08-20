@@ -68,7 +68,7 @@ extension Ccc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeChatMessagesRequest(instanceId: self.instanceId, sdkAppId: self.sdkAppId, cdrId: self.cdrId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), order: self.order, sessionId: self.sessionId)
+            return .init(instanceId: self.instanceId, sdkAppId: self.sdkAppId, cdrId: self.cdrId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), order: self.order, sessionId: self.sessionId)
         }
     }
 

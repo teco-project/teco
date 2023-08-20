@@ -70,7 +70,7 @@ extension Monitor {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAlertRulesRequest(instanceId: self.instanceId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), ruleId: self.ruleId, ruleState: self.ruleState, ruleName: self.ruleName, type: self.type)
+            return .init(instanceId: self.instanceId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), ruleId: self.ruleId, ruleState: self.ruleState, ruleName: self.ruleName, type: self.type)
         }
     }
 

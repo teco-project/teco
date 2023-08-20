@@ -63,7 +63,7 @@ extension Billing {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCostSummaryByRegionRequest(beginTime: self.beginTime, endTime: self.endTime, limit: self.limit, offset: self.offset + .init(response.getItems().count), payerUin: self.payerUin, needRecordNum: self.needRecordNum)
+            return .init(beginTime: self.beginTime, endTime: self.endTime, limit: self.limit, offset: self.offset + .init(response.getItems().count), payerUin: self.payerUin, needRecordNum: self.needRecordNum)
         }
     }
 

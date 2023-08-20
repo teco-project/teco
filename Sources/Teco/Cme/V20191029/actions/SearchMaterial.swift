@@ -97,7 +97,7 @@ extension Cme {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return SearchMaterialRequest(platform: self.platform, searchScopes: self.searchScopes, materialTypes: self.materialTypes, text: self.text, resolution: self.resolution, durationRange: self.durationRange, createTimeRange: self.createTimeRange, tags: self.tags, sort: self.sort, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, operator: self.operator)
+            return .init(platform: self.platform, searchScopes: self.searchScopes, materialTypes: self.materialTypes, text: self.text, resolution: self.resolution, durationRange: self.durationRange, createTimeRange: self.createTimeRange, tags: self.tags, sort: self.sort, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, operator: self.operator)
         }
     }
 

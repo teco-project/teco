@@ -53,7 +53,7 @@ extension Tke {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeClusterAsGroupsRequest(clusterId: self.clusterId, autoScalingGroupIds: self.autoScalingGroupIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(clusterId: self.clusterId, autoScalingGroupIds: self.autoScalingGroupIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

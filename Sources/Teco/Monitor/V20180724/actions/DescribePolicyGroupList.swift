@@ -108,7 +108,7 @@ extension Monitor {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePolicyGroupListRequest(module: self.module, limit: self.limit, offset: self.offset + .init(response.getItems().count), like: self.like, instanceGroupId: self.instanceGroupId, updateTimeOrder: self.updateTimeOrder, projectIds: self.projectIds, viewNames: self.viewNames, filterUnuseReceiver: self.filterUnuseReceiver, receivers: self.receivers, receiverUserList: self.receiverUserList, dimensions: self.dimensions, conditionTempGroupId: self.conditionTempGroupId, receiverType: self.receiverType, isOpen: self.isOpen)
+            return .init(module: self.module, limit: self.limit, offset: self.offset + .init(response.getItems().count), like: self.like, instanceGroupId: self.instanceGroupId, updateTimeOrder: self.updateTimeOrder, projectIds: self.projectIds, viewNames: self.viewNames, filterUnuseReceiver: self.filterUnuseReceiver, receivers: self.receivers, receiverUserList: self.receiverUserList, dimensions: self.dimensions, conditionTempGroupId: self.conditionTempGroupId, receiverType: self.receiverType, isOpen: self.isOpen)
         }
     }
 

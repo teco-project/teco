@@ -63,7 +63,7 @@ extension Cls {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeConfigsRequest(filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

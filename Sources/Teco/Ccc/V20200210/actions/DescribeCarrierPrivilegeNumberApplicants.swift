@@ -53,7 +53,7 @@ extension Ccc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCarrierPrivilegeNumberApplicantsRequest(sdkAppId: self.sdkAppId, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, filters: self.filters)
+            return .init(sdkAppId: self.sdkAppId, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, filters: self.filters)
         }
     }
 

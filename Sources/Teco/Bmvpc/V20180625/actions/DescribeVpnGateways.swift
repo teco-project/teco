@@ -67,7 +67,7 @@ extension Bmvpc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeVpnGatewaysRequest(vpnGatewayIds: self.vpnGatewayIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderField: self.orderField, orderDirection: self.orderDirection)
+            return .init(vpnGatewayIds: self.vpnGatewayIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderField: self.orderField, orderDirection: self.orderDirection)
         }
     }
 

@@ -53,7 +53,7 @@ extension Cdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAuditRulesRequest(ruleId: self.ruleId, ruleName: self.ruleName, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(ruleId: self.ruleId, ruleName: self.ruleName, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

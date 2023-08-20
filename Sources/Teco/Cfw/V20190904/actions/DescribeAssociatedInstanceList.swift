@@ -73,7 +73,7 @@ extension Cfw {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAssociatedInstanceListRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, area: self.area, searchValue: self.searchValue, by: self.by, order: self.order, securityGroupId: self.securityGroupId, type: self.type)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, area: self.area, searchValue: self.searchValue, by: self.by, order: self.order, securityGroupId: self.securityGroupId, type: self.type)
         }
     }
 

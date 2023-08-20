@@ -63,7 +63,7 @@ extension Oceanus {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeClustersRequest(clusterIds: self.clusterIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderType: self.orderType, filters: self.filters, workSpaceId: self.workSpaceId)
+            return .init(clusterIds: self.clusterIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderType: self.orderType, filters: self.filters, workSpaceId: self.workSpaceId)
         }
     }
 

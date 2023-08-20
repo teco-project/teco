@@ -54,7 +54,7 @@ extension Tcss {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeVulDefencePluginRequest(hostID: self.hostID, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters)
+            return .init(hostID: self.hostID, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters)
         }
     }
 

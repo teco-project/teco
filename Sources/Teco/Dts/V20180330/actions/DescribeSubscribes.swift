@@ -98,7 +98,7 @@ extension Dts {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSubscribesRequest(subscribeId: self.subscribeId, subscribeName: self.subscribeName, instanceId: self.instanceId, channelId: self.channelId, payType: self.payType, product: self.product, status: self.status, subsStatus: self.subsStatus, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderDirection: self.orderDirection, tagFilters: self.tagFilters, subscribeVersion: self.subscribeVersion)
+            return .init(subscribeId: self.subscribeId, subscribeName: self.subscribeName, instanceId: self.instanceId, channelId: self.channelId, payType: self.payType, product: self.product, status: self.status, subsStatus: self.subsStatus, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderDirection: self.orderDirection, tagFilters: self.tagFilters, subscribeVersion: self.subscribeVersion)
         }
     }
 

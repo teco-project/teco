@@ -73,7 +73,7 @@ extension Tiems {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeRsgAsGroupActivitiesRequest(id: self.id, startTime: self.startTime, endTime: self.endTime, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, order: self.order, orderField: self.orderField)
+            return .init(id: self.id, startTime: self.startTime, endTime: self.endTime, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, order: self.order, orderField: self.orderField)
         }
     }
 

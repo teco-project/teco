@@ -48,7 +48,7 @@ extension Organization {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListOrganizationNodeMembersRequest(nodeId: self.nodeId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(nodeId: self.nodeId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

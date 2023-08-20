@@ -64,7 +64,7 @@ extension Ssa {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAssetDetailListRequest(filter: self.filter, sorter: self.sorter, riskTags: self.riskTags, tags: self.tags, pageIndex: (self.pageIndex ?? 0) + 1, pageSize: self.pageSize)
+            return .init(filter: self.filter, sorter: self.sorter, riskTags: self.riskTags, tags: self.tags, pageIndex: (self.pageIndex ?? 0) + 1, pageSize: self.pageSize)
         }
     }
 

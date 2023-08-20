@@ -45,7 +45,7 @@ extension Tag {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return GetTagKeysRequest(paginationToken: response.paginationToken, maxResults: self.maxResults)
+            return .init(paginationToken: response.paginationToken, maxResults: self.maxResults)
         }
     }
 

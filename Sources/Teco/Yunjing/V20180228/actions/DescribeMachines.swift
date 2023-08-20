@@ -65,7 +65,7 @@ extension Yunjing {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeMachinesRequest(machineType: self.machineType, machineRegion: self.machineRegion, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters)
+            return .init(machineType: self.machineType, machineRegion: self.machineRegion, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters)
         }
     }
 

@@ -48,7 +48,7 @@ extension Cfw {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeNatFwInstancesInfoRequest(filter: self.filter, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(filter: self.filter, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

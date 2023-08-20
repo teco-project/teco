@@ -63,7 +63,7 @@ extension Tdmq {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeRabbitMQUserRequest(instanceId: self.instanceId, searchUser: self.searchUser, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, user: self.user, tags: self.tags)
+            return .init(instanceId: self.instanceId, searchUser: self.searchUser, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, user: self.user, tags: self.tags)
         }
     }
 

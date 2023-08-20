@@ -71,7 +71,7 @@ extension Lighthouse {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSnapshotsRequest(snapshotIds: self.snapshotIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(snapshotIds: self.snapshotIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

@@ -68,7 +68,7 @@ extension Iecp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeNodeUnitTemplateOnNodeGroupRequest(edgeUnitId: self.edgeUnitId, nodeGroupName: self.nodeGroupName, namespace: self.namespace, nodeUnitNamePattern: self.nodeUnitNamePattern, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, order: self.order)
+            return .init(edgeUnitId: self.edgeUnitId, nodeGroupName: self.nodeGroupName, namespace: self.namespace, nodeUnitNamePattern: self.nodeUnitNamePattern, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, order: self.order)
         }
     }
 

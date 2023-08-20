@@ -73,7 +73,7 @@ extension Trtc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeUserInfoRequest(commId: self.commId, startTime: self.startTime, endTime: self.endTime, sdkAppId: self.sdkAppId, userIds: self.userIds, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize)
+            return .init(commId: self.commId, startTime: self.startTime, endTime: self.endTime, sdkAppId: self.sdkAppId, userIds: self.userIds, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize)
         }
     }
 

@@ -68,7 +68,7 @@ extension Ssl {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeHostTkeInstanceListRequest(certificateId: self.certificateId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, isCache: self.isCache, filters: self.filters, asyncCache: self.asyncCache, oldCertificateId: self.oldCertificateId)
+            return .init(certificateId: self.certificateId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, isCache: self.isCache, filters: self.filters, asyncCache: self.asyncCache, oldCertificateId: self.oldCertificateId)
         }
     }
 

@@ -56,7 +56,7 @@ extension Vpc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTrafficPackagesRequest(trafficPackageIds: self.trafficPackageIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(trafficPackageIds: self.trafficPackageIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

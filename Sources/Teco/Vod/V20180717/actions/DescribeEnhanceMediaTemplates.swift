@@ -60,7 +60,7 @@ extension Vod {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeEnhanceMediaTemplatesRequest(subAppId: self.subAppId, definitions: self.definitions, type: self.type, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(subAppId: self.subAppId, definitions: self.definitions, type: self.type, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

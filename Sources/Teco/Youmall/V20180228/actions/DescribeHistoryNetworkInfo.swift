@@ -68,7 +68,7 @@ extension Youmall {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeHistoryNetworkInfoRequest(time: self.time, companyId: self.companyId, shopId: self.shopId, startDay: self.startDay, endDay: self.endDay, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(time: self.time, companyId: self.companyId, shopId: self.shopId, startDay: self.startDay, endDay: self.endDay, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

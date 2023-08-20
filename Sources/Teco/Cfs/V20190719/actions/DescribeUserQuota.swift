@@ -56,7 +56,7 @@ extension Cfs {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeUserQuotaRequest(fileSystemId: self.fileSystemId, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(fileSystemId: self.fileSystemId, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

@@ -62,7 +62,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSimpleClustersRequest(clusterIdList: self.clusterIdList, clusterType: self.clusterType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchWord: self.searchWord, disableProgramAuthCheck: self.disableProgramAuthCheck)
+            return .init(clusterIdList: self.clusterIdList, clusterType: self.clusterType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchWord: self.searchWord, disableProgramAuthCheck: self.disableProgramAuthCheck)
         }
     }
 

@@ -48,7 +48,7 @@ extension Dlc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeNotebookSessionLogRequest(sessionId: self.sessionId, limit: self.limit, offset: (self.offset ?? 0) + response.limit)
+            return .init(sessionId: self.sessionId, limit: self.limit, offset: (self.offset ?? 0) + response.limit)
         }
     }
 

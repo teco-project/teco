@@ -53,7 +53,7 @@ extension Cmq {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSubscriptionDetailRequest(topicName: self.topicName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters)
+            return .init(topicName: self.topicName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters)
         }
     }
 

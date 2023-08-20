@@ -76,7 +76,7 @@ extension Wedata {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeInLongTkeClusterListRequest(projectId: self.projectId, tkeRegion: self.tkeRegion, clusterName: self.clusterName, status: self.status, hasAgent: self.hasAgent, clusterType: self.clusterType, pageIndex: (self.pageIndex ?? 0) + 1, pageSize: self.pageSize)
+            return .init(projectId: self.projectId, tkeRegion: self.tkeRegion, clusterName: self.clusterName, status: self.status, hasAgent: self.hasAgent, clusterType: self.clusterType, pageIndex: (self.pageIndex ?? 0) + 1, pageSize: self.pageSize)
         }
     }
 

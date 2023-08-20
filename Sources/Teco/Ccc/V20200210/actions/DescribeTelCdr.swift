@@ -83,7 +83,7 @@ extension Ccc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTelCdrRequest(startTimeStamp: self.startTimeStamp, endTimeStamp: self.endTimeStamp, instanceId: self.instanceId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), sdkAppId: self.sdkAppId, pageSize: self.pageSize, pageNumber: self.pageNumber, phones: self.phones, sessionIds: self.sessionIds)
+            return .init(startTimeStamp: self.startTimeStamp, endTimeStamp: self.endTimeStamp, instanceId: self.instanceId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), sdkAppId: self.sdkAppId, pageSize: self.pageSize, pageNumber: self.pageNumber, phones: self.phones, sessionIds: self.sessionIds)
         }
     }
 

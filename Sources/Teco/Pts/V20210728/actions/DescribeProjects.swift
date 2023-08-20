@@ -68,7 +68,7 @@ extension Pts {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeProjectsRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, projectIds: self.projectIds, projectName: self.projectName, orderBy: self.orderBy, ascend: self.ascend, tagFilters: self.tagFilters)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, projectIds: self.projectIds, projectName: self.projectName, orderBy: self.orderBy, ascend: self.ascend, tagFilters: self.tagFilters)
         }
     }
 

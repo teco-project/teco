@@ -53,7 +53,7 @@ extension Cfw {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeNatFwVpcDnsLstRequest(natFwInsId: self.natFwInsId, natInsIdFilter: self.natInsIdFilter, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(natFwInsId: self.natFwInsId, natInsIdFilter: self.natInsIdFilter, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

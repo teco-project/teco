@@ -53,7 +53,7 @@ extension Cdc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSitesRequest(siteIds: self.siteIds, name: self.name, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(siteIds: self.siteIds, name: self.name, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

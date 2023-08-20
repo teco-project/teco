@@ -66,7 +66,7 @@ extension Bm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDeviceOperationLogRequest(instanceId: self.instanceId, startTime: self.startTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(instanceId: self.instanceId, startTime: self.startTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

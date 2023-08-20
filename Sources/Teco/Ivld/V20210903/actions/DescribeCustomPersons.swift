@@ -53,7 +53,7 @@ extension Ivld {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCustomPersonsRequest(pageNumber: self.pageNumber + 1, pageSize: self.pageSize, sortBy: self.sortBy, filter: self.filter)
+            return .init(pageNumber: self.pageNumber + 1, pageSize: self.pageSize, sortBy: self.sortBy, filter: self.filter)
         }
     }
 

@@ -106,7 +106,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return SearchBusinessLogRequest(configId: self.configId, instanceIds: self.instanceIds, startTime: self.startTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderBy: self.orderBy, orderType: self.orderType, searchWords: self.searchWords, groupIds: self.groupIds, searchWordType: self.searchWordType, batchType: self.batchType, scrollId: self.scrollId)
+            return .init(configId: self.configId, instanceIds: self.instanceIds, startTime: self.startTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderBy: self.orderBy, orderType: self.orderType, searchWords: self.searchWords, groupIds: self.groupIds, searchWordType: self.searchWordType, batchType: self.batchType, scrollId: self.scrollId)
         }
     }
 

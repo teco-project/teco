@@ -78,7 +78,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeApplicationsRequest(searchWord: self.searchWord, orderBy: self.orderBy, orderType: self.orderType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, applicationType: self.applicationType, microserviceType: self.microserviceType, applicationResourceTypeList: self.applicationResourceTypeList, applicationIdList: self.applicationIdList)
+            return .init(searchWord: self.searchWord, orderBy: self.orderBy, orderType: self.orderType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, applicationType: self.applicationType, microserviceType: self.microserviceType, applicationResourceTypeList: self.applicationResourceTypeList, applicationIdList: self.applicationIdList)
         }
     }
 

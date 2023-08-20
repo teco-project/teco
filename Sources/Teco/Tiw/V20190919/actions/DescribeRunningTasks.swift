@@ -59,7 +59,7 @@ extension Tiw {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeRunningTasksRequest(sdkAppID: self.sdkAppID, taskType: self.taskType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(sdkAppID: self.sdkAppID, taskType: self.taskType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

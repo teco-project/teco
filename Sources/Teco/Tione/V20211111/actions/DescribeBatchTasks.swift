@@ -70,7 +70,7 @@ extension Tione {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBatchTasksRequest(filters: self.filters, tagFilters: self.tagFilters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, order: self.order, orderField: self.orderField)
+            return .init(filters: self.filters, tagFilters: self.tagFilters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, order: self.order, orderField: self.orderField)
         }
     }
 

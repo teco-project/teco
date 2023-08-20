@@ -56,7 +56,7 @@ extension As {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeScheduledActionsRequest(scheduledActionIds: self.scheduledActionIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(scheduledActionIds: self.scheduledActionIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

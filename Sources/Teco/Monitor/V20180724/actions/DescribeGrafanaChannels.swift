@@ -63,7 +63,7 @@ extension Monitor {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeGrafanaChannelsRequest(instanceId: self.instanceId, offset: self.offset + .init(response.getItems().count), limit: self.limit, channelName: self.channelName, channelIds: self.channelIds, channelState: self.channelState)
+            return .init(instanceId: self.instanceId, offset: self.offset + .init(response.getItems().count), limit: self.limit, channelName: self.channelName, channelIds: self.channelIds, channelState: self.channelState)
         }
     }
 

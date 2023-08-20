@@ -84,7 +84,7 @@ extension Mongodb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCurrentOpRequest(instanceId: self.instanceId, ns: self.ns, millisecondRunning: self.millisecondRunning, op: self.op, replicaSetName: self.replicaSetName, state: self.state, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), orderBy: self.orderBy, orderByType: self.orderByType)
+            return .init(instanceId: self.instanceId, ns: self.ns, millisecondRunning: self.millisecondRunning, op: self.op, replicaSetName: self.replicaSetName, state: self.state, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), orderBy: self.orderBy, orderByType: self.orderByType)
         }
     }
 

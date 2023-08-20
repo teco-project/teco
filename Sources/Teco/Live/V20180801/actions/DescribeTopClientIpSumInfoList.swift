@@ -74,7 +74,7 @@ extension Live {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTopClientIpSumInfoListRequest(startTime: self.startTime, endTime: self.endTime, playDomains: self.playDomains, pageNum: (self.pageNum ?? 0) + 1, pageSize: self.pageSize, orderParam: self.orderParam, mainlandOrOversea: self.mainlandOrOversea, outLanguage: self.outLanguage)
+            return .init(startTime: self.startTime, endTime: self.endTime, playDomains: self.playDomains, pageNum: (self.pageNum ?? 0) + 1, pageSize: self.pageSize, orderParam: self.orderParam, mainlandOrOversea: self.mainlandOrOversea, outLanguage: self.outLanguage)
         }
     }
 

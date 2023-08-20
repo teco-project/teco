@@ -48,7 +48,7 @@ extension Domain {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBatchOperationLogDetailsRequest(logId: self.logId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(logId: self.logId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

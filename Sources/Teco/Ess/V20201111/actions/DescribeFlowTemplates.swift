@@ -104,7 +104,7 @@ extension Ess {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeFlowTemplatesRequest(operator: self.operator, agent: self.agent, contentType: self.contentType, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, applicationId: self.applicationId)
+            return .init(operator: self.operator, agent: self.agent, contentType: self.contentType, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, applicationId: self.applicationId)
         }
     }
 

@@ -68,7 +68,7 @@ extension Trp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTraceDataListRequest(corpId: self.corpId, batchId: self.batchId, taskId: self.taskId, pageNumber: (self.pageNumber ?? 0) + 1, code: self.code, phase: self.phase, pageSize: self.pageSize)
+            return .init(corpId: self.corpId, batchId: self.batchId, taskId: self.taskId, pageNumber: (self.pageNumber ?? 0) + 1, code: self.code, phase: self.phase, pageSize: self.pageSize)
         }
     }
 

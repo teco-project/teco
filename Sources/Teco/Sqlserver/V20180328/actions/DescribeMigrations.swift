@@ -63,7 +63,7 @@ extension Sqlserver {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeMigrationsRequest(statusSet: self.statusSet, migrateName: self.migrateName, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), orderBy: self.orderBy, orderByType: self.orderByType)
+            return .init(statusSet: self.statusSet, migrateName: self.migrateName, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), orderBy: self.orderBy, orderByType: self.orderByType)
         }
     }
 

@@ -53,7 +53,7 @@ extension Apigateway {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeUpstreamBindApisRequest(limit: self.limit, offset: self.offset + .init(response.getItems().count), upstreamId: self.upstreamId, filters: self.filters)
+            return .init(limit: self.limit, offset: self.offset + .init(response.getItems().count), upstreamId: self.upstreamId, filters: self.filters)
         }
     }
 

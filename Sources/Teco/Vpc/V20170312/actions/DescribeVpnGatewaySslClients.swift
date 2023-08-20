@@ -64,7 +64,7 @@ extension Vpc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeVpnGatewaySslClientsRequest(filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, sslVpnClientIds: self.sslVpnClientIds, isVpnPortal: self.isVpnPortal)
+            return .init(filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, sslVpnClientIds: self.sslVpnClientIds, isVpnPortal: self.isVpnPortal)
         }
     }
 

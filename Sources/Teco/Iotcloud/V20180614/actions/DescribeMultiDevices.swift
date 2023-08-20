@@ -53,7 +53,7 @@ extension Iotcloud {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeMultiDevicesRequest(productId: self.productId, taskId: self.taskId, offset: self.offset + .init(response.getItems().count), limit: self.limit)
+            return .init(productId: self.productId, taskId: self.taskId, offset: self.offset + .init(response.getItems().count), limit: self.limit)
         }
     }
 

@@ -52,7 +52,7 @@ extension Tag {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return GetTagsRequest(paginationToken: response.paginationToken, maxResults: self.maxResults, tagKeys: self.tagKeys)
+            return .init(paginationToken: response.paginationToken, maxResults: self.maxResults, tagKeys: self.tagKeys)
         }
     }
 

@@ -96,7 +96,7 @@ extension Pts {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeJobsRequest(scenarioIds: self.scenarioIds, projectIds: self.projectIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, jobIds: self.jobIds, orderBy: self.orderBy, ascend: self.ascend, startTime: self.startTime, endTime: self.endTime, debug: self.debug, status: self.status)
+            return .init(scenarioIds: self.scenarioIds, projectIds: self.projectIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, jobIds: self.jobIds, orderBy: self.orderBy, ascend: self.ascend, startTime: self.startTime, endTime: self.endTime, debug: self.debug, status: self.status)
         }
     }
 

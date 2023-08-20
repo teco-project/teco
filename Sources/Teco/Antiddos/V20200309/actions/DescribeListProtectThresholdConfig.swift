@@ -63,7 +63,7 @@ extension Antiddos {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeListProtectThresholdConfigRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, filterInstanceId: self.filterInstanceId, filterIp: self.filterIp, filterDomain: self.filterDomain, filterProtocol: self.filterProtocol)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, filterInstanceId: self.filterInstanceId, filterIp: self.filterIp, filterDomain: self.filterDomain, filterProtocol: self.filterProtocol)
         }
     }
 

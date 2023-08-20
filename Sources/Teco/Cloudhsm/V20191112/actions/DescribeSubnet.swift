@@ -53,7 +53,7 @@ extension Cloudhsm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSubnetRequest(limit: self.limit, offset: self.offset + .init(response.getItems().count), vpcId: self.vpcId, searchWord: self.searchWord)
+            return .init(limit: self.limit, offset: self.offset + .init(response.getItems().count), vpcId: self.vpcId, searchWord: self.searchWord)
         }
     }
 

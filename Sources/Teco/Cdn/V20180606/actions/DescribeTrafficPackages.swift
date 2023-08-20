@@ -54,7 +54,7 @@ extension Cdn {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTrafficPackagesRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, sortBy: self.sortBy)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, sortBy: self.sortBy)
         }
     }
 

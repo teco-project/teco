@@ -63,7 +63,7 @@ extension Hasim {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeOrdersRequest(dealName: self.dealName, auditStatus: self.auditStatus, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), beginTime: self.beginTime, endTime: self.endTime)
+            return .init(dealName: self.dealName, auditStatus: self.auditStatus, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), beginTime: self.beginTime, endTime: self.endTime)
         }
     }
 

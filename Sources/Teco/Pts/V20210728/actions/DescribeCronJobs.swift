@@ -73,7 +73,7 @@ extension Pts {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCronJobsRequest(projectIds: self.projectIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, cronJobIds: self.cronJobIds, cronJobName: self.cronJobName, cronJobStatus: self.cronJobStatus, orderBy: self.orderBy, ascend: self.ascend)
+            return .init(projectIds: self.projectIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, cronJobIds: self.cronJobIds, cronJobName: self.cronJobName, cronJobStatus: self.cronJobStatus, orderBy: self.orderBy, ascend: self.ascend)
         }
     }
 

@@ -58,7 +58,7 @@ extension Gse {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAssetsRequest(assetRegion: self.assetRegion, offset: self.offset + .init(response.getItems().count), limit: self.limit, filter: self.filter, filters: self.filters)
+            return .init(assetRegion: self.assetRegion, offset: self.offset + .init(response.getItems().count), limit: self.limit, filter: self.filter, filters: self.filters)
         }
     }
 

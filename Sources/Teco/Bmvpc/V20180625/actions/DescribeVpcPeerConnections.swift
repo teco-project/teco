@@ -60,7 +60,7 @@ extension Bmvpc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeVpcPeerConnectionsRequest(vpcPeerConnectionIds: self.vpcPeerConnectionIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, vpcId: self.vpcId)
+            return .init(vpcPeerConnectionIds: self.vpcPeerConnectionIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, vpcId: self.vpcId)
         }
     }
 

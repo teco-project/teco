@@ -48,7 +48,7 @@ extension Tcss {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeVulIgnoreRegistryImageListRequest(pocID: self.pocID, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(pocID: self.pocID, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

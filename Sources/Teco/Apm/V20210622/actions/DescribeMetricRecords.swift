@@ -98,7 +98,7 @@ extension Apm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeMetricRecordsRequest(filters: self.filters, metrics: self.metrics, groupBy: self.groupBy, orderBy: self.orderBy, instanceId: self.instanceId, limit: self.limit, startTime: self.startTime, offset: (self.offset ?? 0) + .init(response.getItems().count), endTime: self.endTime, businessName: self.businessName, pageIndex: self.pageIndex, pageSize: self.pageSize, orFilters: self.orFilters)
+            return .init(filters: self.filters, metrics: self.metrics, groupBy: self.groupBy, orderBy: self.orderBy, instanceId: self.instanceId, limit: self.limit, startTime: self.startTime, offset: (self.offset ?? 0) + .init(response.getItems().count), endTime: self.endTime, businessName: self.businessName, pageIndex: self.pageIndex, pageSize: self.pageSize, orFilters: self.orFilters)
         }
     }
 

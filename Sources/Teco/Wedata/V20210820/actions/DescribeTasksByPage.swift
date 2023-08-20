@@ -53,7 +53,7 @@ extension Wedata {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTasksByPageRequest(projectId: self.projectId, workflowId: self.workflowId, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize)
+            return .init(projectId: self.projectId, workflowId: self.workflowId, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize)
         }
     }
 

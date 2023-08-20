@@ -53,7 +53,7 @@ extension Cme {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTeamsRequest(platform: self.platform, teamIds: self.teamIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(platform: self.platform, teamIds: self.teamIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

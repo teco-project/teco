@@ -67,7 +67,7 @@ extension Tdcpg {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeClustersRequest(pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, filters: self.filters, orderBy: self.orderBy, orderByType: self.orderByType)
+            return .init(pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, filters: self.filters, orderBy: self.orderBy, orderByType: self.orderByType)
         }
     }
 

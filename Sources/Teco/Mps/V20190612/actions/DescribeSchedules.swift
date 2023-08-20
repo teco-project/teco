@@ -66,7 +66,7 @@ extension Mps {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSchedulesRequest(scheduleIds: self.scheduleIds, triggerType: self.triggerType, status: self.status, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(scheduleIds: self.scheduleIds, triggerType: self.triggerType, status: self.status, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

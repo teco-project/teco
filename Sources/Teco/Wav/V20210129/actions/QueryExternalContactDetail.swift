@@ -48,7 +48,7 @@ extension Wav {
             guard response.nextCursor != nil else {
                 return nil
             }
-            return QueryExternalContactDetailRequest(externalUserId: self.externalUserId, cursor: response.nextCursor, limit: self.limit)
+            return .init(externalUserId: self.externalUserId, cursor: response.nextCursor, limit: self.limit)
         }
     }
 

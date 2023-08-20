@@ -79,7 +79,7 @@ extension Es {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeInstanceLogsRequest(instanceId: self.instanceId, logType: self.logType, searchKey: self.searchKey, startTime: self.startTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderByType: self.orderByType)
+            return .init(instanceId: self.instanceId, logType: self.logType, searchKey: self.searchKey, startTime: self.startTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderByType: self.orderByType)
         }
     }
 

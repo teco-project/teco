@@ -63,7 +63,7 @@ extension Ame {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return SearchKTVMusicsRequest(keyWord: self.keyWord, offset: self.offset + .init(response.getItems().count), limit: self.limit, sort: self.sort, tagIds: self.tagIds)
+            return .init(keyWord: self.keyWord, offset: self.offset + .init(response.getItems().count), limit: self.limit, sort: self.sort, tagIds: self.tagIds)
         }
     }
 

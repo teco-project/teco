@@ -76,7 +76,7 @@ extension Bmvpc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeVpnConnectionsRequest(vpnConnectionIds: self.vpnConnectionIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, vpnGatewayId: self.vpnGatewayId, vpnConnectionName: self.vpnConnectionName, orderField: self.orderField, orderDirection: self.orderDirection)
+            return .init(vpnConnectionIds: self.vpnConnectionIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, vpnGatewayId: self.vpnGatewayId, vpnConnectionName: self.vpnConnectionName, orderField: self.orderField, orderDirection: self.orderDirection)
         }
     }
 

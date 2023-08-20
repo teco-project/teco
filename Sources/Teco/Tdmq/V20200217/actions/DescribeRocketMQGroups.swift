@@ -83,7 +83,7 @@ extension Tdmq {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeRocketMQGroupsRequest(clusterId: self.clusterId, namespaceId: self.namespaceId, offset: self.offset + .init(response.getItems().count), limit: self.limit, filterTopic: self.filterTopic, filterGroup: self.filterGroup, sortedBy: self.sortedBy, sortOrder: self.sortOrder, filterOneGroup: self.filterOneGroup, types: self.types)
+            return .init(clusterId: self.clusterId, namespaceId: self.namespaceId, offset: self.offset + .init(response.getItems().count), limit: self.limit, filterTopic: self.filterTopic, filterGroup: self.filterGroup, sortedBy: self.sortedBy, sortOrder: self.sortOrder, filterOneGroup: self.filterOneGroup, types: self.types)
         }
     }
 

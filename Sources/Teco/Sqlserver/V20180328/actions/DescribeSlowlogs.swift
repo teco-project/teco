@@ -66,7 +66,7 @@ extension Sqlserver {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSlowlogsRequest(instanceId: self.instanceId, startTime: self.startTime, endTime: self.endTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(instanceId: self.instanceId, startTime: self.startTime, endTime: self.endTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

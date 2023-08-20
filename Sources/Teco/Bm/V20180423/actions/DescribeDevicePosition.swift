@@ -63,7 +63,7 @@ extension Bm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDevicePositionRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, vpcId: self.vpcId, subnetId: self.subnetId, instanceIds: self.instanceIds, alias: self.alias)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, vpcId: self.vpcId, subnetId: self.subnetId, instanceIds: self.instanceIds, alias: self.alias)
         }
     }
 

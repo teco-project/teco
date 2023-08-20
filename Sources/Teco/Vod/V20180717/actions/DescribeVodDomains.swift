@@ -54,7 +54,7 @@ extension Vod {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeVodDomainsRequest(domains: self.domains, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), subAppId: self.subAppId)
+            return .init(domains: self.domains, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), subAppId: self.subAppId)
         }
     }
 

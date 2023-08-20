@@ -53,7 +53,7 @@ extension Tdmq {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeRocketMQNamespacesRequest(clusterId: self.clusterId, offset: self.offset + .init(response.getItems().count), limit: self.limit, nameKeyword: self.nameKeyword)
+            return .init(clusterId: self.clusterId, offset: self.offset + .init(response.getItems().count), limit: self.limit, nameKeyword: self.nameKeyword)
         }
     }
 

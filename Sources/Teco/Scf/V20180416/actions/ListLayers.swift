@@ -53,7 +53,7 @@ extension Scf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListLayersRequest(compatibleRuntime: self.compatibleRuntime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchKey: self.searchKey)
+            return .init(compatibleRuntime: self.compatibleRuntime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchKey: self.searchKey)
         }
     }
 

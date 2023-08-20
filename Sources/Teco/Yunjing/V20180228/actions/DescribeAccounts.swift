@@ -61,7 +61,7 @@ extension Yunjing {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAccountsRequest(uuid: self.uuid, username: self.username, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters)
+            return .init(uuid: self.uuid, username: self.username, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters)
         }
     }
 

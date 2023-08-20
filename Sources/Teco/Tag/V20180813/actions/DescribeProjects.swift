@@ -48,7 +48,7 @@ extension Tag {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeProjectsRequest(allList: self.allList, limit: self.limit, offset: self.offset + .init(response.getItems().count))
+            return .init(allList: self.allList, limit: self.limit, offset: self.offset + .init(response.getItems().count))
         }
     }
 

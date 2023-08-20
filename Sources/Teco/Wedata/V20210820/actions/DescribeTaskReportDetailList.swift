@@ -86,7 +86,7 @@ extension Wedata {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTaskReportDetailListRequest(projectId: self.projectId, taskId: self.taskId, beginDate: self.beginDate, endDate: self.endDate, stateList: self.stateList, sortItem: self.sortItem, sortType: self.sortType, pageIndex: (self.pageIndex ?? 0) + 1, pageSize: self.pageSize)
+            return .init(projectId: self.projectId, taskId: self.taskId, beginDate: self.beginDate, endDate: self.endDate, stateList: self.stateList, sortItem: self.sortItem, sortType: self.sortType, pageIndex: (self.pageIndex ?? 0) + 1, pageSize: self.pageSize)
         }
     }
 

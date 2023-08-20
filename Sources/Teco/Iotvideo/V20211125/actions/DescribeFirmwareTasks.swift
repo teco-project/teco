@@ -58,7 +58,7 @@ extension Iotvideo {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeFirmwareTasksRequest(productID: self.productID, firmwareVersion: self.firmwareVersion, offset: self.offset + .init(response.getItems().count), limit: self.limit, filters: self.filters)
+            return .init(productID: self.productID, firmwareVersion: self.firmwareVersion, offset: self.offset + .init(response.getItems().count), limit: self.limit, filters: self.filters)
         }
     }
 

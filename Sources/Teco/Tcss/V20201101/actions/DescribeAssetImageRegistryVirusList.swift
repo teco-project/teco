@@ -60,7 +60,7 @@ extension Tcss {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAssetImageRegistryVirusListRequest(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters, imageInfo: self.imageInfo, id: self.id)
+            return .init(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters, imageInfo: self.imageInfo, id: self.id)
         }
     }
 

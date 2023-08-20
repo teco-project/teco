@@ -43,7 +43,7 @@ extension Ame {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePackagesRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), length: self.length)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), length: self.length)
         }
     }
 

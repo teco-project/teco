@@ -89,7 +89,7 @@ extension Essbasic {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeUsageRequest(agent: self.agent, startDate: self.startDate, endDate: self.endDate, needAggregate: self.needAggregate, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(agent: self.agent, startDate: self.startDate, endDate: self.endDate, needAggregate: self.needAggregate, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

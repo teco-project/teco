@@ -76,7 +76,7 @@ extension Cr {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return QueryBlackListDataRequest(module: self.module, operation: self.operation, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, startBizDate: self.startBizDate, endBizDate: self.endBizDate, blackValue: self.blackValue)
+            return .init(module: self.module, operation: self.operation, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, startBizDate: self.startBizDate, endBizDate: self.endBizDate, blackValue: self.blackValue)
         }
     }
 

@@ -68,7 +68,7 @@ extension Clb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeLoadBalancersDetailRequest(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), fields: self.fields, targetType: self.targetType, filters: self.filters)
+            return .init(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), fields: self.fields, targetType: self.targetType, filters: self.filters)
         }
     }
 

@@ -89,7 +89,7 @@ extension Teo {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeZonesRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters, order: self.order, direction: self.direction)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters, order: self.order, direction: self.direction)
         }
     }
 

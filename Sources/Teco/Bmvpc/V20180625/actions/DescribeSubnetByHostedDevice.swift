@@ -53,7 +53,7 @@ extension Bmvpc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSubnetByHostedDeviceRequest(instanceId: self.instanceId, types: self.types, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(instanceId: self.instanceId, types: self.types, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

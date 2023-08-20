@@ -61,7 +61,7 @@ extension Cwp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeLicenseListRequest(filters: self.filters, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), tags: self.tags)
+            return .init(filters: self.filters, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), tags: self.tags)
         }
     }
 

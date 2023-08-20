@@ -43,7 +43,7 @@ extension Iotexplorer {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return GetTopicRuleListRequest(pageNum: self.pageNum + 1, pageSize: self.pageSize)
+            return .init(pageNum: self.pageNum + 1, pageSize: self.pageSize)
         }
     }
 

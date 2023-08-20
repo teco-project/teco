@@ -69,7 +69,7 @@ extension Ame {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeKTVSingersRequest(singerIds: self.singerIds, genders: self.genders, areas: self.areas, sort: self.sort, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(singerIds: self.singerIds, genders: self.genders, areas: self.areas, sort: self.sort, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

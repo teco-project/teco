@@ -68,7 +68,7 @@ extension Cvm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeLaunchTemplateVersionsRequest(launchTemplateId: self.launchTemplateId, launchTemplateVersions: self.launchTemplateVersions, minVersion: self.minVersion, maxVersion: self.maxVersion, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, defaultVersion: self.defaultVersion)
+            return .init(launchTemplateId: self.launchTemplateId, launchTemplateVersions: self.launchTemplateVersions, minVersion: self.minVersion, maxVersion: self.maxVersion, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, defaultVersion: self.defaultVersion)
         }
     }
 

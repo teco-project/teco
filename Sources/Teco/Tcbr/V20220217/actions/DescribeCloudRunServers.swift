@@ -50,7 +50,7 @@ extension Tcbr {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCloudRunServersRequest(envId: self.envId, pageSize: self.pageSize, pageNum: (self.pageNum ?? 0) + 1)
+            return .init(envId: self.envId, pageSize: self.pageSize, pageNum: (self.pageNum ?? 0) + 1)
         }
     }
 

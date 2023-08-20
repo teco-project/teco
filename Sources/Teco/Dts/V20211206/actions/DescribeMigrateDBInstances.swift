@@ -83,7 +83,7 @@ extension Dts {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeMigrateDBInstancesRequest(databaseType: self.databaseType, migrateRole: self.migrateRole, instanceId: self.instanceId, instanceName: self.instanceName, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), accountMode: self.accountMode, tmpSecretId: self.tmpSecretId, tmpSecretKey: self.tmpSecretKey, tmpToken: self.tmpToken)
+            return .init(databaseType: self.databaseType, migrateRole: self.migrateRole, instanceId: self.instanceId, instanceName: self.instanceName, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), accountMode: self.accountMode, tmpSecretId: self.tmpSecretId, tmpSecretKey: self.tmpSecretKey, tmpToken: self.tmpToken)
         }
     }
 

@@ -58,7 +58,7 @@ extension Cdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBackupDatabasesRequest(instanceId: self.instanceId, startTime: self.startTime, searchDatabase: self.searchDatabase, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(instanceId: self.instanceId, startTime: self.startTime, searchDatabase: self.searchDatabase, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

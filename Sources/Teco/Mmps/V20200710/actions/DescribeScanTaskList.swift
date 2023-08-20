@@ -78,7 +78,7 @@ extension Mmps {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeScanTaskListRequest(source: self.source, platform: self.platform, taskStatuses: self.taskStatuses, taskTypes: self.taskTypes, pageNo: self.pageNo + 1, pageSize: self.pageSize, appName: self.appName, startTime: self.startTime, endTime: self.endTime)
+            return .init(source: self.source, platform: self.platform, taskStatuses: self.taskStatuses, taskTypes: self.taskTypes, pageNo: self.pageNo + 1, pageSize: self.pageSize, appName: self.appName, startTime: self.startTime, endTime: self.endTime)
         }
     }
 

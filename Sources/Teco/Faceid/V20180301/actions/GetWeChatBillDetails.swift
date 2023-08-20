@@ -53,7 +53,7 @@ extension Faceid {
             guard response.hasNextPage else {
                 return nil
             }
-            return GetWeChatBillDetailsRequest(date: self.date, cursor: response.nextCursor, ruleId: self.ruleId)
+            return .init(date: self.date, cursor: response.nextCursor, ruleId: self.ruleId)
         }
     }
 

@@ -48,7 +48,7 @@ extension Eis {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListEisConnectorsRequest(connectorName: self.connectorName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(connectorName: self.connectorName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

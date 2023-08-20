@@ -127,7 +127,7 @@ extension Cvm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeReservedInstancesOfferingsRequest(dryRun: self.dryRun, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, maxDuration: self.maxDuration, minDuration: self.minDuration, filters: self.filters)
+            return .init(dryRun: self.dryRun, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, maxDuration: self.maxDuration, minDuration: self.minDuration, filters: self.filters)
         }
     }
 

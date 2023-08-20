@@ -58,7 +58,7 @@ extension Cwp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAssetAppProcessListRequest(quuid: self.quuid, uuid: self.uuid, name: self.name, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(quuid: self.quuid, uuid: self.uuid, name: self.name, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

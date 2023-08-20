@@ -72,7 +72,7 @@ extension Bm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCustomImagesRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, orderField: self.orderField, order: self.order, imageId: self.imageId, searchKey: self.searchKey, imageStatus: self.imageStatus)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, orderField: self.orderField, order: self.order, imageId: self.imageId, searchKey: self.searchKey, imageStatus: self.imageStatus)
         }
     }
 

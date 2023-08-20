@@ -53,7 +53,7 @@ extension Cme {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeVideoEncodingPresetsRequest(platform: self.platform, ids: self.ids, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(platform: self.platform, ids: self.ids, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

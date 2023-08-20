@@ -56,7 +56,7 @@ extension Vpc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeGatewayFlowQosRequest(gatewayId: self.gatewayId, ipAddresses: self.ipAddresses, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(gatewayId: self.gatewayId, ipAddresses: self.ipAddresses, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

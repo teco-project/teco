@@ -64,7 +64,7 @@ extension Live {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeLivePackageInfoRequest(packageType: self.packageType, orderBy: self.orderBy, pageNum: (self.pageNum ?? 0) + 1, pageSize: self.pageSize)
+            return .init(packageType: self.packageType, orderBy: self.orderBy, pageNum: (self.pageNum ?? 0) + 1, pageSize: self.pageSize)
         }
     }
 

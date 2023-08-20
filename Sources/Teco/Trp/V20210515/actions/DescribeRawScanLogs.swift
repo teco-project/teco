@@ -65,7 +65,7 @@ extension Trp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeRawScanLogsRequest(corpId: self.corpId, pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1, afterLogId: self.afterLogId, startTime: self.startTime, endTime: self.endTime)
+            return .init(corpId: self.corpId, pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1, afterLogId: self.afterLogId, startTime: self.startTime, endTime: self.endTime)
         }
     }
 

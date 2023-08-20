@@ -73,7 +73,7 @@ extension Ic {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSmsRequest(sdkappid: self.sdkappid, iccid: self.iccid, msisdn: self.msisdn, smsType: self.smsType, beginTime: self.beginTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(sdkappid: self.sdkappid, iccid: self.iccid, msisdn: self.msisdn, smsType: self.smsType, beginTime: self.beginTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

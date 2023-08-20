@@ -43,7 +43,7 @@ extension Cloudaudit {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAuditTracksRequest(pageNumber: self.pageNumber + 1, pageSize: self.pageSize)
+            return .init(pageNumber: self.pageNumber + 1, pageSize: self.pageSize)
         }
     }
 

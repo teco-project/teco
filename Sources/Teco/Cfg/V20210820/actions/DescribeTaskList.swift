@@ -78,7 +78,7 @@ extension Cfg {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTaskListRequest(limit: self.limit, offset: self.offset + .init(response.getItems().count), taskTitle: self.taskTitle, taskTag: self.taskTag, taskStatus: self.taskStatus, taskStartTime: self.taskStartTime, taskEndTime: self.taskEndTime, tags: self.tags, filters: self.filters)
+            return .init(limit: self.limit, offset: self.offset + .init(response.getItems().count), taskTitle: self.taskTitle, taskTag: self.taskTag, taskStatus: self.taskStatus, taskStartTime: self.taskStartTime, taskEndTime: self.taskEndTime, tags: self.tags, filters: self.filters)
         }
     }
 

@@ -53,7 +53,7 @@ extension Cvm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDisasterRecoverGroupsRequest(disasterRecoverGroupIds: self.disasterRecoverGroupIds, name: self.name, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(disasterRecoverGroupIds: self.disasterRecoverGroupIds, name: self.name, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

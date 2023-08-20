@@ -58,7 +58,7 @@ extension Gpm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeMatchesRequest(pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, searchType: self.searchType, keyword: self.keyword, tags: self.tags)
+            return .init(pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, searchType: self.searchType, keyword: self.keyword, tags: self.tags)
         }
     }
 

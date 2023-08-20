@@ -53,7 +53,7 @@ extension Cynosdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAuditLogFilesRequest(instanceId: self.instanceId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), fileName: self.fileName)
+            return .init(instanceId: self.instanceId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), fileName: self.fileName)
         }
     }
 

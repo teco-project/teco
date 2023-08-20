@@ -58,7 +58,7 @@ extension Cdn {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeScdnIpStrategyRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters, order: self.order, sequence: self.sequence)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters, order: self.order, sequence: self.sequence)
         }
     }
 

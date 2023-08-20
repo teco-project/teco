@@ -123,7 +123,7 @@ extension Vpc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCrossBorderComplianceRequest(serviceProvider: self.serviceProvider, complianceId: self.complianceId, company: self.company, uniformSocialCreditCode: self.uniformSocialCreditCode, legalPerson: self.legalPerson, issuingAuthority: self.issuingAuthority, businessAddress: self.businessAddress, postCode: self.postCode, manager: self.manager, managerId: self.managerId, managerAddress: self.managerAddress, managerTelephone: self.managerTelephone, email: self.email, serviceStartDate: self.serviceStartDate, serviceEndDate: self.serviceEndDate, state: self.state, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(serviceProvider: self.serviceProvider, complianceId: self.complianceId, company: self.company, uniformSocialCreditCode: self.uniformSocialCreditCode, legalPerson: self.legalPerson, issuingAuthority: self.issuingAuthority, businessAddress: self.businessAddress, postCode: self.postCode, manager: self.manager, managerId: self.managerId, managerAddress: self.managerAddress, managerTelephone: self.managerTelephone, email: self.email, serviceStartDate: self.serviceStartDate, serviceEndDate: self.serviceEndDate, state: self.state, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

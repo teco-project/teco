@@ -68,7 +68,7 @@ extension Ess {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeOrganizationGroupOrganizationsRequest(operator: self.operator, limit: self.limit, offset: self.offset + .init(response.getItems().count), name: self.name, status: self.status, export: self.export, id: self.id)
+            return .init(operator: self.operator, limit: self.limit, offset: self.offset + .init(response.getItems().count), name: self.name, status: self.status, export: self.export, id: self.id)
         }
     }
 

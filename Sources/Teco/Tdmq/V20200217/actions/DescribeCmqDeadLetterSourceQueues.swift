@@ -53,7 +53,7 @@ extension Tdmq {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCmqDeadLetterSourceQueuesRequest(deadLetterQueueName: self.deadLetterQueueName, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), sourceQueueName: self.sourceQueueName)
+            return .init(deadLetterQueueName: self.deadLetterQueueName, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), sourceQueueName: self.sourceQueueName)
         }
     }
 

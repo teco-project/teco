@@ -63,7 +63,7 @@ extension Iotcloud {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDeviceResourcesRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, productID: self.productID, deviceName: self.deviceName, startTime: self.startTime, endTime: self.endTime)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, productID: self.productID, deviceName: self.deviceName, startTime: self.startTime, endTime: self.endTime)
         }
     }
 

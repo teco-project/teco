@@ -63,7 +63,7 @@ extension Tcr {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeRepositoriesRequest(registryId: self.registryId, namespaceName: self.namespaceName, repositoryName: self.repositoryName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, sortBy: self.sortBy)
+            return .init(registryId: self.registryId, namespaceName: self.namespaceName, repositoryName: self.repositoryName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, sortBy: self.sortBy)
         }
     }
 

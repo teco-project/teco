@@ -128,7 +128,7 @@ extension Antiddos {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeListBGPInstancesRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, filterIp: self.filterIp, filterInstanceId: self.filterInstanceId, filterRegion: self.filterRegion, filterName: self.filterName, filterLine: self.filterLine, filterStatus: self.filterStatus, filterBoundStatus: self.filterBoundStatus, filterInstanceIdList: self.filterInstanceIdList, filterEnterpriseFlag: self.filterEnterpriseFlag, filterLightFlag: self.filterLightFlag, filterChannelFlag: self.filterChannelFlag, filterTag: self.filterTag, filterTrialFlag: self.filterTrialFlag, filterConvoy: self.filterConvoy, excludeAdvancedInfo: self.excludeAdvancedInfo, filterAssetIpList: self.filterAssetIpList, filterBasicPlusFlag: self.filterBasicPlusFlag)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, filterIp: self.filterIp, filterInstanceId: self.filterInstanceId, filterRegion: self.filterRegion, filterName: self.filterName, filterLine: self.filterLine, filterStatus: self.filterStatus, filterBoundStatus: self.filterBoundStatus, filterInstanceIdList: self.filterInstanceIdList, filterEnterpriseFlag: self.filterEnterpriseFlag, filterLightFlag: self.filterLightFlag, filterChannelFlag: self.filterChannelFlag, filterTag: self.filterTag, filterTrialFlag: self.filterTrialFlag, filterConvoy: self.filterConvoy, excludeAdvancedInfo: self.excludeAdvancedInfo, filterAssetIpList: self.filterAssetIpList, filterBasicPlusFlag: self.filterBasicPlusFlag)
         }
     }
 

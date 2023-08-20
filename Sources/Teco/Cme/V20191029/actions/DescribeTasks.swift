@@ -76,7 +76,7 @@ extension Cme {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTasksRequest(platform: self.platform, projectId: self.projectId, taskTypeSet: self.taskTypeSet, statusSet: self.statusSet, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, operator: self.operator)
+            return .init(platform: self.platform, projectId: self.projectId, taskTypeSet: self.taskTypeSet, statusSet: self.statusSet, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, operator: self.operator)
         }
     }
 

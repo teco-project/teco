@@ -88,7 +88,7 @@ extension Sqlserver {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBackupMigrationRequest(instanceId: self.instanceId, backupMigrationId: self.backupMigrationId, migrationName: self.migrationName, backupFileName: self.backupFileName, statusSet: self.statusSet, recoveryType: self.recoveryType, uploadType: self.uploadType, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), orderBy: self.orderBy, orderByType: self.orderByType)
+            return .init(instanceId: self.instanceId, backupMigrationId: self.backupMigrationId, migrationName: self.migrationName, backupFileName: self.backupFileName, statusSet: self.statusSet, recoveryType: self.recoveryType, uploadType: self.uploadType, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), orderBy: self.orderBy, orderByType: self.orderByType)
         }
     }
 

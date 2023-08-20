@@ -83,7 +83,7 @@ extension Dbdc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeInstancesRequest(instanceTypes: self.instanceTypes, productIds: self.productIds, instanceIds: self.instanceIds, fenceFlag: self.fenceFlag, instanceName: self.instanceName, pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1, orderBy: self.orderBy, orderByType: self.orderByType, instanceStatus: self.instanceStatus)
+            return .init(instanceTypes: self.instanceTypes, productIds: self.productIds, instanceIds: self.instanceIds, fenceFlag: self.fenceFlag, instanceName: self.instanceName, pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1, orderBy: self.orderBy, orderByType: self.orderByType, instanceStatus: self.instanceStatus)
         }
     }
 

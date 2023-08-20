@@ -94,7 +94,7 @@ extension Cbs {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDisksRequest(filters: self.filters, limit: self.limit, orderField: self.orderField, offset: (self.offset ?? 0) + .init(response.getItems().count), returnBindAutoSnapshotPolicy: self.returnBindAutoSnapshotPolicy, diskIds: self.diskIds, order: self.order)
+            return .init(filters: self.filters, limit: self.limit, orderField: self.orderField, offset: (self.offset ?? 0) + .init(response.getItems().count), returnBindAutoSnapshotPolicy: self.returnBindAutoSnapshotPolicy, diskIds: self.diskIds, order: self.order)
         }
     }
 

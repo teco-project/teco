@@ -88,7 +88,7 @@ extension Dlc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDataEnginesRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters, sortBy: self.sortBy, sorting: self.sorting, limit: self.limit, datasourceConnectionName: self.datasourceConnectionName, excludePublicEngine: self.excludePublicEngine, accessTypes: self.accessTypes, engineExecType: self.engineExecType, engineType: self.engineType, datasourceConnectionNameSet: self.datasourceConnectionNameSet)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters, sortBy: self.sortBy, sorting: self.sorting, limit: self.limit, datasourceConnectionName: self.datasourceConnectionName, excludePublicEngine: self.excludePublicEngine, accessTypes: self.accessTypes, engineExecType: self.engineExecType, engineType: self.engineType, datasourceConnectionNameSet: self.datasourceConnectionNameSet)
         }
     }
 

@@ -53,7 +53,7 @@ extension Iecp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return GetMarketComponentListRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, filter: self.filter, order: self.order)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, filter: self.filter, order: self.order)
         }
     }
 

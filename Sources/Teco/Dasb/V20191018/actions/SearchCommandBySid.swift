@@ -64,7 +64,7 @@ extension Dasb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return SearchCommandBySidRequest(sid: self.sid, cmd: self.cmd, encoding: self.encoding, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, auditAction: self.auditAction)
+            return .init(sid: self.sid, cmd: self.cmd, encoding: self.encoding, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, auditAction: self.auditAction)
         }
     }
 

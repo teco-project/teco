@@ -48,7 +48,7 @@ extension Tiia {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeGroupsRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, groupId: self.groupId)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, groupId: self.groupId)
         }
     }
 

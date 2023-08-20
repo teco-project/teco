@@ -48,7 +48,7 @@ extension Ame {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeKTVPlaylistDetailRequest(playlistId: self.playlistId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(playlistId: self.playlistId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

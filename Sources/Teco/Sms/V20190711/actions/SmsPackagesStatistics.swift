@@ -49,7 +49,7 @@ extension Sms {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return SmsPackagesStatisticsRequest(smsSdkAppid: self.smsSdkAppid, limit: self.limit, offset: self.offset + .init(response.getItems().count))
+            return .init(smsSdkAppid: self.smsSdkAppid, limit: self.limit, offset: self.offset + .init(response.getItems().count))
         }
     }
 

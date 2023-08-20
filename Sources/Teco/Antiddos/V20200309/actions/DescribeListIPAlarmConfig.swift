@@ -66,7 +66,7 @@ extension Antiddos {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeListIPAlarmConfigRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, filterInstanceId: self.filterInstanceId, filterAlarmType: self.filterAlarmType, filterIp: self.filterIp, filterCname: self.filterCname)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, filterInstanceId: self.filterInstanceId, filterAlarmType: self.filterAlarmType, filterIp: self.filterIp, filterCname: self.filterCname)
         }
     }
 

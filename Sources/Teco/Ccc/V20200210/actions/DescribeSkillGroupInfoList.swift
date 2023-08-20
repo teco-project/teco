@@ -63,7 +63,7 @@ extension Ccc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSkillGroupInfoListRequest(sdkAppId: self.sdkAppId, pageSize: self.pageSize, pageNumber: self.pageNumber + 1, skillGroupId: self.skillGroupId, modifiedTime: self.modifiedTime, skillGroupName: self.skillGroupName)
+            return .init(sdkAppId: self.sdkAppId, pageSize: self.pageSize, pageNumber: self.pageNumber + 1, skillGroupId: self.skillGroupId, modifiedTime: self.modifiedTime, skillGroupName: self.skillGroupName)
         }
     }
 

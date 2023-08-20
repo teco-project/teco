@@ -60,7 +60,7 @@ extension Live {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeLiveStreamOnlineListRequest(domainName: self.domainName, appName: self.appName, pageNum: (self.pageNum ?? 0) + 1, pageSize: self.pageSize, streamName: self.streamName)
+            return .init(domainName: self.domainName, appName: self.appName, pageNum: (self.pageNum ?? 0) + 1, pageSize: self.pageSize, streamName: self.streamName)
         }
     }
 

@@ -48,7 +48,7 @@ extension Dlc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTaskResultRequest(taskId: self.taskId, nextToken: response.taskInfo?.nextToken, maxResults: self.maxResults)
+            return .init(taskId: self.taskId, nextToken: response.taskInfo?.nextToken, maxResults: self.maxResults)
         }
     }
 

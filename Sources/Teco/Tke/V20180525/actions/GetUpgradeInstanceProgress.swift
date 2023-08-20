@@ -48,7 +48,7 @@ extension Tke {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return GetUpgradeInstanceProgressRequest(clusterId: self.clusterId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(clusterId: self.clusterId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

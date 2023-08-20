@@ -63,7 +63,7 @@ extension Sqlserver {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeXEventsRequest(instanceId: self.instanceId, eventType: self.eventType, startTime: self.startTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(instanceId: self.instanceId, eventType: self.eventType, startTime: self.startTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

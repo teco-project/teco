@@ -78,7 +78,7 @@ extension Lighthouse {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBundlesRequest(bundleIds: self.bundleIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters, zones: self.zones)
+            return .init(bundleIds: self.bundleIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters, zones: self.zones)
         }
     }
 

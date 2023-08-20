@@ -63,7 +63,7 @@ extension Dlc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeNotebookSessionsRequest(dataEngineName: self.dataEngineName, state: self.state, sortFields: self.sortFields, asc: self.asc, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(dataEngineName: self.dataEngineName, state: self.state, sortFields: self.sortFields, asc: self.asc, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

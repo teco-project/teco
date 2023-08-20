@@ -93,7 +93,7 @@ extension Monitor {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAlarmNoticesRequest(module: self.module, pageNumber: self.pageNumber + 1, pageSize: self.pageSize, order: self.order, ownerUid: self.ownerUid, name: self.name, receiverType: self.receiverType, userIds: self.userIds, groupIds: self.groupIds, noticeIds: self.noticeIds, tags: self.tags, onCallFormIDs: self.onCallFormIDs)
+            return .init(module: self.module, pageNumber: self.pageNumber + 1, pageSize: self.pageSize, order: self.order, ownerUid: self.ownerUid, name: self.name, receiverType: self.receiverType, userIds: self.userIds, groupIds: self.groupIds, noticeIds: self.noticeIds, tags: self.tags, onCallFormIDs: self.onCallFormIDs)
         }
     }
 

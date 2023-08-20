@@ -48,7 +48,7 @@ extension Cdc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDedicatedClusterHostsRequest(dedicatedClusterId: self.dedicatedClusterId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(dedicatedClusterId: self.dedicatedClusterId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

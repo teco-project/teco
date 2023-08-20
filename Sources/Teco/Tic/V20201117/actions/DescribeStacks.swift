@@ -48,7 +48,7 @@ extension Tic {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeStacksRequest(stackIds: self.stackIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(stackIds: self.stackIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

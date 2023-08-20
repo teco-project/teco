@@ -63,7 +63,7 @@ extension Cwp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeProtectDirRelatedServerRequest(id: self.id, limit: self.limit, offset: self.offset + .init(response.getItems().count), filters: self.filters, order: self.order, by: self.by)
+            return .init(id: self.id, limit: self.limit, offset: self.offset + .init(response.getItems().count), filters: self.filters, order: self.order, by: self.by)
         }
     }
 

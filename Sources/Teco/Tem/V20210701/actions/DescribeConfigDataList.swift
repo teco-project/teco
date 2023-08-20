@@ -53,7 +53,7 @@ extension Tem {
             guard response.result.continueToken != nil else {
                 return nil
             }
-            return DescribeConfigDataListRequest(environmentId: self.environmentId, sourceChannel: self.sourceChannel, continueToken: response.result.continueToken, limit: self.limit)
+            return .init(environmentId: self.environmentId, sourceChannel: self.sourceChannel, continueToken: response.result.continueToken, limit: self.limit)
         }
     }
 

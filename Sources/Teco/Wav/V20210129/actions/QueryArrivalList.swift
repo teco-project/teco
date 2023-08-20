@@ -53,7 +53,7 @@ extension Wav {
             guard response.hasMore == 1 else {
                 return nil
             }
-            return QueryArrivalListRequest(limit: self.limit, beginTime: self.beginTime, endTime: self.endTime, cursor: response.nextCursor)
+            return .init(limit: self.limit, beginTime: self.beginTime, endTime: self.endTime, cursor: response.nextCursor)
         }
     }
 

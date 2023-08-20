@@ -58,7 +58,7 @@ extension Dasb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDeviceAccountsRequest(idSet: self.idSet, account: self.account, deviceId: self.deviceId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(idSet: self.idSet, account: self.account, deviceId: self.deviceId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

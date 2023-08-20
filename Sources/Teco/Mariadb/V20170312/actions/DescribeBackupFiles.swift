@@ -73,7 +73,7 @@ extension Mariadb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBackupFilesRequest(instanceId: self.instanceId, backupType: self.backupType, startTime: self.startTime, endTime: self.endTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), orderBy: self.orderBy, orderType: self.orderType)
+            return .init(instanceId: self.instanceId, backupType: self.backupType, startTime: self.startTime, endTime: self.endTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), orderBy: self.orderBy, orderType: self.orderType)
         }
     }
 

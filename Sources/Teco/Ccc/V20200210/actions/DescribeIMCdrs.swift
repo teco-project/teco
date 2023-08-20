@@ -68,7 +68,7 @@ extension Ccc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeIMCdrsRequest(startTimestamp: self.startTimestamp, endTimestamp: self.endTimestamp, instanceId: self.instanceId, sdkAppId: self.sdkAppId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), type: self.type)
+            return .init(startTimestamp: self.startTimestamp, endTimestamp: self.endTimestamp, instanceId: self.instanceId, sdkAppId: self.sdkAppId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), type: self.type)
         }
     }
 

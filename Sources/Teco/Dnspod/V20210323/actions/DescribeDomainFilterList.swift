@@ -126,7 +126,7 @@ extension Dnspod {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDomainFilterListRequest(type: self.type, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, groupId: self.groupId, keyword: self.keyword, sortField: self.sortField, sortType: self.sortType, status: self.status, package: self.package, remark: self.remark, updatedAtBegin: self.updatedAtBegin, updatedAtEnd: self.updatedAtEnd, recordCountBegin: self.recordCountBegin, recordCountEnd: self.recordCountEnd, projectId: self.projectId, tags: self.tags)
+            return .init(type: self.type, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, groupId: self.groupId, keyword: self.keyword, sortField: self.sortField, sortType: self.sortType, status: self.status, package: self.package, remark: self.remark, updatedAtBegin: self.updatedAtBegin, updatedAtEnd: self.updatedAtEnd, recordCountBegin: self.recordCountBegin, recordCountEnd: self.recordCountEnd, projectId: self.projectId, tags: self.tags)
         }
     }
 

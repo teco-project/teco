@@ -73,7 +73,7 @@ extension Tcaplusdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeApplicationsRequest(clusterId: self.clusterId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), censorStatus: self.censorStatus, tableGroupId: self.tableGroupId, tableName: self.tableName, applicant: self.applicant, applyType: self.applyType)
+            return .init(clusterId: self.clusterId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), censorStatus: self.censorStatus, tableGroupId: self.tableGroupId, tableName: self.tableName, applicant: self.applicant, applyType: self.applyType)
         }
     }
 

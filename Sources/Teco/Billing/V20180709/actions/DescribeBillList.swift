@@ -91,7 +91,7 @@ extension Billing {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBillListRequest(startTime: self.startTime, endTime: self.endTime, offset: self.offset + .init(response.getItems().count), limit: self.limit, payType: self.payType, subPayType: self.subPayType, withZeroAmount: self.withZeroAmount)
+            return .init(startTime: self.startTime, endTime: self.endTime, offset: self.offset + .init(response.getItems().count), limit: self.limit, payType: self.payType, subPayType: self.subPayType, withZeroAmount: self.withZeroAmount)
         }
     }
 

@@ -58,7 +58,7 @@ extension Tse {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSREInstancesRequest(filters: self.filters, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), queryType: self.queryType, querySource: self.querySource)
+            return .init(filters: self.filters, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), queryType: self.queryType, querySource: self.querySource)
         }
     }
 

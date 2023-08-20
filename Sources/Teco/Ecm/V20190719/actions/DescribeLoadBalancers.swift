@@ -90,7 +90,7 @@ extension Ecm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeLoadBalancersRequest(ecmRegion: self.ecmRegion, loadBalancerIds: self.loadBalancerIds, loadBalancerName: self.loadBalancerName, loadBalancerVips: self.loadBalancerVips, backendPrivateIps: self.backendPrivateIps, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, withBackend: self.withBackend, vpcId: self.vpcId, filters: self.filters, securityGroup: self.securityGroup)
+            return .init(ecmRegion: self.ecmRegion, loadBalancerIds: self.loadBalancerIds, loadBalancerName: self.loadBalancerName, loadBalancerVips: self.loadBalancerVips, backendPrivateIps: self.backendPrivateIps, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, withBackend: self.withBackend, vpcId: self.vpcId, filters: self.filters, securityGroup: self.securityGroup)
         }
     }
 

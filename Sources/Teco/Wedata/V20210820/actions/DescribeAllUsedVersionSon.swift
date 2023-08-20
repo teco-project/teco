@@ -48,7 +48,7 @@ extension Wedata {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAllUsedVersionSonRequest(searchCondition: self.searchCondition, pageNumber: self.pageNumber + 1, pageSize: self.pageSize)
+            return .init(searchCondition: self.searchCondition, pageNumber: self.pageNumber + 1, pageSize: self.pageSize)
         }
     }
 

@@ -64,7 +64,7 @@ extension Iotvideoindustry {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeGroupDevicesRequest(groupId: self.groupId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, nickName: self.nickName, recordable: self.recordable, deviceTypes: self.deviceTypes)
+            return .init(groupId: self.groupId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, nickName: self.nickName, recordable: self.recordable, deviceTypes: self.deviceTypes)
         }
     }
 

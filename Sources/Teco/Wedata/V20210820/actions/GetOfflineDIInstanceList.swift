@@ -52,7 +52,7 @@ extension Wedata {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return GetOfflineDIInstanceListRequest(pageIndex: self.pageIndex + 1, pageSize: self.pageSize, projectId: self.projectId, searchCondition: self.searchCondition)
+            return .init(pageIndex: self.pageIndex + 1, pageSize: self.pageSize, projectId: self.projectId, searchCondition: self.searchCondition)
         }
     }
 

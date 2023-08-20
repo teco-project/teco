@@ -69,7 +69,7 @@ extension Tcss {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeImageAutoAuthorizedTaskListRequest(startTime: self.startTime, endTime: self.endTime, filters: self.filters, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(startTime: self.startTime, endTime: self.endTime, filters: self.filters, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

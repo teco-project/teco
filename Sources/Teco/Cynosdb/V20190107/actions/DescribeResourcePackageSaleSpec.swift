@@ -61,7 +61,7 @@ extension Cynosdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeResourcePackageSaleSpecRequest(instanceType: self.instanceType, packageRegion: self.packageRegion, packageType: self.packageType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(instanceType: self.instanceType, packageRegion: self.packageRegion, packageType: self.packageType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

@@ -48,7 +48,7 @@ extension Vpc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeVpnGatewayCcnRoutesRequest(vpnGatewayId: self.vpnGatewayId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(vpnGatewayId: self.vpnGatewayId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

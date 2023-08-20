@@ -63,7 +63,7 @@ extension Lighthouse {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDockerActivitiesRequest(instanceId: self.instanceId, activityIds: self.activityIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, createdTimeBegin: self.createdTimeBegin, createdTimeEnd: self.createdTimeEnd)
+            return .init(instanceId: self.instanceId, activityIds: self.activityIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, createdTimeBegin: self.createdTimeBegin, createdTimeEnd: self.createdTimeEnd)
         }
     }
 

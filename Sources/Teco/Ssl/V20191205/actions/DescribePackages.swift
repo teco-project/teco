@@ -68,7 +68,7 @@ extension Ssl {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePackagesRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, status: self.status, expireTime: self.expireTime, packageId: self.packageId, type: self.type, pid: self.pid)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, status: self.status, expireTime: self.expireTime, packageId: self.packageId, type: self.type, pid: self.pid)
         }
     }
 

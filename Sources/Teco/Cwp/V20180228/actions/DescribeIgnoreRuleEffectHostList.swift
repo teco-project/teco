@@ -59,7 +59,7 @@ extension Cwp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeIgnoreRuleEffectHostListRequest(limit: self.limit, offset: self.offset + .init(response.getItems().count), ruleId: self.ruleId, filters: self.filters, tagNames: self.tagNames)
+            return .init(limit: self.limit, offset: self.offset + .init(response.getItems().count), ruleId: self.ruleId, filters: self.filters, tagNames: self.tagNames)
         }
     }
 

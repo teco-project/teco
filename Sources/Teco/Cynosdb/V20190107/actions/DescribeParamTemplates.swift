@@ -88,7 +88,7 @@ extension Cynosdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeParamTemplatesRequest(engineVersions: self.engineVersions, templateNames: self.templateNames, templateIds: self.templateIds, dbModes: self.dbModes, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, products: self.products, templateTypes: self.templateTypes, engineTypes: self.engineTypes, orderBy: self.orderBy, orderDirection: self.orderDirection)
+            return .init(engineVersions: self.engineVersions, templateNames: self.templateNames, templateIds: self.templateIds, dbModes: self.dbModes, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, products: self.products, templateTypes: self.templateTypes, engineTypes: self.engineTypes, orderBy: self.orderBy, orderDirection: self.orderDirection)
         }
     }
 

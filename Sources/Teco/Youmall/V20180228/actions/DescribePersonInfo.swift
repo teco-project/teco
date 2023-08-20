@@ -68,7 +68,7 @@ extension Youmall {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePersonInfoRequest(companyId: self.companyId, shopId: self.shopId, startPersonId: self.startPersonId, offset: self.offset + .init(response.getItems().count), limit: self.limit, pictureExpires: self.pictureExpires, personType: self.personType)
+            return .init(companyId: self.companyId, shopId: self.shopId, startPersonId: self.startPersonId, offset: self.offset + .init(response.getItems().count), limit: self.limit, pictureExpires: self.pictureExpires, personType: self.personType)
         }
     }
 

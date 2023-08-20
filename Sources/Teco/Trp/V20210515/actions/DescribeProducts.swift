@@ -58,7 +58,7 @@ extension Trp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeProductsRequest(name: self.name, pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1, merchantId: self.merchantId, corpId: self.corpId)
+            return .init(name: self.name, pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1, merchantId: self.merchantId, corpId: self.corpId)
         }
     }
 

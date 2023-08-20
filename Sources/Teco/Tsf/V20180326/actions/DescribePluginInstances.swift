@@ -63,7 +63,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePluginInstancesRequest(scopeValue: self.scopeValue, bound: self.bound, offset: self.offset + .init(response.getItems().count), limit: self.limit, type: self.type, searchWord: self.searchWord)
+            return .init(scopeValue: self.scopeValue, bound: self.bound, offset: self.offset + .init(response.getItems().count), limit: self.limit, type: self.type, searchWord: self.searchWord)
         }
     }
 

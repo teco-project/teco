@@ -63,7 +63,7 @@ extension Tag {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeResourceTagsByResourceIdsRequest(serviceType: self.serviceType, resourcePrefix: self.resourcePrefix, resourceIds: self.resourceIds, resourceRegion: self.resourceRegion, offset: (self.offset ?? 0) + response.limit, limit: self.limit)
+            return .init(serviceType: self.serviceType, resourcePrefix: self.resourcePrefix, resourceIds: self.resourceIds, resourceRegion: self.resourceRegion, offset: (self.offset ?? 0) + response.limit, limit: self.limit)
         }
     }
 

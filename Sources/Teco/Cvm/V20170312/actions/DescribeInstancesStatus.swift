@@ -48,7 +48,7 @@ extension Cvm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeInstancesStatusRequest(instanceIds: self.instanceIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(instanceIds: self.instanceIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

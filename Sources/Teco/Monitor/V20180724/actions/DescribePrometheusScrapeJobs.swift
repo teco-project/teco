@@ -63,7 +63,7 @@ extension Monitor {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePrometheusScrapeJobsRequest(instanceId: self.instanceId, agentId: self.agentId, name: self.name, jobIds: self.jobIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(instanceId: self.instanceId, agentId: self.agentId, name: self.name, jobIds: self.jobIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

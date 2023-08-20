@@ -63,7 +63,7 @@ extension Ses {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return GetSendEmailStatusRequest(requestDate: self.requestDate, offset: self.offset + .init(response.getItems().count), limit: self.limit, messageId: self.messageId, toEmailAddress: self.toEmailAddress)
+            return .init(requestDate: self.requestDate, offset: self.offset + .init(response.getItems().count), limit: self.limit, messageId: self.messageId, toEmailAddress: self.toEmailAddress)
         }
     }
 

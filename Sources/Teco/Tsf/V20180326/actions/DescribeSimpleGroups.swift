@@ -78,7 +78,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSimpleGroupsRequest(groupIdList: self.groupIdList, applicationId: self.applicationId, clusterId: self.clusterId, namespaceId: self.namespaceId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), groupId: self.groupId, searchWord: self.searchWord, appMicroServiceType: self.appMicroServiceType)
+            return .init(groupIdList: self.groupIdList, applicationId: self.applicationId, clusterId: self.clusterId, namespaceId: self.namespaceId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), groupId: self.groupId, searchWord: self.searchWord, appMicroServiceType: self.appMicroServiceType)
         }
     }
 

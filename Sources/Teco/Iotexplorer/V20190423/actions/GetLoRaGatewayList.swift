@@ -48,7 +48,7 @@ extension Iotexplorer {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return GetLoRaGatewayListRequest(isCommunity: self.isCommunity, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(isCommunity: self.isCommunity, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

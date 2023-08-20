@@ -71,7 +71,7 @@ extension Cynosdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAccountsRequest(clusterId: self.clusterId, accountNames: self.accountNames, dbType: self.dbType, hosts: self.hosts, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), accountRegular: self.accountRegular)
+            return .init(clusterId: self.clusterId, accountNames: self.accountNames, dbType: self.dbType, hosts: self.hosts, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), accountRegular: self.accountRegular)
         }
     }
 

@@ -48,7 +48,7 @@ extension Asr {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return GetAsrVocabListRequest(tagInfos: self.tagInfos, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(tagInfos: self.tagInfos, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

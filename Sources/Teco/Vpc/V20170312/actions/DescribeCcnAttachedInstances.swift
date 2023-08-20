@@ -67,7 +67,7 @@ extension Vpc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCcnAttachedInstancesRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters, ccnId: self.ccnId, orderField: self.orderField, orderDirection: self.orderDirection)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters, ccnId: self.ccnId, orderField: self.orderField, orderDirection: self.orderDirection)
         }
     }
 

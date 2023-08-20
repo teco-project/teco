@@ -58,7 +58,7 @@ extension Dbbrain {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSecurityAuditLogExportTasksRequest(secAuditGroupId: self.secAuditGroupId, product: self.product, asyncRequestIds: self.asyncRequestIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(secAuditGroupId: self.secAuditGroupId, product: self.product, asyncRequestIds: self.asyncRequestIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

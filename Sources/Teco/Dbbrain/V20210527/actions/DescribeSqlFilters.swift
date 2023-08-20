@@ -63,7 +63,7 @@ extension Dbbrain {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSqlFiltersRequest(instanceId: self.instanceId, filterIds: self.filterIds, statuses: self.statuses, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, product: self.product)
+            return .init(instanceId: self.instanceId, filterIds: self.filterIds, statuses: self.statuses, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, product: self.product)
         }
     }
 

@@ -65,7 +65,7 @@ extension Gaap {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeProxyGroupListRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, projectId: self.projectId, filters: self.filters, tagSet: self.tagSet)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, projectId: self.projectId, filters: self.filters, tagSet: self.tagSet)
         }
     }
 

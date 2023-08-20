@@ -68,7 +68,7 @@ extension Tdmq {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePublishersRequest(clusterId: self.clusterId, namespace: self.namespace, topic: self.topic, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, sort: self.sort)
+            return .init(clusterId: self.clusterId, namespace: self.namespace, topic: self.topic, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, sort: self.sort)
         }
     }
 

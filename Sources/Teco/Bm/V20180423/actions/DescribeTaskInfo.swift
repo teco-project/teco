@@ -96,7 +96,7 @@ extension Bm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTaskInfoRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, startDate: self.startDate, endDate: self.endDate, taskStatus: self.taskStatus, orderField: self.orderField, order: self.order, taskIds: self.taskIds, instanceIds: self.instanceIds, aliases: self.aliases, taskTypeIds: self.taskTypeIds)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, startDate: self.startDate, endDate: self.endDate, taskStatus: self.taskStatus, orderField: self.orderField, order: self.order, taskIds: self.taskIds, instanceIds: self.instanceIds, aliases: self.aliases, taskTypeIds: self.taskTypeIds)
         }
     }
 

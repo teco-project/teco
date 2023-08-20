@@ -81,7 +81,7 @@ extension Cynosdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAuditLogsRequest(instanceId: self.instanceId, startTime: self.startTime, endTime: self.endTime, order: self.order, orderBy: self.orderBy, filter: self.filter, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), logFilter: self.logFilter)
+            return .init(instanceId: self.instanceId, startTime: self.startTime, endTime: self.endTime, order: self.order, orderBy: self.orderBy, filter: self.filter, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), logFilter: self.logFilter)
         }
     }
 

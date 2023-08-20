@@ -53,7 +53,7 @@ extension Vod {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeContentReviewTemplatesRequest(subAppId: self.subAppId, definitions: self.definitions, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(subAppId: self.subAppId, definitions: self.definitions, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

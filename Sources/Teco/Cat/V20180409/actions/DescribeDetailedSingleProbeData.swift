@@ -125,7 +125,7 @@ extension Cat {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDetailedSingleProbeDataRequest(beginTime: self.beginTime, endTime: self.endTime, taskType: self.taskType, sortField: self.sortField, ascending: self.ascending, selectedFields: self.selectedFields, offset: self.offset + .init(response.getItems().count), limit: self.limit, taskID: self.taskID, operators: self.operators, districts: self.districts, errorTypes: self.errorTypes, city: self.city)
+            return .init(beginTime: self.beginTime, endTime: self.endTime, taskType: self.taskType, sortField: self.sortField, ascending: self.ascending, selectedFields: self.selectedFields, offset: self.offset + .init(response.getItems().count), limit: self.limit, taskID: self.taskID, operators: self.operators, districts: self.districts, errorTypes: self.errorTypes, city: self.city)
         }
     }
 

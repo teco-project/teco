@@ -93,7 +93,7 @@ extension Scf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListAsyncEventsRequest(functionName: self.functionName, namespace: self.namespace, qualifier: self.qualifier, invokeType: self.invokeType, status: self.status, startTimeInterval: self.startTimeInterval, endTimeInterval: self.endTimeInterval, order: self.order, orderby: self.orderby, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, invokeRequestId: self.invokeRequestId)
+            return .init(functionName: self.functionName, namespace: self.namespace, qualifier: self.qualifier, invokeType: self.invokeType, status: self.status, startTimeInterval: self.startTimeInterval, endTimeInterval: self.endTimeInterval, order: self.order, orderby: self.orderby, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, invokeRequestId: self.invokeRequestId)
         }
     }
 

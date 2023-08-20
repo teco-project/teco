@@ -63,7 +63,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeConfigReleaseLogsRequest(groupId: self.groupId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, namespaceId: self.namespaceId, clusterId: self.clusterId, applicationId: self.applicationId)
+            return .init(groupId: self.groupId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, namespaceId: self.namespaceId, clusterId: self.clusterId, applicationId: self.applicationId)
         }
     }
 

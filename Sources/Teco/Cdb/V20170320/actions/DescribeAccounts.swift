@@ -53,7 +53,7 @@ extension Cdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAccountsRequest(instanceId: self.instanceId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, accountRegexp: self.accountRegexp)
+            return .init(instanceId: self.instanceId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, accountRegexp: self.accountRegexp)
         }
     }
 

@@ -63,7 +63,7 @@ extension Iecp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeEdgeSnNodesRequest(edgeUnitId: self.edgeUnitId, namePattern: self.namePattern, snPattern: self.snPattern, remarkPattern: self.remarkPattern, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(edgeUnitId: self.edgeUnitId, namePattern: self.namePattern, snPattern: self.snPattern, remarkPattern: self.remarkPattern, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

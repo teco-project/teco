@@ -58,7 +58,7 @@ extension Tke {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeClusterLevelChangeRecordsRequest(clusterID: self.clusterID, startAt: self.startAt, endAt: self.endAt, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(clusterID: self.clusterID, startAt: self.startAt, endAt: self.endAt, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

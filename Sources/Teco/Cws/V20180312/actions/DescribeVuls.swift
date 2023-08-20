@@ -58,7 +58,7 @@ extension Cws {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeVulsRequest(siteId: self.siteId, monitorId: self.monitorId, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(siteId: self.siteId, monitorId: self.monitorId, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

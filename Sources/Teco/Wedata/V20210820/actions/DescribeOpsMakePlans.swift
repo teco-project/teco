@@ -83,7 +83,7 @@ extension Wedata {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeOpsMakePlansRequest(projectId: self.projectId, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, planId: self.planId, planName: self.planName, taskName: self.taskName, taskId: self.taskId, creator: self.creator, minCreateTime: self.minCreateTime, maxCreateTime: self.maxCreateTime)
+            return .init(projectId: self.projectId, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, planId: self.planId, planName: self.planName, taskName: self.taskName, taskId: self.taskId, creator: self.creator, minCreateTime: self.minCreateTime, maxCreateTime: self.maxCreateTime)
         }
     }
 

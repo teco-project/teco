@@ -83,7 +83,7 @@ extension Vpc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeGatewayFlowMonitorDetailRequest(timePoint: self.timePoint, vpnId: self.vpnId, directConnectGatewayId: self.directConnectGatewayId, peeringConnectionId: self.peeringConnectionId, natId: self.natId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderField: self.orderField, orderDirection: self.orderDirection)
+            return .init(timePoint: self.timePoint, vpnId: self.vpnId, directConnectGatewayId: self.directConnectGatewayId, peeringConnectionId: self.peeringConnectionId, natId: self.natId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderField: self.orderField, orderDirection: self.orderDirection)
         }
     }
 

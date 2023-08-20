@@ -76,7 +76,7 @@ extension Postgres {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDBErrlogsRequest(dbInstanceId: self.dbInstanceId, startTime: self.startTime, endTime: self.endTime, databaseName: self.databaseName, searchKeys: self.searchKeys, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(dbInstanceId: self.dbInstanceId, startTime: self.startTime, endTime: self.endTime, databaseName: self.databaseName, searchKeys: self.searchKeys, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

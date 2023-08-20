@@ -62,7 +62,7 @@ extension Yunjing {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAgentVulsRequest(vulType: self.vulType, uuid: self.uuid, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters)
+            return .init(vulType: self.vulType, uuid: self.uuid, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters)
         }
     }
 

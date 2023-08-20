@@ -58,7 +58,7 @@ extension Wedata {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeMonitorsByPageRequest(projectId: self.projectId, pageSize: self.pageSize, filters: self.filters, orderFields: self.orderFields, pageNumber: (self.pageNumber ?? 0) + 1)
+            return .init(projectId: self.projectId, pageSize: self.pageSize, filters: self.filters, orderFields: self.orderFields, pageNumber: (self.pageNumber ?? 0) + 1)
         }
     }
 

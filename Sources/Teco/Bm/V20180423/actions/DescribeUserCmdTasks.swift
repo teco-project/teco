@@ -53,7 +53,7 @@ extension Bm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeUserCmdTasksRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, orderField: self.orderField, order: self.order)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, orderField: self.orderField, order: self.order)
         }
     }
 

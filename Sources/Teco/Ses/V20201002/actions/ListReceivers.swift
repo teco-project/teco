@@ -53,7 +53,7 @@ extension Ses {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListReceiversRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, status: self.status, keyWord: self.keyWord)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, status: self.status, keyWord: self.keyWord)
         }
     }
 

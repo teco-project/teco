@@ -61,7 +61,7 @@ extension Tag {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return GetResourcesRequest(resourceList: self.resourceList, tagFilters: self.tagFilters, paginationToken: response.paginationToken, maxResults: self.maxResults)
+            return .init(resourceList: self.resourceList, tagFilters: self.tagFilters, paginationToken: response.paginationToken, maxResults: self.maxResults)
         }
     }
 

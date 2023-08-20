@@ -53,7 +53,7 @@ extension Iotexplorer {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListFirmwaresRequest(pageNum: self.pageNum + 1, pageSize: self.pageSize, productID: self.productID, filters: self.filters)
+            return .init(pageNum: self.pageNum + 1, pageSize: self.pageSize, productID: self.productID, filters: self.filters)
         }
     }
 

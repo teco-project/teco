@@ -53,7 +53,7 @@ extension Dbdc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeHostListRequest(instanceId: self.instanceId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), assignStatus: self.assignStatus)
+            return .init(instanceId: self.instanceId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), assignStatus: self.assignStatus)
         }
     }
 

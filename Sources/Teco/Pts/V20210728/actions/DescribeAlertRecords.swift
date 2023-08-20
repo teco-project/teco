@@ -73,7 +73,7 @@ extension Pts {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAlertRecordsRequest(projectIds: self.projectIds, scenarioIds: self.scenarioIds, jobIds: self.jobIds, ascend: self.ascend, orderBy: self.orderBy, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, scenarioNames: self.scenarioNames)
+            return .init(projectIds: self.projectIds, scenarioIds: self.scenarioIds, jobIds: self.jobIds, ascend: self.ascend, orderBy: self.orderBy, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, scenarioNames: self.scenarioNames)
         }
     }
 

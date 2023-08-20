@@ -60,7 +60,7 @@ extension Dlc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeScriptsRequest(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), sortBy: self.sortBy, sorting: self.sorting, filters: self.filters)
+            return .init(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), sortBy: self.sortBy, sorting: self.sorting, filters: self.filters)
         }
     }
 

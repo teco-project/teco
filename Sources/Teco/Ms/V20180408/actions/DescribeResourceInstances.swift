@@ -63,7 +63,7 @@ extension Ms {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeResourceInstancesRequest(filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, pids: self.pids, orderField: self.orderField, orderDirection: self.orderDirection)
+            return .init(filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, pids: self.pids, orderField: self.orderField, orderDirection: self.orderDirection)
         }
     }
 

@@ -71,7 +71,7 @@ extension Ecm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeVpcsRequest(vpcIds: self.vpcIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, ecmRegion: self.ecmRegion, sort: self.sort)
+            return .init(vpcIds: self.vpcIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, ecmRegion: self.ecmRegion, sort: self.sort)
         }
     }
 

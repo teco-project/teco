@@ -53,7 +53,7 @@ extension Clb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCustomizedConfigAssociateListRequest(uconfigId: self.uconfigId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, domain: self.domain)
+            return .init(uconfigId: self.uconfigId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, domain: self.domain)
         }
     }
 

@@ -73,7 +73,7 @@ extension Tke {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeExistedInstancesRequest(clusterId: self.clusterId, instanceIds: self.instanceIds, filters: self.filters, vagueIpAddress: self.vagueIpAddress, vagueInstanceName: self.vagueInstanceName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, ipAddresses: self.ipAddresses)
+            return .init(clusterId: self.clusterId, instanceIds: self.instanceIds, filters: self.filters, vagueIpAddress: self.vagueIpAddress, vagueInstanceName: self.vagueInstanceName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, ipAddresses: self.ipAddresses)
         }
     }
 

@@ -88,7 +88,7 @@ extension Ssa {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return SaEventPubRequest(asset: self.asset, eventName: self.eventName, eventType1: self.eventType1, eventType2: self.eventType2, level: self.level, status: self.status, startTime: self.startTime, offset: self.offset + .init(response.getItems().count), limit: self.limit, endTime: self.endTime, oldIdMd5: self.oldIdMd5)
+            return .init(asset: self.asset, eventName: self.eventName, eventType1: self.eventType1, eventType2: self.eventType2, level: self.level, status: self.status, startTime: self.startTime, offset: self.offset + .init(response.getItems().count), limit: self.limit, endTime: self.endTime, oldIdMd5: self.oldIdMd5)
         }
     }
 

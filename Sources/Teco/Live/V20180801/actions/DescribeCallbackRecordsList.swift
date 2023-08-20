@@ -79,7 +79,7 @@ extension Live {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCallbackRecordsListRequest(startTime: self.startTime, endTime: self.endTime, streamName: self.streamName, pageNum: self.pageNum + 1, pageSize: self.pageSize, eventType: self.eventType, resultCode: self.resultCode)
+            return .init(startTime: self.startTime, endTime: self.endTime, streamName: self.streamName, pageNum: self.pageNum + 1, pageSize: self.pageSize, eventType: self.eventType, resultCode: self.resultCode)
         }
     }
 

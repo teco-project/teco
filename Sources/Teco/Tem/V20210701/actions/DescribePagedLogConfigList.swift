@@ -63,7 +63,7 @@ extension Tem {
             guard response.result.continueToken != nil else {
                 return nil
             }
-            return DescribePagedLogConfigListRequest(environmentId: self.environmentId, applicationId: self.applicationId, applicationName: self.applicationName, name: self.name, limit: self.limit, continueToken: response.result.continueToken)
+            return .init(environmentId: self.environmentId, applicationId: self.applicationId, applicationName: self.applicationName, name: self.name, limit: self.limit, continueToken: response.result.continueToken)
         }
     }
 

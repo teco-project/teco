@@ -68,7 +68,7 @@ extension Hasim {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeRulesRequest(ruleID: self.ruleID, ruleIDs: self.ruleIDs, name: self.name, type: self.type, isActive: self.isActive, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(ruleID: self.ruleID, ruleIDs: self.ruleIDs, name: self.name, type: self.type, isActive: self.isActive, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

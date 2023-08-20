@@ -53,7 +53,7 @@ extension Eiam {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListAccountInAccountGroupRequest(accountGroupId: self.accountGroupId, searchCondition: self.searchCondition, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(accountGroupId: self.accountGroupId, searchCondition: self.searchCondition, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

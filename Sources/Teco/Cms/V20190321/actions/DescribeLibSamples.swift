@@ -63,7 +63,7 @@ extension Cms {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeLibSamplesRequest(limit: self.limit, offset: self.offset + .init(response.getItems().count), libID: self.libID, content: self.content, evilTypeList: self.evilTypeList, sampleIDs: self.sampleIDs)
+            return .init(limit: self.limit, offset: self.offset + .init(response.getItems().count), libID: self.libID, content: self.content, evilTypeList: self.evilTypeList, sampleIDs: self.sampleIDs)
         }
     }
 

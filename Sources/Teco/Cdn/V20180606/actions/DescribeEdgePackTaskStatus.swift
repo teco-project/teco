@@ -66,7 +66,7 @@ extension Cdn {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeEdgePackTaskStatusRequest(startTime: self.startTime, endTime: self.endTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters)
+            return .init(startTime: self.startTime, endTime: self.endTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters)
         }
     }
 

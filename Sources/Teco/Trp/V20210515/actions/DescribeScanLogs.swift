@@ -17,10 +17,11 @@
 import Logging
 import NIOCore
 import TecoCore
+import TecoPaginationHelpers
 
 extension Trp {
     /// DescribeScanLogs请求参数结构体
-    public struct DescribeScanLogsRequest: TCRequest {
+    public struct DescribeScanLogsRequest: TCPaginatedRequest {
         /// 企业ID
         public let corpId: UInt64?
 
@@ -51,10 +52,18 @@ extension Trp {
             case code = "Code"
             case openid = "Openid"
         }
+
+        /// Compute the next request based on API response.
+        public func makeNextRequest(with response: DescribeScanLogsResponse) -> DescribeScanLogsRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return .init(corpId: self.corpId, pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1, code: self.code, openid: self.openid)
+        }
     }
 
     /// DescribeScanLogs返回参数结构体
-    public struct DescribeScanLogsResponse: TCResponse {
+    public struct DescribeScanLogsResponse: TCPaginatedResponse {
         /// 【弃用】
         @available(*, deprecated)
         public let products: [ScanLog]
@@ -73,6 +82,16 @@ extension Trp {
             case totalCount = "TotalCount"
             case scanLogs = "ScanLogs"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned ``ScanLog`` list from the paginated response.
+        public func getItems() -> [ScanLog] {
+            self.scanLogs
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> Int64? {
+            self.totalCount
         }
     }
 
@@ -98,5 +117,25 @@ extension Trp {
     @inlinable
     public func describeScanLogs(corpId: UInt64? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, code: String? = nil, openid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanLogsResponse {
         try await self.describeScanLogs(.init(corpId: corpId, pageSize: pageSize, pageNumber: pageNumber, code: code, openid: openid), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 查询扫码日志明细
+    @inlinable
+    public func describeScanLogsPaginated(_ input: DescribeScanLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ScanLog])> {
+        self.client.paginate(input: input, region: region, command: self.describeScanLogs, logger: logger, on: eventLoop)
+    }
+
+    /// 查询扫码日志明细
+    @inlinable @discardableResult
+    public func describeScanLogsPaginated(_ input: DescribeScanLogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeScanLogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeScanLogs, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询扫码日志明细
+    ///
+    /// - Returns: `AsyncSequence`s of ``ScanLog`` and ``DescribeScanLogsResponse`` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeScanLogsPaginator(_ input: DescribeScanLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScanLogsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScanLogs, logger: logger, on: eventLoop)
     }
 }

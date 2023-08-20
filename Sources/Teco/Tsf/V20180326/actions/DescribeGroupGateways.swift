@@ -53,7 +53,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeGroupGatewaysRequest(gatewayDeployGroupId: self.gatewayDeployGroupId, offset: self.offset + .init(response.getItems().count), limit: self.limit, searchWord: self.searchWord)
+            return .init(gatewayDeployGroupId: self.gatewayDeployGroupId, offset: self.offset + .init(response.getItems().count), limit: self.limit, searchWord: self.searchWord)
         }
     }
 

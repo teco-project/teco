@@ -63,7 +63,7 @@ extension Gme {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeApplicationListRequest(projectId: self.projectId, pageNo: self.pageNo + 1, pageSize: self.pageSize, searchText: self.searchText, tagSet: self.tagSet, filters: self.filters)
+            return .init(projectId: self.projectId, pageNo: self.pageNo + 1, pageSize: self.pageSize, searchText: self.searchText, tagSet: self.tagSet, filters: self.filters)
         }
     }
 

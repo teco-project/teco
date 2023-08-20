@@ -88,7 +88,7 @@ extension Cynosdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeResourcePackageListRequest(packageId: self.packageId, packageName: self.packageName, packageType: self.packageType, packageRegion: self.packageRegion, status: self.status, orderBy: self.orderBy, orderDirection: self.orderDirection, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(packageId: self.packageId, packageName: self.packageName, packageType: self.packageType, packageRegion: self.packageRegion, status: self.status, orderBy: self.orderBy, orderDirection: self.orderDirection, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

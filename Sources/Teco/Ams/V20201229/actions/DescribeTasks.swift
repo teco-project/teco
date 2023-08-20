@@ -70,7 +70,7 @@ extension Ams {
             guard response.pageToken != nil else {
                 return nil
             }
-            return DescribeTasksRequest(limit: self.limit, filter: self.filter, pageToken: response.pageToken, startTime: self.startTime, endTime: self.endTime)
+            return .init(limit: self.limit, filter: self.filter, pageToken: response.pageToken, startTime: self.startTime, endTime: self.endTime)
         }
     }
 

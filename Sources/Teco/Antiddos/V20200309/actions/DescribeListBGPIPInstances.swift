@@ -119,7 +119,7 @@ extension Antiddos {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeListBGPIPInstancesRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, filterIp: self.filterIp, filterInstanceId: self.filterInstanceId, filterLine: self.filterLine, filterRegion: self.filterRegion, filterName: self.filterName, filterEipType: self.filterEipType, filterEipEipAddressStatus: self.filterEipEipAddressStatus, filterDamDDoSStatus: self.filterDamDDoSStatus, filterStatus: self.filterStatus, filterCname: self.filterCname, filterInstanceIdList: self.filterInstanceIdList, filterTag: self.filterTag, filterPackType: self.filterPackType, filterConvoy: self.filterConvoy)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, filterIp: self.filterIp, filterInstanceId: self.filterInstanceId, filterLine: self.filterLine, filterRegion: self.filterRegion, filterName: self.filterName, filterEipType: self.filterEipType, filterEipEipAddressStatus: self.filterEipEipAddressStatus, filterDamDDoSStatus: self.filterDamDDoSStatus, filterStatus: self.filterStatus, filterCname: self.filterCname, filterInstanceIdList: self.filterInstanceIdList, filterTag: self.filterTag, filterPackType: self.filterPackType, filterConvoy: self.filterConvoy)
         }
     }
 

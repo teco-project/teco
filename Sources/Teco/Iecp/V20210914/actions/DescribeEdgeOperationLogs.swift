@@ -68,7 +68,7 @@ extension Iecp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeEdgeOperationLogsRequest(beginTime: self.beginTime, endTime: self.endTime, offset: self.offset + .init(response.getItems().count), limit: self.limit, sort: self.sort, module: self.module, condition: self.condition)
+            return .init(beginTime: self.beginTime, endTime: self.endTime, offset: self.offset + .init(response.getItems().count), limit: self.limit, sort: self.sort, module: self.module, condition: self.condition)
         }
     }
 

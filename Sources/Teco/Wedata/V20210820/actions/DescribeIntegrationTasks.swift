@@ -73,7 +73,7 @@ extension Wedata {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeIntegrationTasksRequest(projectId: self.projectId, pageNumber: self.pageNumber + 1, pageSize: self.pageSize, filters: self.filters, orderFields: self.orderFields, startTime: self.startTime, endTime: self.endTime, taskType: self.taskType)
+            return .init(projectId: self.projectId, pageNumber: self.pageNumber + 1, pageSize: self.pageSize, filters: self.filters, orderFields: self.orderFields, startTime: self.startTime, endTime: self.endTime, taskType: self.taskType)
         }
     }
 

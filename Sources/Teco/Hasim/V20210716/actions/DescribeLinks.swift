@@ -88,7 +88,7 @@ extension Hasim {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeLinksRequest(linkID: self.linkID, iccid: self.iccid, imei: self.imei, status: self.status, teleOperator: self.teleOperator, tagID: self.tagID, tacticID: self.tacticID, linkedState: self.linkedState, tagIDs: self.tagIDs, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(linkID: self.linkID, iccid: self.iccid, imei: self.imei, status: self.status, teleOperator: self.teleOperator, tagID: self.tagID, tacticID: self.tacticID, linkedState: self.linkedState, tagIDs: self.tagIDs, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

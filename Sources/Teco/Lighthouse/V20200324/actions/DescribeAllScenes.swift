@@ -48,7 +48,7 @@ extension Lighthouse {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAllScenesRequest(sceneIds: self.sceneIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(sceneIds: self.sceneIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

@@ -66,7 +66,7 @@ extension Ecdn {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeEcdnDomainLogsRequest(domain: self.domain, startTime: self.startTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(domain: self.domain, startTime: self.startTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

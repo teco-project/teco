@@ -57,7 +57,7 @@ extension Ecm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSecurityGroupsRequest(securityGroupIds: self.securityGroupIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(securityGroupIds: self.securityGroupIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

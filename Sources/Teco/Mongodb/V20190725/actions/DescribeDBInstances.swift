@@ -125,7 +125,7 @@ extension Mongodb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDBInstancesRequest(instanceIds: self.instanceIds, instanceType: self.instanceType, clusterType: self.clusterType, status: self.status, vpcId: self.vpcId, subnetId: self.subnetId, payMode: self.payMode, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), orderBy: self.orderBy, orderByType: self.orderByType, projectIds: self.projectIds, searchKey: self.searchKey, tags: self.tags)
+            return .init(instanceIds: self.instanceIds, instanceType: self.instanceType, clusterType: self.clusterType, status: self.status, vpcId: self.vpcId, subnetId: self.subnetId, payMode: self.payMode, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), orderBy: self.orderBy, orderByType: self.orderByType, projectIds: self.projectIds, searchKey: self.searchKey, tags: self.tags)
         }
     }
 

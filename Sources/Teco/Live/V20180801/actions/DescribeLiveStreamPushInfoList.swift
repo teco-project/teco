@@ -57,7 +57,7 @@ extension Live {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeLiveStreamPushInfoListRequest(pushDomain: self.pushDomain, appName: self.appName, pageNum: (self.pageNum ?? 0) + 1, pageSize: self.pageSize)
+            return .init(pushDomain: self.pushDomain, appName: self.appName, pageNum: (self.pageNum ?? 0) + 1, pageSize: self.pageSize)
         }
     }
 

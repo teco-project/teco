@@ -48,7 +48,7 @@ extension Lighthouse {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeFirewallRulesRequest(instanceId: self.instanceId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(instanceId: self.instanceId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

@@ -63,7 +63,7 @@ extension Sqlserver {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBackupFilesRequest(instanceId: self.instanceId, groupId: self.groupId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), databaseName: self.databaseName, orderBy: self.orderBy)
+            return .init(instanceId: self.instanceId, groupId: self.groupId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), databaseName: self.databaseName, orderBy: self.orderBy)
         }
     }
 

@@ -61,7 +61,7 @@ extension Live {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeLiveDomainCertBindingsRequest(domainSearch: self.domainSearch, offset: (self.offset ?? 0) + .init(response.getItems().count), length: self.length, domainName: self.domainName, orderBy: self.orderBy)
+            return .init(domainSearch: self.domainSearch, offset: (self.offset ?? 0) + .init(response.getItems().count), length: self.length, domainName: self.domainName, orderBy: self.orderBy)
         }
     }
 

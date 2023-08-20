@@ -43,7 +43,7 @@ extension Tcss {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSearchTemplatesRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

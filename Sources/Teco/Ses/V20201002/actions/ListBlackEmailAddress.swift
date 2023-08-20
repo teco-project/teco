@@ -71,7 +71,7 @@ extension Ses {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListBlackEmailAddressRequest(startDate: self.startDate, endDate: self.endDate, limit: self.limit, offset: self.offset + .init(response.getItems().count), emailAddress: self.emailAddress, taskID: self.taskID)
+            return .init(startDate: self.startDate, endDate: self.endDate, limit: self.limit, offset: self.offset + .init(response.getItems().count), emailAddress: self.emailAddress, taskID: self.taskID)
         }
     }
 

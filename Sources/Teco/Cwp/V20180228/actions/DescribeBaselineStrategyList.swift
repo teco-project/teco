@@ -48,7 +48,7 @@ extension Cwp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBaselineStrategyListRequest(limit: self.limit, offset: self.offset + .init(response.getItems().count), enabled: self.enabled)
+            return .init(limit: self.limit, offset: self.offset + .init(response.getItems().count), enabled: self.enabled)
         }
     }
 

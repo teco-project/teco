@@ -48,7 +48,7 @@ extension Tci {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeImageTaskRequest(jobId: self.jobId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(jobId: self.jobId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

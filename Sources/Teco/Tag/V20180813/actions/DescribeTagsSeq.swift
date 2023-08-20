@@ -68,7 +68,7 @@ extension Tag {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTagsSeqRequest(tagKey: self.tagKey, tagValue: self.tagValue, offset: (self.offset ?? 0) + response.limit, limit: self.limit, createUin: self.createUin, tagKeys: self.tagKeys, showProject: self.showProject)
+            return .init(tagKey: self.tagKey, tagValue: self.tagValue, offset: (self.offset ?? 0) + response.limit, limit: self.limit, createUin: self.createUin, tagKeys: self.tagKeys, showProject: self.showProject)
         }
     }
 

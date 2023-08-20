@@ -65,7 +65,7 @@ extension Keewidb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTendisSlowLogRequest(instanceId: self.instanceId, beginTime: self.beginTime, endTime: self.endTime, minQueryTime: self.minQueryTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(instanceId: self.instanceId, beginTime: self.beginTime, endTime: self.endTime, minQueryTime: self.minQueryTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

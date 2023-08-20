@@ -58,7 +58,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeUnitRulesRequest(gatewayInstanceId: self.gatewayInstanceId, searchWord: self.searchWord, status: self.status, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(gatewayInstanceId: self.gatewayInstanceId, searchWord: self.searchWord, status: self.status, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

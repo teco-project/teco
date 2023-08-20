@@ -63,7 +63,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeGroupsWithPluginRequest(pluginId: self.pluginId, bound: self.bound, offset: self.offset + .init(response.getItems().count), limit: self.limit, searchWord: self.searchWord, gatewayInstanceId: self.gatewayInstanceId)
+            return .init(pluginId: self.pluginId, bound: self.bound, offset: self.offset + .init(response.getItems().count), limit: self.limit, searchWord: self.searchWord, gatewayInstanceId: self.gatewayInstanceId)
         }
     }
 

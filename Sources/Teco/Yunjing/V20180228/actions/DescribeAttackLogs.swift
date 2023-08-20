@@ -61,7 +61,7 @@ extension Yunjing {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAttackLogsRequest(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters, uuid: self.uuid, quuid: self.quuid)
+            return .init(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters, uuid: self.uuid, quuid: self.quuid)
         }
     }
 

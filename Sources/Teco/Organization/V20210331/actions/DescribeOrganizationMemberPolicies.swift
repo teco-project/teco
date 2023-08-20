@@ -53,7 +53,7 @@ extension Organization {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeOrganizationMemberPoliciesRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, memberUin: self.memberUin, searchKey: self.searchKey)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, memberUin: self.memberUin, searchKey: self.searchKey)
         }
     }
 

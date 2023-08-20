@@ -62,7 +62,7 @@ extension Ecm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeHaVipsRequest(haVipIds: self.haVipIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, ecmRegion: self.ecmRegion)
+            return .init(haVipIds: self.haVipIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, ecmRegion: self.ecmRegion)
         }
     }
 

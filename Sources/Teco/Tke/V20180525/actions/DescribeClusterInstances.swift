@@ -63,7 +63,7 @@ extension Tke {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeClusterInstancesRequest(clusterId: self.clusterId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, instanceIds: self.instanceIds, instanceRole: self.instanceRole, filters: self.filters)
+            return .init(clusterId: self.clusterId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, instanceIds: self.instanceIds, instanceRole: self.instanceRole, filters: self.filters)
         }
     }
 

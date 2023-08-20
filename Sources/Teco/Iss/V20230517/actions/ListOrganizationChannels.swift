@@ -60,7 +60,7 @@ extension Iss {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListOrganizationChannelsRequest(organizationId: self.organizationId, pageSize: self.pageSize, pageNumber: self.pageNumber + 1, deviceName: self.deviceName, channelName: self.channelName)
+            return .init(organizationId: self.organizationId, pageSize: self.pageSize, pageNumber: self.pageNumber + 1, deviceName: self.deviceName, channelName: self.channelName)
         }
     }
 

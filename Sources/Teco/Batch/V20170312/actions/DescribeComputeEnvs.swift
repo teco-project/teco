@@ -62,7 +62,7 @@ extension Batch {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeComputeEnvsRequest(envIds: self.envIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(envIds: self.envIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

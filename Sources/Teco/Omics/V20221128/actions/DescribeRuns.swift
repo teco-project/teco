@@ -57,7 +57,7 @@ extension Omics {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeRunsRequest(projectId: self.projectId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters)
+            return .init(projectId: self.projectId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters)
         }
     }
 

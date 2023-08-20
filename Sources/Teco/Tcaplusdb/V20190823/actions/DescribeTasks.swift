@@ -58,7 +58,7 @@ extension Tcaplusdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTasksRequest(clusterIds: self.clusterIds, taskIds: self.taskIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(clusterIds: self.clusterIds, taskIds: self.taskIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

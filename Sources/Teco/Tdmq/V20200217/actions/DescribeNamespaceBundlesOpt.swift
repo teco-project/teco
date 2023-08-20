@@ -73,7 +73,7 @@ extension Tdmq {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeNamespaceBundlesOptRequest(clusterName: self.clusterName, tenantId: self.tenantId, namespaceName: self.namespaceName, needMetrics: self.needMetrics, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), bundle: self.bundle, ownerBroker: self.ownerBroker)
+            return .init(clusterName: self.clusterName, tenantId: self.tenantId, namespaceName: self.namespaceName, needMetrics: self.needMetrics, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), bundle: self.bundle, ownerBroker: self.ownerBroker)
         }
     }
 

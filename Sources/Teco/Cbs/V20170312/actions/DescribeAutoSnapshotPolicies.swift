@@ -74,7 +74,7 @@ extension Cbs {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAutoSnapshotPoliciesRequest(autoSnapshotPolicyIds: self.autoSnapshotPolicyIds, filters: self.filters, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), order: self.order, orderField: self.orderField)
+            return .init(autoSnapshotPolicyIds: self.autoSnapshotPolicyIds, filters: self.filters, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), order: self.order, orderField: self.orderField)
         }
     }
 

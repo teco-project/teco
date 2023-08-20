@@ -48,7 +48,7 @@ extension Iotexplorer {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeFenceBindListRequest(fenceId: self.fenceId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(fenceId: self.fenceId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

@@ -48,7 +48,7 @@ extension Ssl {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCompaniesRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, companyId: self.companyId)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, companyId: self.companyId)
         }
     }
 

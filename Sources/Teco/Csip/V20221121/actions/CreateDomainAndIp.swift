@@ -21,7 +21,6 @@ import TecoCore
 extension Csip {
     /// CreateDomainAndIp请求参数结构体
     public struct CreateDomainAndIpRequest: TCRequest {
-        /// -
         public let content: [String]
 
         public init(content: [String]) {

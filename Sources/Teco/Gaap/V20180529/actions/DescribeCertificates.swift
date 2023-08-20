@@ -55,7 +55,7 @@ extension Gaap {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCertificatesRequest(certificateType: self.certificateType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(certificateType: self.certificateType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

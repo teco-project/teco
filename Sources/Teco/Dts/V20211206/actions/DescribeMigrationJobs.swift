@@ -113,7 +113,7 @@ extension Dts {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeMigrationJobsRequest(jobId: self.jobId, jobName: self.jobName, status: self.status, srcInstanceId: self.srcInstanceId, srcRegion: self.srcRegion, srcDatabaseType: self.srcDatabaseType, srcAccessType: self.srcAccessType, dstInstanceId: self.dstInstanceId, dstRegion: self.dstRegion, dstDatabaseType: self.dstDatabaseType, dstAccessType: self.dstAccessType, runMode: self.runMode, orderSeq: self.orderSeq, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), tagFilters: self.tagFilters)
+            return .init(jobId: self.jobId, jobName: self.jobName, status: self.status, srcInstanceId: self.srcInstanceId, srcRegion: self.srcRegion, srcDatabaseType: self.srcDatabaseType, srcAccessType: self.srcAccessType, dstInstanceId: self.dstInstanceId, dstRegion: self.dstRegion, dstDatabaseType: self.dstDatabaseType, dstAccessType: self.dstAccessType, runMode: self.runMode, orderSeq: self.orderSeq, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), tagFilters: self.tagFilters)
         }
     }
 

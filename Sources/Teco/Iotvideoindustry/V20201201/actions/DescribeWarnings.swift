@@ -73,7 +73,7 @@ extension Iotvideoindustry {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeWarningsRequest(orderType: self.orderType, deviceId: self.deviceId, warnLevelArray: self.warnLevelArray, warnModeArray: self.warnModeArray, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, dateBegin: self.dateBegin, dateEnd: self.dateEnd)
+            return .init(orderType: self.orderType, deviceId: self.deviceId, warnLevelArray: self.warnLevelArray, warnModeArray: self.warnModeArray, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, dateBegin: self.dateBegin, dateEnd: self.dateEnd)
         }
     }
 

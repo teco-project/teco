@@ -48,7 +48,7 @@ extension Wedata {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBaselineInstancesRequest(pageNumber: self.pageNumber + 1, pageSize: self.pageSize, filters: self.filters)
+            return .init(pageNumber: self.pageNumber + 1, pageSize: self.pageSize, filters: self.filters)
         }
     }
 

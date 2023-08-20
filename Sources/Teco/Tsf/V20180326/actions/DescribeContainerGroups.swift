@@ -73,7 +73,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeContainerGroupsRequest(searchWord: self.searchWord, applicationId: self.applicationId, orderBy: self.orderBy, orderType: self.orderType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, clusterId: self.clusterId, namespaceId: self.namespaceId)
+            return .init(searchWord: self.searchWord, applicationId: self.applicationId, orderBy: self.orderBy, orderType: self.orderType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, clusterId: self.clusterId, namespaceId: self.namespaceId)
         }
     }
 

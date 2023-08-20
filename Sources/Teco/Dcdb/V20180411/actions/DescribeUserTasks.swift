@@ -73,7 +73,7 @@ extension Dcdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeUserTasksRequest(statuses: self.statuses, instanceIds: self.instanceIds, flowTypes: self.flowTypes, startTime: self.startTime, endTime: self.endTime, uTaskIds: self.uTaskIds, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(statuses: self.statuses, instanceIds: self.instanceIds, flowTypes: self.flowTypes, startTime: self.startTime, endTime: self.endTime, uTaskIds: self.uTaskIds, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

@@ -86,7 +86,7 @@ extension Dbbrain {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSlowLogTopSqlsRequest(instanceId: self.instanceId, startTime: self.startTime, endTime: self.endTime, sortBy: self.sortBy, orderBy: self.orderBy, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), schemaList: self.schemaList, product: self.product)
+            return .init(instanceId: self.instanceId, startTime: self.startTime, endTime: self.endTime, sortBy: self.sortBy, orderBy: self.orderBy, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), schemaList: self.schemaList, product: self.product)
         }
     }
 

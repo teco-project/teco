@@ -53,7 +53,7 @@ extension Antiddos {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCCThresholdListRequest(business: self.business, offset: self.offset + .init(response.getItems().count), limit: self.limit, instanceId: self.instanceId)
+            return .init(business: self.business, offset: self.offset + .init(response.getItems().count), limit: self.limit, instanceId: self.instanceId)
         }
     }
 

@@ -82,7 +82,7 @@ extension Cbs {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSnapshotsRequest(snapshotIds: self.snapshotIds, filters: self.filters, limit: self.limit, orderField: self.orderField, offset: (self.offset ?? 0) + .init(response.getItems().count), order: self.order)
+            return .init(snapshotIds: self.snapshotIds, filters: self.filters, limit: self.limit, orderField: self.orderField, offset: (self.offset ?? 0) + .init(response.getItems().count), order: self.order)
         }
     }
 

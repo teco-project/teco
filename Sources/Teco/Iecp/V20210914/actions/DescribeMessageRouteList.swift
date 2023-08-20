@@ -57,7 +57,7 @@ extension Iecp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeMessageRouteListRequest(limit: self.limit, offset: self.offset + .init(response.getItems().count), filter: self.filter, startTime: self.startTime, endTime: self.endTime, order: self.order)
+            return .init(limit: self.limit, offset: self.offset + .init(response.getItems().count), filter: self.filter, startTime: self.startTime, endTime: self.endTime, order: self.order)
         }
     }
 

@@ -21,7 +21,6 @@ import TecoCore
 extension Csip {
     /// DescribeCVMAssetInfo请求参数结构体
     public struct DescribeCVMAssetInfoRequest: TCRequest {
-        /// -
         public let assetId: String
 
         public init(assetId: String) {

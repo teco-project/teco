@@ -74,7 +74,7 @@ extension Ess {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeOrganizationSealsRequest(operator: self.operator, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), infoType: self.infoType, sealId: self.sealId, sealTypes: self.sealTypes, agent: self.agent)
+            return .init(operator: self.operator, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), infoType: self.infoType, sealId: self.sealId, sealTypes: self.sealTypes, agent: self.agent)
         }
     }
 

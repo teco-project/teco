@@ -43,7 +43,7 @@ extension Cwp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeMonthInspectionReportRequest(limit: self.limit, offset: self.offset + .init(response.getItems().count))
+            return .init(limit: self.limit, offset: self.offset + .init(response.getItems().count))
         }
     }
 

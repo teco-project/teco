@@ -62,7 +62,7 @@ extension Ame {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeKTVRobotsRequest(robotIds: self.robotIds, statuses: self.statuses, createTime: self.createTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(robotIds: self.robotIds, statuses: self.statuses, createTime: self.createTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

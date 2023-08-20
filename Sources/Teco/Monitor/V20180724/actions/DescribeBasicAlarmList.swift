@@ -93,7 +93,7 @@ extension Monitor {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBasicAlarmListRequest(module: self.module, startTime: self.startTime, endTime: self.endTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), occurTimeOrder: self.occurTimeOrder, projectIds: self.projectIds, viewNames: self.viewNames, alarmStatus: self.alarmStatus, objLike: self.objLike, instanceGroupIds: self.instanceGroupIds, metricNames: self.metricNames)
+            return .init(module: self.module, startTime: self.startTime, endTime: self.endTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), occurTimeOrder: self.occurTimeOrder, projectIds: self.projectIds, viewNames: self.viewNames, alarmStatus: self.alarmStatus, objLike: self.objLike, instanceGroupIds: self.instanceGroupIds, metricNames: self.metricNames)
         }
     }
 

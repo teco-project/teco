@@ -83,7 +83,7 @@ extension Bmeip {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeEipAclsRequest(aclName: self.aclName, aclIds: self.aclIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, eipIds: self.eipIds, eipIps: self.eipIps, eipNames: self.eipNames, orderField: self.orderField, order: self.order, aclNames: self.aclNames)
+            return .init(aclName: self.aclName, aclIds: self.aclIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, eipIds: self.eipIds, eipIps: self.eipIps, eipNames: self.eipNames, orderField: self.orderField, order: self.order, aclNames: self.aclNames)
         }
     }
 

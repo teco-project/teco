@@ -21,7 +21,6 @@ import TecoCore
 extension Csip {
     /// DescribeDomainAssets请求参数结构体
     public struct DescribeDomainAssetsRequest: TCRequest {
-        /// -
         public let filter: Filter?
 
         public init(filter: Filter? = nil) {

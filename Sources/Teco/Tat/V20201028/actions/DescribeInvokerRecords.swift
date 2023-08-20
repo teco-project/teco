@@ -48,7 +48,7 @@ extension Tat {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeInvokerRecordsRequest(invokerIds: self.invokerIds, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(invokerIds: self.invokerIds, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

@@ -88,7 +88,7 @@ extension Memcached {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeInstancesRequest(orderBy: self.orderBy, searchKeys: self.searchKeys, uniqSubnetIds: self.uniqSubnetIds, vips: self.vips, orderType: self.orderType, instanceNames: self.instanceNames, uniqVpcIds: self.uniqVpcIds, projectIds: self.projectIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, instanceIds: self.instanceIds)
+            return .init(orderBy: self.orderBy, searchKeys: self.searchKeys, uniqSubnetIds: self.uniqSubnetIds, vips: self.vips, orderType: self.orderType, instanceNames: self.instanceNames, uniqVpcIds: self.uniqVpcIds, projectIds: self.projectIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, instanceIds: self.instanceIds)
         }
     }
 

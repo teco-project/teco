@@ -58,7 +58,7 @@ extension Ssa {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeComplianceAssetListRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, id: self.id, filter: self.filter, search: self.search)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, id: self.id, filter: self.filter, search: self.search)
         }
     }
 

@@ -63,7 +63,7 @@ extension Cloudaudit {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeEventsRequest(startTime: self.startTime, endTime: self.endTime, nextToken: response.nextToken, maxResults: self.maxResults, lookupAttributes: self.lookupAttributes, isReturnLocation: self.isReturnLocation)
+            return .init(startTime: self.startTime, endTime: self.endTime, nextToken: response.nextToken, maxResults: self.maxResults, lookupAttributes: self.lookupAttributes, isReturnLocation: self.isReturnLocation)
         }
     }
 

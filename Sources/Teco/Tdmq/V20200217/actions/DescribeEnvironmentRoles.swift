@@ -66,7 +66,7 @@ extension Tdmq {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeEnvironmentRolesRequest(environmentId: self.environmentId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, clusterId: self.clusterId, roleName: self.roleName, filters: self.filters)
+            return .init(environmentId: self.environmentId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, clusterId: self.clusterId, roleName: self.roleName, filters: self.filters)
         }
     }
 

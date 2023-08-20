@@ -53,7 +53,7 @@ extension Tag {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTagKeysRequest(createUin: self.createUin, offset: (self.offset ?? 0) + response.limit, limit: self.limit, showProject: self.showProject)
+            return .init(createUin: self.createUin, offset: (self.offset ?? 0) + response.limit, limit: self.limit, showProject: self.showProject)
         }
     }
 

@@ -43,7 +43,7 @@ extension Ape {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAuthUsersRequest(limit: self.limit, offset: self.offset + .init(response.getItems().count))
+            return .init(limit: self.limit, offset: self.offset + .init(response.getItems().count))
         }
     }
 

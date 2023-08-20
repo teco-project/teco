@@ -82,7 +82,7 @@ extension Tdmq {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTopicsRequest(environmentId: self.environmentId, clusterId: self.clusterId, topicName: self.topicName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, topicType: self.topicType, filters: self.filters, topicCreator: self.topicCreator)
+            return .init(environmentId: self.environmentId, clusterId: self.clusterId, topicName: self.topicName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, topicType: self.topicType, filters: self.filters, topicCreator: self.topicCreator)
         }
     }
 

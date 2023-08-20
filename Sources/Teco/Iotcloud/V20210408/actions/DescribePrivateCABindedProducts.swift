@@ -48,7 +48,7 @@ extension Iotcloud {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePrivateCABindedProductsRequest(certName: self.certName, offset: self.offset + .init(response.getItems().count), limit: self.limit)
+            return .init(certName: self.certName, offset: self.offset + .init(response.getItems().count), limit: self.limit)
         }
     }
 

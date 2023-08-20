@@ -92,7 +92,7 @@ extension Teo {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePurgeTasksRequest(jobId: self.jobId, type: self.type, startTime: self.startTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, statuses: self.statuses, zoneId: self.zoneId, domains: self.domains, target: self.target)
+            return .init(jobId: self.jobId, type: self.type, startTime: self.startTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, statuses: self.statuses, zoneId: self.zoneId, domains: self.domains, target: self.target)
         }
     }
 

@@ -68,7 +68,7 @@ extension Mps {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePersonSamplesRequest(type: self.type, personIds: self.personIds, names: self.names, tags: self.tags, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(type: self.type, personIds: self.personIds, names: self.names, tags: self.tags, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

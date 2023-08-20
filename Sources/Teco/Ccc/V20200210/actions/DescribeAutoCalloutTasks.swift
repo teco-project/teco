@@ -48,7 +48,7 @@ extension Ccc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAutoCalloutTasksRequest(sdkAppId: self.sdkAppId, pageSize: self.pageSize, pageNumber: self.pageNumber + 1)
+            return .init(sdkAppId: self.sdkAppId, pageSize: self.pageSize, pageNumber: self.pageNumber + 1)
         }
     }
 

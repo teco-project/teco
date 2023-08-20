@@ -108,7 +108,7 @@ extension Monitor {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeProductEventListRequest(module: self.module, productName: self.productName, eventName: self.eventName, instanceId: self.instanceId, dimensions: self.dimensions, regionList: self.regionList, type: self.type, status: self.status, project: self.project, isAlarmConfig: self.isAlarmConfig, timeOrder: self.timeOrder, startTime: self.startTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(module: self.module, productName: self.productName, eventName: self.eventName, instanceId: self.instanceId, dimensions: self.dimensions, regionList: self.regionList, type: self.type, status: self.status, project: self.project, isAlarmConfig: self.isAlarmConfig, timeOrder: self.timeOrder, startTime: self.startTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

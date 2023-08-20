@@ -78,7 +78,7 @@ extension Tione {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTrainingModelsRequest(filters: self.filters, orderField: self.orderField, order: self.order, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, tagFilters: self.tagFilters, withModelVersions: self.withModelVersions)
+            return .init(filters: self.filters, orderField: self.orderField, order: self.order, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, tagFilters: self.tagFilters, withModelVersions: self.withModelVersions)
         }
     }
 

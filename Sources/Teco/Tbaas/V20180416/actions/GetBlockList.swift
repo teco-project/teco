@@ -78,7 +78,7 @@ extension Tbaas {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return GetBlockListRequest(module: self.module, operation: self.operation, channelId: self.channelId, groupId: self.groupId, channelName: self.channelName, groupName: self.groupName, clusterId: self.clusterId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(module: self.module, operation: self.operation, channelId: self.channelId, groupId: self.groupId, channelName: self.channelName, groupName: self.groupName, clusterId: self.clusterId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

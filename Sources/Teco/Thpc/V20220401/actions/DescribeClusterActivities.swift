@@ -48,7 +48,7 @@ extension Thpc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeClusterActivitiesRequest(clusterId: self.clusterId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(clusterId: self.clusterId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

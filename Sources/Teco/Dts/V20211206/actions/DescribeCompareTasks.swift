@@ -58,7 +58,7 @@ extension Dts {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCompareTasksRequest(jobId: self.jobId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), compareTaskId: self.compareTaskId, status: self.status)
+            return .init(jobId: self.jobId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), compareTaskId: self.compareTaskId, status: self.status)
         }
     }
 

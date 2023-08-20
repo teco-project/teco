@@ -59,7 +59,7 @@ extension Ssa {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSocCheckResultListRequest(filter: self.filter, sorter: self.sorter, pageSize: self.pageSize, pageIndex: (self.pageIndex ?? 0) + 1, assetId: self.assetId)
+            return .init(filter: self.filter, sorter: self.sorter, pageSize: self.pageSize, pageIndex: (self.pageIndex ?? 0) + 1, assetId: self.assetId)
         }
     }
 

@@ -76,7 +76,7 @@ extension Scf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListFunctionsRequest(order: self.order, orderby: self.orderby, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchKey: self.searchKey, namespace: self.namespace, description: self.description, filters: self.filters)
+            return .init(order: self.order, orderby: self.orderby, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchKey: self.searchKey, namespace: self.namespace, description: self.description, filters: self.filters)
         }
     }
 

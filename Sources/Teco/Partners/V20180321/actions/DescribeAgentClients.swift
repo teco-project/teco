@@ -73,7 +73,7 @@ extension Partners {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAgentClientsRequest(clientUin: self.clientUin, clientName: self.clientName, clientFlag: self.clientFlag, orderDirection: self.orderDirection, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, salesUin: self.salesUin, salesName: self.salesName)
+            return .init(clientUin: self.clientUin, clientName: self.clientName, clientFlag: self.clientFlag, orderDirection: self.orderDirection, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, salesUin: self.salesUin, salesName: self.salesName)
         }
     }
 

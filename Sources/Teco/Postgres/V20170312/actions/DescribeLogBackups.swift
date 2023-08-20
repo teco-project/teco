@@ -71,7 +71,7 @@ extension Postgres {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeLogBackupsRequest(minFinishTime: self.minFinishTime, maxFinishTime: self.maxFinishTime, filters: self.filters, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), orderBy: self.orderBy, orderByType: self.orderByType)
+            return .init(minFinishTime: self.minFinishTime, maxFinishTime: self.maxFinishTime, filters: self.filters, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), orderBy: self.orderBy, orderByType: self.orderByType)
         }
     }
 

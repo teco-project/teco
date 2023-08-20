@@ -73,7 +73,7 @@ extension Cfw {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeNatAcRuleRequest(limit: self.limit, offset: self.offset + .init(response.getItems().count), index: self.index, filters: self.filters, startTime: self.startTime, endTime: self.endTime, order: self.order, by: self.by)
+            return .init(limit: self.limit, offset: self.offset + .init(response.getItems().count), index: self.index, filters: self.filters, startTime: self.startTime, endTime: self.endTime, order: self.order, by: self.by)
         }
     }
 

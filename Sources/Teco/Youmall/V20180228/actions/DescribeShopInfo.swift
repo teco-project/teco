@@ -43,7 +43,7 @@ extension Youmall {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeShopInfoRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit)
         }
     }
 

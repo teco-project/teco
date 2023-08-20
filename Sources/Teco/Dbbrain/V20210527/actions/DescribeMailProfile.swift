@@ -58,7 +58,7 @@ extension Dbbrain {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeMailProfileRequest(profileType: self.profileType, product: self.product, offset: self.offset + .init(response.getItems().count), limit: self.limit, profileName: self.profileName)
+            return .init(profileType: self.profileType, product: self.product, offset: self.offset + .init(response.getItems().count), limit: self.limit, profileName: self.profileName)
         }
     }
 

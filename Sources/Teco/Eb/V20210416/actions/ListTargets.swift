@@ -63,7 +63,7 @@ extension Eb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListTargetsRequest(eventBusId: self.eventBusId, orderBy: self.orderBy, ruleId: self.ruleId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), order: self.order)
+            return .init(eventBusId: self.eventBusId, orderBy: self.orderBy, ruleId: self.ruleId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), order: self.order)
         }
     }
 

@@ -95,7 +95,7 @@ extension Cdn {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePurgeTasksRequest(purgeType: self.purgeType, startTime: self.startTime, endTime: self.endTime, taskId: self.taskId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, keyword: self.keyword, status: self.status, area: self.area)
+            return .init(purgeType: self.purgeType, startTime: self.startTime, endTime: self.endTime, taskId: self.taskId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, keyword: self.keyword, status: self.status, area: self.area)
         }
     }
 

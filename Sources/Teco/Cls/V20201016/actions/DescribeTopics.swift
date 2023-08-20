@@ -70,7 +70,7 @@ extension Cls {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTopicsRequest(filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, preciseSearch: self.preciseSearch, bizType: self.bizType)
+            return .init(filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, preciseSearch: self.preciseSearch, bizType: self.bizType)
         }
     }
 

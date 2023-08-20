@@ -63,7 +63,7 @@ extension Live {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeScreenshotTaskRequest(startTime: self.startTime, endTime: self.endTime, streamName: self.streamName, domainName: self.domainName, appName: self.appName, scrollToken: response.scrollToken)
+            return .init(startTime: self.startTime, endTime: self.endTime, streamName: self.streamName, domainName: self.domainName, appName: self.appName, scrollToken: response.scrollToken)
         }
     }
 

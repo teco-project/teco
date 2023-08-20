@@ -63,7 +63,7 @@ extension Wav {
             guard response.nextCursor != nil else {
                 return nil
             }
-            return QueryCrmStatisticsRequest(beginTime: self.beginTime, endTime: self.endTime, cursor: response.nextCursor, limit: self.limit, salesId: self.salesId, orgId: self.orgId)
+            return .init(beginTime: self.beginTime, endTime: self.endTime, cursor: response.nextCursor, limit: self.limit, salesId: self.salesId, orgId: self.orgId)
         }
     }
 

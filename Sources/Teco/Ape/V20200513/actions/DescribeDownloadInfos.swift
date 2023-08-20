@@ -66,7 +66,7 @@ extension Ape {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDownloadInfosRequest(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), beginTime: self.beginTime, endTime: self.endTime, imageIds: self.imageIds)
+            return .init(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), beginTime: self.beginTime, endTime: self.endTime, imageIds: self.imageIds)
         }
     }
 

@@ -48,7 +48,7 @@ extension Iotexplorer {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePositionFenceListRequest(spaceId: self.spaceId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(spaceId: self.spaceId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

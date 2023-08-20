@@ -101,7 +101,7 @@ extension Teo {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDDoSAttackEventRequest(startTime: self.startTime, endTime: self.endTime, policyIds: self.policyIds, zoneIds: self.zoneIds, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), showDetail: self.showDetail, area: self.area, orderBy: self.orderBy, orderType: self.orderType)
+            return .init(startTime: self.startTime, endTime: self.endTime, policyIds: self.policyIds, zoneIds: self.zoneIds, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), showDetail: self.showDetail, area: self.area, orderBy: self.orderBy, orderType: self.orderType)
         }
     }
 

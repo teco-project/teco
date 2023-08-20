@@ -90,7 +90,7 @@ extension Lighthouse {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDisksRequest(diskIds: self.diskIds, filters: self.filters, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), orderField: self.orderField, order: self.order)
+            return .init(diskIds: self.diskIds, filters: self.filters, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), orderField: self.orderField, order: self.order)
         }
     }
 

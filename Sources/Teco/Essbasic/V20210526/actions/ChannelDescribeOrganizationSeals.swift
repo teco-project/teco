@@ -69,7 +69,7 @@ extension Essbasic {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ChannelDescribeOrganizationSealsRequest(agent: self.agent, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), infoType: self.infoType, sealId: self.sealId, sealTypes: self.sealTypes)
+            return .init(agent: self.agent, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), infoType: self.infoType, sealId: self.sealId, sealTypes: self.sealTypes)
         }
     }
 

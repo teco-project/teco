@@ -59,7 +59,7 @@ extension Gaap {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeGlobalDomainsRequest(projectId: self.projectId, offset: self.offset + .init(response.getItems().count), limit: self.limit, filters: self.filters, tagSet: self.tagSet)
+            return .init(projectId: self.projectId, offset: self.offset + .init(response.getItems().count), limit: self.limit, filters: self.filters, tagSet: self.tagSet)
         }
     }
 

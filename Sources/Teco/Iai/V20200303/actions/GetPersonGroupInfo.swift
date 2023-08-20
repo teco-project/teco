@@ -48,7 +48,7 @@ extension Iai {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return GetPersonGroupInfoRequest(personId: self.personId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(personId: self.personId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

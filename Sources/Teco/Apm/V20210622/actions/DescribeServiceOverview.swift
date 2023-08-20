@@ -78,7 +78,7 @@ extension Apm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeServiceOverviewRequest(filters: self.filters, metrics: self.metrics, groupBy: self.groupBy, orderBy: self.orderBy, instanceId: self.instanceId, limit: self.limit, startTime: self.startTime, offset: (self.offset ?? 0) + .init(response.getItems().count), endTime: self.endTime)
+            return .init(filters: self.filters, metrics: self.metrics, groupBy: self.groupBy, orderBy: self.orderBy, instanceId: self.instanceId, limit: self.limit, startTime: self.startTime, offset: (self.offset ?? 0) + .init(response.getItems().count), endTime: self.endTime)
         }
     }
 

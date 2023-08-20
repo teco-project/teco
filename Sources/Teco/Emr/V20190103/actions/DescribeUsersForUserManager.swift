@@ -58,7 +58,7 @@ extension Emr {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeUsersForUserManagerRequest(instanceId: self.instanceId, pageNo: self.pageNo + 1, pageSize: self.pageSize, userManagerFilter: self.userManagerFilter, needKeytabInfo: self.needKeytabInfo)
+            return .init(instanceId: self.instanceId, pageNo: self.pageNo + 1, pageSize: self.pageSize, userManagerFilter: self.userManagerFilter, needKeytabInfo: self.needKeytabInfo)
         }
     }
 

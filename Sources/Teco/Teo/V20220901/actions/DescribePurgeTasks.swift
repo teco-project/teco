@@ -111,7 +111,7 @@ extension Teo {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePurgeTasksRequest(zoneId: self.zoneId, startTime: self.startTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters)
+            return .init(zoneId: self.zoneId, startTime: self.startTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters)
         }
     }
 

@@ -63,7 +63,7 @@ extension Dnspod {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDomainListRequest(type: self.type, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, groupId: self.groupId, keyword: self.keyword, tags: self.tags)
+            return .init(type: self.type, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, groupId: self.groupId, keyword: self.keyword, tags: self.tags)
         }
     }
 

@@ -64,7 +64,7 @@ extension Tcss {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeComplianceTaskPolicyItemSummaryListRequest(assetType: self.assetType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters)
+            return .init(assetType: self.assetType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters)
         }
     }
 

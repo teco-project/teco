@@ -68,7 +68,7 @@ extension Cfw {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSecurityGroupListRequest(direction: self.direction, area: self.area, searchValue: self.searchValue, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), status: self.status, filter: self.filter)
+            return .init(direction: self.direction, area: self.area, searchValue: self.searchValue, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), status: self.status, filter: self.filter)
         }
     }
 

@@ -83,7 +83,7 @@ extension Tbaas {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return GetLatesdTransactionListRequest(module: self.module, operation: self.operation, groupId: self.groupId, channelId: self.channelId, latestBlockNumber: self.latestBlockNumber, groupName: self.groupName, channelName: self.channelName, clusterId: self.clusterId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(module: self.module, operation: self.operation, groupId: self.groupId, channelId: self.channelId, latestBlockNumber: self.latestBlockNumber, groupName: self.groupName, channelName: self.channelName, clusterId: self.clusterId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

@@ -63,7 +63,7 @@ extension Vpc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSnapshotFilesRequest(businessType: self.businessType, instanceId: self.instanceId, startDate: self.startDate, endDate: self.endDate, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(businessType: self.businessType, instanceId: self.instanceId, startDate: self.startDate, endDate: self.endDate, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

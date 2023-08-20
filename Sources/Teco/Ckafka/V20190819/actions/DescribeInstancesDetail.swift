@@ -83,7 +83,7 @@ extension Ckafka {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeInstancesDetailRequest(instanceId: self.instanceId, searchWord: self.searchWord, status: self.status, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, tagKey: self.tagKey, filters: self.filters, instanceIds: self.instanceIds, instanceIdList: self.instanceIdList, tagList: self.tagList)
+            return .init(instanceId: self.instanceId, searchWord: self.searchWord, status: self.status, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, tagKey: self.tagKey, filters: self.filters, instanceIds: self.instanceIds, instanceIdList: self.instanceIdList, tagList: self.tagList)
         }
     }
 

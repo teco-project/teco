@@ -63,7 +63,7 @@ extension Eiam {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListUsersRequest(searchCondition: self.searchCondition, expectedFields: self.expectedFields, sort: self.sort, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, includeTotal: self.includeTotal)
+            return .init(searchCondition: self.searchCondition, expectedFields: self.expectedFields, sort: self.sort, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, includeTotal: self.includeTotal)
         }
     }
 

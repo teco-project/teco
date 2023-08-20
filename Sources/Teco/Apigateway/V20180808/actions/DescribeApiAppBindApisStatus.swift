@@ -53,7 +53,7 @@ extension Apigateway {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeApiAppBindApisStatusRequest(apiAppId: self.apiAppId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters)
+            return .init(apiAppId: self.apiAppId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters)
         }
     }
 

@@ -125,7 +125,7 @@ extension Monitor {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAlarmHistoriesRequest(module: self.module, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, order: self.order, startTime: self.startTime, endTime: self.endTime, monitorTypes: self.monitorTypes, alarmObject: self.alarmObject, alarmStatus: self.alarmStatus, projectIds: self.projectIds, instanceGroupIds: self.instanceGroupIds, namespaces: self.namespaces, metricNames: self.metricNames, policyName: self.policyName, content: self.content, receiverUids: self.receiverUids, receiverGroups: self.receiverGroups, policyIds: self.policyIds)
+            return .init(module: self.module, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, order: self.order, startTime: self.startTime, endTime: self.endTime, monitorTypes: self.monitorTypes, alarmObject: self.alarmObject, alarmStatus: self.alarmStatus, projectIds: self.projectIds, instanceGroupIds: self.instanceGroupIds, namespaces: self.namespaces, metricNames: self.metricNames, policyName: self.policyName, content: self.content, receiverUids: self.receiverUids, receiverGroups: self.receiverGroups, policyIds: self.policyIds)
         }
     }
 

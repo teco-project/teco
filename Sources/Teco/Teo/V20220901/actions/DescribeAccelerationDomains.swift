@@ -120,7 +120,7 @@ extension Teo {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAccelerationDomainsRequest(zoneId: self.zoneId, filters: self.filters, direction: self.direction, match: self.match, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), order: self.order)
+            return .init(zoneId: self.zoneId, filters: self.filters, direction: self.direction, match: self.match, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), order: self.order)
         }
     }
 

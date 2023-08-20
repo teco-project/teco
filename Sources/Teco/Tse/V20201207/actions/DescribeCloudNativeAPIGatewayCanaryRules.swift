@@ -53,7 +53,7 @@ extension Tse {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCloudNativeAPIGatewayCanaryRulesRequest(gatewayId: self.gatewayId, serviceId: self.serviceId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(gatewayId: self.gatewayId, serviceId: self.serviceId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

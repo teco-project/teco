@@ -48,7 +48,7 @@ extension Cloudaudit {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListKeyAliasByRegionRequest(kmsRegion: self.kmsRegion, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return .init(kmsRegion: self.kmsRegion, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 

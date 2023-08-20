@@ -58,7 +58,7 @@ extension Iotcloud {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeFirmwareTasksRequest(productId: self.productId, firmwareVersion: self.firmwareVersion, offset: self.offset + .init(response.getItems().count), limit: self.limit, filters: self.filters)
+            return .init(productId: self.productId, firmwareVersion: self.firmwareVersion, offset: self.offset + .init(response.getItems().count), limit: self.limit, filters: self.filters)
         }
     }
 

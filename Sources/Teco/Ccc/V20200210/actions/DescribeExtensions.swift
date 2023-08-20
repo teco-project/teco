@@ -63,7 +63,7 @@ extension Ccc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeExtensionsRequest(sdkAppId: self.sdkAppId, pageNumber: self.pageNumber + 1, extensionIds: self.extensionIds, pageSize: self.pageSize, fuzzingKeyWord: self.fuzzingKeyWord, isNeedStatus: self.isNeedStatus)
+            return .init(sdkAppId: self.sdkAppId, pageNumber: self.pageNumber + 1, extensionIds: self.extensionIds, pageSize: self.pageSize, fuzzingKeyWord: self.fuzzingKeyWord, isNeedStatus: self.isNeedStatus)
         }
     }
 

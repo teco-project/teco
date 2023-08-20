@@ -111,7 +111,7 @@ extension Dasb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return SearchSessionRequest(privateIp: self.privateIp, publicIp: self.publicIp, userName: self.userName, account: self.account, fromIp: self.fromIp, startTime: self.startTime, endTime: self.endTime, kind: self.kind, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, realName: self.realName, deviceName: self.deviceName, status: self.status, id: self.id)
+            return .init(privateIp: self.privateIp, publicIp: self.publicIp, userName: self.userName, account: self.account, fromIp: self.fromIp, startTime: self.startTime, endTime: self.endTime, kind: self.kind, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, realName: self.realName, deviceName: self.deviceName, status: self.status, id: self.id)
         }
     }
 

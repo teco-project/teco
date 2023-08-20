@@ -68,7 +68,7 @@ extension Ckafka {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDatahubTasksRequest(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), searchWord: self.searchWord, targetType: self.targetType, taskType: self.taskType, sourceType: self.sourceType, resource: self.resource)
+            return .init(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), searchWord: self.searchWord, targetType: self.targetType, taskType: self.taskType, sourceType: self.sourceType, resource: self.resource)
         }
     }
 

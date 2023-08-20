@@ -73,7 +73,7 @@ extension Vod {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribePersonSamplesRequest(subAppId: self.subAppId, type: self.type, personIds: self.personIds, names: self.names, tags: self.tags, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(subAppId: self.subAppId, type: self.type, personIds: self.personIds, names: self.names, tags: self.tags, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

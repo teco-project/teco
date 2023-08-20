@@ -58,7 +58,7 @@ extension Tiems {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeServicesRequest(filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, order: self.order, orderField: self.orderField)
+            return .init(filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, order: self.order, orderField: self.orderField)
         }
     }
 

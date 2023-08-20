@@ -52,7 +52,6 @@ extension Ssa {
         /// 聚合字段
         public let groupByField: String?
 
-        /// -
         public let task: String?
 
         /// 0:cfw 1:vss 2.soc 3.waf 4.cwp
@@ -93,7 +92,7 @@ extension Ssa {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDomainListRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, assetBasicType: self.assetBasicType, filter: self.filter, order: self.order, by: self.by, field: self.field, timeRange: self.timeRange, logic: self.logic, groupByField: self.groupByField, task: self.task, requestFrom: self.requestFrom)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, assetBasicType: self.assetBasicType, filter: self.filter, order: self.order, by: self.by, field: self.field, timeRange: self.timeRange, logic: self.logic, groupByField: self.groupByField, task: self.task, requestFrom: self.requestFrom)
         }
     }
 

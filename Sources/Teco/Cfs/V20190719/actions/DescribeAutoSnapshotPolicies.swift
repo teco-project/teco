@@ -63,7 +63,7 @@ extension Cfs {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAutoSnapshotPoliciesRequest(autoSnapshotPolicyId: self.autoSnapshotPolicyId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters, order: self.order, orderField: self.orderField)
+            return .init(autoSnapshotPolicyId: self.autoSnapshotPolicyId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters, order: self.order, orderField: self.orderField)
         }
     }
 

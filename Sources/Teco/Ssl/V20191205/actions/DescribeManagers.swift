@@ -75,7 +75,7 @@ extension Ssl {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeManagersRequest(companyId: self.companyId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, managerName: self.managerName, managerMail: self.managerMail, status: self.status, searchKey: self.searchKey)
+            return .init(companyId: self.companyId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, managerName: self.managerName, managerMail: self.managerMail, status: self.status, searchKey: self.searchKey)
         }
     }
 

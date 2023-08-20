@@ -68,7 +68,7 @@ extension Iecp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSecretsRequest(edgeUnitID: self.edgeUnitID, offset: self.offset + .init(response.getItems().count), limit: self.limit, secretNamespace: self.secretNamespace, namePattern: self.namePattern, sort: self.sort, secretType: self.secretType)
+            return .init(edgeUnitID: self.edgeUnitID, offset: self.offset + .init(response.getItems().count), limit: self.limit, secretNamespace: self.secretNamespace, namePattern: self.namePattern, sort: self.sort, secretType: self.secretType)
         }
     }
 

@@ -53,7 +53,7 @@ extension Wav {
             guard response.nextCursor != nil else {
                 return nil
             }
-            return QueryCustomerProfileListRequest(limit: self.limit, beginTime: self.beginTime, endTime: self.endTime, cursor: response.nextCursor)
+            return .init(limit: self.limit, beginTime: self.beginTime, endTime: self.endTime, cursor: response.nextCursor)
         }
     }
 

@@ -82,7 +82,7 @@ extension Gaap {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeHTTPSListenersRequest(proxyId: self.proxyId, listenerId: self.listenerId, listenerName: self.listenerName, port: self.port, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchValue: self.searchValue, groupId: self.groupId, http3Supported: self.http3Supported)
+            return .init(proxyId: self.proxyId, listenerId: self.listenerId, listenerName: self.listenerName, port: self.port, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchValue: self.searchValue, groupId: self.groupId, http3Supported: self.http3Supported)
         }
     }
 

@@ -78,7 +78,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeApiGroupsRequest(searchWord: self.searchWord, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, groupType: self.groupType, authType: self.authType, status: self.status, orderBy: self.orderBy, orderType: self.orderType, gatewayInstanceId: self.gatewayInstanceId)
+            return .init(searchWord: self.searchWord, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, groupType: self.groupType, authType: self.authType, status: self.status, orderBy: self.orderBy, orderType: self.orderType, gatewayInstanceId: self.gatewayInstanceId)
         }
     }
 

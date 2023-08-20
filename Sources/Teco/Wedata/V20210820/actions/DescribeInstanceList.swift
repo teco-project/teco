@@ -88,7 +88,7 @@ extension Wedata {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeInstanceListRequest(projectId: self.projectId, pageIndex: self.pageIndex + 1, pageSize: self.pageSize, cycleList: self.cycleList, ownerList: self.ownerList, instanceType: self.instanceType, sort: self.sort, sortCol: self.sortCol, taskTypeList: self.taskTypeList, stateList: self.stateList, keyword: self.keyword)
+            return .init(projectId: self.projectId, pageIndex: self.pageIndex + 1, pageSize: self.pageSize, cycleList: self.cycleList, ownerList: self.ownerList, instanceType: self.instanceType, sort: self.sort, sortCol: self.sortCol, taskTypeList: self.taskTypeList, stateList: self.stateList, keyword: self.keyword)
         }
     }
 

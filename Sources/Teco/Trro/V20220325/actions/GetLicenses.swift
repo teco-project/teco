@@ -53,7 +53,7 @@ extension Trro {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return GetLicensesRequest(pageNum: self.pageNum + 1, pageSize: self.pageSize, projectId: self.projectId, deviceId: self.deviceId)
+            return .init(pageNum: self.pageNum + 1, pageSize: self.pageSize, projectId: self.projectId, deviceId: self.deviceId)
         }
     }
 

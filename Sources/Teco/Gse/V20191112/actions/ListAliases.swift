@@ -68,7 +68,7 @@ extension Gse {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListAliasesRequest(name: self.name, routingStrategyType: self.routingStrategyType, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), orderBy: self.orderBy, orderWay: self.orderWay, filters: self.filters)
+            return .init(name: self.name, routingStrategyType: self.routingStrategyType, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), orderBy: self.orderBy, orderWay: self.orderWay, filters: self.filters)
         }
     }
 

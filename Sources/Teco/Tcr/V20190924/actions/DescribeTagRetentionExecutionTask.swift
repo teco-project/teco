@@ -58,7 +58,7 @@ extension Tcr {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTagRetentionExecutionTaskRequest(registryId: self.registryId, retentionId: self.retentionId, executionId: self.executionId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(registryId: self.registryId, retentionId: self.retentionId, executionId: self.executionId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

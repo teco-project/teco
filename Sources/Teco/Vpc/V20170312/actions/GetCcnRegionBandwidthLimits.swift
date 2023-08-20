@@ -65,7 +65,7 @@ extension Vpc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return GetCcnRegionBandwidthLimitsRequest(ccnId: self.ccnId, filters: self.filters, sortedBy: self.sortedBy, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderBy: self.orderBy)
+            return .init(ccnId: self.ccnId, filters: self.filters, sortedBy: self.sortedBy, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderBy: self.orderBy)
         }
     }
 

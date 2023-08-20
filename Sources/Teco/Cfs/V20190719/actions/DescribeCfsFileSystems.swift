@@ -58,7 +58,7 @@ extension Cfs {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCfsFileSystemsRequest(fileSystemId: self.fileSystemId, vpcId: self.vpcId, subnetId: self.subnetId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(fileSystemId: self.fileSystemId, vpcId: self.vpcId, subnetId: self.subnetId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 

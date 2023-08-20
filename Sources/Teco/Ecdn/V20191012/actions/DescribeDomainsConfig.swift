@@ -53,7 +53,7 @@ extension Ecdn {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDomainsConfigRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters, sort: self.sort)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters, sort: self.sort)
         }
     }
 

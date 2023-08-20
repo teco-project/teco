@@ -68,7 +68,7 @@ extension Tcr {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeNamespacesRequest(registryId: self.registryId, namespaceName: self.namespaceName, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), all: self.all, filters: self.filters, kmsSignPolicy: self.kmsSignPolicy)
+            return .init(registryId: self.registryId, namespaceName: self.namespaceName, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), all: self.all, filters: self.filters, kmsSignPolicy: self.kmsSignPolicy)
         }
     }
 

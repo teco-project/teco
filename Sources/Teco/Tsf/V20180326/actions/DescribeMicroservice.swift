@@ -58,7 +58,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeMicroserviceRequest(microserviceId: self.microserviceId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, groupIds: self.groupIds, filters: self.filters)
+            return .init(microserviceId: self.microserviceId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, groupIds: self.groupIds, filters: self.filters)
         }
     }
 

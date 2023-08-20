@@ -58,7 +58,7 @@ extension Gse {
             guard response.hasNext else {
                 return nil
             }
-            return GetGameServerInstanceLogUrlRequest(fleetId: self.fleetId, instanceId: self.instanceId, serverIp: self.serverIp, offset: (self.offset ?? 0) + .init(response.getItems().count), size: self.size)
+            return .init(fleetId: self.fleetId, instanceId: self.instanceId, serverIp: self.serverIp, offset: (self.offset ?? 0) + .init(response.getItems().count), size: self.size)
         }
     }
 

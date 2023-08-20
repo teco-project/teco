@@ -53,7 +53,7 @@ extension Ssl {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeHostUpdateRecordRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, certificateId: self.certificateId, oldCertificateId: self.oldCertificateId)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, certificateId: self.certificateId, oldCertificateId: self.oldCertificateId)
         }
     }
 
