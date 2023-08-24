@@ -127,7 +127,7 @@ extension Ecdn {
     ///
     /// 本接口（DescribeEcdnDomainStatistics）用于查询指定时间段内的域名访问统计指标。
     ///
-    /// > Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/30986)，使用  CDN 相关API 进行操作。
+    /// > Important: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/30986)，使用  CDN 相关API 进行操作。
     @inlinable
     public func describeEcdnDomainStatistics(_ input: DescribeEcdnDomainStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEcdnDomainStatisticsResponse> {
         self.client.execute(action: "DescribeEcdnDomainStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -137,7 +137,7 @@ extension Ecdn {
     ///
     /// 本接口（DescribeEcdnDomainStatistics）用于查询指定时间段内的域名访问统计指标。
     ///
-    /// > Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/30986)，使用  CDN 相关API 进行操作。
+    /// > Important: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/30986)，使用  CDN 相关API 进行操作。
     @inlinable
     public func describeEcdnDomainStatistics(_ input: DescribeEcdnDomainStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEcdnDomainStatisticsResponse {
         try await self.client.execute(action: "DescribeEcdnDomainStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -147,7 +147,7 @@ extension Ecdn {
     ///
     /// 本接口（DescribeEcdnDomainStatistics）用于查询指定时间段内的域名访问统计指标。
     ///
-    /// > Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/30986)，使用  CDN 相关API 进行操作。
+    /// > Important: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/30986)，使用  CDN 相关API 进行操作。
     @inlinable
     public func describeEcdnDomainStatistics(startTime: Date, endTime: Date, metrics: [String], domains: [String]? = nil, projects: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEcdnDomainStatisticsResponse> {
         self.describeEcdnDomainStatistics(.init(startTime: startTime, endTime: endTime, metrics: metrics, domains: domains, projects: projects, offset: offset, limit: limit, area: area), region: region, logger: logger, on: eventLoop)
@@ -157,7 +157,7 @@ extension Ecdn {
     ///
     /// 本接口（DescribeEcdnDomainStatistics）用于查询指定时间段内的域名访问统计指标。
     ///
-    /// > Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/30986)，使用  CDN 相关API 进行操作。
+    /// > Important: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/30986)，使用  CDN 相关API 进行操作。
     @inlinable
     public func describeEcdnDomainStatistics(startTime: Date, endTime: Date, metrics: [String], domains: [String]? = nil, projects: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEcdnDomainStatisticsResponse {
         try await self.describeEcdnDomainStatistics(.init(startTime: startTime, endTime: endTime, metrics: metrics, domains: domains, projects: projects, offset: offset, limit: limit, area: area), region: region, logger: logger, on: eventLoop)
@@ -167,7 +167,7 @@ extension Ecdn {
     ///
     /// 本接口（DescribeEcdnDomainStatistics）用于查询指定时间段内的域名访问统计指标。
     ///
-    /// > Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/30986)，使用  CDN 相关API 进行操作。
+    /// > Important: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/30986)，使用  CDN 相关API 进行操作。
     @inlinable
     public func describeEcdnDomainStatisticsPaginated(_ input: DescribeEcdnDomainStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DomainData])> {
         self.client.paginate(input: input, region: region, command: self.describeEcdnDomainStatistics, logger: logger, on: eventLoop)
@@ -177,7 +177,7 @@ extension Ecdn {
     ///
     /// 本接口（DescribeEcdnDomainStatistics）用于查询指定时间段内的域名访问统计指标。
     ///
-    /// > Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/30986)，使用  CDN 相关API 进行操作。
+    /// > Important: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/30986)，使用  CDN 相关API 进行操作。
     @inlinable @discardableResult
     public func describeEcdnDomainStatisticsPaginated(_ input: DescribeEcdnDomainStatisticsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeEcdnDomainStatisticsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeEcdnDomainStatistics, callback: onResponse, logger: logger, on: eventLoop)
@@ -187,7 +187,7 @@ extension Ecdn {
     ///
     /// 本接口（DescribeEcdnDomainStatistics）用于查询指定时间段内的域名访问统计指标。
     ///
-    /// > Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/30986)，使用  CDN 相关API 进行操作。
+    /// > Important: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/30986)，使用  CDN 相关API 进行操作。
     ///
     /// - Returns: `AsyncSequence`s of ``DomainData`` and ``DescribeEcdnDomainStatisticsResponse`` that can be iterated over asynchronously on demand.
     @inlinable

@@ -34,12 +34,12 @@ extension Sms {
 
         /// 短信签名内容，使用 UTF-8 编码，必须填写已审核通过的签名，例如：腾讯云，签名信息可前往 [国内短信](https://console.cloud.tencent.com/smsv2/csms-sign) 或 [国际/港澳台短信](https://console.cloud.tencent.com/smsv2/isms-sign) 的签名管理查看。
         ///
-        /// > Attention: 发送国内短信该参数必填，且需填写签名内容而非签名ID。
+        /// > Important: 发送国内短信该参数必填，且需填写签名内容而非签名ID。
         public let signName: String?
 
         /// 模板参数，若无模板参数，则设置为空。
         ///
-        /// > Attention: 模板参数的个数需要与 TemplateId 对应模板的变量个数保持一致。
+        /// > Important: 模板参数的个数需要与 TemplateId 对应模板的变量个数保持一致。
         public let templateParamSet: [String]?
 
         /// 短信码号扩展号，默认未开通，如需开通请联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。

@@ -29,7 +29,7 @@ extension Sms {
 
         /// 模板 ID 数组。数组为空时默认查询模板列表信息，请使用 Limit 和 Offset 字段设置查询范围。
         ///
-        /// > Attention: 默认数组长度最大100
+        /// > Important: 默认数组长度最大100
         public let templateIdSet: [UInt64]?
 
         /// 最大上限，最多100。

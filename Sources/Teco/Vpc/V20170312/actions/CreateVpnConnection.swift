@@ -131,7 +131,7 @@ extension Vpc {
     /// 创建VPN通道
     ///
     /// 本接口（CreateVpnConnection）用于创建VPN通道。
-    /// > Attention: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
+    /// > Important: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     @inlinable
     public func createVpnConnection(_ input: CreateVpnConnectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpnConnectionResponse> {
         self.client.execute(action: "CreateVpnConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -140,7 +140,7 @@ extension Vpc {
     /// 创建VPN通道
     ///
     /// 本接口（CreateVpnConnection）用于创建VPN通道。
-    /// > Attention: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
+    /// > Important: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     @inlinable
     public func createVpnConnection(_ input: CreateVpnConnectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpnConnectionResponse {
         try await self.client.execute(action: "CreateVpnConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -149,7 +149,7 @@ extension Vpc {
     /// 创建VPN通道
     ///
     /// 本接口（CreateVpnConnection）用于创建VPN通道。
-    /// > Attention: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
+    /// > Important: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     @inlinable
     public func createVpnConnection(vpnGatewayId: String, customerGatewayId: String, vpnConnectionName: String, preShareKey: String, vpcId: String? = nil, securityPolicyDatabases: [SecurityPolicyDatabase]? = nil, ikeOptionsSpecification: IKEOptionsSpecification? = nil, ipsecOptionsSpecification: IPSECOptionsSpecification? = nil, tags: [Tag]? = nil, enableHealthCheck: Bool? = nil, healthCheckLocalIp: String? = nil, healthCheckRemoteIp: String? = nil, routeType: String? = nil, negotiationType: String? = nil, dpdEnable: Int64? = nil, dpdTimeout: String? = nil, dpdAction: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpnConnectionResponse> {
         self.createVpnConnection(.init(vpnGatewayId: vpnGatewayId, customerGatewayId: customerGatewayId, vpnConnectionName: vpnConnectionName, preShareKey: preShareKey, vpcId: vpcId, securityPolicyDatabases: securityPolicyDatabases, ikeOptionsSpecification: ikeOptionsSpecification, ipsecOptionsSpecification: ipsecOptionsSpecification, tags: tags, enableHealthCheck: enableHealthCheck, healthCheckLocalIp: healthCheckLocalIp, healthCheckRemoteIp: healthCheckRemoteIp, routeType: routeType, negotiationType: negotiationType, dpdEnable: dpdEnable, dpdTimeout: dpdTimeout, dpdAction: dpdAction), region: region, logger: logger, on: eventLoop)
@@ -158,7 +158,7 @@ extension Vpc {
     /// 创建VPN通道
     ///
     /// 本接口（CreateVpnConnection）用于创建VPN通道。
-    /// > Attention: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
+    /// > Important: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     @inlinable
     public func createVpnConnection(vpnGatewayId: String, customerGatewayId: String, vpnConnectionName: String, preShareKey: String, vpcId: String? = nil, securityPolicyDatabases: [SecurityPolicyDatabase]? = nil, ikeOptionsSpecification: IKEOptionsSpecification? = nil, ipsecOptionsSpecification: IPSECOptionsSpecification? = nil, tags: [Tag]? = nil, enableHealthCheck: Bool? = nil, healthCheckLocalIp: String? = nil, healthCheckRemoteIp: String? = nil, routeType: String? = nil, negotiationType: String? = nil, dpdEnable: Int64? = nil, dpdTimeout: String? = nil, dpdAction: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpnConnectionResponse {
         try await self.createVpnConnection(.init(vpnGatewayId: vpnGatewayId, customerGatewayId: customerGatewayId, vpnConnectionName: vpnConnectionName, preShareKey: preShareKey, vpcId: vpcId, securityPolicyDatabases: securityPolicyDatabases, ikeOptionsSpecification: ikeOptionsSpecification, ipsecOptionsSpecification: ipsecOptionsSpecification, tags: tags, enableHealthCheck: enableHealthCheck, healthCheckLocalIp: healthCheckLocalIp, healthCheckRemoteIp: healthCheckRemoteIp, routeType: routeType, negotiationType: negotiationType, dpdEnable: dpdEnable, dpdTimeout: dpdTimeout, dpdAction: dpdAction), region: region, logger: logger, on: eventLoop)
