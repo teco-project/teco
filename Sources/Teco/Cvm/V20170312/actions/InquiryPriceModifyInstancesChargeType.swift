@@ -31,7 +31,7 @@ extension Cvm {
         public let instanceChargeType: String
 
         /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。
-        /// - Note: 若指定实例的付费模式为预付费则该参数必传。
+        /// > Note: 若指定实例的付费模式为预付费则该参数必传。
         public let instanceChargePrepaid: InstanceChargePrepaid?
 
         /// 是否同时切换弹性数据云盘计费模式。取值范围：

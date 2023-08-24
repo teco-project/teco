@@ -117,7 +117,7 @@ extension Ecdn {
     ///
     /// DescribePurgeTasks 用于查询刷新任务提交历史记录及执行进度。
     ///
-    /// - Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/37873)，使用  CDN 相关API 进行操作。
+    /// > Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/37873)，使用  CDN 相关API 进行操作。
     @inlinable
     public func describePurgeTasks(_ input: DescribePurgeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePurgeTasksResponse> {
         self.client.execute(action: "DescribePurgeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -127,7 +127,7 @@ extension Ecdn {
     ///
     /// DescribePurgeTasks 用于查询刷新任务提交历史记录及执行进度。
     ///
-    /// - Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/37873)，使用  CDN 相关API 进行操作。
+    /// > Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/37873)，使用  CDN 相关API 进行操作。
     @inlinable
     public func describePurgeTasks(_ input: DescribePurgeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePurgeTasksResponse {
         try await self.client.execute(action: "DescribePurgeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -137,7 +137,7 @@ extension Ecdn {
     ///
     /// DescribePurgeTasks 用于查询刷新任务提交历史记录及执行进度。
     ///
-    /// - Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/37873)，使用  CDN 相关API 进行操作。
+    /// > Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/37873)，使用  CDN 相关API 进行操作。
     @inlinable
     public func describePurgeTasks(purgeType: String? = nil, startTime: Date? = nil, endTime: Date? = nil, taskId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, keyword: String? = nil, status: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePurgeTasksResponse> {
         self.describePurgeTasks(.init(purgeType: purgeType, startTime: startTime, endTime: endTime, taskId: taskId, offset: offset, limit: limit, keyword: keyword, status: status), region: region, logger: logger, on: eventLoop)
@@ -147,7 +147,7 @@ extension Ecdn {
     ///
     /// DescribePurgeTasks 用于查询刷新任务提交历史记录及执行进度。
     ///
-    /// - Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/37873)，使用  CDN 相关API 进行操作。
+    /// > Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/37873)，使用  CDN 相关API 进行操作。
     @inlinable
     public func describePurgeTasks(purgeType: String? = nil, startTime: Date? = nil, endTime: Date? = nil, taskId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, keyword: String? = nil, status: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePurgeTasksResponse {
         try await self.describePurgeTasks(.init(purgeType: purgeType, startTime: startTime, endTime: endTime, taskId: taskId, offset: offset, limit: limit, keyword: keyword, status: status), region: region, logger: logger, on: eventLoop)
@@ -157,7 +157,7 @@ extension Ecdn {
     ///
     /// DescribePurgeTasks 用于查询刷新任务提交历史记录及执行进度。
     ///
-    /// - Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/37873)，使用  CDN 相关API 进行操作。
+    /// > Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/37873)，使用  CDN 相关API 进行操作。
     @inlinable
     public func describePurgeTasksPaginated(_ input: DescribePurgeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [PurgeTask])> {
         self.client.paginate(input: input, region: region, command: self.describePurgeTasks, logger: logger, on: eventLoop)
@@ -167,7 +167,7 @@ extension Ecdn {
     ///
     /// DescribePurgeTasks 用于查询刷新任务提交历史记录及执行进度。
     ///
-    /// - Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/37873)，使用  CDN 相关API 进行操作。
+    /// > Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/37873)，使用  CDN 相关API 进行操作。
     @inlinable @discardableResult
     public func describePurgeTasksPaginated(_ input: DescribePurgeTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePurgeTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describePurgeTasks, callback: onResponse, logger: logger, on: eventLoop)
@@ -177,7 +177,7 @@ extension Ecdn {
     ///
     /// DescribePurgeTasks 用于查询刷新任务提交历史记录及执行进度。
     ///
-    /// - Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/37873)，使用  CDN 相关API 进行操作。
+    /// > Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/37873)，使用  CDN 相关API 进行操作。
     ///
     /// - Returns: `AsyncSequence`s of ``PurgeTask`` and ``DescribePurgeTasksResponse`` that can be iterated over asynchronously on demand.
     @inlinable

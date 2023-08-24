@@ -47,8 +47,7 @@ extension Vpc {
     ///
     /// 本接口（DisassociateDhcpIpWithAddressIp）用于将DhcpIp已绑定的弹性公网IP（EIP）解除绑定。
     ///
-    /// - Attention: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
-    /// >
+    /// > Attention: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     @inlinable @discardableResult
     public func disassociateDhcpIpWithAddressIp(_ input: DisassociateDhcpIpWithAddressIpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateDhcpIpWithAddressIpResponse> {
         self.client.execute(action: "DisassociateDhcpIpWithAddressIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -58,8 +57,7 @@ extension Vpc {
     ///
     /// 本接口（DisassociateDhcpIpWithAddressIp）用于将DhcpIp已绑定的弹性公网IP（EIP）解除绑定。
     ///
-    /// - Attention: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
-    /// >
+    /// > Attention: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     @inlinable @discardableResult
     public func disassociateDhcpIpWithAddressIp(_ input: DisassociateDhcpIpWithAddressIpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateDhcpIpWithAddressIpResponse {
         try await self.client.execute(action: "DisassociateDhcpIpWithAddressIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -69,8 +67,7 @@ extension Vpc {
     ///
     /// 本接口（DisassociateDhcpIpWithAddressIp）用于将DhcpIp已绑定的弹性公网IP（EIP）解除绑定。
     ///
-    /// - Attention: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
-    /// >
+    /// > Attention: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     @inlinable @discardableResult
     public func disassociateDhcpIpWithAddressIp(dhcpIpId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateDhcpIpWithAddressIpResponse> {
         self.disassociateDhcpIpWithAddressIp(.init(dhcpIpId: dhcpIpId), region: region, logger: logger, on: eventLoop)
@@ -80,8 +77,7 @@ extension Vpc {
     ///
     /// 本接口（DisassociateDhcpIpWithAddressIp）用于将DhcpIp已绑定的弹性公网IP（EIP）解除绑定。
     ///
-    /// - Attention: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
-    /// >
+    /// > Attention: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     @inlinable @discardableResult
     public func disassociateDhcpIpWithAddressIp(dhcpIpId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateDhcpIpWithAddressIpResponse {
         try await self.disassociateDhcpIpWithAddressIp(.init(dhcpIpId: dhcpIpId), region: region, logger: logger, on: eventLoop)

@@ -26,11 +26,11 @@ extension Cvm {
 
         /// 实例名称。可任意命名，但不得超过60个字符。
         ///
-        /// - Note: 必须指定InstanceName与SecurityGroups的其中一个，但不能同时设置
+        /// > Note: 必须指定InstanceName与SecurityGroups的其中一个，但不能同时设置
         public let instanceName: String?
 
         /// 指定实例的安全组Id列表，子机将重新关联指定列表的安全组，原本关联的安全组会被解绑。
-        /// - Note: 必须指定SecurityGroups与InstanceName的其中一个，但不能同时设置
+        /// > Note: 必须指定SecurityGroups与InstanceName的其中一个，但不能同时设置
         public let securityGroups: [String]?
 
         /// 给实例绑定用户角色，传空值为解绑操作
