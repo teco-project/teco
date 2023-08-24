@@ -86,7 +86,7 @@ extension Cdn {
     ///
     /// DescribeIpStatus 用于查询域名所在加速平台的边缘节点、回源节点明细。注意事项：暂不支持查询边缘节点信息并且数据会存在一定延迟。
     ///
-    /// - Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/41954)，使用  CDN 相关API 进行操作。
+    /// > Important: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/41954)，使用  CDN 相关API 进行操作。
     @inlinable
     public func describeIpStatus(_ input: DescribeIpStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpStatusResponse> {
         self.client.execute(action: "DescribeIpStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -96,7 +96,7 @@ extension Cdn {
     ///
     /// DescribeIpStatus 用于查询域名所在加速平台的边缘节点、回源节点明细。注意事项：暂不支持查询边缘节点信息并且数据会存在一定延迟。
     ///
-    /// - Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/41954)，使用  CDN 相关API 进行操作。
+    /// > Important: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/41954)，使用  CDN 相关API 进行操作。
     @inlinable
     public func describeIpStatus(_ input: DescribeIpStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpStatusResponse {
         try await self.client.execute(action: "DescribeIpStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -106,7 +106,7 @@ extension Cdn {
     ///
     /// DescribeIpStatus 用于查询域名所在加速平台的边缘节点、回源节点明细。注意事项：暂不支持查询边缘节点信息并且数据会存在一定延迟。
     ///
-    /// - Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/41954)，使用  CDN 相关API 进行操作。
+    /// > Important: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/41954)，使用  CDN 相关API 进行操作。
     @inlinable
     public func describeIpStatus(domain: String, layer: String? = nil, area: String? = nil, segment: Bool? = nil, showIpv6: Bool? = nil, abbreviationIpv6: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpStatusResponse> {
         self.describeIpStatus(.init(domain: domain, layer: layer, area: area, segment: segment, showIpv6: showIpv6, abbreviationIpv6: abbreviationIpv6), region: region, logger: logger, on: eventLoop)
@@ -116,7 +116,7 @@ extension Cdn {
     ///
     /// DescribeIpStatus 用于查询域名所在加速平台的边缘节点、回源节点明细。注意事项：暂不支持查询边缘节点信息并且数据会存在一定延迟。
     ///
-    /// - Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/41954)，使用  CDN 相关API 进行操作。
+    /// > Important: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/41954)，使用  CDN 相关API 进行操作。
     @inlinable
     public func describeIpStatus(domain: String, layer: String? = nil, area: String? = nil, segment: Bool? = nil, showIpv6: Bool? = nil, abbreviationIpv6: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpStatusResponse {
         try await self.describeIpStatus(.init(domain: domain, layer: layer, area: area, segment: segment, showIpv6: showIpv6, abbreviationIpv6: abbreviationIpv6), region: region, logger: logger, on: eventLoop)

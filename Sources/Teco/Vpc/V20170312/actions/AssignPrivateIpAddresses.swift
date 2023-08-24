@@ -68,8 +68,7 @@ extension Vpc {
     /// * 一个弹性网卡支持绑定的IP地址是有限制的，更多资源限制信息详见[弹性网卡使用限制](/document/product/576/18527)。
     /// * 可以指定内网IP地址申请，内网IP地址类型不能为主IP，主IP已存在，不能修改，内网IP必须要弹性网卡所在子网内，而且不能被占用。
     /// * 在弹性网卡上申请一个到多个辅助内网IP，接口会在弹性网卡所在子网网段内返回指定数量的辅助内网IP。
-    /// - Attention: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
-    /// >
+    /// > Important: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     @inlinable
     public func assignPrivateIpAddresses(_ input: AssignPrivateIpAddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssignPrivateIpAddressesResponse> {
         self.client.execute(action: "AssignPrivateIpAddresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -81,8 +80,7 @@ extension Vpc {
     /// * 一个弹性网卡支持绑定的IP地址是有限制的，更多资源限制信息详见[弹性网卡使用限制](/document/product/576/18527)。
     /// * 可以指定内网IP地址申请，内网IP地址类型不能为主IP，主IP已存在，不能修改，内网IP必须要弹性网卡所在子网内，而且不能被占用。
     /// * 在弹性网卡上申请一个到多个辅助内网IP，接口会在弹性网卡所在子网网段内返回指定数量的辅助内网IP。
-    /// - Attention: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
-    /// >
+    /// > Important: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     @inlinable
     public func assignPrivateIpAddresses(_ input: AssignPrivateIpAddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignPrivateIpAddressesResponse {
         try await self.client.execute(action: "AssignPrivateIpAddresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -94,8 +92,7 @@ extension Vpc {
     /// * 一个弹性网卡支持绑定的IP地址是有限制的，更多资源限制信息详见[弹性网卡使用限制](/document/product/576/18527)。
     /// * 可以指定内网IP地址申请，内网IP地址类型不能为主IP，主IP已存在，不能修改，内网IP必须要弹性网卡所在子网内，而且不能被占用。
     /// * 在弹性网卡上申请一个到多个辅助内网IP，接口会在弹性网卡所在子网网段内返回指定数量的辅助内网IP。
-    /// - Attention: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
-    /// >
+    /// > Important: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     @inlinable
     public func assignPrivateIpAddresses(networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, qosLevel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssignPrivateIpAddressesResponse> {
         self.assignPrivateIpAddresses(.init(networkInterfaceId: networkInterfaceId, privateIpAddresses: privateIpAddresses, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, qosLevel: qosLevel), region: region, logger: logger, on: eventLoop)
@@ -107,8 +104,7 @@ extension Vpc {
     /// * 一个弹性网卡支持绑定的IP地址是有限制的，更多资源限制信息详见[弹性网卡使用限制](/document/product/576/18527)。
     /// * 可以指定内网IP地址申请，内网IP地址类型不能为主IP，主IP已存在，不能修改，内网IP必须要弹性网卡所在子网内，而且不能被占用。
     /// * 在弹性网卡上申请一个到多个辅助内网IP，接口会在弹性网卡所在子网网段内返回指定数量的辅助内网IP。
-    /// - Attention: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
-    /// >
+    /// > Important: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     @inlinable
     public func assignPrivateIpAddresses(networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, qosLevel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignPrivateIpAddressesResponse {
         try await self.assignPrivateIpAddresses(.init(networkInterfaceId: networkInterfaceId, privateIpAddresses: privateIpAddresses, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, qosLevel: qosLevel), region: region, logger: logger, on: eventLoop)
