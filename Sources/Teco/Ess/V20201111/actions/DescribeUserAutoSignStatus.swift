@@ -21,17 +21,22 @@ import TecoCore
 extension Ess {
     /// DescribeUserAutoSignStatus请求参数结构体
     public struct DescribeUserAutoSignStatusRequest: TCRequest {
-        /// 操作人信息，UserId必填
+        /// 执行本接口操作的员工信息。
+        /// 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         public let `operator`: UserInfo
 
-        /// 自动签场景:
-        /// E_PRESCRIPTION_AUTO_SIGN 电子处方
+        /// 自动签使用的场景值, 可以选择的场景值如下:
+        ///
+        /// - **E_PRESCRIPTION_AUTO_SIGN** : 电子处方场景
+        ///
+        /// 注: `现在仅支持电子处方场景`
         public let sceneKey: String
 
-        /// 要查询开启状态的用户信息
+        /// 要查询状态的用户信息, 包括名字,身份证等
         public let userInfo: UserThreeFactor
 
-        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        /// 代理企业和员工的信息。
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         public let agent: Agent?
 
         public init(operator: UserInfo, sceneKey: String, userInfo: UserThreeFactor, agent: Agent? = nil) {
@@ -54,14 +59,20 @@ extension Ess {
         /// 查询用户是否已开通自动签
         public let isOpen: Bool
 
-        /// 自动签许可生效时间。当且仅当已开通自动签时有值。
+        /// 自动签许可生效时间。当且仅当已通过许可开通自动签时有值。
         ///
         /// 值为unix时间戳,单位为秒。
         public let licenseFrom: Int64
 
-        /// 自动签许可到期时间。当且仅当已开通自动签时有值。
+        /// 自动签许可到期时间。当且仅当已通过许可开通自动签时有值。
+        ///
         /// 值为unix时间戳,单位为秒。
         public let licenseTo: Int64
+
+        /// 设置用户开通自动签时是否绑定个人自动签账号许可。
+        ///
+        /// - **0**: 使用个人自动签账号许可进行开通，个人自动签账号许可有效期1年，注: `不可解绑释放更换他人`
+        public let licenseType: Int64?
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -70,37 +81,46 @@ extension Ess {
             case isOpen = "IsOpen"
             case licenseFrom = "LicenseFrom"
             case licenseTo = "LicenseTo"
+            case licenseType = "LicenseType"
             case requestId = "RequestId"
         }
     }
 
-    /// 查询个人用户开通自动签状态
+    /// 获取个人用户自动签的开通状态
     ///
-    /// 企业方可以通过此接口查询个人用户自动签开启状态。（处方单场景专用，使用此接口请与客户经理确认）
+    /// 通过此接口获取个人用户自动签的开通状态。
+    ///
+    /// 注意: `处方单等特殊场景专用，此接口为白名单功能，使用前请联系对接的客户经理沟通。`
     @inlinable
     public func describeUserAutoSignStatus(_ input: DescribeUserAutoSignStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserAutoSignStatusResponse> {
         self.client.execute(action: "DescribeUserAutoSignStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询个人用户开通自动签状态
+    /// 获取个人用户自动签的开通状态
     ///
-    /// 企业方可以通过此接口查询个人用户自动签开启状态。（处方单场景专用，使用此接口请与客户经理确认）
+    /// 通过此接口获取个人用户自动签的开通状态。
+    ///
+    /// 注意: `处方单等特殊场景专用，此接口为白名单功能，使用前请联系对接的客户经理沟通。`
     @inlinable
     public func describeUserAutoSignStatus(_ input: DescribeUserAutoSignStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserAutoSignStatusResponse {
         try await self.client.execute(action: "DescribeUserAutoSignStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询个人用户开通自动签状态
+    /// 获取个人用户自动签的开通状态
     ///
-    /// 企业方可以通过此接口查询个人用户自动签开启状态。（处方单场景专用，使用此接口请与客户经理确认）
+    /// 通过此接口获取个人用户自动签的开通状态。
+    ///
+    /// 注意: `处方单等特殊场景专用，此接口为白名单功能，使用前请联系对接的客户经理沟通。`
     @inlinable
     public func describeUserAutoSignStatus(operator: UserInfo, sceneKey: String, userInfo: UserThreeFactor, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserAutoSignStatusResponse> {
         self.describeUserAutoSignStatus(.init(operator: `operator`, sceneKey: sceneKey, userInfo: userInfo, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询个人用户开通自动签状态
+    /// 获取个人用户自动签的开通状态
     ///
-    /// 企业方可以通过此接口查询个人用户自动签开启状态。（处方单场景专用，使用此接口请与客户经理确认）
+    /// 通过此接口获取个人用户自动签的开通状态。
+    ///
+    /// 注意: `处方单等特殊场景专用，此接口为白名单功能，使用前请联系对接的客户经理沟通。`
     @inlinable
     public func describeUserAutoSignStatus(operator: UserInfo, sceneKey: String, userInfo: UserThreeFactor, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserAutoSignStatusResponse {
         try await self.describeUserAutoSignStatus(.init(operator: `operator`, sceneKey: sceneKey, userInfo: userInfo, agent: agent), region: region, logger: logger, on: eventLoop)

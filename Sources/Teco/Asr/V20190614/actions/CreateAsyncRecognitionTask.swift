@@ -32,6 +32,7 @@ extension Asr {
         /// • 16k_tr：土耳其语；
         /// • 16k_ar：阿拉伯语；
         /// • 16k_es：西班牙语；
+        /// • 16k_hi：印地语；
         public let engineType: String
 
         /// 语音流地址，支持rtmp、rtsp等流媒体协议，以及各类基于http协议的直播流(不支持hls, m3u8)

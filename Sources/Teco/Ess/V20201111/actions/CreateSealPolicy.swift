@@ -21,13 +21,16 @@ import TecoCore
 extension Ess {
     /// CreateSealPolicy请求参数结构体
     public struct CreateSealPolicyRequest: TCRequest {
-        /// 调用方用户信息，userId 必填
+        /// 执行本接口操作的员工信息。
+        /// 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         public let `operator`: UserInfo
 
         /// 用户在电子文件签署平台标识信息，具体参考UserInfo结构体。可跟下面的UserIds可叠加起作用
         public let users: [UserInfo]
 
-        /// 印章ID
+        /// 电子印章ID，为32位字符串。
+        /// 建议开发者保留此印章ID，后续指定签署区印章或者操作印章需此印章ID。
+        /// 可登录腾讯电子签控制台，在 "印章"->"印章中心"选择查看的印章，在"印章详情" 中查看某个印章的SealId(在页面中展示为印章ID)。
         public let sealId: String
 
         /// 授权有效期。时间戳秒级
@@ -39,7 +42,8 @@ extension Ess {
         /// 印章授权内容
         public let policy: String?
 
-        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        /// 代理企业和员工的信息。
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         public let agent: Agent?
 
         public init(operator: UserInfo, users: [UserInfo], sealId: String, expired: Int64, userIds: [String]? = nil, policy: String? = nil, agent: Agent? = nil) {
@@ -65,7 +69,8 @@ extension Ess {
 
     /// CreateSealPolicy返回参数结构体
     public struct CreateSealPolicyResponse: TCResponse {
-        /// 最终授权成功的。其他的跳过的是已经授权了的
+        /// 最终授权成功的用户ID，在腾讯电子签平台的唯一身份标识，为32位字符串。
+        /// 可登录腾讯电子签控制台，在 "更多能力"->"组织管理" 中查看某位员工的UserId(在页面中展示为用户ID)。
         public let userIds: [String]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -77,33 +82,33 @@ extension Ess {
         }
     }
 
-    /// 创建印章授权
+    /// 创建企业员工印章授权
     ///
-    /// 对企业员工进行印章授权
+    /// 本接口（CreateSealPolicy）用于对企业员工进行印章授权
     @inlinable
     public func createSealPolicy(_ input: CreateSealPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSealPolicyResponse> {
         self.client.execute(action: "CreateSealPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 创建印章授权
+    /// 创建企业员工印章授权
     ///
-    /// 对企业员工进行印章授权
+    /// 本接口（CreateSealPolicy）用于对企业员工进行印章授权
     @inlinable
     public func createSealPolicy(_ input: CreateSealPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSealPolicyResponse {
         try await self.client.execute(action: "CreateSealPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 创建印章授权
+    /// 创建企业员工印章授权
     ///
-    /// 对企业员工进行印章授权
+    /// 本接口（CreateSealPolicy）用于对企业员工进行印章授权
     @inlinable
     public func createSealPolicy(operator: UserInfo, users: [UserInfo], sealId: String, expired: Int64, userIds: [String]? = nil, policy: String? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSealPolicyResponse> {
         self.createSealPolicy(.init(operator: `operator`, users: users, sealId: sealId, expired: expired, userIds: userIds, policy: policy, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 创建印章授权
+    /// 创建企业员工印章授权
     ///
-    /// 对企业员工进行印章授权
+    /// 本接口（CreateSealPolicy）用于对企业员工进行印章授权
     @inlinable
     public func createSealPolicy(operator: UserInfo, users: [UserInfo], sealId: String, expired: Int64, userIds: [String]? = nil, policy: String? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSealPolicyResponse {
         try await self.createSealPolicy(.init(operator: `operator`, users: users, sealId: sealId, expired: expired, userIds: userIds, policy: policy, agent: agent), region: region, logger: logger, on: eventLoop)

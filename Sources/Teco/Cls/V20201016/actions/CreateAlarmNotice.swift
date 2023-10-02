@@ -28,7 +28,7 @@ extension Cls {
         /// - Trigger - 告警触发
         /// - Recovery - 告警恢复
         /// - All - 告警触发和告警恢复
-        public let type: String
+        public let type: String?
 
         /// 通知接收对象。
         public let noticeReceivers: [NoticeReceiver]?
@@ -36,11 +36,19 @@ extension Cls {
         /// 接口回调信息（包括企业微信）。
         public let webCallbacks: [WebCallback]?
 
-        public init(name: String, type: String, noticeReceivers: [NoticeReceiver]? = nil, webCallbacks: [WebCallback]? = nil) {
+        /// 通知规则。
+        ///
+        ///  注意:
+        ///
+        /// - Type、NoticeReceivers和WebCallbacks是一组配置，NoticeRules是另一组配置，2组配置互斥。
+        public let noticeRules: [NoticeRule]?
+
+        public init(name: String, type: String? = nil, noticeReceivers: [NoticeReceiver]? = nil, webCallbacks: [WebCallback]? = nil, noticeRules: [NoticeRule]? = nil) {
             self.name = name
             self.type = type
             self.noticeReceivers = noticeReceivers
             self.webCallbacks = webCallbacks
+            self.noticeRules = noticeRules
         }
 
         enum CodingKeys: String, CodingKey {
@@ -48,6 +56,7 @@ extension Cls {
             case type = "Type"
             case noticeReceivers = "NoticeReceivers"
             case webCallbacks = "WebCallbacks"
+            case noticeRules = "NoticeRules"
         }
     }
 
@@ -85,15 +94,15 @@ extension Cls {
     ///
     /// 该接口用于创建通知渠道组。
     @inlinable
-    public func createAlarmNotice(name: String, type: String, noticeReceivers: [NoticeReceiver]? = nil, webCallbacks: [WebCallback]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAlarmNoticeResponse> {
-        self.createAlarmNotice(.init(name: name, type: type, noticeReceivers: noticeReceivers, webCallbacks: webCallbacks), region: region, logger: logger, on: eventLoop)
+    public func createAlarmNotice(name: String, type: String? = nil, noticeReceivers: [NoticeReceiver]? = nil, webCallbacks: [WebCallback]? = nil, noticeRules: [NoticeRule]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAlarmNoticeResponse> {
+        self.createAlarmNotice(.init(name: name, type: type, noticeReceivers: noticeReceivers, webCallbacks: webCallbacks, noticeRules: noticeRules), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建通知渠道组
     ///
     /// 该接口用于创建通知渠道组。
     @inlinable
-    public func createAlarmNotice(name: String, type: String, noticeReceivers: [NoticeReceiver]? = nil, webCallbacks: [WebCallback]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlarmNoticeResponse {
-        try await self.createAlarmNotice(.init(name: name, type: type, noticeReceivers: noticeReceivers, webCallbacks: webCallbacks), region: region, logger: logger, on: eventLoop)
+    public func createAlarmNotice(name: String, type: String? = nil, noticeReceivers: [NoticeReceiver]? = nil, webCallbacks: [WebCallback]? = nil, noticeRules: [NoticeRule]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlarmNoticeResponse {
+        try await self.createAlarmNotice(.init(name: name, type: type, noticeReceivers: noticeReceivers, webCallbacks: webCallbacks, noticeRules: noticeRules), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -95,57 +95,57 @@ extension Cynosdb {
         }
     }
 
-    /// 查询参数修改日志
+    /// 查询参数修改记录
     ///
-    /// 本接口（DescribeClusterParamLogs）查询参数修改日志
+    /// 本接口（DescribeClusterParamLogs）查询参数修改记录
     @inlinable
     public func describeClusterParamLogs(_ input: DescribeClusterParamLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterParamLogsResponse> {
         self.client.execute(action: "DescribeClusterParamLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询参数修改日志
+    /// 查询参数修改记录
     ///
-    /// 本接口（DescribeClusterParamLogs）查询参数修改日志
+    /// 本接口（DescribeClusterParamLogs）查询参数修改记录
     @inlinable
     public func describeClusterParamLogs(_ input: DescribeClusterParamLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterParamLogsResponse {
         try await self.client.execute(action: "DescribeClusterParamLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询参数修改日志
+    /// 查询参数修改记录
     ///
-    /// 本接口（DescribeClusterParamLogs）查询参数修改日志
+    /// 本接口（DescribeClusterParamLogs）查询参数修改记录
     @inlinable
     public func describeClusterParamLogs(clusterId: String, instanceIds: [String]? = nil, orderBy: String? = nil, orderByType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterParamLogsResponse> {
         self.describeClusterParamLogs(.init(clusterId: clusterId, instanceIds: instanceIds, orderBy: orderBy, orderByType: orderByType, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询参数修改日志
+    /// 查询参数修改记录
     ///
-    /// 本接口（DescribeClusterParamLogs）查询参数修改日志
+    /// 本接口（DescribeClusterParamLogs）查询参数修改记录
     @inlinable
     public func describeClusterParamLogs(clusterId: String, instanceIds: [String]? = nil, orderBy: String? = nil, orderByType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterParamLogsResponse {
         try await self.describeClusterParamLogs(.init(clusterId: clusterId, instanceIds: instanceIds, orderBy: orderBy, orderByType: orderByType, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询参数修改日志
+    /// 查询参数修改记录
     ///
-    /// 本接口（DescribeClusterParamLogs）查询参数修改日志
+    /// 本接口（DescribeClusterParamLogs）查询参数修改记录
     @inlinable
     public func describeClusterParamLogsPaginated(_ input: DescribeClusterParamLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ClusterParamModifyLog])> {
         self.client.paginate(input: input, region: region, command: self.describeClusterParamLogs, logger: logger, on: eventLoop)
     }
 
-    /// 查询参数修改日志
+    /// 查询参数修改记录
     ///
-    /// 本接口（DescribeClusterParamLogs）查询参数修改日志
+    /// 本接口（DescribeClusterParamLogs）查询参数修改记录
     @inlinable @discardableResult
     public func describeClusterParamLogsPaginated(_ input: DescribeClusterParamLogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeClusterParamLogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeClusterParamLogs, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 查询参数修改日志
+    /// 查询参数修改记录
     ///
-    /// 本接口（DescribeClusterParamLogs）查询参数修改日志
+    /// 本接口（DescribeClusterParamLogs）查询参数修改记录
     ///
     /// - Returns: `AsyncSequence`s of ``ClusterParamModifyLog`` and ``DescribeClusterParamLogsResponse`` that can be iterated over asynchronously on demand.
     @inlinable

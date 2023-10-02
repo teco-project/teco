@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// ListRecordBackupPlanDevices请求参数结构体
-    public struct ListRecordBackupPlanDevicesRequest: TCRequest {
+    public struct ListRecordBackupPlanDevicesRequest: TCPaginatedRequest {
         /// 录像计划ID（从查询录像上云计划列表接口ListRecordBackupPlans中获取）
         public let planId: String
 
@@ -34,12 +34,12 @@ extension Iss {
         public let organizationName: String?
 
         /// 每页最大数量
-        public let pageSize: String?
+        public let pageSize: Int64?
 
-        /// 第几页
-        public let pageNumber: String?
+        /// 分页页数
+        public let pageNumber: Int64?
 
-        public init(planId: String, deviceName: String? = nil, channelName: String? = nil, organizationName: String? = nil, pageSize: String? = nil, pageNumber: String? = nil) {
+        public init(planId: String, deviceName: String? = nil, channelName: String? = nil, organizationName: String? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil) {
             self.planId = planId
             self.deviceName = deviceName
             self.channelName = channelName
@@ -56,10 +56,18 @@ extension Iss {
             case pageSize = "PageSize"
             case pageNumber = "PageNumber"
         }
+
+        /// Compute the next request based on API response.
+        public func makeNextRequest(with response: ListRecordBackupPlanDevicesResponse) -> ListRecordBackupPlanDevicesRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return .init(planId: self.planId, deviceName: self.deviceName, channelName: self.channelName, organizationName: self.organizationName, pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1)
+        }
     }
 
     /// ListRecordBackupPlanDevices返回参数结构体
-    public struct ListRecordBackupPlanDevicesResponse: TCResponse {
+    public struct ListRecordBackupPlanDevicesResponse: TCPaginatedResponse {
         /// 返回数据
         public let data: ListRecordBackupPlanDevicesData
 
@@ -69,6 +77,16 @@ extension Iss {
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned ``RecordPlanChannelInfo`` list from the paginated response.
+        public func getItems() -> [RecordPlanChannelInfo] {
+            self.data.list ?? []
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> Int64? {
+            self.data.totalCount
         }
     }
 
@@ -92,7 +110,7 @@ extension Iss {
     ///
     /// 用于查询录像上云计划下的设备通道列表。
     @inlinable
-    public func listRecordBackupPlanDevices(planId: String, deviceName: String? = nil, channelName: String? = nil, organizationName: String? = nil, pageSize: String? = nil, pageNumber: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListRecordBackupPlanDevicesResponse> {
+    public func listRecordBackupPlanDevices(planId: String, deviceName: String? = nil, channelName: String? = nil, organizationName: String? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListRecordBackupPlanDevicesResponse> {
         self.listRecordBackupPlanDevices(.init(planId: planId, deviceName: deviceName, channelName: channelName, organizationName: organizationName, pageSize: pageSize, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
     }
 
@@ -100,7 +118,33 @@ extension Iss {
     ///
     /// 用于查询录像上云计划下的设备通道列表。
     @inlinable
-    public func listRecordBackupPlanDevices(planId: String, deviceName: String? = nil, channelName: String? = nil, organizationName: String? = nil, pageSize: String? = nil, pageNumber: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListRecordBackupPlanDevicesResponse {
+    public func listRecordBackupPlanDevices(planId: String, deviceName: String? = nil, channelName: String? = nil, organizationName: String? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListRecordBackupPlanDevicesResponse {
         try await self.listRecordBackupPlanDevices(.init(planId: planId, deviceName: deviceName, channelName: channelName, organizationName: organizationName, pageSize: pageSize, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 查询录像上云计划下的设备通道列表
+    ///
+    /// 用于查询录像上云计划下的设备通道列表。
+    @inlinable
+    public func listRecordBackupPlanDevicesPaginated(_ input: ListRecordBackupPlanDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [RecordPlanChannelInfo])> {
+        self.client.paginate(input: input, region: region, command: self.listRecordBackupPlanDevices, logger: logger, on: eventLoop)
+    }
+
+    /// 查询录像上云计划下的设备通道列表
+    ///
+    /// 用于查询录像上云计划下的设备通道列表。
+    @inlinable @discardableResult
+    public func listRecordBackupPlanDevicesPaginated(_ input: ListRecordBackupPlanDevicesRequest, region: TCRegion? = nil, onResponse: @escaping (ListRecordBackupPlanDevicesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.listRecordBackupPlanDevices, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询录像上云计划下的设备通道列表
+    ///
+    /// 用于查询录像上云计划下的设备通道列表。
+    ///
+    /// - Returns: `AsyncSequence`s of ``RecordPlanChannelInfo`` and ``ListRecordBackupPlanDevicesResponse`` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func listRecordBackupPlanDevicesPaginator(_ input: ListRecordBackupPlanDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListRecordBackupPlanDevicesRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listRecordBackupPlanDevices, logger: logger, on: eventLoop)
     }
 }

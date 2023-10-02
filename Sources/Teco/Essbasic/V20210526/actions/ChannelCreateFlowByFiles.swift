@@ -69,7 +69,7 @@ extension Essbasic {
 
         /// 签署人校验方式
         /// VerifyCheck: 人脸识别（默认）
-        /// MobileCheck：手机号验证
+        /// MobileCheck：手机号验证，用户手机号和参与方手机号（ApproverMobile）相同即可查看合同内容（当手写签名方式为OCR_ESIGN时，该校验方式无效，因为这种签名方式依赖实名认证）
         /// 参数说明：可选人脸识别或手机号验证两种方式，若选择后者，未实名个人签署方在签署合同时，无需经过实名认证和意愿确认两次人脸识别，该能力仅适用于个人签署方。
         public let approverVerifyType: String?
 
@@ -166,11 +166,16 @@ extension Essbasic {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowId: String?
 
+        /// 签署方信息，如角色ID、角色名称等
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let approvers: [ApproverItem]?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
+            case approvers = "Approvers"
             case requestId = "RequestId"
         }
     }

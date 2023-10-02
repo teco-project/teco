@@ -21,16 +21,16 @@ import TecoCore
 extension Ess {
     /// DeleteIntegrationRoleUsers请求参数结构体
     public struct DeleteIntegrationRoleUsersRequest: TCRequest {
-        /// 操作人信息，userId必填
+        /// 执行本接口操作的员工信息。 注: 在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。
         public let `operator`: UserInfo
 
-        /// 角色id
+        /// 角色id，可以通过DescribeIntegrationRoles接口获取角色信息
         public let roleId: String
 
         /// 用户信息,最多 200 个用户，并且 UserId 和 OpenId 二选一，其他字段不需要传
         public let users: [UserInfo]
 
-        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        /// 代理企业和员工的信息。 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         public let agent: Agent?
 
         public init(operator: UserInfo, roleId: String, users: [UserInfo], agent: Agent? = nil) {
@@ -64,7 +64,7 @@ extension Ess {
 
     /// 解绑员工角色
     ///
-    /// 解绑员工与对应角色关系
+    /// 解绑员工与对应角色的关系，如需绑定请使用 CreateIntegrationUserRoles 接口。
     @inlinable
     public func deleteIntegrationRoleUsers(_ input: DeleteIntegrationRoleUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIntegrationRoleUsersResponse> {
         self.client.execute(action: "DeleteIntegrationRoleUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -72,7 +72,7 @@ extension Ess {
 
     /// 解绑员工角色
     ///
-    /// 解绑员工与对应角色关系
+    /// 解绑员工与对应角色的关系，如需绑定请使用 CreateIntegrationUserRoles 接口。
     @inlinable
     public func deleteIntegrationRoleUsers(_ input: DeleteIntegrationRoleUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIntegrationRoleUsersResponse {
         try await self.client.execute(action: "DeleteIntegrationRoleUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -80,7 +80,7 @@ extension Ess {
 
     /// 解绑员工角色
     ///
-    /// 解绑员工与对应角色关系
+    /// 解绑员工与对应角色的关系，如需绑定请使用 CreateIntegrationUserRoles 接口。
     @inlinable
     public func deleteIntegrationRoleUsers(operator: UserInfo, roleId: String, users: [UserInfo], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIntegrationRoleUsersResponse> {
         self.deleteIntegrationRoleUsers(.init(operator: `operator`, roleId: roleId, users: users, agent: agent), region: region, logger: logger, on: eventLoop)
@@ -88,7 +88,7 @@ extension Ess {
 
     /// 解绑员工角色
     ///
-    /// 解绑员工与对应角色关系
+    /// 解绑员工与对应角色的关系，如需绑定请使用 CreateIntegrationUserRoles 接口。
     @inlinable
     public func deleteIntegrationRoleUsers(operator: UserInfo, roleId: String, users: [UserInfo], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIntegrationRoleUsersResponse {
         try await self.deleteIntegrationRoleUsers(.init(operator: `operator`, roleId: roleId, users: users, agent: agent), region: region, logger: logger, on: eventLoop)

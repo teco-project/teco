@@ -158,6 +158,10 @@ extension Vpc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceType: String?
 
+        /// 静态单线IP网络出口
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let egress: String?
+
         /// 高防包ID,当EIP类型为高防EIP时，返回EIP绑定的高防包ID.
         public let antiDDoSPackageId: String?
 
@@ -183,6 +187,7 @@ extension Vpc {
             case tagSet = "TagSet"
             case deadlineDate = "DeadlineDate"
             case instanceType = "InstanceType"
+            case egress = "Egress"
             case antiDDoSPackageId = "AntiDDoSPackageId"
         }
     }
@@ -411,6 +416,10 @@ extension Vpc {
         /// 带宽包限速大小。单位：Mbps，-1表示不限速。
         public let bandwidth: Int64
 
+        /// 网络出口
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let egress: String?
+
         enum CodingKeys: String, CodingKey {
             case bandwidthPackageId = "BandwidthPackageId"
             case networkType = "NetworkType"
@@ -420,6 +429,7 @@ extension Vpc {
             case status = "Status"
             case resourceSet = "ResourceSet"
             case bandwidth = "Bandwidth"
+            case egress = "Egress"
         }
     }
 
@@ -2426,6 +2436,14 @@ extension Vpc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let natProductVersion: UInt64?
 
+        /// 是否启用根据目的网段选择SNAT使用的EIP功能
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let smartScheduleMode: Bool?
+
+        /// NAT实例归属的专属集群id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dedicatedClusterId: String?
+
         enum CodingKeys: String, CodingKey {
             case natGatewayId = "NatGatewayId"
             case natGatewayName = "NatGatewayName"
@@ -2447,24 +2465,30 @@ extension Vpc {
             case exclusiveGatewayBandwidth = "ExclusiveGatewayBandwidth"
             case restrictState = "RestrictState"
             case natProductVersion = "NatProductVersion"
+            case smartScheduleMode = "SmartScheduleMode"
+            case dedicatedClusterId = "DedicatedClusterId"
         }
     }
 
     /// NAT网关绑定的弹性IP
     public struct NatGatewayAddress: TCOutputModel {
         /// 弹性公网IP（EIP）的唯一 ID，形如：`eip-11112222`。
-        public let addressId: String?
+        public let addressId: String
 
         /// 外网IP地址，形如：`123.121.34.33`。
-        public let publicIpAddress: String?
+        public let publicIpAddress: String
 
         /// 资源封堵状态。true表示弹性ip处于封堵状态，false表示弹性ip处于未封堵状态。
-        public let isBlocked: Bool?
+        public let isBlocked: Bool
+
+        /// 资源封堵类型。NORMAL表示未封禁，SECURITY表示安全封禁，USER表示用户封禁，OTHER表示其他封禁，多个原因封禁时用&连接，比如：SECURITY&USER&OTHER。
+        public let blockType: String
 
         enum CodingKeys: String, CodingKey {
             case addressId = "AddressId"
             case publicIpAddress = "PublicIpAddress"
             case isBlocked = "IsBlocked"
+            case blockType = "BlockType"
         }
     }
 
@@ -2556,7 +2580,7 @@ extension Vpc {
         /// 下一跳类型为NAT，取值Nat网关，形如：nat-12345678；
         /// 下一跳类型为NORMAL_CVM，取值云服务器IPv4地址，形如：10.0.0.12；
         /// 下一跳类型为CCN，取值云联网ID，形如：ccn-12345678；
-        /// 下一跳类型为NONEXTHOP，指定网络探测为无下一跳的网络探测；
+        /// 下一跳类型为NONEXTHOP，指定网络探测为无下一跳的网络探测，添加和修改时，不需要指定值，查询时值为空字符串；
         public let nextHopDestination: String
 
         /// 下一跳网关名称。
@@ -2676,16 +2700,13 @@ extension Vpc {
 
     /// 网络ACL规则。
     public struct NetworkAclEntry: TCInputModel, TCOutputModel {
-        /// 修改时间。
-        public let modifyTime: String
-
         /// 协议, 取值: TCP,UDP, ICMP, ALL。
         public let `protocol`: String?
 
         /// 端口(all, 单个port,  range)。当Protocol为ALL或ICMP时，不能指定Port。
         public let port: String?
 
-        /// 网段或IP(互斥)。
+        /// 网段或IP(互斥)。增量创建ACL规则时，CidrBlock和Ipv6CidrBlock至少提供一个。
         public let cidrBlock: String?
 
         /// 网段或IPv6(互斥)。
@@ -2697,24 +2718,44 @@ extension Vpc {
         /// 规则描述，最大长度100。
         public let description: String?
 
-        public init(modifyTime: String, protocol: String? = nil, port: String? = nil, cidrBlock: String? = nil, ipv6CidrBlock: String? = nil, action: String? = nil, description: String? = nil) {
-            self.modifyTime = modifyTime
+        /// 修改时间。
+        public let modifyTime: String?
+
+        /// 优先级，从1开始。
+        public let priority: Int64?
+
+        /// IPv4网络ACL条目唯一ID。当修改ACL条目时，NetworkAclIpv4EntryId和NetworkAclIpv6EntryID至少提供一个。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let networkAclIpv4EntryId: String?
+
+        /// IPv6网络ACL条目唯一ID。当修改ACL条目时，NetworkAclIpv4EntryId和NetworkAclIpv6EntryId至少提供一个。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let networkAclIpv6EntryId: String?
+
+        public init(protocol: String? = nil, port: String? = nil, cidrBlock: String? = nil, ipv6CidrBlock: String? = nil, action: String? = nil, description: String? = nil, modifyTime: String? = nil, priority: Int64? = nil, networkAclIpv4EntryId: String? = nil, networkAclIpv6EntryId: String? = nil) {
             self.protocol = `protocol`
             self.port = port
             self.cidrBlock = cidrBlock
             self.ipv6CidrBlock = ipv6CidrBlock
             self.action = action
             self.description = description
+            self.modifyTime = modifyTime
+            self.priority = priority
+            self.networkAclIpv4EntryId = networkAclIpv4EntryId
+            self.networkAclIpv6EntryId = networkAclIpv6EntryId
         }
 
         enum CodingKeys: String, CodingKey {
-            case modifyTime = "ModifyTime"
             case `protocol` = "Protocol"
             case port = "Port"
             case cidrBlock = "CidrBlock"
             case ipv6CidrBlock = "Ipv6CidrBlock"
             case action = "Action"
             case description = "Description"
+            case modifyTime = "ModifyTime"
+            case priority = "Priority"
+            case networkAclIpv4EntryId = "NetworkAclIpv4EntryId"
+            case networkAclIpv6EntryId = "NetworkAclIpv6EntryId"
         }
     }
 
@@ -2969,6 +3010,86 @@ extension Vpc {
             case deviceIndex = "DeviceIndex"
             case instanceAccountId = "InstanceAccountId"
             case attachTime = "AttachTime"
+        }
+    }
+
+    /// 对等连接实例信息。
+    public struct PeerConnection: TCOutputModel {
+        /// 本端VPC唯一ID。
+        public let sourceVpcId: String
+
+        /// 对端VPC唯一ID。
+        public let peerVpcId: String
+
+        /// 对等连接唯一ID。
+        public let peeringConnectionId: String
+
+        /// 对等连接名称。
+        public let peeringConnectionName: String
+
+        /// 对等连接状态，PENDING，投放中；ACTIVE，使用中；REJECTED，已拒绝‘DELETED，已删除；FAILED，失败；EXPIRED，已过期；ISOLATED，隔离中。
+        public let state: String
+
+        /// 是否是新控制器，true: 是NewAfc；false:不是。
+        public let isNgw: Bool
+
+        /// 对等连接带宽值。
+        public let bandwidth: Int64
+
+        /// 本端地域。
+        public let sourceRegion: String
+
+        /// 对端地域。
+        public let destinationRegion: String
+
+        /// 创建时间。
+        public let createTime: String
+
+        /// 本端APPID。
+        public let appId: Int64
+
+        /// 对端APPID。
+        public let peerAppId: Int64
+
+        /// 计费类型，POSTPAID_BY_DAY_MAX：日峰值计费；POSTPAID_BY_MONTH_95：月95计费。
+        public let chargeType: String
+
+        /// 本端UIN。
+        public let sourceUin: Int64
+
+        /// 对端UIN。
+        public let destinationUin: Int64
+
+        /// 资源标签数据。
+        public let tagSet: [Tag]
+
+        /// 服务分级：PT、AU、AG。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let qosLevel: String?
+
+        /// 互通类型，VPC_PEER：VPC间互通；VPC_BM_PEER：VPC与黑石网络互通。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let type: String?
+
+        enum CodingKeys: String, CodingKey {
+            case sourceVpcId = "SourceVpcId"
+            case peerVpcId = "PeerVpcId"
+            case peeringConnectionId = "PeeringConnectionId"
+            case peeringConnectionName = "PeeringConnectionName"
+            case state = "State"
+            case isNgw = "IsNgw"
+            case bandwidth = "Bandwidth"
+            case sourceRegion = "SourceRegion"
+            case destinationRegion = "DestinationRegion"
+            case createTime = "CreateTime"
+            case appId = "AppId"
+            case peerAppId = "PeerAppId"
+            case chargeType = "ChargeType"
+            case sourceUin = "SourceUin"
+            case destinationUin = "DestinationUin"
+            case tagSet = "TagSet"
+            case qosLevel = "QosLevel"
+            case type = "Type"
         }
     }
 
@@ -3460,7 +3581,7 @@ extension Vpc {
         public let main: Bool
 
         /// 创建时间。
-        public let createdTime: String?
+        public let createdTime: String
 
         /// 标签键值对。
         public let tagSet: [Tag]

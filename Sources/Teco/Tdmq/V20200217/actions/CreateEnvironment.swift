@@ -27,11 +27,11 @@ extension Tdmq {
         /// 未消费消息过期时间，单位：秒，取值范围：60秒~15天。
         public let msgTTL: UInt64
 
+        /// Pulsar 集群的ID
+        public let clusterId: String
+
         /// 说明，128个字符以内。
         public let remark: String?
-
-        /// Pulsar 集群的ID
-        public let clusterId: String?
 
         /// 消息保留策略
         public let retentionPolicy: RetentionPolicy?
@@ -39,11 +39,11 @@ extension Tdmq {
         /// 是否开启自动创建订阅
         public let autoSubscriptionCreation: Bool?
 
-        public init(environmentId: String, msgTTL: UInt64, remark: String? = nil, clusterId: String? = nil, retentionPolicy: RetentionPolicy? = nil, autoSubscriptionCreation: Bool? = nil) {
+        public init(environmentId: String, msgTTL: UInt64, clusterId: String, remark: String? = nil, retentionPolicy: RetentionPolicy? = nil, autoSubscriptionCreation: Bool? = nil) {
             self.environmentId = environmentId
             self.msgTTL = msgTTL
-            self.remark = remark
             self.clusterId = clusterId
+            self.remark = remark
             self.retentionPolicy = retentionPolicy
             self.autoSubscriptionCreation = autoSubscriptionCreation
         }
@@ -51,8 +51,8 @@ extension Tdmq {
         enum CodingKeys: String, CodingKey {
             case environmentId = "EnvironmentId"
             case msgTTL = "MsgTTL"
-            case remark = "Remark"
             case clusterId = "ClusterId"
+            case remark = "Remark"
             case retentionPolicy = "RetentionPolicy"
             case autoSubscriptionCreation = "AutoSubscriptionCreation"
         }
@@ -105,15 +105,15 @@ extension Tdmq {
     ///
     /// 用于在用户账户下创建消息队列 Tdmq 命名空间
     @inlinable
-    public func createEnvironment(environmentId: String, msgTTL: UInt64, remark: String? = nil, clusterId: String? = nil, retentionPolicy: RetentionPolicy? = nil, autoSubscriptionCreation: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEnvironmentResponse> {
-        self.createEnvironment(.init(environmentId: environmentId, msgTTL: msgTTL, remark: remark, clusterId: clusterId, retentionPolicy: retentionPolicy, autoSubscriptionCreation: autoSubscriptionCreation), region: region, logger: logger, on: eventLoop)
+    public func createEnvironment(environmentId: String, msgTTL: UInt64, clusterId: String, remark: String? = nil, retentionPolicy: RetentionPolicy? = nil, autoSubscriptionCreation: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEnvironmentResponse> {
+        self.createEnvironment(.init(environmentId: environmentId, msgTTL: msgTTL, clusterId: clusterId, remark: remark, retentionPolicy: retentionPolicy, autoSubscriptionCreation: autoSubscriptionCreation), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建命名空间
     ///
     /// 用于在用户账户下创建消息队列 Tdmq 命名空间
     @inlinable
-    public func createEnvironment(environmentId: String, msgTTL: UInt64, remark: String? = nil, clusterId: String? = nil, retentionPolicy: RetentionPolicy? = nil, autoSubscriptionCreation: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEnvironmentResponse {
-        try await self.createEnvironment(.init(environmentId: environmentId, msgTTL: msgTTL, remark: remark, clusterId: clusterId, retentionPolicy: retentionPolicy, autoSubscriptionCreation: autoSubscriptionCreation), region: region, logger: logger, on: eventLoop)
+    public func createEnvironment(environmentId: String, msgTTL: UInt64, clusterId: String, remark: String? = nil, retentionPolicy: RetentionPolicy? = nil, autoSubscriptionCreation: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEnvironmentResponse {
+        try await self.createEnvironment(.init(environmentId: environmentId, msgTTL: msgTTL, clusterId: clusterId, remark: remark, retentionPolicy: retentionPolicy, autoSubscriptionCreation: autoSubscriptionCreation), region: region, logger: logger, on: eventLoop)
     }
 }

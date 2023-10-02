@@ -21,39 +21,57 @@ import TecoCore
 extension Ess {
     /// CreateConvertTaskApi请求参数结构体
     public struct CreateConvertTaskApiRequest: TCRequest {
-        /// 资源类型 支持doc,docx,html,xls,xlsx,jpg,jpeg,png,bmp文件类型
+        /// 需要进行转换的资源文件类型
+        /// 支持的文件类型如下：
+        ///
+        /// - doc
+        /// - docx
+        /// - xls
+        /// - xlsx
+        /// - jpg
+        /// - jpeg
+        /// - png
+        /// - bmp
+        /// - txt
         public let resourceType: String
 
-        /// 资源名称，长度限制为256字符
+        /// 需要进行转换操作的文件资源名称，带资源后缀名。
+        ///
+        /// 注:  `资源名称长度限制为256个字符`
         public let resourceName: String
 
-        /// 文件Id，通过UploadFiles获取
+        /// 需要进行转换操作的文件资源Id，通过[UploadFiles](https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles)接口获取文件资源Id。
+        ///
+        /// 注:  `目前，此接口仅支持单个文件进行转换。`
         public let resourceId: String
 
-        /// 调用方用户信息，userId 必填
+        /// 执行本接口操作的员工信息。
+        /// 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。
         public let `operator`: UserInfo?
 
-        /// 应用号信息
-        @available(*, deprecated)
-        public let agent: Agent? = nil
+        /// 代理企业和员工的信息。
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        public let agent: Agent?
 
         /// 暂未开放
         @available(*, deprecated)
         public let organization: OrganizationInfo? = nil
 
-        public init(resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil) {
+        public init(resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil, agent: Agent? = nil) {
             self.resourceType = resourceType
             self.resourceName = resourceName
             self.resourceId = resourceId
             self.operator = `operator`
+            self.agent = agent
         }
 
-        @available(*, deprecated, renamed: "init(resourceType:resourceName:resourceId:operator:)", message: "'agent' and 'organization' are deprecated in 'CreateConvertTaskApiRequest'. Setting these parameters has no effect.")
+        @available(*, deprecated, renamed: "init(resourceType:resourceName:resourceId:operator:agent:)", message: "'organization' is deprecated in 'CreateConvertTaskApiRequest'. Setting this parameter has no effect.")
         public init(resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil, agent: Agent? = nil, organization: OrganizationInfo? = nil) {
             self.resourceType = resourceType
             self.resourceName = resourceName
             self.resourceId = resourceId
             self.operator = `operator`
+            self.agent = agent
         }
 
         enum CodingKeys: String, CodingKey {
@@ -68,7 +86,7 @@ extension Ess {
 
     /// CreateConvertTaskApi返回参数结构体
     public struct CreateConvertTaskApiResponse: TCResponse {
-        /// 转换任务Id
+        /// 接口返回的文件转换任务Id，可以调用接口[查询转换任务状态](https://qian.tencent.com/developers/companyApis/templatesAndFiles/GetTaskResultApi)获取转换任务的状态和转换后的文件资源Id。
         public let taskId: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -82,8 +100,18 @@ extension Ess {
 
     /// 创建文件转换任务
     ///
-    /// 上传了word、excel、图片文件后，通过该接口发起文件转换任务，将word、excel、图片文件转换为pdf文件。
-    /// 注：如果是集团代子企业发起任务场景，可以通过对Agent参数（未列在入参列表）设置代理的相关应用信息来支持，Agent参数设置可以参考CreateFlow接口的Agent相关说明。
+    /// 此接口（CreateConvertTaskApi）用来将word、excel、图片、txt类型文件转换为PDF文件。
+    ///
+    /// 前提条件：源文件已经通过 [文件上传接口](https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles)完成上传，并得到了源文件的资源Id。
+    ///
+    /// 适用场景1：已经上传了一个word文件，希望将该word文件转换成pdf文件后发起合同
+    /// 适用场景2：已经上传了一个jpg图片文件，希望将该图片文件转换成pdf文件后发起合同
+    ///
+    /// 转换文件是一个耗时操作，若想查看转换任务是否完成，可以通过[查询转换任务状态](https://qian.tencent.com/developers/companyApis/templatesAndFiles/GetTaskResultApi)接口获取任务状态。
+    ///
+    /// 注:
+    /// 1. `支持的文件类型有doc、docx、xls、xlsx、jpg、jpeg、png、bmp、txt`
+    /// 2. `可通过发起合同时设置预览来检查转换文件是否达到预期效果`
     @inlinable
     public func createConvertTaskApi(_ input: CreateConvertTaskApiRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConvertTaskApiResponse> {
         self.client.execute(action: "CreateConvertTaskApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -91,8 +119,18 @@ extension Ess {
 
     /// 创建文件转换任务
     ///
-    /// 上传了word、excel、图片文件后，通过该接口发起文件转换任务，将word、excel、图片文件转换为pdf文件。
-    /// 注：如果是集团代子企业发起任务场景，可以通过对Agent参数（未列在入参列表）设置代理的相关应用信息来支持，Agent参数设置可以参考CreateFlow接口的Agent相关说明。
+    /// 此接口（CreateConvertTaskApi）用来将word、excel、图片、txt类型文件转换为PDF文件。
+    ///
+    /// 前提条件：源文件已经通过 [文件上传接口](https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles)完成上传，并得到了源文件的资源Id。
+    ///
+    /// 适用场景1：已经上传了一个word文件，希望将该word文件转换成pdf文件后发起合同
+    /// 适用场景2：已经上传了一个jpg图片文件，希望将该图片文件转换成pdf文件后发起合同
+    ///
+    /// 转换文件是一个耗时操作，若想查看转换任务是否完成，可以通过[查询转换任务状态](https://qian.tencent.com/developers/companyApis/templatesAndFiles/GetTaskResultApi)接口获取任务状态。
+    ///
+    /// 注:
+    /// 1. `支持的文件类型有doc、docx、xls、xlsx、jpg、jpeg、png、bmp、txt`
+    /// 2. `可通过发起合同时设置预览来检查转换文件是否达到预期效果`
     @inlinable
     public func createConvertTaskApi(_ input: CreateConvertTaskApiRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConvertTaskApiResponse {
         try await self.client.execute(action: "CreateConvertTaskApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -100,18 +138,38 @@ extension Ess {
 
     /// 创建文件转换任务
     ///
-    /// 上传了word、excel、图片文件后，通过该接口发起文件转换任务，将word、excel、图片文件转换为pdf文件。
-    /// 注：如果是集团代子企业发起任务场景，可以通过对Agent参数（未列在入参列表）设置代理的相关应用信息来支持，Agent参数设置可以参考CreateFlow接口的Agent相关说明。
+    /// 此接口（CreateConvertTaskApi）用来将word、excel、图片、txt类型文件转换为PDF文件。
+    ///
+    /// 前提条件：源文件已经通过 [文件上传接口](https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles)完成上传，并得到了源文件的资源Id。
+    ///
+    /// 适用场景1：已经上传了一个word文件，希望将该word文件转换成pdf文件后发起合同
+    /// 适用场景2：已经上传了一个jpg图片文件，希望将该图片文件转换成pdf文件后发起合同
+    ///
+    /// 转换文件是一个耗时操作，若想查看转换任务是否完成，可以通过[查询转换任务状态](https://qian.tencent.com/developers/companyApis/templatesAndFiles/GetTaskResultApi)接口获取任务状态。
+    ///
+    /// 注:
+    /// 1. `支持的文件类型有doc、docx、xls、xlsx、jpg、jpeg、png、bmp、txt`
+    /// 2. `可通过发起合同时设置预览来检查转换文件是否达到预期效果`
     @inlinable
-    public func createConvertTaskApi(resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConvertTaskApiResponse> {
-        self.createConvertTaskApi(.init(resourceType: resourceType, resourceName: resourceName, resourceId: resourceId, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func createConvertTaskApi(resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConvertTaskApiResponse> {
+        self.createConvertTaskApi(.init(resourceType: resourceType, resourceName: resourceName, resourceId: resourceId, operator: `operator`, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建文件转换任务
     ///
-    /// 上传了word、excel、图片文件后，通过该接口发起文件转换任务，将word、excel、图片文件转换为pdf文件。
-    /// 注：如果是集团代子企业发起任务场景，可以通过对Agent参数（未列在入参列表）设置代理的相关应用信息来支持，Agent参数设置可以参考CreateFlow接口的Agent相关说明。
-    @available(*, deprecated, renamed: "createConvertTaskApi(resourceType:resourceName:resourceId:operator:region:logger:on:)", message: "'agent' and 'organization' are deprecated. Setting these parameters has no effect.")
+    /// 此接口（CreateConvertTaskApi）用来将word、excel、图片、txt类型文件转换为PDF文件。
+    ///
+    /// 前提条件：源文件已经通过 [文件上传接口](https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles)完成上传，并得到了源文件的资源Id。
+    ///
+    /// 适用场景1：已经上传了一个word文件，希望将该word文件转换成pdf文件后发起合同
+    /// 适用场景2：已经上传了一个jpg图片文件，希望将该图片文件转换成pdf文件后发起合同
+    ///
+    /// 转换文件是一个耗时操作，若想查看转换任务是否完成，可以通过[查询转换任务状态](https://qian.tencent.com/developers/companyApis/templatesAndFiles/GetTaskResultApi)接口获取任务状态。
+    ///
+    /// 注:
+    /// 1. `支持的文件类型有doc、docx、xls、xlsx、jpg、jpeg、png、bmp、txt`
+    /// 2. `可通过发起合同时设置预览来检查转换文件是否达到预期效果`
+    @available(*, deprecated, renamed: "createConvertTaskApi(resourceType:resourceName:resourceId:operator:agent:region:logger:on:)", message: "'organization' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func createConvertTaskApi(resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil, agent: Agent? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConvertTaskApiResponse> {
         self.createConvertTaskApi(.init(resourceType: resourceType, resourceName: resourceName, resourceId: resourceId, operator: `operator`, agent: agent, organization: organization), region: region, logger: logger, on: eventLoop)
@@ -119,18 +177,38 @@ extension Ess {
 
     /// 创建文件转换任务
     ///
-    /// 上传了word、excel、图片文件后，通过该接口发起文件转换任务，将word、excel、图片文件转换为pdf文件。
-    /// 注：如果是集团代子企业发起任务场景，可以通过对Agent参数（未列在入参列表）设置代理的相关应用信息来支持，Agent参数设置可以参考CreateFlow接口的Agent相关说明。
+    /// 此接口（CreateConvertTaskApi）用来将word、excel、图片、txt类型文件转换为PDF文件。
+    ///
+    /// 前提条件：源文件已经通过 [文件上传接口](https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles)完成上传，并得到了源文件的资源Id。
+    ///
+    /// 适用场景1：已经上传了一个word文件，希望将该word文件转换成pdf文件后发起合同
+    /// 适用场景2：已经上传了一个jpg图片文件，希望将该图片文件转换成pdf文件后发起合同
+    ///
+    /// 转换文件是一个耗时操作，若想查看转换任务是否完成，可以通过[查询转换任务状态](https://qian.tencent.com/developers/companyApis/templatesAndFiles/GetTaskResultApi)接口获取任务状态。
+    ///
+    /// 注:
+    /// 1. `支持的文件类型有doc、docx、xls、xlsx、jpg、jpeg、png、bmp、txt`
+    /// 2. `可通过发起合同时设置预览来检查转换文件是否达到预期效果`
     @inlinable
-    public func createConvertTaskApi(resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConvertTaskApiResponse {
-        try await self.createConvertTaskApi(.init(resourceType: resourceType, resourceName: resourceName, resourceId: resourceId, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func createConvertTaskApi(resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConvertTaskApiResponse {
+        try await self.createConvertTaskApi(.init(resourceType: resourceType, resourceName: resourceName, resourceId: resourceId, operator: `operator`, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建文件转换任务
     ///
-    /// 上传了word、excel、图片文件后，通过该接口发起文件转换任务，将word、excel、图片文件转换为pdf文件。
-    /// 注：如果是集团代子企业发起任务场景，可以通过对Agent参数（未列在入参列表）设置代理的相关应用信息来支持，Agent参数设置可以参考CreateFlow接口的Agent相关说明。
-    @available(*, deprecated, renamed: "createConvertTaskApi(resourceType:resourceName:resourceId:operator:region:logger:on:)", message: "'agent' and 'organization' are deprecated. Setting these parameters has no effect.")
+    /// 此接口（CreateConvertTaskApi）用来将word、excel、图片、txt类型文件转换为PDF文件。
+    ///
+    /// 前提条件：源文件已经通过 [文件上传接口](https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles)完成上传，并得到了源文件的资源Id。
+    ///
+    /// 适用场景1：已经上传了一个word文件，希望将该word文件转换成pdf文件后发起合同
+    /// 适用场景2：已经上传了一个jpg图片文件，希望将该图片文件转换成pdf文件后发起合同
+    ///
+    /// 转换文件是一个耗时操作，若想查看转换任务是否完成，可以通过[查询转换任务状态](https://qian.tencent.com/developers/companyApis/templatesAndFiles/GetTaskResultApi)接口获取任务状态。
+    ///
+    /// 注:
+    /// 1. `支持的文件类型有doc、docx、xls、xlsx、jpg、jpeg、png、bmp、txt`
+    /// 2. `可通过发起合同时设置预览来检查转换文件是否达到预期效果`
+    @available(*, deprecated, renamed: "createConvertTaskApi(resourceType:resourceName:resourceId:operator:agent:region:logger:on:)", message: "'organization' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func createConvertTaskApi(resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil, agent: Agent? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConvertTaskApiResponse {
         try await self.createConvertTaskApi(.init(resourceType: resourceType, resourceName: resourceName, resourceId: resourceId, operator: `operator`, agent: agent, organization: organization), region: region, logger: logger, on: eventLoop)

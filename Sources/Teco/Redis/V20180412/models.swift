@@ -728,7 +728,6 @@ extension Redis {
         /// - 21：孟买。
         /// - 22：美东（弗吉尼亚）。
         /// - 23：曼谷。
-        /// - 24：莫斯科。
         /// - 25：东京。
         public let regionId: Int64
 

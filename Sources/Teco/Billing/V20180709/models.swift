@@ -168,9 +168,21 @@ extension Billing {
         /// 项目ID
         public let projectId: Int64
 
-        /// 价格属性
+        /// 价格属性：该组件除单价、时长外的其他影响折扣定价的属性信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let priceInfo: [String]?
+
+        /// 关联交易单据ID：和本笔交易关联单据 ID，如，冲销订单，记录原订单、重结订单，退费单记录对应的原购买订单号
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let associatedOrder: BillDetailAssociatedOrder?
+
+        /// 计算说明：特殊交易类型计费结算的详细计算说明，如退费及变配
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let formula: String?
+
+        /// 计费规则：各产品详细的计费规则官网说明链接
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let formulaUrl: String?
 
         enum CodingKeys: String, CodingKey {
             case businessCodeName = "BusinessCodeName"
@@ -198,6 +210,45 @@ extension Billing {
             case regionId = "RegionId"
             case projectId = "ProjectId"
             case priceInfo = "PriceInfo"
+            case associatedOrder = "AssociatedOrder"
+            case formula = "Formula"
+            case formulaUrl = "FormulaUrl"
+        }
+    }
+
+    /// 明细账单关联单据信息
+    public struct BillDetailAssociatedOrder: TCOutputModel {
+        /// 新购订单
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let prepayPurchase: String?
+
+        /// 续费订单
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let prepayRenew: String?
+
+        /// 升配订单
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let prepayModifyUp: String?
+
+        /// 冲销订单
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let reverseOrder: String?
+
+        /// 优惠调整后订单
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let newOrder: String?
+
+        /// 优惠调整前订单
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let original: String?
+
+        enum CodingKeys: String, CodingKey {
+            case prepayPurchase = "PrepayPurchase"
+            case prepayRenew = "PrepayRenew"
+            case prepayModifyUp = "PrepayModifyUp"
+            case reverseOrder = "ReverseOrder"
+            case newOrder = "NewOrder"
+            case original = "Original"
         }
     }
 
@@ -305,6 +356,10 @@ extension Billing {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let blendedDiscount: String?
 
+        /// 配置描述：资源配置规格信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let componentConfig: [BillDetailComponentConfig]?
+
         enum CodingKeys: String, CodingKey {
             case componentCodeName = "ComponentCodeName"
             case itemCodeName = "ItemCodeName"
@@ -335,6 +390,189 @@ extension Billing {
             case spDeduction = "SPDeduction"
             case originalCostWithSP = "OriginalCostWithSP"
             case blendedDiscount = "BlendedDiscount"
+            case componentConfig = "ComponentConfig"
+        }
+    }
+
+    /// 明细账单配置描述结构
+    public struct BillDetailComponentConfig: TCOutputModel {
+        /// 配置描述名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 配置描述值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let value: String?
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case value = "Value"
+        }
+    }
+
+    /// 经销账单资源汇总数据对象
+    public struct BillDistributionResourceSummary: TCOutputModel {
+        /// 产品名称：用户所采购的各类云产品，例如：云服务器 CVM
+        public let businessCodeName: String
+
+        /// 子产品名称：用户采购的具体产品细分类型，例如：云服务器 CVM-标准型 S1
+        public let productCodeName: String
+
+        /// 计费模式：资源的计费模式，区分为包年包月和按量计费
+        public let payModeName: String
+
+        /// 项目名称：资源归属的项目，用户在控制台给资源自主分配项目，未分配则是默认项目
+        public let projectName: String
+
+        /// 地域：资源所属地域，如华南地区（广州）
+        public let regionName: String
+
+        /// 可用区：资源所属可用区，如广州三区
+        public let zoneName: String
+
+        /// 资源 ID：账单中出账对象 ID，不同产品因资源形态不同，资源内容不完全相同，如云服务器 CVM 为对应的实例 ID
+        public let resourceId: String
+
+        /// 资源别名：用户在控制台为资源设置的名称，如果未设置，则默认为空
+        public let resourceName: String
+
+        /// 交易类型：如包年包月新购、包年包月续费、按量计费扣费等类型
+        public let actionTypeName: String
+
+        /// 订单ID：包年包月计费模式下订购的订单号
+        public let orderId: String
+
+        /// 扣费时间：结算扣费时间
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampEncoding public var payTime: Date
+
+        /// 开始使用时间：产品服务开始使用时间
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampEncoding public var feeBeginTime: Date
+
+        /// 结束使用时间：产品服务结束使用时间
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampEncoding public var feeEndTime: Date
+
+        /// 配置描述：该资源下的计费项名称和用量合并展示，仅在资源账单体现
+        public let configDesc: String
+
+        /// 扩展字段1：产品对应的扩展属性信息，仅在资源账单体现
+        public let extendField1: String
+
+        /// 扩展字段2：产品对应的扩展属性信息，仅在资源账单体现
+        public let extendField2: String
+
+        /// 原价：原价 = 组件刊例价 * 组件用量 * 使用时长（如果客户享受一口价/合同价则默认不展示，退费类场景也默认不展示）
+        public let totalCost: String
+
+        /// 折扣率：本资源享受的折扣率（如果客户享受一口价/合同价则默认不展示，退费场景也默认不展示）
+        public let discount: String
+
+        /// 优惠类型
+        public let reduceType: String
+
+        /// 优惠后总价
+        public let realTotalCost: String
+
+        /// 优惠券支出：使用各类优惠券（如代金券、现金券等）支付的金额
+        public let voucherPayAmount: String
+
+        /// 现金账户支出：通过现金账户支付的金额
+        public let cashPayAmount: String
+
+        /// 赠送账户支出：使用赠送金支付的金额
+        public let incentivePayAmount: String
+
+        /// 分成金账户支出：通过分成金账户支付的金额
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let transferPayAmount: String?
+
+        /// 扩展字段3：产品对应的扩展属性信息，仅在资源账单体现
+        public let extendField3: String
+
+        /// 扩展字段4：产品对应的扩展属性信息，仅在资源账单体现
+        public let extendField4: String
+
+        /// 扩展字段5：产品对应的扩展属性信息，仅在资源账单体现
+        public let extendField5: String
+
+        /// 标签信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tags: [BillTagInfo]?
+
+        /// 使用者UIN：实际使用资源的账号 ID
+        public let ownerUin: String
+
+        /// 操作者UIN：操作者账号 ID（预付费资源下单或后付费操作开通资源账号的 ID 或者角色 ID ）
+        public let operateUin: String
+
+        /// 产品编码
+        public let businessCode: String
+
+        /// 子产品编码
+        public let productCode: String
+
+        /// 地域ID
+        public let regionId: Int64
+
+        /// 实例类型：购买的产品服务对应的实例类型，包括资源包、RI、SP、竞价实例。正常的实例展示默认为不展示
+        public let instanceType: String
+
+        /// 预留实例抵扣组件原价：本产品或服务使用预留实例抵扣的组件原价金额
+        public let originalCostWithRI: String
+
+        /// 节省计划抵扣金额（已废弃）
+        @available(*, deprecated)
+        public let spDeduction: String
+
+        /// 节省计划抵扣组件原价：节省计划抵扣原价=节省计划包抵扣金额/节省计划抵扣率
+        public let originalCostWithSP: String
+
+        enum CodingKeys: String, CodingKey {
+            case businessCodeName = "BusinessCodeName"
+            case productCodeName = "ProductCodeName"
+            case payModeName = "PayModeName"
+            case projectName = "ProjectName"
+            case regionName = "RegionName"
+            case zoneName = "ZoneName"
+            case resourceId = "ResourceId"
+            case resourceName = "ResourceName"
+            case actionTypeName = "ActionTypeName"
+            case orderId = "OrderId"
+            case payTime = "PayTime"
+            case feeBeginTime = "FeeBeginTime"
+            case feeEndTime = "FeeEndTime"
+            case configDesc = "ConfigDesc"
+            case extendField1 = "ExtendField1"
+            case extendField2 = "ExtendField2"
+            case totalCost = "TotalCost"
+            case discount = "Discount"
+            case reduceType = "ReduceType"
+            case realTotalCost = "RealTotalCost"
+            case voucherPayAmount = "VoucherPayAmount"
+            case cashPayAmount = "CashPayAmount"
+            case incentivePayAmount = "IncentivePayAmount"
+            case transferPayAmount = "TransferPayAmount"
+            case extendField3 = "ExtendField3"
+            case extendField4 = "ExtendField4"
+            case extendField5 = "ExtendField5"
+            case tags = "Tags"
+            case ownerUin = "OwnerUin"
+            case operateUin = "OperateUin"
+            case businessCode = "BusinessCode"
+            case productCode = "ProductCode"
+            case regionId = "RegionId"
+            case instanceType = "InstanceType"
+            case originalCostWithRI = "OriginalCostWithRI"
+            case spDeduction = "SPDeduction"
+            case originalCostWithSP = "OriginalCostWithSP"
         }
     }
 
@@ -1437,6 +1675,138 @@ extension Billing {
         }
     }
 
+    /// 经销账单明细数据对象
+    public struct DistributionBillDetail: TCOutputModel {
+        /// 产品名称：用户所采购的各类云产品，例如：云服务器 CVM
+        public let businessCodeName: String
+
+        /// 子产品名称：用户采购的具体产品细分类型，例如：云服务器 CVM-标准型 S1
+        public let productCodeName: String
+
+        /// 计费模式：资源的计费模式，区分为包年包月和按量计费
+        public let payModeName: String
+
+        /// 项目名称：资源归属的项目，用户在控制台给资源自主分配项目，未分配则是默认项目
+        public let projectName: String
+
+        /// 地域：资源所属地域，如华南地区（广州）
+        public let regionName: String
+
+        /// 可用区：资源所属可用区，如广州三区
+        public let zoneName: String
+
+        /// 资源 ID：账单中出账对象 ID，不同产品因资源形态不同，资源内容不完全相同，如云服务器 CVM 为对应的实例 ID
+        public let resourceId: String
+
+        /// 资源别名：用户在控制台为资源设置的名称，如果未设置，则默认为空
+        public let resourceName: String
+
+        /// 交易类型，如包年包月新购、包年包月续费、按量计费扣费等类型
+        public let actionTypeName: String
+
+        /// 订单ID：包年包月计费模式下订购的订单号
+        public let orderId: String
+
+        /// 交易ID：结算扣费单号
+        public let billId: String
+
+        /// 扣费时间：结算扣费时间
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampEncoding public var payTime: Date
+
+        /// 开始使用时间：产品服务开始使用时间
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampEncoding public var feeBeginTime: Date
+
+        /// 结束使用时间：产品服务结束使用时间
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampEncoding public var feeEndTime: Date
+
+        /// 组件列表
+        public let componentSet: [BillDetailComponent]
+
+        /// 使用者UIN：实际使用资源的账号 ID
+        public let ownerUin: String
+
+        /// 操作者UIN：操作者账号 ID（预付费资源下单或后付费操作开通资源账号的 ID 或者角色 ID ）
+        public let operateUin: String
+
+        /// 标签信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tags: [BillTagInfo]?
+
+        /// 产品编码
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let businessCode: String?
+
+        /// 子产品编码
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let productCode: String?
+
+        /// 交易类型编码
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let actionType: String?
+
+        /// 地域ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let regionId: String?
+
+        /// 项目ID
+        public let projectId: Int64
+
+        /// 价格属性：该组件除单价、时长外的其他影响折扣定价的属性信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let priceInfo: [String]?
+
+        /// 关联交易单据ID：和本笔交易关联单据 ID，如，冲销订单，记录原订单、重结订单，退费单记录对应的原购买订单号
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let associatedOrder: BillDetailAssociatedOrder?
+
+        /// 计算说明：特殊交易类型计费结算的详细计算说明，如退费及变配
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let formula: String?
+
+        /// 计费规则：各产品详细的计费规则官网说明链接
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let formulaUrl: String?
+
+        enum CodingKeys: String, CodingKey {
+            case businessCodeName = "BusinessCodeName"
+            case productCodeName = "ProductCodeName"
+            case payModeName = "PayModeName"
+            case projectName = "ProjectName"
+            case regionName = "RegionName"
+            case zoneName = "ZoneName"
+            case resourceId = "ResourceId"
+            case resourceName = "ResourceName"
+            case actionTypeName = "ActionTypeName"
+            case orderId = "OrderId"
+            case billId = "BillId"
+            case payTime = "PayTime"
+            case feeBeginTime = "FeeBeginTime"
+            case feeEndTime = "FeeEndTime"
+            case componentSet = "ComponentSet"
+            case ownerUin = "OwnerUin"
+            case operateUin = "OperateUin"
+            case tags = "Tags"
+            case businessCode = "BusinessCode"
+            case productCode = "ProductCode"
+            case actionType = "ActionType"
+            case regionId = "RegionId"
+            case projectId = "ProjectId"
+            case priceInfo = "PriceInfo"
+            case associatedOrder = "AssociatedOrder"
+            case formula = "Formula"
+            case formulaUrl = "FormulaUrl"
+        }
+    }
+
     /// 不适用商品信息
     public struct ExcludedProducts: TCOutputModel {
         /// 不适用商品名称
@@ -1668,6 +2038,25 @@ extension Billing {
         enum CodingKeys: String, CodingKey {
             case realTotalCost = "RealTotalCost"
             case totalCost = "TotalCost"
+        }
+    }
+
+    /// 标签信息
+    public struct TagDataInfo: TCOutputModel {
+        /// 分账标签键
+        public let tagKey: String
+
+        /// 标签类型，0普通标签，1分账标签
+        public let status: Int64
+
+        /// 设置分账标签时间，普通标签不返回
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updateTime: String?
+
+        enum CodingKeys: String, CodingKey {
+            case tagKey = "TagKey"
+            case status = "Status"
+            case updateTime = "UpdateTime"
         }
     }
 

@@ -21,10 +21,12 @@ import TecoCore
 extension Cynosdb {
     /// DescribeResourcesByDealName请求参数结构体
     public struct DescribeResourcesByDealNameRequest: TCRequest {
-        /// 计费订单ID（如果计费还没回调业务发货，可能出现错误码InvalidParameterValue.DealNameNotFound，这种情况需要业务重试DescribeResourcesByDealName接口直到成功）
+        /// 计费订单ID（如果计费还没回调业务发货，可能出现错误码InvalidParameterValue.DealNameNotFound，这种情况需要业务重试DescribeResourcesByDealName接口直到成功）。
+        /// DealName与DealNames至少应输入一项，两者都传时以DealName为准。
         public let dealName: String?
 
-        /// 计费订单ID列表，可以一次查询若干条订单ID对应资源信息（如果计费还没回调业务发货，可能出现错误码InvalidParameterValue.DealNameNotFound，这种情况需要业务重试DescribeResourcesByDealName接口直到成功）
+        /// 计费订单ID列表，可以一次查询若干条订单ID对应资源信息（如果计费还没回调业务发货，可能出现错误码InvalidParameterValue.DealNameNotFound，这种情况需要业务重试DescribeResourcesByDealName接口直到成功）。
+        /// DealName与DealNames至少应输入一项，两者都传时以DealName为准。
         public let dealNames: [String]?
 
         public init(dealName: String? = nil, dealNames: [String]? = nil) {
@@ -52,33 +54,25 @@ extension Cynosdb {
         }
     }
 
-    /// 根据订单id查询资源信息
-    ///
-    /// 根据计费订单id查询资源列表
+    /// 查询订单关联实例
     @inlinable
     public func describeResourcesByDealName(_ input: DescribeResourcesByDealNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourcesByDealNameResponse> {
         self.client.execute(action: "DescribeResourcesByDealName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 根据订单id查询资源信息
-    ///
-    /// 根据计费订单id查询资源列表
+    /// 查询订单关联实例
     @inlinable
     public func describeResourcesByDealName(_ input: DescribeResourcesByDealNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesByDealNameResponse {
         try await self.client.execute(action: "DescribeResourcesByDealName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 根据订单id查询资源信息
-    ///
-    /// 根据计费订单id查询资源列表
+    /// 查询订单关联实例
     @inlinable
     public func describeResourcesByDealName(dealName: String? = nil, dealNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourcesByDealNameResponse> {
         self.describeResourcesByDealName(.init(dealName: dealName, dealNames: dealNames), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 根据订单id查询资源信息
-    ///
-    /// 根据计费订单id查询资源列表
+    /// 查询订单关联实例
     @inlinable
     public func describeResourcesByDealName(dealName: String? = nil, dealNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesByDealNameResponse {
         try await self.describeResourcesByDealName(.init(dealName: dealName, dealNames: dealNames), region: region, logger: logger, on: eventLoop)

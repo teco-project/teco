@@ -30,6 +30,10 @@ public struct TCClsError: TCClsErrorType {
         case authFailure_UnauthorizedOperation = "AuthFailure.UnauthorizedOperation"
         case failedOperation = "FailedOperation"
         case failedOperation_BindedAlarm = "FailedOperation.BindedAlarm"
+        case failedOperation_BucketNoFile = "FailedOperation.BucketNoFile"
+        case failedOperation_DecompressFile = "FailedOperation.DecompressFile"
+        case failedOperation_DownLoadFile = "FailedOperation.DownLoadFile"
+        case failedOperation_GetListFile = "FailedOperation.GetListFile"
         case failedOperation_GetlogReachLimit = "FailedOperation.GetlogReachLimit"
         case failedOperation_InValidIndexRuleForSearchLow = "FailedOperation.InValidIndexRuleForSearchLow"
         case failedOperation_InvalidAlarm = "FailedOperation.InvalidAlarm"
@@ -167,6 +171,30 @@ public struct TCClsError: TCClsErrorType {
     /// 告警策略通知模板已经绑定到了某个告警策略上。
     public static var failedOperation_BindedAlarm: TCClsError {
         TCClsError(.failedOperation_BindedAlarm)
+    }
+
+    /// 桶内无相应前缀文件，请使用正确的桶、文件前缀和压缩方式。
+    public static var failedOperation_BucketNoFile: TCClsError {
+        TCClsError(.failedOperation_BucketNoFile)
+    }
+
+    /// 文件解压缩失败，请选择正确的压缩方式。
+    public static var failedOperation_DecompressFile: TCClsError {
+        TCClsError(.failedOperation_DecompressFile)
+    }
+
+    /// 文件下载失败，请稍后再试。
+    ///
+    /// 若无法解决，请联系智能客服或提交工单
+    public static var failedOperation_DownLoadFile: TCClsError {
+        TCClsError(.failedOperation_DownLoadFile)
+    }
+
+    /// 获取文件列表失败，请稍后再试。
+    ///
+    /// 若无法解决，请联系智能客服或提交工单
+    public static var failedOperation_GetListFile: TCClsError {
+        TCClsError(.failedOperation_GetListFile)
     }
 
     /// 检索日志触发最大条数限制。

@@ -73,24 +73,32 @@ extension Ms {
     }
 
     /// 更新client状态
+    ///
+    /// 更新client状态，需要白名单
     @inlinable
     public func updateClientState(_ input: UpdateClientStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateClientStateResponse> {
         self.client.execute(action: "UpdateClientState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新client状态
+    ///
+    /// 更新client状态，需要白名单
     @inlinable
     public func updateClientState(_ input: UpdateClientStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateClientStateResponse {
         try await self.client.execute(action: "UpdateClientState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新client状态
+    ///
+    /// 更新client状态，需要白名单
     @inlinable
     public func updateClientState(clientId: String, ip: String, internal: Int64, serverVersion: String, hostname: String, os: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateClientStateResponse> {
         self.updateClientState(.init(clientId: clientId, ip: ip, internal: `internal`, serverVersion: serverVersion, hostname: hostname, os: os), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新client状态
+    ///
+    /// 更新client状态，需要白名单
     @inlinable
     public func updateClientState(clientId: String, ip: String, internal: Int64, serverVersion: String, hostname: String, os: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateClientStateResponse {
         try await self.updateClientState(.init(clientId: clientId, ip: ip, internal: `internal`, serverVersion: serverVersion, hostname: hostname, os: os), region: region, logger: logger, on: eventLoop)

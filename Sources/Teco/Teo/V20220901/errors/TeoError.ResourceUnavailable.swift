@@ -23,6 +23,7 @@ extension TCTeoError {
             case domainAlreadyExists = "ResourceUnavailable.DomainAlreadyExists"
             case domainNotFound = "ResourceUnavailable.DomainNotFound"
             case hostNotFound = "ResourceUnavailable.HostNotFound"
+            case sharedCNAMEAlreadyExists = "ResourceUnavailable.SharedCNAMEAlreadyExists"
             case zoneNotFound = "ResourceUnavailable.ZoneNotFound"
             case other = "ResourceUnavailable"
         }
@@ -69,6 +70,11 @@ extension TCTeoError {
             ResourceUnavailable(.hostNotFound)
         }
 
+        /// 该共享 CNAME 已被占用，请重新输入。
+        public static var sharedCNAMEAlreadyExists: ResourceUnavailable {
+            ResourceUnavailable(.sharedCNAMEAlreadyExists)
+        }
+
         /// 站点不存在或不属于该账号。
         public static var zoneNotFound: ResourceUnavailable {
             ResourceUnavailable(.zoneNotFound)
@@ -90,6 +96,8 @@ extension TCTeoError {
                 code = .resourceUnavailable_DomainNotFound
             case .hostNotFound:
                 code = .resourceUnavailable_HostNotFound
+            case .sharedCNAMEAlreadyExists:
+                code = .resourceUnavailable_SharedCNAMEAlreadyExists
             case .zoneNotFound:
                 code = .resourceUnavailable_ZoneNotFound
             case .other:

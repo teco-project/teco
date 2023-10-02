@@ -24,9 +24,6 @@ extension Tione {
         /// 查询哪个服务的事件（可选值为TRAIN, NOTEBOOK, INFER）
         public let service: String
 
-        /// 查询哪个Pod的日志（支持结尾通配符*)
-        public let podName: String
-
         /// 日志查询开始时间（RFC3339格式的时间字符串），默认值为当前时间的前一个小时
         public let startTime: String?
 
@@ -35,6 +32,9 @@ extension Tione {
 
         /// 日志查询条数，默认值100，最大值100
         public let limit: UInt64?
+
+        /// 查询哪个Pod的日志（支持结尾通配符*)
+        public let podName: String?
 
         /// 排序方向（可选值为ASC, DESC ），默认为DESC
         public let order: String?
@@ -52,12 +52,12 @@ extension Tione {
         /// 3. Filter. Negative和Filter. Fuzzy没有使用
         public let filters: [Filter]?
 
-        public init(service: String, podName: String, startTime: String? = nil, endTime: String? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, context: String? = nil, filters: [Filter]? = nil) {
+        public init(service: String, startTime: String? = nil, endTime: String? = nil, limit: UInt64? = nil, podName: String? = nil, order: String? = nil, orderField: String? = nil, context: String? = nil, filters: [Filter]? = nil) {
             self.service = service
-            self.podName = podName
             self.startTime = startTime
             self.endTime = endTime
             self.limit = limit
+            self.podName = podName
             self.order = order
             self.orderField = orderField
             self.context = context
@@ -66,10 +66,10 @@ extension Tione {
 
         enum CodingKeys: String, CodingKey {
             case service = "Service"
-            case podName = "PodName"
             case startTime = "StartTime"
             case endTime = "EndTime"
             case limit = "Limit"
+            case podName = "PodName"
             case order = "Order"
             case orderField = "OrderField"
             case context = "Context"
@@ -99,7 +99,7 @@ extension Tione {
 
     /// 获取日志
     ///
-    /// 获取训练、推理、Notebook服务的日志
+    /// 获取训练、推理、Notebook服务的日志 API
     @inlinable
     public func describeLogs(_ input: DescribeLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogsResponse> {
         self.client.execute(action: "DescribeLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -107,7 +107,7 @@ extension Tione {
 
     /// 获取日志
     ///
-    /// 获取训练、推理、Notebook服务的日志
+    /// 获取训练、推理、Notebook服务的日志 API
     @inlinable
     public func describeLogs(_ input: DescribeLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogsResponse {
         try await self.client.execute(action: "DescribeLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -115,17 +115,17 @@ extension Tione {
 
     /// 获取日志
     ///
-    /// 获取训练、推理、Notebook服务的日志
+    /// 获取训练、推理、Notebook服务的日志 API
     @inlinable
-    public func describeLogs(service: String, podName: String, startTime: String? = nil, endTime: String? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, context: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogsResponse> {
-        self.describeLogs(.init(service: service, podName: podName, startTime: startTime, endTime: endTime, limit: limit, order: order, orderField: orderField, context: context, filters: filters), region: region, logger: logger, on: eventLoop)
+    public func describeLogs(service: String, startTime: String? = nil, endTime: String? = nil, limit: UInt64? = nil, podName: String? = nil, order: String? = nil, orderField: String? = nil, context: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogsResponse> {
+        self.describeLogs(.init(service: service, startTime: startTime, endTime: endTime, limit: limit, podName: podName, order: order, orderField: orderField, context: context, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取日志
     ///
-    /// 获取训练、推理、Notebook服务的日志
+    /// 获取训练、推理、Notebook服务的日志 API
     @inlinable
-    public func describeLogs(service: String, podName: String, startTime: String? = nil, endTime: String? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, context: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogsResponse {
-        try await self.describeLogs(.init(service: service, podName: podName, startTime: startTime, endTime: endTime, limit: limit, order: order, orderField: orderField, context: context, filters: filters), region: region, logger: logger, on: eventLoop)
+    public func describeLogs(service: String, startTime: String? = nil, endTime: String? = nil, limit: UInt64? = nil, podName: String? = nil, order: String? = nil, orderField: String? = nil, context: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogsResponse {
+        try await self.describeLogs(.init(service: service, startTime: startTime, endTime: endTime, limit: limit, podName: podName, order: order, orderField: orderField, context: context, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

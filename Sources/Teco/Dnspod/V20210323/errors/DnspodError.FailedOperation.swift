@@ -34,6 +34,7 @@ extension TCDnspodError {
             case domainNotInService = "FailedOperation.DomainNotInService"
             case domainOwnedByOtherUser = "FailedOperation.DomainOwnedByOtherUser"
             case eipCheckFailed = "FailedOperation.EipCheckFailed"
+            case frequencyLimit = "FailedOperation.FrequencyLimit"
             case functionNotAllowedApply = "FailedOperation.FunctionNotAllowedApply"
             case getWhoisFailed = "FailedOperation.GetWhoisFailed"
             case insufficientBalance = "FailedOperation.InsufficientBalance"
@@ -150,6 +151,10 @@ extension TCDnspodError {
         /// 校验公网 IP 发生异常。
         public static var eipCheckFailed: FailedOperation {
             FailedOperation(.eipCheckFailed)
+        }
+
+        public static var frequencyLimit: FailedOperation {
+            FailedOperation(.frequencyLimit)
         }
 
         /// 此功能暂停申请，请稍候重试。
@@ -285,6 +290,8 @@ extension TCDnspodError {
                 code = .failedOperation_DomainOwnedByOtherUser
             case .eipCheckFailed:
                 code = .failedOperation_EipCheckFailed
+            case .frequencyLimit:
+                code = .failedOperation_FrequencyLimit
             case .functionNotAllowedApply:
                 code = .failedOperation_FunctionNotAllowedApply
             case .getWhoisFailed:

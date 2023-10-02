@@ -61,7 +61,7 @@ extension Billing {
         }
     }
 
-    /// 获取账单多维度汇总费用(新)
+    /// 获取账单多维度汇总费用
     ///
     /// 该接口支持通过传参，按照产品、项目、地域、计费模式和标签五个维度获取账单费用明细。
     @inlinable
@@ -69,7 +69,7 @@ extension Billing {
         self.client.execute(action: "DescribeBillSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取账单多维度汇总费用(新)
+    /// 获取账单多维度汇总费用
     ///
     /// 该接口支持通过传参，按照产品、项目、地域、计费模式和标签五个维度获取账单费用明细。
     @inlinable
@@ -77,7 +77,7 @@ extension Billing {
         try await self.client.execute(action: "DescribeBillSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取账单多维度汇总费用(新)
+    /// 获取账单多维度汇总费用
     ///
     /// 该接口支持通过传参，按照产品、项目、地域、计费模式和标签五个维度获取账单费用明细。
     @inlinable
@@ -85,7 +85,7 @@ extension Billing {
         self.describeBillSummary(.init(month: month, groupType: groupType, tagKey: tagKey), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取账单多维度汇总费用(新)
+    /// 获取账单多维度汇总费用
     ///
     /// 该接口支持通过传参，按照产品、项目、地域、计费模式和标签五个维度获取账单费用明细。
     @inlinable

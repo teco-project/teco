@@ -52,25 +52,25 @@ extension Cynosdb {
         }
     }
 
-    /// 删除从可用区
+    /// 关闭多可用区部署
     @inlinable
     public func removeClusterSlaveZone(_ input: RemoveClusterSlaveZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveClusterSlaveZoneResponse> {
         self.client.execute(action: "RemoveClusterSlaveZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 删除从可用区
+    /// 关闭多可用区部署
     @inlinable
     public func removeClusterSlaveZone(_ input: RemoveClusterSlaveZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveClusterSlaveZoneResponse {
         try await self.client.execute(action: "RemoveClusterSlaveZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 删除从可用区
+    /// 关闭多可用区部署
     @inlinable
     public func removeClusterSlaveZone(clusterId: String, slaveZone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveClusterSlaveZoneResponse> {
         self.removeClusterSlaveZone(.init(clusterId: clusterId, slaveZone: slaveZone), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 删除从可用区
+    /// 关闭多可用区部署
     @inlinable
     public func removeClusterSlaveZone(clusterId: String, slaveZone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveClusterSlaveZoneResponse {
         try await self.removeClusterSlaveZone(.init(clusterId: clusterId, slaveZone: slaveZone), region: region, logger: logger, on: eventLoop)

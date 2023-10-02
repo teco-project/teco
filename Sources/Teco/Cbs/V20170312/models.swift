@@ -255,15 +255,16 @@ extension Cbs {
 
     /// 显示独享集群的大小
     public struct CdcSize: TCOutputModel {
-        /// 独享集群的可用容量大小，单位GiB
-        public let diskAavilable: UInt64
-
         /// 独享集群的总容量大小，单位GiB
         public let diskTotal: UInt64
 
+        /// 独享集群的可用容量大小，单位GiB
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let diskAvailable: UInt64?
+
         enum CodingKeys: String, CodingKey {
-            case diskAavilable = "DiskAavilable"
             case diskTotal = "DiskTotal"
+            case diskAvailable = "DiskAvailable"
         }
     }
 

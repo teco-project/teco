@@ -50,6 +50,11 @@ extension Tat {
         /// 自定义参数名称需符合以下规范：字符数目上限64，可选范围【a-zA-Z0-9-_】。
         public let defaultParameters: String?
 
+        /// 自定义参数数组。
+        /// 如果InvokeCommand时未提供参数取值，将使用这里的默认值进行替换。
+        /// 自定义参数最多20个。
+        public let defaultParameterConfs: [DefaultParameterConf]?
+
         /// 在 CVM 或 Lighthouse 实例中执行命令的用户名称。
         /// 使用最小权限执行命令是权限管理的最佳实践，建议您以普通用户身份执行云助手命令。
         public let username: String?
@@ -63,7 +68,7 @@ extension Tat {
         /// 3. 不允许连续 / ；不允许以 / 开头；不允许以..作为文件夹名称。
         public let outputCOSKeyPrefix: String?
 
-        public init(commandId: String, commandName: String? = nil, description: String? = nil, content: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, defaultParameters: String? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil) {
+        public init(commandId: String, commandName: String? = nil, description: String? = nil, content: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, defaultParameters: String? = nil, defaultParameterConfs: [DefaultParameterConf]? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil) {
             self.commandId = commandId
             self.commandName = commandName
             self.description = description
@@ -72,6 +77,7 @@ extension Tat {
             self.workingDirectory = workingDirectory
             self.timeout = timeout
             self.defaultParameters = defaultParameters
+            self.defaultParameterConfs = defaultParameterConfs
             self.username = username
             self.outputCOSBucketUrl = outputCOSBucketUrl
             self.outputCOSKeyPrefix = outputCOSKeyPrefix
@@ -86,6 +92,7 @@ extension Tat {
             case workingDirectory = "WorkingDirectory"
             case timeout = "Timeout"
             case defaultParameters = "DefaultParameters"
+            case defaultParameterConfs = "DefaultParameterConfs"
             case username = "Username"
             case outputCOSBucketUrl = "OutputCOSBucketUrl"
             case outputCOSKeyPrefix = "OutputCOSKeyPrefix"
@@ -122,15 +129,15 @@ extension Tat {
     ///
     /// 此接口用于修改命令。
     @inlinable @discardableResult
-    public func modifyCommand(commandId: String, commandName: String? = nil, description: String? = nil, content: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, defaultParameters: String? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCommandResponse> {
-        self.modifyCommand(.init(commandId: commandId, commandName: commandName, description: description, content: content, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, defaultParameters: defaultParameters, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), region: region, logger: logger, on: eventLoop)
+    public func modifyCommand(commandId: String, commandName: String? = nil, description: String? = nil, content: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, defaultParameters: String? = nil, defaultParameterConfs: [DefaultParameterConf]? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCommandResponse> {
+        self.modifyCommand(.init(commandId: commandId, commandName: commandName, description: description, content: content, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, defaultParameters: defaultParameters, defaultParameterConfs: defaultParameterConfs, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改命令
     ///
     /// 此接口用于修改命令。
     @inlinable @discardableResult
-    public func modifyCommand(commandId: String, commandName: String? = nil, description: String? = nil, content: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, defaultParameters: String? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCommandResponse {
-        try await self.modifyCommand(.init(commandId: commandId, commandName: commandName, description: description, content: content, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, defaultParameters: defaultParameters, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), region: region, logger: logger, on: eventLoop)
+    public func modifyCommand(commandId: String, commandName: String? = nil, description: String? = nil, content: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, defaultParameters: String? = nil, defaultParameterConfs: [DefaultParameterConf]? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCommandResponse {
+        try await self.modifyCommand(.init(commandId: commandId, commandName: commandName, description: description, content: content, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, defaultParameters: defaultParameters, defaultParameterConfs: defaultParameterConfs, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), region: region, logger: logger, on: eventLoop)
     }
 }

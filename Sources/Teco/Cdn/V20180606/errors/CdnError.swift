@@ -126,6 +126,8 @@ public struct TCCdnError: TCCdnErrorType {
         case limitExceeded_CdnClsTooManyTopics = "LimitExceeded.CdnClsTooManyTopics"
         case limitExceeded_CdnConfigTooManyCacheRules = "LimitExceeded.CdnConfigTooManyCacheRules"
         case limitExceeded_CdnHostOpTooOften = "LimitExceeded.CdnHostOpTooOften"
+        case limitExceeded_CdnPurgeExceedBatchLimit = "LimitExceeded.CdnPurgeExceedBatchLimit"
+        case limitExceeded_CdnPurgeExceedDayLimit = "LimitExceeded.CdnPurgeExceedDayLimit"
         case limitExceeded_CdnPurgePathExceedBatchLimit = "LimitExceeded.CdnPurgePathExceedBatchLimit"
         case limitExceeded_CdnPurgePathExceedDayLimit = "LimitExceeded.CdnPurgePathExceedDayLimit"
         case limitExceeded_CdnPurgeUrlExceedBatchLimit = "LimitExceeded.CdnPurgeUrlExceedBatchLimit"
@@ -747,6 +749,16 @@ public struct TCCdnError: TCCdnErrorType {
     /// 域名操作过于频繁。
     public static var limitExceeded_CdnHostOpTooOften: TCCdnError {
         TCCdnError(.limitExceeded_CdnHostOpTooOften)
+    }
+
+    /// 请减少同一次API请求所提交的Url数量。
+    public static var limitExceeded_CdnPurgeExceedBatchLimit: TCCdnError {
+        TCCdnError(.limitExceeded_CdnPurgeExceedBatchLimit)
+    }
+
+    /// 请等待配额恢复后再提交刷新，或在CDN控制台-配额管理中申请临时配额。
+    public static var limitExceeded_CdnPurgeExceedDayLimit: TCCdnError {
+        TCCdnError(.limitExceeded_CdnPurgeExceedDayLimit)
     }
 
     /// 刷新的目录数量超过限制。

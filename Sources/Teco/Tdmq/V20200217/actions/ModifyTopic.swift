@@ -30,26 +30,31 @@ extension Tdmq {
         /// 分区数，必须大于或者等于原分区数，若想维持原分区数请输入原数目，修改分区数仅对非全局顺序消息起效果，不允许超过128个分区。
         public let partitions: UInt64
 
+        /// Pulsar 集群的ID
+        public let clusterId: String
+
         /// 备注，128字符以内。
         public let remark: String?
 
-        /// Pulsar 集群的ID
-        public let clusterId: String?
+        /// 未消费消息过期时间，单位：秒，取值范围：60秒~15天。
+        public let msgTTL: UInt64?
 
-        public init(environmentId: String, topicName: String, partitions: UInt64, remark: String? = nil, clusterId: String? = nil) {
+        public init(environmentId: String, topicName: String, partitions: UInt64, clusterId: String, remark: String? = nil, msgTTL: UInt64? = nil) {
             self.environmentId = environmentId
             self.topicName = topicName
             self.partitions = partitions
-            self.remark = remark
             self.clusterId = clusterId
+            self.remark = remark
+            self.msgTTL = msgTTL
         }
 
         enum CodingKeys: String, CodingKey {
             case environmentId = "EnvironmentId"
             case topicName = "TopicName"
             case partitions = "Partitions"
-            case remark = "Remark"
             case clusterId = "ClusterId"
+            case remark = "Remark"
+            case msgTTL = "MsgTTL"
         }
     }
 
@@ -91,15 +96,15 @@ extension Tdmq {
     ///
     /// 修改主题备注和分区数
     @inlinable
-    public func modifyTopic(environmentId: String, topicName: String, partitions: UInt64, remark: String? = nil, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTopicResponse> {
-        self.modifyTopic(.init(environmentId: environmentId, topicName: topicName, partitions: partitions, remark: remark, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+    public func modifyTopic(environmentId: String, topicName: String, partitions: UInt64, clusterId: String, remark: String? = nil, msgTTL: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTopicResponse> {
+        self.modifyTopic(.init(environmentId: environmentId, topicName: topicName, partitions: partitions, clusterId: clusterId, remark: remark, msgTTL: msgTTL), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改主题
     ///
     /// 修改主题备注和分区数
     @inlinable
-    public func modifyTopic(environmentId: String, topicName: String, partitions: UInt64, remark: String? = nil, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicResponse {
-        try await self.modifyTopic(.init(environmentId: environmentId, topicName: topicName, partitions: partitions, remark: remark, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+    public func modifyTopic(environmentId: String, topicName: String, partitions: UInt64, clusterId: String, remark: String? = nil, msgTTL: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicResponse {
+        try await self.modifyTopic(.init(environmentId: environmentId, topicName: topicName, partitions: partitions, clusterId: clusterId, remark: remark, msgTTL: msgTTL), region: region, logger: logger, on: eventLoop)
     }
 }

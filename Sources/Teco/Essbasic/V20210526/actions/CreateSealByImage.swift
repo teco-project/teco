@@ -21,30 +21,69 @@ import TecoCore
 extension Essbasic {
     /// CreateSealByImage请求参数结构体
     public struct CreateSealByImageRequest: TCRequest {
-        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
+        /// 代理企业和员工的信息。
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         public let agent: Agent
 
         /// 印章名称，最大长度不超过50字符
         public let sealName: String
 
         /// 印章图片base64，大小不超过10M（原始图片不超过7.6M）
-        public let sealImage: String
+        public let sealImage: String?
 
         /// 操作者的信息
         @available(*, deprecated)
         public let `operator`: UserInfo? = nil
 
-        public init(agent: Agent, sealName: String, sealImage: String) {
+        /// 本接口支持上传图片印章及系统直接生成印章； 如果要使用系统生成印章，此值传：SealGenerateSourceSystem； 如果要使用图片上传请传字段 SealImage
+        public let generateSource: String?
+
+        /// 电子印章类型：
+        ///
+        /// - OFFICIAL-公章
+        /// - CONTRACT-合同专用章;
+        /// - FINANCE-合财务专用章;
+        /// - PERSONNEL-人事专用章
+        /// - 默认：OFFICIAL
+        public let sealType: String?
+
+        /// 企业印章横向文字，最多可填15个汉字（若超过印章最大宽度，优先压缩字间距，其次缩小字号
+        public let sealHorizontalText: String?
+
+        /// 印章样式:
+        ///
+        /// - cycle:圆形印章
+        /// - ellipse:椭圆印章
+        /// - 注：默认圆形印章
+        public let sealStyle: String?
+
+        /// 印章尺寸取值描述：
+        /// - 42_42 圆形企业公章直径42mm
+        /// - 40_40 圆形企业印章直径40mm
+        /// - 45_30 椭圆形印章45mm x 30mm
+        public let sealSize: String?
+
+        public init(agent: Agent, sealName: String, sealImage: String? = nil, generateSource: String? = nil, sealType: String? = nil, sealHorizontalText: String? = nil, sealStyle: String? = nil, sealSize: String? = nil) {
             self.agent = agent
             self.sealName = sealName
             self.sealImage = sealImage
+            self.generateSource = generateSource
+            self.sealType = sealType
+            self.sealHorizontalText = sealHorizontalText
+            self.sealStyle = sealStyle
+            self.sealSize = sealSize
         }
 
-        @available(*, deprecated, renamed: "init(agent:sealName:sealImage:)", message: "'operator' is deprecated in 'CreateSealByImageRequest'. Setting this parameter has no effect.")
-        public init(agent: Agent, sealName: String, sealImage: String, operator: UserInfo? = nil) {
+        @available(*, deprecated, renamed: "init(agent:sealName:sealImage:generateSource:sealType:sealHorizontalText:sealStyle:sealSize:)", message: "'operator' is deprecated in 'CreateSealByImageRequest'. Setting this parameter has no effect.")
+        public init(agent: Agent, sealName: String, sealImage: String? = nil, operator: UserInfo? = nil, generateSource: String? = nil, sealType: String? = nil, sealHorizontalText: String? = nil, sealStyle: String? = nil, sealSize: String? = nil) {
             self.agent = agent
             self.sealName = sealName
             self.sealImage = sealImage
+            self.generateSource = generateSource
+            self.sealType = sealType
+            self.sealHorizontalText = sealHorizontalText
+            self.sealStyle = sealStyle
+            self.sealSize = sealSize
         }
 
         enum CodingKeys: String, CodingKey {
@@ -52,19 +91,31 @@ extension Essbasic {
             case sealName = "SealName"
             case sealImage = "SealImage"
             case `operator` = "Operator"
+            case generateSource = "GenerateSource"
+            case sealType = "SealType"
+            case sealHorizontalText = "SealHorizontalText"
+            case sealStyle = "SealStyle"
+            case sealSize = "SealSize"
         }
     }
 
     /// CreateSealByImage返回参数结构体
     public struct CreateSealByImageResponse: TCResponse {
-        /// 印章id
+        /// 电子印章ID，为32位字符串。
+        /// 建议开发者保留此印章ID，后续指定签署区印章或者操作印章需此印章ID。
+        /// 可登录腾讯电子签控制台，在 "印章"->"印章中心"选择查看的印章，在"印章详情" 中查看某个印章的SealId(在页面中展示为印章ID)。
         public let sealId: String
+
+        /// 电子印章预览链接地址，地址默认失效时间为24小时。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let imageUrl: String?
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case sealId = "SealId"
+            case imageUrl = "ImageUrl"
             case requestId = "RequestId"
         }
     }
@@ -89,33 +140,33 @@ extension Essbasic {
     ///
     /// 通过图片为子客企业代创建印章，图片最大5MB
     @inlinable
-    public func createSealByImage(agent: Agent, sealName: String, sealImage: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSealByImageResponse> {
-        self.createSealByImage(.init(agent: agent, sealName: sealName, sealImage: sealImage), region: region, logger: logger, on: eventLoop)
+    public func createSealByImage(agent: Agent, sealName: String, sealImage: String? = nil, generateSource: String? = nil, sealType: String? = nil, sealHorizontalText: String? = nil, sealStyle: String? = nil, sealSize: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSealByImageResponse> {
+        self.createSealByImage(.init(agent: agent, sealName: sealName, sealImage: sealImage, generateSource: generateSource, sealType: sealType, sealHorizontalText: sealHorizontalText, sealStyle: sealStyle, sealSize: sealSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通过图片为子客企业代创建印章
     ///
     /// 通过图片为子客企业代创建印章，图片最大5MB
-    @available(*, deprecated, renamed: "createSealByImage(agent:sealName:sealImage:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    @available(*, deprecated, renamed: "createSealByImage(agent:sealName:sealImage:generateSource:sealType:sealHorizontalText:sealStyle:sealSize:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable
-    public func createSealByImage(agent: Agent, sealName: String, sealImage: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSealByImageResponse> {
-        self.createSealByImage(.init(agent: agent, sealName: sealName, sealImage: sealImage, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func createSealByImage(agent: Agent, sealName: String, sealImage: String? = nil, operator: UserInfo? = nil, generateSource: String? = nil, sealType: String? = nil, sealHorizontalText: String? = nil, sealStyle: String? = nil, sealSize: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSealByImageResponse> {
+        self.createSealByImage(.init(agent: agent, sealName: sealName, sealImage: sealImage, operator: `operator`, generateSource: generateSource, sealType: sealType, sealHorizontalText: sealHorizontalText, sealStyle: sealStyle, sealSize: sealSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通过图片为子客企业代创建印章
     ///
     /// 通过图片为子客企业代创建印章，图片最大5MB
     @inlinable
-    public func createSealByImage(agent: Agent, sealName: String, sealImage: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSealByImageResponse {
-        try await self.createSealByImage(.init(agent: agent, sealName: sealName, sealImage: sealImage), region: region, logger: logger, on: eventLoop)
+    public func createSealByImage(agent: Agent, sealName: String, sealImage: String? = nil, generateSource: String? = nil, sealType: String? = nil, sealHorizontalText: String? = nil, sealStyle: String? = nil, sealSize: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSealByImageResponse {
+        try await self.createSealByImage(.init(agent: agent, sealName: sealName, sealImage: sealImage, generateSource: generateSource, sealType: sealType, sealHorizontalText: sealHorizontalText, sealStyle: sealStyle, sealSize: sealSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通过图片为子客企业代创建印章
     ///
     /// 通过图片为子客企业代创建印章，图片最大5MB
-    @available(*, deprecated, renamed: "createSealByImage(agent:sealName:sealImage:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    @available(*, deprecated, renamed: "createSealByImage(agent:sealName:sealImage:generateSource:sealType:sealHorizontalText:sealStyle:sealSize:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable
-    public func createSealByImage(agent: Agent, sealName: String, sealImage: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSealByImageResponse {
-        try await self.createSealByImage(.init(agent: agent, sealName: sealName, sealImage: sealImage, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func createSealByImage(agent: Agent, sealName: String, sealImage: String? = nil, operator: UserInfo? = nil, generateSource: String? = nil, sealType: String? = nil, sealHorizontalText: String? = nil, sealStyle: String? = nil, sealSize: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSealByImageResponse {
+        try await self.createSealByImage(.init(agent: agent, sealName: sealName, sealImage: sealImage, operator: `operator`, generateSource: generateSource, sealType: sealType, sealHorizontalText: sealHorizontalText, sealStyle: sealStyle, sealSize: sealSize), region: region, logger: logger, on: eventLoop)
     }
 }

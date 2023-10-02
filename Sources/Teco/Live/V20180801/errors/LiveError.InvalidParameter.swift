@@ -42,6 +42,7 @@ extension TCLiveError {
             case gopMustEqualAndExists = "InvalidParameter.GopMustEqualAndExists"
             case inputNumLimitExceeded = "InvalidParameter.InputNumLimitExceeded"
             case invalidBackgroudResolution = "InvalidParameter.InvalidBackgroudResolution"
+            case invalidBackupToUrl = "InvalidParameter.InvalidBackupToUrl"
             case invalidBitrate = "InvalidParameter.InvalidBitrate"
             case invalidCallbackUrl = "InvalidParameter.InvalidCallbackUrl"
             case invalidCropParam = "InvalidParameter.InvalidCropParam"
@@ -207,6 +208,10 @@ extension TCLiveError {
         /// 非法的背景长宽。
         public static var invalidBackgroudResolution: InvalidParameter {
             InvalidParameter(.invalidBackgroudResolution)
+        }
+
+        public static var invalidBackupToUrl: InvalidParameter {
+            InvalidParameter(.invalidBackupToUrl)
         }
 
         /// 非法的输出码率。
@@ -398,6 +403,8 @@ extension TCLiveError {
                 code = .invalidParameter_InputNumLimitExceeded
             case .invalidBackgroudResolution:
                 code = .invalidParameter_InvalidBackgroudResolution
+            case .invalidBackupToUrl:
+                code = .invalidParameter_InvalidBackupToUrl
             case .invalidBitrate:
                 code = .invalidParameter_InvalidBitrate
             case .invalidCallbackUrl:

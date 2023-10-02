@@ -69,6 +69,7 @@ public struct TCTioneError: TCTioneErrorType {
         case failedOperation_NoFreeBucket = "FailedOperation.NoFreeBucket"
         case failedOperation_NoPermission = "FailedOperation.NoPermission"
         case failedOperation_NotAllow = "FailedOperation.NotAllow"
+        case failedOperation_NotSupportedToCreateImage = "FailedOperation.NotSupportedToCreateImage"
         case failedOperation_Processing = "FailedOperation.Processing"
         case failedOperation_QueryBindingTagsFailed = "FailedOperation.QueryBindingTagsFailed"
         case failedOperation_QueryDatabaseFail = "FailedOperation.QueryDatabaseFail"
@@ -99,6 +100,7 @@ public struct TCTioneError: TCTioneErrorType {
         case internalError_QueryBindingTagsFailed = "InternalError.QueryBindingTagsFailed"
         case internalError_QueryHDFSInfoFailed = "InternalError.QueryHDFSInfoFailed"
         case internalError_QueryResourceGroupFailed = "InternalError.QueryResourceGroupFailed"
+        case internalError_QueryResourceGroupNamesFailed = "InternalError.QueryResourceGroupNamesFailed"
         case internalError_QueryResourceSpecFailed = "InternalError.QueryResourceSpecFailed"
         case internalError_QuerySubnetInfoFailed = "InternalError.QuerySubnetInfoFailed"
         case internalError_StopJobInstanceFailed = "InternalError.StopJobInstanceFailed"
@@ -437,6 +439,10 @@ public struct TCTioneError: TCTioneErrorType {
         TCTioneError(.failedOperation_NotAllow)
     }
 
+    public static var failedOperation_NotSupportedToCreateImage: TCTioneError {
+        TCTioneError(.failedOperation_NotSupportedToCreateImage)
+    }
+
     /// 请求正在处理中，请稍后再试。
     public static var failedOperation_Processing: TCTioneError {
         TCTioneError(.failedOperation_Processing)
@@ -614,6 +620,10 @@ public struct TCTioneError: TCTioneErrorType {
     /// 查询预付费资源组详情失败。
     public static var internalError_QueryResourceGroupFailed: TCTioneError {
         TCTioneError(.internalError_QueryResourceGroupFailed)
+    }
+
+    public static var internalError_QueryResourceGroupNamesFailed: TCTioneError {
+        TCTioneError(.internalError_QueryResourceGroupNamesFailed)
     }
 
     /// 查询资源套餐规格失败

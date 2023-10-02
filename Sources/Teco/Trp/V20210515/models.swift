@@ -308,6 +308,22 @@ extension Trp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let packSpec: [PackSpec]?
 
+        /// 商品名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let productName: String?
+
+        /// 商品规格
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let productSpecification: String?
+
+        /// 商品ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let productId: String?
+
+        /// 码关系是否预关联
+        /// 0:否, 1:是
+        public let relateType: Int64
+
         enum CodingKeys: String, CodingKey {
             case packId = "PackId"
             case corpId = "CorpId"
@@ -329,11 +345,15 @@ extension Trp {
             case packType = "PackType"
             case packLevel = "PackLevel"
             case packSpec = "PackSpec"
+            case productName = "ProductName"
+            case productSpecification = "ProductSpecification"
+            case productId = "ProductId"
+            case relateType = "RelateType"
         }
     }
 
     /// 码段配置
-    public struct CodePart: TCOutputModel {
+    public struct CodePart: TCInputModel, TCOutputModel {
         /// 码段名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
@@ -352,6 +372,14 @@ extension Trp {
         /// 扩展字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ext: String?
+
+        public init(name: String, type: String, value: String, length: UInt64, ext: String) {
+            self.name = name
+            self.type = type
+            self.value = value
+            self.length = length
+            self.ext = ext
+        }
 
         enum CodingKeys: String, CodingKey {
             case name = "Name"

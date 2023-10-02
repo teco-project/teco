@@ -222,6 +222,7 @@ public struct TCCvmError: TCCvmErrorType {
         case limitExceeded_CvmsVifsPerSecGroupLimitExceeded = "LimitExceeded.CvmsVifsPerSecGroupLimitExceeded"
         case limitExceeded_DisasterRecoverGroup = "LimitExceeded.DisasterRecoverGroup"
         case limitExceeded_EipNumLimit = "LimitExceeded.EipNumLimit"
+        case limitExceeded_EniLimitInstanceType = "LimitExceeded.EniLimitInstanceType"
         case limitExceeded_EniNumLimit = "LimitExceeded.EniNumLimit"
         case limitExceeded_ExportImageTaskLimitExceeded = "LimitExceeded.ExportImageTaskLimitExceeded"
         case limitExceeded_HpcClusterQuota = "LimitExceeded.HpcClusterQuota"
@@ -264,8 +265,10 @@ public struct TCCvmError: TCCvmErrorType {
         case resourceNotFound_HpcCluster = "ResourceNotFound.HpcCluster"
         case resourceNotFound_InvalidPlacementSet = "ResourceNotFound.InvalidPlacementSet"
         case resourceNotFound_InvalidZoneInstanceType = "ResourceNotFound.InvalidZoneInstanceType"
+        case resourceNotFound_KeyPairNotFound = "ResourceNotFound.KeyPairNotFound"
         case resourceNotFound_NoDefaultCbs = "ResourceNotFound.NoDefaultCbs"
         case resourceNotFound_NoDefaultCbsWithReason = "ResourceNotFound.NoDefaultCbsWithReason"
+        case resourceUnavailable = "ResourceUnavailable"
         case resourceUnavailable_InstanceType = "ResourceUnavailable.InstanceType"
         case resourceUnavailable_SnapshotCreating = "ResourceUnavailable.SnapshotCreating"
         case resourcesSoldOut_AvailableZone = "ResourcesSoldOut.AvailableZone"
@@ -1431,6 +1434,11 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.limitExceeded_EipNumLimit)
     }
 
+    /// 网卡数量超过实例上限。
+    public static var limitExceeded_EniLimitInstanceType: TCCvmError {
+        TCCvmError(.limitExceeded_EniLimitInstanceType)
+    }
+
     /// 特定实例当前ENI数量已超过目标实例类型的ENI允许的最大值，需删除部分ENI后重试。
     public static var limitExceeded_EniNumLimit: TCCvmError {
         TCCvmError(.limitExceeded_EniNumLimit)
@@ -1642,6 +1650,11 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.resourceNotFound_InvalidZoneInstanceType)
     }
 
+    /// 使用存在的密钥对ID。
+    public static var resourceNotFound_KeyPairNotFound: TCCvmError {
+        TCCvmError(.resourceNotFound_KeyPairNotFound)
+    }
+
     /// 无可用的缺省类型的CBS资源。
     public static var resourceNotFound_NoDefaultCbs: TCCvmError {
         TCCvmError(.resourceNotFound_NoDefaultCbs)
@@ -1650,6 +1663,11 @@ public struct TCCvmError: TCCvmErrorType {
     /// 无可用的缺省类型的CBS资源。
     public static var resourceNotFound_NoDefaultCbsWithReason: TCCvmError {
         TCCvmError(.resourceNotFound_NoDefaultCbsWithReason)
+    }
+
+    /// 资源不可用。
+    public static var resourceUnavailable: TCCvmError {
+        TCCvmError(.resourceUnavailable)
     }
 
     /// 该可用区不售卖此机型

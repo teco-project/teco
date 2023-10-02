@@ -51,7 +51,15 @@ extension Trp {
         /// 是否有流水码 0:无 1:有
         public let serialType: UInt64?
 
-        public init(merchantId: String, amount: UInt64? = nil, corpId: UInt64? = nil, packType: UInt64? = nil, packLevel: UInt64? = nil, packSpec: [PackSpec]? = nil, customId: String? = nil, codeParts: [CodePart]? = nil, batchId: String? = nil, serialType: UInt64? = nil) {
+        /// 产品ID
+        public let productId: String?
+
+        /// 是否预生成码关系
+        /// 0: 否, 1:是
+        /// 默认为1，仅对层级码有效
+        public let relateType: Int64?
+
+        public init(merchantId: String, amount: UInt64? = nil, corpId: UInt64? = nil, packType: UInt64? = nil, packLevel: UInt64? = nil, packSpec: [PackSpec]? = nil, customId: String? = nil, codeParts: [CodePart]? = nil, batchId: String? = nil, serialType: UInt64? = nil, productId: String? = nil, relateType: Int64? = nil) {
             self.merchantId = merchantId
             self.amount = amount
             self.corpId = corpId
@@ -62,6 +70,8 @@ extension Trp {
             self.codeParts = codeParts
             self.batchId = batchId
             self.serialType = serialType
+            self.productId = productId
+            self.relateType = relateType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -75,6 +85,8 @@ extension Trp {
             case codeParts = "CodeParts"
             case batchId = "BatchId"
             case serialType = "SerialType"
+            case productId = "ProductId"
+            case relateType = "RelateType"
         }
     }
 
@@ -106,13 +118,13 @@ extension Trp {
 
     /// 生成自定义码包
     @inlinable
-    public func createCustomPack(merchantId: String, amount: UInt64? = nil, corpId: UInt64? = nil, packType: UInt64? = nil, packLevel: UInt64? = nil, packSpec: [PackSpec]? = nil, customId: String? = nil, codeParts: [CodePart]? = nil, batchId: String? = nil, serialType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomPackResponse> {
-        self.createCustomPack(.init(merchantId: merchantId, amount: amount, corpId: corpId, packType: packType, packLevel: packLevel, packSpec: packSpec, customId: customId, codeParts: codeParts, batchId: batchId, serialType: serialType), region: region, logger: logger, on: eventLoop)
+    public func createCustomPack(merchantId: String, amount: UInt64? = nil, corpId: UInt64? = nil, packType: UInt64? = nil, packLevel: UInt64? = nil, packSpec: [PackSpec]? = nil, customId: String? = nil, codeParts: [CodePart]? = nil, batchId: String? = nil, serialType: UInt64? = nil, productId: String? = nil, relateType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomPackResponse> {
+        self.createCustomPack(.init(merchantId: merchantId, amount: amount, corpId: corpId, packType: packType, packLevel: packLevel, packSpec: packSpec, customId: customId, codeParts: codeParts, batchId: batchId, serialType: serialType, productId: productId, relateType: relateType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 生成自定义码包
     @inlinable
-    public func createCustomPack(merchantId: String, amount: UInt64? = nil, corpId: UInt64? = nil, packType: UInt64? = nil, packLevel: UInt64? = nil, packSpec: [PackSpec]? = nil, customId: String? = nil, codeParts: [CodePart]? = nil, batchId: String? = nil, serialType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomPackResponse {
-        try await self.createCustomPack(.init(merchantId: merchantId, amount: amount, corpId: corpId, packType: packType, packLevel: packLevel, packSpec: packSpec, customId: customId, codeParts: codeParts, batchId: batchId, serialType: serialType), region: region, logger: logger, on: eventLoop)
+    public func createCustomPack(merchantId: String, amount: UInt64? = nil, corpId: UInt64? = nil, packType: UInt64? = nil, packLevel: UInt64? = nil, packSpec: [PackSpec]? = nil, customId: String? = nil, codeParts: [CodePart]? = nil, batchId: String? = nil, serialType: UInt64? = nil, productId: String? = nil, relateType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomPackResponse {
+        try await self.createCustomPack(.init(merchantId: merchantId, amount: amount, corpId: corpId, packType: packType, packLevel: packLevel, packSpec: packSpec, customId: customId, codeParts: codeParts, batchId: batchId, serialType: serialType, productId: productId, relateType: relateType), region: region, logger: logger, on: eventLoop)
     }
 }

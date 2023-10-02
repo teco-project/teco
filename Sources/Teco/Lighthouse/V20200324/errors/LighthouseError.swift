@@ -90,6 +90,7 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         case invalidParameterValue_DiskSizeNotMatch = "InvalidParameterValue.DiskSizeNotMatch"
         case invalidParameterValue_DuplicateParameterValue = "InvalidParameterValue.DuplicateParameterValue"
         case invalidParameterValue_Duplicated = "InvalidParameterValue.Duplicated"
+        case invalidParameterValue_DuplicatedFirewallTemplateRule = "InvalidParameterValue.DuplicatedFirewallTemplateRule"
         case invalidParameterValue_FieldsCompare = "InvalidParameterValue.FieldsCompare"
         case invalidParameterValue_FirewallRuleDescriptionTooLong = "InvalidParameterValue.FirewallRuleDescriptionTooLong"
         case invalidParameterValue_InstanceIdMalformed = "InvalidParameterValue.InstanceIdMalformed"
@@ -152,6 +153,7 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         case limitExceeded_DiskBackupQuotaLimitExceeded = "LimitExceeded.DiskBackupQuotaLimitExceeded"
         case limitExceeded_DiskQuotaLimitExceeded = "LimitExceeded.DiskQuotaLimitExceeded"
         case limitExceeded_FirewallRulesLimitExceeded = "LimitExceeded.FirewallRulesLimitExceeded"
+        case limitExceeded_FirewallTemplateRuleQuotaLimitExceeded = "LimitExceeded.FirewallTemplateRuleQuotaLimitExceeded"
         case limitExceeded_InstanceQuotaLimitExceeded = "LimitExceeded.InstanceQuotaLimitExceeded"
         case limitExceeded_IsolateResourcesLimitExceeded = "LimitExceeded.IsolateResourcesLimitExceeded"
         case limitExceeded_KeyPairLimitExceeded = "LimitExceeded.KeyPairLimitExceeded"
@@ -183,6 +185,8 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         case resourceNotFound_DiskNotFound = "ResourceNotFound.DiskNotFound"
         case resourceNotFound_FirewallNotFound = "ResourceNotFound.FirewallNotFound"
         case resourceNotFound_FirewallRulesNotFound = "ResourceNotFound.FirewallRulesNotFound"
+        case resourceNotFound_FirewallTemplateNotFound = "ResourceNotFound.FirewallTemplateNotFound"
+        case resourceNotFound_FirewallTemplateRuleNotFound = "ResourceNotFound.FirewallTemplateRuleNotFound"
         case resourceNotFound_InstanceDataDiskNotFound = "ResourceNotFound.InstanceDataDiskNotFound"
         case resourceNotFound_InstanceIdNotFound = "ResourceNotFound.InstanceIdNotFound"
         case resourceNotFound_InstanceNotFound = "ResourceNotFound.InstanceNotFound"
@@ -197,6 +201,7 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         case resourceUnavailable_BlueprintInvalid = "ResourceUnavailable.BlueprintInvalid"
         case resourceUnavailable_BlueprintUnavailable = "ResourceUnavailable.BlueprintUnavailable"
         case resourceUnavailable_BundleUnavailable = "ResourceUnavailable.BundleUnavailable"
+        case resourceUnavailable_CannotApplyEmptyFirewallTemplate = "ResourceUnavailable.CannotApplyEmptyFirewallTemplate"
         case resourceUnavailable_DockerUnavailable = "ResourceUnavailable.DockerUnavailable"
         case resourceUnavailable_TATAgentUnavailable = "ResourceUnavailable.TATAgentUnavailable"
         case resourceUnavailable_TATServiceError = "ResourceUnavailable.TATServiceError"
@@ -207,6 +212,7 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         case unauthorizedOperation_MFAExpired = "UnauthorizedOperation.MFAExpired"
         case unauthorizedOperation_MFANotFound = "UnauthorizedOperation.MFANotFound"
         case unauthorizedOperation_NoPermission = "UnauthorizedOperation.NoPermission"
+        case unauthorizedOperation_TokenInvalid = "UnauthorizedOperation.TokenInvalid"
         case unknownParameter = "UnknownParameter"
         case unsupportedOperation = "UnsupportedOperation"
         case unsupportedOperation_ApplyDiskBackupToAnotherDisk = "UnsupportedOperation.ApplyDiskBackupToAnotherDisk"
@@ -613,6 +619,10 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         TCLighthouseError(.invalidParameterValue_Duplicated)
     }
 
+    public static var invalidParameterValue_DuplicatedFirewallTemplateRule: TCLighthouseError {
+        TCLighthouseError(.invalidParameterValue_DuplicatedFirewallTemplateRule)
+    }
+
     /// 列值不正确。
     public static var invalidParameterValue_FieldsCompare: TCLighthouseError {
         TCLighthouseError(.invalidParameterValue_FieldsCompare)
@@ -927,6 +937,10 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         TCLighthouseError(.limitExceeded_FirewallRulesLimitExceeded)
     }
 
+    public static var limitExceeded_FirewallTemplateRuleQuotaLimitExceeded: TCLighthouseError {
+        TCLighthouseError(.limitExceeded_FirewallTemplateRuleQuotaLimitExceeded)
+    }
+
     /// 超过实例配额。
     public static var limitExceeded_InstanceQuotaLimitExceeded: TCLighthouseError {
         TCLighthouseError(.limitExceeded_InstanceQuotaLimitExceeded)
@@ -1084,6 +1098,14 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         TCLighthouseError(.resourceNotFound_FirewallRulesNotFound)
     }
 
+    public static var resourceNotFound_FirewallTemplateNotFound: TCLighthouseError {
+        TCLighthouseError(.resourceNotFound_FirewallTemplateNotFound)
+    }
+
+    public static var resourceNotFound_FirewallTemplateRuleNotFound: TCLighthouseError {
+        TCLighthouseError(.resourceNotFound_FirewallTemplateRuleNotFound)
+    }
+
     /// 实例不存在挂载的数据盘。
     public static var resourceNotFound_InstanceDataDiskNotFound: TCLighthouseError {
         TCLighthouseError(.resourceNotFound_InstanceDataDiskNotFound)
@@ -1154,6 +1176,10 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         TCLighthouseError(.resourceUnavailable_BundleUnavailable)
     }
 
+    public static var resourceUnavailable_CannotApplyEmptyFirewallTemplate: TCLighthouseError {
+        TCLighthouseError(.resourceUnavailable_CannotApplyEmptyFirewallTemplate)
+    }
+
     /// Docker资源不可用。
     public static var resourceUnavailable_DockerUnavailable: TCLighthouseError {
         TCLighthouseError(.resourceUnavailable_DockerUnavailable)
@@ -1206,6 +1232,10 @@ public struct TCLighthouseError: TCLighthouseErrorType {
     /// 无权限。
     public static var unauthorizedOperation_NoPermission: TCLighthouseError {
         TCLighthouseError(.unauthorizedOperation_NoPermission)
+    }
+
+    public static var unauthorizedOperation_TokenInvalid: TCLighthouseError {
+        TCLighthouseError(.unauthorizedOperation_TokenInvalid)
     }
 
     /// 未知参数错误。

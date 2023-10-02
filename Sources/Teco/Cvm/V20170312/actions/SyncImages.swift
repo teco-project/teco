@@ -89,7 +89,7 @@ extension Cvm {
     ///
     /// * 该接口每次调用只支持同步一个镜像。
     /// * 该接口支持多个同步地域。
-    /// * 单个账号在每个地域最多支持存在10个自定义镜像。
+    /// * 单个账号在每个地域最多支持存在50个自定义镜像。
     @inlinable
     public func syncImages(_ input: SyncImagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncImagesResponse> {
         self.client.execute(action: "SyncImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -101,7 +101,7 @@ extension Cvm {
     ///
     /// * 该接口每次调用只支持同步一个镜像。
     /// * 该接口支持多个同步地域。
-    /// * 单个账号在每个地域最多支持存在10个自定义镜像。
+    /// * 单个账号在每个地域最多支持存在50个自定义镜像。
     @inlinable
     public func syncImages(_ input: SyncImagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncImagesResponse {
         try await self.client.execute(action: "SyncImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -113,7 +113,7 @@ extension Cvm {
     ///
     /// * 该接口每次调用只支持同步一个镜像。
     /// * 该接口支持多个同步地域。
-    /// * 单个账号在每个地域最多支持存在10个自定义镜像。
+    /// * 单个账号在每个地域最多支持存在50个自定义镜像。
     @inlinable
     public func syncImages(imageIds: [String], destinationRegions: [String], dryRun: Bool? = nil, imageName: String? = nil, imageSetRequired: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncImagesResponse> {
         self.syncImages(.init(imageIds: imageIds, destinationRegions: destinationRegions, dryRun: dryRun, imageName: imageName, imageSetRequired: imageSetRequired), region: region, logger: logger, on: eventLoop)
@@ -125,7 +125,7 @@ extension Cvm {
     ///
     /// * 该接口每次调用只支持同步一个镜像。
     /// * 该接口支持多个同步地域。
-    /// * 单个账号在每个地域最多支持存在10个自定义镜像。
+    /// * 单个账号在每个地域最多支持存在50个自定义镜像。
     @inlinable
     public func syncImages(imageIds: [String], destinationRegions: [String], dryRun: Bool? = nil, imageName: String? = nil, imageSetRequired: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncImagesResponse {
         try await self.syncImages(.init(imageIds: imageIds, destinationRegions: destinationRegions, dryRun: dryRun, imageName: imageName, imageSetRequired: imageSetRequired), region: region, logger: logger, on: eventLoop)

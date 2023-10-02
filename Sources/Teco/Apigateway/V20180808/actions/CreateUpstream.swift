@@ -21,7 +21,7 @@ import TecoCore
 extension Apigateway {
     /// CreateUpstream请求参数结构体
     public struct CreateUpstreamRequest: TCRequest {
-        /// 后端协议，取值范围：HTTP, HTTPS
+        /// 后端协议，取值范围：HTTP, HTTPS,gRPC，gRPCs
         public let scheme: String
 
         /// 负载均衡算法，取值范围：ROUND-ROBIN

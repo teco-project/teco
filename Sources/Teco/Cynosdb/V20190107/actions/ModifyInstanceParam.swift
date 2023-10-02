@@ -27,10 +27,10 @@ extension Cynosdb {
         /// 实例ID
         public let instanceIds: [String]?
 
-        /// 集群参数列表
+        /// 集群参数列表，例如 [{           "CurrentValue":"2",        "ParamName":"auto_increment_increment"}]
         public let clusterParamList: [ModifyParamItem]?
 
-        /// 实例参数列表
+        /// 实例参数列表，例如[{           "CurrentValue":"2",        "ParamName":"innodb_stats_transient_sample_pages"}]
         public let instanceParamList: [ModifyParamItem]?
 
         /// yes：在运维时间窗内修改，no：立即执行（默认值）

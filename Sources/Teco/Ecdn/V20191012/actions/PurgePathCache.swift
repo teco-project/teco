@@ -60,7 +60,7 @@ extension Ecdn {
     @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable
     public func purgePathCache(_ input: PurgePathCacheRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PurgePathCacheResponse> {
-        fatalError("PurgePathCache is no longer available.")
+        fatalError("'PurgePathCache' is no longer available.")
     }
 
     /// 刷新目录
@@ -71,7 +71,7 @@ extension Ecdn {
     @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable
     public func purgePathCache(_ input: PurgePathCacheRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PurgePathCacheResponse {
-        fatalError("PurgePathCache is no longer available.")
+        fatalError("'PurgePathCache' is no longer available.")
     }
 
     /// 刷新目录
@@ -82,7 +82,7 @@ extension Ecdn {
     @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable
     public func purgePathCache(paths: [String], flushType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PurgePathCacheResponse> {
-        fatalError("PurgePathCache is no longer available.")
+        fatalError("'PurgePathCache' is no longer available.")
     }
 
     /// 刷新目录
@@ -93,6 +93,6 @@ extension Ecdn {
     @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable
     public func purgePathCache(paths: [String], flushType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PurgePathCacheResponse {
-        fatalError("PurgePathCache is no longer available.")
+        fatalError("'PurgePathCache' is no longer available.")
     }
 }

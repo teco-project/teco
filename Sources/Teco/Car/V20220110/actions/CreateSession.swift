@@ -39,6 +39,9 @@ extension Car {
         /// 如果请求的是多应用共享项目，此参数生效；
         /// 如果请求的是关闭预启动的单应用独享项目，此参数生效；
         /// 如果请求的是开启预启动的单应用独享项目，此参数失效。
+        ///
+        /// 注意：在此参数生效的情况下，将会被追加到控制台应用或项目配置的启动参数的后面。
+        /// 例如，对于某关闭预启动的单应用独享项目，若在控制台中项目配置的启动参数为bar=0，而ApplicationParameters参数为foo=1，则实际应用启动参数为bar=0 foo=1。
         public let applicationParameters: String?
 
         /// 【多人互动】房主用户ID，在多人互动模式下为必填字段。
@@ -87,24 +90,32 @@ extension Car {
     }
 
     /// 创建会话
+    ///
+    /// 本接口用于创建会话。接口超时时间：5秒。
     @inlinable
     public func createSession(_ input: CreateSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSessionResponse> {
         self.client.execute(action: "CreateSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建会话
+    ///
+    /// 本接口用于创建会话。接口超时时间：5秒。
     @inlinable
     public func createSession(_ input: CreateSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSessionResponse {
         try await self.client.execute(action: "CreateSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建会话
+    ///
+    /// 本接口用于创建会话。接口超时时间：5秒。
     @inlinable
     public func createSession(userId: String, userIp: String, clientSession: String? = nil, runMode: String? = nil, applicationParameters: String? = nil, hostUserId: String? = nil, role: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSessionResponse> {
         self.createSession(.init(userId: userId, userIp: userIp, clientSession: clientSession, runMode: runMode, applicationParameters: applicationParameters, hostUserId: hostUserId, role: role), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建会话
+    ///
+    /// 本接口用于创建会话。接口超时时间：5秒。
     @inlinable
     public func createSession(userId: String, userIp: String, clientSession: String? = nil, runMode: String? = nil, applicationParameters: String? = nil, hostUserId: String? = nil, role: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSessionResponse {
         try await self.createSession(.init(userId: userId, userIp: userIp, clientSession: clientSession, runMode: runMode, applicationParameters: applicationParameters, hostUserId: hostUserId, role: role), region: region, logger: logger, on: eventLoop)

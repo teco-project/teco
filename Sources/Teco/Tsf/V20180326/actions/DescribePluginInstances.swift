@@ -24,14 +24,14 @@ extension Tsf {
         /// 分组或者API的ID
         public let scopeValue: String
 
-        /// 绑定: true; 未绑定: false
-        public let bound: Bool
-
         /// 翻页偏移量
         public let offset: Int64
 
         /// 每页展示的条数
         public let limit: Int64
+
+        /// 绑定: true; 未绑定: false
+        public let bound: Bool?
 
         /// 插件类型
         public let type: String?
@@ -39,20 +39,20 @@ extension Tsf {
         /// 搜索关键字
         public let searchWord: String?
 
-        public init(scopeValue: String, bound: Bool, offset: Int64, limit: Int64, type: String? = nil, searchWord: String? = nil) {
+        public init(scopeValue: String, offset: Int64, limit: Int64, bound: Bool? = nil, type: String? = nil, searchWord: String? = nil) {
             self.scopeValue = scopeValue
-            self.bound = bound
             self.offset = offset
             self.limit = limit
+            self.bound = bound
             self.type = type
             self.searchWord = searchWord
         }
 
         enum CodingKeys: String, CodingKey {
             case scopeValue = "ScopeValue"
-            case bound = "Bound"
             case offset = "Offset"
             case limit = "Limit"
+            case bound = "Bound"
             case type = "Type"
             case searchWord = "SearchWord"
         }
@@ -62,7 +62,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return .init(scopeValue: self.scopeValue, bound: self.bound, offset: self.offset + .init(response.getItems().count), limit: self.limit, type: self.type, searchWord: self.searchWord)
+            return .init(scopeValue: self.scopeValue, offset: self.offset + .init(response.getItems().count), limit: self.limit, bound: self.bound, type: self.type, searchWord: self.searchWord)
         }
     }
 
@@ -110,16 +110,16 @@ extension Tsf {
     ///
     /// 分页查询网关分组/API绑定（或未绑定）的插件列表
     @inlinable
-    public func describePluginInstances(scopeValue: String, bound: Bool, offset: Int64, limit: Int64, type: String? = nil, searchWord: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePluginInstancesResponse> {
-        self.describePluginInstances(.init(scopeValue: scopeValue, bound: bound, offset: offset, limit: limit, type: type, searchWord: searchWord), region: region, logger: logger, on: eventLoop)
+    public func describePluginInstances(scopeValue: String, offset: Int64, limit: Int64, bound: Bool? = nil, type: String? = nil, searchWord: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePluginInstancesResponse> {
+        self.describePluginInstances(.init(scopeValue: scopeValue, offset: offset, limit: limit, bound: bound, type: type, searchWord: searchWord), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询网关分组或API绑定（或未绑定）的插件列表
     ///
     /// 分页查询网关分组/API绑定（或未绑定）的插件列表
     @inlinable
-    public func describePluginInstances(scopeValue: String, bound: Bool, offset: Int64, limit: Int64, type: String? = nil, searchWord: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePluginInstancesResponse {
-        try await self.describePluginInstances(.init(scopeValue: scopeValue, bound: bound, offset: offset, limit: limit, type: type, searchWord: searchWord), region: region, logger: logger, on: eventLoop)
+    public func describePluginInstances(scopeValue: String, offset: Int64, limit: Int64, bound: Bool? = nil, type: String? = nil, searchWord: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePluginInstancesResponse {
+        try await self.describePluginInstances(.init(scopeValue: scopeValue, offset: offset, limit: limit, bound: bound, type: type, searchWord: searchWord), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询网关分组或API绑定（或未绑定）的插件列表

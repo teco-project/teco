@@ -77,7 +77,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetStatisticSummary(_ input: DescribeFleetStatisticSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFleetStatisticSummaryResponse> {
-        fatalError("DescribeFleetStatisticSummary is no longer available.")
+        fatalError("'DescribeFleetStatisticSummary' is no longer available.")
     }
 
     /// 查询服务部署统计汇总信息
@@ -86,7 +86,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetStatisticSummary(_ input: DescribeFleetStatisticSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetStatisticSummaryResponse {
-        fatalError("DescribeFleetStatisticSummary is no longer available.")
+        fatalError("'DescribeFleetStatisticSummary' is no longer available.")
     }
 
     /// 查询服务部署统计汇总信息
@@ -95,7 +95,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetStatisticSummary(fleetId: String? = nil, beginTime: Date? = nil, endTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFleetStatisticSummaryResponse> {
-        fatalError("DescribeFleetStatisticSummary is no longer available.")
+        fatalError("'DescribeFleetStatisticSummary' is no longer available.")
     }
 
     /// 查询服务部署统计汇总信息
@@ -104,6 +104,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetStatisticSummary(fleetId: String? = nil, beginTime: Date? = nil, endTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetStatisticSummaryResponse {
-        fatalError("DescribeFleetStatisticSummary is no longer available.")
+        fatalError("'DescribeFleetStatisticSummary' is no longer available.")
     }
 }

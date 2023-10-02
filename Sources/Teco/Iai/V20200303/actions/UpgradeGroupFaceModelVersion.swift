@@ -63,7 +63,7 @@ extension Iai {
     @available(*, unavailable, message: "避免官网歧义")
     @inlinable
     public func upgradeGroupFaceModelVersion(_ input: UpgradeGroupFaceModelVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeGroupFaceModelVersionResponse> {
-        fatalError("UpgradeGroupFaceModelVersion is no longer available.")
+        fatalError("'UpgradeGroupFaceModelVersion' is no longer available.")
     }
 
     /// 人员库升级
@@ -77,7 +77,7 @@ extension Iai {
     @available(*, unavailable, message: "避免官网歧义")
     @inlinable
     public func upgradeGroupFaceModelVersion(_ input: UpgradeGroupFaceModelVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeGroupFaceModelVersionResponse {
-        fatalError("UpgradeGroupFaceModelVersion is no longer available.")
+        fatalError("'UpgradeGroupFaceModelVersion' is no longer available.")
     }
 
     /// 人员库升级
@@ -91,7 +91,7 @@ extension Iai {
     @available(*, unavailable, message: "避免官网歧义")
     @inlinable
     public func upgradeGroupFaceModelVersion(groupId: String, faceModelVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeGroupFaceModelVersionResponse> {
-        fatalError("UpgradeGroupFaceModelVersion is no longer available.")
+        fatalError("'UpgradeGroupFaceModelVersion' is no longer available.")
     }
 
     /// 人员库升级
@@ -105,6 +105,6 @@ extension Iai {
     @available(*, unavailable, message: "避免官网歧义")
     @inlinable
     public func upgradeGroupFaceModelVersion(groupId: String, faceModelVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeGroupFaceModelVersionResponse {
-        fatalError("UpgradeGroupFaceModelVersion is no longer available.")
+        fatalError("'UpgradeGroupFaceModelVersion' is no longer available.")
     }
 }

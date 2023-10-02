@@ -167,20 +167,24 @@ extension Tke {
     }
 
     /// cuDNN的版本信息
-    public struct CUDNN: TCInputModel {
+    public struct CUDNN: TCInputModel, TCOutputModel {
         /// cuDNN的版本
-        public let version: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let version: String?
 
         /// cuDNN的名字
-        public let name: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
 
         /// cuDNN的Doc名字
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let docName: String?
 
         /// cuDNN的Dev名字
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let devName: String?
 
-        public init(version: String, name: String, docName: String? = nil, devName: String? = nil) {
+        public init(version: String? = nil, name: String? = nil, docName: String? = nil, devName: String? = nil) {
             self.version = version
             self.name = name
             self.docName = docName
@@ -1392,14 +1396,16 @@ extension Tke {
     }
 
     /// GPU驱动和CUDA的版本信息
-    public struct DriverVersion: TCInputModel {
+    public struct DriverVersion: TCInputModel, TCOutputModel {
         /// GPU驱动或者CUDA的版本
-        public let version: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let version: String?
 
         /// GPU驱动或者CUDA的名字
-        public let name: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
 
-        public init(version: String, name: String) {
+        public init(version: String? = nil, name: String? = nil) {
             self.version = version
             self.name = name
         }
@@ -2679,6 +2685,30 @@ extension Tke {
         }
     }
 
+    /// 包年包月配置
+    public struct InstanceChargePrepaid: TCInputModel, TCOutputModel {
+        /// 购买实例的时长，单位：月。取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36, 48, 60。
+        public let period: UInt64
+
+        /// 自动续费标识。取值范围：
+        /// NOTIFY_AND_AUTO_RENEW：通知过期且自动续费
+        /// NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费
+        /// DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费
+        ///
+        /// 默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
+        public let renewFlag: String?
+
+        public init(period: UInt64, renewFlag: String? = nil) {
+            self.period = period
+            self.renewFlag = renewFlag
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case period = "Period"
+            case renewFlag = "RenewFlag"
+        }
+    }
+
     /// CVM实例数据盘挂载配置
     public struct InstanceDataDiskMountSetting: TCInputModel {
         /// CVM实例类型
@@ -3298,6 +3328,30 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deletionProtection: Bool?
 
+        /// 节点配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let extraArgs: InstanceExtraArgs?
+
+        /// GPU驱动相关参数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gpuArgs: GPUArgs?
+
+        /// dockerd --graph 指定值, 默认为 /var/lib/docker
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dockerGraphPath: String?
+
+        /// 多盘数据盘挂载信息：新建节点时请确保购买CVM的参数传递了购买多个数据盘的信息，如CreateClusterInstances API的RunInstancesPara下的DataDisks也需要设置购买多个数据盘, 具体可以参考CreateClusterInstances接口的添加集群节点(多块数据盘)样例；添加已有节点时，请确保填写的分区信息在节点上真实存在
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dataDisks: [DataDisk]?
+
+        /// 是否不可调度
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let unschedulable: Int64?
+
+        /// 用户自定义脚本,在UserScript前执行
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let preStartUserScript: String?
+
         enum CodingKeys: String, CodingKey {
             case nodePoolId = "NodePoolId"
             case name = "Name"
@@ -3319,6 +3373,12 @@ extension Tke {
             case userScript = "UserScript"
             case tags = "Tags"
             case deletionProtection = "DeletionProtection"
+            case extraArgs = "ExtraArgs"
+            case gpuArgs = "GPUArgs"
+            case dockerGraphPath = "DockerGraphPath"
+            case dataDisks = "DataDisks"
+            case unschedulable = "Unschedulable"
+            case preStartUserScript = "PreStartUserScript"
         }
     }
 
@@ -3417,6 +3477,42 @@ extension Tke {
         }
     }
 
+    /// 可被预留券抵扣的 Pod 某种规格的抵扣率
+    public struct PodDeductionRate: TCOutputModel {
+        /// Pod的 CPU
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cpu: Float?
+
+        /// Pod 的内存
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let memory: Float?
+
+        /// Pod 的类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let type: String?
+
+        /// Pod 的 GPU 卡数，Pod 类型为 GPU 时有效。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gpuNum: String?
+
+        /// 这种规格的 Pod总数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalNum: UInt64?
+
+        /// 这种规格的 Pod被预留券抵扣的数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let deductionNum: UInt64?
+
+        enum CodingKeys: String, CodingKey {
+            case cpu = "Cpu"
+            case memory = "Memory"
+            case type = "Type"
+            case gpuNum = "GpuNum"
+            case totalNum = "TotalNum"
+            case deductionNum = "DeductionNum"
+        }
+    }
+
     /// 某机型可支持的最大 VPC-CNI 模式的 Pod 数量
     public struct PodLimitsByType: TCOutputModel {
         /// TKE共享网卡非固定IP模式可支持的Pod数量
@@ -3461,6 +3557,37 @@ extension Tke {
             case instanceFamily = "InstanceFamily"
             case instanceType = "InstanceType"
             case podLimits = "PodLimits"
+        }
+    }
+
+    /// Pod所在的节点信息
+    public struct PodNodeInfo: TCOutputModel {
+        /// 集群 ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterId: String?
+
+        /// 节点名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nodeName: String?
+
+        /// 可用区
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let zone: String?
+
+        /// 命名空间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let namespace: String?
+
+        /// Pod 名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        enum CodingKeys: String, CodingKey {
+            case clusterId = "ClusterId"
+            case nodeName = "NodeName"
+            case zone = "Zone"
+            case namespace = "Namespace"
+            case name = "Name"
         }
     }
 
@@ -4665,6 +4792,56 @@ extension Tke {
         }
     }
 
+    /// 预留券抵扣详情
+    public struct RIUtilizationDetail: TCOutputModel {
+        /// 预留券ID
+        public let reservedInstanceId: String
+
+        /// Pod唯一ID
+        public let eksId: String
+
+        /// 集群ID
+        public let clusterId: String
+
+        /// Pod的名称
+        public let name: String
+
+        /// Pod的命名空间
+        public let namespace: String
+
+        /// 工作负载类型
+        public let kind: String
+
+        /// 工作负载名称
+        public let kindName: String
+
+        /// Pod的uid
+        public let uid: String
+
+        /// 用量开始时间
+        public let startTime: String
+
+        /// 用量结束时间
+        public let endTime: String
+
+        /// 抵扣资源所属产品
+        public let product: String
+
+        enum CodingKeys: String, CodingKey {
+            case reservedInstanceId = "ReservedInstanceId"
+            case eksId = "EksId"
+            case clusterId = "ClusterId"
+            case name = "Name"
+            case namespace = "Namespace"
+            case kind = "Kind"
+            case kindName = "KindName"
+            case uid = "Uid"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+            case product = "Product"
+        }
+    }
+
     /// 地域属性信息
     public struct RegionInstance: TCOutputModel {
         /// 地域名称
@@ -4889,6 +5066,134 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case rawOriginal = "RawOriginal"
             case valuesType = "ValuesType"
+        }
+    }
+
+    /// 预留实例
+    public struct ReservedInstance: TCOutputModel {
+        /// 预留实例ID
+        public let reservedInstanceId: String
+
+        /// 预留实例名称
+        public let reservedInstanceName: String
+
+        /// 预留券状态
+        public let status: String
+
+        /// 有效期，单位：月
+        public let timeSpan: UInt64
+
+        /// 抵扣资源类型
+        public let resourceType: String
+
+        /// 资源核数
+        public let cpu: Float
+
+        /// 资源内存，单位：Gi
+        public let memory: Float
+
+        /// 预留券的范围，默认值region。
+        public let scope: String
+
+        /// 创建时间
+        public let createdAt: String
+
+        /// 生效时间
+        public let activeAt: String
+
+        /// 过期时间
+        public let expireAt: String
+
+        /// GPU卡数
+        public let gpuCount: String
+
+        /// 自动续费标记
+        public let autoRenewFlag: Int64
+
+        /// 集群 ID
+        public let clusterId: String?
+
+        /// 节点名称
+        public let nodeName: String?
+
+        /// 上个周期预留券的抵扣状态，Deduct、NotDeduct
+        public let deductStatus: String?
+
+        enum CodingKeys: String, CodingKey {
+            case reservedInstanceId = "ReservedInstanceId"
+            case reservedInstanceName = "ReservedInstanceName"
+            case status = "Status"
+            case timeSpan = "TimeSpan"
+            case resourceType = "ResourceType"
+            case cpu = "Cpu"
+            case memory = "Memory"
+            case scope = "Scope"
+            case createdAt = "CreatedAt"
+            case activeAt = "ActiveAt"
+            case expireAt = "ExpireAt"
+            case gpuCount = "GpuCount"
+            case autoRenewFlag = "AutoRenewFlag"
+            case clusterId = "ClusterId"
+            case nodeName = "NodeName"
+            case deductStatus = "DeductStatus"
+        }
+    }
+
+    /// 预留券抵扣范围的描述信息，当抵扣范围为 Region 时，表示地域抵扣，其他参数不需要传；当抵扣范围为 Zone 时，表示可用区抵扣，Zone 参数必传；当抵扣范围为 Node 时，表示节点抵扣，参数 Zone、ClusterId和NodeName均必传。
+    public struct ReservedInstanceScope: TCInputModel {
+        /// 抵扣范围，取值：Region、Zone 和 Node
+        public let scope: String
+
+        /// 可用区
+        public let zone: String?
+
+        /// 集群 ID
+        public let clusterId: String?
+
+        /// 节点名称
+        public let nodeName: String?
+
+        public init(scope: String, zone: String? = nil, clusterId: String? = nil, nodeName: String? = nil) {
+            self.scope = scope
+            self.zone = zone
+            self.clusterId = clusterId
+            self.nodeName = nodeName
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case scope = "Scope"
+            case zone = "Zone"
+            case clusterId = "ClusterId"
+            case nodeName = "NodeName"
+        }
+    }
+
+    /// 预留券规格
+    public struct ReservedInstanceSpec: TCInputModel {
+        /// 资源类型：common、amd、v100、t4、a10\*gnv4、a10\*gnv4v、a10\*pnv4、windows-common、windows-amd，common表示通用类型。
+        public let type: String
+
+        /// 核数
+        public let cpu: Float
+
+        /// 内存
+        public let memory: Float
+
+        /// GPU卡数，当Type为GPU类型时设置。
+        public let gpu: Float?
+
+        public init(type: String, cpu: Float, memory: Float, gpu: Float? = nil) {
+            self.type = type
+            self.cpu = cpu
+            self.memory = memory
+            self.gpu = gpu
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case cpu = "Cpu"
+            case memory = "Memory"
+            case gpu = "Gpu"
         }
     }
 
@@ -5188,6 +5493,37 @@ extension Tke {
             case securityGroups = "SecurityGroups"
             case os = "Os"
             case arch = "Arch"
+        }
+    }
+
+    /// 超级节点上的资源统计
+    public struct SuperNodeResource: TCOutputModel {
+        /// 节点名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nodeName: String?
+
+        /// 节点上的资源总数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let num: UInt64?
+
+        /// 节点上的总核数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cpu: Float?
+
+        /// 节点上的总内存数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let memory: Float?
+
+        /// 节点上的总 GPU 卡数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gpu: Float?
+
+        enum CodingKeys: String, CodingKey {
+            case nodeName = "NodeName"
+            case num = "Num"
+            case cpu = "Cpu"
+            case memory = "Memory"
+            case gpu = "Gpu"
         }
     }
 

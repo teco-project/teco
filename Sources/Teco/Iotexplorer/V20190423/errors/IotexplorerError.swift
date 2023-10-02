@@ -788,6 +788,8 @@ public struct TCIotexplorerError: TCIotexplorerErrorType {
     }
 
     /// 设备没有影子信息。
+    ///
+    /// None
     public static var resourceNotFound_DeviceShadowNotExist: TCIotexplorerError {
         TCIotexplorerError(.resourceNotFound_DeviceShadowNotExist)
     }

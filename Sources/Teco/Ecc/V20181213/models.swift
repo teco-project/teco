@@ -36,6 +36,31 @@ extension Ecc {
     }
 
     /// 图像识别批改接口返回的作文文本信息或批改信息
+    public struct CompositionContext: TCOutputModel {
+        /// 作文内容
+        public let content: String
+
+        /// 批改结果
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let correctData: CorrectData?
+
+        /// 任务 id，用于查询接口
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskId: String?
+
+        /// 图像识别唯一标识，一次识别一个 SessionId
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sessionId: String?
+
+        enum CodingKeys: String, CodingKey {
+            case content = "Content"
+            case correctData = "CorrectData"
+            case taskId = "TaskId"
+            case sessionId = "SessionId"
+        }
+    }
+
+    /// 图像识别批改接口返回的作文文本信息或批改信息
     public struct CompostionContext: TCOutputModel {
         /// 作文内容
         public let content: String

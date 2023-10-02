@@ -51,7 +51,7 @@ extension Ecdn {
     @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable @discardableResult
     public func stopEcdnDomain(_ input: StopEcdnDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopEcdnDomainResponse> {
-        fatalError("StopEcdnDomain is no longer available.")
+        fatalError("'StopEcdnDomain' is no longer available.")
     }
 
     /// 停用加速域名
@@ -62,7 +62,7 @@ extension Ecdn {
     @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable @discardableResult
     public func stopEcdnDomain(_ input: StopEcdnDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopEcdnDomainResponse {
-        fatalError("StopEcdnDomain is no longer available.")
+        fatalError("'StopEcdnDomain' is no longer available.")
     }
 
     /// 停用加速域名
@@ -73,7 +73,7 @@ extension Ecdn {
     @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable @discardableResult
     public func stopEcdnDomain(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopEcdnDomainResponse> {
-        fatalError("StopEcdnDomain is no longer available.")
+        fatalError("'StopEcdnDomain' is no longer available.")
     }
 
     /// 停用加速域名
@@ -84,6 +84,6 @@ extension Ecdn {
     @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable @discardableResult
     public func stopEcdnDomain(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopEcdnDomainResponse {
-        fatalError("StopEcdnDomain is no longer available.")
+        fatalError("'StopEcdnDomain' is no longer available.")
     }
 }

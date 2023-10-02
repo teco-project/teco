@@ -44,6 +44,7 @@ public struct TCDnspodError: TCDnspodErrorType {
         case failedOperation_DomainNotInService = "FailedOperation.DomainNotInService"
         case failedOperation_DomainOwnedByOtherUser = "FailedOperation.DomainOwnedByOtherUser"
         case failedOperation_EipCheckFailed = "FailedOperation.EipCheckFailed"
+        case failedOperation_FrequencyLimit = "FailedOperation.FrequencyLimit"
         case failedOperation_FunctionNotAllowedApply = "FailedOperation.FunctionNotAllowedApply"
         case failedOperation_GetWhoisFailed = "FailedOperation.GetWhoisFailed"
         case failedOperation_InsufficientBalance = "FailedOperation.InsufficientBalance"
@@ -361,6 +362,10 @@ public struct TCDnspodError: TCDnspodErrorType {
     /// 校验公网 IP 发生异常。
     public static var failedOperation_EipCheckFailed: TCDnspodError {
         TCDnspodError(.failedOperation_EipCheckFailed)
+    }
+
+    public static var failedOperation_FrequencyLimit: TCDnspodError {
+        TCDnspodError(.failedOperation_FrequencyLimit)
     }
 
     /// 此功能暂停申请，请稍候重试。

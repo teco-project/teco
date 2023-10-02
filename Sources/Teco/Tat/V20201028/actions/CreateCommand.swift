@@ -51,6 +51,11 @@ extension Tat {
         /// 自定义参数名称需符合以下规范：字符数目上限64，可选范围【a-zA-Z0-9-_】。
         public let defaultParameters: String?
 
+        /// 自定义参数数组。
+        /// 如果InvokeCommand时未提供参数取值，将使用这里的默认值进行替换。
+        /// 自定义参数最多20个。
+        public let defaultParameterConfs: [DefaultParameterConf]?
+
         /// 为命令关联的标签，列表长度不超过10。
         public let tags: [Tag]?
 
@@ -67,7 +72,7 @@ extension Tat {
         /// 3. 不允许连续 / ；不允许以 / 开头；不允许以..作为文件夹名称
         public let outputCOSKeyPrefix: String?
 
-        public init(commandName: String, content: String, description: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, enableParameter: Bool? = nil, defaultParameters: String? = nil, tags: [Tag]? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil) {
+        public init(commandName: String, content: String, description: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, enableParameter: Bool? = nil, defaultParameters: String? = nil, defaultParameterConfs: [DefaultParameterConf]? = nil, tags: [Tag]? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil) {
             self.commandName = commandName
             self.content = content
             self.description = description
@@ -76,6 +81,7 @@ extension Tat {
             self.timeout = timeout
             self.enableParameter = enableParameter
             self.defaultParameters = defaultParameters
+            self.defaultParameterConfs = defaultParameterConfs
             self.tags = tags
             self.username = username
             self.outputCOSBucketUrl = outputCOSBucketUrl
@@ -91,6 +97,7 @@ extension Tat {
             case timeout = "Timeout"
             case enableParameter = "EnableParameter"
             case defaultParameters = "DefaultParameters"
+            case defaultParameterConfs = "DefaultParameterConfs"
             case tags = "Tags"
             case username = "Username"
             case outputCOSBucketUrl = "OutputCOSBucketUrl"
@@ -132,15 +139,15 @@ extension Tat {
     ///
     /// 此接口用于创建命令。
     @inlinable
-    public func createCommand(commandName: String, content: String, description: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, enableParameter: Bool? = nil, defaultParameters: String? = nil, tags: [Tag]? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCommandResponse> {
-        self.createCommand(.init(commandName: commandName, content: content, description: description, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, enableParameter: enableParameter, defaultParameters: defaultParameters, tags: tags, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), region: region, logger: logger, on: eventLoop)
+    public func createCommand(commandName: String, content: String, description: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, enableParameter: Bool? = nil, defaultParameters: String? = nil, defaultParameterConfs: [DefaultParameterConf]? = nil, tags: [Tag]? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCommandResponse> {
+        self.createCommand(.init(commandName: commandName, content: content, description: description, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, enableParameter: enableParameter, defaultParameters: defaultParameters, defaultParameterConfs: defaultParameterConfs, tags: tags, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建命令
     ///
     /// 此接口用于创建命令。
     @inlinable
-    public func createCommand(commandName: String, content: String, description: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, enableParameter: Bool? = nil, defaultParameters: String? = nil, tags: [Tag]? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCommandResponse {
-        try await self.createCommand(.init(commandName: commandName, content: content, description: description, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, enableParameter: enableParameter, defaultParameters: defaultParameters, tags: tags, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), region: region, logger: logger, on: eventLoop)
+    public func createCommand(commandName: String, content: String, description: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, enableParameter: Bool? = nil, defaultParameters: String? = nil, defaultParameterConfs: [DefaultParameterConf]? = nil, tags: [Tag]? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCommandResponse {
+        try await self.createCommand(.init(commandName: commandName, content: content, description: description, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, enableParameter: enableParameter, defaultParameters: defaultParameters, defaultParameterConfs: defaultParameterConfs, tags: tags, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -100,7 +100,8 @@ extension Cynosdb {
         /// 包年包月购买时长单位，['s','d','m','y']
         public let timeUnit: String?
 
-        /// 包年包月购买是否自动续费，默认为0
+        /// 包年包月购买是否自动续费，默认为0。
+        /// 0标识默认续费方式，1表示自动续费，2表示手不自动续费。
         public let autoRenewFlag: Int64?
 
         /// 是否自动选择代金券 1是 0否 默认为0
@@ -290,25 +291,25 @@ extension Cynosdb {
         }
     }
 
-    /// 创建集群
+    /// 购买新集群
     @inlinable
     public func createClusters(_ input: CreateClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClustersResponse> {
         self.client.execute(action: "CreateClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 创建集群
+    /// 购买新集群
     @inlinable
     public func createClusters(_ input: CreateClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClustersResponse {
         try await self.client.execute(action: "CreateClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 创建集群
+    /// 购买新集群
     @inlinable
     public func createClusters(zone: String, vpcId: String, subnetId: String, dbType: String, dbVersion: String, projectId: Int64? = nil, cpu: Int64? = nil, memory: Int64? = nil, storage: Int64? = nil, clusterName: String? = nil, adminPassword: String? = nil, port: Int64? = nil, payMode: Int64? = nil, count: Int64? = nil, rollbackStrategy: String? = nil, rollbackId: UInt64? = nil, originalClusterId: String? = nil, expectTime: String? = nil, expectTimeThresh: UInt64? = nil, storageLimit: Int64? = nil, instanceCount: Int64? = nil, timeSpan: Int64? = nil, timeUnit: String? = nil, autoRenewFlag: Int64? = nil, autoVoucher: Int64? = nil, haCount: Int64? = nil, orderSource: String? = nil, resourceTags: [Tag]? = nil, dbMode: String? = nil, minCpu: Float? = nil, maxCpu: Float? = nil, autoPause: String? = nil, autoPauseDelay: Int64? = nil, storagePayMode: Int64? = nil, securityGroupIds: [String]? = nil, alarmPolicyIds: [String]? = nil, clusterParams: [ParamItem]? = nil, dealMode: Int64? = nil, paramTemplateId: Int64? = nil, slaveZone: String? = nil, instanceInitInfos: [InstanceInitInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClustersResponse> {
         self.createClusters(.init(zone: zone, vpcId: vpcId, subnetId: subnetId, dbType: dbType, dbVersion: dbVersion, projectId: projectId, cpu: cpu, memory: memory, storage: storage, clusterName: clusterName, adminPassword: adminPassword, port: port, payMode: payMode, count: count, rollbackStrategy: rollbackStrategy, rollbackId: rollbackId, originalClusterId: originalClusterId, expectTime: expectTime, expectTimeThresh: expectTimeThresh, storageLimit: storageLimit, instanceCount: instanceCount, timeSpan: timeSpan, timeUnit: timeUnit, autoRenewFlag: autoRenewFlag, autoVoucher: autoVoucher, haCount: haCount, orderSource: orderSource, resourceTags: resourceTags, dbMode: dbMode, minCpu: minCpu, maxCpu: maxCpu, autoPause: autoPause, autoPauseDelay: autoPauseDelay, storagePayMode: storagePayMode, securityGroupIds: securityGroupIds, alarmPolicyIds: alarmPolicyIds, clusterParams: clusterParams, dealMode: dealMode, paramTemplateId: paramTemplateId, slaveZone: slaveZone, instanceInitInfos: instanceInitInfos), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 创建集群
+    /// 购买新集群
     @inlinable
     public func createClusters(zone: String, vpcId: String, subnetId: String, dbType: String, dbVersion: String, projectId: Int64? = nil, cpu: Int64? = nil, memory: Int64? = nil, storage: Int64? = nil, clusterName: String? = nil, adminPassword: String? = nil, port: Int64? = nil, payMode: Int64? = nil, count: Int64? = nil, rollbackStrategy: String? = nil, rollbackId: UInt64? = nil, originalClusterId: String? = nil, expectTime: String? = nil, expectTimeThresh: UInt64? = nil, storageLimit: Int64? = nil, instanceCount: Int64? = nil, timeSpan: Int64? = nil, timeUnit: String? = nil, autoRenewFlag: Int64? = nil, autoVoucher: Int64? = nil, haCount: Int64? = nil, orderSource: String? = nil, resourceTags: [Tag]? = nil, dbMode: String? = nil, minCpu: Float? = nil, maxCpu: Float? = nil, autoPause: String? = nil, autoPauseDelay: Int64? = nil, storagePayMode: Int64? = nil, securityGroupIds: [String]? = nil, alarmPolicyIds: [String]? = nil, clusterParams: [ParamItem]? = nil, dealMode: Int64? = nil, paramTemplateId: Int64? = nil, slaveZone: String? = nil, instanceInitInfos: [InstanceInitInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClustersResponse {
         try await self.createClusters(.init(zone: zone, vpcId: vpcId, subnetId: subnetId, dbType: dbType, dbVersion: dbVersion, projectId: projectId, cpu: cpu, memory: memory, storage: storage, clusterName: clusterName, adminPassword: adminPassword, port: port, payMode: payMode, count: count, rollbackStrategy: rollbackStrategy, rollbackId: rollbackId, originalClusterId: originalClusterId, expectTime: expectTime, expectTimeThresh: expectTimeThresh, storageLimit: storageLimit, instanceCount: instanceCount, timeSpan: timeSpan, timeUnit: timeUnit, autoRenewFlag: autoRenewFlag, autoVoucher: autoVoucher, haCount: haCount, orderSource: orderSource, resourceTags: resourceTags, dbMode: dbMode, minCpu: minCpu, maxCpu: maxCpu, autoPause: autoPause, autoPauseDelay: autoPauseDelay, storagePayMode: storagePayMode, securityGroupIds: securityGroupIds, alarmPolicyIds: alarmPolicyIds, clusterParams: clusterParams, dealMode: dealMode, paramTemplateId: paramTemplateId, slaveZone: slaveZone, instanceInitInfos: instanceInitInfos), region: region, logger: logger, on: eventLoop)

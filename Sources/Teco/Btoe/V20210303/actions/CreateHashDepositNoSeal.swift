@@ -85,7 +85,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createHashDepositNoSeal(_ input: CreateHashDepositNoSealRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHashDepositNoSealResponse> {
-        fatalError("CreateHashDepositNoSeal is no longer available.")
+        fatalError("'CreateHashDepositNoSeal' is no longer available.")
     }
 
     /// 哈希上链存证(有证书，无签章)
@@ -94,7 +94,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createHashDepositNoSeal(_ input: CreateHashDepositNoSealRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHashDepositNoSealResponse {
-        fatalError("CreateHashDepositNoSeal is no longer available.")
+        fatalError("'CreateHashDepositNoSeal' is no longer available.")
     }
 
     /// 哈希上链存证(有证书，无签章)
@@ -103,7 +103,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createHashDepositNoSeal(evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHashDepositNoSealResponse> {
-        fatalError("CreateHashDepositNoSeal is no longer available.")
+        fatalError("'CreateHashDepositNoSeal' is no longer available.")
     }
 
     /// 哈希上链存证(有证书，无签章)
@@ -112,6 +112,6 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createHashDepositNoSeal(evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHashDepositNoSealResponse {
-        fatalError("CreateHashDepositNoSeal is no longer available.")
+        fatalError("'CreateHashDepositNoSeal' is no longer available.")
     }
 }

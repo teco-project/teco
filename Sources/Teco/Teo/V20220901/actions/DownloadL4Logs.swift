@@ -41,7 +41,7 @@ extension Teo {
         /// 四层实例 ID 集合。
         public let proxyIds: [String]?
 
-        /// 分页查询的限制数目，默认值为 20，最大查询条目为 1000。
+        /// 分页查询的限制数目，默认值为 20，最大查询条目为 300。
         public let limit: Int64?
 
         /// 分页的偏移量，默认值为 0。

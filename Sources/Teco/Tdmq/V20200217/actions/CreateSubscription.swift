@@ -33,11 +33,11 @@ extension Tdmq {
         /// 是否幂等创建，若否不允许创建同名的订阅关系。
         public let isIdempotent: Bool
 
+        /// Pulsar 集群的ID
+        public let clusterId: String
+
         /// 备注，128个字符以内。
         public let remark: String?
-
-        /// Pulsar 集群的ID
-        public let clusterId: String?
 
         /// 是否自动创建死信和重试主题，True 表示创建，False表示不创建，默认自动创建死信和重试主题。
         public let autoCreatePolicyTopic: Bool?
@@ -45,13 +45,13 @@ extension Tdmq {
         /// 指定死信和重试主题名称规范，LEGACY表示历史命名规则，COMMUNITY表示Pulsar社区命名规范
         public let postFixPattern: String?
 
-        public init(environmentId: String, topicName: String, subscriptionName: String, isIdempotent: Bool, remark: String? = nil, clusterId: String? = nil, autoCreatePolicyTopic: Bool? = nil, postFixPattern: String? = nil) {
+        public init(environmentId: String, topicName: String, subscriptionName: String, isIdempotent: Bool, clusterId: String, remark: String? = nil, autoCreatePolicyTopic: Bool? = nil, postFixPattern: String? = nil) {
             self.environmentId = environmentId
             self.topicName = topicName
             self.subscriptionName = subscriptionName
             self.isIdempotent = isIdempotent
-            self.remark = remark
             self.clusterId = clusterId
+            self.remark = remark
             self.autoCreatePolicyTopic = autoCreatePolicyTopic
             self.postFixPattern = postFixPattern
         }
@@ -61,8 +61,8 @@ extension Tdmq {
             case topicName = "TopicName"
             case subscriptionName = "SubscriptionName"
             case isIdempotent = "IsIdempotent"
-            case remark = "Remark"
             case clusterId = "ClusterId"
+            case remark = "Remark"
             case autoCreatePolicyTopic = "AutoCreatePolicyTopic"
             case postFixPattern = "PostFixPattern"
         }
@@ -102,15 +102,15 @@ extension Tdmq {
     ///
     /// 创建一个主题的订阅关系
     @inlinable
-    public func createSubscription(environmentId: String, topicName: String, subscriptionName: String, isIdempotent: Bool, remark: String? = nil, clusterId: String? = nil, autoCreatePolicyTopic: Bool? = nil, postFixPattern: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubscriptionResponse> {
-        self.createSubscription(.init(environmentId: environmentId, topicName: topicName, subscriptionName: subscriptionName, isIdempotent: isIdempotent, remark: remark, clusterId: clusterId, autoCreatePolicyTopic: autoCreatePolicyTopic, postFixPattern: postFixPattern), region: region, logger: logger, on: eventLoop)
+    public func createSubscription(environmentId: String, topicName: String, subscriptionName: String, isIdempotent: Bool, clusterId: String, remark: String? = nil, autoCreatePolicyTopic: Bool? = nil, postFixPattern: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubscriptionResponse> {
+        self.createSubscription(.init(environmentId: environmentId, topicName: topicName, subscriptionName: subscriptionName, isIdempotent: isIdempotent, clusterId: clusterId, remark: remark, autoCreatePolicyTopic: autoCreatePolicyTopic, postFixPattern: postFixPattern), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建订阅关系
     ///
     /// 创建一个主题的订阅关系
     @inlinable
-    public func createSubscription(environmentId: String, topicName: String, subscriptionName: String, isIdempotent: Bool, remark: String? = nil, clusterId: String? = nil, autoCreatePolicyTopic: Bool? = nil, postFixPattern: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubscriptionResponse {
-        try await self.createSubscription(.init(environmentId: environmentId, topicName: topicName, subscriptionName: subscriptionName, isIdempotent: isIdempotent, remark: remark, clusterId: clusterId, autoCreatePolicyTopic: autoCreatePolicyTopic, postFixPattern: postFixPattern), region: region, logger: logger, on: eventLoop)
+    public func createSubscription(environmentId: String, topicName: String, subscriptionName: String, isIdempotent: Bool, clusterId: String, remark: String? = nil, autoCreatePolicyTopic: Bool? = nil, postFixPattern: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubscriptionResponse {
+        try await self.createSubscription(.init(environmentId: environmentId, topicName: topicName, subscriptionName: subscriptionName, isIdempotent: isIdempotent, clusterId: clusterId, remark: remark, autoCreatePolicyTopic: autoCreatePolicyTopic, postFixPattern: postFixPattern), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -93,7 +93,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createImageDeposit(_ input: CreateImageDepositRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageDepositResponse> {
-        fatalError("CreateImageDeposit is no longer available.")
+        fatalError("'CreateImageDeposit' is no longer available.")
     }
 
     /// 图片文件存证
@@ -102,7 +102,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createImageDeposit(_ input: CreateImageDepositRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageDepositResponse {
-        fatalError("CreateImageDeposit is no longer available.")
+        fatalError("'CreateImageDeposit' is no longer available.")
     }
 
     /// 图片文件存证
@@ -111,7 +111,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createImageDeposit(evidenceName: String, fileName: String, evidenceHash: String, businessId: String? = nil, fileContent: String? = nil, fileUrl: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageDepositResponse> {
-        fatalError("CreateImageDeposit is no longer available.")
+        fatalError("'CreateImageDeposit' is no longer available.")
     }
 
     /// 图片文件存证
@@ -120,6 +120,6 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createImageDeposit(evidenceName: String, fileName: String, evidenceHash: String, businessId: String? = nil, fileContent: String? = nil, fileUrl: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageDepositResponse {
-        fatalError("CreateImageDeposit is no longer available.")
+        fatalError("'CreateImageDeposit' is no longer available.")
     }
 }

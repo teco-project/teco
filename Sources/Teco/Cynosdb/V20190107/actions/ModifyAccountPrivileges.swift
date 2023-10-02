@@ -63,25 +63,25 @@ extension Cynosdb {
         }
     }
 
-    /// 修改账号权限
+    /// 修改账号库表权限
     @inlinable @discardableResult
     public func modifyAccountPrivileges(_ input: ModifyAccountPrivilegesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountPrivilegesResponse> {
         self.client.execute(action: "ModifyAccountPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 修改账号权限
+    /// 修改账号库表权限
     @inlinable @discardableResult
     public func modifyAccountPrivileges(_ input: ModifyAccountPrivilegesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountPrivilegesResponse {
         try await self.client.execute(action: "ModifyAccountPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 修改账号权限
+    /// 修改账号库表权限
     @inlinable @discardableResult
     public func modifyAccountPrivileges(clusterId: String, account: InputAccount, globalPrivileges: [String]? = nil, databasePrivileges: [DatabasePrivileges]? = nil, tablePrivileges: [TablePrivileges]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountPrivilegesResponse> {
         self.modifyAccountPrivileges(.init(clusterId: clusterId, account: account, globalPrivileges: globalPrivileges, databasePrivileges: databasePrivileges, tablePrivileges: tablePrivileges), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 修改账号权限
+    /// 修改账号库表权限
     @inlinable @discardableResult
     public func modifyAccountPrivileges(clusterId: String, account: InputAccount, globalPrivileges: [String]? = nil, databasePrivileges: [DatabasePrivileges]? = nil, tablePrivileges: [TablePrivileges]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountPrivilegesResponse {
         try await self.modifyAccountPrivileges(.init(clusterId: clusterId, account: account, globalPrivileges: globalPrivileges, databasePrivileges: databasePrivileges, tablePrivileges: tablePrivileges), region: region, logger: logger, on: eventLoop)

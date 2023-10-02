@@ -51,32 +51,36 @@ extension Tiw {
     /// 设置回调地址
     ///
     /// 设置课后录制回调地址
+    @available(*, unavailable, message: "课后录制服务已下线")
     @inlinable @discardableResult
     public func setOfflineRecordCallback(_ input: SetOfflineRecordCallbackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetOfflineRecordCallbackResponse> {
-        self.client.execute(action: "SetOfflineRecordCallback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("'SetOfflineRecordCallback' is no longer available.")
     }
 
     /// 设置回调地址
     ///
     /// 设置课后录制回调地址
+    @available(*, unavailable, message: "课后录制服务已下线")
     @inlinable @discardableResult
     public func setOfflineRecordCallback(_ input: SetOfflineRecordCallbackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetOfflineRecordCallbackResponse {
-        try await self.client.execute(action: "SetOfflineRecordCallback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("'SetOfflineRecordCallback' is no longer available.")
     }
 
     /// 设置回调地址
     ///
     /// 设置课后录制回调地址
+    @available(*, unavailable, message: "课后录制服务已下线")
     @inlinable @discardableResult
     public func setOfflineRecordCallback(sdkAppId: Int64, callback: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetOfflineRecordCallbackResponse> {
-        self.setOfflineRecordCallback(.init(sdkAppId: sdkAppId, callback: callback), region: region, logger: logger, on: eventLoop)
+        fatalError("'SetOfflineRecordCallback' is no longer available.")
     }
 
     /// 设置回调地址
     ///
     /// 设置课后录制回调地址
+    @available(*, unavailable, message: "课后录制服务已下线")
     @inlinable @discardableResult
     public func setOfflineRecordCallback(sdkAppId: Int64, callback: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetOfflineRecordCallbackResponse {
-        try await self.setOfflineRecordCallback(.init(sdkAppId: sdkAppId, callback: callback), region: region, logger: logger, on: eventLoop)
+        fatalError("'SetOfflineRecordCallback' is no longer available.")
     }
 }

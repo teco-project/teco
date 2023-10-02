@@ -56,7 +56,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteScalingPolicy(_ input: DeleteScalingPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScalingPolicyResponse> {
-        fatalError("DeleteScalingPolicy is no longer available.")
+        fatalError("'DeleteScalingPolicy' is no longer available.")
     }
 
     /// 删除扩缩容配置
@@ -67,7 +67,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteScalingPolicy(_ input: DeleteScalingPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScalingPolicyResponse {
-        fatalError("DeleteScalingPolicy is no longer available.")
+        fatalError("'DeleteScalingPolicy' is no longer available.")
     }
 
     /// 删除扩缩容配置
@@ -78,7 +78,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteScalingPolicy(fleetId: String, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScalingPolicyResponse> {
-        fatalError("DeleteScalingPolicy is no longer available.")
+        fatalError("'DeleteScalingPolicy' is no longer available.")
     }
 
     /// 删除扩缩容配置
@@ -89,6 +89,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteScalingPolicy(fleetId: String, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScalingPolicyResponse {
-        fatalError("DeleteScalingPolicy is no longer available.")
+        fatalError("'DeleteScalingPolicy' is no longer available.")
     }
 }

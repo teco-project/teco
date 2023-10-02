@@ -19,7 +19,7 @@ import TecoCore
 import TecoDateHelpers
 
 extension Asr {
-    /// 音频流异步识别任务信息
+    /// [音频流异步识别](https://cloud.tencent.com/document/api/1093/37824#AsyncRecognitionTasks)任务信息
     public struct AsyncRecognitionTaskInfo: TCOutputModel {
         /// 任务ID
         public let taskId: Int64
@@ -33,7 +33,7 @@ extension Asr {
         }
     }
 
-    /// 音频流异步识别任务列表
+    /// [音频流异步识别任务列表](https://cloud.tencent.com/document/product/1093/52060#3.-.E8.BE.93.E5.87.BA.E5.8F.82.E6.95.B0)
     public struct AsyncRecognitionTasks: TCOutputModel {
         /// 任务列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -44,7 +44,7 @@ extension Asr {
         }
     }
 
-    /// 热词的词和权重
+    /// [热词的词和权重](https://cloud.tencent.com/document/product/1093/41111#2.-.E8.BE.93.E5.85.A5.E5.8F.82.E6.95.B0)
     public struct HotWord: TCInputModel, TCOutputModel {
         /// 热词
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -65,7 +65,7 @@ extension Asr {
         }
     }
 
-    /// 自学习模型信息
+    /// [自学习模型信息](https://cloud.tencent.com/document/product/1093/90813#3.-.E8.BE.93.E5.87.BA.E5.8F.82.E6.95.B0)
     public struct Model: TCOutputModel {
         /// 模型名称
         public let modelName: String
@@ -120,6 +120,10 @@ extension Asr {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sliceSentence: String?
 
+        /// 口语转书面语结果，开启改功能才有值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let writtenText: String?
+
         /// 单句开始时间（毫秒）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startMs: Int64?
@@ -159,6 +163,7 @@ extension Asr {
         enum CodingKeys: String, CodingKey {
             case finalSentence = "FinalSentence"
             case sliceSentence = "SliceSentence"
+            case writtenText = "WrittenText"
             case startMs = "StartMs"
             case endMs = "EndMs"
             case wordsNum = "WordsNum"
@@ -171,7 +176,7 @@ extension Asr {
         }
     }
 
-    /// 一句话识别返回的词时间戳
+    /// [一句话识别](https://cloud.tencent.com/document/product/1093/35646#3.-.E8.BE.93.E5.87.BA.E5.8F.82.E6.95.B0)返回的词时间戳
     public struct SentenceWord: TCOutputModel {
         /// 词结果
         public let word: String
@@ -210,7 +215,7 @@ extension Asr {
         }
     }
 
-    /// 录音文件识别、实时语音异步识别请求的返回数据
+    /// [录音文件识别](https://cloud.tencent.com/document/product/1093/37823#3.-.E8.BE.93.E5.87.BA.E5.8F.82.E6.95.B0)、[实时语音异步识别](https://cloud.tencent.com/document/product/1093/52061#3.-.E8.BE.93.E5.87.BA.E5.8F.82.E6.95.B0)请求的返回数据
     public struct Task: TCOutputModel {
         /// 任务ID，可通过此ID在轮询接口获取识别状态与结果。注意：TaskId数据类型为uint64
         public let taskId: UInt64
@@ -220,7 +225,7 @@ extension Asr {
         }
     }
 
-    /// 获取录音识别结果的返回参数
+    /// [获取录音识别结果的返回参数](https://cloud.tencent.com/document/product/1093/37822#3.-.E8.BE.93.E5.87.BA.E5.8F.82.E6.95.B0)
     public struct TaskStatus: TCOutputModel {
         /// 任务标识。注意：TaskId数据类型为uint64。
         public let taskId: UInt64
@@ -256,7 +261,7 @@ extension Asr {
         }
     }
 
-    /// 词表内容
+    /// [词表内容](https://cloud.tencent.com/document/product/1093/41484#3.-.E8.BE.93.E5.87.BA.E5.8F.82.E6.95.B0)
     public struct Vocab: TCOutputModel {
         /// 热词表名称
         public let name: String
@@ -301,7 +306,7 @@ extension Asr {
         }
     }
 
-    /// 说话人基础数据，包括说话人id和说话人昵称
+    /// [说话人基础数据](https://cloud.tencent.com/document/product/1093/94483#3.-.E8.BE.93.E5.87.BA.E5.8F.82.E6.95.B0)，包括说话人id和说话人昵称
     public struct VoicePrintBaseData: TCOutputModel {
         /// 说话人id
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -317,7 +322,7 @@ extension Asr {
         }
     }
 
-    /// 统计返回注册数量结构
+    /// 统计返回[说话人注册数量](https://cloud.tencent.com/document/product/1093/96061#3.-.E8.BE.93.E5.87.BA.E5.8F.82.E6.95.B0)
     public struct VoicePrintCountData: TCOutputModel {
         /// 总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -328,7 +333,7 @@ extension Asr {
         }
     }
 
-    /// 说话人验证数据
+    /// [说话人验证数据](https://cloud.tencent.com/document/product/1093/94481#3.-.E8.BE.93.E5.87.BA.E5.8F.82.E6.95.B0)
     public struct VoicePrintVerifyData: TCOutputModel {
         /// 说话人id
         /// 注意：此字段可能返回 null，表示取不到有效值。

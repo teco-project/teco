@@ -35,6 +35,8 @@ extension TCTatError {
             case invalidInvokerId = "InvalidParameterValue.InvalidInvokerId"
             case invalidOutputCOSBucketUrl = "InvalidParameterValue.InvalidOutputCOSBucketUrl"
             case invalidOutputCOSKeyPrefix = "InvalidParameterValue.InvalidOutputCOSKeyPrefix"
+            case invalidRegisterCodeId = "InvalidParameterValue.InvalidRegisterCodeId"
+            case invalidRegisterInstanceId = "InvalidParameterValue.InvalidRegisterInstanceId"
             case invalidTimeFormat = "InvalidParameterValue.InvalidTimeFormat"
             case invalidUsername = "InvalidParameterValue.InvalidUsername"
             case invalidWorkingDirectory = "InvalidParameterValue.InvalidWorkingDirectory"
@@ -163,6 +165,16 @@ extension TCTatError {
             InvalidParameterValue(.invalidOutputCOSKeyPrefix)
         }
 
+        /// 无效的注册码ID。
+        public static var invalidRegisterCodeId: InvalidParameterValue {
+            InvalidParameterValue(.invalidRegisterCodeId)
+        }
+
+        /// 无效的托管实例ID。
+        public static var invalidRegisterInstanceId: InvalidParameterValue {
+            InvalidParameterValue(.invalidRegisterInstanceId)
+        }
+
         /// 无效的时间格式。
         public static var invalidTimeFormat: InvalidParameterValue {
             InvalidParameterValue(.invalidTimeFormat)
@@ -288,6 +300,10 @@ extension TCTatError {
                 code = .invalidParameterValue_InvalidOutputCOSBucketUrl
             case .invalidOutputCOSKeyPrefix:
                 code = .invalidParameterValue_InvalidOutputCOSKeyPrefix
+            case .invalidRegisterCodeId:
+                code = .invalidParameterValue_InvalidRegisterCodeId
+            case .invalidRegisterInstanceId:
+                code = .invalidParameterValue_InvalidRegisterInstanceId
             case .invalidTimeFormat:
                 code = .invalidParameterValue_InvalidTimeFormat
             case .invalidUsername:

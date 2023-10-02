@@ -24,12 +24,17 @@ extension Waf {
         /// 域名
         public let domain: String
 
-        public init(domain: String) {
+        /// 实例Id
+        public let instanceId: String?
+
+        public init(domain: String, instanceId: String? = nil) {
             self.domain = domain
+            self.instanceId = instanceId
         }
 
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
+            case instanceId = "InstanceId"
         }
     }
 
@@ -67,15 +72,15 @@ extension Waf {
     ///
     /// 获取各个模块具体的规格限制
     @inlinable
-    public func describeRuleLimit(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleLimitResponse> {
-        self.describeRuleLimit(.init(domain: domain), region: region, logger: logger, on: eventLoop)
+    public func describeRuleLimit(domain: String, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleLimitResponse> {
+        self.describeRuleLimit(.init(domain: domain, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取规格限制
     ///
     /// 获取各个模块具体的规格限制
     @inlinable
-    public func describeRuleLimit(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleLimitResponse {
-        try await self.describeRuleLimit(.init(domain: domain), region: region, logger: logger, on: eventLoop)
+    public func describeRuleLimit(domain: String, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleLimitResponse {
+        try await self.describeRuleLimit(.init(domain: domain, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

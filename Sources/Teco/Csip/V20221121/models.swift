@@ -269,6 +269,149 @@ extension Csip {
         }
     }
 
+    /// 资产扫描结构细节
+    public struct AssetInfoDetail: TCOutputModel {
+        /// 用户appid
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let appID: String?
+
+        /// CVE编号
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cveId: String?
+
+        /// 是扫描，0默认未扫描，1正在扫描，2扫描完成，3扫描出错
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isScan: Int64?
+
+        /// 影响资产数目
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let influenceAsset: Int64?
+
+        /// 未修复资产数目
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let notRepairAsset: Int64?
+
+        /// 未防护资产数目
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let notProtectAsset: Int64?
+
+        /// 任务ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskId: String?
+
+        /// 任务百分比
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskPercent: Int64?
+
+        /// 任务时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskTime: Int64?
+
+        /// 扫描时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scanTime: String?
+
+        enum CodingKeys: String, CodingKey {
+            case appID = "AppID"
+            case cveId = "CVEId"
+            case isScan = "IsScan"
+            case influenceAsset = "InfluenceAsset"
+            case notRepairAsset = "NotRepairAsset"
+            case notProtectAsset = "NotProtectAsset"
+            case taskId = "TaskId"
+            case taskPercent = "TaskPercent"
+            case taskTime = "TaskTime"
+            case scanTime = "ScanTime"
+        }
+    }
+
+    /// 资产视角配置风险
+    public struct AssetViewCFGRisk: TCOutputModel {
+        /// 唯一id
+        public let id: String
+
+        /// 配置名
+        public let cfgName: String
+
+        /// 检查类型
+        public let checkType: String
+
+        /// 实例id
+        public let instanceId: String
+
+        /// 实例名
+        public let instanceName: String
+
+        /// 实例类型
+        public let instanceType: String
+
+        /// 影响资产
+        public let affectAsset: String
+
+        /// 风险等级
+        public let level: String
+
+        /// 首次识别时间
+        public let firstTime: String
+
+        /// 最近识别时间
+        public let recentTime: String
+
+        /// 来源
+        public let from: String
+
+        /// 状态
+        public let status: Int64
+
+        public let cfgstd: String
+
+        /// 配置详情
+        public let cfgDescribe: String
+
+        /// 修复建议
+        public let cfgFix: String
+
+        /// 帮助文档链接
+        public let cfgHelpURL: String
+
+        /// 前端使用索引
+        public let index: String
+
+        /// 用户appid
+        public let appId: String
+
+        /// 用户昵称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nick: String?
+
+        /// 用户uin
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let uin: String?
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case cfgName = "CFGName"
+            case checkType = "CheckType"
+            case instanceId = "InstanceId"
+            case instanceName = "InstanceName"
+            case instanceType = "InstanceType"
+            case affectAsset = "AffectAsset"
+            case level = "Level"
+            case firstTime = "FirstTime"
+            case recentTime = "RecentTime"
+            case from = "From"
+            case status = "Status"
+            case cfgstd = "CFGSTD"
+            case cfgDescribe = "CFGDescribe"
+            case cfgFix = "CFGFix"
+            case cfgHelpURL = "CFGHelpURL"
+            case index = "Index"
+            case appId = "AppId"
+            case nick = "Nick"
+            case uin = "Uin"
+        }
+    }
+
     /// 资产视角的端口风险对象
     public struct AssetViewPortRisk: TCOutputModel {
         /// 端口
@@ -491,6 +634,204 @@ extension Csip {
             case instanceUUID = "InstanceUUID"
             case payload = "Payload"
             case emgcVulType = "EMGCVulType"
+        }
+    }
+
+    /// 资产视角的弱口令风险
+    public struct AssetViewWeakPassRisk: TCOutputModel {
+        /// 影响资产
+        public let affectAsset: String?
+
+        /// 风险等级
+        public let level: String?
+
+        /// 资产类型
+        public let instanceType: String?
+
+        /// 组件
+        public let component: String?
+
+        /// 服务
+        public let service: String?
+
+        /// 最近识别时间
+        public let recentTime: String?
+
+        /// 首次识别时间
+        public let firstTime: String?
+
+        /// 状态，0未处理、1已处置、2已忽略
+        public let status: UInt64?
+
+        /// 资产唯一id
+        public let id: String?
+
+        /// 前端索引
+        public let index: String?
+
+        /// 实例id
+        public let instanceId: String?
+
+        /// 实例名
+        public let instanceName: String?
+
+        /// 用户appid
+        public let appId: String?
+
+        /// 用户昵称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nick: String?
+
+        /// 用户uin
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let uin: String?
+
+        /// 弱口令类型
+        public let passwordType: String?
+
+        /// 来源
+        public let from: String?
+
+        /// 漏洞类型
+        public let vulType: String?
+
+        /// 漏洞url
+        public let vulurl: String?
+
+        /// 修复建议
+        public let fix: String?
+
+        /// 负载
+        public let payload: String?
+
+        enum CodingKeys: String, CodingKey {
+            case affectAsset = "AffectAsset"
+            case level = "Level"
+            case instanceType = "InstanceType"
+            case component = "Component"
+            case service = "Service"
+            case recentTime = "RecentTime"
+            case firstTime = "FirstTime"
+            case status = "Status"
+            case id = "Id"
+            case index = "Index"
+            case instanceId = "InstanceId"
+            case instanceName = "InstanceName"
+            case appId = "AppId"
+            case nick = "Nick"
+            case uin = "Uin"
+            case passwordType = "PasswordType"
+            case from = "From"
+            case vulType = "VULType"
+            case vulurl = "VULURL"
+            case fix = "Fix"
+            case payload = "Payload"
+        }
+    }
+
+    /// 漏洞详细信息
+    public struct BugInfoDetail: TCOutputModel {
+        /// 漏洞编号
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: UInt64?
+
+        /// 漏洞对应pocId
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let patchId: String?
+
+        /// 漏洞名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vulName: String?
+
+        /// 漏洞严重性：high,middle，low，info
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let level: String?
+
+        /// cvss评分
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cvssScore: String?
+
+        /// cve编号
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cveId: String?
+
+        /// 漏洞标签
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tag: String?
+
+        /// 漏洞种类，1:web应用，2:系统组件漏洞，3:配置风险
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vulCategory: UInt64?
+
+        /// 漏洞影响系统
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let impactOs: String?
+
+        /// 漏洞影响组件
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let impactCOMPENT: String?
+
+        /// 漏洞影响版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let impactVersion: String?
+
+        /// 链接
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let reference: String?
+
+        /// 漏洞描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vulDescribe: String?
+
+        /// 修复建议
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fix: String?
+
+        /// 产品支持状态，实时返回
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let proSupport: UInt64?
+
+        /// 是否公开，0为未发布，1为发布
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isPublish: UInt64?
+
+        /// 释放时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let releaseTime: String?
+
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createTime: String?
+
+        /// 更新时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updateTime: String?
+
+        /// 漏洞子类别
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subCategory: String?
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case patchId = "PatchId"
+            case vulName = "VULName"
+            case level = "Level"
+            case cvssScore = "CVSSScore"
+            case cveId = "CVEId"
+            case tag = "Tag"
+            case vulCategory = "VULCategory"
+            case impactOs = "ImpactOs"
+            case impactCOMPENT = "ImpactCOMPENT"
+            case impactVersion = "ImpactVersion"
+            case reference = "Reference"
+            case vulDescribe = "VULDescribe"
+            case fix = "Fix"
+            case proSupport = "ProSupport"
+            case isPublish = "IsPublish"
+            case releaseTime = "ReleaseTime"
+            case createTime = "CreateTime"
+            case updateTime = "UpdateTime"
+            case subCategory = "SubCategory"
         }
     }
 
@@ -859,6 +1200,10 @@ extension Csip {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let domain: String?
 
+        /// 负载均衡域名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let loadBalancerDomain: String?
+
         enum CodingKeys: String, CodingKey {
             case listenerId = "ListenerId"
             case listenerName = "ListenerName"
@@ -872,6 +1217,7 @@ extension Csip {
             case numericalVpcId = "NumericalVpcId"
             case loadBalancerType = "LoadBalancerType"
             case domain = "Domain"
+            case loadBalancerDomain = "LoadBalancerDomain"
         }
     }
 
@@ -993,6 +1339,51 @@ extension Csip {
             case status = "Status"
             case isCore = "IsCore"
             case isNewAsset = "IsNewAsset"
+        }
+    }
+
+    /// 漏洞和资产信息
+    public struct DataSearchBug: TCOutputModel {
+        /// 返回查询状态
+        public let stateCode: String?
+
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dataBug: [BugInfoDetail]?
+
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dataAsset: [AssetInfoDetail]?
+
+        /// true支持扫描。false不支持扫描
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vssScan: Bool?
+
+        /// 0不支持，1支持
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cwpScan: String?
+
+        /// 1支持虚拟补丁，0或空不支持
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cfwPatch: String?
+
+        /// 0不支持，1支持
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let wafPatch: Int64?
+
+        /// 0不支持，1支持
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cwpFix: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case stateCode = "StateCode"
+            case dataBug = "DataBug"
+            case dataAsset = "DataAsset"
+            case vssScan = "VSSScan"
+            case cwpScan = "CWPScan"
+            case cfwPatch = "CFWPatch"
+            case wafPatch = "WafPatch"
+            case cwpFix = "CWPFix"
         }
     }
 
@@ -1211,6 +1602,10 @@ extension Csip {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let verifyStatus: Int64?
 
+        /// bot访问数据
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let botAccessCount: Int64?
+
         enum CodingKeys: String, CodingKey {
             case assetId = "AssetId"
             case assetName = "AssetName"
@@ -1250,6 +1645,7 @@ extension Csip {
             case verifyDomain = "VerifyDomain"
             case verifyTXTRecord = "VerifyTXTRecord"
             case verifyStatus = "VerifyStatus"
+            case botAccessCount = "BotAccessCount"
         }
     }
 
@@ -1492,6 +1888,34 @@ extension Csip {
         }
     }
 
+    /// 公网IP和域名资产列表key
+    public struct PublicIpDomainListKey: TCInputModel {
+        /// 资产值
+        public let asset: String?
+
+        public init(asset: String) {
+            self.asset = asset
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case asset = "Asset"
+        }
+    }
+
+    /// 报告项key
+    public struct ReportItemKey: TCInputModel {
+        /// 日志Id列表
+        public let taskLogList: [String]?
+
+        public init(taskLogList: [String]) {
+            self.taskLogList = taskLogList
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case taskLogList = "TaskLogList"
+        }
+    }
+
     /// 扫描任务详情
     public struct ScanTaskInfo: TCOutputModel {
         /// 任务日志Id
@@ -1555,6 +1979,344 @@ extension Csip {
             case appId = "AppId"
             case uin = "UIN"
             case userName = "UserName"
+        }
+    }
+
+    /// 扫描任务列表展示信息
+    public struct ScanTaskInfoList: TCOutputModel {
+        /// 任务名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskName: String?
+
+        /// 任务开始时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let startTime: String?
+
+        /// 任务结束时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let endTime: String?
+
+        /// cron格式
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scanPlanContent: String?
+
+        /// 0-周期任务,1-立即扫描,2-定时扫描,3-自定义
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskType: Int64?
+
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let insertTime: String?
+
+        /// 任务ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskId: String?
+
+        /// 排除扫描资产信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let selfDefiningAssets: [String]?
+
+        /// 预估时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let predictTime: Int64?
+
+        /// 预估完成时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let predictEndTime: String?
+
+        /// 报告数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let reportNumber: Int64?
+
+        /// 资产数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let assetNumber: Int64?
+
+        /// 扫描状态, 0-初始值，1-正在扫描，2-扫描完成，3-扫描出错，4-停止扫描
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scanStatus: Int64?
+
+        /// 任务进度
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let percent: Float?
+
+        /// port/poc/weakpass/webcontent/configrisk
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scanItem: String?
+
+        /// 0-全扫，1-指定资产扫，2-排除资产扫
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scanAssetType: Int64?
+
+        /// vss子任务id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vssTaskId: String?
+
+        /// cspm子任务id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cspmTaskId: String?
+
+        /// 主机漏扫子任务id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cwppocId: String?
+
+        /// 主机基线子任务id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cwpBlId: String?
+
+        /// vss子任务进度
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vssTaskProcess: Int64?
+
+        /// cspm子任务进度
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cspmTaskProcess: UInt64?
+
+        /// 主机漏扫子任务进度
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cwppocProcess: Int64?
+
+        /// 主机基线子任务进度
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cwpBlProcess: UInt64?
+
+        /// 异常状态码
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let errorCode: Int64?
+
+        /// 异常信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let errorInfo: String?
+
+        /// 周期任务开始的天数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let startDay: Int64?
+
+        /// 扫描频率,单位天,1-每天,7-每周,30-月,0-扫描一次
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let frequency: Int64?
+
+        /// 完成次数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let completeNumber: Int64?
+
+        /// 已完成资产个数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let completeAssetNumber: Int64?
+
+        /// 风险数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let riskCount: Int64?
+
+        /// 资产
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let assets: [TaskAssetObject]?
+
+        /// 用户Appid
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let appId: String?
+
+        /// 用户主账户ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let uin: String?
+
+        /// 用户名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userName: String?
+
+        /// 体检模式，0-标准模式，1-快速模式，2-高级模式
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskMode: Int64?
+
+        /// 扫描来源
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scanFrom: String?
+
+        /// 是否限免体检0不是，1是
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isFree: Int64?
+
+        /// 是否可以删除，1-可以，0-不可以，对应多账户管理使用
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isDelete: Int64?
+
+        /// 任务源类型，0-默认，1-小助手，2-体检项
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sourceType: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case taskName = "TaskName"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+            case scanPlanContent = "ScanPlanContent"
+            case taskType = "TaskType"
+            case insertTime = "InsertTime"
+            case taskId = "TaskId"
+            case selfDefiningAssets = "SelfDefiningAssets"
+            case predictTime = "PredictTime"
+            case predictEndTime = "PredictEndTime"
+            case reportNumber = "ReportNumber"
+            case assetNumber = "AssetNumber"
+            case scanStatus = "ScanStatus"
+            case percent = "Percent"
+            case scanItem = "ScanItem"
+            case scanAssetType = "ScanAssetType"
+            case vssTaskId = "VSSTaskId"
+            case cspmTaskId = "CSPMTaskId"
+            case cwppocId = "CWPPOCId"
+            case cwpBlId = "CWPBlId"
+            case vssTaskProcess = "VSSTaskProcess"
+            case cspmTaskProcess = "CSPMTaskProcess"
+            case cwppocProcess = "CWPPOCProcess"
+            case cwpBlProcess = "CWPBlProcess"
+            case errorCode = "ErrorCode"
+            case errorInfo = "ErrorInfo"
+            case startDay = "StartDay"
+            case frequency = "Frequency"
+            case completeNumber = "CompleteNumber"
+            case completeAssetNumber = "CompleteAssetNumber"
+            case riskCount = "RiskCount"
+            case assets = "Assets"
+            case appId = "AppId"
+            case uin = "UIN"
+            case userName = "UserName"
+            case taskMode = "TaskMode"
+            case scanFrom = "ScanFrom"
+            case isFree = "IsFree"
+            case isDelete = "IsDelete"
+            case sourceType = "SourceType"
+        }
+    }
+
+    /// 服务风险
+    public struct ServerRisk: TCOutputModel {
+        /// 测绘标签
+        public let serviceTag: String
+
+        /// 端口
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let port: UInt64?
+
+        /// 影响资产
+        public let affectAsset: String
+
+        /// 实例id
+        public let instanceId: String
+
+        /// 实例名
+        public let instanceName: String
+
+        /// 资产类型
+        public let instanceType: String
+
+        /// 风险等级
+        public let level: String
+
+        /// 协议
+        public let `protocol`: String
+
+        /// 组件
+        public let component: String
+
+        /// 服务
+        public let service: String
+
+        /// 最近识别时间
+        public let recentTime: String
+
+        /// 首次识别时间
+        public let firstTime: String
+
+        /// 风险详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let riskDetails: String?
+
+        /// 处置建议
+        public let suggestion: String
+
+        /// 状态，0未处理、1已处置、2已忽略
+        public let status: UInt64
+
+        /// 资产唯一id
+        public let id: String
+
+        /// 用户appid
+        public let appId: String
+
+        /// 用户昵称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nick: String?
+
+        /// 用户uin
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let uin: String?
+
+        /// 服务快照
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let serviceSnapshot: String?
+
+        /// 服务访问的url
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let url: String?
+
+        /// 列表索引值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let index: String?
+
+        /// 风险列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let riskList: [ServerRiskSuggestion]?
+
+        /// 建议列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let suggestionList: [ServerRiskSuggestion]?
+
+        /// HTTP响应状态码
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let statusCode: String?
+
+        enum CodingKeys: String, CodingKey {
+            case serviceTag = "ServiceTag"
+            case port = "Port"
+            case affectAsset = "AffectAsset"
+            case instanceId = "InstanceId"
+            case instanceName = "InstanceName"
+            case instanceType = "InstanceType"
+            case level = "Level"
+            case `protocol` = "Protocol"
+            case component = "Component"
+            case service = "Service"
+            case recentTime = "RecentTime"
+            case firstTime = "FirstTime"
+            case riskDetails = "RiskDetails"
+            case suggestion = "Suggestion"
+            case status = "Status"
+            case id = "Id"
+            case appId = "AppId"
+            case nick = "Nick"
+            case uin = "Uin"
+            case serviceSnapshot = "ServiceSnapshot"
+            case url = "Url"
+            case index = "Index"
+            case riskList = "RiskList"
+            case suggestionList = "SuggestionList"
+            case statusCode = "StatusCode"
+        }
+    }
+
+    /// 风险详情
+    public struct ServerRiskSuggestion: TCOutputModel {
+        /// 标题
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let title: String?
+
+        /// 详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let body: String?
+
+        enum CodingKeys: String, CodingKey {
+            case title = "Title"
+            case body = "Body"
         }
     }
 
@@ -1707,12 +2469,17 @@ extension Csip {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: String?
 
-        public init(assetName: String? = nil, instanceType: String? = nil, assetType: String? = nil, asset: String? = nil, region: String? = nil) {
+        /// 多云资产唯一id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let arn: String?
+
+        public init(assetName: String? = nil, instanceType: String? = nil, assetType: String? = nil, asset: String? = nil, region: String? = nil, arn: String? = nil) {
             self.assetName = assetName
             self.instanceType = instanceType
             self.assetType = assetType
             self.asset = asset
             self.region = region
+            self.arn = arn
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1721,6 +2488,7 @@ extension Csip {
             case assetType = "AssetType"
             case asset = "Asset"
             case region = "Region"
+            case arn = "Arn"
         }
     }
 
@@ -1783,6 +2551,111 @@ extension Csip {
         enum CodingKeys: String, CodingKey {
             case checkItemId = "CheckItemId"
             case enable = "Enable"
+        }
+    }
+
+    /// 任务ID列表Key
+    public struct TaskIdListKey: TCInputModel {
+        /// 任务ID
+        public let taskId: String
+
+        public init(taskId: String) {
+            self.taskId = taskId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case taskId = "TaskId"
+        }
+    }
+
+    /// 任务报告信息
+    public struct TaskLogInfo: TCOutputModel {
+        /// 报告名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskLogName: String?
+
+        /// 报告ID
+        public let taskLogId: String?
+
+        /// 关联资产个数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let assetsNumber: Int64?
+
+        /// 安全风险数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let riskNumber: Int64?
+
+        /// 报告生成时间,任务结束时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let time: String?
+
+        /// 任务状态码：0 初始值  1正在扫描  2扫描完成  3扫描出错，4停止，5暂停，6该任务已被重启过
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: Int64?
+
+        /// 关联任务名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskName: String?
+
+        /// 扫描开始时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let startTime: String?
+
+        /// 任务中心扫描任务ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskCenterTaskId: String?
+
+        /// 租户ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let appId: String?
+
+        /// 主账户ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let uin: String?
+
+        /// 用户名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userName: String?
+
+        enum CodingKeys: String, CodingKey {
+            case taskLogName = "TaskLogName"
+            case taskLogId = "TaskLogId"
+            case assetsNumber = "AssetsNumber"
+            case riskNumber = "RiskNumber"
+            case time = "Time"
+            case status = "Status"
+            case taskName = "TaskName"
+            case startTime = "StartTime"
+            case taskCenterTaskId = "TaskCenterTaskId"
+            case appId = "AppId"
+            case uin = "UIN"
+            case userName = "UserName"
+        }
+    }
+
+    /// 报告pdf下载的临时链接
+    public struct TaskLogURL: TCOutputModel {
+        /// 报告下载临时链接
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let url: String?
+
+        /// 任务报告id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let logId: String?
+
+        /// 任务报告名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskLogName: String?
+
+        /// APP ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let appId: String?
+
+        enum CodingKeys: String, CodingKey {
+            case url = "URL"
+            case logId = "LogId"
+            case taskLogName = "TaskLogName"
+            case appId = "AppId"
         }
     }
 
@@ -1853,6 +2726,90 @@ extension Csip {
             case nick = "Nick"
             case isNewAsset = "IsNewAsset"
             case isCore = "IsCore"
+        }
+    }
+
+    /// 网站风险对象
+    public struct WebsiteRisk: TCOutputModel {
+        /// 影响资产
+        public let affectAsset: String?
+
+        /// 风险等级
+        public let level: String?
+
+        /// 最近识别时间
+        public let recentTime: String?
+
+        /// 首次识别时间
+        public let firstTime: String?
+
+        /// 状态，0未处理、1已处置、2已忽略
+        public let status: UInt64?
+
+        /// 资产唯一id
+        public let id: String?
+
+        /// 前端索引
+        public let index: String?
+
+        /// 实例id
+        public let instanceId: String?
+
+        /// 实例名
+        public let instanceName: String?
+
+        /// 用户appid
+        public let appId: String?
+
+        /// 用户昵称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nick: String?
+
+        /// 用户uin
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let uin: String?
+
+        /// 风险链接
+        public let url: String?
+
+        /// 风险文件地址
+        public let urlPath: String?
+
+        /// 实例类型
+        public let instanceType: String?
+
+        /// 类型
+        public let detectEngine: String?
+
+        /// 结果描述
+        public let resultDescribe: String?
+
+        /// 源地址url
+        public let sourceURL: String?
+
+        /// 源文件地址
+        public let sourceURLPath: String?
+
+        enum CodingKeys: String, CodingKey {
+            case affectAsset = "AffectAsset"
+            case level = "Level"
+            case recentTime = "RecentTime"
+            case firstTime = "FirstTime"
+            case status = "Status"
+            case id = "Id"
+            case index = "Index"
+            case instanceId = "InstanceId"
+            case instanceName = "InstanceName"
+            case appId = "AppId"
+            case nick = "Nick"
+            case uin = "Uin"
+            case url = "URL"
+            case urlPath = "URLPath"
+            case instanceType = "InstanceType"
+            case detectEngine = "DetectEngine"
+            case resultDescribe = "ResultDescribe"
+            case sourceURL = "SourceURL"
+            case sourceURLPath = "SourceURLPath"
         }
     }
 

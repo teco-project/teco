@@ -30,16 +30,21 @@ extension Iotvideo {
         /// 用户ID
         public let userId: String?
 
-        public init(productId: String, deviceName: String, userId: String? = nil) {
+        /// 通道ID
+        public let channelId: UInt64?
+
+        public init(productId: String, deviceName: String, userId: String? = nil, channelId: UInt64? = nil) {
             self.productId = productId
             self.deviceName = deviceName
             self.userId = userId
+            self.channelId = channelId
         }
 
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case deviceName = "DeviceName"
             case userId = "UserId"
+            case channelId = "ChannelId"
         }
     }
 
@@ -71,13 +76,13 @@ extension Iotvideo {
 
     /// 获取具有云存的日期
     @inlinable
-    public func describeCloudStorageDate(productId: String, deviceName: String, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageDateResponse> {
-        self.describeCloudStorageDate(.init(productId: productId, deviceName: deviceName, userId: userId), region: region, logger: logger, on: eventLoop)
+    public func describeCloudStorageDate(productId: String, deviceName: String, userId: String? = nil, channelId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageDateResponse> {
+        self.describeCloudStorageDate(.init(productId: productId, deviceName: deviceName, userId: userId, channelId: channelId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取具有云存的日期
     @inlinable
-    public func describeCloudStorageDate(productId: String, deviceName: String, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageDateResponse {
-        try await self.describeCloudStorageDate(.init(productId: productId, deviceName: deviceName, userId: userId), region: region, logger: logger, on: eventLoop)
+    public func describeCloudStorageDate(productId: String, deviceName: String, userId: String? = nil, channelId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageDateResponse {
+        try await self.describeCloudStorageDate(.init(productId: productId, deviceName: deviceName, userId: userId, channelId: channelId), region: region, logger: logger, on: eventLoop)
     }
 }

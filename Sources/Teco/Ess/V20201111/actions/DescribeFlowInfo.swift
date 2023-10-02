@@ -21,19 +21,17 @@ import TecoCore
 extension Ess {
     /// DescribeFlowInfo请求参数结构体
     public struct DescribeFlowInfoRequest: TCRequest {
-        /// 调用方用户信息，userId 必填
+        /// 执行本接口操作的员工信息。 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         public let `operator`: UserInfo?
 
-        /// 需要查询的流程ID列表，限制最大100个
-        ///
-        /// 如果查询合同组的信息,不要传此参数
+        /// 需要查询的流程ID列表，最多可传入100个ID。
+        /// 如果要查询合同组的信息，则不需要传入此参数，只需传入 FlowGroupId 参数即可。
         public let flowIds: [String]?
 
-        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        /// 代理企业和员工的信息。 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         public let agent: Agent?
 
-        /// 合同组ID, 如果传此参数会忽略FlowIds入参
-        ///  所以如传此参数不要传FlowIds参数
+        /// 需要查询的流程组ID，如果传入此参数，则会忽略 FlowIds 参数。该合同组由[通过多文件创建合同组签署流程](https://qian.tencent.com/developers/companyApis/startFlows/CreateFlowGroupByFiles)等接口创建。
         public let flowGroupId: String?
 
         public init(operator: UserInfo? = nil, flowIds: [String]? = nil, agent: Agent? = nil, flowGroupId: String? = nil) {
@@ -53,13 +51,14 @@ extension Ess {
 
     /// DescribeFlowInfo返回参数结构体
     public struct DescribeFlowInfoResponse: TCResponse {
-        /// 签署流程信息
+        /// 合同流程的详细信息。
+        /// 如果查询的是合同组信息，则返回的是组内所有子合同流程的详细信息。
         public let flowDetailInfos: [FlowDetailInfo]
 
-        /// 合同组ID
+        /// 合同组ID，只有在查询合同组信息时才会返回。
         public let flowGroupId: String?
 
-        /// 合同组名称
+        /// 合同组名称，只有在查询合同组信息时才会返回。
         public let flowGroupName: String?
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -73,36 +72,40 @@ extension Ess {
         }
     }
 
-    /// 查询合同详情
+    /// 查询合同流程的详情信息
     ///
-    /// 查询合同详情
+    /// 此接口用于查询合同流程的详情信息，支持查询多个（数量不能超过100）。
+    ///
     /// 适用场景：可用于主动查询某个合同详情信息。
     @inlinable
     public func describeFlowInfo(_ input: DescribeFlowInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowInfoResponse> {
         self.client.execute(action: "DescribeFlowInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询合同详情
+    /// 查询合同流程的详情信息
     ///
-    /// 查询合同详情
+    /// 此接口用于查询合同流程的详情信息，支持查询多个（数量不能超过100）。
+    ///
     /// 适用场景：可用于主动查询某个合同详情信息。
     @inlinable
     public func describeFlowInfo(_ input: DescribeFlowInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowInfoResponse {
         try await self.client.execute(action: "DescribeFlowInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询合同详情
+    /// 查询合同流程的详情信息
     ///
-    /// 查询合同详情
+    /// 此接口用于查询合同流程的详情信息，支持查询多个（数量不能超过100）。
+    ///
     /// 适用场景：可用于主动查询某个合同详情信息。
     @inlinable
     public func describeFlowInfo(operator: UserInfo? = nil, flowIds: [String]? = nil, agent: Agent? = nil, flowGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowInfoResponse> {
         self.describeFlowInfo(.init(operator: `operator`, flowIds: flowIds, agent: agent, flowGroupId: flowGroupId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询合同详情
+    /// 查询合同流程的详情信息
     ///
-    /// 查询合同详情
+    /// 此接口用于查询合同流程的详情信息，支持查询多个（数量不能超过100）。
+    ///
     /// 适用场景：可用于主动查询某个合同详情信息。
     @inlinable
     public func describeFlowInfo(operator: UserInfo? = nil, flowIds: [String]? = nil, agent: Agent? = nil, flowGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowInfoResponse {

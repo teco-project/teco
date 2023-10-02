@@ -62,10 +62,13 @@ extension TCVpcError {
             case ecmpWithCcnRoute = "UnsupportedOperation.EcmpWithCcnRoute"
             case ecmpWithUserRoute = "UnsupportedOperation.EcmpWithUserRoute"
             case enableMulticast = "UnsupportedOperation.EnableMulticast"
+            case endPointMismatchEndPointServiceCdcId = "UnsupportedOperation.EndPointMismatchEndPointServiceCdcId"
             case endPointService = "UnsupportedOperation.EndPointService"
             case flowLogInstanceExisted = "UnsupportedOperation.FlowLogInstanceExisted"
             case flowLogsNotSupportKoInstanceEni = "UnsupportedOperation.FlowLogsNotSupportKoInstanceEni"
             case flowLogsNotSupportNullInstanceEni = "UnsupportedOperation.FlowLogsNotSupportNullInstanceEni"
+            case idempotentParameterMismatch = "UnsupportedOperation.IdempotentParameterMismatch"
+            case idempotentProcessing = "UnsupportedOperation.IdempotentProcessing"
             case incorrectAddressResourceType = "UnsupportedOperation.IncorrectAddressResourceType"
             case instanceAndRtbNotMatch = "UnsupportedOperation.InstanceAndRtbNotMatch"
             case instanceCdcIdNotMatchCcnCdcId = "UnsupportedOperation.InstanceCdcIdNotMatchCcnCdcId"
@@ -131,6 +134,7 @@ extension TCVpcError {
             case snapshotNotAttached = "UnsupportedOperation.SnapshotNotAttached"
             case snatSubnet = "UnsupportedOperation.SnatSubnet"
             case specialEndPointService = "UnsupportedOperation.SpecialEndPointService"
+            case sslClientCertAlreadyEnableOrCertAbnormal = "UnsupportedOperation.SSLClientCertAlreadyEnableOrCertAbnormal"
             case sslClientCertDisableUnsupportedDownloadSSLClientCert = "UnsupportedOperation.SSLClientCertDisableUnsupportedDownloadSSLClientCert"
             case sslVpnClientIdNotFound = "UnsupportedOperation.SslVpnClientIdNotFound"
             case subEniNotSupportTrunking = "UnsupportedOperation.SubEniNotSupportTrunking"
@@ -404,6 +408,11 @@ extension TCVpcError {
             UnsupportedOperation(.enableMulticast)
         }
 
+        /// 终端节点和终端节点服务需要属于同一个 cdc集群
+        public static var endPointMismatchEndPointServiceCdcId: UnsupportedOperation {
+            UnsupportedOperation(.endPointMismatchEndPointServiceCdcId)
+        }
+
         /// 终端节点服务本身不能是终端节点。
         public static var endPointService: UnsupportedOperation {
             UnsupportedOperation(.endPointService)
@@ -422,6 +431,14 @@ extension TCVpcError {
         /// 不支持创建流日志：当前弹性网卡未绑定实例。
         public static var flowLogsNotSupportNullInstanceEni: UnsupportedOperation {
             UnsupportedOperation(.flowLogsNotSupportNullInstanceEni)
+        }
+
+        public static var idempotentParameterMismatch: UnsupportedOperation {
+            UnsupportedOperation(.idempotentParameterMismatch)
+        }
+
+        public static var idempotentProcessing: UnsupportedOperation {
+            UnsupportedOperation(.idempotentProcessing)
         }
 
         /// 该种类型地址不支持此操作。
@@ -759,6 +776,10 @@ extension TCVpcError {
             UnsupportedOperation(.specialEndPointService)
         }
 
+        public static var sslClientCertAlreadyEnableOrCertAbnormal: UnsupportedOperation {
+            UnsupportedOperation(.sslClientCertAlreadyEnableOrCertAbnormal)
+        }
+
         public static var sslClientCertDisableUnsupportedDownloadSSLClientCert: UnsupportedOperation {
             UnsupportedOperation(.sslClientCertDisableUnsupportedDownloadSSLClientCert)
         }
@@ -991,6 +1012,8 @@ extension TCVpcError {
                 code = .unsupportedOperation_EcmpWithUserRoute
             case .enableMulticast:
                 code = .unsupportedOperation_EnableMulticast
+            case .endPointMismatchEndPointServiceCdcId:
+                code = .unsupportedOperation_EndPointMismatchEndPointServiceCdcId
             case .endPointService:
                 code = .unsupportedOperation_EndPointService
             case .flowLogInstanceExisted:
@@ -999,6 +1022,10 @@ extension TCVpcError {
                 code = .unsupportedOperation_FlowLogsNotSupportKoInstanceEni
             case .flowLogsNotSupportNullInstanceEni:
                 code = .unsupportedOperation_FlowLogsNotSupportNullInstanceEni
+            case .idempotentParameterMismatch:
+                code = .unsupportedOperation_IdempotentParameterMismatch
+            case .idempotentProcessing:
+                code = .unsupportedOperation_IdempotentProcessing
             case .incorrectAddressResourceType:
                 code = .unsupportedOperation_IncorrectAddressResourceType
             case .instanceAndRtbNotMatch:
@@ -1129,6 +1156,8 @@ extension TCVpcError {
                 code = .unsupportedOperation_SnatSubnet
             case .specialEndPointService:
                 code = .unsupportedOperation_SpecialEndPointService
+            case .sslClientCertAlreadyEnableOrCertAbnormal:
+                code = .unsupportedOperation_SSLClientCertAlreadyEnableOrCertAbnormal
             case .sslClientCertDisableUnsupportedDownloadSSLClientCert:
                 code = .unsupportedOperation_SSLClientCertDisableUnsupportedDownloadSSLClientCert
             case .sslVpnClientIdNotFound:

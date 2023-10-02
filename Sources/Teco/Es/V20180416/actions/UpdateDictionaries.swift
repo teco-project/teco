@@ -24,16 +24,16 @@ extension Es {
         /// ES实例ID
         public let instanceId: String
 
-        /// IK分词主词典COS地址
+        /// 安装时填IK分词主词典COS地址，删除时填词典名如test.dic
         public let ikMainDicts: [String]?
 
-        /// IK分词停用词词典COS地址
+        /// 安装时填IK分词停用词词典COS地址，删除时填词典名如test.dic
         public let ikStopwords: [String]?
 
-        /// 同义词词典COS地址
+        /// 安装时填同义词词典COS地址，删除时填词典名如test.dic
         public let synonym: [String]?
 
-        /// QQ分词词典COS地址
+        /// 安装时填QQ分词词典COS地址，删除时填词典名如test.dic
         public let qqDict: [String]?
 
         /// 0：安装；1：删除。默认值0

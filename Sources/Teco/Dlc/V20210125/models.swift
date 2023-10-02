@@ -108,6 +108,27 @@ extension Dlc {
         }
     }
 
+    /// SparkSQL批任务信息
+    public struct BatchSqlTask: TCOutputModel {
+        /// SQL子任务唯一标识
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskId: String?
+
+        /// 运行SQL
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let executeSQL: String?
+
+        /// 任务信息，成功则返回：Task Success!，失败则返回异常信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let message: String?
+
+        enum CodingKeys: String, CodingKey {
+            case taskId = "TaskId"
+            case executeSQL = "ExecuteSQL"
+            case message = "Message"
+        }
+    }
+
     /// CSV类型数据格式
     public struct CSV: TCInputModel {
         /// 压缩格式，["Snappy", "Gzip", "None"选一]。
@@ -1051,6 +1072,57 @@ extension Dlc {
         }
     }
 
+    /// 数据源详细信息
+    public struct DataSourceInfo: TCInputModel, TCOutputModel {
+        /// 数据源实例的唯一ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceId: String?
+
+        /// 数据源的名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceName: String?
+
+        /// 数据源的JDBC访问链接
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let jdbcUrl: String?
+
+        /// 用于访问数据源的用户名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let user: String?
+
+        /// 数据源访问密码，需要base64编码
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let password: String?
+
+        /// 数据源的VPC和子网信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let location: DatasourceConnectionLocation?
+
+        /// 默认数据库名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dbName: String?
+
+        public init(instanceId: String? = nil, instanceName: String? = nil, jdbcUrl: String? = nil, user: String? = nil, password: String? = nil, location: DatasourceConnectionLocation? = nil, dbName: String? = nil) {
+            self.instanceId = instanceId
+            self.instanceName = instanceName
+            self.jdbcUrl = jdbcUrl
+            self.user = user
+            self.password = password
+            self.location = location
+            self.dbName = dbName
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case instanceId = "InstanceId"
+            case instanceName = "InstanceName"
+            case jdbcUrl = "JdbcUrl"
+            case user = "User"
+            case password = "Password"
+            case location = "Location"
+            case dbName = "DbName"
+        }
+    }
+
     /// 数据库对象
     public struct DatabaseInfo: TCInputModel, TCOutputModel {
         /// 数据库名称，长度0~128，支持数字、字母下划线，不允许数字大头，统一转换为小写。
@@ -1138,6 +1210,249 @@ extension Dlc {
         }
     }
 
+    /// 数据源属性
+    public struct DatasourceConnectionConfig: TCInputModel, TCOutputModel {
+        /// Mysql数据源连接的属性
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let mysql: MysqlInfo?
+
+        /// Hive数据源连接的属性
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hive: HiveInfo?
+
+        /// Kafka数据源连接的属性
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let kafka: KafkaInfo?
+
+        /// 其他数据源连接的属性
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let otherDatasourceConnection: OtherDatasourceConnection?
+
+        /// PostgreSQL数据源连接的属性
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let postgreSql: DataSourceInfo?
+
+        /// SQLServer数据源连接的属性
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sqlServer: DataSourceInfo?
+
+        /// ClickHouse数据源连接的属性
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clickHouse: DataSourceInfo?
+
+        /// Elasticsearch数据源连接的属性
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let elasticsearch: ElasticsearchInfo?
+
+        /// TDSQL-PostgreSQL数据源连接的属性
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tdsqlPostgreSql: DataSourceInfo?
+
+        public init(mysql: MysqlInfo? = nil, hive: HiveInfo? = nil, kafka: KafkaInfo? = nil, otherDatasourceConnection: OtherDatasourceConnection? = nil, postgreSql: DataSourceInfo? = nil, sqlServer: DataSourceInfo? = nil, clickHouse: DataSourceInfo? = nil, elasticsearch: ElasticsearchInfo? = nil, tdsqlPostgreSql: DataSourceInfo? = nil) {
+            self.mysql = mysql
+            self.hive = hive
+            self.kafka = kafka
+            self.otherDatasourceConnection = otherDatasourceConnection
+            self.postgreSql = postgreSql
+            self.sqlServer = sqlServer
+            self.clickHouse = clickHouse
+            self.elasticsearch = elasticsearch
+            self.tdsqlPostgreSql = tdsqlPostgreSql
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case mysql = "Mysql"
+            case hive = "Hive"
+            case kafka = "Kafka"
+            case otherDatasourceConnection = "OtherDatasourceConnection"
+            case postgreSql = "PostgreSql"
+            case sqlServer = "SqlServer"
+            case clickHouse = "ClickHouse"
+            case elasticsearch = "Elasticsearch"
+            case tdsqlPostgreSql = "TDSQLPostgreSql"
+        }
+    }
+
+    /// 数据源信息
+    public struct DatasourceConnectionInfo: TCInputModel, TCOutputModel {
+        /// 数据源数字Id
+        public let id: Int64
+
+        /// 数据源字符串Id
+        public let datasourceConnectionId: String
+
+        /// 数据源名称
+        public let datasourceConnectionName: String
+
+        /// 数据源描述
+        public let datasourceConnectionDesc: String
+
+        /// 数据源类型，支持DataLakeCatalog、IcebergCatalog、Result、Mysql、HiveCos、HiveHdfs
+        public let datasourceConnectionType: String
+
+        /// 数据源属性
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let datasourceConnectionConfig: DatasourceConnectionConfig?
+
+        /// 数据源状态：0（初始化）、1（成功）、-1（已删除）、-2（失败）、-3（删除中）
+        public let state: Int64
+
+        /// 地域
+        public let region: String
+
+        /// 用户AppId
+        public let appId: String
+
+        /// 数据源创建时间
+        public let createTime: String
+
+        /// 数据源最近一次更新时间
+        public let updateTime: String
+
+        /// 数据源同步失败原因
+        public let message: String
+
+        /// 数据源绑定的计算引擎信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dataEngines: [DataEngineInfo]?
+
+        /// 创建人
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userAlias: String?
+
+        /// 网络配置列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let networkConnectionSet: [NetworkConnection]?
+
+        /// 连通性状态：0（未测试，默认）、1（正常）、2（失败）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let connectivityState: UInt64?
+
+        /// 连通性测试提示信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let connectivityTips: String?
+
+        public init(id: Int64, datasourceConnectionId: String, datasourceConnectionName: String, datasourceConnectionDesc: String, datasourceConnectionType: String, datasourceConnectionConfig: DatasourceConnectionConfig, state: Int64, region: String, appId: String, createTime: String, updateTime: String, message: String, dataEngines: [DataEngineInfo]? = nil, userAlias: String? = nil, networkConnectionSet: [NetworkConnection]? = nil, connectivityState: UInt64? = nil, connectivityTips: String? = nil) {
+            self.id = id
+            self.datasourceConnectionId = datasourceConnectionId
+            self.datasourceConnectionName = datasourceConnectionName
+            self.datasourceConnectionDesc = datasourceConnectionDesc
+            self.datasourceConnectionType = datasourceConnectionType
+            self.datasourceConnectionConfig = datasourceConnectionConfig
+            self.state = state
+            self.region = region
+            self.appId = appId
+            self.createTime = createTime
+            self.updateTime = updateTime
+            self.message = message
+            self.dataEngines = dataEngines
+            self.userAlias = userAlias
+            self.networkConnectionSet = networkConnectionSet
+            self.connectivityState = connectivityState
+            self.connectivityTips = connectivityTips
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case datasourceConnectionId = "DatasourceConnectionId"
+            case datasourceConnectionName = "DatasourceConnectionName"
+            case datasourceConnectionDesc = "DatasourceConnectionDesc"
+            case datasourceConnectionType = "DatasourceConnectionType"
+            case datasourceConnectionConfig = "DatasourceConnectionConfig"
+            case state = "State"
+            case region = "Region"
+            case appId = "AppId"
+            case createTime = "CreateTime"
+            case updateTime = "UpdateTime"
+            case message = "Message"
+            case dataEngines = "DataEngines"
+            case userAlias = "UserAlias"
+            case networkConnectionSet = "NetworkConnectionSet"
+            case connectivityState = "ConnectivityState"
+            case connectivityTips = "ConnectivityTips"
+        }
+    }
+
+    /// 数据源连接的网络信息
+    public struct DatasourceConnectionLocation: TCInputModel, TCOutputModel {
+        /// 数据连接所在Vpc实例Id，如“vpc-azd4dt1c”。
+        public let vpcId: String
+
+        /// Vpc的IPv4 CIDR
+        public let vpcCidrBlock: String
+
+        /// 数据连接所在子网的实例Id，如“subnet-bthucmmy”
+        public let subnetId: String
+
+        /// Subnet的IPv4 CIDR
+        public let subnetCidrBlock: String
+
+        public init(vpcId: String, vpcCidrBlock: String, subnetId: String, subnetCidrBlock: String) {
+            self.vpcId = vpcId
+            self.vpcCidrBlock = vpcCidrBlock
+            self.subnetId = subnetId
+            self.subnetCidrBlock = subnetCidrBlock
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case vpcId = "VpcId"
+            case vpcCidrBlock = "VpcCidrBlock"
+            case subnetId = "SubnetId"
+            case subnetCidrBlock = "SubnetCidrBlock"
+        }
+    }
+
+    /// Elasticsearch数据源的详细信息
+    public struct ElasticsearchInfo: TCInputModel, TCOutputModel {
+        /// 数据源ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceId: String?
+
+        /// 数据源名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceName: String?
+
+        /// 用户名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let user: String?
+
+        /// 密码，需要base64编码
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let password: String?
+
+        /// 数据源的VPC和子网信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let location: DatasourceConnectionLocation?
+
+        /// 默认数据库名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dbName: String?
+
+        /// 访问Elasticsearch的ip、端口信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let serviceInfo: [IpPortPair]?
+
+        public init(instanceId: String? = nil, instanceName: String? = nil, user: String? = nil, password: String? = nil, location: DatasourceConnectionLocation? = nil, dbName: String? = nil, serviceInfo: [IpPortPair]? = nil) {
+            self.instanceId = instanceId
+            self.instanceName = instanceName
+            self.user = user
+            self.password = password
+            self.location = location
+            self.dbName = dbName
+            self.serviceInfo = serviceInfo
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case instanceId = "InstanceId"
+            case instanceName = "InstanceName"
+            case user = "User"
+            case password = "Password"
+            case location = "Location"
+            case dbName = "DbName"
+            case serviceInfo = "ServiceInfo"
+        }
+    }
+
     /// SQL语句对象
     public struct Execution: TCOutputModel {
         /// 自动生成SQL语句。
@@ -1164,6 +1479,107 @@ extension Dlc {
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case values = "Values"
+        }
+    }
+
+    /// hive类型数据源的信息
+    public struct HiveInfo: TCInputModel, TCOutputModel {
+        /// hive metastore的地址
+        public let metaStoreUrl: String
+
+        /// hive数据源类型，代表数据储存的位置，COS或者HDFS
+        public let type: String
+
+        /// 数据源所在的私有网络信息
+        public let location: DatasourceConnectionLocation
+
+        /// 如果类型为HDFS，需要传一个用户名
+        public let user: String?
+
+        /// 如果类型为HDFS，需要选择是否高可用
+        public let highAvailability: Bool?
+
+        /// 如果类型为COS，需要填写COS桶连接
+        public let bucketUrl: String?
+
+        /// json字符串。如果类型为HDFS，需要填写该字段
+        public let hdfsProperties: String?
+
+        /// Hive的元数据库信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let mysql: MysqlInfo?
+
+        /// emr集群Id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceId: String?
+
+        /// emr集群名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceName: String?
+
+        /// EMR集群中hive组件的版本号
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hiveVersion: String?
+
+        /// Kerberos详细信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let kerberosInfo: KerberosInfo?
+
+        /// 是否开启Kerberos
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let kerberosEnable: Bool?
+
+        public init(metaStoreUrl: String, type: String, location: DatasourceConnectionLocation, user: String? = nil, highAvailability: Bool? = nil, bucketUrl: String? = nil, hdfsProperties: String? = nil, mysql: MysqlInfo? = nil, instanceId: String? = nil, instanceName: String? = nil, hiveVersion: String? = nil, kerberosInfo: KerberosInfo? = nil, kerberosEnable: Bool? = nil) {
+            self.metaStoreUrl = metaStoreUrl
+            self.type = type
+            self.location = location
+            self.user = user
+            self.highAvailability = highAvailability
+            self.bucketUrl = bucketUrl
+            self.hdfsProperties = hdfsProperties
+            self.mysql = mysql
+            self.instanceId = instanceId
+            self.instanceName = instanceName
+            self.hiveVersion = hiveVersion
+            self.kerberosInfo = kerberosInfo
+            self.kerberosEnable = kerberosEnable
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case metaStoreUrl = "MetaStoreUrl"
+            case type = "Type"
+            case location = "Location"
+            case user = "User"
+            case highAvailability = "HighAvailability"
+            case bucketUrl = "BucketUrl"
+            case hdfsProperties = "HdfsProperties"
+            case mysql = "Mysql"
+            case instanceId = "InstanceId"
+            case instanceName = "InstanceName"
+            case hiveVersion = "HiveVersion"
+            case kerberosInfo = "KerberosInfo"
+            case kerberosEnable = "KerberosEnable"
+        }
+    }
+
+    /// ip端口对信息
+    public struct IpPortPair: TCInputModel, TCOutputModel {
+        /// ip信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ip: String?
+
+        /// 端口信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let port: Int64?
+
+        public init(ip: String? = nil, port: Int64? = nil) {
+            self.ip = ip
+            self.port = port
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case ip = "Ip"
+            case port = "Port"
         }
     }
 
@@ -1219,6 +1635,49 @@ extension Dlc {
         }
     }
 
+    /// Kafka连接信息
+    public struct KafkaInfo: TCInputModel, TCOutputModel {
+        /// kakfa实例Id
+        public let instanceId: String
+
+        /// kakfa数据源的网络信息
+        public let location: DatasourceConnectionLocation
+
+        public init(instanceId: String, location: DatasourceConnectionLocation) {
+            self.instanceId = instanceId
+            self.location = location
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case instanceId = "InstanceId"
+            case location = "Location"
+        }
+    }
+
+    /// Kerberos详细信息
+    public struct KerberosInfo: TCInputModel, TCOutputModel {
+        /// Krb5Conf文件值
+        public let krb5Conf: String?
+
+        /// KeyTab文件值
+        public let keyTab: String?
+
+        /// 服务主体
+        public let servicePrincipal: String?
+
+        public init(krb5Conf: String? = nil, keyTab: String? = nil, servicePrincipal: String? = nil) {
+            self.krb5Conf = krb5Conf
+            self.keyTab = keyTab
+            self.servicePrincipal = servicePrincipal
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case krb5Conf = "Krb5Conf"
+            case keyTab = "KeyTab"
+            case servicePrincipal = "ServicePrincipal"
+        }
+    }
+
     /// 元数据加锁内容
     public struct LockComponentInfo: TCInputModel {
         /// 数据库名称
@@ -1265,6 +1724,52 @@ extension Dlc {
             case dataOperationType = "DataOperationType"
             case isAcid = "IsAcid"
             case isDynamicPartitionWrite = "IsDynamicPartitionWrite"
+        }
+    }
+
+    /// Mysql类型数据源信息
+    public struct MysqlInfo: TCInputModel, TCOutputModel {
+        /// 连接mysql的jdbc url
+        public let jdbcUrl: String
+
+        /// 用户名
+        public let user: String
+
+        /// mysql密码
+        public let password: String
+
+        /// mysql数据源的网络信息
+        public let location: DatasourceConnectionLocation
+
+        /// 数据库名称
+        public let dbName: String?
+
+        /// 数据库实例ID，和数据库侧保持一致
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceId: String?
+
+        /// 数据库实例名称，和数据库侧保持一致
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceName: String?
+
+        public init(jdbcUrl: String, user: String, password: String, location: DatasourceConnectionLocation, dbName: String? = nil, instanceId: String? = nil, instanceName: String? = nil) {
+            self.jdbcUrl = jdbcUrl
+            self.user = user
+            self.password = password
+            self.location = location
+            self.dbName = dbName
+            self.instanceId = instanceId
+            self.instanceName = instanceName
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case jdbcUrl = "JdbcUrl"
+            case user = "User"
+            case password = "Password"
+            case location = "Location"
+            case dbName = "DbName"
+            case instanceId = "InstanceId"
+            case instanceName = "InstanceName"
         }
     }
 
@@ -1621,6 +2126,20 @@ extension Dlc {
 
         enum CodingKeys: String, CodingKey {
             case format = "Format"
+        }
+    }
+
+    /// 其他数据源
+    public struct OtherDatasourceConnection: TCInputModel, TCOutputModel {
+        /// 网络参数
+        public let location: DatasourceConnectionLocation
+
+        public init(location: DatasourceConnectionLocation) {
+            self.location = location
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case location = "Location"
         }
     }
 
@@ -2721,7 +3240,7 @@ extension Dlc {
         /// 执行任务的类型，现在分为DDL、DML、DQL
         public let sqlType: String
 
-        /// 任务当前的状态，0：初始化 1：任务运行中 2：任务执行成功 -1：任务执行失败 -3：用户手动终止。只有任务执行成功的情况下，才会返回任务执行的结果
+        /// 任务当前的状态，0：初始化 1：任务运行中 2：任务执行成功  3：数据写入中 4：排队中 -1：任务执行失败 -3：用户手动终止 。只有任务执行成功的情况下，才会返回任务执行的结果
         public let state: Int64
 
         /// 扫描的数据量，单位byte

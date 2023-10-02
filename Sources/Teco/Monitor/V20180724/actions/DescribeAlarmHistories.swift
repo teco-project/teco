@@ -62,7 +62,7 @@ extension Monitor {
         /// 根据指标名过滤
         public let metricNames: [String]?
 
-        /// 根据策略名称模糊搜索
+        /// 根据策略名称模糊搜索,不支持大小写区分
         public let policyName: String?
 
         /// 根据告警内容模糊搜索
@@ -77,7 +77,10 @@ extension Monitor {
         /// 根据告警策略 Id 列表搜索
         public let policyIds: [String]?
 
-        public init(module: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, order: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, monitorTypes: [String]? = nil, alarmObject: String? = nil, alarmStatus: [String]? = nil, projectIds: [Int64]? = nil, instanceGroupIds: [Int64]? = nil, namespaces: [MonitorTypeNamespace]? = nil, metricNames: [String]? = nil, policyName: String? = nil, content: String? = nil, receiverUids: [Int64]? = nil, receiverGroups: [Int64]? = nil, policyIds: [String]? = nil) {
+        /// 告警等级,取值范围：Remind、Serious、Warn
+        public let alarmLevels: [String]?
+
+        public init(module: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, order: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, monitorTypes: [String]? = nil, alarmObject: String? = nil, alarmStatus: [String]? = nil, projectIds: [Int64]? = nil, instanceGroupIds: [Int64]? = nil, namespaces: [MonitorTypeNamespace]? = nil, metricNames: [String]? = nil, policyName: String? = nil, content: String? = nil, receiverUids: [Int64]? = nil, receiverGroups: [Int64]? = nil, policyIds: [String]? = nil, alarmLevels: [String]? = nil) {
             self.module = module
             self.pageNumber = pageNumber
             self.pageSize = pageSize
@@ -96,6 +99,7 @@ extension Monitor {
             self.receiverUids = receiverUids
             self.receiverGroups = receiverGroups
             self.policyIds = policyIds
+            self.alarmLevels = alarmLevels
         }
 
         enum CodingKeys: String, CodingKey {
@@ -117,6 +121,7 @@ extension Monitor {
             case receiverUids = "ReceiverUids"
             case receiverGroups = "ReceiverGroups"
             case policyIds = "PolicyIds"
+            case alarmLevels = "AlarmLevels"
         }
 
         /// Compute the next request based on API response.
@@ -124,7 +129,7 @@ extension Monitor {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return .init(module: self.module, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, order: self.order, startTime: self.startTime, endTime: self.endTime, monitorTypes: self.monitorTypes, alarmObject: self.alarmObject, alarmStatus: self.alarmStatus, projectIds: self.projectIds, instanceGroupIds: self.instanceGroupIds, namespaces: self.namespaces, metricNames: self.metricNames, policyName: self.policyName, content: self.content, receiverUids: self.receiverUids, receiverGroups: self.receiverGroups, policyIds: self.policyIds)
+            return .init(module: self.module, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, order: self.order, startTime: self.startTime, endTime: self.endTime, monitorTypes: self.monitorTypes, alarmObject: self.alarmObject, alarmStatus: self.alarmStatus, projectIds: self.projectIds, instanceGroupIds: self.instanceGroupIds, namespaces: self.namespaces, metricNames: self.metricNames, policyName: self.policyName, content: self.content, receiverUids: self.receiverUids, receiverGroups: self.receiverGroups, policyIds: self.policyIds, alarmLevels: self.alarmLevels)
         }
     }
 
@@ -182,8 +187,8 @@ extension Monitor {
     ///
     /// 请注意，**如果使用子用户进行告警历史的查询，只能查询到被授权项目下的告警历史**，或不区分项目的产品的告警历史。如何对子账户授予项目的权限，请参考 [访问管理-项目与标签](https://cloud.tencent.com/document/product/598/32738)。
     @inlinable
-    public func describeAlarmHistories(module: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, order: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, monitorTypes: [String]? = nil, alarmObject: String? = nil, alarmStatus: [String]? = nil, projectIds: [Int64]? = nil, instanceGroupIds: [Int64]? = nil, namespaces: [MonitorTypeNamespace]? = nil, metricNames: [String]? = nil, policyName: String? = nil, content: String? = nil, receiverUids: [Int64]? = nil, receiverGroups: [Int64]? = nil, policyIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmHistoriesResponse> {
-        self.describeAlarmHistories(.init(module: module, pageNumber: pageNumber, pageSize: pageSize, order: order, startTime: startTime, endTime: endTime, monitorTypes: monitorTypes, alarmObject: alarmObject, alarmStatus: alarmStatus, projectIds: projectIds, instanceGroupIds: instanceGroupIds, namespaces: namespaces, metricNames: metricNames, policyName: policyName, content: content, receiverUids: receiverUids, receiverGroups: receiverGroups, policyIds: policyIds), region: region, logger: logger, on: eventLoop)
+    public func describeAlarmHistories(module: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, order: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, monitorTypes: [String]? = nil, alarmObject: String? = nil, alarmStatus: [String]? = nil, projectIds: [Int64]? = nil, instanceGroupIds: [Int64]? = nil, namespaces: [MonitorTypeNamespace]? = nil, metricNames: [String]? = nil, policyName: String? = nil, content: String? = nil, receiverUids: [Int64]? = nil, receiverGroups: [Int64]? = nil, policyIds: [String]? = nil, alarmLevels: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmHistoriesResponse> {
+        self.describeAlarmHistories(.init(module: module, pageNumber: pageNumber, pageSize: pageSize, order: order, startTime: startTime, endTime: endTime, monitorTypes: monitorTypes, alarmObject: alarmObject, alarmStatus: alarmStatus, projectIds: projectIds, instanceGroupIds: instanceGroupIds, namespaces: namespaces, metricNames: metricNames, policyName: policyName, content: content, receiverUids: receiverUids, receiverGroups: receiverGroups, policyIds: policyIds, alarmLevels: alarmLevels), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询告警历史
@@ -192,8 +197,8 @@ extension Monitor {
     ///
     /// 请注意，**如果使用子用户进行告警历史的查询，只能查询到被授权项目下的告警历史**，或不区分项目的产品的告警历史。如何对子账户授予项目的权限，请参考 [访问管理-项目与标签](https://cloud.tencent.com/document/product/598/32738)。
     @inlinable
-    public func describeAlarmHistories(module: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, order: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, monitorTypes: [String]? = nil, alarmObject: String? = nil, alarmStatus: [String]? = nil, projectIds: [Int64]? = nil, instanceGroupIds: [Int64]? = nil, namespaces: [MonitorTypeNamespace]? = nil, metricNames: [String]? = nil, policyName: String? = nil, content: String? = nil, receiverUids: [Int64]? = nil, receiverGroups: [Int64]? = nil, policyIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmHistoriesResponse {
-        try await self.describeAlarmHistories(.init(module: module, pageNumber: pageNumber, pageSize: pageSize, order: order, startTime: startTime, endTime: endTime, monitorTypes: monitorTypes, alarmObject: alarmObject, alarmStatus: alarmStatus, projectIds: projectIds, instanceGroupIds: instanceGroupIds, namespaces: namespaces, metricNames: metricNames, policyName: policyName, content: content, receiverUids: receiverUids, receiverGroups: receiverGroups, policyIds: policyIds), region: region, logger: logger, on: eventLoop)
+    public func describeAlarmHistories(module: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, order: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, monitorTypes: [String]? = nil, alarmObject: String? = nil, alarmStatus: [String]? = nil, projectIds: [Int64]? = nil, instanceGroupIds: [Int64]? = nil, namespaces: [MonitorTypeNamespace]? = nil, metricNames: [String]? = nil, policyName: String? = nil, content: String? = nil, receiverUids: [Int64]? = nil, receiverGroups: [Int64]? = nil, policyIds: [String]? = nil, alarmLevels: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmHistoriesResponse {
+        try await self.describeAlarmHistories(.init(module: module, pageNumber: pageNumber, pageSize: pageSize, order: order, startTime: startTime, endTime: endTime, monitorTypes: monitorTypes, alarmObject: alarmObject, alarmStatus: alarmStatus, projectIds: projectIds, instanceGroupIds: instanceGroupIds, namespaces: namespaces, metricNames: metricNames, policyName: policyName, content: content, receiverUids: receiverUids, receiverGroups: receiverGroups, policyIds: policyIds, alarmLevels: alarmLevels), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询告警历史

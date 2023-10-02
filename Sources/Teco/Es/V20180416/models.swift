@@ -145,14 +145,14 @@ extension Es {
     }
 
     /// ES cos自动备份信息
-    public struct CosBackup: TCInputModel {
+    public struct CosBackup: TCInputModel, TCOutputModel {
         /// 是否开启cos自动备份
         public let isAutoBackup: Bool
 
         /// 自动备份执行时间（精确到小时）, e.g. "22:00"
         public let backupTime: String
 
-        public init(isAutoBackup: Bool = false, backupTime: String) {
+        public init(isAutoBackup: Bool, backupTime: String) {
             self.isAutoBackup = isAutoBackup
             self.backupTime = backupTime
         }
@@ -164,7 +164,7 @@ extension Es {
     }
 
     /// ik插件词典信息
-    public struct DictInfo: TCOutputModel {
+    public struct DictInfo: TCInputModel, TCOutputModel {
         /// 词典键值
         public let key: String
 
@@ -173,6 +173,12 @@ extension Es {
 
         /// 词典大小，单位B
         public let size: UInt64
+
+        public init(key: String, name: String, size: UInt64) {
+            self.key = key
+            self.name = name
+            self.size = size
+        }
 
         enum CodingKeys: String, CodingKey {
             case key = "Key"
@@ -220,7 +226,7 @@ extension Es {
     }
 
     /// ES 词库信息
-    public struct EsDictionaryInfo: TCOutputModel {
+    public struct EsDictionaryInfo: TCInputModel, TCOutputModel {
         /// 启用词词典列表
         public let mainDict: [DictInfo]
 
@@ -236,6 +242,14 @@ extension Es {
         /// 更新词典类型
         public let updateType: String
 
+        public init(mainDict: [DictInfo], stopwords: [DictInfo], qqDict: [DictInfo], synonym: [DictInfo], updateType: String) {
+            self.mainDict = mainDict
+            self.stopwords = stopwords
+            self.qqDict = qqDict
+            self.synonym = synonym
+            self.updateType = updateType
+        }
+
         enum CodingKeys: String, CodingKey {
             case mainDict = "MainDict"
             case stopwords = "Stopwords"
@@ -245,7 +259,7 @@ extension Es {
         }
     }
 
-    /// ES公网访问访问控制信息
+    /// ES公网访问控制信息
     public struct EsPublicAcl: TCInputModel {
         /// 访问黑名单
         public let blackIpList: [String]?
@@ -820,6 +834,14 @@ extension Es {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kibanaAlteringPublicAccess: String?
 
+        /// 本月是否有内核可以更新：false-无，true-有
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hasKernelUpgrade: Bool?
+
+        /// cdcId，使用cdc子网时传递
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cdcId: String?
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case instanceName = "InstanceName"
@@ -902,6 +924,8 @@ extension Es {
             case enableHybridStorage = "EnableHybridStorage"
             case processPercent = "ProcessPercent"
             case kibanaAlteringPublicAccess = "KibanaAlteringPublicAccess"
+            case hasKernelUpgrade = "HasKernelUpgrade"
+            case cdcId = "CdcId"
         }
     }
 
@@ -1018,7 +1042,7 @@ extension Es {
     }
 
     /// 节点本地盘信息
-    public struct LocalDiskInfo: TCOutputModel {
+    public struct LocalDiskInfo: TCInputModel, TCOutputModel {
         /// 本地盘类型
         /// - LOCAL_SATA：大数据型
         /// - NVME_SSD：高IO型
@@ -1029,6 +1053,12 @@ extension Es {
 
         /// 本地盘块数
         public let localDiskCount: UInt64
+
+        public init(localDiskType: String, localDiskSize: UInt64, localDiskCount: UInt64) {
+            self.localDiskType = localDiskType
+            self.localDiskSize = localDiskSize
+            self.localDiskCount = localDiskCount
+        }
 
         enum CodingKeys: String, CodingKey {
             case localDiskType = "LocalDiskType"
@@ -1560,6 +1590,10 @@ extension Es {
         /// 操作进度
         public let progress: Float
 
+        /// 操作者Uin
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subAccountUin: String?
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case startTime = "StartTime"
@@ -1568,6 +1602,7 @@ extension Es {
             case result = "Result"
             case tasks = "Tasks"
             case progress = "Progress"
+            case subAccountUin = "SubAccountUin"
         }
     }
 
@@ -1690,6 +1725,35 @@ extension Es {
         }
     }
 
+    /// 任务进度详情
+    public struct ProcessDetail: TCOutputModel {
+        /// 已完成数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let completed: Int64?
+
+        /// 剩余数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let remain: Int64?
+
+        /// 总数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let total: Int64?
+
+        /// 任务类型：
+        /// 60：重启型任务
+        /// 70：分片迁移型任务
+        /// 80：节点变配任务
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskType: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case completed = "Completed"
+            case remain = "Remain"
+            case total = "Total"
+            case taskType = "TaskType"
+        }
+    }
+
     /// 实例操作记录流程任务中的子任务信息（如升级检查任务中的各个检查项）
     public struct SubTaskDetail: TCOutputModel {
         /// 子任务名
@@ -1765,17 +1829,22 @@ extension Es {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let elapsedTime: Int64?
 
+        /// 任务进度详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let processInfo: ProcessDetail?
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case progress = "Progress"
             case finishTime = "FinishTime"
             case subTasks = "SubTasks"
             case elapsedTime = "ElapsedTime"
+            case processInfo = "ProcessInfo"
         }
     }
 
     /// 可视化节点配置
-    public struct WebNodeTypeInfo: TCInputModel {
+    public struct WebNodeTypeInfo: TCInputModel, TCOutputModel {
         /// 可视化节点个数，固定为1
         public let nodeNum: UInt64
 

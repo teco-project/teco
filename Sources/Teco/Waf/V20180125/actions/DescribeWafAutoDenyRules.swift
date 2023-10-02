@@ -24,12 +24,17 @@ extension Waf {
         /// 域名
         public let domain: String
 
-        public init(domain: String) {
+        /// 实例Id
+        public let instanceId: String?
+
+        public init(domain: String, instanceId: String? = nil) {
             self.domain = domain
+            self.instanceId = instanceId
         }
 
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
+            case instanceId = "InstanceId"
         }
     }
 
@@ -47,6 +52,9 @@ extension Waf {
         /// 自动封禁状态
         public let defenseStatus: Int64
 
+        /// 重保护网域名状态
+        public let hwState: Int64?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -55,6 +63,7 @@ extension Waf {
             case timeThreshold = "TimeThreshold"
             case denyTimeThreshold = "DenyTimeThreshold"
             case defenseStatus = "DefenseStatus"
+            case hwState = "HWState"
             case requestId = "RequestId"
         }
     }
@@ -79,15 +88,15 @@ extension Waf {
     ///
     /// 返回ip惩罚规则详细信息
     @inlinable
-    public func describeWafAutoDenyRules(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWafAutoDenyRulesResponse> {
-        self.describeWafAutoDenyRules(.init(domain: domain), region: region, logger: logger, on: eventLoop)
+    public func describeWafAutoDenyRules(domain: String, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWafAutoDenyRulesResponse> {
+        self.describeWafAutoDenyRules(.init(domain: domain, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询ip惩罚规则
     ///
     /// 返回ip惩罚规则详细信息
     @inlinable
-    public func describeWafAutoDenyRules(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafAutoDenyRulesResponse {
-        try await self.describeWafAutoDenyRules(.init(domain: domain), region: region, logger: logger, on: eventLoop)
+    public func describeWafAutoDenyRules(domain: String, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafAutoDenyRulesResponse {
+        try await self.describeWafAutoDenyRules(.init(domain: domain, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

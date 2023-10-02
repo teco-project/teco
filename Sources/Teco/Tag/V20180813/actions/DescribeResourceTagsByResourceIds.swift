@@ -39,13 +39,17 @@ extension Tag {
         /// 每页大小，默认为 15
         public let limit: UInt64?
 
-        public init(serviceType: String, resourcePrefix: String, resourceIds: [String], resourceRegion: String, offset: UInt64? = nil, limit: UInt64? = nil) {
+        /// 标签类型。取值： Custom：自定义标签。 System：系统标签。 All：全部标签。 默认值：All。
+        public let category: String?
+
+        public init(serviceType: String, resourcePrefix: String, resourceIds: [String], resourceRegion: String, offset: UInt64? = nil, limit: UInt64? = nil, category: String? = nil) {
             self.serviceType = serviceType
             self.resourcePrefix = resourcePrefix
             self.resourceIds = resourceIds
             self.resourceRegion = resourceRegion
             self.offset = offset
             self.limit = limit
+            self.category = category
         }
 
         enum CodingKeys: String, CodingKey {
@@ -55,6 +59,7 @@ extension Tag {
             case resourceRegion = "ResourceRegion"
             case offset = "Offset"
             case limit = "Limit"
+            case category = "Category"
         }
 
         /// Compute the next request based on API response.
@@ -62,7 +67,7 @@ extension Tag {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return .init(serviceType: self.serviceType, resourcePrefix: self.resourcePrefix, resourceIds: self.resourceIds, resourceRegion: self.resourceRegion, offset: (self.offset ?? 0) + response.limit, limit: self.limit)
+            return .init(serviceType: self.serviceType, resourcePrefix: self.resourcePrefix, resourceIds: self.resourceIds, resourceRegion: self.resourceRegion, offset: (self.offset ?? 0) + response.limit, limit: self.limit, category: self.category)
         }
     }
 
@@ -122,16 +127,16 @@ extension Tag {
     ///
     /// 用于批量查询已有资源关联的标签键值对
     @inlinable
-    public func describeResourceTagsByResourceIds(serviceType: String, resourcePrefix: String, resourceIds: [String], resourceRegion: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceTagsByResourceIdsResponse> {
-        self.describeResourceTagsByResourceIds(.init(serviceType: serviceType, resourcePrefix: resourcePrefix, resourceIds: resourceIds, resourceRegion: resourceRegion, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+    public func describeResourceTagsByResourceIds(serviceType: String, resourcePrefix: String, resourceIds: [String], resourceRegion: String, offset: UInt64? = nil, limit: UInt64? = nil, category: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceTagsByResourceIdsResponse> {
+        self.describeResourceTagsByResourceIds(.init(serviceType: serviceType, resourcePrefix: resourcePrefix, resourceIds: resourceIds, resourceRegion: resourceRegion, offset: offset, limit: limit, category: category), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量查看资源关联的标签
     ///
     /// 用于批量查询已有资源关联的标签键值对
     @inlinable
-    public func describeResourceTagsByResourceIds(serviceType: String, resourcePrefix: String, resourceIds: [String], resourceRegion: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTagsByResourceIdsResponse {
-        try await self.describeResourceTagsByResourceIds(.init(serviceType: serviceType, resourcePrefix: resourcePrefix, resourceIds: resourceIds, resourceRegion: resourceRegion, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+    public func describeResourceTagsByResourceIds(serviceType: String, resourcePrefix: String, resourceIds: [String], resourceRegion: String, offset: UInt64? = nil, limit: UInt64? = nil, category: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTagsByResourceIdsResponse {
+        try await self.describeResourceTagsByResourceIds(.init(serviceType: serviceType, resourcePrefix: resourcePrefix, resourceIds: resourceIds, resourceRegion: resourceRegion, offset: offset, limit: limit, category: category), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量查看资源关联的标签

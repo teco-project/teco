@@ -21,10 +21,10 @@ import TecoCore
 extension Teo {
     /// CreateAccelerationDomain请求参数结构体
     public struct CreateAccelerationDomainRequest: TCRequest {
-        /// 加速域名所属站点ID。
+        /// 加速域名所属站点 ID。
         public let zoneId: String
 
-        /// 加速域名名称。
+        /// 加速域名。
         public let domainName: String
 
         /// 源站信息。
@@ -45,34 +45,55 @@ extension Teo {
 
     /// CreateAccelerationDomain返回参数结构体
     public struct CreateAccelerationDomainResponse: TCResponse {
+        /// 当您的站点未进行归属权验证时，您可通过该参数返回的信息单独对域名进行归属权校验。详情参考 [站点/域名归属权验证](https://cloud.tencent.com/document/product/1552/70789)。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ownershipVerification: OwnershipVerification?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
+            case ownershipVerification = "OwnershipVerification"
             case requestId = "RequestId"
         }
     }
 
     /// 创建加速域名
-    @inlinable @discardableResult
+    ///
+    /// 在创建完站点之后，您可以通过本接口创建加速域名。
+    ///
+    /// CNAME 模式接入时，若您未完成站点归属权校验，本接口将为您返回域名归属权验证信息，您可以单独对域名进行归属权验证，详情参考 [站点/域名归属权验证](https://cloud.tencent.com/document/product/1552/70789)。
+    @inlinable
     public func createAccelerationDomain(_ input: CreateAccelerationDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccelerationDomainResponse> {
         self.client.execute(action: "CreateAccelerationDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建加速域名
-    @inlinable @discardableResult
+    ///
+    /// 在创建完站点之后，您可以通过本接口创建加速域名。
+    ///
+    /// CNAME 模式接入时，若您未完成站点归属权校验，本接口将为您返回域名归属权验证信息，您可以单独对域名进行归属权验证，详情参考 [站点/域名归属权验证](https://cloud.tencent.com/document/product/1552/70789)。
+    @inlinable
     public func createAccelerationDomain(_ input: CreateAccelerationDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccelerationDomainResponse {
         try await self.client.execute(action: "CreateAccelerationDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建加速域名
-    @inlinable @discardableResult
+    ///
+    /// 在创建完站点之后，您可以通过本接口创建加速域名。
+    ///
+    /// CNAME 模式接入时，若您未完成站点归属权校验，本接口将为您返回域名归属权验证信息，您可以单独对域名进行归属权验证，详情参考 [站点/域名归属权验证](https://cloud.tencent.com/document/product/1552/70789)。
+    @inlinable
     public func createAccelerationDomain(zoneId: String, domainName: String, originInfo: OriginInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccelerationDomainResponse> {
         self.createAccelerationDomain(.init(zoneId: zoneId, domainName: domainName, originInfo: originInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建加速域名
-    @inlinable @discardableResult
+    ///
+    /// 在创建完站点之后，您可以通过本接口创建加速域名。
+    ///
+    /// CNAME 模式接入时，若您未完成站点归属权校验，本接口将为您返回域名归属权验证信息，您可以单独对域名进行归属权验证，详情参考 [站点/域名归属权验证](https://cloud.tencent.com/document/product/1552/70789)。
+    @inlinable
     public func createAccelerationDomain(zoneId: String, domainName: String, originInfo: OriginInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccelerationDomainResponse {
         try await self.createAccelerationDomain(.init(zoneId: zoneId, domainName: domainName, originInfo: originInfo), region: region, logger: logger, on: eventLoop)
     }

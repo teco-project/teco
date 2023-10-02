@@ -74,6 +74,7 @@ extension TCScfError {
             case updateFunctionCode = "FailedOperation.UpdateFunctionCode"
             case updateFunctionConfiguration = "FailedOperation.UpdateFunctionConfiguration"
             case updateStatus = "FailedOperation.UpdateStatus"
+            case updateTrigger = "FailedOperation.UpdateTrigger"
             case updateTriggerStatus = "FailedOperation.UpdateTriggerStatus"
             case other = "FailedOperation"
         }
@@ -377,6 +378,11 @@ extension TCScfError {
             FailedOperation(.updateStatus)
         }
 
+        /// 更新触发器出错。
+        public static var updateTrigger: FailedOperation {
+            FailedOperation(.updateTrigger)
+        }
+
         /// 与原状态一致，无需更改。
         public static var updateTriggerStatus: FailedOperation {
             FailedOperation(.updateTriggerStatus)
@@ -500,6 +506,8 @@ extension TCScfError {
                 code = .failedOperation_UpdateFunctionConfiguration
             case .updateStatus:
                 code = .failedOperation_UpdateStatus
+            case .updateTrigger:
+                code = .failedOperation_UpdateTrigger
             case .updateTriggerStatus:
                 code = .failedOperation_UpdateTriggerStatus
             case .other:

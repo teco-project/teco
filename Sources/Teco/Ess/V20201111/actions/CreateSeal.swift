@@ -21,22 +21,31 @@ import TecoCore
 extension Ess {
     /// CreateSeal请求参数结构体
     public struct CreateSealRequest: TCRequest {
-        /// 操作人信息
+        /// 执行本接口操作的员工信息。
+        /// 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         public let `operator`: UserInfo
 
-        /// 电子印章名字
+        /// 电子印章名字，1-50个中文字符。
         public let sealName: String
 
-        /// 应用相关信息
+        /// 代理企业和员工的信息。
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         public let agent: Agent?
 
-        /// 本接口支持上传图片印章及系统直接生成印章；如果要使用系统生成印章，此值传：SealGenerateSourceSystem；如果要使用图片上传请传字段 Image
+        /// 本接口支持上传图片印章及系统直接生成印章；
+        /// 如果要使用系统生成印章，此值传：SealGenerateSourceSystem；
+        /// 如果要使用图片上传请传字段 Image
         public let generateSource: String?
 
-        /// 电子印章类型，OFFICIAL-公章,CONTRACT-合同专用章
+        /// 电子印章类型：
+        ///
+        /// - OFFICIAL-公章；
+        /// - CONTRACT-合同专用章;
+        /// - FINANCE-合财务专用章;
+        /// - PERSONNEL-人事专用章.
         public let sealType: String?
 
-        /// 电子印章图片文件名称
+        /// 电子印章图片文件名称，1-50个中文字符。
         public let fileName: String?
 
         /// 电子印章图片base64编码
@@ -56,7 +65,7 @@ extension Ess {
         /// 系统目前只支持红色印章创建。
         public let color: String?
 
-        /// 暂时不支持横向文字设置
+        /// 企业印章横向文字，最多可填15个汉字（若超过印章最大宽度，优先压缩字间距，其次缩小字号）
         public let sealHorizontalText: String?
 
         /// 暂时不支持下弦文字设置
@@ -68,7 +77,21 @@ extension Ess {
         /// 通过文件上传时，服务端生成的电子印章上传图片的token
         public let fileToken: String?
 
-        public init(operator: UserInfo, sealName: String, agent: Agent? = nil, generateSource: String? = nil, sealType: String? = nil, fileName: String? = nil, image: String? = nil, width: Int64? = nil, height: Int64? = nil, color: String? = nil, sealHorizontalText: String? = nil, sealChordText: String? = nil, sealCentralType: String? = nil, fileToken: String? = nil) {
+        /// 印章样式，取值如下:
+        ///
+        /// - cycle:圆形印章;
+        /// - ellipse:椭圆印章;
+        /// - 注：默认圆形印章
+        public let sealStyle: String?
+
+        /// 印章尺寸取值描述：
+        ///
+        /// - 42_42 圆形企业公章直径42mm；
+        /// - 40_40 圆形企业印章直径40mm；
+        /// - 45_30 椭圆形印章45mm x 30mm;
+        public let sealSize: String?
+
+        public init(operator: UserInfo, sealName: String, agent: Agent? = nil, generateSource: String? = nil, sealType: String? = nil, fileName: String? = nil, image: String? = nil, width: Int64? = nil, height: Int64? = nil, color: String? = nil, sealHorizontalText: String? = nil, sealChordText: String? = nil, sealCentralType: String? = nil, fileToken: String? = nil, sealStyle: String? = nil, sealSize: String? = nil) {
             self.operator = `operator`
             self.sealName = sealName
             self.agent = agent
@@ -83,6 +106,8 @@ extension Ess {
             self.sealChordText = sealChordText
             self.sealCentralType = sealCentralType
             self.fileToken = fileToken
+            self.sealStyle = sealStyle
+            self.sealSize = sealSize
         }
 
         enum CodingKeys: String, CodingKey {
@@ -100,12 +125,16 @@ extension Ess {
             case sealChordText = "SealChordText"
             case sealCentralType = "SealCentralType"
             case fileToken = "FileToken"
+            case sealStyle = "SealStyle"
+            case sealSize = "SealSize"
         }
     }
 
     /// CreateSeal返回参数结构体
     public struct CreateSealResponse: TCResponse {
-        /// 电子印章编号
+        /// 电子印章ID，为32位字符串。
+        /// 建议开发者保留此印章ID，后续指定签署区印章或者操作印章需此印章ID。
+        /// 可登录腾讯电子签控制台，在 "印章"->"印章中心"选择查看的印章，在"印章详情" 中查看某个印章的SealId(在页面中展示为印章ID)。
         public let sealId: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -117,27 +146,35 @@ extension Ess {
         }
     }
 
-    /// 创建电子印章
+    /// 创建企业电子印章
+    ///
+    /// 本接口（CreateSeal）用于创建企业电子印章，支持创建企业公章，合同章，财务专用章和人事专用章创建。
     @inlinable
     public func createSeal(_ input: CreateSealRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSealResponse> {
         self.client.execute(action: "CreateSeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 创建电子印章
+    /// 创建企业电子印章
+    ///
+    /// 本接口（CreateSeal）用于创建企业电子印章，支持创建企业公章，合同章，财务专用章和人事专用章创建。
     @inlinable
     public func createSeal(_ input: CreateSealRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSealResponse {
         try await self.client.execute(action: "CreateSeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 创建电子印章
+    /// 创建企业电子印章
+    ///
+    /// 本接口（CreateSeal）用于创建企业电子印章，支持创建企业公章，合同章，财务专用章和人事专用章创建。
     @inlinable
-    public func createSeal(operator: UserInfo, sealName: String, agent: Agent? = nil, generateSource: String? = nil, sealType: String? = nil, fileName: String? = nil, image: String? = nil, width: Int64? = nil, height: Int64? = nil, color: String? = nil, sealHorizontalText: String? = nil, sealChordText: String? = nil, sealCentralType: String? = nil, fileToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSealResponse> {
-        self.createSeal(.init(operator: `operator`, sealName: sealName, agent: agent, generateSource: generateSource, sealType: sealType, fileName: fileName, image: image, width: width, height: height, color: color, sealHorizontalText: sealHorizontalText, sealChordText: sealChordText, sealCentralType: sealCentralType, fileToken: fileToken), region: region, logger: logger, on: eventLoop)
+    public func createSeal(operator: UserInfo, sealName: String, agent: Agent? = nil, generateSource: String? = nil, sealType: String? = nil, fileName: String? = nil, image: String? = nil, width: Int64? = nil, height: Int64? = nil, color: String? = nil, sealHorizontalText: String? = nil, sealChordText: String? = nil, sealCentralType: String? = nil, fileToken: String? = nil, sealStyle: String? = nil, sealSize: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSealResponse> {
+        self.createSeal(.init(operator: `operator`, sealName: sealName, agent: agent, generateSource: generateSource, sealType: sealType, fileName: fileName, image: image, width: width, height: height, color: color, sealHorizontalText: sealHorizontalText, sealChordText: sealChordText, sealCentralType: sealCentralType, fileToken: fileToken, sealStyle: sealStyle, sealSize: sealSize), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 创建电子印章
+    /// 创建企业电子印章
+    ///
+    /// 本接口（CreateSeal）用于创建企业电子印章，支持创建企业公章，合同章，财务专用章和人事专用章创建。
     @inlinable
-    public func createSeal(operator: UserInfo, sealName: String, agent: Agent? = nil, generateSource: String? = nil, sealType: String? = nil, fileName: String? = nil, image: String? = nil, width: Int64? = nil, height: Int64? = nil, color: String? = nil, sealHorizontalText: String? = nil, sealChordText: String? = nil, sealCentralType: String? = nil, fileToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSealResponse {
-        try await self.createSeal(.init(operator: `operator`, sealName: sealName, agent: agent, generateSource: generateSource, sealType: sealType, fileName: fileName, image: image, width: width, height: height, color: color, sealHorizontalText: sealHorizontalText, sealChordText: sealChordText, sealCentralType: sealCentralType, fileToken: fileToken), region: region, logger: logger, on: eventLoop)
+    public func createSeal(operator: UserInfo, sealName: String, agent: Agent? = nil, generateSource: String? = nil, sealType: String? = nil, fileName: String? = nil, image: String? = nil, width: Int64? = nil, height: Int64? = nil, color: String? = nil, sealHorizontalText: String? = nil, sealChordText: String? = nil, sealCentralType: String? = nil, fileToken: String? = nil, sealStyle: String? = nil, sealSize: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSealResponse {
+        try await self.createSeal(.init(operator: `operator`, sealName: sealName, agent: agent, generateSource: generateSource, sealType: sealType, fileName: fileName, image: image, width: width, height: height, color: color, sealHorizontalText: sealHorizontalText, sealChordText: sealChordText, sealCentralType: sealCentralType, fileToken: fileToken, sealStyle: sealStyle, sealSize: sealSize), region: region, logger: logger, on: eventLoop)
     }
 }

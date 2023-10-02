@@ -81,7 +81,14 @@ extension Billing {
         /// 支付者的账号 ID（账号 ID 是用户在腾讯云的唯一账号标识），默认查询本账号账单，如集团管理账号需查询成员账号自付的账单，该字段需入参成员账号UIN
         public let payerUin: String?
 
-        public init(offset: UInt64, limit: UInt64, month: String, periodType: String? = nil, needRecordNum: Int64? = nil, actionType: String? = nil, resourceId: String? = nil, payMode: String? = nil, businessCode: String? = nil, payerUin: String? = nil) {
+        /// 分账标签键，用户自定义（支持2021-01以后账单查询）
+        public let tagKey: String?
+
+        /// 分账标签值，该参数为空表示该标签键下未设置标签值的记录
+        /// （支持2021-01以后账单查询）
+        public let tagValue: String?
+
+        public init(offset: UInt64, limit: UInt64, month: String, periodType: String? = nil, needRecordNum: Int64? = nil, actionType: String? = nil, resourceId: String? = nil, payMode: String? = nil, businessCode: String? = nil, payerUin: String? = nil, tagKey: String? = nil, tagValue: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.month = month
@@ -92,6 +99,8 @@ extension Billing {
             self.payMode = payMode
             self.businessCode = businessCode
             self.payerUin = payerUin
+            self.tagKey = tagKey
+            self.tagValue = tagValue
         }
 
         enum CodingKeys: String, CodingKey {
@@ -105,6 +114,8 @@ extension Billing {
             case payMode = "PayMode"
             case businessCode = "BusinessCode"
             case payerUin = "PayerUin"
+            case tagKey = "TagKey"
+            case tagValue = "TagValue"
         }
 
         /// Compute the next request based on API response.
@@ -112,7 +123,7 @@ extension Billing {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, month: self.month, periodType: self.periodType, needRecordNum: self.needRecordNum, actionType: self.actionType, resourceId: self.resourceId, payMode: self.payMode, businessCode: self.businessCode, payerUin: self.payerUin)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, month: self.month, periodType: self.periodType, needRecordNum: self.needRecordNum, actionType: self.actionType, resourceId: self.resourceId, payMode: self.payMode, businessCode: self.businessCode, payerUin: self.payerUin, tagKey: self.tagKey, tagValue: self.tagValue)
         }
     }
 
@@ -145,43 +156,43 @@ extension Billing {
         }
     }
 
-    /// 查询账单资源汇总数据
+    /// 获取账单资源汇总数据
     @inlinable
     public func describeBillResourceSummary(_ input: DescribeBillResourceSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillResourceSummaryResponse> {
         self.client.execute(action: "DescribeBillResourceSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询账单资源汇总数据
+    /// 获取账单资源汇总数据
     @inlinable
     public func describeBillResourceSummary(_ input: DescribeBillResourceSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillResourceSummaryResponse {
         try await self.client.execute(action: "DescribeBillResourceSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询账单资源汇总数据
+    /// 获取账单资源汇总数据
     @inlinable
-    public func describeBillResourceSummary(offset: UInt64, limit: UInt64, month: String, periodType: String? = nil, needRecordNum: Int64? = nil, actionType: String? = nil, resourceId: String? = nil, payMode: String? = nil, businessCode: String? = nil, payerUin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillResourceSummaryResponse> {
-        self.describeBillResourceSummary(.init(offset: offset, limit: limit, month: month, periodType: periodType, needRecordNum: needRecordNum, actionType: actionType, resourceId: resourceId, payMode: payMode, businessCode: businessCode, payerUin: payerUin), region: region, logger: logger, on: eventLoop)
+    public func describeBillResourceSummary(offset: UInt64, limit: UInt64, month: String, periodType: String? = nil, needRecordNum: Int64? = nil, actionType: String? = nil, resourceId: String? = nil, payMode: String? = nil, businessCode: String? = nil, payerUin: String? = nil, tagKey: String? = nil, tagValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillResourceSummaryResponse> {
+        self.describeBillResourceSummary(.init(offset: offset, limit: limit, month: month, periodType: periodType, needRecordNum: needRecordNum, actionType: actionType, resourceId: resourceId, payMode: payMode, businessCode: businessCode, payerUin: payerUin, tagKey: tagKey, tagValue: tagValue), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询账单资源汇总数据
+    /// 获取账单资源汇总数据
     @inlinable
-    public func describeBillResourceSummary(offset: UInt64, limit: UInt64, month: String, periodType: String? = nil, needRecordNum: Int64? = nil, actionType: String? = nil, resourceId: String? = nil, payMode: String? = nil, businessCode: String? = nil, payerUin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillResourceSummaryResponse {
-        try await self.describeBillResourceSummary(.init(offset: offset, limit: limit, month: month, periodType: periodType, needRecordNum: needRecordNum, actionType: actionType, resourceId: resourceId, payMode: payMode, businessCode: businessCode, payerUin: payerUin), region: region, logger: logger, on: eventLoop)
+    public func describeBillResourceSummary(offset: UInt64, limit: UInt64, month: String, periodType: String? = nil, needRecordNum: Int64? = nil, actionType: String? = nil, resourceId: String? = nil, payMode: String? = nil, businessCode: String? = nil, payerUin: String? = nil, tagKey: String? = nil, tagValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillResourceSummaryResponse {
+        try await self.describeBillResourceSummary(.init(offset: offset, limit: limit, month: month, periodType: periodType, needRecordNum: needRecordNum, actionType: actionType, resourceId: resourceId, payMode: payMode, businessCode: businessCode, payerUin: payerUin, tagKey: tagKey, tagValue: tagValue), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询账单资源汇总数据
+    /// 获取账单资源汇总数据
     @inlinable
     public func describeBillResourceSummaryPaginated(_ input: DescribeBillResourceSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [BillResourceSummary])> {
         self.client.paginate(input: input, region: region, command: self.describeBillResourceSummary, logger: logger, on: eventLoop)
     }
 
-    /// 查询账单资源汇总数据
+    /// 获取账单资源汇总数据
     @inlinable @discardableResult
     public func describeBillResourceSummaryPaginated(_ input: DescribeBillResourceSummaryRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBillResourceSummaryResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeBillResourceSummary, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 查询账单资源汇总数据
+    /// 获取账单资源汇总数据
     ///
     /// - Returns: `AsyncSequence`s of ``BillResourceSummary`` and ``DescribeBillResourceSummaryResponse`` that can be iterated over asynchronously on demand.
     @inlinable

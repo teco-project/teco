@@ -48,7 +48,7 @@ extension Es {
         /// 过滤索引状态
         public let indexStatusList: [String]?
 
-        /// 排序顺序，支持asc、desc
+        /// 排序顺序，支持asc、desc，默认为desc 数据格式"asc","desc"
         public let order: String?
 
         public init(indexType: String, instanceId: String? = nil, indexName: String? = nil, username: String? = nil, password: String? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, indexStatusList: [String]? = nil, order: String? = nil) {

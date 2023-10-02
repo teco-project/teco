@@ -35,7 +35,7 @@ extension Live {
         /// 开始时间。
         /// 使用UTC格式时间，
         /// 例如：2019-01-08T10:00:00Z。
-        /// 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        /// 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#I)。
         public let startTime: String?
 
         /// 结束时间，注意：
@@ -44,7 +44,7 @@ extension Live {
         /// 3. 结束时间 和 开始时间 间隔必须小于七天。
         /// 使用UTC格式时间，
         /// 例如：2019-01-08T10:00:00Z。
-        /// 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        /// 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#I)。
         public let endTime: String?
 
         /// 点播拉流转推循环次数。
@@ -86,6 +86,10 @@ extension Live {
         /// 1. 单位：秒，配合FileIndex使用。
         public let offsetTime: Int64?
 
+        /// 目标 Url。
+        /// 换目标地址，会断流重推到新地址。
+        public let toUrl: String?
+
         /// 任务备注。
         public let comment: String?
 
@@ -120,7 +124,7 @@ extension Live {
         /// 注意：启用本地模式后，会将源列表中的 MP4 文件进行本地下载，优先使用本地已下载文件进行推流，提高点播源推流稳定性。使用本地下载文件推流时，会产生增值费用。
         public let vodLocalMode: Int64?
 
-        public init(taskId: String, operator: String, sourceUrls: [String]? = nil, startTime: String? = nil, endTime: String? = nil, vodLoopTimes: Int64? = nil, vodRefreshType: String? = nil, status: String? = nil, callbackEvents: [String]? = nil, callbackUrl: String? = nil, fileIndex: Int64? = nil, offsetTime: Int64? = nil, comment: String? = nil, backupSourceType: String? = nil, backupSourceUrl: String? = nil, watermarkList: [PullPushWatermarkInfo]? = nil, vodLocalMode: Int64? = nil) {
+        public init(taskId: String, operator: String, sourceUrls: [String]? = nil, startTime: String? = nil, endTime: String? = nil, vodLoopTimes: Int64? = nil, vodRefreshType: String? = nil, status: String? = nil, callbackEvents: [String]? = nil, callbackUrl: String? = nil, fileIndex: Int64? = nil, offsetTime: Int64? = nil, toUrl: String? = nil, comment: String? = nil, backupSourceType: String? = nil, backupSourceUrl: String? = nil, watermarkList: [PullPushWatermarkInfo]? = nil, vodLocalMode: Int64? = nil) {
             self.taskId = taskId
             self.operator = `operator`
             self.sourceUrls = sourceUrls
@@ -133,6 +137,7 @@ extension Live {
             self.callbackUrl = callbackUrl
             self.fileIndex = fileIndex
             self.offsetTime = offsetTime
+            self.toUrl = toUrl
             self.comment = comment
             self.backupSourceType = backupSourceType
             self.backupSourceUrl = backupSourceUrl
@@ -153,6 +158,7 @@ extension Live {
             case callbackUrl = "CallbackUrl"
             case fileIndex = "FileIndex"
             case offsetTime = "OffsetTime"
+            case toUrl = "ToUrl"
             case comment = "Comment"
             case backupSourceType = "BackupSourceType"
             case backupSourceUrl = "BackupSourceUrl"
@@ -174,8 +180,7 @@ extension Live {
     /// 更新直播拉流任务
     ///
     /// 更新直播拉流任务。
-    /// 1. 不支持修改目标地址，如需推到新地址，请创建新任务。
-    /// 2. 不支持修改拉流源类型，如需更换，请创建新任务。
+    /// 1. 不支持修改拉流源类型，如需更换，请创建新任务。
     @inlinable @discardableResult
     public func modifyLivePullStreamTask(_ input: ModifyLivePullStreamTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLivePullStreamTaskResponse> {
         self.client.execute(action: "ModifyLivePullStreamTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -184,8 +189,7 @@ extension Live {
     /// 更新直播拉流任务
     ///
     /// 更新直播拉流任务。
-    /// 1. 不支持修改目标地址，如需推到新地址，请创建新任务。
-    /// 2. 不支持修改拉流源类型，如需更换，请创建新任务。
+    /// 1. 不支持修改拉流源类型，如需更换，请创建新任务。
     @inlinable @discardableResult
     public func modifyLivePullStreamTask(_ input: ModifyLivePullStreamTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLivePullStreamTaskResponse {
         try await self.client.execute(action: "ModifyLivePullStreamTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -194,20 +198,18 @@ extension Live {
     /// 更新直播拉流任务
     ///
     /// 更新直播拉流任务。
-    /// 1. 不支持修改目标地址，如需推到新地址，请创建新任务。
-    /// 2. 不支持修改拉流源类型，如需更换，请创建新任务。
+    /// 1. 不支持修改拉流源类型，如需更换，请创建新任务。
     @inlinable @discardableResult
-    public func modifyLivePullStreamTask(taskId: String, operator: String, sourceUrls: [String]? = nil, startTime: String? = nil, endTime: String? = nil, vodLoopTimes: Int64? = nil, vodRefreshType: String? = nil, status: String? = nil, callbackEvents: [String]? = nil, callbackUrl: String? = nil, fileIndex: Int64? = nil, offsetTime: Int64? = nil, comment: String? = nil, backupSourceType: String? = nil, backupSourceUrl: String? = nil, watermarkList: [PullPushWatermarkInfo]? = nil, vodLocalMode: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLivePullStreamTaskResponse> {
-        self.modifyLivePullStreamTask(.init(taskId: taskId, operator: `operator`, sourceUrls: sourceUrls, startTime: startTime, endTime: endTime, vodLoopTimes: vodLoopTimes, vodRefreshType: vodRefreshType, status: status, callbackEvents: callbackEvents, callbackUrl: callbackUrl, fileIndex: fileIndex, offsetTime: offsetTime, comment: comment, backupSourceType: backupSourceType, backupSourceUrl: backupSourceUrl, watermarkList: watermarkList, vodLocalMode: vodLocalMode), region: region, logger: logger, on: eventLoop)
+    public func modifyLivePullStreamTask(taskId: String, operator: String, sourceUrls: [String]? = nil, startTime: String? = nil, endTime: String? = nil, vodLoopTimes: Int64? = nil, vodRefreshType: String? = nil, status: String? = nil, callbackEvents: [String]? = nil, callbackUrl: String? = nil, fileIndex: Int64? = nil, offsetTime: Int64? = nil, toUrl: String? = nil, comment: String? = nil, backupSourceType: String? = nil, backupSourceUrl: String? = nil, watermarkList: [PullPushWatermarkInfo]? = nil, vodLocalMode: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLivePullStreamTaskResponse> {
+        self.modifyLivePullStreamTask(.init(taskId: taskId, operator: `operator`, sourceUrls: sourceUrls, startTime: startTime, endTime: endTime, vodLoopTimes: vodLoopTimes, vodRefreshType: vodRefreshType, status: status, callbackEvents: callbackEvents, callbackUrl: callbackUrl, fileIndex: fileIndex, offsetTime: offsetTime, toUrl: toUrl, comment: comment, backupSourceType: backupSourceType, backupSourceUrl: backupSourceUrl, watermarkList: watermarkList, vodLocalMode: vodLocalMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新直播拉流任务
     ///
     /// 更新直播拉流任务。
-    /// 1. 不支持修改目标地址，如需推到新地址，请创建新任务。
-    /// 2. 不支持修改拉流源类型，如需更换，请创建新任务。
+    /// 1. 不支持修改拉流源类型，如需更换，请创建新任务。
     @inlinable @discardableResult
-    public func modifyLivePullStreamTask(taskId: String, operator: String, sourceUrls: [String]? = nil, startTime: String? = nil, endTime: String? = nil, vodLoopTimes: Int64? = nil, vodRefreshType: String? = nil, status: String? = nil, callbackEvents: [String]? = nil, callbackUrl: String? = nil, fileIndex: Int64? = nil, offsetTime: Int64? = nil, comment: String? = nil, backupSourceType: String? = nil, backupSourceUrl: String? = nil, watermarkList: [PullPushWatermarkInfo]? = nil, vodLocalMode: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLivePullStreamTaskResponse {
-        try await self.modifyLivePullStreamTask(.init(taskId: taskId, operator: `operator`, sourceUrls: sourceUrls, startTime: startTime, endTime: endTime, vodLoopTimes: vodLoopTimes, vodRefreshType: vodRefreshType, status: status, callbackEvents: callbackEvents, callbackUrl: callbackUrl, fileIndex: fileIndex, offsetTime: offsetTime, comment: comment, backupSourceType: backupSourceType, backupSourceUrl: backupSourceUrl, watermarkList: watermarkList, vodLocalMode: vodLocalMode), region: region, logger: logger, on: eventLoop)
+    public func modifyLivePullStreamTask(taskId: String, operator: String, sourceUrls: [String]? = nil, startTime: String? = nil, endTime: String? = nil, vodLoopTimes: Int64? = nil, vodRefreshType: String? = nil, status: String? = nil, callbackEvents: [String]? = nil, callbackUrl: String? = nil, fileIndex: Int64? = nil, offsetTime: Int64? = nil, toUrl: String? = nil, comment: String? = nil, backupSourceType: String? = nil, backupSourceUrl: String? = nil, watermarkList: [PullPushWatermarkInfo]? = nil, vodLocalMode: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLivePullStreamTaskResponse {
+        try await self.modifyLivePullStreamTask(.init(taskId: taskId, operator: `operator`, sourceUrls: sourceUrls, startTime: startTime, endTime: endTime, vodLoopTimes: vodLoopTimes, vodRefreshType: vodRefreshType, status: status, callbackEvents: callbackEvents, callbackUrl: callbackUrl, fileIndex: fileIndex, offsetTime: offsetTime, toUrl: toUrl, comment: comment, backupSourceType: backupSourceType, backupSourceUrl: backupSourceUrl, watermarkList: watermarkList, vodLocalMode: vodLocalMode), region: region, logger: logger, on: eventLoop)
     }
 }

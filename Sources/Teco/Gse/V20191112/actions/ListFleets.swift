@@ -91,7 +91,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func listFleets(_ input: ListFleetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListFleetsResponse> {
-        fatalError("ListFleets is no longer available.")
+        fatalError("'ListFleets' is no longer available.")
     }
 
     /// 获取服务器舰队列表
@@ -100,7 +100,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func listFleets(_ input: ListFleetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListFleetsResponse {
-        fatalError("ListFleets is no longer available.")
+        fatalError("'ListFleets' is no longer available.")
     }
 
     /// 获取服务器舰队列表
@@ -109,7 +109,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func listFleets(assetId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListFleetsResponse> {
-        fatalError("ListFleets is no longer available.")
+        fatalError("'ListFleets' is no longer available.")
     }
 
     /// 获取服务器舰队列表
@@ -118,7 +118,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func listFleets(assetId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListFleetsResponse {
-        fatalError("ListFleets is no longer available.")
+        fatalError("'ListFleets' is no longer available.")
     }
 
     /// 获取服务器舰队列表
@@ -127,7 +127,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func listFleetsPaginated(_ input: ListFleetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [String])> {
-        fatalError("ListFleets is no longer available.")
+        fatalError("'ListFleets' is no longer available.")
     }
 
     /// 获取服务器舰队列表
@@ -136,7 +136,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func listFleetsPaginated(_ input: ListFleetsRequest, region: TCRegion? = nil, onResponse: @escaping (ListFleetsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
-        fatalError("ListFleets is no longer available.")
+        fatalError("'ListFleets' is no longer available.")
     }
 
     /// 获取服务器舰队列表
@@ -147,6 +147,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func listFleetsPaginator(_ input: ListFleetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListFleetsRequest> {
-        fatalError("ListFleets is no longer available.")
+        fatalError("'ListFleets' is no longer available.")
     }
 }

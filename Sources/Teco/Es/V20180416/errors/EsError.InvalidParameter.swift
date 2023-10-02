@@ -19,8 +19,53 @@ import TecoCore
 extension TCEsError {
     public struct InvalidParameter: TCEsErrorType {
         enum Code: String {
+            case gc = "InvalidParameter.GC"
+            case invalidAppId = "InvalidParameter.InvalidAppId"
+            case invalidAutoVoucher = "InvalidParameter.InvalidAutoVoucher"
+            case invalidClusterName = "InvalidParameter.InvalidClusterName"
+            case invalidCosBackupInfo = "InvalidParameter.InvalidCosBackupInfo"
+            case invalidDeployMode = "InvalidParameter.InvalidDeployMode"
+            case invalidDiskCount = "InvalidParameter.InvalidDiskCount"
+            case invalidDiskEncrypt = "InvalidParameter.InvalidDiskEncrypt"
+            case invalidDiskEnhance = "InvalidParameter.InvalidDiskEnhance"
+            case invalidDiskSize = "InvalidParameter.InvalidDiskSize"
+            case invalidDiskType = "InvalidParameter.InvalidDiskType"
+            case invalidEsACL = "InvalidParameter.InvalidEsACL"
+            case invalidEsVersion = "InvalidParameter.InvalidEsVersion"
+            case invalidIndexMetaJson = "InvalidParameter.InvalidIndexMetaJson"
+            case invalidIndexName = "InvalidParameter.InvalidIndexName"
+            case invalidIndexType = "InvalidParameter.InvalidIndexType"
             case invalidInstanceId = "InvalidParameter.InvalidInstanceId"
+            case invalidIp = "InvalidParameter.InvalidIp"
+            case invalidIpList = "InvalidParameter.InvalidIpList"
+            case invalidKibanaPrivatePort = "InvalidParameter.InvalidKibanaPrivatePort"
+            case invalidLimit = "InvalidParameter.InvalidLimit"
+            case invalidLogType = "InvalidParameter.InvalidLogType"
+            case invalidMultiZoneInfo = "InvalidParameter.InvalidMultiZoneInfo"
+            case invalidNodeNames = "InvalidParameter.InvalidNodeNames"
+            case invalidNodeNum = "InvalidParameter.InvalidNodeNum"
+            case invalidNodeType = "InvalidParameter.InvalidNodeType"
+            case invalidOffset = "InvalidParameter.InvalidOffset"
+            case invalidOpType = "InvalidParameter.InvalidOpType"
+            case invalidOperationDuration = "InvalidParameter.InvalidOperationDuration"
+            case invalidOrderByKey = "InvalidParameter.InvalidOrderByKey"
+            case invalidOrderByType = "InvalidParameter.InvalidOrderByType"
+            case invalidPrivateAccess = "InvalidParameter.InvalidPrivateAccess"
+            case invalidPublicAccess = "InvalidParameter.InvalidPublicAccess"
+            case invalidRegion = "InvalidParameter.InvalidRegion"
+            case invalidRestartMode = "InvalidParameter.InvalidRestartMode"
+            case invalidRestartType = "InvalidParameter.InvalidRestartType"
             case invalidSecurityGroupIds = "InvalidParameter.InvalidSecurityGroupIds"
+            case invalidSubnetId = "InvalidParameter.InvalidSubnetId"
+            case invalidSubnetUidList = "InvalidParameter.InvalidSubnetUidList"
+            case invalidTagInfo = "InvalidParameter.InvalidTagInfo"
+            case invalidTagList = "InvalidParameter.InvalidTagList"
+            case invalidTimeParam = "InvalidParameter.InvalidTimeParam"
+            case invalidType = "InvalidParameter.InvalidType"
+            case invalidUpdateMetaJson = "InvalidParameter.InvalidUpdateMetaJson"
+            case invalidUpdateType = "InvalidParameter.InvalidUpdateType"
+            case invalidVoucherIds = "InvalidParameter.InvalidVoucherIds"
+            case invalidZone = "InvalidParameter.InvalidZone"
             case other = "InvalidParameter"
         }
 
@@ -46,12 +91,193 @@ extension TCEsError {
             self.context = context
         }
 
+        public static var gc: InvalidParameter {
+            InvalidParameter(.gc)
+        }
+
+        public static var invalidAppId: InvalidParameter {
+            InvalidParameter(.invalidAppId)
+        }
+
+        public static var invalidAutoVoucher: InvalidParameter {
+            InvalidParameter(.invalidAutoVoucher)
+        }
+
+        public static var invalidClusterName: InvalidParameter {
+            InvalidParameter(.invalidClusterName)
+        }
+
+        public static var invalidCosBackupInfo: InvalidParameter {
+            InvalidParameter(.invalidCosBackupInfo)
+        }
+
+        public static var invalidDeployMode: InvalidParameter {
+            InvalidParameter(.invalidDeployMode)
+        }
+
+        public static var invalidDiskCount: InvalidParameter {
+            InvalidParameter(.invalidDiskCount)
+        }
+
+        public static var invalidDiskEncrypt: InvalidParameter {
+            InvalidParameter(.invalidDiskEncrypt)
+        }
+
+        public static var invalidDiskEnhance: InvalidParameter {
+            InvalidParameter(.invalidDiskEnhance)
+        }
+
+        public static var invalidDiskSize: InvalidParameter {
+            InvalidParameter(.invalidDiskSize)
+        }
+
+        public static var invalidDiskType: InvalidParameter {
+            InvalidParameter(.invalidDiskType)
+        }
+
+        public static var invalidEsACL: InvalidParameter {
+            InvalidParameter(.invalidEsACL)
+        }
+
+        public static var invalidEsVersion: InvalidParameter {
+            InvalidParameter(.invalidEsVersion)
+        }
+
+        public static var invalidIndexMetaJson: InvalidParameter {
+            InvalidParameter(.invalidIndexMetaJson)
+        }
+
+        public static var invalidIndexName: InvalidParameter {
+            InvalidParameter(.invalidIndexName)
+        }
+
+        public static var invalidIndexType: InvalidParameter {
+            InvalidParameter(.invalidIndexType)
+        }
+
         public static var invalidInstanceId: InvalidParameter {
             InvalidParameter(.invalidInstanceId)
         }
 
+        public static var invalidIp: InvalidParameter {
+            InvalidParameter(.invalidIp)
+        }
+
+        public static var invalidIpList: InvalidParameter {
+            InvalidParameter(.invalidIpList)
+        }
+
+        public static var invalidKibanaPrivatePort: InvalidParameter {
+            InvalidParameter(.invalidKibanaPrivatePort)
+        }
+
+        public static var invalidLimit: InvalidParameter {
+            InvalidParameter(.invalidLimit)
+        }
+
+        public static var invalidLogType: InvalidParameter {
+            InvalidParameter(.invalidLogType)
+        }
+
+        public static var invalidMultiZoneInfo: InvalidParameter {
+            InvalidParameter(.invalidMultiZoneInfo)
+        }
+
+        public static var invalidNodeNames: InvalidParameter {
+            InvalidParameter(.invalidNodeNames)
+        }
+
+        public static var invalidNodeNum: InvalidParameter {
+            InvalidParameter(.invalidNodeNum)
+        }
+
+        public static var invalidNodeType: InvalidParameter {
+            InvalidParameter(.invalidNodeType)
+        }
+
+        public static var invalidOffset: InvalidParameter {
+            InvalidParameter(.invalidOffset)
+        }
+
+        public static var invalidOpType: InvalidParameter {
+            InvalidParameter(.invalidOpType)
+        }
+
+        public static var invalidOperationDuration: InvalidParameter {
+            InvalidParameter(.invalidOperationDuration)
+        }
+
+        public static var invalidOrderByKey: InvalidParameter {
+            InvalidParameter(.invalidOrderByKey)
+        }
+
+        public static var invalidOrderByType: InvalidParameter {
+            InvalidParameter(.invalidOrderByType)
+        }
+
+        public static var invalidPrivateAccess: InvalidParameter {
+            InvalidParameter(.invalidPrivateAccess)
+        }
+
+        public static var invalidPublicAccess: InvalidParameter {
+            InvalidParameter(.invalidPublicAccess)
+        }
+
+        public static var invalidRegion: InvalidParameter {
+            InvalidParameter(.invalidRegion)
+        }
+
+        public static var invalidRestartMode: InvalidParameter {
+            InvalidParameter(.invalidRestartMode)
+        }
+
+        public static var invalidRestartType: InvalidParameter {
+            InvalidParameter(.invalidRestartType)
+        }
+
         public static var invalidSecurityGroupIds: InvalidParameter {
             InvalidParameter(.invalidSecurityGroupIds)
+        }
+
+        public static var invalidSubnetId: InvalidParameter {
+            InvalidParameter(.invalidSubnetId)
+        }
+
+        public static var invalidSubnetUidList: InvalidParameter {
+            InvalidParameter(.invalidSubnetUidList)
+        }
+
+        public static var invalidTagInfo: InvalidParameter {
+            InvalidParameter(.invalidTagInfo)
+        }
+
+        public static var invalidTagList: InvalidParameter {
+            InvalidParameter(.invalidTagList)
+        }
+
+        public static var invalidTimeParam: InvalidParameter {
+            InvalidParameter(.invalidTimeParam)
+        }
+
+        public static var invalidType: InvalidParameter {
+            InvalidParameter(.invalidType)
+        }
+
+        public static var invalidUpdateMetaJson: InvalidParameter {
+            InvalidParameter(.invalidUpdateMetaJson)
+        }
+
+        public static var invalidUpdateType: InvalidParameter {
+            InvalidParameter(.invalidUpdateType)
+        }
+
+        /// 目前只支持1张代金券
+        public static var invalidVoucherIds: InvalidParameter {
+            InvalidParameter(.invalidVoucherIds)
+        }
+
+        public static var invalidZone: InvalidParameter {
+            InvalidParameter(.invalidZone)
         }
 
         /// 参数错误。
@@ -62,10 +288,100 @@ extension TCEsError {
         public func asEsError() -> TCEsError {
             let code: TCEsError.Code
             switch self.error {
+            case .gc:
+                code = .invalidParameter_GC
+            case .invalidAppId:
+                code = .invalidParameter_InvalidAppId
+            case .invalidAutoVoucher:
+                code = .invalidParameter_InvalidAutoVoucher
+            case .invalidClusterName:
+                code = .invalidParameter_InvalidClusterName
+            case .invalidCosBackupInfo:
+                code = .invalidParameter_InvalidCosBackupInfo
+            case .invalidDeployMode:
+                code = .invalidParameter_InvalidDeployMode
+            case .invalidDiskCount:
+                code = .invalidParameter_InvalidDiskCount
+            case .invalidDiskEncrypt:
+                code = .invalidParameter_InvalidDiskEncrypt
+            case .invalidDiskEnhance:
+                code = .invalidParameter_InvalidDiskEnhance
+            case .invalidDiskSize:
+                code = .invalidParameter_InvalidDiskSize
+            case .invalidDiskType:
+                code = .invalidParameter_InvalidDiskType
+            case .invalidEsACL:
+                code = .invalidParameter_InvalidEsACL
+            case .invalidEsVersion:
+                code = .invalidParameter_InvalidEsVersion
+            case .invalidIndexMetaJson:
+                code = .invalidParameter_InvalidIndexMetaJson
+            case .invalidIndexName:
+                code = .invalidParameter_InvalidIndexName
+            case .invalidIndexType:
+                code = .invalidParameter_InvalidIndexType
             case .invalidInstanceId:
                 code = .invalidParameter_InvalidInstanceId
+            case .invalidIp:
+                code = .invalidParameter_InvalidIp
+            case .invalidIpList:
+                code = .invalidParameter_InvalidIpList
+            case .invalidKibanaPrivatePort:
+                code = .invalidParameter_InvalidKibanaPrivatePort
+            case .invalidLimit:
+                code = .invalidParameter_InvalidLimit
+            case .invalidLogType:
+                code = .invalidParameter_InvalidLogType
+            case .invalidMultiZoneInfo:
+                code = .invalidParameter_InvalidMultiZoneInfo
+            case .invalidNodeNames:
+                code = .invalidParameter_InvalidNodeNames
+            case .invalidNodeNum:
+                code = .invalidParameter_InvalidNodeNum
+            case .invalidNodeType:
+                code = .invalidParameter_InvalidNodeType
+            case .invalidOffset:
+                code = .invalidParameter_InvalidOffset
+            case .invalidOpType:
+                code = .invalidParameter_InvalidOpType
+            case .invalidOperationDuration:
+                code = .invalidParameter_InvalidOperationDuration
+            case .invalidOrderByKey:
+                code = .invalidParameter_InvalidOrderByKey
+            case .invalidOrderByType:
+                code = .invalidParameter_InvalidOrderByType
+            case .invalidPrivateAccess:
+                code = .invalidParameter_InvalidPrivateAccess
+            case .invalidPublicAccess:
+                code = .invalidParameter_InvalidPublicAccess
+            case .invalidRegion:
+                code = .invalidParameter_InvalidRegion
+            case .invalidRestartMode:
+                code = .invalidParameter_InvalidRestartMode
+            case .invalidRestartType:
+                code = .invalidParameter_InvalidRestartType
             case .invalidSecurityGroupIds:
                 code = .invalidParameter_InvalidSecurityGroupIds
+            case .invalidSubnetId:
+                code = .invalidParameter_InvalidSubnetId
+            case .invalidSubnetUidList:
+                code = .invalidParameter_InvalidSubnetUidList
+            case .invalidTagInfo:
+                code = .invalidParameter_InvalidTagInfo
+            case .invalidTagList:
+                code = .invalidParameter_InvalidTagList
+            case .invalidTimeParam:
+                code = .invalidParameter_InvalidTimeParam
+            case .invalidType:
+                code = .invalidParameter_InvalidType
+            case .invalidUpdateMetaJson:
+                code = .invalidParameter_InvalidUpdateMetaJson
+            case .invalidUpdateType:
+                code = .invalidParameter_InvalidUpdateType
+            case .invalidVoucherIds:
+                code = .invalidParameter_InvalidVoucherIds
+            case .invalidZone:
+                code = .invalidParameter_InvalidZone
             case .other:
                 code = .invalidParameter
             }

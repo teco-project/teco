@@ -27,15 +27,19 @@ extension Waf {
         /// 删除的ip数组
         public let items: [String]
 
+        /// 若IsId字段为True，则Items列表元素需为Id，否则为IP
+        public let isId: Bool?
+
         /// 是否删除对应的域名下的所有黑/白IP名单，true表示全部删除，false表示只删除指定ip名单
         public let deleteAll: Bool?
 
         /// 是否为多域名黑白名单
         public let sourceType: String?
 
-        public init(domain: String, items: [String], deleteAll: Bool? = nil, sourceType: String? = nil) {
+        public init(domain: String, items: [String], isId: Bool? = nil, deleteAll: Bool? = nil, sourceType: String? = nil) {
             self.domain = domain
             self.items = items
+            self.isId = isId
             self.deleteAll = deleteAll
             self.sourceType = sourceType
         }
@@ -43,6 +47,7 @@ extension Waf {
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case items = "Items"
+            case isId = "IsId"
             case deleteAll = "DeleteAll"
             case sourceType = "SourceType"
         }
@@ -82,13 +87,13 @@ extension Waf {
 
     /// Waf IP黑白名单Delete接口
     @inlinable
-    public func deleteIpAccessControl(domain: String, items: [String], deleteAll: Bool? = nil, sourceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIpAccessControlResponse> {
-        self.deleteIpAccessControl(.init(domain: domain, items: items, deleteAll: deleteAll, sourceType: sourceType), region: region, logger: logger, on: eventLoop)
+    public func deleteIpAccessControl(domain: String, items: [String], isId: Bool? = nil, deleteAll: Bool? = nil, sourceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIpAccessControlResponse> {
+        self.deleteIpAccessControl(.init(domain: domain, items: items, isId: isId, deleteAll: deleteAll, sourceType: sourceType), region: region, logger: logger, on: eventLoop)
     }
 
     /// Waf IP黑白名单Delete接口
     @inlinable
-    public func deleteIpAccessControl(domain: String, items: [String], deleteAll: Bool? = nil, sourceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIpAccessControlResponse {
-        try await self.deleteIpAccessControl(.init(domain: domain, items: items, deleteAll: deleteAll, sourceType: sourceType), region: region, logger: logger, on: eventLoop)
+    public func deleteIpAccessControl(domain: String, items: [String], isId: Bool? = nil, deleteAll: Bool? = nil, sourceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIpAccessControlResponse {
+        try await self.deleteIpAccessControl(.init(domain: domain, items: items, isId: isId, deleteAll: deleteAll, sourceType: sourceType), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -267,12 +267,26 @@ extension Goosefs {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleDescription: String?
 
-        public init(bucketName: String, fileSystemPath: String, dataRepositoryTaskAutoStrategy: [String]? = nil, ruleId: String? = nil, ruleDescription: String? = nil) {
+        /// 桶关联状态 0：关联中 1：关联完成
+        public let status: UInt64?
+
+        /// 是否使用全球加速域名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let accelerateFlag: Bool?
+
+        /// 桶所在的园区
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bucketRegion: String?
+
+        public init(bucketName: String, fileSystemPath: String, dataRepositoryTaskAutoStrategy: [String]? = nil, ruleId: String? = nil, ruleDescription: String? = nil, status: UInt64? = nil, accelerateFlag: Bool? = nil, bucketRegion: String? = nil) {
             self.bucketName = bucketName
             self.fileSystemPath = fileSystemPath
             self.dataRepositoryTaskAutoStrategy = dataRepositoryTaskAutoStrategy
             self.ruleId = ruleId
             self.ruleDescription = ruleDescription
+            self.status = status
+            self.accelerateFlag = accelerateFlag
+            self.bucketRegion = bucketRegion
         }
 
         enum CodingKeys: String, CodingKey {
@@ -281,6 +295,9 @@ extension Goosefs {
             case dataRepositoryTaskAutoStrategy = "DataRepositoryTaskAutoStrategy"
             case ruleId = "RuleId"
             case ruleDescription = "RuleDescription"
+            case status = "Status"
+            case accelerateFlag = "AccelerateFlag"
+            case bucketRegion = "BucketRegion"
         }
     }
 

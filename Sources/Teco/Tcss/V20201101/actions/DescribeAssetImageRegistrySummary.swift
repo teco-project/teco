@@ -21,7 +21,15 @@ import TecoCore
 extension Tcss {
     /// DescribeAssetImageRegistrySummary请求参数结构体
     public struct DescribeAssetImageRegistrySummaryRequest: TCRequest {
-        public init() {
+        /// 过滤字段
+        public let filters: [AssetFilters]?
+
+        public init(filters: [AssetFilters]? = nil) {
+            self.filters = filters
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case filters = "Filters"
         }
     }
 
@@ -49,13 +57,13 @@ extension Tcss {
 
     /// 镜像仓库查询镜像统计信息
     @inlinable @discardableResult
-    public func describeAssetImageRegistrySummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistrySummaryResponse> {
-        self.describeAssetImageRegistrySummary(.init(), region: region, logger: logger, on: eventLoop)
+    public func describeAssetImageRegistrySummary(filters: [AssetFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistrySummaryResponse> {
+        self.describeAssetImageRegistrySummary(.init(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库查询镜像统计信息
     @inlinable @discardableResult
-    public func describeAssetImageRegistrySummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistrySummaryResponse {
-        try await self.describeAssetImageRegistrySummary(.init(), region: region, logger: logger, on: eventLoop)
+    public func describeAssetImageRegistrySummary(filters: [AssetFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistrySummaryResponse {
+        try await self.describeAssetImageRegistrySummary(.init(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

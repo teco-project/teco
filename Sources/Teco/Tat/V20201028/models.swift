@@ -97,6 +97,10 @@ extension Tat {
         /// 自定义参数的默认取值。
         public let defaultParameters: String
 
+        /// 自定义参数的默认取值。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let defaultParameterConfs: [DefaultParameterConf]?
+
         /// 命令的结构化描述。公共命令有值，用户命令为空字符串。
         public let formattedDescription: String
 
@@ -127,6 +131,7 @@ extension Tat {
             case updatedTime = "UpdatedTime"
             case enableParameter = "EnableParameter"
             case defaultParameters = "DefaultParameters"
+            case defaultParameterConfs = "DefaultParameterConfs"
             case formattedDescription = "FormattedDescription"
             case createdBy = "CreatedBy"
             case tags = "Tags"
@@ -167,6 +172,33 @@ extension Tat {
             case username = "Username"
             case outputCOSBucketUrl = "OutputCOSBucketUrl"
             case outputCOSKeyPrefix = "OutputCOSKeyPrefix"
+        }
+    }
+
+    /// 自定义参数。
+    public struct DefaultParameterConf: TCInputModel, TCOutputModel {
+        /// 参数名。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let parameterName: String?
+
+        /// 参数默认值。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let parameterValue: String?
+
+        /// 参数描述。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let parameterDescription: String?
+
+        public init(parameterName: String, parameterValue: String, parameterDescription: String? = nil) {
+            self.parameterName = parameterName
+            self.parameterValue = parameterValue
+            self.parameterDescription = parameterDescription
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case parameterName = "ParameterName"
+            case parameterValue = "ParameterValue"
+            case parameterDescription = "ParameterDescription"
         }
     }
 
@@ -338,16 +370,18 @@ extension Tat {
         public let taskResult: TaskResult
 
         /// 执行任务开始时间。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
-        @TCTimestampISO8601Encoding public var startTime: Date
+        @TCTimestampISO8601Encoding public var startTime: Date?
 
         /// 执行任务结束时间。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
-        @TCTimestampISO8601Encoding public var endTime: Date
+        @TCTimestampISO8601Encoding public var endTime: Date?
 
         /// 创建时间。
         ///
@@ -522,6 +556,144 @@ extension Tat {
         }
     }
 
+    /// 注册码信息。
+    public struct RegisterCodeInfo: TCOutputModel {
+        /// 注册码ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let registerCodeId: String?
+
+        /// 注册码描述。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let description: String?
+
+        /// 注册实例名称前缀。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceNamePrefix: String?
+
+        /// 该注册码允许注册的实列数目。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let registerLimit: Int64?
+
+        /// 该注册码的过期时间，按照 ISO8601 标准表示，并且使用 UTC 时间。
+        /// 格式为： YYYY-MM-DDThh:mm:ssZ。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var expiredTime: Date?
+
+        /// 该注册码限制tat_agent只能从IpAddressRange所描述公网出口进行注册。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ipAddressRange: String?
+
+        /// 该注册码是否可用。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let enabled: Bool?
+
+        /// 该注册码已注册数目。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let registeredCount: Int64?
+
+        /// 注册码创建时间，按照 ISO8601 标准表示，并且使用 UTC 时间。
+        /// 格式为： YYYY-MM-DDThh:mm:ssZ。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var createdTime: Date?
+
+        /// 注册码最近一次更新时间，按照 ISO8601 标准表示，并且使用 UTC 时间。
+        /// 格式为： YYYY-MM-DDThh:mm:ssZ。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var updatedTime: Date?
+
+        enum CodingKeys: String, CodingKey {
+            case registerCodeId = "RegisterCodeId"
+            case description = "Description"
+            case instanceNamePrefix = "InstanceNamePrefix"
+            case registerLimit = "RegisterLimit"
+            case expiredTime = "ExpiredTime"
+            case ipAddressRange = "IpAddressRange"
+            case enabled = "Enabled"
+            case registeredCount = "RegisteredCount"
+            case createdTime = "CreatedTime"
+            case updatedTime = "UpdatedTime"
+        }
+    }
+
+    /// 注册实例信息。
+    public struct RegisterInstanceInfo: TCOutputModel {
+        /// 注册码ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let registerCodeId: String?
+
+        /// 实例ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceId: String?
+
+        /// 实例名。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceName: String?
+
+        /// 机器ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let machineId: String?
+
+        /// 系统名。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let systemName: String?
+
+        /// 主机IP。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hostName: String?
+
+        /// 内网IP。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let localIp: String?
+
+        /// 公钥。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let publicKey: String?
+
+        /// 托管状态。
+        /// 返回Online表示实例正在托管，返回Offline表示实例未托管。
+        public let status: String?
+
+        /// 创建时间。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var createdTime: Date?
+
+        /// 上次更新时间。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var updatedTime: Date?
+
+        enum CodingKeys: String, CodingKey {
+            case registerCodeId = "RegisterCodeId"
+            case instanceId = "InstanceId"
+            case instanceName = "InstanceName"
+            case machineId = "MachineId"
+            case systemName = "SystemName"
+            case hostName = "HostName"
+            case localIp = "LocalIp"
+            case publicKey = "PublicKey"
+            case status = "Status"
+            case createdTime = "CreatedTime"
+            case updatedTime = "UpdatedTime"
+        }
+    }
+
     /// 周期执行器设置。
     public struct ScheduleSettings: TCInputModel, TCOutputModel {
         /// 执行策略：
@@ -580,16 +752,18 @@ extension Tat {
         public let output: String
 
         /// 命令执行开始时间。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
-        @TCTimestampISO8601Encoding public var execStartTime: Date
+        @TCTimestampISO8601Encoding public var execStartTime: Date?
 
         /// 命令执行结束时间。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
-        @TCTimestampISO8601Encoding public var execEndTime: Date
+        @TCTimestampISO8601Encoding public var execEndTime: Date?
 
         /// 命令最终输出被截断的字节数。
         public let dropped: UInt64

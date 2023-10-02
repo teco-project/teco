@@ -108,7 +108,7 @@ extension Waf {
     @available(*, unavailable, message: "接口已废弃")
     @inlinable
     public func describeAutoDenyIP(_ input: DescribeAutoDenyIPRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoDenyIPResponse> {
-        fatalError("DescribeAutoDenyIP is no longer available.")
+        fatalError("'DescribeAutoDenyIP' is no longer available.")
     }
 
     /// 描述WAF自动封禁IP详情
@@ -117,7 +117,7 @@ extension Waf {
     @available(*, unavailable, message: "接口已废弃")
     @inlinable
     public func describeAutoDenyIP(_ input: DescribeAutoDenyIPRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoDenyIPResponse {
-        fatalError("DescribeAutoDenyIP is no longer available.")
+        fatalError("'DescribeAutoDenyIP' is no longer available.")
     }
 
     /// 描述WAF自动封禁IP详情
@@ -126,7 +126,7 @@ extension Waf {
     @available(*, unavailable, message: "接口已废弃")
     @inlinable
     public func describeAutoDenyIP(domain: String, ip: String? = nil, count: Int64? = nil, category: String? = nil, vtsMin: UInt64? = nil, vtsMax: UInt64? = nil, ctsMin: UInt64? = nil, ctsMax: UInt64? = nil, skip: UInt64? = nil, limit: UInt64? = nil, name: String? = nil, sort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoDenyIPResponse> {
-        fatalError("DescribeAutoDenyIP is no longer available.")
+        fatalError("'DescribeAutoDenyIP' is no longer available.")
     }
 
     /// 描述WAF自动封禁IP详情
@@ -135,6 +135,6 @@ extension Waf {
     @available(*, unavailable, message: "接口已废弃")
     @inlinable
     public func describeAutoDenyIP(domain: String, ip: String? = nil, count: Int64? = nil, category: String? = nil, vtsMin: UInt64? = nil, vtsMax: UInt64? = nil, ctsMin: UInt64? = nil, ctsMax: UInt64? = nil, skip: UInt64? = nil, limit: UInt64? = nil, name: String? = nil, sort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoDenyIPResponse {
-        fatalError("DescribeAutoDenyIP is no longer available.")
+        fatalError("'DescribeAutoDenyIP' is no longer available.")
     }
 }

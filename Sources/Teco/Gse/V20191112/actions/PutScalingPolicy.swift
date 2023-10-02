@@ -323,7 +323,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func putScalingPolicy(_ input: PutScalingPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutScalingPolicyResponse> {
-        fatalError("PutScalingPolicy is no longer available.")
+        fatalError("'PutScalingPolicy' is no longer available.")
     }
 
     /// 设置扩缩容策略
@@ -553,7 +553,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func putScalingPolicy(_ input: PutScalingPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutScalingPolicyResponse {
-        fatalError("PutScalingPolicy is no longer available.")
+        fatalError("'PutScalingPolicy' is no longer available.")
     }
 
     /// 设置扩缩容策略
@@ -783,7 +783,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func putScalingPolicy(fleetId: String, name: String? = nil, scalingAdjustment: Int64? = nil, scalingAdjustmentType: String? = nil, threshold: Float? = nil, comparisonOperator: String? = nil, evaluationPeriods: Int64? = nil, metricName: String? = nil, policyType: String? = nil, targetConfiguration: TargetConfiguration? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutScalingPolicyResponse> {
-        fatalError("PutScalingPolicy is no longer available.")
+        fatalError("'PutScalingPolicy' is no longer available.")
     }
 
     /// 设置扩缩容策略
@@ -1013,6 +1013,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func putScalingPolicy(fleetId: String, name: String? = nil, scalingAdjustment: Int64? = nil, scalingAdjustmentType: String? = nil, threshold: Float? = nil, comparisonOperator: String? = nil, evaluationPeriods: Int64? = nil, metricName: String? = nil, policyType: String? = nil, targetConfiguration: TargetConfiguration? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutScalingPolicyResponse {
-        fatalError("PutScalingPolicy is no longer available.")
+        fatalError("'PutScalingPolicy' is no longer available.")
     }
 }

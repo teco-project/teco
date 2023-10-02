@@ -27,12 +27,21 @@ public protocol TCTrocketErrorType: TCServiceErrorType {
 public struct TCTrocketError: TCTrocketErrorType {
     enum Code: String {
         case failedOperation = "FailedOperation"
+        case failedOperation_InstanceNotReady = "FailedOperation.InstanceNotReady"
+        case limitExceeded_TopicNum = "LimitExceeded.TopicNum"
+        case operationDenied = "OperationDenied"
+        case resourceInUse = "ResourceInUse"
+        case resourceNotFound_Group = "ResourceNotFound.Group"
         case resourceNotFound_Instance = "ResourceNotFound.Instance"
+        case resourceNotFound_Role = "ResourceNotFound.Role"
+        case resourceNotFound_Topic = "ResourceNotFound.Topic"
+        case resourceUnavailable = "ResourceUnavailable"
+        case unsupportedOperation_ResourceAlreadyExists = "UnsupportedOperation.ResourceAlreadyExists"
     }
 
     /// Error domains affliated to ``TCTrocketError``.
     public static var domains: [TCErrorType.Type] {
-        [ResourceNotFound.self]
+        [FailedOperation.self, LimitExceeded.self, ResourceNotFound.self, UnsupportedOperation.self]
     }
 
     private let error: Code
@@ -62,9 +71,52 @@ public struct TCTrocketError: TCTrocketErrorType {
         TCTrocketError(.failedOperation)
     }
 
+    public static var failedOperation_InstanceNotReady: TCTrocketError {
+        TCTrocketError(.failedOperation_InstanceNotReady)
+    }
+
+    public static var limitExceeded_TopicNum: TCTrocketError {
+        TCTrocketError(.limitExceeded_TopicNum)
+    }
+
+    /// 操作被拒绝。
+    public static var operationDenied: TCTrocketError {
+        TCTrocketError(.operationDenied)
+    }
+
+    /// 资源被占用。
+    public static var resourceInUse: TCTrocketError {
+        TCTrocketError(.resourceInUse)
+    }
+
+    /// 消费组不存在，请检查后重试。
+    public static var resourceNotFound_Group: TCTrocketError {
+        TCTrocketError(.resourceNotFound_Group)
+    }
+
     /// 实例不存在。
     public static var resourceNotFound_Instance: TCTrocketError {
         TCTrocketError(.resourceNotFound_Instance)
+    }
+
+    /// 角色不存在，请检查后重试。
+    public static var resourceNotFound_Role: TCTrocketError {
+        TCTrocketError(.resourceNotFound_Role)
+    }
+
+    /// 主题不存在，请检查后重试。
+    public static var resourceNotFound_Topic: TCTrocketError {
+        TCTrocketError(.resourceNotFound_Topic)
+    }
+
+    /// 资源不可用。
+    public static var resourceUnavailable: TCTrocketError {
+        TCTrocketError(.resourceUnavailable)
+    }
+
+    /// 资源已存在，请检查后重试。
+    public static var unsupportedOperation_ResourceAlreadyExists: TCTrocketError {
+        TCTrocketError(.unsupportedOperation_ResourceAlreadyExists)
     }
 
     public func asTrocketError() -> TCTrocketError {

@@ -63,33 +63,41 @@ extension Cdn {
         }
     }
 
-    /// 解禁 URL
+    /// 解禁 URL(已废弃)
     ///
-    /// EnableCaches 用于解禁手工封禁的 URL，解禁成功后，全网生效时间约 5~10 分钟。（接口尚在内测中，暂未全量开放使用）
+    /// ### _**该接口已废弃** _
+    ///
+    /// EnableCaches 用于解禁手工封禁的 URL，解禁成功后，全网生效时间约 5~10 分钟。
     @inlinable
     public func enableCaches(_ input: EnableCachesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableCachesResponse> {
         self.client.execute(action: "EnableCaches", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 解禁 URL
+    /// 解禁 URL(已废弃)
     ///
-    /// EnableCaches 用于解禁手工封禁的 URL，解禁成功后，全网生效时间约 5~10 分钟。（接口尚在内测中，暂未全量开放使用）
+    /// ### _**该接口已废弃** _
+    ///
+    /// EnableCaches 用于解禁手工封禁的 URL，解禁成功后，全网生效时间约 5~10 分钟。
     @inlinable
     public func enableCaches(_ input: EnableCachesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableCachesResponse {
         try await self.client.execute(action: "EnableCaches", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 解禁 URL
+    /// 解禁 URL(已废弃)
     ///
-    /// EnableCaches 用于解禁手工封禁的 URL，解禁成功后，全网生效时间约 5~10 分钟。（接口尚在内测中，暂未全量开放使用）
+    /// ### _**该接口已废弃** _
+    ///
+    /// EnableCaches 用于解禁手工封禁的 URL，解禁成功后，全网生效时间约 5~10 分钟。
     @inlinable
     public func enableCaches(urls: [String], date: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableCachesResponse> {
         self.enableCaches(.init(urls: urls, date: date), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 解禁 URL
+    /// 解禁 URL(已废弃)
     ///
-    /// EnableCaches 用于解禁手工封禁的 URL，解禁成功后，全网生效时间约 5~10 分钟。（接口尚在内测中，暂未全量开放使用）
+    /// ### _**该接口已废弃** _
+    ///
+    /// EnableCaches 用于解禁手工封禁的 URL，解禁成功后，全网生效时间约 5~10 分钟。
     @inlinable
     public func enableCaches(urls: [String], date: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableCachesResponse {
         try await self.enableCaches(.init(urls: urls, date: date), region: region, logger: logger, on: eventLoop)

@@ -21,25 +21,25 @@ import TecoCore
 extension Tione {
     /// CreateNotebookImage请求参数结构体
     public struct CreateNotebookImageRequest: TCRequest {
-        /// 要保存的kernel数组
-        public let kernels: [String]
-
         /// 镜像信息
         public let imageInfo: ImageInfo
 
         /// notebook id
         public let notebookId: String
 
-        public init(kernels: [String], imageInfo: ImageInfo, notebookId: String) {
-            self.kernels = kernels
+        /// 要保存的kernel数组
+        public let kernels: [String]?
+
+        public init(imageInfo: ImageInfo, notebookId: String, kernels: [String]? = nil) {
             self.imageInfo = imageInfo
             self.notebookId = notebookId
+            self.kernels = kernels
         }
 
         enum CodingKeys: String, CodingKey {
-            case kernels = "Kernels"
             case imageInfo = "ImageInfo"
             case notebookId = "NotebookId"
+            case kernels = "Kernels"
         }
     }
 
@@ -67,13 +67,13 @@ extension Tione {
 
     /// 保存镜像
     @inlinable @discardableResult
-    public func createNotebookImage(kernels: [String], imageInfo: ImageInfo, notebookId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNotebookImageResponse> {
-        self.createNotebookImage(.init(kernels: kernels, imageInfo: imageInfo, notebookId: notebookId), region: region, logger: logger, on: eventLoop)
+    public func createNotebookImage(imageInfo: ImageInfo, notebookId: String, kernels: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNotebookImageResponse> {
+        self.createNotebookImage(.init(imageInfo: imageInfo, notebookId: notebookId, kernels: kernels), region: region, logger: logger, on: eventLoop)
     }
 
     /// 保存镜像
     @inlinable @discardableResult
-    public func createNotebookImage(kernels: [String], imageInfo: ImageInfo, notebookId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotebookImageResponse {
-        try await self.createNotebookImage(.init(kernels: kernels, imageInfo: imageInfo, notebookId: notebookId), region: region, logger: logger, on: eventLoop)
+    public func createNotebookImage(imageInfo: ImageInfo, notebookId: String, kernels: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotebookImageResponse {
+        try await self.createNotebookImage(.init(imageInfo: imageInfo, notebookId: notebookId, kernels: kernels), region: region, logger: logger, on: eventLoop)
     }
 }

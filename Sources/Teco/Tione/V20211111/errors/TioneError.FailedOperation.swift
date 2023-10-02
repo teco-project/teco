@@ -56,6 +56,7 @@ extension TCTioneError {
             case noFreeBucket = "FailedOperation.NoFreeBucket"
             case noPermission = "FailedOperation.NoPermission"
             case notAllow = "FailedOperation.NotAllow"
+            case notSupportedToCreateImage = "FailedOperation.NotSupportedToCreateImage"
             case processing = "FailedOperation.Processing"
             case queryBindingTagsFailed = "FailedOperation.QueryBindingTagsFailed"
             case queryDatabaseFail = "FailedOperation.QueryDatabaseFail"
@@ -304,6 +305,10 @@ extension TCTioneError {
             FailedOperation(.notAllow)
         }
 
+        public static var notSupportedToCreateImage: FailedOperation {
+            FailedOperation(.notSupportedToCreateImage)
+        }
+
         /// 请求正在处理中，请稍后再试。
         public static var processing: FailedOperation {
             FailedOperation(.processing)
@@ -505,6 +510,8 @@ extension TCTioneError {
                 code = .failedOperation_NoPermission
             case .notAllow:
                 code = .failedOperation_NotAllow
+            case .notSupportedToCreateImage:
+                code = .failedOperation_NotSupportedToCreateImage
             case .processing:
                 code = .failedOperation_Processing
             case .queryBindingTagsFailed:

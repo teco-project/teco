@@ -1914,6 +1914,10 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let modifiedTime: Int64?
 
+        /// 数据源页面展示类型，与Type对应
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let showType: String?
+
         enum CodingKeys: String, CodingKey {
             case databaseName = "DatabaseName"
             case description = "Description"
@@ -1945,6 +1949,7 @@ extension Wedata {
             case paramsString = "ParamsString"
             case bizParamsString = "BizParamsString"
             case modifiedTime = "ModifiedTime"
+            case showType = "ShowType"
         }
     }
 
@@ -4934,13 +4939,18 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alias: String?
 
-        public init(id: String, name: String, type: String, value: String? = nil, properties: [RecordField]? = nil, alias: String? = nil) {
+        /// 字段备注
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let comment: String?
+
+        public init(id: String, name: String, type: String, value: String? = nil, properties: [RecordField]? = nil, alias: String? = nil, comment: String? = nil) {
             self.id = id
             self.name = name
             self.type = type
             self.value = value
             self.properties = properties
             self.alias = alias
+            self.comment = comment
         }
 
         enum CodingKeys: String, CodingKey {
@@ -4950,6 +4960,7 @@ extension Wedata {
             case value = "Value"
             case properties = "Properties"
             case alias = "Alias"
+            case comment = "Comment"
         }
     }
 
@@ -5316,7 +5327,7 @@ extension Wedata {
     }
 
     /// 任务依赖边详情
-    public struct LinkOpsDto: TCOutputModel {
+    public struct LinkOpsDto: TCInputModel, TCOutputModel {
         /// 边的id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: String?
@@ -5352,6 +5363,18 @@ extension Wedata {
         /// 工作流id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let workflowId: String?
+
+        public init(id: String, linkKey: String, taskFrom: String, taskTo: String, inCharge: String, linkDependencyType: String, offset: String, linkType: String, workflowId: String) {
+            self.id = id
+            self.linkKey = linkKey
+            self.taskFrom = taskFrom
+            self.taskTo = taskTo
+            self.inCharge = inCharge
+            self.linkDependencyType = linkDependencyType
+            self.offset = offset
+            self.linkType = linkType
+            self.workflowId = workflowId
+        }
 
         enum CodingKeys: String, CodingKey {
             case id = "Id"
@@ -7479,7 +7502,11 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?
 
-        public init(ruleGroupId: UInt64? = nil, datasourceId: String? = nil, datasourceName: String? = nil, datasourceType: UInt64? = nil, monitorType: UInt64? = nil, updateTime: String? = nil, tableName: String? = nil, tableId: String? = nil, tableOwnerName: String? = nil, execStrategy: RuleGroupExecStrategy? = nil, subscription: RuleGroupSubscribe? = nil, databaseId: String? = nil, databaseName: String? = nil, permission: Bool? = nil, ruleCount: UInt64? = nil, monitorStatus: Bool? = nil, tableOwnerUserId: UInt64? = nil, instanceId: String? = nil) {
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createTime: String?
+
+        public init(ruleGroupId: UInt64? = nil, datasourceId: String? = nil, datasourceName: String? = nil, datasourceType: UInt64? = nil, monitorType: UInt64? = nil, updateTime: String? = nil, tableName: String? = nil, tableId: String? = nil, tableOwnerName: String? = nil, execStrategy: RuleGroupExecStrategy? = nil, subscription: RuleGroupSubscribe? = nil, databaseId: String? = nil, databaseName: String? = nil, permission: Bool? = nil, ruleCount: UInt64? = nil, monitorStatus: Bool? = nil, tableOwnerUserId: UInt64? = nil, instanceId: String? = nil, createTime: String? = nil) {
             self.ruleGroupId = ruleGroupId
             self.datasourceId = datasourceId
             self.datasourceName = datasourceName
@@ -7498,6 +7525,7 @@ extension Wedata {
             self.monitorStatus = monitorStatus
             self.tableOwnerUserId = tableOwnerUserId
             self.instanceId = instanceId
+            self.createTime = createTime
         }
 
         enum CodingKeys: String, CodingKey {
@@ -7519,6 +7547,7 @@ extension Wedata {
             case monitorStatus = "MonitorStatus"
             case tableOwnerUserId = "TableOwnerUserId"
             case instanceId = "InstanceId"
+            case createTime = "CreateTime"
         }
     }
 
@@ -10743,7 +10772,7 @@ extension Wedata {
     }
 
     /// 任务运维详情
-    public struct TaskOpsDto: TCOutputModel {
+    public struct TaskOpsDto: TCInputModel, TCOutputModel {
         /// 任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?
@@ -11063,6 +11092,89 @@ extension Wedata {
         /// 任务版本是否已提交
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let submit: Bool?
+
+        public init(taskId: String, virtualTaskId: String, virtualFlag: Bool, taskName: String, workflowId: String, realWorkflowId: String, workflowName: String, folderId: String, folderName: String, createTime: String, lastUpdate: String, status: String, inCharge: String, inChargeId: String, startTime: String, endTime: String, executionStartTime: String, executionEndTime: String, cycleType: String, cycleStep: UInt64, crontabExpression: String, delayTime: UInt64, startupTime: UInt64, retryWait: UInt64, retryAble: UInt64, taskAction: String, tryLimit: UInt64, runPriority: UInt64, taskType: TaskTypeOpsDto, brokerIp: String, clusterId: String, minDateTime: String, maxDateTime: String, executionTTL: Int64, selfDepend: String, leftCoordinate: Float, topCoordinate: Float, notes: String, instanceInitStrategy: String, yarnQueue: String, lastSchedulerCommitTime: String, normalizedJobStartTime: String, schedulerDesc: String, resourceGroup: String, creator: String, dependencyRel: String, dependencyWorkflow: String, eventListenerConfig: String, eventPublisherConfig: String, virtualTaskStatus: String, taskLinkInfo: LinkOpsDto, productName: String, projectId: String, projectIdent: String, projectName: String, ownId: String, userId: String, tenantId: String, updateUser: String, updateTime: String, updateUserId: String, taskTypeId: Int64, taskTypeDesc: String, showWorkflow: Bool, firstSubmitTime: String, firstRunTime: String, scheduleDesc: String, cycleNum: Int64, crontab: String, startDate: String, endDate: String, cycleUnit: String, initStrategy: String, layer: String, sourceServiceId: String, sourceServiceType: String, targetServiceId: String, targetServiceType: String, tasksStr: String, submit: Bool) {
+            self.taskId = taskId
+            self.virtualTaskId = virtualTaskId
+            self.virtualFlag = virtualFlag
+            self.taskName = taskName
+            self.workflowId = workflowId
+            self.realWorkflowId = realWorkflowId
+            self.workflowName = workflowName
+            self.folderId = folderId
+            self.folderName = folderName
+            self.createTime = createTime
+            self.lastUpdate = lastUpdate
+            self.status = status
+            self.inCharge = inCharge
+            self.inChargeId = inChargeId
+            self.startTime = startTime
+            self.endTime = endTime
+            self.executionStartTime = executionStartTime
+            self.executionEndTime = executionEndTime
+            self.cycleType = cycleType
+            self.cycleStep = cycleStep
+            self.crontabExpression = crontabExpression
+            self.delayTime = delayTime
+            self.startupTime = startupTime
+            self.retryWait = retryWait
+            self.retryAble = retryAble
+            self.taskAction = taskAction
+            self.tryLimit = tryLimit
+            self.runPriority = runPriority
+            self.taskType = taskType
+            self.brokerIp = brokerIp
+            self.clusterId = clusterId
+            self.minDateTime = minDateTime
+            self.maxDateTime = maxDateTime
+            self.executionTTL = executionTTL
+            self.selfDepend = selfDepend
+            self.leftCoordinate = leftCoordinate
+            self.topCoordinate = topCoordinate
+            self.notes = notes
+            self.instanceInitStrategy = instanceInitStrategy
+            self.yarnQueue = yarnQueue
+            self.lastSchedulerCommitTime = lastSchedulerCommitTime
+            self.normalizedJobStartTime = normalizedJobStartTime
+            self.schedulerDesc = schedulerDesc
+            self.resourceGroup = resourceGroup
+            self.creator = creator
+            self.dependencyRel = dependencyRel
+            self.dependencyWorkflow = dependencyWorkflow
+            self.eventListenerConfig = eventListenerConfig
+            self.eventPublisherConfig = eventPublisherConfig
+            self.virtualTaskStatus = virtualTaskStatus
+            self.taskLinkInfo = taskLinkInfo
+            self.productName = productName
+            self.projectId = projectId
+            self.projectIdent = projectIdent
+            self.projectName = projectName
+            self.ownId = ownId
+            self.userId = userId
+            self.tenantId = tenantId
+            self.updateUser = updateUser
+            self.updateTime = updateTime
+            self.updateUserId = updateUserId
+            self.taskTypeId = taskTypeId
+            self.taskTypeDesc = taskTypeDesc
+            self.showWorkflow = showWorkflow
+            self.firstSubmitTime = firstSubmitTime
+            self.firstRunTime = firstRunTime
+            self.scheduleDesc = scheduleDesc
+            self.cycleNum = cycleNum
+            self.crontab = crontab
+            self.startDate = startDate
+            self.endDate = endDate
+            self.cycleUnit = cycleUnit
+            self.initStrategy = initStrategy
+            self.layer = layer
+            self.sourceServiceId = sourceServiceId
+            self.sourceServiceType = sourceServiceType
+            self.targetServiceId = targetServiceId
+            self.targetServiceType = targetServiceType
+            self.tasksStr = tasksStr
+            self.submit = submit
+        }
 
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
@@ -11392,13 +11504,13 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let md5Value: String?
 
-        /// 创建时间，秒级别的时间戳
+        /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let createTime: UInt64?
+        public let createTime: String?
 
-        /// 更新时间，秒级别的时间戳
+        /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let updateTime: UInt64?
+        public let updateTime: String?
 
         /// 文件大小，单位为字节
         /// 注意：此字段可能返回 null，表示取不到有效值。

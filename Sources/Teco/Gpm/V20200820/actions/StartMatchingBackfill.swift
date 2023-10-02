@@ -69,7 +69,7 @@ extension Gpm {
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func startMatchingBackfill(_ input: StartMatchingBackfillRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMatchingBackfillResponse> {
-        fatalError("StartMatchingBackfill is no longer available.")
+        fatalError("'StartMatchingBackfill' is no longer available.")
     }
 
     /// 发起回填匹配
@@ -78,7 +78,7 @@ extension Gpm {
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func startMatchingBackfill(_ input: StartMatchingBackfillRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMatchingBackfillResponse {
-        fatalError("StartMatchingBackfill is no longer available.")
+        fatalError("'StartMatchingBackfill' is no longer available.")
     }
 
     /// 发起回填匹配
@@ -87,7 +87,7 @@ extension Gpm {
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func startMatchingBackfill(matchCode: String, players: [Player], gameServerSessionId: String, matchTicketId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMatchingBackfillResponse> {
-        fatalError("StartMatchingBackfill is no longer available.")
+        fatalError("'StartMatchingBackfill' is no longer available.")
     }
 
     /// 发起回填匹配
@@ -96,6 +96,6 @@ extension Gpm {
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func startMatchingBackfill(matchCode: String, players: [Player], gameServerSessionId: String, matchTicketId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMatchingBackfillResponse {
-        fatalError("StartMatchingBackfill is no longer available.")
+        fatalError("'StartMatchingBackfill' is no longer available.")
     }
 }

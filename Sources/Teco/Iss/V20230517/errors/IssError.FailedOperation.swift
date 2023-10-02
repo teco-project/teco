@@ -21,9 +21,11 @@ extension TCIssError {
         enum Code: String {
             case aiTaskStatusIsOff = "FailedOperation.AITaskStatusIsOff"
             case aiTaskStatusIsOn = "FailedOperation.AITaskStatusIsOn"
+            case databaseError = "FailedOperation.DatabaseError"
             case deviceResponseTimeOut = "FailedOperation.DeviceResponseTimeOut"
             case deviceResultTimeOut = "FailedOperation.DeviceResultTimeOut"
             case noMatchedCname = "FailedOperation.NoMatchedCname"
+            case requestTimeout = "FailedOperation.RequestTimeout"
             case other = "FailedOperation"
         }
 
@@ -57,6 +59,10 @@ extension TCIssError {
             FailedOperation(.aiTaskStatusIsOn)
         }
 
+        public static var databaseError: FailedOperation {
+            FailedOperation(.databaseError)
+        }
+
         public static var deviceResponseTimeOut: FailedOperation {
             FailedOperation(.deviceResponseTimeOut)
         }
@@ -67,6 +73,10 @@ extension TCIssError {
 
         public static var noMatchedCname: FailedOperation {
             FailedOperation(.noMatchedCname)
+        }
+
+        public static var requestTimeout: FailedOperation {
+            FailedOperation(.requestTimeout)
         }
 
         public static var other: FailedOperation {
@@ -80,12 +90,16 @@ extension TCIssError {
                 code = .failedOperation_AITaskStatusIsOff
             case .aiTaskStatusIsOn:
                 code = .failedOperation_AITaskStatusIsOn
+            case .databaseError:
+                code = .failedOperation_DatabaseError
             case .deviceResponseTimeOut:
                 code = .failedOperation_DeviceResponseTimeOut
             case .deviceResultTimeOut:
                 code = .failedOperation_DeviceResultTimeOut
             case .noMatchedCname:
                 code = .failedOperation_NoMatchedCname
+            case .requestTimeout:
+                code = .failedOperation_RequestTimeout
             case .other:
                 code = .failedOperation
             }

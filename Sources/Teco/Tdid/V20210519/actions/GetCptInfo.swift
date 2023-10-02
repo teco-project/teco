@@ -51,27 +51,27 @@ extension Tdid {
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func getCptInfo(_ input: GetCptInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCptInfoResponse> {
-        fatalError("GetCptInfo is no longer available.")
+        fatalError("'GetCptInfo' is no longer available.")
     }
 
     /// 凭证模版详情
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func getCptInfo(_ input: GetCptInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCptInfoResponse {
-        fatalError("GetCptInfo is no longer available.")
+        fatalError("'GetCptInfo' is no longer available.")
     }
 
     /// 凭证模版详情
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func getCptInfo(cptIndex: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCptInfoResponse> {
-        fatalError("GetCptInfo is no longer available.")
+        fatalError("'GetCptInfo' is no longer available.")
     }
 
     /// 凭证模版详情
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func getCptInfo(cptIndex: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCptInfoResponse {
-        fatalError("GetCptInfo is no longer available.")
+        fatalError("'GetCptInfo' is no longer available.")
     }
 }

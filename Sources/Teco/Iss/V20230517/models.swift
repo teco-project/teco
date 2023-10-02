@@ -517,6 +517,17 @@ extension Iss {
         }
     }
 
+    /// 批量操作设备返回结果
+    public struct BatchOperateDeviceData: TCOutputModel {
+        /// 任务 ID（用于在查询任务的子任务列表接口ListSubTasks中查询任务进度）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskId: String?
+
+        enum CodingKeys: String, CodingKey {
+            case taskId = "TaskId"
+        }
+    }
+
     /// 人体识别结果详情
     public struct BodyAIResultInfo: TCOutputModel {
         /// 时间字符串
@@ -1399,6 +1410,57 @@ extension Iss {
         }
     }
 
+    /// 网关设备数据
+    public struct GatewayDevice: TCOutputModel {
+        /// 设备ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let deviceId: String?
+
+        /// 网关接入协议类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let protocolType: Int64?
+
+        /// 网关接入协议名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let protocolTypeName: String?
+
+        /// 设备名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 设备类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let type: Int64?
+
+        /// 设备内网IP
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ip: String?
+
+        /// 设备端口
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let port: Int64?
+
+        /// 设备下通道数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let channelNum: Int64?
+
+        /// 设备状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case deviceId = "DeviceId"
+            case protocolType = "ProtocolType"
+            case protocolTypeName = "ProtocolTypeName"
+            case name = "Name"
+            case type = "Type"
+            case ip = "Ip"
+            case port = "Port"
+            case channelNum = "ChannelNum"
+            case status = "Status"
+        }
+    }
+
     /// 网关详情版本信息
     public struct GatewayVersion: TCOutputModel {
         /// 服务名称
@@ -1559,6 +1621,22 @@ extension Iss {
         }
     }
 
+    /// 查询网关设备列表返回数据
+    public struct ListGatewayDevicesData: TCOutputModel {
+        /// 网关下设备列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let list: [GatewayDevice]?
+
+        /// 网关下设备总数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalCount: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case list = "List"
+            case totalCount = "TotalCount"
+        }
+    }
+
     /// 查询网关列表返回结果
     public struct ListGatewaysData: TCOutputModel {
         /// 网关列表
@@ -1670,7 +1748,7 @@ extension Iss {
 
         /// 设备通道信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let list: RecordPlanChannelInfo?
+        public let list: [RecordPlanChannelInfo]?
 
         enum CodingKeys: String, CodingKey {
             case pageNumber = "PageNumber"
@@ -1752,6 +1830,36 @@ extension Iss {
             case pageSize = "PageSize"
             case totalCount = "TotalCount"
             case list = "List"
+        }
+    }
+
+    /// 列举子任务列表
+    public struct ListSubTasksData: TCOutputModel {
+        /// 子任务列表
+        public let list: [SubTaskData]
+
+        /// 子任务数量
+        public let totalCount: Int64
+
+        enum CodingKeys: String, CodingKey {
+            case list = "List"
+            case totalCount = "TotalCount"
+        }
+    }
+
+    /// 查询任务列表
+    public struct ListTasksData: TCOutputModel {
+        /// 任务列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let list: [TaskData]?
+
+        /// 任务数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalCount: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case list = "List"
+            case totalCount = "TotalCount"
         }
     }
 
@@ -2077,6 +2185,20 @@ extension Iss {
         }
     }
 
+    /// 录像切片信息
+    public struct RecordSliceInfo: TCOutputModel {
+        /// 计划ID
+        public let planId: String
+
+        /// 录像切片开始和结束时间列表
+        public let list: [RecordTimeLine]
+
+        enum CodingKeys: String, CodingKey {
+            case planId = "PlanId"
+            case list = "List"
+        }
+    }
+
     /// 实时上云模板信息数据
     public struct RecordTemplateInfo: TCOutputModel {
         /// 模板ID
@@ -2167,6 +2289,128 @@ extension Iss {
         enum CodingKeys: String, CodingKey {
             case timeInterval = "TimeInterval"
             case operTimeSlot = "OperTimeSlot"
+        }
+    }
+
+    /// 子任务详情
+    public struct SubTaskData: TCOutputModel {
+        /// 子任务ID
+        public let subTaskId: String
+
+        /// 任务状态1:NEW,2:RUNNING,3:COMPLETED ,4:FAILED
+        public let status: Int64
+
+        /// 任务失败原因
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let failReason: String?
+
+        /// 任务进度
+        public let progress: Float
+
+        /// 操作类型
+        public let action: String
+
+        /// 操作类型中文描述
+        public let actionZhDesc: String
+
+        /// 资源ID
+        public let resourceId: String
+
+        /// 启动任务时间
+        public let startedAt: String
+
+        /// 创建任务时间
+        public let createdAt: String
+
+        /// 更新任务时间
+        public let updatedAt: String
+
+        /// 任务运行时间，单位ms
+        public let runtime: Int64
+
+        enum CodingKeys: String, CodingKey {
+            case subTaskId = "SubTaskId"
+            case status = "Status"
+            case failReason = "FailReason"
+            case progress = "Progress"
+            case action = "Action"
+            case actionZhDesc = "ActionZhDesc"
+            case resourceId = "ResourceId"
+            case startedAt = "StartedAt"
+            case createdAt = "CreatedAt"
+            case updatedAt = "UpdatedAt"
+            case runtime = "Runtime"
+        }
+    }
+
+    /// 查询复杂任务详情返回结果
+    public struct TaskData: TCOutputModel {
+        /// 任务ID
+        public let taskId: String
+
+        /// 任务状态1:NEW,2:RUNNING,3:COMPLETED ,4:FAILED
+        public let status: Int64
+
+        /// 失败原因
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let failReason: String?
+
+        /// 进度（0-1）
+        public let progress: Float
+
+        /// 任务操作类型，批量任务类型以Batch开头
+        public let action: String
+
+        /// 操作类型中文描述
+        public let actionZhDesc: String
+
+        /// 任务类型 1.简单 2.复杂 3.子任务
+        public let taskType: Int64
+
+        /// 任务资源id（复杂任务该字段无效）
+        public let resourceId: String
+
+        /// 总任务数（仅复杂任务有效）
+        public let total: Int64
+
+        /// 成功任务数（仅复杂任务有效）
+        public let successCount: Int64
+
+        /// 失败任务数（仅复杂任务有效）
+        public let failCount: Int64
+
+        /// 运行任务数（仅复杂任务有效）
+        public let runningCount: Int64
+
+        /// 启动任务时间
+        public let startedAt: String
+
+        /// 创建任务时间
+        public let createdAt: String
+
+        /// 更新任务时间
+        public let updatedAt: String
+
+        /// 任务运行时间，单位ms
+        public let runtime: Int64
+
+        enum CodingKeys: String, CodingKey {
+            case taskId = "TaskId"
+            case status = "Status"
+            case failReason = "FailReason"
+            case progress = "Progress"
+            case action = "Action"
+            case actionZhDesc = "ActionZhDesc"
+            case taskType = "TaskType"
+            case resourceId = "ResourceId"
+            case total = "Total"
+            case successCount = "SuccessCount"
+            case failCount = "FailCount"
+            case runningCount = "RunningCount"
+            case startedAt = "StartedAt"
+            case createdAt = "CreatedAt"
+            case updatedAt = "UpdatedAt"
+            case runtime = "Runtime"
         }
     }
 
@@ -2442,15 +2686,15 @@ extension Iss {
         public let lifeCycle: LifeCycleData?
 
         /// 要新增的设备通道（Json数组，没有新增时，不需要该字段，一次添加通道总数不超过5000个，包括组织目录下的通道数量）
-        public let add: String?
+        public let add: [ChannelInfo]?
 
         /// 要删除的设备通道（Json数组，内容为要删除的设备通道id，没有删除设备通道时，不需要该字段）
-        public let del: String?
+        public let del: [String]?
 
         /// 添加组织目录下所有设备通道（Json数组，可以为空，并且通道总数量不超过5000个（包括Add字段通道数量））
-        public let organizationId: String?
+        public let organizationId: [String]?
 
-        public init(planName: String? = nil, templateId: String? = nil, describe: String? = nil, lifeCycle: LifeCycleData? = nil, add: String? = nil, del: String? = nil, organizationId: String? = nil) {
+        public init(planName: String? = nil, templateId: String? = nil, describe: String? = nil, lifeCycle: LifeCycleData? = nil, add: [ChannelInfo]? = nil, del: [String]? = nil, organizationId: [String]? = nil) {
             self.planName = planName
             self.templateId = templateId
             self.describe = describe

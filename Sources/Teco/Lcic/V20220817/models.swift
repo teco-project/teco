@@ -229,6 +229,10 @@ extension Lcic {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cover: String?
 
+        /// 课件预览地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let preview: String?
+
         enum CodingKeys: String, CodingKey {
             case documentId = "DocumentId"
             case documentUrl = "DocumentUrl"
@@ -248,6 +252,7 @@ extension Lcic {
             case width = "Width"
             case height = "Height"
             case cover = "Cover"
+            case preview = "Preview"
         }
     }
 
@@ -261,9 +266,29 @@ extension Lcic {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userId: String?
 
+        /// 用户设备类型。0: Unknown; 1: Windows; 2: macOS; 3: Android; 4: iOS; 5: Web; 6: Mobile webpage; 7: Weixin Mini Program.
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let device: UInt64?
+
+        /// 录制时长。单位：秒
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let duration: UInt64?
+
+        /// 录制文件大小
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let recordSize: UInt64?
+
+        /// 录制url
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let recordUrl: String?
+
         enum CodingKeys: String, CodingKey {
             case roomId = "RoomId"
             case userId = "UserId"
+            case device = "Device"
+            case duration = "Duration"
+            case recordSize = "RecordSize"
+            case recordUrl = "RecordUrl"
         }
     }
 
@@ -579,7 +604,10 @@ extension Lcic {
         /// 房间类型: 0 小班课（默认值）; 1 大班课; 2 1V1 (后续扩展)
         public let roomType: Int64?
 
-        public init(name: String, startTime: UInt64, endTime: UInt64, resolution: UInt64, maxMicNumber: UInt64, subType: String, teacherId: String? = nil, autoMic: UInt64? = nil, turnOffMic: UInt64? = nil, audioQuality: UInt64? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, rtcAudienceNumber: UInt64? = nil, audienceType: UInt64? = nil, recordLayout: UInt64? = nil, groupId: String? = nil, enableDirectControl: UInt64? = nil, interactionMode: Int64? = nil, videoOrientation: Int64? = nil, isGradingRequiredPostClass: Int64? = nil, roomType: Int64? = nil) {
+        /// 拖堂时间：单位分钟，0为不限制(默认值), -1为不能拖堂，大于0为拖堂的时间，最大值120分钟
+        public let endDelayTime: Int64?
+
+        public init(name: String, startTime: UInt64, endTime: UInt64, resolution: UInt64, maxMicNumber: UInt64, subType: String, teacherId: String? = nil, autoMic: UInt64? = nil, turnOffMic: UInt64? = nil, audioQuality: UInt64? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, rtcAudienceNumber: UInt64? = nil, audienceType: UInt64? = nil, recordLayout: UInt64? = nil, groupId: String? = nil, enableDirectControl: UInt64? = nil, interactionMode: Int64? = nil, videoOrientation: Int64? = nil, isGradingRequiredPostClass: Int64? = nil, roomType: Int64? = nil, endDelayTime: Int64? = nil) {
             self.name = name
             self.startTime = startTime
             self.endTime = endTime
@@ -601,6 +629,7 @@ extension Lcic {
             self.videoOrientation = videoOrientation
             self.isGradingRequiredPostClass = isGradingRequiredPostClass
             self.roomType = roomType
+            self.endDelayTime = endDelayTime
         }
 
         enum CodingKeys: String, CodingKey {
@@ -625,6 +654,7 @@ extension Lcic {
             case videoOrientation = "VideoOrientation"
             case isGradingRequiredPostClass = "IsGradingRequiredPostClass"
             case roomType = "RoomType"
+            case endDelayTime = "EndDelayTime"
         }
     }
 
@@ -676,7 +706,7 @@ extension Lcic {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordUrl: String?
 
-        /// 最高房间内人数（包括老师），0表示不限制，默认为0
+        /// 最高房间内人数（不包括老师），0表示不限制，默认为0
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxMicNumber: UInt64?
 
@@ -700,6 +730,10 @@ extension Lcic {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let roomType: Int64?
 
+        /// 拖堂时间：单位分钟，0为不限制(默认值), -1为不能拖堂，大于0为拖堂的时间，最大值120分钟
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let endDelayTime: Int64?
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case roomId = "RoomId"
@@ -718,6 +752,7 @@ extension Lcic {
             case videoOrientation = "VideoOrientation"
             case isGradingRequiredPostClass = "IsGradingRequiredPostClass"
             case roomType = "RoomType"
+            case endDelayTime = "EndDelayTime"
         }
     }
 
@@ -759,11 +794,16 @@ extension Lcic {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let avatar: String?
 
+        /// 用户在客户系统的Id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let originId: String?
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case userId = "UserId"
             case name = "Name"
             case avatar = "Avatar"
+            case originId = "OriginId"
         }
     }
 

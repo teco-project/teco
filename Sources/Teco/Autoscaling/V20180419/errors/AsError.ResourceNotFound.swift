@@ -19,6 +19,7 @@ import TecoCore
 extension TCAsError {
     public struct ResourceNotFound: TCAsErrorType {
         enum Code: String {
+            case autoScalingGroupIdNotFound = "ResourceNotFound.AutoScalingGroupIdNotFound"
             case autoScalingGroupNotFound = "ResourceNotFound.AutoScalingGroupNotFound"
             case autoScalingNotificationNotFound = "ResourceNotFound.AutoScalingNotificationNotFound"
             case bandwidthPackageIdNotFound = "ResourceNotFound.BandwidthPackageIdNotFound"
@@ -35,6 +36,7 @@ extension TCAsError {
             case loadBalancerNotFound = "ResourceNotFound.LoadBalancerNotFound"
             case loadBalancerNotInAutoScalingGroup = "ResourceNotFound.LoadBalancerNotInAutoScalingGroup"
             case locationNotFound = "ResourceNotFound.LocationNotFound"
+            case refreshActivityNotFound = "ResourceNotFound.RefreshActivityNotFound"
             case scalingPolicyNotFound = "ResourceNotFound.ScalingPolicyNotFound"
             case scheduledActionNotFound = "ResourceNotFound.ScheduledActionNotFound"
             case tdmqcmqQueueNotFound = "ResourceNotFound.TDMQCMQQueueNotFound"
@@ -61,6 +63,11 @@ extension TCAsError {
         internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
+        }
+
+        /// 伸缩组不存在。
+        public static var autoScalingGroupIdNotFound: ResourceNotFound {
+            ResourceNotFound(.autoScalingGroupIdNotFound)
         }
 
         /// 伸缩组不存在。
@@ -149,6 +156,11 @@ extension TCAsError {
             ResourceNotFound(.locationNotFound)
         }
 
+        /// 检查输入的实例刷新活动 ID 是否正确。
+        public static var refreshActivityNotFound: ResourceNotFound {
+            ResourceNotFound(.refreshActivityNotFound)
+        }
+
         /// 告警策略不存在。
         public static var scalingPolicyNotFound: ResourceNotFound {
             ResourceNotFound(.scalingPolicyNotFound)
@@ -172,6 +184,8 @@ extension TCAsError {
         public func asAsError() -> TCAsError {
             let code: TCAsError.Code
             switch self.error {
+            case .autoScalingGroupIdNotFound:
+                code = .resourceNotFound_AutoScalingGroupIdNotFound
             case .autoScalingGroupNotFound:
                 code = .resourceNotFound_AutoScalingGroupNotFound
             case .autoScalingNotificationNotFound:
@@ -204,6 +218,8 @@ extension TCAsError {
                 code = .resourceNotFound_LoadBalancerNotInAutoScalingGroup
             case .locationNotFound:
                 code = .resourceNotFound_LocationNotFound
+            case .refreshActivityNotFound:
+                code = .resourceNotFound_RefreshActivityNotFound
             case .scalingPolicyNotFound:
                 code = .resourceNotFound_ScalingPolicyNotFound
             case .scheduledActionNotFound:

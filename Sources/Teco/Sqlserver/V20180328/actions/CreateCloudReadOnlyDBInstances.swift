@@ -63,7 +63,7 @@ extension Sqlserver {
         /// 付费模式，取值支持 PREPAID（预付费），POSTPAID（后付费）。
         public let instanceChargeType: String?
 
-        /// 本次购买几个只读实例，默认值为2。
+        /// 本次即将购买的实例数量，默认取值2。
         public let goodsNum: Int64?
 
         /// VPC子网ID，形如subnet-bdoe83fa；SubnetId和VpcId需同时设置或者同时不设置

@@ -57,7 +57,10 @@ extension Waf {
         /// ip
         public let ip: String?
 
-        public init(domain: String, count: UInt64, actionType: UInt64? = nil, vtsMin: UInt64? = nil, vtsMax: UInt64? = nil, ctsMin: UInt64? = nil, ctsMax: UInt64? = nil, offSet: UInt64? = nil, limit: UInt64? = nil, source: String? = nil, sort: String? = nil, ip: String? = nil) {
+        /// 生效状态
+        public let validStatus: Int64?
+
+        public init(domain: String, count: UInt64, actionType: UInt64? = nil, vtsMin: UInt64? = nil, vtsMax: UInt64? = nil, ctsMin: UInt64? = nil, ctsMax: UInt64? = nil, offSet: UInt64? = nil, limit: UInt64? = nil, source: String? = nil, sort: String? = nil, ip: String? = nil, validStatus: Int64? = nil) {
             self.domain = domain
             self.count = count
             self.actionType = actionType
@@ -70,6 +73,7 @@ extension Waf {
             self.source = source
             self.sort = sort
             self.ip = ip
+            self.validStatus = validStatus
         }
 
         enum CodingKeys: String, CodingKey {
@@ -85,6 +89,7 @@ extension Waf {
             case source = "Source"
             case sort = "Sort"
             case ip = "Ip"
+            case validStatus = "ValidStatus"
         }
     }
 
@@ -117,13 +122,13 @@ extension Waf {
 
     /// Waf ip黑白名单查询
     @inlinable
-    public func describeIpAccessControl(domain: String, count: UInt64, actionType: UInt64? = nil, vtsMin: UInt64? = nil, vtsMax: UInt64? = nil, ctsMin: UInt64? = nil, ctsMax: UInt64? = nil, offSet: UInt64? = nil, limit: UInt64? = nil, source: String? = nil, sort: String? = nil, ip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpAccessControlResponse> {
-        self.describeIpAccessControl(.init(domain: domain, count: count, actionType: actionType, vtsMin: vtsMin, vtsMax: vtsMax, ctsMin: ctsMin, ctsMax: ctsMax, offSet: offSet, limit: limit, source: source, sort: sort, ip: ip), region: region, logger: logger, on: eventLoop)
+    public func describeIpAccessControl(domain: String, count: UInt64, actionType: UInt64? = nil, vtsMin: UInt64? = nil, vtsMax: UInt64? = nil, ctsMin: UInt64? = nil, ctsMax: UInt64? = nil, offSet: UInt64? = nil, limit: UInt64? = nil, source: String? = nil, sort: String? = nil, ip: String? = nil, validStatus: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpAccessControlResponse> {
+        self.describeIpAccessControl(.init(domain: domain, count: count, actionType: actionType, vtsMin: vtsMin, vtsMax: vtsMax, ctsMin: ctsMin, ctsMax: ctsMax, offSet: offSet, limit: limit, source: source, sort: sort, ip: ip, validStatus: validStatus), region: region, logger: logger, on: eventLoop)
     }
 
     /// Waf ip黑白名单查询
     @inlinable
-    public func describeIpAccessControl(domain: String, count: UInt64, actionType: UInt64? = nil, vtsMin: UInt64? = nil, vtsMax: UInt64? = nil, ctsMin: UInt64? = nil, ctsMax: UInt64? = nil, offSet: UInt64? = nil, limit: UInt64? = nil, source: String? = nil, sort: String? = nil, ip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpAccessControlResponse {
-        try await self.describeIpAccessControl(.init(domain: domain, count: count, actionType: actionType, vtsMin: vtsMin, vtsMax: vtsMax, ctsMin: ctsMin, ctsMax: ctsMax, offSet: offSet, limit: limit, source: source, sort: sort, ip: ip), region: region, logger: logger, on: eventLoop)
+    public func describeIpAccessControl(domain: String, count: UInt64, actionType: UInt64? = nil, vtsMin: UInt64? = nil, vtsMax: UInt64? = nil, ctsMin: UInt64? = nil, ctsMax: UInt64? = nil, offSet: UInt64? = nil, limit: UInt64? = nil, source: String? = nil, sort: String? = nil, ip: String? = nil, validStatus: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpAccessControlResponse {
+        try await self.describeIpAccessControl(.init(domain: domain, count: count, actionType: actionType, vtsMin: vtsMin, vtsMax: vtsMax, ctsMin: ctsMin, ctsMax: ctsMax, offSet: offSet, limit: limit, source: source, sort: sort, ip: ip, validStatus: validStatus), region: region, logger: logger, on: eventLoop)
     }
 }

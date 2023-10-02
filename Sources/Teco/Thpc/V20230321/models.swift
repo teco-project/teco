@@ -337,6 +337,33 @@ extension Thpc {
         }
     }
 
+    /// 描述了实例的增强服务启用情况与其设置，如云安全，云监控等实例 Agent
+    public struct EnhancedService: TCInputModel, TCOutputModel {
+        /// 开启云安全服务。若不指定该参数，则默认开启云安全服务。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let securityService: RunSecurityServiceEnabled?
+
+        /// 开启云监控服务。若不指定该参数，则默认开启云监控服务。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let monitorService: RunMonitorServiceEnabled?
+
+        /// 开启云自动化助手服务（TencentCloud Automation Tools，TAT）。若不指定该参数，默认开启云自动化助手服务。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let automationService: RunAutomationServiceEnabled?
+
+        public init(securityService: RunSecurityServiceEnabled? = nil, monitorService: RunMonitorServiceEnabled? = nil, automationService: RunAutomationServiceEnabled? = nil) {
+            self.securityService = securityService
+            self.monitorService = monitorService
+            self.automationService = automationService
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case securityService = "SecurityService"
+            case monitorService = "MonitorService"
+            case automationService = "AutomationService"
+        }
+    }
+
     /// 弹性扩容节点配置信息。
     public struct ExpansionNodeConfig: TCInputModel {
         /// 扩容实例所在的位置。
@@ -920,7 +947,18 @@ extension Thpc {
         /// 每轮扩容最大节点个数。默认值：100。取值范围：1～100。
         public let maxNodesPerCycle: Int64?
 
-        public init(queueName: String, minSize: UInt64? = nil, maxSize: UInt64? = nil, enableAutoExpansion: Bool? = nil, enableAutoShrink: Bool? = nil, imageId: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, internetAccessible: InternetAccessible? = nil, expansionNodeConfigs: [ExpansionNodeConfig]? = nil, desiredIdleNodeCapacity: Int64? = nil, scaleOutRatio: Int64? = nil, scaleOutNodeThreshold: Int64? = nil, maxNodesPerCycle: Int64? = nil) {
+        /// 扩容过程中，作业的内存在匹配实例机型时增大比例（不会影响作业提交的内存大小，只影响匹配计算过程）。
+        ///
+        /// 针对场景：由于实例机型的总内存会大于实例内部的可用内存，16GB内存规格的实例，实例操作系统内的可用内存只有约14.9GB内存。假设此时提交一个需要15GB内存的作业，
+        ///
+        /// - 当ScaleUpMemRatio=0时，会匹配到16GB内存规格的实例,但是由于操作系统内的可用内存为14.9GB小于作业所需的15GB，扩容出来的实例作业无法运行起来。
+        /// - 当ScaleUpMemRatio=10时，匹配实例规格会按照15*(1+10%)=16.5GB来进行实例规格匹配，则不会匹配到16GB的实例，而是更大内存规格的实例来保证作业能够被运行起来。
+        public let scaleUpMemRatio: Int64?
+
+        /// 增强服务。通过该参数可以指定是否开启云安全、云监控等服务。若不指定该参数，则默认开启云监控、云安全服务、自动化助手服务。
+        public let enhancedService: EnhancedService?
+
+        public init(queueName: String, minSize: UInt64? = nil, maxSize: UInt64? = nil, enableAutoExpansion: Bool? = nil, enableAutoShrink: Bool? = nil, imageId: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, internetAccessible: InternetAccessible? = nil, expansionNodeConfigs: [ExpansionNodeConfig]? = nil, desiredIdleNodeCapacity: Int64? = nil, scaleOutRatio: Int64? = nil, scaleOutNodeThreshold: Int64? = nil, maxNodesPerCycle: Int64? = nil, scaleUpMemRatio: Int64? = nil, enhancedService: EnhancedService? = nil) {
             self.queueName = queueName
             self.minSize = minSize
             self.maxSize = maxSize
@@ -935,6 +973,8 @@ extension Thpc {
             self.scaleOutRatio = scaleOutRatio
             self.scaleOutNodeThreshold = scaleOutNodeThreshold
             self.maxNodesPerCycle = maxNodesPerCycle
+            self.scaleUpMemRatio = scaleUpMemRatio
+            self.enhancedService = enhancedService
         }
 
         enum CodingKeys: String, CodingKey {
@@ -952,28 +992,30 @@ extension Thpc {
             case scaleOutRatio = "ScaleOutRatio"
             case scaleOutNodeThreshold = "ScaleOutNodeThreshold"
             case maxNodesPerCycle = "MaxNodesPerCycle"
+            case scaleUpMemRatio = "ScaleUpMemRatio"
+            case enhancedService = "EnhancedService"
         }
     }
 
     /// 扩容队列配置概览。
     public struct QueueConfigOverview: TCOutputModel {
         /// 队列名称。
-        public let queueName: String?
+        public let queueName: String
 
         /// 队列中弹性节点数量最小值。取值范围0～200。
-        public let minSize: Int64?
+        public let minSize: Int64
 
         /// 队列中弹性节点数量最大值。取值范围0～200。
-        public let maxSize: Int64?
+        public let maxSize: Int64
 
         /// 是否开启自动扩容。
-        public let enableAutoExpansion: Bool?
+        public let enableAutoExpansion: Bool
 
         /// 是否开启自动缩容。
-        public let enableAutoShrink: Bool?
+        public let enableAutoShrink: Bool
 
         /// 扩容节点配置信息。
-        public let expansionNodeConfigs: [ExpansionNodeConfigOverview]?
+        public let expansionNodeConfigs: [ExpansionNodeConfigOverview]
 
         /// 队列中期望的空闲节点数量（包含弹性节点和静态节点）。默认值：0。队列中，处于空闲状态的节点小于此值，集群会扩容弹性节点；处于空闲状态的节点大于此值，集群会缩容弹性节点。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -994,6 +1036,15 @@ extension Thpc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxNodesPerCycle: Int64?
 
+        /// 扩容过程中，作业的内存在匹配实例机型时增大比例（不会影响作业提交的内存大小，只影响匹配计算过程）。
+        ///
+        /// 针对场景：由于实例机型的总内存会大于实例内部的可用内存，16GB内存规格的实例，实例操作系统内的可用内存只有约14.9GB内存。假设此时提交一个需要15GB内存的作业，
+        ///
+        /// - 当ScaleUpMemRatio=0时，会匹配到16GB内存规格的实例,但是由于操作系统内的可用内存为14.9GB小于作业所需的15GB，扩容出来的实例作业无法运行起来。
+        /// - 当ScaleUpMemRatio=10时，匹配实例规格会按照15*(1+10%)=16.5GB来进行实例规格匹配，则不会匹配到16GB的实例，而是更大内存规格的实例来保证作业能够被运行起来。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scaleUpMemRatio: Int64?
+
         enum CodingKeys: String, CodingKey {
             case queueName = "QueueName"
             case minSize = "MinSize"
@@ -1005,6 +1056,7 @@ extension Thpc {
             case scaleOutRatio = "ScaleOutRatio"
             case scaleOutNodeThreshold = "ScaleOutNodeThreshold"
             case maxNodesPerCycle = "MaxNodesPerCycle"
+            case scaleUpMemRatio = "ScaleUpMemRatio"
         }
     }
 
@@ -1016,6 +1068,64 @@ extension Thpc {
 
         enum CodingKeys: String, CodingKey {
             case queueName = "QueueName"
+        }
+    }
+
+    /// 描述了 “云自动化助手” 服务相关的信息。
+    public struct RunAutomationServiceEnabled: TCInputModel, TCOutputModel {
+        /// 是否开启云自动化助手。取值范围：
+        ///
+        /// - TRUE：表示开启云自动化助手服务
+        /// - FALSE：表示不开启云自动化助手服务
+        ///
+        /// 默认取值：TRUE。
+        public let enabled: Bool?
+
+        public init(enabled: Bool? = nil) {
+            self.enabled = enabled
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case enabled = "Enabled"
+        }
+    }
+
+    /// 描述了 “云监控” 服务相关的信息。
+    public struct RunMonitorServiceEnabled: TCInputModel, TCOutputModel {
+        /// 是否开启[云监控](/document/product/248)服务。取值范围：
+        ///
+        /// - TRUE：表示开启云监控服务
+        /// - FALSE：表示不开启云监控服务
+        ///
+        /// 默认取值：TRUE。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let enabled: Bool?
+
+        public init(enabled: Bool? = nil) {
+            self.enabled = enabled
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case enabled = "Enabled"
+        }
+    }
+
+    /// 描述了 “云安全” 服务相关的信息。
+    public struct RunSecurityServiceEnabled: TCInputModel, TCOutputModel {
+        /// 是否开启[云安全](/document/product/296)服务。取值范围：
+        ///
+        /// - TRUE：表示开启云安全服务
+        /// - FALSE：表示不开启云安全服务
+        ///
+        /// 默认取值：TRUE。
+        public let enabled: Bool?
+
+        public init(enabled: Bool? = nil) {
+            self.enabled = enabled
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case enabled = "Enabled"
         }
     }
 

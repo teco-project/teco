@@ -110,7 +110,7 @@ extension Lcic {
         /// 横竖屏。0：横屏开播（默认值）; 1：竖屏开播，当前仅支持移动端的纯视频类型
         public let videoOrientation: UInt64?
 
-        /// 开启课后评分。 0：不开启(默认)  1：开启
+        /// 该房间是否开启了课后评分功能。0：未开启  1：开启
         public let isGradingRequiredPostClass: Int64?
 
         /// 房间类型: 0 小班课（默认值）; 1 大班课; 2 1V1 (后续扩展)
@@ -118,6 +118,9 @@ extension Lcic {
 
         /// 录制时长
         public let videoDuration: UInt64?
+
+        /// 拖堂时间：单位分钟，0为不限制(默认值), -1为不能拖堂，大于0为拖堂的时间，最大值120分钟
+        public let endDelayTime: Int64?
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -145,29 +148,30 @@ extension Lcic {
             case isGradingRequiredPostClass = "IsGradingRequiredPostClass"
             case roomType = "RoomType"
             case videoDuration = "VideoDuration"
+            case endDelayTime = "EndDelayTime"
             case requestId = "RequestId"
         }
     }
 
-    /// 获取房间信息
+    /// 获取房间配置信息
     @inlinable
     public func describeRoom(_ input: DescribeRoomRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoomResponse> {
         self.client.execute(action: "DescribeRoom", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取房间信息
+    /// 获取房间配置信息
     @inlinable
     public func describeRoom(_ input: DescribeRoomRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoomResponse {
         try await self.client.execute(action: "DescribeRoom", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取房间信息
+    /// 获取房间配置信息
     @inlinable
     public func describeRoom(roomId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoomResponse> {
         self.describeRoom(.init(roomId: roomId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取房间信息
+    /// 获取房间配置信息
     @inlinable
     public func describeRoom(roomId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoomResponse {
         try await self.describeRoom(.init(roomId: roomId), region: region, logger: logger, on: eventLoop)

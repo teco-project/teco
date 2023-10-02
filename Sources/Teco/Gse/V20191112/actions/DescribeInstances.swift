@@ -97,7 +97,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeInstances(_ input: DescribeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
-        fatalError("DescribeInstances is no longer available.")
+        fatalError("'DescribeInstances' is no longer available.")
     }
 
     /// 查询服务器实例列表
@@ -106,7 +106,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeInstances(_ input: DescribeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
-        fatalError("DescribeInstances is no longer available.")
+        fatalError("'DescribeInstances' is no longer available.")
     }
 
     /// 查询服务器实例列表
@@ -115,7 +115,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeInstances(fleetId: String? = nil, instanceId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, ipAddress: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
-        fatalError("DescribeInstances is no longer available.")
+        fatalError("'DescribeInstances' is no longer available.")
     }
 
     /// 查询服务器实例列表
@@ -124,7 +124,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeInstances(fleetId: String? = nil, instanceId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, ipAddress: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
-        fatalError("DescribeInstances is no longer available.")
+        fatalError("'DescribeInstances' is no longer available.")
     }
 
     /// 查询服务器实例列表
@@ -133,7 +133,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeInstancesPaginated(_ input: DescribeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Instance])> {
-        fatalError("DescribeInstances is no longer available.")
+        fatalError("'DescribeInstances' is no longer available.")
     }
 
     /// 查询服务器实例列表
@@ -142,7 +142,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func describeInstancesPaginated(_ input: DescribeInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
-        fatalError("DescribeInstances is no longer available.")
+        fatalError("'DescribeInstances' is no longer available.")
     }
 
     /// 查询服务器实例列表
@@ -153,6 +153,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeInstancesPaginator(_ input: DescribeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstancesRequest> {
-        fatalError("DescribeInstances is no longer available.")
+        fatalError("'DescribeInstances' is no longer available.")
     }
 }

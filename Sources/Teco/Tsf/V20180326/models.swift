@@ -1306,6 +1306,10 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationId: String?
 
+        /// 配置中心发布情况
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let configCenters: [TsfConfigCenter]?
+
         enum CodingKeys: String, CodingKey {
             case configReleaseId = "ConfigReleaseId"
             case configId = "ConfigId"
@@ -1320,6 +1324,7 @@ extension Tsf {
             case clusterName = "ClusterName"
             case releaseDesc = "ReleaseDesc"
             case applicationId = "ApplicationId"
+            case configCenters = "ConfigCenters"
         }
     }
 
@@ -1393,6 +1398,13 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rollbackFlag: Bool?
 
+        /// 发布成功的配置中心
+        ///  ALL/EXCLUSIVE/SHARE/NONE
+        ///
+        /// 全部发布成功，独占发布成功，共享发布成功，全部发布失败
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let releasedConfigCenter: String?
+
         enum CodingKeys: String, CodingKey {
             case configReleaseLogId = "ConfigReleaseLogId"
             case configId = "ConfigId"
@@ -1411,6 +1423,7 @@ extension Tsf {
             case lastConfigName = "LastConfigName"
             case lastConfigVersion = "LastConfigVersion"
             case rollbackFlag = "RollbackFlag"
+            case releasedConfigCenter = "ReleasedConfigCenter"
         }
     }
 
@@ -2767,22 +2780,32 @@ extension Tsf {
         /// 插件id
         public let pluginId: String
 
-        /// 插件绑定到的对象类型:group/api
+        /// 插件绑定到的对象类型:group/api/all
         public let scopeType: String
 
         /// 插件绑定到的对象主键值，例如分组的ID/API的ID
         public let scopeValue: String
 
-        public init(pluginId: String, scopeType: String, scopeValue: String) {
+        /// 创建关联的服务id，关联envoy网关时使用
+        public let microserviceId: String?
+
+        /// 网关id
+        public let gatewayInstanceId: String?
+
+        public init(pluginId: String, scopeType: String, scopeValue: String, microserviceId: String? = nil, gatewayInstanceId: String? = nil) {
             self.pluginId = pluginId
             self.scopeType = scopeType
             self.scopeValue = scopeValue
+            self.microserviceId = microserviceId
+            self.gatewayInstanceId = gatewayInstanceId
         }
 
         enum CodingKeys: String, CodingKey {
             case pluginId = "PluginId"
             case scopeType = "ScopeType"
             case scopeValue = "ScopeValue"
+            case microserviceId = "MicroserviceId"
+            case gatewayInstanceId = "GatewayInstanceId"
         }
     }
 
@@ -6246,6 +6269,45 @@ extension Tsf {
         }
     }
 
+    /// 配置中心
+    public struct TsfConfigCenter: TCInputModel, TCOutputModel {
+        /// 配置中心类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let configType: String?
+
+        /// 配置中心实例id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let configCenterInstanceId: String?
+
+        /// 配置中心实例名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let configCenterInstanceName: String?
+
+        /// 实例地域id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let regionId: String?
+
+        /// 命名空间id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let namespaceId: String?
+
+        public init(configType: String? = nil, configCenterInstanceId: String? = nil, configCenterInstanceName: String? = nil, regionId: String? = nil, namespaceId: String? = nil) {
+            self.configType = configType
+            self.configCenterInstanceId = configCenterInstanceId
+            self.configCenterInstanceName = configCenterInstanceName
+            self.regionId = regionId
+            self.namespaceId = namespaceId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case configType = "ConfigType"
+            case configCenterInstanceId = "ConfigCenterInstanceId"
+            case configCenterInstanceName = "ConfigCenterInstanceName"
+            case regionId = "RegionId"
+            case namespaceId = "NamespaceId"
+        }
+    }
+
     /// ApiDetailInfo 翻页对象
     public struct TsfPageApiDetailInfo: TCOutputModel {
         /// 总记录数
@@ -6815,7 +6877,7 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitRuleTagList: [UnitRuleTag]?
 
-        /// 项目id
+        /// 规则项索引
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let itemIndex: Int64?
 
@@ -6860,7 +6922,7 @@ extension Tsf {
 
     /// 微服务网关单元化规则标签
     public struct UnitRuleTag: TCInputModel, TCOutputModel {
-        /// 标签类型 : U(用户标签)
+        /// 标签类型 : U(用户标签)/S(系统标签)
         public let tagType: String
 
         /// 标签名

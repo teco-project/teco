@@ -188,6 +188,18 @@ extension Oceanus {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterSessions: [ClusterSession]?
 
+        /// V3版本 = 2
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let archGeneration: UInt64?
+
+        /// 0:TKE, 1:EKS
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterType: UInt64?
+
+        /// 订单信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let orders: [Order]?
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case name = "Name"
@@ -225,6 +237,9 @@ extension Oceanus {
             case payMode = "PayMode"
             case isNeedManageNode = "IsNeedManageNode"
             case clusterSessions = "ClusterSessions"
+            case archGeneration = "ArchGeneration"
+            case clusterType = "ClusterType"
+            case orders = "Orders"
         }
     }
 
@@ -950,6 +965,37 @@ extension Oceanus {
         }
     }
 
+    /// 集群购买、扩缩容、续费订单信息
+    public struct Order: TCOutputModel {
+        /// 创建、续费、扩缩容 1 2 3
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let type: Int64?
+
+        /// 自动续费 1
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let autoRenewFlag: Int64?
+
+        /// 操作人的UIN
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let operateUin: String?
+
+        /// 最终集群的CU数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let computeCu: Int64?
+
+        /// 订单的时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let orderTime: String?
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case autoRenewFlag = "AutoRenewFlag"
+            case operateUin = "OperateUin"
+            case computeCu = "ComputeCu"
+            case orderTime = "OrderTime"
+        }
+    }
+
     /// 系统配置属性
     public struct Property: TCInputModel, TCOutputModel {
         /// 系统配置的Key
@@ -1308,10 +1354,12 @@ extension Oceanus {
         /// 运行类型，1：启动，2：恢复
         public let runType: Int64
 
-        /// 兼容旧版 SQL 类型作业启动参数：指定数据源消费起始时间点（例:T1557394288000）
+        /// 兼容旧版 SQL 类型作业启动参数：指定数据源消费起始时间点（建议传值）
+        /// 保证参数为 LATEST、EARLIEST、T+Timestamp （例:T1557394288000）
         public let startMode: String?
 
         /// 当前作业的某个版本
+        /// （不传默认为非草稿的作业版本）
         public let jobConfigVersion: UInt64?
 
         /// Savepoint路径
@@ -1323,7 +1371,10 @@ extension Oceanus {
         /// 使用历史版本系统依赖
         public let useOldSystemConnector: Bool?
 
-        public init(jobId: String, runType: Int64, startMode: String? = nil, jobConfigVersion: UInt64? = nil, savepointPath: String? = nil, savepointId: String? = nil, useOldSystemConnector: Bool? = nil) {
+        /// 自定义时间戳
+        public let customTimestamp: Int64?
+
+        public init(jobId: String, runType: Int64, startMode: String? = nil, jobConfigVersion: UInt64? = nil, savepointPath: String? = nil, savepointId: String? = nil, useOldSystemConnector: Bool? = nil, customTimestamp: Int64? = nil) {
             self.jobId = jobId
             self.runType = runType
             self.startMode = startMode
@@ -1331,6 +1382,7 @@ extension Oceanus {
             self.savepointPath = savepointPath
             self.savepointId = savepointId
             self.useOldSystemConnector = useOldSystemConnector
+            self.customTimestamp = customTimestamp
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1341,6 +1393,7 @@ extension Oceanus {
             case savepointPath = "SavepointPath"
             case savepointId = "SavepointId"
             case useOldSystemConnector = "UseOldSystemConnector"
+            case customTimestamp = "CustomTimestamp"
         }
     }
 

@@ -21,36 +21,40 @@ import TecoCore
 extension Ess {
     /// CreateFlowSignReview请求参数结构体
     public struct CreateFlowSignReviewRequest: TCRequest {
-        /// 调用方用户信息，userId 必填
+        /// 执行本接口操作的员工信息。
+        /// 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         public let `operator`: UserInfo
 
-        /// 签署流程编号
+        /// 合同流程ID，为32位字符串。
+        /// 建议开发者妥善保存此流程ID，以便于顺利进行后续操作。
+        /// 可登录腾讯电子签控制台，在 "合同"->"合同中心" 中查看某个合同的FlowId(在页面中展示为合同ID)。
         public let flowId: String
 
-        /// 企业内部审核结果
-        /// PASS: 通过
-        /// REJECT: 拒绝
+        /// 企业审核结果
+        ///
+        /// - PASS: 通过
+        /// - REJECT: 拒绝
         public let reviewType: String
 
-        /// 审核原因
-        /// 当ReviewType 是REJECT 时此字段必填,字符串长度不超过200
+        /// 审核结果原因，
+        /// 字符串长度不超过200
+        /// 当ReviewType 是拒绝（REJECT） 时此字段必填。
         public let reviewMessage: String?
 
         /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         public let agent: Agent?
 
-        /// 审核签署节点使用 非必填 如果填写则审核该签署节点。给个人审核时必填。
+        /// 审核签署节点人标识，
+        /// 用来标识审核的签署方。
+        /// 如果签署审核节点是个人， 此参数必填。
         public let recipientId: String?
 
-        /// 操作类型：（接口通过该字段区分操作类型）
+        /// 操作类型：（接口通过该字段区分不同的操作类型）
         ///
-        /// SignReview:签署审核
-        /// CreateReview:发起审核
+        /// - SignReview: 签署审核（默认）
+        /// - CreateReview: 创建审核
         ///
-        /// 默认：SignReview；SignReview:签署审核
-        ///
-        /// 该字段不传或者为空，则默认为SignReview签署审核，走签署审核流程
-        /// 若发起个人审核，则指定该字段为：SignReview
+        /// 如果审核节点是个人，则操作类型只能为SignReview。
         public let operateType: String?
 
         public init(operator: UserInfo, flowId: String, reviewType: String, reviewMessage: String? = nil, agent: Agent? = nil, recipientId: String? = nil, operateType: String? = nil) {
@@ -84,45 +88,41 @@ extension Ess {
         }
     }
 
-    /// 提交企业签署流程审批结果
+    /// 提交签署流程审批结果
     ///
-    /// 提交企业签署流程审批结果
-    /// 适用场景:
-    /// 在通过接口(CreateFlow 或者CreateFlowByFiles)创建签署流程时，若指定了参数 NeedSignReview 为true，且发起方企业作为签署方参与了流程签署，则可以调用此接口提交企业内部签署审批结果。
-    /// 若签署流程状态正常，且本企业存在签署方未签署，同一签署流程可以多次提交签署审批结果，签署时的最后一个“审批结果”有效。
+    /// 提交签署流程审批结果的适用场景包括：
+    /// 1. 在使用模板（CreateFlow）或文件（CreateFlowByFiles）创建签署流程时，若指定了参数NeedSignReview为true，且发起方企业作为签署方参与了流程签署，则可以调用此接口提交企业内部签署审批结果。自动签署也需要进行审核通过才会进行签署。
+    /// 2. 若签署流程状态正常，同一签署流程可以多次提交签署审批结果，签署时的最后一个“审批结果”有效。
     @inlinable @discardableResult
     public func createFlowSignReview(_ input: CreateFlowSignReviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowSignReviewResponse> {
         self.client.execute(action: "CreateFlowSignReview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 提交企业签署流程审批结果
+    /// 提交签署流程审批结果
     ///
-    /// 提交企业签署流程审批结果
-    /// 适用场景:
-    /// 在通过接口(CreateFlow 或者CreateFlowByFiles)创建签署流程时，若指定了参数 NeedSignReview 为true，且发起方企业作为签署方参与了流程签署，则可以调用此接口提交企业内部签署审批结果。
-    /// 若签署流程状态正常，且本企业存在签署方未签署，同一签署流程可以多次提交签署审批结果，签署时的最后一个“审批结果”有效。
+    /// 提交签署流程审批结果的适用场景包括：
+    /// 1. 在使用模板（CreateFlow）或文件（CreateFlowByFiles）创建签署流程时，若指定了参数NeedSignReview为true，且发起方企业作为签署方参与了流程签署，则可以调用此接口提交企业内部签署审批结果。自动签署也需要进行审核通过才会进行签署。
+    /// 2. 若签署流程状态正常，同一签署流程可以多次提交签署审批结果，签署时的最后一个“审批结果”有效。
     @inlinable @discardableResult
     public func createFlowSignReview(_ input: CreateFlowSignReviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowSignReviewResponse {
         try await self.client.execute(action: "CreateFlowSignReview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 提交企业签署流程审批结果
+    /// 提交签署流程审批结果
     ///
-    /// 提交企业签署流程审批结果
-    /// 适用场景:
-    /// 在通过接口(CreateFlow 或者CreateFlowByFiles)创建签署流程时，若指定了参数 NeedSignReview 为true，且发起方企业作为签署方参与了流程签署，则可以调用此接口提交企业内部签署审批结果。
-    /// 若签署流程状态正常，且本企业存在签署方未签署，同一签署流程可以多次提交签署审批结果，签署时的最后一个“审批结果”有效。
+    /// 提交签署流程审批结果的适用场景包括：
+    /// 1. 在使用模板（CreateFlow）或文件（CreateFlowByFiles）创建签署流程时，若指定了参数NeedSignReview为true，且发起方企业作为签署方参与了流程签署，则可以调用此接口提交企业内部签署审批结果。自动签署也需要进行审核通过才会进行签署。
+    /// 2. 若签署流程状态正常，同一签署流程可以多次提交签署审批结果，签署时的最后一个“审批结果”有效。
     @inlinable @discardableResult
     public func createFlowSignReview(operator: UserInfo, flowId: String, reviewType: String, reviewMessage: String? = nil, agent: Agent? = nil, recipientId: String? = nil, operateType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowSignReviewResponse> {
         self.createFlowSignReview(.init(operator: `operator`, flowId: flowId, reviewType: reviewType, reviewMessage: reviewMessage, agent: agent, recipientId: recipientId, operateType: operateType), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 提交企业签署流程审批结果
+    /// 提交签署流程审批结果
     ///
-    /// 提交企业签署流程审批结果
-    /// 适用场景:
-    /// 在通过接口(CreateFlow 或者CreateFlowByFiles)创建签署流程时，若指定了参数 NeedSignReview 为true，且发起方企业作为签署方参与了流程签署，则可以调用此接口提交企业内部签署审批结果。
-    /// 若签署流程状态正常，且本企业存在签署方未签署，同一签署流程可以多次提交签署审批结果，签署时的最后一个“审批结果”有效。
+    /// 提交签署流程审批结果的适用场景包括：
+    /// 1. 在使用模板（CreateFlow）或文件（CreateFlowByFiles）创建签署流程时，若指定了参数NeedSignReview为true，且发起方企业作为签署方参与了流程签署，则可以调用此接口提交企业内部签署审批结果。自动签署也需要进行审核通过才会进行签署。
+    /// 2. 若签署流程状态正常，同一签署流程可以多次提交签署审批结果，签署时的最后一个“审批结果”有效。
     @inlinable @discardableResult
     public func createFlowSignReview(operator: UserInfo, flowId: String, reviewType: String, reviewMessage: String? = nil, agent: Agent? = nil, recipientId: String? = nil, operateType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowSignReviewResponse {
         try await self.createFlowSignReview(.init(operator: `operator`, flowId: flowId, reviewType: reviewType, reviewMessage: reviewMessage, agent: agent, recipientId: recipientId, operateType: operateType), region: region, logger: logger, on: eventLoop)

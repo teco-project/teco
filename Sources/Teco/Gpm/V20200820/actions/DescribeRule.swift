@@ -52,27 +52,27 @@ extension Gpm {
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeRule(_ input: DescribeRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleResponse> {
-        fatalError("DescribeRule is no longer available.")
+        fatalError("'DescribeRule' is no longer available.")
     }
 
     /// 查询规则详情
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeRule(_ input: DescribeRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleResponse {
-        fatalError("DescribeRule is no longer available.")
+        fatalError("'DescribeRule' is no longer available.")
     }
 
     /// 查询规则详情
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeRule(ruleCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleResponse> {
-        fatalError("DescribeRule is no longer available.")
+        fatalError("'DescribeRule' is no longer available.")
     }
 
     /// 查询规则详情
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeRule(ruleCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleResponse {
-        fatalError("DescribeRule is no longer available.")
+        fatalError("'DescribeRule' is no longer available.")
     }
 }

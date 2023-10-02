@@ -21,7 +21,40 @@ import TecoCore
 extension Cdwch {
     /// ModifyUserNewPrivilege请求参数结构体
     public struct ModifyUserNewPrivilegeRequest: TCRequest {
-        public init() {
+        /// 实例id
+        public let instanceId: String
+
+        /// cluster名称
+        public let cluster: String
+
+        /// 用户名
+        public let userName: String
+
+        /// 是否所有数据库表
+        public let allDatabase: Bool
+
+        /// 全局权限
+        public let globalPrivileges: [String]?
+
+        /// 数据库表权限
+        public let databasePrivilegeList: [DatabasePrivilegeInfo]?
+
+        public init(instanceId: String, cluster: String, userName: String, allDatabase: Bool, globalPrivileges: [String]? = nil, databasePrivilegeList: [DatabasePrivilegeInfo]? = nil) {
+            self.instanceId = instanceId
+            self.cluster = cluster
+            self.userName = userName
+            self.allDatabase = allDatabase
+            self.globalPrivileges = globalPrivileges
+            self.databasePrivilegeList = databasePrivilegeList
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case instanceId = "InstanceId"
+            case cluster = "Cluster"
+            case userName = "UserName"
+            case allDatabase = "AllDatabase"
+            case globalPrivileges = "GlobalPrivileges"
+            case databasePrivilegeList = "DatabasePrivilegeList"
         }
     }
 
@@ -35,35 +68,35 @@ extension Cdwch {
         }
     }
 
-    /// 新增、修改ck账号cluster权限（新版）
+    /// 新增、修改集群账号cluster权限（新版）
     ///
-    /// 针对ck账号的权限做管控（新版）
+    /// 针对集群账号的权限做管控（新版）
     @inlinable @discardableResult
     public func modifyUserNewPrivilege(_ input: ModifyUserNewPrivilegeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserNewPrivilegeResponse> {
         self.client.execute(action: "ModifyUserNewPrivilege", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 新增、修改ck账号cluster权限（新版）
+    /// 新增、修改集群账号cluster权限（新版）
     ///
-    /// 针对ck账号的权限做管控（新版）
+    /// 针对集群账号的权限做管控（新版）
     @inlinable @discardableResult
     public func modifyUserNewPrivilege(_ input: ModifyUserNewPrivilegeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserNewPrivilegeResponse {
         try await self.client.execute(action: "ModifyUserNewPrivilege", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 新增、修改ck账号cluster权限（新版）
+    /// 新增、修改集群账号cluster权限（新版）
     ///
-    /// 针对ck账号的权限做管控（新版）
+    /// 针对集群账号的权限做管控（新版）
     @inlinable @discardableResult
-    public func modifyUserNewPrivilege(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserNewPrivilegeResponse> {
-        self.modifyUserNewPrivilege(.init(), region: region, logger: logger, on: eventLoop)
+    public func modifyUserNewPrivilege(instanceId: String, cluster: String, userName: String, allDatabase: Bool, globalPrivileges: [String]? = nil, databasePrivilegeList: [DatabasePrivilegeInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserNewPrivilegeResponse> {
+        self.modifyUserNewPrivilege(.init(instanceId: instanceId, cluster: cluster, userName: userName, allDatabase: allDatabase, globalPrivileges: globalPrivileges, databasePrivilegeList: databasePrivilegeList), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 新增、修改ck账号cluster权限（新版）
+    /// 新增、修改集群账号cluster权限（新版）
     ///
-    /// 针对ck账号的权限做管控（新版）
+    /// 针对集群账号的权限做管控（新版）
     @inlinable @discardableResult
-    public func modifyUserNewPrivilege(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserNewPrivilegeResponse {
-        try await self.modifyUserNewPrivilege(.init(), region: region, logger: logger, on: eventLoop)
+    public func modifyUserNewPrivilege(instanceId: String, cluster: String, userName: String, allDatabase: Bool, globalPrivileges: [String]? = nil, databasePrivilegeList: [DatabasePrivilegeInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserNewPrivilegeResponse {
+        try await self.modifyUserNewPrivilege(.init(instanceId: instanceId, cluster: cluster, userName: userName, allDatabase: allDatabase, globalPrivileges: globalPrivileges, databasePrivilegeList: databasePrivilegeList), region: region, logger: logger, on: eventLoop)
     }
 }

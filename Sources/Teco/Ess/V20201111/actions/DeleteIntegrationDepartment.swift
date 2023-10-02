@@ -21,24 +21,32 @@ import TecoCore
 extension Ess {
     /// DeleteIntegrationDepartment请求参数结构体
     public struct DeleteIntegrationDepartmentRequest: TCRequest {
-        /// 操作人信息，UserId必填且需拥有组织架构管理权限
+        /// 执行本接口操作的员工信息。
+        /// 注: `在调用此接口时，请确保指定的员工已获得组织架构管理权限，并具备接口传入的相应资源的数据权限。`
         public let `operator`: UserInfo
 
-        /// 电子签中的部门id,通过DescribeIntegrationDepartments接口可获得
+        /// 电子签中的部门ID，通过[DescribeIntegrationDepartments](https://qian.tencent.com/developers/companyApis/organizations/DescribeIntegrationDepartments)接口可获得。
         public let deptId: String
 
-        /// 交接部门ID。待删除部门中的合同、印章和模板数据，交接至该部门ID下，未填写交接至公司根部门。
+        /// 代理企业和员工的信息。
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        public let agent: Agent?
+
+        /// 交接部门ID。
+        /// 待删除部门中的合同、印章和模板数据，将会被交接至该部门ID下；若未填写则交接至公司根部门。
         public let receiveDeptId: String?
 
-        public init(operator: UserInfo, deptId: String, receiveDeptId: String? = nil) {
+        public init(operator: UserInfo, deptId: String, agent: Agent? = nil, receiveDeptId: String? = nil) {
             self.operator = `operator`
             self.deptId = deptId
+            self.agent = agent
             self.receiveDeptId = receiveDeptId
         }
 
         enum CodingKeys: String, CodingKey {
             case `operator` = "Operator"
             case deptId = "DeptId"
+            case agent = "Agent"
             case receiveDeptId = "ReceiveDeptId"
         }
     }
@@ -55,7 +63,7 @@ extension Ess {
 
     /// 删除企业部门
     ///
-    /// 通过此接口，删除企业的部门。
+    /// 此接口（DeleteIntegrationDepartment）用于删除企业的部门信息。
     @inlinable @discardableResult
     public func deleteIntegrationDepartment(_ input: DeleteIntegrationDepartmentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIntegrationDepartmentResponse> {
         self.client.execute(action: "DeleteIntegrationDepartment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -63,7 +71,7 @@ extension Ess {
 
     /// 删除企业部门
     ///
-    /// 通过此接口，删除企业的部门。
+    /// 此接口（DeleteIntegrationDepartment）用于删除企业的部门信息。
     @inlinable @discardableResult
     public func deleteIntegrationDepartment(_ input: DeleteIntegrationDepartmentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIntegrationDepartmentResponse {
         try await self.client.execute(action: "DeleteIntegrationDepartment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -71,17 +79,17 @@ extension Ess {
 
     /// 删除企业部门
     ///
-    /// 通过此接口，删除企业的部门。
+    /// 此接口（DeleteIntegrationDepartment）用于删除企业的部门信息。
     @inlinable @discardableResult
-    public func deleteIntegrationDepartment(operator: UserInfo, deptId: String, receiveDeptId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIntegrationDepartmentResponse> {
-        self.deleteIntegrationDepartment(.init(operator: `operator`, deptId: deptId, receiveDeptId: receiveDeptId), region: region, logger: logger, on: eventLoop)
+    public func deleteIntegrationDepartment(operator: UserInfo, deptId: String, agent: Agent? = nil, receiveDeptId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIntegrationDepartmentResponse> {
+        self.deleteIntegrationDepartment(.init(operator: `operator`, deptId: deptId, agent: agent, receiveDeptId: receiveDeptId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除企业部门
     ///
-    /// 通过此接口，删除企业的部门。
+    /// 此接口（DeleteIntegrationDepartment）用于删除企业的部门信息。
     @inlinable @discardableResult
-    public func deleteIntegrationDepartment(operator: UserInfo, deptId: String, receiveDeptId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIntegrationDepartmentResponse {
-        try await self.deleteIntegrationDepartment(.init(operator: `operator`, deptId: deptId, receiveDeptId: receiveDeptId), region: region, logger: logger, on: eventLoop)
+    public func deleteIntegrationDepartment(operator: UserInfo, deptId: String, agent: Agent? = nil, receiveDeptId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIntegrationDepartmentResponse {
+        try await self.deleteIntegrationDepartment(.init(operator: `operator`, deptId: deptId, agent: agent, receiveDeptId: receiveDeptId), region: region, logger: logger, on: eventLoop)
     }
 }

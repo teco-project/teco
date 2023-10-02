@@ -21,16 +21,69 @@ import TecoCore
 extension Vpc {
     /// CreateVpcPeeringConnection请求参数结构体
     public struct CreateVpcPeeringConnectionRequest: TCRequest {
-        public init() {
+        /// 本端VPC唯一ID。
+        public let sourceVpcId: String
+
+        /// 对等连接名称。
+        public let peeringConnectionName: String
+
+        /// 对端VPC唯一ID。
+        public let destinationVpcId: String
+
+        /// 对端用户UIN。
+        public let destinationUin: String
+
+        /// 对端地域。
+        public let destinationRegion: String
+
+        /// 带宽上限，单位Mbps。
+        public let bandwidth: Int64?
+
+        /// 互通类型，VPC_PEER：VPC间互通；VPC_BM_PEER：VPC与黑石网络互通。
+        public let type: String?
+
+        /// 计费模式，日峰值POSTPAID_BY_DAY_MAX，月95POSTPAID_BY_MONTH_95。
+        public let chargeType: String?
+
+        /// 服务分级：PT、AU、AG。
+        public let qosLevel: String?
+
+        public init(sourceVpcId: String, peeringConnectionName: String, destinationVpcId: String, destinationUin: String, destinationRegion: String, bandwidth: Int64? = nil, type: String? = nil, chargeType: String? = nil, qosLevel: String? = nil) {
+            self.sourceVpcId = sourceVpcId
+            self.peeringConnectionName = peeringConnectionName
+            self.destinationVpcId = destinationVpcId
+            self.destinationUin = destinationUin
+            self.destinationRegion = destinationRegion
+            self.bandwidth = bandwidth
+            self.type = type
+            self.chargeType = chargeType
+            self.qosLevel = qosLevel
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case sourceVpcId = "SourceVpcId"
+            case peeringConnectionName = "PeeringConnectionName"
+            case destinationVpcId = "DestinationVpcId"
+            case destinationUin = "DestinationUin"
+            case destinationRegion = "DestinationRegion"
+            case bandwidth = "Bandwidth"
+            case type = "Type"
+            case chargeType = "ChargeType"
+            case qosLevel = "QosLevel"
         }
     }
 
     /// CreateVpcPeeringConnection返回参数结构体
     public struct CreateVpcPeeringConnectionResponse: TCResponse {
+        /// 对等连接ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let peeringConnectionId: String?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
+            case peeringConnectionId = "PeeringConnectionId"
             case requestId = "RequestId"
         }
     }
@@ -38,7 +91,7 @@ extension Vpc {
     /// 创建私有网络对等连接
     ///
     /// 本接口（CreateVpcPeeringConnection）用于创建私有网络对等连接。
-    @inlinable @discardableResult
+    @inlinable
     public func createVpcPeeringConnection(_ input: CreateVpcPeeringConnectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcPeeringConnectionResponse> {
         self.client.execute(action: "CreateVpcPeeringConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -46,7 +99,7 @@ extension Vpc {
     /// 创建私有网络对等连接
     ///
     /// 本接口（CreateVpcPeeringConnection）用于创建私有网络对等连接。
-    @inlinable @discardableResult
+    @inlinable
     public func createVpcPeeringConnection(_ input: CreateVpcPeeringConnectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcPeeringConnectionResponse {
         try await self.client.execute(action: "CreateVpcPeeringConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -54,16 +107,16 @@ extension Vpc {
     /// 创建私有网络对等连接
     ///
     /// 本接口（CreateVpcPeeringConnection）用于创建私有网络对等连接。
-    @inlinable @discardableResult
-    public func createVpcPeeringConnection(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcPeeringConnectionResponse> {
-        self.createVpcPeeringConnection(.init(), region: region, logger: logger, on: eventLoop)
+    @inlinable
+    public func createVpcPeeringConnection(sourceVpcId: String, peeringConnectionName: String, destinationVpcId: String, destinationUin: String, destinationRegion: String, bandwidth: Int64? = nil, type: String? = nil, chargeType: String? = nil, qosLevel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcPeeringConnectionResponse> {
+        self.createVpcPeeringConnection(.init(sourceVpcId: sourceVpcId, peeringConnectionName: peeringConnectionName, destinationVpcId: destinationVpcId, destinationUin: destinationUin, destinationRegion: destinationRegion, bandwidth: bandwidth, type: type, chargeType: chargeType, qosLevel: qosLevel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建私有网络对等连接
     ///
     /// 本接口（CreateVpcPeeringConnection）用于创建私有网络对等连接。
-    @inlinable @discardableResult
-    public func createVpcPeeringConnection(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcPeeringConnectionResponse {
-        try await self.createVpcPeeringConnection(.init(), region: region, logger: logger, on: eventLoop)
+    @inlinable
+    public func createVpcPeeringConnection(sourceVpcId: String, peeringConnectionName: String, destinationVpcId: String, destinationUin: String, destinationRegion: String, bandwidth: Int64? = nil, type: String? = nil, chargeType: String? = nil, qosLevel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcPeeringConnectionResponse {
+        try await self.createVpcPeeringConnection(.init(sourceVpcId: sourceVpcId, peeringConnectionName: peeringConnectionName, destinationVpcId: destinationVpcId, destinationUin: destinationUin, destinationRegion: destinationRegion, bandwidth: bandwidth, type: type, chargeType: chargeType, qosLevel: qosLevel), region: region, logger: logger, on: eventLoop)
     }
 }

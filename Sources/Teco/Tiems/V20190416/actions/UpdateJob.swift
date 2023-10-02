@@ -62,27 +62,27 @@ extension Tiems {
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func updateJob(_ input: UpdateJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateJobResponse> {
-        fatalError("UpdateJob is no longer available.")
+        fatalError("'UpdateJob' is no longer available.")
     }
 
     /// 更新任务
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func updateJob(_ input: UpdateJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateJobResponse {
-        fatalError("UpdateJob is no longer available.")
+        fatalError("'UpdateJob' is no longer available.")
     }
 
     /// 更新任务
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func updateJob(jobId: String, jobAction: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateJobResponse> {
-        fatalError("UpdateJob is no longer available.")
+        fatalError("'UpdateJob' is no longer available.")
     }
 
     /// 更新任务
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func updateJob(jobId: String, jobAction: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateJobResponse {
-        fatalError("UpdateJob is no longer available.")
+        fatalError("'UpdateJob' is no longer available.")
     }
 }

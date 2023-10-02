@@ -43,7 +43,6 @@ public struct TCNlpError: TCNlpErrorType {
         case internalError_ServiceError = "InternalError.ServiceError"
         case internalError_TextClassifyError = "InternalError.TextClassifyError"
         case internalError_TextParsingError = "InternalError.TextParsingError"
-        case invalidParameter = "InvalidParameter"
         case invalidParameterValue_Genre = "InvalidParameterValue.Genre"
         case invalidParameterValue_InvalidParameter = "InvalidParameterValue.InvalidParameter"
         case invalidParameterValue_PoetryType = "InvalidParameterValue.PoetryType"
@@ -56,7 +55,6 @@ public struct TCNlpError: TCNlpErrorType {
         case invalidParameter_TextTooLongCode = "InvalidParameter.TextTooLongCode"
         case limitExceeded_ResourceReachedLimit = "LimitExceeded.ResourceReachedLimit"
         case requestLimitExceeded_UinLimitExceeded = "RequestLimitExceeded.UinLimitExceeded"
-        case resourceInsufficient = "ResourceInsufficient"
         case resourceInsufficient_QuotaRunOut = "ResourceInsufficient.QuotaRunOut"
         case resourceNotFound = "ResourceNotFound"
         case resourceUnavailable = "ResourceUnavailable"
@@ -188,11 +186,6 @@ public struct TCNlpError: TCNlpErrorType {
         TCNlpError(.internalError_TextParsingError)
     }
 
-    /// 参数错误
-    public static var invalidParameter: TCNlpError {
-        TCNlpError(.invalidParameter)
-    }
-
     /// Genre非法，请参考Genre参数说明。
     public static var invalidParameterValue_Genre: TCNlpError {
         TCNlpError(.invalidParameterValue_Genre)
@@ -251,11 +244,6 @@ public struct TCNlpError: TCNlpErrorType {
     /// 请求的次数超过了频率限制。
     public static var requestLimitExceeded_UinLimitExceeded: TCNlpError {
         TCNlpError(.requestLimitExceeded_UinLimitExceeded)
-    }
-
-    /// 资源不足。
-    public static var resourceInsufficient: TCNlpError {
-        TCNlpError(.resourceInsufficient)
     }
 
     /// 额度用尽，请充值后重试

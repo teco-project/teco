@@ -21,6 +21,7 @@ extension TCAsError {
         enum Code: String {
             case accountNotSupportBandwidthPackageId = "InvalidParameterValue.AccountNotSupportBandwidthPackageId"
             case baseCapacityTooLarge = "InvalidParameterValue.BaseCapacityTooLarge"
+            case batchNumberTooLarge = "InvalidParameterValue.BatchNumberTooLarge"
             case classicLb = "InvalidParameterValue.ClassicLb"
             case conflictNotificationTarget = "InvalidParameterValue.ConflictNotificationTarget"
             case cronExpressionIllegal = "InvalidParameterValue.CronExpressionIllegal"
@@ -117,6 +118,11 @@ extension TCAsError {
         /// 指定的基础容量过大，需小于等于最大实例数。
         public static var baseCapacityTooLarge: InvalidParameterValue {
             InvalidParameterValue(.baseCapacityTooLarge)
+        }
+
+        /// 减小批次数，使得批次数小于待刷新实例总数。
+        public static var batchNumberTooLarge: InvalidParameterValue {
+            InvalidParameterValue(.batchNumberTooLarge)
         }
 
         /// 在应当指定传统型负载均衡器的参数中，错误地指定了一个非传统型的负载均衡器。
@@ -454,6 +460,8 @@ extension TCAsError {
                 code = .invalidParameterValue_AccountNotSupportBandwidthPackageId
             case .baseCapacityTooLarge:
                 code = .invalidParameterValue_BaseCapacityTooLarge
+            case .batchNumberTooLarge:
+                code = .invalidParameterValue_BatchNumberTooLarge
             case .classicLb:
                 code = .invalidParameterValue_ClassicLb
             case .conflictNotificationTarget:

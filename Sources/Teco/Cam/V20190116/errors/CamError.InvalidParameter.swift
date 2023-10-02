@@ -40,6 +40,7 @@ extension TCCamError {
             case interfaceNotExist = "InvalidParameter.InterfaceNotExist"
             case keywordError = "InvalidParameter.KeywordError"
             case mfaTokenError = "InvalidParameter.MFATokenError"
+            case nameOrIdCardError = "InvalidParameter.NameOrIdCardError"
             case notSupportProduct = "InvalidParameter.NotSupportProduct"
             case operateEntitiesOverLimit = "InvalidParameter.OperateEntitiesOverLimit"
             case organizationRoleOperateError = "InvalidParameter.OrganizationRoleOperateError"
@@ -215,6 +216,11 @@ extension TCCamError {
             InvalidParameter(.mfaTokenError)
         }
 
+        /// 名字或者id号错误。
+        public static var nameOrIdCardError: InvalidParameter {
+            InvalidParameter(.nameOrIdCardError)
+        }
+
         /// CAM不支持策略文档中所指定的资源类型。
         public static var notSupportProduct: InvalidParameter {
             InvalidParameter(.notSupportProduct)
@@ -385,6 +391,8 @@ extension TCCamError {
         }
 
         /// 子帐号数量达到上限。
+        ///
+        /// None
         public static var subUserFull: InvalidParameter {
             InvalidParameter(.subUserFull)
         }
@@ -489,6 +497,8 @@ extension TCCamError {
                 code = .invalidParameter_KeywordError
             case .mfaTokenError:
                 code = .invalidParameter_MFATokenError
+            case .nameOrIdCardError:
+                code = .invalidParameter_NameOrIdCardError
             case .notSupportProduct:
                 code = .invalidParameter_NotSupportProduct
             case .operateEntitiesOverLimit:

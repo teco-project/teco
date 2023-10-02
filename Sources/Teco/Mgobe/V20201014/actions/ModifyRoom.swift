@@ -101,27 +101,27 @@ extension Mgobe {
     @available(*, unavailable, message: "此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func modifyRoom(_ input: ModifyRoomRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRoomResponse> {
-        fatalError("ModifyRoom is no longer available.")
+        fatalError("'ModifyRoom' is no longer available.")
     }
 
     /// 修改房间
     @available(*, unavailable, message: "此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func modifyRoom(_ input: ModifyRoomRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoomResponse {
-        fatalError("ModifyRoom is no longer available.")
+        fatalError("'ModifyRoom' is no longer available.")
     }
 
     /// 修改房间
     @available(*, unavailable, message: "此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func modifyRoom(gameId: String, roomId: String, playerId: String, changeRoomOptionList: [Int64], roomName: String? = nil, owner: String? = nil, isViewed: Bool? = nil, isInvited: Bool? = nil, isPrivate: Bool? = nil, customProperties: String? = nil, isForbidJoin: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRoomResponse> {
-        fatalError("ModifyRoom is no longer available.")
+        fatalError("'ModifyRoom' is no longer available.")
     }
 
     /// 修改房间
     @available(*, unavailable, message: "此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func modifyRoom(gameId: String, roomId: String, playerId: String, changeRoomOptionList: [Int64], roomName: String? = nil, owner: String? = nil, isViewed: Bool? = nil, isInvited: Bool? = nil, isPrivate: Bool? = nil, customProperties: String? = nil, isForbidJoin: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoomResponse {
-        fatalError("ModifyRoom is no longer available.")
+        fatalError("'ModifyRoom' is no longer available.")
     }
 }

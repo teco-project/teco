@@ -89,6 +89,10 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scheduleTask: ScheduleTask?
 
+        /// 直播编排处理任务信息，仅当 TaskType 为 LiveScheduleTask，该字段有值。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let liveScheduleTask: LiveScheduleTask?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -107,6 +111,7 @@ extension Mps {
             case sessionContext = "SessionContext"
             case extInfo = "ExtInfo"
             case scheduleTask = "ScheduleTask"
+            case liveScheduleTask = "LiveScheduleTask"
             case requestId = "RequestId"
         }
     }

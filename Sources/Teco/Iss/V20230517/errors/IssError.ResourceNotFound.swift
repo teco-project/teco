@@ -26,6 +26,7 @@ extension TCIssError {
             case organizationIdNotExist = "ResourceNotFound.OrganizationIdNotExist"
             case planNotExist = "ResourceNotFound.PlanNotExist"
             case retrieveTaskNotExist = "ResourceNotFound.RetrieveTaskNotExist"
+            case streamNotExistOrClose = "ResourceNotFound.StreamNotExistOrClose"
             case templateNotExist = "ResourceNotFound.TemplateNotExist"
             case videoNotFound = "ResourceNotFound.VideoNotFound"
             case other = "ResourceNotFound"
@@ -81,6 +82,10 @@ extension TCIssError {
             ResourceNotFound(.retrieveTaskNotExist)
         }
 
+        public static var streamNotExistOrClose: ResourceNotFound {
+            ResourceNotFound(.streamNotExistOrClose)
+        }
+
         public static var templateNotExist: ResourceNotFound {
             ResourceNotFound(.templateNotExist)
         }
@@ -110,6 +115,8 @@ extension TCIssError {
                 code = .resourceNotFound_PlanNotExist
             case .retrieveTaskNotExist:
                 code = .resourceNotFound_RetrieveTaskNotExist
+            case .streamNotExistOrClose:
+                code = .resourceNotFound_StreamNotExistOrClose
             case .templateNotExist:
                 code = .resourceNotFound_TemplateNotExist
             case .videoNotFound:

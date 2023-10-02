@@ -47,27 +47,27 @@ extension Gpm {
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteRule(_ input: DeleteRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRuleResponse> {
-        fatalError("DeleteRule is no longer available.")
+        fatalError("'DeleteRule' is no longer available.")
     }
 
     /// 删除规则
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteRule(_ input: DeleteRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuleResponse {
-        fatalError("DeleteRule is no longer available.")
+        fatalError("'DeleteRule' is no longer available.")
     }
 
     /// 删除规则
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteRule(ruleCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRuleResponse> {
-        fatalError("DeleteRule is no longer available.")
+        fatalError("'DeleteRule' is no longer available.")
     }
 
     /// 删除规则
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteRule(ruleCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuleResponse {
-        fatalError("DeleteRule is no longer available.")
+        fatalError("'DeleteRule' is no longer available.")
     }
 }

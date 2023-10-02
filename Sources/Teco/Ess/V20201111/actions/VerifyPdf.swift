@@ -21,32 +21,52 @@ import TecoCore
 extension Ess {
     /// VerifyPdf请求参数结构体
     public struct VerifyPdfRequest: TCRequest {
-        /// 流程ID
+        /// 合同流程ID，为32位字符串。
+        /// 可登录腾讯电子签控制台，在 "合同"->"合同中心" 中查看某个合同的FlowId(在页面中展示为合同ID)。
         public let flowId: String
 
-        /// 调用方用户信息，userId 必填
+        /// 执行本接口操作的员工信息。
+        /// 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。
         public let `operator`: UserInfo?
 
-        public init(flowId: String, operator: UserInfo? = nil) {
+        /// 代理企业和员工的信息。
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        public let agent: Agent?
+
+        public init(flowId: String, operator: UserInfo? = nil, agent: Agent? = nil) {
             self.flowId = flowId
             self.operator = `operator`
+            self.agent = agent
         }
 
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case `operator` = "Operator"
+            case agent = "Agent"
         }
     }
 
     /// VerifyPdf返回参数结构体
     public struct VerifyPdfResponse: TCResponse {
-        /// 验签结果，1-文件未被篡改，全部签名在腾讯电子签完成； 2-文件未被篡改，部分签名在腾讯电子签完成；3-文件被篡改；4-异常：文件内没有签名域；5-异常：文件签名格式错误
+        /// 验签结果代码，代码的含义如下：
+        ///
+        /// - **1**：文件未被篡改，全部签名在腾讯电子签完成。
+        /// - **2**：文件未被篡改，部分签名在腾讯电子签完成。
+        /// - **3**：文件被篡改。
+        /// - **4**：异常：文件内没有签名域。
+        /// - **5**：异常：文件签名格式错误。
         public let verifyResult: Int64
 
-        /// 验签结果详情,内部状态1-验签成功，在电子签签署；2-验签成功，在其他平台签署；3-验签失败；4-pdf文件没有签名域；5-文件签名格式错误
+        /// 验签结果详情，每个签名域对应的验签结果。状态值如下
+        ///
+        /// - **1** :验签成功，在电子签签署
+        /// - **2** :验签成功，在其他平台签署
+        /// - **3** :验签失败
+        /// - **4** :pdf文件没有签名域
+        /// - **5** :文件签名格式错误
         public let pdfVerifyResults: [PdfVerifyResult]
 
-        /// 验签序列号
+        /// 验签序列号, 为11为数组组成的字符串
         public let verifySerialNo: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -62,7 +82,7 @@ extension Ess {
 
     /// 流程文件验签
     ///
-    /// 对流程的合同文件进行验证，判断文件是否合法。
+    /// 对合同流程文件进行数字签名验证，判断数字签名是否有效，合同文件内容是否被篡改。
     @inlinable
     public func verifyPdf(_ input: VerifyPdfRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyPdfResponse> {
         self.client.execute(action: "VerifyPdf", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -70,7 +90,7 @@ extension Ess {
 
     /// 流程文件验签
     ///
-    /// 对流程的合同文件进行验证，判断文件是否合法。
+    /// 对合同流程文件进行数字签名验证，判断数字签名是否有效，合同文件内容是否被篡改。
     @inlinable
     public func verifyPdf(_ input: VerifyPdfRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyPdfResponse {
         try await self.client.execute(action: "VerifyPdf", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -78,17 +98,17 @@ extension Ess {
 
     /// 流程文件验签
     ///
-    /// 对流程的合同文件进行验证，判断文件是否合法。
+    /// 对合同流程文件进行数字签名验证，判断数字签名是否有效，合同文件内容是否被篡改。
     @inlinable
-    public func verifyPdf(flowId: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyPdfResponse> {
-        self.verifyPdf(.init(flowId: flowId, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func verifyPdf(flowId: String, operator: UserInfo? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyPdfResponse> {
+        self.verifyPdf(.init(flowId: flowId, operator: `operator`, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 流程文件验签
     ///
-    /// 对流程的合同文件进行验证，判断文件是否合法。
+    /// 对合同流程文件进行数字签名验证，判断数字签名是否有效，合同文件内容是否被篡改。
     @inlinable
-    public func verifyPdf(flowId: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyPdfResponse {
-        try await self.verifyPdf(.init(flowId: flowId, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func verifyPdf(flowId: String, operator: UserInfo? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyPdfResponse {
+        try await self.verifyPdf(.init(flowId: flowId, operator: `operator`, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 }

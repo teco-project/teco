@@ -21,6 +21,9 @@ import TecoCore
 extension Tdmq {
     /// DescribeRoles请求参数结构体
     public struct DescribeRolesRequest: TCPaginatedRequest {
+        /// 必填字段，集群Id
+        public let clusterId: String
+
         /// 角色名称，模糊查询
         public let roleName: String?
 
@@ -30,28 +33,25 @@ extension Tdmq {
         /// 返回数量，不填则默认为10，最大值为20。
         public let limit: Int64?
 
-        /// 必填字段，集群Id
-        public let clusterId: String?
-
         /// * RoleName
         /// 按照角色名进行过滤，精确查询。
         /// 类型：String
         /// 必选：否
         public let filters: [Filter]?
 
-        public init(roleName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, clusterId: String? = nil, filters: [Filter]? = nil) {
+        public init(clusterId: String, roleName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil) {
+            self.clusterId = clusterId
             self.roleName = roleName
             self.offset = offset
             self.limit = limit
-            self.clusterId = clusterId
             self.filters = filters
         }
 
         enum CodingKeys: String, CodingKey {
+            case clusterId = "ClusterId"
             case roleName = "RoleName"
             case offset = "Offset"
             case limit = "Limit"
-            case clusterId = "ClusterId"
             case filters = "Filters"
         }
 
@@ -60,7 +60,7 @@ extension Tdmq {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return .init(roleName: self.roleName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, clusterId: self.clusterId, filters: self.filters)
+            return .init(clusterId: self.clusterId, roleName: self.roleName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters)
         }
     }
 
@@ -106,14 +106,14 @@ extension Tdmq {
 
     /// 获取角色列表
     @inlinable
-    public func describeRoles(roleName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, clusterId: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRolesResponse> {
-        self.describeRoles(.init(roleName: roleName, offset: offset, limit: limit, clusterId: clusterId, filters: filters), region: region, logger: logger, on: eventLoop)
+    public func describeRoles(clusterId: String, roleName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRolesResponse> {
+        self.describeRoles(.init(clusterId: clusterId, roleName: roleName, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取角色列表
     @inlinable
-    public func describeRoles(roleName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, clusterId: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRolesResponse {
-        try await self.describeRoles(.init(roleName: roleName, offset: offset, limit: limit, clusterId: clusterId, filters: filters), region: region, logger: logger, on: eventLoop)
+    public func describeRoles(clusterId: String, roleName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRolesResponse {
+        try await self.describeRoles(.init(clusterId: clusterId, roleName: roleName, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取角色列表

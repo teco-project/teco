@@ -78,42 +78,42 @@ extension Iai {
     @available(*, unavailable, message: "避免官网歧义")
     @inlinable
     public func getUpgradeGroupFaceModelVersionJobList(_ input: GetUpgradeGroupFaceModelVersionJobListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUpgradeGroupFaceModelVersionJobListResponse> {
-        fatalError("GetUpgradeGroupFaceModelVersionJobList is no longer available.")
+        fatalError("'GetUpgradeGroupFaceModelVersionJobList' is no longer available.")
     }
 
     /// 获取人员库升级任务列表
     @available(*, unavailable, message: "避免官网歧义")
     @inlinable
     public func getUpgradeGroupFaceModelVersionJobList(_ input: GetUpgradeGroupFaceModelVersionJobListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeGroupFaceModelVersionJobListResponse {
-        fatalError("GetUpgradeGroupFaceModelVersionJobList is no longer available.")
+        fatalError("'GetUpgradeGroupFaceModelVersionJobList' is no longer available.")
     }
 
     /// 获取人员库升级任务列表
     @available(*, unavailable, message: "避免官网歧义")
     @inlinable
     public func getUpgradeGroupFaceModelVersionJobList(offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUpgradeGroupFaceModelVersionJobListResponse> {
-        fatalError("GetUpgradeGroupFaceModelVersionJobList is no longer available.")
+        fatalError("'GetUpgradeGroupFaceModelVersionJobList' is no longer available.")
     }
 
     /// 获取人员库升级任务列表
     @available(*, unavailable, message: "避免官网歧义")
     @inlinable
     public func getUpgradeGroupFaceModelVersionJobList(offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeGroupFaceModelVersionJobListResponse {
-        fatalError("GetUpgradeGroupFaceModelVersionJobList is no longer available.")
+        fatalError("'GetUpgradeGroupFaceModelVersionJobList' is no longer available.")
     }
 
     /// 获取人员库升级任务列表
     @available(*, unavailable, message: "避免官网歧义")
     @inlinable
     public func getUpgradeGroupFaceModelVersionJobListPaginated(_ input: GetUpgradeGroupFaceModelVersionJobListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [UpgradeJobInfo])> {
-        fatalError("GetUpgradeGroupFaceModelVersionJobList is no longer available.")
+        fatalError("'GetUpgradeGroupFaceModelVersionJobList' is no longer available.")
     }
 
     /// 获取人员库升级任务列表
     @available(*, unavailable, message: "避免官网歧义")
     @inlinable @discardableResult
     public func getUpgradeGroupFaceModelVersionJobListPaginated(_ input: GetUpgradeGroupFaceModelVersionJobListRequest, region: TCRegion? = nil, onResponse: @escaping (GetUpgradeGroupFaceModelVersionJobListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
-        fatalError("GetUpgradeGroupFaceModelVersionJobList is no longer available.")
+        fatalError("'GetUpgradeGroupFaceModelVersionJobList' is no longer available.")
     }
 
     /// 获取人员库升级任务列表
@@ -122,6 +122,6 @@ extension Iai {
     @available(*, unavailable, message: "避免官网歧义")
     @inlinable
     public func getUpgradeGroupFaceModelVersionJobListPaginator(_ input: GetUpgradeGroupFaceModelVersionJobListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetUpgradeGroupFaceModelVersionJobListRequest> {
-        fatalError("GetUpgradeGroupFaceModelVersionJobList is no longer available.")
+        fatalError("'GetUpgradeGroupFaceModelVersionJobList' is no longer available.")
     }
 }

@@ -50,7 +50,7 @@ extension Apigateway {
         /// 独享实例id
         public let instanceId: String?
 
-        /// vpc属性
+        /// vpc属性，选择VPC后不可修改，为服务选择VPC后，可对接该VPC下的后端资源
         public let uniqVpcId: String?
 
         public init(serviceName: String, protocol: String, serviceDesc: String? = nil, netTypes: [String]? = nil, ipVersion: String? = nil, setServerName: String? = nil, appIdType: String? = nil, tags: [Tag]? = nil, instanceId: String? = nil, uniqVpcId: String? = nil) {

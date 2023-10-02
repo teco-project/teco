@@ -64,24 +64,32 @@ extension Car {
     }
 
     /// 申请并发
+    ///
+    /// 本接口用于申请并发。接口超时时间：20秒。
     @inlinable @discardableResult
     public func applyConcurrent(_ input: ApplyConcurrentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyConcurrentResponse> {
         self.client.execute(action: "ApplyConcurrent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 申请并发
+    ///
+    /// 本接口用于申请并发。接口超时时间：20秒。
     @inlinable @discardableResult
     public func applyConcurrent(_ input: ApplyConcurrentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyConcurrentResponse {
         try await self.client.execute(action: "ApplyConcurrent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 申请并发
+    ///
+    /// 本接口用于申请并发。接口超时时间：20秒。
     @inlinable @discardableResult
     public func applyConcurrent(userId: String, userIp: String, projectId: String, applicationVersionId: String? = nil, applicationId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyConcurrentResponse> {
         self.applyConcurrent(.init(userId: userId, userIp: userIp, projectId: projectId, applicationVersionId: applicationVersionId, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 申请并发
+    ///
+    /// 本接口用于申请并发。接口超时时间：20秒。
     @inlinable @discardableResult
     public func applyConcurrent(userId: String, userIp: String, projectId: String, applicationVersionId: String? = nil, applicationId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyConcurrentResponse {
         try await self.applyConcurrent(.init(userId: userId, userIp: userIp, projectId: projectId, applicationVersionId: applicationVersionId, applicationId: applicationId), region: region, logger: logger, on: eventLoop)

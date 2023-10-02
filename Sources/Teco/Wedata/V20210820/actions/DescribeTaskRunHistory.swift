@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeTaskRunHistory请求参数结构体
-    public struct DescribeTaskRunHistoryRequest: TCRequest {
+    public struct DescribeTaskRunHistoryRequest: TCPaginatedRequest {
         /// 项目id
         public let projectId: String
 
@@ -31,9 +31,9 @@ extension Wedata {
         public let pageSize: UInt64
 
         /// 分页页码
-        public let pageNumber: String
+        public let pageNumber: UInt64
 
-        public init(projectId: String, searchCondition: InstanceSearchCondition, pageSize: UInt64, pageNumber: String) {
+        public init(projectId: String, searchCondition: InstanceSearchCondition, pageSize: UInt64, pageNumber: UInt64) {
             self.projectId = projectId
             self.searchCondition = searchCondition
             self.pageSize = pageSize
@@ -46,10 +46,18 @@ extension Wedata {
             case pageSize = "PageSize"
             case pageNumber = "PageNumber"
         }
+
+        /// Compute the next request based on API response.
+        public func makeNextRequest(with response: DescribeTaskRunHistoryResponse) -> DescribeTaskRunHistoryRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return .init(projectId: self.projectId, searchCondition: self.searchCondition, pageSize: self.pageSize, pageNumber: self.pageNumber + 1)
+        }
     }
 
     /// DescribeTaskRunHistory返回参数结构体
-    public struct DescribeTaskRunHistoryResponse: TCResponse {
+    public struct DescribeTaskRunHistoryResponse: TCPaginatedResponse {
         /// 分页查询任务运行历史结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: InstanceOpsInfoPage?
@@ -60,6 +68,16 @@ extension Wedata {
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned ``InstanceOpsDto`` list from the paginated response.
+        public func getItems() -> [InstanceOpsDto] {
+            self.data?.items ?? []
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.data?.totalCount
         }
     }
 
@@ -77,13 +95,33 @@ extension Wedata {
 
     /// 分页查询任务运行历史
     @inlinable
-    public func describeTaskRunHistory(projectId: String, searchCondition: InstanceSearchCondition, pageSize: UInt64, pageNumber: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskRunHistoryResponse> {
+    public func describeTaskRunHistory(projectId: String, searchCondition: InstanceSearchCondition, pageSize: UInt64, pageNumber: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskRunHistoryResponse> {
         self.describeTaskRunHistory(.init(projectId: projectId, searchCondition: searchCondition, pageSize: pageSize, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 分页查询任务运行历史
     @inlinable
-    public func describeTaskRunHistory(projectId: String, searchCondition: InstanceSearchCondition, pageSize: UInt64, pageNumber: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskRunHistoryResponse {
+    public func describeTaskRunHistory(projectId: String, searchCondition: InstanceSearchCondition, pageSize: UInt64, pageNumber: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskRunHistoryResponse {
         try await self.describeTaskRunHistory(.init(projectId: projectId, searchCondition: searchCondition, pageSize: pageSize, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 分页查询任务运行历史
+    @inlinable
+    public func describeTaskRunHistoryPaginated(_ input: DescribeTaskRunHistoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [InstanceOpsDto])> {
+        self.client.paginate(input: input, region: region, command: self.describeTaskRunHistory, logger: logger, on: eventLoop)
+    }
+
+    /// 分页查询任务运行历史
+    @inlinable @discardableResult
+    public func describeTaskRunHistoryPaginated(_ input: DescribeTaskRunHistoryRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTaskRunHistoryResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeTaskRunHistory, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 分页查询任务运行历史
+    ///
+    /// - Returns: `AsyncSequence`s of ``InstanceOpsDto`` and ``DescribeTaskRunHistoryResponse`` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeTaskRunHistoryPaginator(_ input: DescribeTaskRunHistoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTaskRunHistoryRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTaskRunHistory, logger: logger, on: eventLoop)
     }
 }

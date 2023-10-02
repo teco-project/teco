@@ -21,7 +21,20 @@ import TecoCore
 extension Tcss {
     /// CreateRefreshTask请求参数结构体
     public struct CreateRefreshTaskRequest: TCRequest {
-        public init() {
+        /// 指定集群列表,若为空则标识同步所有集群
+        public let clusterIDs: [String]?
+
+        /// 是否只同步列表
+        public let isSyncListOnly: Bool?
+
+        public init(clusterIDs: [String]? = nil, isSyncListOnly: Bool? = nil) {
+            self.clusterIDs = clusterIDs
+            self.isSyncListOnly = isSyncListOnly
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case clusterIDs = "ClusterIDs"
+            case isSyncListOnly = "IsSyncListOnly"
         }
     }
 
@@ -33,12 +46,16 @@ extension Tcss {
         /// 创建检查任务的结果，"Succ"为成功，"Failed"为失败
         public let createResult: String
 
+        /// 返回创建的新集群检查任务ID
+        public let newTaskID: String
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case createResult = "CreateResult"
+            case newTaskID = "NewTaskID"
             case requestId = "RequestId"
         }
     }
@@ -63,15 +80,15 @@ extension Tcss {
     ///
     /// 下发刷新任务，会刷新资产信息
     @inlinable
-    public func createRefreshTask(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRefreshTaskResponse> {
-        self.createRefreshTask(.init(), region: region, logger: logger, on: eventLoop)
+    public func createRefreshTask(clusterIDs: [String]? = nil, isSyncListOnly: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRefreshTaskResponse> {
+        self.createRefreshTask(.init(clusterIDs: clusterIDs, isSyncListOnly: isSyncListOnly), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下发刷新任务
     ///
     /// 下发刷新任务，会刷新资产信息
     @inlinable
-    public func createRefreshTask(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRefreshTaskResponse {
-        try await self.createRefreshTask(.init(), region: region, logger: logger, on: eventLoop)
+    public func createRefreshTask(clusterIDs: [String]? = nil, isSyncListOnly: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRefreshTaskResponse {
+        try await self.createRefreshTask(.init(clusterIDs: clusterIDs, isSyncListOnly: isSyncListOnly), region: region, logger: logger, on: eventLoop)
     }
 }

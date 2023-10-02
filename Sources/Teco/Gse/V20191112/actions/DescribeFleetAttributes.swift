@@ -86,7 +86,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetAttributes(_ input: DescribeFleetAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFleetAttributesResponse> {
-        fatalError("DescribeFleetAttributes is no longer available.")
+        fatalError("'DescribeFleetAttributes' is no longer available.")
     }
 
     /// 获取服务器舰队属性
@@ -95,7 +95,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetAttributes(_ input: DescribeFleetAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetAttributesResponse {
-        fatalError("DescribeFleetAttributes is no longer available.")
+        fatalError("'DescribeFleetAttributes' is no longer available.")
     }
 
     /// 获取服务器舰队属性
@@ -104,7 +104,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetAttributes(fleetIds: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFleetAttributesResponse> {
-        fatalError("DescribeFleetAttributes is no longer available.")
+        fatalError("'DescribeFleetAttributes' is no longer available.")
     }
 
     /// 获取服务器舰队属性
@@ -113,7 +113,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetAttributes(fleetIds: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetAttributesResponse {
-        fatalError("DescribeFleetAttributes is no longer available.")
+        fatalError("'DescribeFleetAttributes' is no longer available.")
     }
 
     /// 获取服务器舰队属性
@@ -122,7 +122,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetAttributesPaginated(_ input: DescribeFleetAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [FleetAttributes])> {
-        fatalError("DescribeFleetAttributes is no longer available.")
+        fatalError("'DescribeFleetAttributes' is no longer available.")
     }
 
     /// 获取服务器舰队属性
@@ -131,7 +131,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func describeFleetAttributesPaginated(_ input: DescribeFleetAttributesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeFleetAttributesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
-        fatalError("DescribeFleetAttributes is no longer available.")
+        fatalError("'DescribeFleetAttributes' is no longer available.")
     }
 
     /// 获取服务器舰队属性
@@ -142,6 +142,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetAttributesPaginator(_ input: DescribeFleetAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFleetAttributesRequest> {
-        fatalError("DescribeFleetAttributes is no longer available.")
+        fatalError("'DescribeFleetAttributes' is no longer available.")
     }
 }

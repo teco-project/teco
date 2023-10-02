@@ -32,16 +32,26 @@ extension Cwp {
         /// - Domain  - String - 基线名称
         public let filters: [Filters]?
 
-        public init(limit: UInt64, offset: UInt64, filters: [Filters]? = nil) {
+        /// 排序方式 [asc:升序|desc:降序]
+        public let order: String?
+
+        /// 排序字段
+        public let by: String?
+
+        public init(limit: UInt64, offset: UInt64, filters: [Filters]? = nil, order: String? = nil, by: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
+            self.order = order
+            self.by = by
         }
 
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
             case offset = "Offset"
             case filters = "Filters"
+            case order = "Order"
+            case by = "By"
         }
 
         /// Compute the next request based on API response.
@@ -49,7 +59,7 @@ extension Cwp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return .init(limit: self.limit, offset: self.offset + .init(response.getItems().count), filters: self.filters)
+            return .init(limit: self.limit, offset: self.offset + .init(response.getItems().count), filters: self.filters, order: self.order, by: self.by)
         }
     }
 
@@ -97,14 +107,14 @@ extension Cwp {
 
     /// 查询恶意请求白名单列表
     @inlinable
-    public func describeMaliciousRequestWhiteList(limit: UInt64, offset: UInt64, filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMaliciousRequestWhiteListResponse> {
-        self.describeMaliciousRequestWhiteList(.init(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+    public func describeMaliciousRequestWhiteList(limit: UInt64, offset: UInt64, filters: [Filters]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMaliciousRequestWhiteListResponse> {
+        self.describeMaliciousRequestWhiteList(.init(limit: limit, offset: offset, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询恶意请求白名单列表
     @inlinable
-    public func describeMaliciousRequestWhiteList(limit: UInt64, offset: UInt64, filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaliciousRequestWhiteListResponse {
-        try await self.describeMaliciousRequestWhiteList(.init(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+    public func describeMaliciousRequestWhiteList(limit: UInt64, offset: UInt64, filters: [Filters]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaliciousRequestWhiteListResponse {
+        try await self.describeMaliciousRequestWhiteList(.init(limit: limit, offset: offset, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询恶意请求白名单列表

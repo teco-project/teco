@@ -24,6 +24,7 @@ extension TCTeoError {
             case packNotAllow = "LimitExceeded.PackNotAllow"
             case queryTimeLimitExceeded = "LimitExceeded.QueryTimeLimitExceeded"
             case rateLimitExceeded = "LimitExceeded.RateLimitExceeded"
+            case zoneBindPlan = "LimitExceeded.ZoneBindPlan"
             case other = "LimitExceeded"
         }
 
@@ -76,6 +77,10 @@ extension TCTeoError {
             LimitExceeded(.rateLimitExceeded)
         }
 
+        public static var zoneBindPlan: LimitExceeded {
+            LimitExceeded(.zoneBindPlan)
+        }
+
         /// 超过配额限制。
         public static var other: LimitExceeded {
             LimitExceeded(.other)
@@ -94,6 +99,8 @@ extension TCTeoError {
                 code = .limitExceeded_QueryTimeLimitExceeded
             case .rateLimitExceeded:
                 code = .limitExceeded_RateLimitExceeded
+            case .zoneBindPlan:
+                code = .limitExceeded_ZoneBindPlan
             case .other:
                 code = .limitExceeded
             }

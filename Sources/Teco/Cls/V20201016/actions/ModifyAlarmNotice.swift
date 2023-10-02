@@ -39,12 +39,21 @@ extension Cls {
         /// 接口回调信息（包括企业微信）。
         public let webCallbacks: [WebCallback]?
 
-        public init(alarmNoticeId: String, name: String? = nil, type: String? = nil, noticeReceivers: [NoticeReceiver]? = nil, webCallbacks: [WebCallback]? = nil) {
+        /// 通知规则。
+        ///
+        /// 注意:
+        ///
+        /// - Type、NoticeReceivers和WebCallbacks是一组配置，NoticeRules是另一组配置，2组配置互斥。
+        /// - 传其中一组数据，则另一组数据置空。
+        public let noticeRules: [NoticeRule]?
+
+        public init(alarmNoticeId: String, name: String? = nil, type: String? = nil, noticeReceivers: [NoticeReceiver]? = nil, webCallbacks: [WebCallback]? = nil, noticeRules: [NoticeRule]? = nil) {
             self.alarmNoticeId = alarmNoticeId
             self.name = name
             self.type = type
             self.noticeReceivers = noticeReceivers
             self.webCallbacks = webCallbacks
+            self.noticeRules = noticeRules
         }
 
         enum CodingKeys: String, CodingKey {
@@ -53,6 +62,7 @@ extension Cls {
             case type = "Type"
             case noticeReceivers = "NoticeReceivers"
             case webCallbacks = "WebCallbacks"
+            case noticeRules = "NoticeRules"
         }
     }
 
@@ -86,15 +96,15 @@ extension Cls {
     ///
     /// 该接口用于修改通知渠道组
     @inlinable @discardableResult
-    public func modifyAlarmNotice(alarmNoticeId: String, name: String? = nil, type: String? = nil, noticeReceivers: [NoticeReceiver]? = nil, webCallbacks: [WebCallback]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmNoticeResponse> {
-        self.modifyAlarmNotice(.init(alarmNoticeId: alarmNoticeId, name: name, type: type, noticeReceivers: noticeReceivers, webCallbacks: webCallbacks), region: region, logger: logger, on: eventLoop)
+    public func modifyAlarmNotice(alarmNoticeId: String, name: String? = nil, type: String? = nil, noticeReceivers: [NoticeReceiver]? = nil, webCallbacks: [WebCallback]? = nil, noticeRules: [NoticeRule]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmNoticeResponse> {
+        self.modifyAlarmNotice(.init(alarmNoticeId: alarmNoticeId, name: name, type: type, noticeReceivers: noticeReceivers, webCallbacks: webCallbacks, noticeRules: noticeRules), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改通知渠道组
     ///
     /// 该接口用于修改通知渠道组
     @inlinable @discardableResult
-    public func modifyAlarmNotice(alarmNoticeId: String, name: String? = nil, type: String? = nil, noticeReceivers: [NoticeReceiver]? = nil, webCallbacks: [WebCallback]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmNoticeResponse {
-        try await self.modifyAlarmNotice(.init(alarmNoticeId: alarmNoticeId, name: name, type: type, noticeReceivers: noticeReceivers, webCallbacks: webCallbacks), region: region, logger: logger, on: eventLoop)
+    public func modifyAlarmNotice(alarmNoticeId: String, name: String? = nil, type: String? = nil, noticeReceivers: [NoticeReceiver]? = nil, webCallbacks: [WebCallback]? = nil, noticeRules: [NoticeRule]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmNoticeResponse {
+        try await self.modifyAlarmNotice(.init(alarmNoticeId: alarmNoticeId, name: name, type: type, noticeReceivers: noticeReceivers, webCallbacks: webCallbacks, noticeRules: noticeRules), region: region, logger: logger, on: eventLoop)
     }
 }

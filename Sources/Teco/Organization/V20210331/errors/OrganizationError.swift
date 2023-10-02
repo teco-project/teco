@@ -60,17 +60,23 @@ public struct TCOrganizationError: TCOrganizationErrorType {
         case failedOperation_OperateBillingPermissionErr = "FailedOperation.OperateBillingPermissionErr"
         case failedOperation_OperatePolicy = "FailedOperation.OperatePolicy"
         case failedOperation_OrganizationAuthManageNotAllowDelete = "FailedOperation.OrganizationAuthManageNotAllowDelete"
+        case failedOperation_OrganizationExistAlready = "FailedOperation.OrganizationExistAlready"
         case failedOperation_OrganizationIdentityPolicyError = "FailedOperation.OrganizationIdentityPolicyError"
         case failedOperation_OrganizationMemberNameUsed = "FailedOperation.OrganizationMemberNameUsed"
         case failedOperation_OrganizationNodeDeleteOverLimit = "FailedOperation.OrganizationNodeDeleteOverLimit"
         case failedOperation_OrganizationNodeNameUsed = "FailedOperation.OrganizationNodeNameUsed"
         case failedOperation_OrganizationNodeNotEmpty = "FailedOperation.OrganizationNodeNotEmpty"
         case failedOperation_OrganizationNodeNotExist = "FailedOperation.OrganizationNodeNotExist"
+        case failedOperation_OrganizationNotEmpty = "FailedOperation.OrganizationNotEmpty"
         case failedOperation_OrganizationPermissionIllegal = "FailedOperation.OrganizationPermissionIllegal"
         case failedOperation_OrganizationPolicyIllegal = "FailedOperation.OrganizationPolicyIllegal"
+        case failedOperation_OrganizationPolicyIsNotDisabled = "FailedOperation.OrganizationPolicyIsNotDisabled"
         case failedOperation_PayUinIllegal = "FailedOperation.PayUinIllegal"
+        case failedOperation_QuitShareUint = "FailedOperation.QuitShareUint"
         case failedOperation_QuitShareUintError = "FailedOperation.QuitShareUintError"
+        case failedOperation_QuiteShareUnit = "FailedOperation.QuiteShareUnit"
         case failedOperation_ShareResourceMemberInUse = "FailedOperation.ShareResourceMemberInUse"
+        case failedOperation_ShareUnitNotEmpty = "FailedOperation.ShareUnitNotEmpty"
         case failedOperation_SomeUinsNotInOrganization = "FailedOperation.SomeUinsNotInOrganization"
         case failedOperation_SubAccountIdentityExist = "FailedOperation.SubAccountIdentityExist"
         case failedOperation_SubAccountNotExist = "FailedOperation.SubAccountNotExist"
@@ -102,7 +108,9 @@ public struct TCOrganizationError: TCOrganizationErrorType {
         case unsupportedOperation = "UnsupportedOperation"
         case unsupportedOperation_AddDelegatePayerNotAllow = "UnsupportedOperation.AddDelegatePayerNotAllow"
         case unsupportedOperation_AddDiscountInheritNotAllow = "UnsupportedOperation.AddDiscountInheritNotAllow"
+        case unsupportedOperation_CreateMemberNotAllowCreateOrganization = "UnsupportedOperation.CreateMemberNotAllowCreateOrganization"
         case unsupportedOperation_CreateMemberNotAllowDelete = "UnsupportedOperation.CreateMemberNotAllowDelete"
+        case unsupportedOperation_CreateMemberNotAllowQuit = "UnsupportedOperation.CreateMemberNotAllowQuit"
         case unsupportedOperation_DeleteDelegatePayerNotAllow = "UnsupportedOperation.DeleteDelegatePayerNotAllow"
         case unsupportedOperation_ExistedAgent = "UnsupportedOperation.ExistedAgent"
         case unsupportedOperation_ExistedClient = "UnsupportedOperation.ExistedClient"
@@ -319,6 +327,11 @@ public struct TCOrganizationError: TCOrganizationErrorType {
         TCOrganizationError(.failedOperation_OrganizationAuthManageNotAllowDelete)
     }
 
+    /// 企业组织已经存在。
+    public static var failedOperation_OrganizationExistAlready: TCOrganizationError {
+        TCOrganizationError(.failedOperation_OrganizationExistAlready)
+    }
+
     /// 组织身份策略不合法。
     public static var failedOperation_OrganizationIdentityPolicyError: TCOrganizationError {
         TCOrganizationError(.failedOperation_OrganizationIdentityPolicyError)
@@ -349,6 +362,11 @@ public struct TCOrganizationError: TCOrganizationErrorType {
         TCOrganizationError(.failedOperation_OrganizationNodeNotExist)
     }
 
+    /// 企业组织成员不为空。
+    public static var failedOperation_OrganizationNotEmpty: TCOrganizationError {
+        TCOrganizationError(.failedOperation_OrganizationNotEmpty)
+    }
+
     /// 组织权限不合法。
     public static var failedOperation_OrganizationPermissionIllegal: TCOrganizationError {
         TCOrganizationError(.failedOperation_OrganizationPermissionIllegal)
@@ -359,9 +377,19 @@ public struct TCOrganizationError: TCOrganizationErrorType {
         TCOrganizationError(.failedOperation_OrganizationPolicyIllegal)
     }
 
+    /// 集团策略不是禁用状态。
+    public static var failedOperation_OrganizationPolicyIsNotDisabled: TCOrganizationError {
+        TCOrganizationError(.failedOperation_OrganizationPolicyIsNotDisabled)
+    }
+
     /// 代付者不合法。
     public static var failedOperation_PayUinIllegal: TCOrganizationError {
         TCOrganizationError(.failedOperation_PayUinIllegal)
+    }
+
+    /// 退出共享单元失败。
+    public static var failedOperation_QuitShareUint: TCOrganizationError {
+        TCOrganizationError(.failedOperation_QuitShareUint)
     }
 
     /// 退出共享单元错误。
@@ -369,9 +397,19 @@ public struct TCOrganizationError: TCOrganizationErrorType {
         TCOrganizationError(.failedOperation_QuitShareUintError)
     }
 
+    /// 退出共享单元失败。
+    public static var failedOperation_QuiteShareUnit: TCOrganizationError {
+        TCOrganizationError(.failedOperation_QuiteShareUnit)
+    }
+
     /// 成员正在使用共享资源。
     public static var failedOperation_ShareResourceMemberInUse: TCOrganizationError {
         TCOrganizationError(.failedOperation_ShareResourceMemberInUse)
+    }
+
+    /// 共享单元不为空。
+    public static var failedOperation_ShareUnitNotEmpty: TCOrganizationError {
+        TCOrganizationError(.failedOperation_ShareUnitNotEmpty)
     }
 
     /// 存在不属于当前组织的uin。
@@ -529,9 +567,19 @@ public struct TCOrganizationError: TCOrganizationErrorType {
         TCOrganizationError(.unsupportedOperation_AddDiscountInheritNotAllow)
     }
 
+    /// 创建的成员不允许创建组织。
+    public static var unsupportedOperation_CreateMemberNotAllowCreateOrganization: TCOrganizationError {
+        TCOrganizationError(.unsupportedOperation_CreateMemberNotAllowCreateOrganization)
+    }
+
     /// 创建的成员不允许删除。
     public static var unsupportedOperation_CreateMemberNotAllowDelete: TCOrganizationError {
         TCOrganizationError(.unsupportedOperation_CreateMemberNotAllowDelete)
+    }
+
+    /// 创建的成员不允许退出。
+    public static var unsupportedOperation_CreateMemberNotAllowQuit: TCOrganizationError {
+        TCOrganizationError(.unsupportedOperation_CreateMemberNotAllowQuit)
     }
 
     /// 不允许删除代付关系。

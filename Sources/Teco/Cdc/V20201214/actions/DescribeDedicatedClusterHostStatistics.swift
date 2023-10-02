@@ -24,12 +24,32 @@ extension Cdc {
         /// 查询的专用集群id
         public let dedicatedClusterId: String
 
-        public init(dedicatedClusterId: String) {
+        /// 宿主机id
+        public let hostId: String?
+
+        /// 开始时间
+        public let startTime: String?
+
+        /// 结束时间
+        public let endTime: String?
+
+        /// 时间范围精度，1分钟/5分钟
+        public let period: String?
+
+        public init(dedicatedClusterId: String, hostId: String? = nil, startTime: String? = nil, endTime: String? = nil, period: String? = nil) {
             self.dedicatedClusterId = dedicatedClusterId
+            self.hostId = hostId
+            self.startTime = startTime
+            self.endTime = endTime
+            self.period = period
         }
 
         enum CodingKeys: String, CodingKey {
             case dedicatedClusterId = "DedicatedClusterId"
+            case hostId = "HostId"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+            case period = "Period"
         }
     }
 
@@ -61,13 +81,13 @@ extension Cdc {
 
     /// 查询专用集群内宿主机的统计信息
     @inlinable
-    public func describeDedicatedClusterHostStatistics(dedicatedClusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDedicatedClusterHostStatisticsResponse> {
-        self.describeDedicatedClusterHostStatistics(.init(dedicatedClusterId: dedicatedClusterId), region: region, logger: logger, on: eventLoop)
+    public func describeDedicatedClusterHostStatistics(dedicatedClusterId: String, hostId: String? = nil, startTime: String? = nil, endTime: String? = nil, period: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDedicatedClusterHostStatisticsResponse> {
+        self.describeDedicatedClusterHostStatistics(.init(dedicatedClusterId: dedicatedClusterId, hostId: hostId, startTime: startTime, endTime: endTime, period: period), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询专用集群内宿主机的统计信息
     @inlinable
-    public func describeDedicatedClusterHostStatistics(dedicatedClusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterHostStatisticsResponse {
-        try await self.describeDedicatedClusterHostStatistics(.init(dedicatedClusterId: dedicatedClusterId), region: region, logger: logger, on: eventLoop)
+    public func describeDedicatedClusterHostStatistics(dedicatedClusterId: String, hostId: String? = nil, startTime: String? = nil, endTime: String? = nil, period: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterHostStatisticsResponse {
+        try await self.describeDedicatedClusterHostStatistics(.init(dedicatedClusterId: dedicatedClusterId, hostId: hostId, startTime: startTime, endTime: endTime, period: period), region: region, logger: logger, on: eventLoop)
     }
 }

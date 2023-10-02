@@ -24,6 +24,9 @@ extension Vod {
         /// 媒体文件唯一标识列表，最大长度：100。
         public let fileIds: [String]
 
+        /// 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        public let subAppId: UInt64?
+
         /// 解冻出的临时媒体文件的可访问持续时长，必须大于0，单位为“天”。
         public let restoreDay: UInt64?
 
@@ -37,21 +40,18 @@ extension Vod {
         /// - 批量模式：Bulk，解冻任务在48小时后完成。
         public let restoreTier: String?
 
-        /// 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        public let subAppId: UInt64?
-
-        public init(fileIds: [String], restoreDay: UInt64? = nil, restoreTier: String? = nil, subAppId: UInt64? = nil) {
+        public init(fileIds: [String], subAppId: UInt64? = nil, restoreDay: UInt64? = nil, restoreTier: String? = nil) {
             self.fileIds = fileIds
+            self.subAppId = subAppId
             self.restoreDay = restoreDay
             self.restoreTier = restoreTier
-            self.subAppId = subAppId
         }
 
         enum CodingKeys: String, CodingKey {
             case fileIds = "FileIds"
+            case subAppId = "SubAppId"
             case restoreDay = "RestoreDay"
             case restoreTier = "RestoreTier"
-            case subAppId = "SubAppId"
         }
     }
 
@@ -85,15 +85,15 @@ extension Vod {
     ///
     /// 当媒体文件的存储类型是归档存储或深度归档存储时，是不可访问的。如需访问，则需要调用本接口进行解冻，解冻后可访问的媒体文件是临时的，在有效期过后，则不可访问。
     @inlinable @discardableResult
-    public func restoreMedia(fileIds: [String], restoreDay: UInt64? = nil, restoreTier: String? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestoreMediaResponse> {
-        self.restoreMedia(.init(fileIds: fileIds, restoreDay: restoreDay, restoreTier: restoreTier, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+    public func restoreMedia(fileIds: [String], subAppId: UInt64? = nil, restoreDay: UInt64? = nil, restoreTier: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestoreMediaResponse> {
+        self.restoreMedia(.init(fileIds: fileIds, subAppId: subAppId, restoreDay: restoreDay, restoreTier: restoreTier), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解冻媒体文件
     ///
     /// 当媒体文件的存储类型是归档存储或深度归档存储时，是不可访问的。如需访问，则需要调用本接口进行解冻，解冻后可访问的媒体文件是临时的，在有效期过后，则不可访问。
     @inlinable @discardableResult
-    public func restoreMedia(fileIds: [String], restoreDay: UInt64? = nil, restoreTier: String? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestoreMediaResponse {
-        try await self.restoreMedia(.init(fileIds: fileIds, restoreDay: restoreDay, restoreTier: restoreTier, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+    public func restoreMedia(fileIds: [String], subAppId: UInt64? = nil, restoreDay: UInt64? = nil, restoreTier: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestoreMediaResponse {
+        try await self.restoreMedia(.init(fileIds: fileIds, subAppId: subAppId, restoreDay: restoreDay, restoreTier: restoreTier), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -33,11 +33,15 @@ extension Sqlserver {
         /// 备份名称，若不填则自动生成“实例ID_备份开始时间戳”
         public let backupName: String?
 
-        public init(strategy: Int64? = nil, dbNames: [String]? = nil, instanceId: String? = nil, backupName: String? = nil) {
+        /// 备份存储策略 0-跟随自定义备份保留策略 1-跟随实例生命周期直到实例下线，默认取值0
+        public let storageStrategy: Int64?
+
+        public init(strategy: Int64? = nil, dbNames: [String]? = nil, instanceId: String? = nil, backupName: String? = nil, storageStrategy: Int64? = nil) {
             self.strategy = strategy
             self.dbNames = dbNames
             self.instanceId = instanceId
             self.backupName = backupName
+            self.storageStrategy = storageStrategy
         }
 
         enum CodingKeys: String, CodingKey {
@@ -45,6 +49,7 @@ extension Sqlserver {
             case dbNames = "DBNames"
             case instanceId = "InstanceId"
             case backupName = "BackupName"
+            case storageStrategy = "StorageStrategy"
         }
     }
 
@@ -82,15 +87,15 @@ extension Sqlserver {
     ///
     /// 本接口(CreateBackup)用于创建备份。
     @inlinable
-    public func createBackup(strategy: Int64? = nil, dbNames: [String]? = nil, instanceId: String? = nil, backupName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackupResponse> {
-        self.createBackup(.init(strategy: strategy, dbNames: dbNames, instanceId: instanceId, backupName: backupName), region: region, logger: logger, on: eventLoop)
+    public func createBackup(strategy: Int64? = nil, dbNames: [String]? = nil, instanceId: String? = nil, backupName: String? = nil, storageStrategy: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackupResponse> {
+        self.createBackup(.init(strategy: strategy, dbNames: dbNames, instanceId: instanceId, backupName: backupName, storageStrategy: storageStrategy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建备份
     ///
     /// 本接口(CreateBackup)用于创建备份。
     @inlinable
-    public func createBackup(strategy: Int64? = nil, dbNames: [String]? = nil, instanceId: String? = nil, backupName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupResponse {
-        try await self.createBackup(.init(strategy: strategy, dbNames: dbNames, instanceId: instanceId, backupName: backupName), region: region, logger: logger, on: eventLoop)
+    public func createBackup(strategy: Int64? = nil, dbNames: [String]? = nil, instanceId: String? = nil, backupName: String? = nil, storageStrategy: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupResponse {
+        try await self.createBackup(.init(strategy: strategy, dbNames: dbNames, instanceId: instanceId, backupName: backupName, storageStrategy: storageStrategy), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -80,33 +80,41 @@ extension Cdn {
         }
     }
 
-    /// 获取诊断报告(即将下线)
+    /// 获取诊断报告(已废弃)
     ///
-    /// DescribeDiagnoseReport 用于获取指定报告id的内容， _将于 **2023年5月31日** 下线_
+    /// ### _**该接口已废弃** _
+    ///
+    /// DescribeDiagnoseReport 用于获取指定报告id的内容。
     @inlinable
     public func describeDiagnoseReport(_ input: DescribeDiagnoseReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiagnoseReportResponse> {
         self.client.execute(action: "DescribeDiagnoseReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取诊断报告(即将下线)
+    /// 获取诊断报告(已废弃)
     ///
-    /// DescribeDiagnoseReport 用于获取指定报告id的内容， _将于 **2023年5月31日** 下线_
+    /// ### _**该接口已废弃** _
+    ///
+    /// DescribeDiagnoseReport 用于获取指定报告id的内容。
     @inlinable
     public func describeDiagnoseReport(_ input: DescribeDiagnoseReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiagnoseReportResponse {
         try await self.client.execute(action: "DescribeDiagnoseReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取诊断报告(即将下线)
+    /// 获取诊断报告(已废弃)
     ///
-    /// DescribeDiagnoseReport 用于获取指定报告id的内容， _将于 **2023年5月31日** 下线_
+    /// ### _**该接口已废弃** _
+    ///
+    /// DescribeDiagnoseReport 用于获取指定报告id的内容。
     @inlinable
     public func describeDiagnoseReport(reportId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiagnoseReportResponse> {
         self.describeDiagnoseReport(.init(reportId: reportId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取诊断报告(即将下线)
+    /// 获取诊断报告(已废弃)
     ///
-    /// DescribeDiagnoseReport 用于获取指定报告id的内容， _将于 **2023年5月31日** 下线_
+    /// ### _**该接口已废弃** _
+    ///
+    /// DescribeDiagnoseReport 用于获取指定报告id的内容。
     @inlinable
     public func describeDiagnoseReport(reportId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiagnoseReportResponse {
         try await self.describeDiagnoseReport(.init(reportId: reportId), region: region, logger: logger, on: eventLoop)

@@ -47,6 +47,10 @@ extension Lcic {
         /// 用户头像Url。
         public let avatar: String
 
+        /// 用户在客户系统的Id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let originId: String?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -55,6 +59,7 @@ extension Lcic {
             case userId = "UserId"
             case name = "Name"
             case avatar = "Avatar"
+            case originId = "OriginId"
             case requestId = "RequestId"
         }
     }

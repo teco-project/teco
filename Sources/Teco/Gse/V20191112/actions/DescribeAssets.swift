@@ -95,7 +95,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeAssets(_ input: DescribeAssetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetsResponse> {
-        fatalError("DescribeAssets is no longer available.")
+        fatalError("'DescribeAssets' is no longer available.")
     }
 
     /// 拉取生成包列表
@@ -104,7 +104,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeAssets(_ input: DescribeAssetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetsResponse {
-        fatalError("DescribeAssets is no longer available.")
+        fatalError("'DescribeAssets' is no longer available.")
     }
 
     /// 拉取生成包列表
@@ -113,7 +113,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeAssets(assetRegion: String, offset: Int64, limit: Int64, filter: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetsResponse> {
-        fatalError("DescribeAssets is no longer available.")
+        fatalError("'DescribeAssets' is no longer available.")
     }
 
     /// 拉取生成包列表
@@ -122,7 +122,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeAssets(assetRegion: String, offset: Int64, limit: Int64, filter: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetsResponse {
-        fatalError("DescribeAssets is no longer available.")
+        fatalError("'DescribeAssets' is no longer available.")
     }
 
     /// 拉取生成包列表
@@ -131,7 +131,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeAssetsPaginated(_ input: DescribeAssetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Asset])> {
-        fatalError("DescribeAssets is no longer available.")
+        fatalError("'DescribeAssets' is no longer available.")
     }
 
     /// 拉取生成包列表
@@ -140,7 +140,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func describeAssetsPaginated(_ input: DescribeAssetsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAssetsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
-        fatalError("DescribeAssets is no longer available.")
+        fatalError("'DescribeAssets' is no longer available.")
     }
 
     /// 拉取生成包列表
@@ -151,6 +151,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeAssetsPaginator(_ input: DescribeAssetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetsRequest> {
-        fatalError("DescribeAssets is no longer available.")
+        fatalError("'DescribeAssets' is no longer available.")
     }
 }

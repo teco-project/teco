@@ -58,7 +58,10 @@ extension Lighthouse {
         /// 是否自动使用代金券。默认不使用。
         public let autoVoucher: Bool?
 
-        public init(bundleId: String, blueprintId: String, instanceChargePrepaid: InstanceChargePrepaid, instanceName: String? = nil, instanceCount: UInt64? = nil, zones: [String]? = nil, dryRun: Bool? = nil, clientToken: String? = nil, loginConfiguration: LoginConfiguration? = nil, containers: [DockerContainerConfiguration]? = nil, autoVoucher: Bool? = nil) {
+        /// 防火墙模版ID。若不指定该参数，则使用默认防火墙策略。
+        public let firewallTemplateId: String?
+
+        public init(bundleId: String, blueprintId: String, instanceChargePrepaid: InstanceChargePrepaid, instanceName: String? = nil, instanceCount: UInt64? = nil, zones: [String]? = nil, dryRun: Bool? = nil, clientToken: String? = nil, loginConfiguration: LoginConfiguration? = nil, containers: [DockerContainerConfiguration]? = nil, autoVoucher: Bool? = nil, firewallTemplateId: String? = nil) {
             self.bundleId = bundleId
             self.blueprintId = blueprintId
             self.instanceChargePrepaid = instanceChargePrepaid
@@ -70,6 +73,7 @@ extension Lighthouse {
             self.loginConfiguration = loginConfiguration
             self.containers = containers
             self.autoVoucher = autoVoucher
+            self.firewallTemplateId = firewallTemplateId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -84,6 +88,7 @@ extension Lighthouse {
             case loginConfiguration = "LoginConfiguration"
             case containers = "Containers"
             case autoVoucher = "AutoVoucher"
+            case firewallTemplateId = "FirewallTemplateId"
         }
     }
 
@@ -123,15 +128,15 @@ extension Lighthouse {
     ///
     /// 本接口(CreateInstances)用于创建一个或多个指定套餐的轻量应用服务器实例。
     @inlinable
-    public func createInstances(bundleId: String, blueprintId: String, instanceChargePrepaid: InstanceChargePrepaid, instanceName: String? = nil, instanceCount: UInt64? = nil, zones: [String]? = nil, dryRun: Bool? = nil, clientToken: String? = nil, loginConfiguration: LoginConfiguration? = nil, containers: [DockerContainerConfiguration]? = nil, autoVoucher: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstancesResponse> {
-        self.createInstances(.init(bundleId: bundleId, blueprintId: blueprintId, instanceChargePrepaid: instanceChargePrepaid, instanceName: instanceName, instanceCount: instanceCount, zones: zones, dryRun: dryRun, clientToken: clientToken, loginConfiguration: loginConfiguration, containers: containers, autoVoucher: autoVoucher), region: region, logger: logger, on: eventLoop)
+    public func createInstances(bundleId: String, blueprintId: String, instanceChargePrepaid: InstanceChargePrepaid, instanceName: String? = nil, instanceCount: UInt64? = nil, zones: [String]? = nil, dryRun: Bool? = nil, clientToken: String? = nil, loginConfiguration: LoginConfiguration? = nil, containers: [DockerContainerConfiguration]? = nil, autoVoucher: Bool? = nil, firewallTemplateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstancesResponse> {
+        self.createInstances(.init(bundleId: bundleId, blueprintId: blueprintId, instanceChargePrepaid: instanceChargePrepaid, instanceName: instanceName, instanceCount: instanceCount, zones: zones, dryRun: dryRun, clientToken: clientToken, loginConfiguration: loginConfiguration, containers: containers, autoVoucher: autoVoucher, firewallTemplateId: firewallTemplateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建实例
     ///
     /// 本接口(CreateInstances)用于创建一个或多个指定套餐的轻量应用服务器实例。
     @inlinable
-    public func createInstances(bundleId: String, blueprintId: String, instanceChargePrepaid: InstanceChargePrepaid, instanceName: String? = nil, instanceCount: UInt64? = nil, zones: [String]? = nil, dryRun: Bool? = nil, clientToken: String? = nil, loginConfiguration: LoginConfiguration? = nil, containers: [DockerContainerConfiguration]? = nil, autoVoucher: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancesResponse {
-        try await self.createInstances(.init(bundleId: bundleId, blueprintId: blueprintId, instanceChargePrepaid: instanceChargePrepaid, instanceName: instanceName, instanceCount: instanceCount, zones: zones, dryRun: dryRun, clientToken: clientToken, loginConfiguration: loginConfiguration, containers: containers, autoVoucher: autoVoucher), region: region, logger: logger, on: eventLoop)
+    public func createInstances(bundleId: String, blueprintId: String, instanceChargePrepaid: InstanceChargePrepaid, instanceName: String? = nil, instanceCount: UInt64? = nil, zones: [String]? = nil, dryRun: Bool? = nil, clientToken: String? = nil, loginConfiguration: LoginConfiguration? = nil, containers: [DockerContainerConfiguration]? = nil, autoVoucher: Bool? = nil, firewallTemplateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancesResponse {
+        try await self.createInstances(.init(bundleId: bundleId, blueprintId: blueprintId, instanceChargePrepaid: instanceChargePrepaid, instanceName: instanceName, instanceCount: instanceCount, zones: zones, dryRun: dryRun, clientToken: clientToken, loginConfiguration: loginConfiguration, containers: containers, autoVoucher: autoVoucher, firewallTemplateId: firewallTemplateId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -31,6 +31,7 @@ extension Cwp {
         /// - IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选
         /// - Name- string - 是否必填：否 - 包名
         /// - User- string - 是否必填：否 - 用户
+        /// - IsAutoRun - string - 是否必填：否 - 是否开机自启动：0否，1是
         /// - Status- string - 是否必填：否 - 默认启用状态：0未启用， 1启用 仅linux
         /// - Type- string - 是否必填：否 - 类型：类型 仅windows：
         ///   1:编码器

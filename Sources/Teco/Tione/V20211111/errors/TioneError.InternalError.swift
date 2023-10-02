@@ -29,6 +29,7 @@ extension TCTioneError {
             case queryBindingTagsFailed = "InternalError.QueryBindingTagsFailed"
             case queryHDFSInfoFailed = "InternalError.QueryHDFSInfoFailed"
             case queryResourceGroupFailed = "InternalError.QueryResourceGroupFailed"
+            case queryResourceGroupNamesFailed = "InternalError.QueryResourceGroupNamesFailed"
             case queryResourceSpecFailed = "InternalError.QueryResourceSpecFailed"
             case querySubnetInfoFailed = "InternalError.QuerySubnetInfoFailed"
             case stopJobInstanceFailed = "InternalError.StopJobInstanceFailed"
@@ -113,6 +114,10 @@ extension TCTioneError {
             InternalError(.queryResourceGroupFailed)
         }
 
+        public static var queryResourceGroupNamesFailed: InternalError {
+            InternalError(.queryResourceGroupNamesFailed)
+        }
+
         /// 查询资源套餐规格失败
         public static var queryResourceSpecFailed: InternalError {
             InternalError(.queryResourceSpecFailed)
@@ -160,6 +165,8 @@ extension TCTioneError {
                 code = .internalError_QueryHDFSInfoFailed
             case .queryResourceGroupFailed:
                 code = .internalError_QueryResourceGroupFailed
+            case .queryResourceGroupNamesFailed:
+                code = .internalError_QueryResourceGroupNamesFailed
             case .queryResourceSpecFailed:
                 code = .internalError_QueryResourceSpecFailed
             case .querySubnetInfoFailed:

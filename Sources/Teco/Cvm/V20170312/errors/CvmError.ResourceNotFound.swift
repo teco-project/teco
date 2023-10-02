@@ -22,6 +22,7 @@ extension TCCvmError {
             case hpcCluster = "ResourceNotFound.HpcCluster"
             case invalidPlacementSet = "ResourceNotFound.InvalidPlacementSet"
             case invalidZoneInstanceType = "ResourceNotFound.InvalidZoneInstanceType"
+            case keyPairNotFound = "ResourceNotFound.KeyPairNotFound"
             case noDefaultCbs = "ResourceNotFound.NoDefaultCbs"
             case noDefaultCbsWithReason = "ResourceNotFound.NoDefaultCbsWithReason"
         }
@@ -63,6 +64,11 @@ extension TCCvmError {
             ResourceNotFound(.invalidZoneInstanceType)
         }
 
+        /// 使用存在的密钥对ID。
+        public static var keyPairNotFound: ResourceNotFound {
+            ResourceNotFound(.keyPairNotFound)
+        }
+
         /// 无可用的缺省类型的CBS资源。
         public static var noDefaultCbs: ResourceNotFound {
             ResourceNotFound(.noDefaultCbs)
@@ -82,6 +88,8 @@ extension TCCvmError {
                 code = .resourceNotFound_InvalidPlacementSet
             case .invalidZoneInstanceType:
                 code = .resourceNotFound_InvalidZoneInstanceType
+            case .keyPairNotFound:
+                code = .resourceNotFound_KeyPairNotFound
             case .noDefaultCbs:
                 code = .resourceNotFound_NoDefaultCbs
             case .noDefaultCbsWithReason:

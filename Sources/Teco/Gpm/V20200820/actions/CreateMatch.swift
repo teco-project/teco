@@ -111,27 +111,27 @@ extension Gpm {
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createMatch(_ input: CreateMatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMatchResponse> {
-        fatalError("CreateMatch is no longer available.")
+        fatalError("'CreateMatch' is no longer available.")
     }
 
     /// 创建匹配
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createMatch(_ input: CreateMatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMatchResponse {
-        fatalError("CreateMatch is no longer available.")
+        fatalError("'CreateMatch' is no longer available.")
     }
 
     /// 创建匹配
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createMatch(matchName: String, ruleCode: String, timeout: Int64, serverType: Int64, matchDesc: String? = nil, notifyUrl: String? = nil, serverRegion: String? = nil, serverQueue: String? = nil, customPushData: String? = nil, serverSessionData: String? = nil, gameProperties: [StringKV]? = nil, logSwitch: Int64? = nil, tags: [StringKV]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMatchResponse> {
-        fatalError("CreateMatch is no longer available.")
+        fatalError("'CreateMatch' is no longer available.")
     }
 
     /// 创建匹配
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createMatch(matchName: String, ruleCode: String, timeout: Int64, serverType: Int64, matchDesc: String? = nil, notifyUrl: String? = nil, serverRegion: String? = nil, serverQueue: String? = nil, customPushData: String? = nil, serverSessionData: String? = nil, gameProperties: [StringKV]? = nil, logSwitch: Int64? = nil, tags: [StringKV]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMatchResponse {
-        fatalError("CreateMatch is no longer available.")
+        fatalError("'CreateMatch' is no longer available.")
     }
 }

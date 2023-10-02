@@ -21,7 +21,7 @@ import TecoCore
 extension Ssa {
     /// DescribeVulList请求参数结构体
     public struct DescribeVulListRequest: TCRequest {
-        /// 查询过滤参数
+        /// 查询过滤参数:(json序列化的结果）
         public let params: String
 
         public init(params: String) {

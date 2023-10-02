@@ -66,6 +66,7 @@ public struct TCDlcError: TCDlcErrorType {
         case internalError_DBError = "InternalError.DBError"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
+        case invalidParameter_DatasourceTypeError = "InvalidParameter.DatasourceTypeError"
         case invalidParameter_DuplicateDataEngineName = "InvalidParameter.DuplicateDataEngineName"
         case invalidParameter_DuplicateGroupName = "InvalidParameter.DuplicateGroupName"
         case invalidParameter_DuplicateUserName = "InvalidParameter.DuplicateUserName"
@@ -102,8 +103,8 @@ public struct TCDlcError: TCDlcErrorType {
         case operationDenied = "OperationDenied"
         case resourceNotFound = "ResourceNotFound"
         case resourceNotFound_DatasourceNotFound = "ResourceNotFound.DatasourceNotFound"
-        case resourceNotFound_ResourceNotFoundCode_SessionInsufficientResources = "ResourceNotFound.ResourceNotFoundCode_SessionInsufficientResources"
         case resourceNotFound_ResultOutputPathNotFound = "ResourceNotFound.ResultOutputPathNotFound"
+        case resourceNotFound_SessionInsufficientResources = "ResourceNotFound.SessionInsufficientResources"
         case resourceNotFound_SessionNotFound = "ResourceNotFound.SessionNotFound"
         case resourceNotFound_SessionStateDead = "ResourceNotFound.SessionStateDead"
         case resourceUnavailable = "ResourceUnavailable"
@@ -265,8 +266,6 @@ public struct TCDlcError: TCDlcErrorType {
     }
 
     /// 获取用户信息失败。
-    ///
-    /// 请重试，如重试也失败，请联系我们。
     public static var failedOperation_GetUserInfoFailed: TCDlcError {
         TCDlcError(.failedOperation_GetUserInfoFailed)
     }
@@ -429,6 +428,11 @@ public struct TCDlcError: TCDlcErrorType {
         TCDlcError(.invalidParameterValue)
     }
 
+    /// 数据源类型错误。
+    public static var invalidParameter_DatasourceTypeError: TCDlcError {
+        TCDlcError(.invalidParameter_DatasourceTypeError)
+    }
+
     /// 重复的引擎名称。
     ///
     /// 请换一个引擎名称。
@@ -533,8 +537,6 @@ public struct TCDlcError: TCDlcErrorType {
     }
 
     /// SQL数量不符合规范。
-    ///
-    /// 单次提交的SQL数量应该小于等于50，大于等于1。
     public static var invalidParameter_InvalidSQLNum: TCDlcError {
         TCDlcError(.invalidParameter_InvalidSQLNum)
     }
@@ -560,8 +562,6 @@ public struct TCDlcError: TCDlcErrorType {
     }
 
     /// 无效的任务类型。
-    ///
-    /// 填写正确的任务类型SQLTask
     public static var invalidParameter_InvalidTaskType: TCDlcError {
         TCDlcError(.invalidParameter_InvalidTaskType)
     }
@@ -639,14 +639,14 @@ public struct TCDlcError: TCDlcErrorType {
         TCDlcError(.resourceNotFound_DatasourceNotFound)
     }
 
-    /// 当前无资源创建session，请稍后重试或使用包年包月集群。
-    public static var resourceNotFound_ResourceNotFoundCode_SessionInsufficientResources: TCDlcError {
-        TCDlcError(.resourceNotFound_ResourceNotFoundCode_SessionInsufficientResources)
-    }
-
     /// 未找到结果路径。
     public static var resourceNotFound_ResultOutputPathNotFound: TCDlcError {
         TCDlcError(.resourceNotFound_ResultOutputPathNotFound)
+    }
+
+    /// 当前无资源创建session，请稍后重试或使用包年包月集群。
+    public static var resourceNotFound_SessionInsufficientResources: TCDlcError {
+        TCDlcError(.resourceNotFound_SessionInsufficientResources)
     }
 
     /// session不存在。

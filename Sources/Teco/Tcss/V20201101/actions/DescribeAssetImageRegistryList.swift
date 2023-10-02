@@ -40,13 +40,17 @@ extension Tcss {
         /// 是否仅展示各repository最新的镜像, 默认为false
         public let onlyShowLatest: Bool?
 
-        public init(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, onlyShowLatest: Bool? = nil) {
+        /// 是否仅展示运行中容器镜像
+        public let isRunning: Bool?
+
+        public init(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, onlyShowLatest: Bool? = nil, isRunning: Bool? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
             self.by = by
             self.order = order
             self.onlyShowLatest = onlyShowLatest
+            self.isRunning = isRunning
         }
 
         enum CodingKeys: String, CodingKey {
@@ -56,6 +60,7 @@ extension Tcss {
             case by = "By"
             case order = "Order"
             case onlyShowLatest = "OnlyShowLatest"
+            case isRunning = "IsRunning"
         }
 
         /// Compute the next request based on API response.
@@ -63,7 +68,7 @@ extension Tcss {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return .init(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters, by: self.by, order: self.order, onlyShowLatest: self.onlyShowLatest)
+            return .init(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters, by: self.by, order: self.order, onlyShowLatest: self.onlyShowLatest, isRunning: self.isRunning)
         }
     }
 
@@ -117,16 +122,16 @@ extension Tcss {
     ///
     /// 镜像仓库镜像仓库列表
     @inlinable
-    public func describeAssetImageRegistryList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, onlyShowLatest: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistryListResponse> {
-        self.describeAssetImageRegistryList(.init(limit: limit, offset: offset, filters: filters, by: by, order: order, onlyShowLatest: onlyShowLatest), region: region, logger: logger, on: eventLoop)
+    public func describeAssetImageRegistryList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, onlyShowLatest: Bool? = nil, isRunning: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistryListResponse> {
+        self.describeAssetImageRegistryList(.init(limit: limit, offset: offset, filters: filters, by: by, order: order, onlyShowLatest: onlyShowLatest, isRunning: isRunning), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库查询镜像仓库列表
     ///
     /// 镜像仓库镜像仓库列表
     @inlinable
-    public func describeAssetImageRegistryList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, onlyShowLatest: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryListResponse {
-        try await self.describeAssetImageRegistryList(.init(limit: limit, offset: offset, filters: filters, by: by, order: order, onlyShowLatest: onlyShowLatest), region: region, logger: logger, on: eventLoop)
+    public func describeAssetImageRegistryList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, onlyShowLatest: Bool? = nil, isRunning: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryListResponse {
+        try await self.describeAssetImageRegistryList(.init(limit: limit, offset: offset, filters: filters, by: by, order: order, onlyShowLatest: onlyShowLatest, isRunning: isRunning), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库查询镜像仓库列表

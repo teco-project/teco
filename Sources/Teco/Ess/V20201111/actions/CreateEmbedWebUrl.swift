@@ -21,46 +21,40 @@ import TecoCore
 extension Ess {
     /// CreateEmbedWebUrl请求参数结构体
     public struct CreateEmbedWebUrlRequest: TCRequest {
-        /// 操作者信息
+        /// 执行本接口操作的员工信息。
+        ///
+        /// 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。
         public let `operator`: UserInfo
 
-        /// WEB嵌入资源类型。
+        /// WEB嵌入资源类型，支持以下类型
         ///
-        /// CREATE_SEAL: 生成创建印章的嵌入页面
-        ///
-        /// CREATE_TEMPLATE：生成创建模板的嵌入页面
-        ///
-        /// MODIFY_TEMPLATE：生成编辑模板的嵌入页面
-        ///
-        /// PREVIEW_TEMPLATE：生成预览模板的嵌入页面
-        ///
-        /// PREVIEW_SEAL_LIST：生成预览印章列表的嵌入页面
-        ///
-        /// PREVIEW_SEAL_DETAIL：生成预览印章详情的嵌入页面
-        ///
-        /// EXTEND_SERVICE：生成拓展服务的嵌入页面
-        ///
-        /// PREVIEW_FLOW：生成预览合同的嵌入页面
-        ///
-        /// PREVIEW_FLOW_DETAIL：生成查看合同详情的嵌入页面
+        /// - CREATE_SEAL: 生成创建印章的嵌入页面
+        /// - CREATE_TEMPLATE：生成创建模板的嵌入页面
+        /// - MODIFY_TEMPLATE：生成编辑模板的嵌入页面
+        /// - PREVIEW_TEMPLATE：生成预览模板的嵌入页面
+        /// - PREVIEW_SEAL_LIST：生成预览印章列表的嵌入页面
+        /// - PREVIEW_SEAL_DETAIL：生成预览印章详情的嵌入页面
+        /// - EXTEND_SERVICE：生成拓展服务的嵌入页面
+        /// - PREVIEW_FLOW：生成预览合同的嵌入页面
+        /// - PREVIEW_FLOW_DETAIL：生成查看合同详情的嵌入页面
         public let embedType: String
 
         /// WEB嵌入的业务资源ID
         ///
-        /// PREVIEW_SEAL_DETAIL，必填，取值为印章id
-        ///
-        /// MODIFY_TEMPLATE，PREVIEW_TEMPLATE，必填，取值为模板id
-        ///
-        /// PREVIEW_FLOW，PREVIEW_FLOW_DETAIL，必填，取值为合同id
+        /// - PREVIEW_SEAL_DETAIL，必填，取值为印章id
+        /// - MODIFY_TEMPLATE，PREVIEW_TEMPLATE，必填，取值为模板id
+        /// - PREVIEW_FLOW，PREVIEW_FLOW_DETAIL，必填，取值为合同id
         public let businessId: String?
 
-        /// 代理相关应用信息，如集团主企业代子企业操作
+        /// 代理企业和员工的信息。
+        ///
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         public let agent: Agent?
 
         /// 抄送方信息
         public let reviewer: ReviewerInfo?
 
-        /// 个性化参数
+        /// 个性化参数，用于控制页面展示内容
         public let option: EmbedUrlOption?
 
         public init(operator: UserInfo, embedType: String, businessId: String? = nil, agent: Agent? = nil, reviewer: ReviewerInfo? = nil, option: EmbedUrlOption? = nil) {
@@ -85,6 +79,7 @@ extension Ess {
     /// CreateEmbedWebUrl返回参数结构体
     public struct CreateEmbedWebUrlResponse: TCResponse {
         /// 嵌入的web链接，有效期：5分钟
+        ///
         /// EmbedType=PREVIEW_CC_FLOW，该url为h5链接
         public let webUrl: String
 
@@ -99,7 +94,14 @@ extension Ess {
 
     /// 获取其他可嵌入web页面
     ///
-    /// 本接口（CreateEmbedWebUrl）用于创建嵌入web的链接 本接口支持创建：创建印章，创建模板，修改模板，预览模板，预览合同流程的web链接 进入web连接后与当前控制台操作保持一致
+    /// 本接口（CreateEmbedWebUrl）用于创建嵌入Web的链接，支持以下类型的Web链接创建：
+    /// 1. 创建印章
+    /// 2. 创建模板
+    /// 3. 修改模板
+    /// 4. 预览模板
+    /// 5. 预览合同流程
+    ///
+    /// 用户可以通过这些链接快速将其集成到自己的系统中。
     @inlinable
     public func createEmbedWebUrl(_ input: CreateEmbedWebUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEmbedWebUrlResponse> {
         self.client.execute(action: "CreateEmbedWebUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -107,7 +109,14 @@ extension Ess {
 
     /// 获取其他可嵌入web页面
     ///
-    /// 本接口（CreateEmbedWebUrl）用于创建嵌入web的链接 本接口支持创建：创建印章，创建模板，修改模板，预览模板，预览合同流程的web链接 进入web连接后与当前控制台操作保持一致
+    /// 本接口（CreateEmbedWebUrl）用于创建嵌入Web的链接，支持以下类型的Web链接创建：
+    /// 1. 创建印章
+    /// 2. 创建模板
+    /// 3. 修改模板
+    /// 4. 预览模板
+    /// 5. 预览合同流程
+    ///
+    /// 用户可以通过这些链接快速将其集成到自己的系统中。
     @inlinable
     public func createEmbedWebUrl(_ input: CreateEmbedWebUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEmbedWebUrlResponse {
         try await self.client.execute(action: "CreateEmbedWebUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -115,7 +124,14 @@ extension Ess {
 
     /// 获取其他可嵌入web页面
     ///
-    /// 本接口（CreateEmbedWebUrl）用于创建嵌入web的链接 本接口支持创建：创建印章，创建模板，修改模板，预览模板，预览合同流程的web链接 进入web连接后与当前控制台操作保持一致
+    /// 本接口（CreateEmbedWebUrl）用于创建嵌入Web的链接，支持以下类型的Web链接创建：
+    /// 1. 创建印章
+    /// 2. 创建模板
+    /// 3. 修改模板
+    /// 4. 预览模板
+    /// 5. 预览合同流程
+    ///
+    /// 用户可以通过这些链接快速将其集成到自己的系统中。
     @inlinable
     public func createEmbedWebUrl(operator: UserInfo, embedType: String, businessId: String? = nil, agent: Agent? = nil, reviewer: ReviewerInfo? = nil, option: EmbedUrlOption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEmbedWebUrlResponse> {
         self.createEmbedWebUrl(.init(operator: `operator`, embedType: embedType, businessId: businessId, agent: agent, reviewer: reviewer, option: option), region: region, logger: logger, on: eventLoop)
@@ -123,7 +139,14 @@ extension Ess {
 
     /// 获取其他可嵌入web页面
     ///
-    /// 本接口（CreateEmbedWebUrl）用于创建嵌入web的链接 本接口支持创建：创建印章，创建模板，修改模板，预览模板，预览合同流程的web链接 进入web连接后与当前控制台操作保持一致
+    /// 本接口（CreateEmbedWebUrl）用于创建嵌入Web的链接，支持以下类型的Web链接创建：
+    /// 1. 创建印章
+    /// 2. 创建模板
+    /// 3. 修改模板
+    /// 4. 预览模板
+    /// 5. 预览合同流程
+    ///
+    /// 用户可以通过这些链接快速将其集成到自己的系统中。
     @inlinable
     public func createEmbedWebUrl(operator: UserInfo, embedType: String, businessId: String? = nil, agent: Agent? = nil, reviewer: ReviewerInfo? = nil, option: EmbedUrlOption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEmbedWebUrlResponse {
         try await self.createEmbedWebUrl(.init(operator: `operator`, embedType: embedType, businessId: businessId, agent: agent, reviewer: reviewer, option: option), region: region, logger: logger, on: eventLoop)

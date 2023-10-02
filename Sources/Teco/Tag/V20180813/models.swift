@@ -132,14 +132,20 @@ extension Tag {
         /// 标签值
         public let tagValue: String
 
-        public init(tagKey: String, tagValue: String) {
+        /// 标签类型。取值： Custom：自定义标签。 System：系统标签。 All：全部标签。 默认值：All。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let category: String?
+
+        public init(tagKey: String, tagValue: String, category: String? = nil) {
             self.tagKey = tagKey
             self.tagValue = tagValue
+            self.category = category
         }
 
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"
             case tagValue = "TagValue"
+            case category = "Category"
         }
     }
 
@@ -197,6 +203,10 @@ extension Tag {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceType: String?
 
+        /// 标签类型。取值： Custom：自定义标签。 System：系统标签。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let category: String?
+
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"
             case tagValue = "TagValue"
@@ -204,6 +214,7 @@ extension Tag {
             case tagKeyMd5 = "TagKeyMd5"
             case tagValueMd5 = "TagValueMd5"
             case serviceType = "ServiceType"
+            case category = "Category"
         }
     }
 
@@ -218,10 +229,15 @@ extension Tag {
         /// 是否可以删除
         public let canDelete: UInt64
 
+        /// 标签类型。取值： Custom：自定义标签。 System：系统标签。 All：全部标签。 默认值：All。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let category: String?
+
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"
             case tagValue = "TagValue"
             case canDelete = "CanDelete"
+            case category = "Category"
         }
     }
 }

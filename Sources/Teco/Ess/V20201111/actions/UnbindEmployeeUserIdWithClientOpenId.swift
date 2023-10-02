@@ -21,16 +21,20 @@ import TecoCore
 extension Ess {
     /// UnbindEmployeeUserIdWithClientOpenId请求参数结构体
     public struct UnbindEmployeeUserIdWithClientOpenIdRequest: TCRequest {
-        /// 用户信息，OpenId与UserId二选一必填一个，OpenId是第三方客户ID，userId是用户实名后的电子签生成的ID,当传入客户系统openId，传入的openId需与电子签员工userId绑定，且参数Channel必填，Channel值为INTEGRATE；当传入参数UserId，Channel无需指定(参数用法参考示例)
+        /// 执行本接口操作的员工信息。使用此接口时，必须填写UserId。
+        /// 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         public let `operator`: UserInfo
 
-        /// 电子签系统员工UserId
+        /// 员工在腾讯电子签平台的唯一身份标识，为32位字符串。
+        /// 可登录腾讯电子签控制台，在 "更多能力"->"组织管理" 中查看某位员工的UserId(在页面中展示为用户ID)。
         public let userId: String
 
-        /// 客户系统OpenId
+        /// 员工在贵司业务系统中的唯一身份标识，用于与腾讯电子签账号进行映射，确保在同一企业内不会出现重复。
+        /// 该标识最大长度为64位字符串，仅支持包含26个英文字母和数字0-9的字符。
         public let openId: String
 
-        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        /// 代理企业和员工的信息。
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         public let agent: Agent?
 
         public init(operator: UserInfo, userId: String, openId: String, agent: Agent? = nil) {
@@ -50,7 +54,10 @@ extension Ess {
 
     /// UnbindEmployeeUserIdWithClientOpenId返回参数结构体
     public struct UnbindEmployeeUserIdWithClientOpenIdResponse: TCResponse {
-        /// 解绑是否成功，1表示成功，0表示失败
+        /// 解绑是否成功。
+        ///
+        /// - **0**：失败
+        /// - **1**：成功
         public let status: Int64
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -62,33 +69,41 @@ extension Ess {
         }
     }
 
-    /// 员工userid与客户系统openid解绑
+    /// 解除员工UserId与客户系统OpenId的绑定
     ///
-    /// 将存在绑定关系的电子签系统员工userId与客户系统员工openId进行解绑
+    /// 此接口（UnbindEmployeeUserIdWithClientOpenId）用于解除电子签系统员工UserId与客户系统员工OpenId之间的绑定关系。
+    ///
+    /// 注：`在调用此接口时，需确保OpenId已通过调用`[BindEmployeeUserIdWithClientOpenId](https://qian.tencent.com/developers/companyApis/staffs/BindEmployeeUserIdWithClientOpenId)`接口与电子签系统的UserId绑定过。若OpenId未经过绑定，则无法使用此接口进行解绑操作。`
     @inlinable
     public func unbindEmployeeUserIdWithClientOpenId(_ input: UnbindEmployeeUserIdWithClientOpenIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindEmployeeUserIdWithClientOpenIdResponse> {
         self.client.execute(action: "UnbindEmployeeUserIdWithClientOpenId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 员工userid与客户系统openid解绑
+    /// 解除员工UserId与客户系统OpenId的绑定
     ///
-    /// 将存在绑定关系的电子签系统员工userId与客户系统员工openId进行解绑
+    /// 此接口（UnbindEmployeeUserIdWithClientOpenId）用于解除电子签系统员工UserId与客户系统员工OpenId之间的绑定关系。
+    ///
+    /// 注：`在调用此接口时，需确保OpenId已通过调用`[BindEmployeeUserIdWithClientOpenId](https://qian.tencent.com/developers/companyApis/staffs/BindEmployeeUserIdWithClientOpenId)`接口与电子签系统的UserId绑定过。若OpenId未经过绑定，则无法使用此接口进行解绑操作。`
     @inlinable
     public func unbindEmployeeUserIdWithClientOpenId(_ input: UnbindEmployeeUserIdWithClientOpenIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindEmployeeUserIdWithClientOpenIdResponse {
         try await self.client.execute(action: "UnbindEmployeeUserIdWithClientOpenId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 员工userid与客户系统openid解绑
+    /// 解除员工UserId与客户系统OpenId的绑定
     ///
-    /// 将存在绑定关系的电子签系统员工userId与客户系统员工openId进行解绑
+    /// 此接口（UnbindEmployeeUserIdWithClientOpenId）用于解除电子签系统员工UserId与客户系统员工OpenId之间的绑定关系。
+    ///
+    /// 注：`在调用此接口时，需确保OpenId已通过调用`[BindEmployeeUserIdWithClientOpenId](https://qian.tencent.com/developers/companyApis/staffs/BindEmployeeUserIdWithClientOpenId)`接口与电子签系统的UserId绑定过。若OpenId未经过绑定，则无法使用此接口进行解绑操作。`
     @inlinable
     public func unbindEmployeeUserIdWithClientOpenId(operator: UserInfo, userId: String, openId: String, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindEmployeeUserIdWithClientOpenIdResponse> {
         self.unbindEmployeeUserIdWithClientOpenId(.init(operator: `operator`, userId: userId, openId: openId, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 员工userid与客户系统openid解绑
+    /// 解除员工UserId与客户系统OpenId的绑定
     ///
-    /// 将存在绑定关系的电子签系统员工userId与客户系统员工openId进行解绑
+    /// 此接口（UnbindEmployeeUserIdWithClientOpenId）用于解除电子签系统员工UserId与客户系统员工OpenId之间的绑定关系。
+    ///
+    /// 注：`在调用此接口时，需确保OpenId已通过调用`[BindEmployeeUserIdWithClientOpenId](https://qian.tencent.com/developers/companyApis/staffs/BindEmployeeUserIdWithClientOpenId)`接口与电子签系统的UserId绑定过。若OpenId未经过绑定，则无法使用此接口进行解绑操作。`
     @inlinable
     public func unbindEmployeeUserIdWithClientOpenId(operator: UserInfo, userId: String, openId: String, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindEmployeeUserIdWithClientOpenIdResponse {
         try await self.unbindEmployeeUserIdWithClientOpenId(.init(operator: `operator`, userId: userId, openId: openId, agent: agent), region: region, logger: logger, on: eventLoop)

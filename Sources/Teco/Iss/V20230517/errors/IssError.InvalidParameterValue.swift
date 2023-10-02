@@ -73,6 +73,7 @@ extension TCIssError {
             case invalidOrgName = "InvalidParameterValue.InvalidOrgName"
             case invalidOrganizationId = "InvalidParameterValue.InvalidOrganizationId"
             case invalidPageNumber = "InvalidParameterValue.InvalidPageNumber"
+            case invalidPageParameter = "InvalidParameterValue.InvalidPageParameter"
             case invalidPageSize = "InvalidParameterValue.InvalidPageSize"
             case invalidPlanId = "InvalidParameterValue.InvalidPlanId"
             case invalidPullState = "InvalidParameterValue.InvalidPullState"
@@ -81,6 +82,7 @@ extension TCIssError {
             case invalidRetrieveTaskId = "InvalidParameterValue.InvalidRetrieveTaskId"
             case invalidSecret = "InvalidParameterValue.InvalidSecret"
             case invalidStartTimeOrEndTime = "InvalidParameterValue.InvalidStartTimeOrEndTime"
+            case invalidStatus = "InvalidParameterValue.InvalidStatus"
             case invalidStreamType = "InvalidParameterValue.InvalidStreamType"
             case invalidTemplateId = "InvalidParameterValue.InvalidTemplateId"
             case invalidTemplateTag = "InvalidParameterValue.InvalidTemplateTag"
@@ -104,11 +106,13 @@ extension TCIssError {
             case startTimeGreaterThanOrEqualEndTime = "InvalidParameterValue.StartTimeGreaterThanOrEqualEndTime"
             case startTimeZero = "InvalidParameterValue.StartTimeZero"
             case statusMustBeNotEmpty = "InvalidParameterValue.StatusMustBeNotEmpty"
+            case taskTypeNotSupported = "InvalidParameterValue.TaskTypeNotSupported"
             case templateTagMustBeConsistent = "InvalidParameterValue.TemplateTagMustBeConsistent"
             case timeLessThanTenMinutes = "InvalidParameterValue.TimeLessThanTenMinutes"
             case tooLongDescribe = "InvalidParameterValue.TooLongDescribe"
             case tooLongName = "InvalidParameterValue.TooLongName"
             case tooLongStreamType = "InvalidParameterValue.TooLongStreamType"
+            case unSupportOperateCMD = "InvalidParameterValue.UnSupportOperateCMD"
             case unSupportScale = "InvalidParameterValue.UnSupportScale"
             case unSupportedAccessType = "InvalidParameterValue.UnSupportedAccessType"
             case unSupportedPTZCMD = "InvalidParameterValue.UnSupportedPTZCMD"
@@ -356,6 +360,10 @@ extension TCIssError {
             InvalidParameterValue(.invalidPageNumber)
         }
 
+        public static var invalidPageParameter: InvalidParameterValue {
+            InvalidParameterValue(.invalidPageParameter)
+        }
+
         public static var invalidPageSize: InvalidParameterValue {
             InvalidParameterValue(.invalidPageSize)
         }
@@ -386,6 +394,10 @@ extension TCIssError {
 
         public static var invalidStartTimeOrEndTime: InvalidParameterValue {
             InvalidParameterValue(.invalidStartTimeOrEndTime)
+        }
+
+        public static var invalidStatus: InvalidParameterValue {
+            InvalidParameterValue(.invalidStatus)
         }
 
         public static var invalidStreamType: InvalidParameterValue {
@@ -481,6 +493,10 @@ extension TCIssError {
             InvalidParameterValue(.statusMustBeNotEmpty)
         }
 
+        public static var taskTypeNotSupported: InvalidParameterValue {
+            InvalidParameterValue(.taskTypeNotSupported)
+        }
+
         public static var templateTagMustBeConsistent: InvalidParameterValue {
             InvalidParameterValue(.templateTagMustBeConsistent)
         }
@@ -499,6 +515,11 @@ extension TCIssError {
 
         public static var tooLongStreamType: InvalidParameterValue {
             InvalidParameterValue(.tooLongStreamType)
+        }
+
+        /// 请检查 Cmd 参数
+        public static var unSupportOperateCMD: InvalidParameterValue {
+            InvalidParameterValue(.unSupportOperateCMD)
         }
 
         public static var unSupportScale: InvalidParameterValue {
@@ -640,6 +661,8 @@ extension TCIssError {
                 code = .invalidParameterValue_InvalidOrganizationId
             case .invalidPageNumber:
                 code = .invalidParameterValue_InvalidPageNumber
+            case .invalidPageParameter:
+                code = .invalidParameterValue_InvalidPageParameter
             case .invalidPageSize:
                 code = .invalidParameterValue_InvalidPageSize
             case .invalidPlanId:
@@ -656,6 +679,8 @@ extension TCIssError {
                 code = .invalidParameterValue_InvalidSecret
             case .invalidStartTimeOrEndTime:
                 code = .invalidParameterValue_InvalidStartTimeOrEndTime
+            case .invalidStatus:
+                code = .invalidParameterValue_InvalidStatus
             case .invalidStreamType:
                 code = .invalidParameterValue_InvalidStreamType
             case .invalidTemplateId:
@@ -702,6 +727,8 @@ extension TCIssError {
                 code = .invalidParameterValue_StartTimeZero
             case .statusMustBeNotEmpty:
                 code = .invalidParameterValue_StatusMustBeNotEmpty
+            case .taskTypeNotSupported:
+                code = .invalidParameterValue_TaskTypeNotSupported
             case .templateTagMustBeConsistent:
                 code = .invalidParameterValue_TemplateTagMustBeConsistent
             case .timeLessThanTenMinutes:
@@ -712,6 +739,8 @@ extension TCIssError {
                 code = .invalidParameterValue_TooLongName
             case .tooLongStreamType:
                 code = .invalidParameterValue_TooLongStreamType
+            case .unSupportOperateCMD:
+                code = .invalidParameterValue_UnSupportOperateCMD
             case .unSupportScale:
                 code = .invalidParameterValue_UnSupportScale
             case .unSupportedAccessType:

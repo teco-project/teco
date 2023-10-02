@@ -35,7 +35,6 @@ extension TCDcdbError {
             case instanceReturnFailed = "FailedOperation.InstanceReturnFailed"
             case modifyRightFailed = "FailedOperation.ModifyRightFailed"
             case modifyUserConfigFailed = "FailedOperation.ModifyUserConfigFailed"
-            case msgQueueOperationFailed = "FailedOperation.MsgQueueOperationFailed"
             case ossIsolateInstanceFailed = "FailedOperation.OssIsolateInstanceFailed"
             case ossOperationFailed = "FailedOperation.OssOperationFailed"
             case payFailed = "FailedOperation.PayFailed"
@@ -155,11 +154,6 @@ extension TCDcdbError {
             FailedOperation(.modifyUserConfigFailed)
         }
 
-        /// 消息队列操作失败。
-        public static var msgQueueOperationFailed: FailedOperation {
-            FailedOperation(.msgQueueOperationFailed)
-        }
-
         /// 隔离实例失败。
         public static var ossIsolateInstanceFailed: FailedOperation {
             FailedOperation(.ossIsolateInstanceFailed)
@@ -270,8 +264,6 @@ extension TCDcdbError {
                 code = .failedOperation_ModifyRightFailed
             case .modifyUserConfigFailed:
                 code = .failedOperation_ModifyUserConfigFailed
-            case .msgQueueOperationFailed:
-                code = .failedOperation_MsgQueueOperationFailed
             case .ossIsolateInstanceFailed:
                 code = .failedOperation_OssIsolateInstanceFailed
             case .ossOperationFailed:

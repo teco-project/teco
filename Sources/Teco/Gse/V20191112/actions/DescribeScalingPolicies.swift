@@ -92,7 +92,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeScalingPolicies(_ input: DescribeScalingPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScalingPoliciesResponse> {
-        fatalError("DescribeScalingPolicies is no longer available.")
+        fatalError("'DescribeScalingPolicies' is no longer available.")
     }
 
     /// 查询扩缩容配置
@@ -101,7 +101,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeScalingPolicies(_ input: DescribeScalingPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScalingPoliciesResponse {
-        fatalError("DescribeScalingPolicies is no longer available.")
+        fatalError("'DescribeScalingPolicies' is no longer available.")
     }
 
     /// 查询扩缩容配置
@@ -110,7 +110,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeScalingPolicies(fleetId: String? = nil, statusFilter: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScalingPoliciesResponse> {
-        fatalError("DescribeScalingPolicies is no longer available.")
+        fatalError("'DescribeScalingPolicies' is no longer available.")
     }
 
     /// 查询扩缩容配置
@@ -119,7 +119,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeScalingPolicies(fleetId: String? = nil, statusFilter: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScalingPoliciesResponse {
-        fatalError("DescribeScalingPolicies is no longer available.")
+        fatalError("'DescribeScalingPolicies' is no longer available.")
     }
 
     /// 查询扩缩容配置
@@ -128,7 +128,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeScalingPoliciesPaginated(_ input: DescribeScalingPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ScalingPolicy])> {
-        fatalError("DescribeScalingPolicies is no longer available.")
+        fatalError("'DescribeScalingPolicies' is no longer available.")
     }
 
     /// 查询扩缩容配置
@@ -137,7 +137,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func describeScalingPoliciesPaginated(_ input: DescribeScalingPoliciesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeScalingPoliciesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
-        fatalError("DescribeScalingPolicies is no longer available.")
+        fatalError("'DescribeScalingPolicies' is no longer available.")
     }
 
     /// 查询扩缩容配置
@@ -148,6 +148,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeScalingPoliciesPaginator(_ input: DescribeScalingPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScalingPoliciesRequest> {
-        fatalError("DescribeScalingPolicies is no longer available.")
+        fatalError("'DescribeScalingPolicies' is no longer available.")
     }
 }

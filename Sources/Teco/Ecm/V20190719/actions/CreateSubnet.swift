@@ -39,13 +39,17 @@ extension Ecm {
         /// 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
         public let tags: [Tag]?
 
-        public init(vpcId: String, subnetName: String, cidrBlock: String, zone: String, ecmRegion: String, tags: [Tag]? = nil) {
+        /// IPv6 CIDR
+        public let iPv6CidrBlock: String?
+
+        public init(vpcId: String, subnetName: String, cidrBlock: String, zone: String, ecmRegion: String, tags: [Tag]? = nil, iPv6CidrBlock: String? = nil) {
             self.vpcId = vpcId
             self.subnetName = subnetName
             self.cidrBlock = cidrBlock
             self.zone = zone
             self.ecmRegion = ecmRegion
             self.tags = tags
+            self.iPv6CidrBlock = iPv6CidrBlock
         }
 
         enum CodingKeys: String, CodingKey {
@@ -55,6 +59,7 @@ extension Ecm {
             case zone = "Zone"
             case ecmRegion = "EcmRegion"
             case tags = "Tags"
+            case iPv6CidrBlock = "IPv6CidrBlock"
         }
     }
 
@@ -92,15 +97,15 @@ extension Ecm {
     ///
     /// 创建子网，若创建成功，则此子网会成为此可用区的默认子网。
     @inlinable
-    public func createSubnet(vpcId: String, subnetName: String, cidrBlock: String, zone: String, ecmRegion: String, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubnetResponse> {
-        self.createSubnet(.init(vpcId: vpcId, subnetName: subnetName, cidrBlock: cidrBlock, zone: zone, ecmRegion: ecmRegion, tags: tags), region: region, logger: logger, on: eventLoop)
+    public func createSubnet(vpcId: String, subnetName: String, cidrBlock: String, zone: String, ecmRegion: String, tags: [Tag]? = nil, iPv6CidrBlock: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubnetResponse> {
+        self.createSubnet(.init(vpcId: vpcId, subnetName: subnetName, cidrBlock: cidrBlock, zone: zone, ecmRegion: ecmRegion, tags: tags, iPv6CidrBlock: iPv6CidrBlock), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建子网
     ///
     /// 创建子网，若创建成功，则此子网会成为此可用区的默认子网。
     @inlinable
-    public func createSubnet(vpcId: String, subnetName: String, cidrBlock: String, zone: String, ecmRegion: String, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubnetResponse {
-        try await self.createSubnet(.init(vpcId: vpcId, subnetName: subnetName, cidrBlock: cidrBlock, zone: zone, ecmRegion: ecmRegion, tags: tags), region: region, logger: logger, on: eventLoop)
+    public func createSubnet(vpcId: String, subnetName: String, cidrBlock: String, zone: String, ecmRegion: String, tags: [Tag]? = nil, iPv6CidrBlock: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubnetResponse {
+        try await self.createSubnet(.init(vpcId: vpcId, subnetName: subnetName, cidrBlock: cidrBlock, zone: zone, ecmRegion: ecmRegion, tags: tags, iPv6CidrBlock: iPv6CidrBlock), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -69,7 +69,6 @@ extension Sqlserver {
     /// 查询升级实例价格
     ///
     /// 本接口（InquiryPriceUpgradeDBInstance）用于查询包年包月实例升级变配的价格。
-    /// 按量计费实例变配后的价格参考InquiryPriceCreateDBInstances接口。
     @inlinable
     public func inquiryPriceUpgradeDBInstance(_ input: InquiryPriceUpgradeDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceUpgradeDBInstanceResponse> {
         self.client.execute(action: "InquiryPriceUpgradeDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -78,7 +77,6 @@ extension Sqlserver {
     /// 查询升级实例价格
     ///
     /// 本接口（InquiryPriceUpgradeDBInstance）用于查询包年包月实例升级变配的价格。
-    /// 按量计费实例变配后的价格参考InquiryPriceCreateDBInstances接口。
     @inlinable
     public func inquiryPriceUpgradeDBInstance(_ input: InquiryPriceUpgradeDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceUpgradeDBInstanceResponse {
         try await self.client.execute(action: "InquiryPriceUpgradeDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -87,7 +85,6 @@ extension Sqlserver {
     /// 查询升级实例价格
     ///
     /// 本接口（InquiryPriceUpgradeDBInstance）用于查询包年包月实例升级变配的价格。
-    /// 按量计费实例变配后的价格参考InquiryPriceCreateDBInstances接口。
     @inlinable
     public func inquiryPriceUpgradeDBInstance(instanceId: String, memory: Int64, storage: Int64, cpu: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceUpgradeDBInstanceResponse> {
         self.inquiryPriceUpgradeDBInstance(.init(instanceId: instanceId, memory: memory, storage: storage, cpu: cpu), region: region, logger: logger, on: eventLoop)
@@ -96,7 +93,6 @@ extension Sqlserver {
     /// 查询升级实例价格
     ///
     /// 本接口（InquiryPriceUpgradeDBInstance）用于查询包年包月实例升级变配的价格。
-    /// 按量计费实例变配后的价格参考InquiryPriceCreateDBInstances接口。
     @inlinable
     public func inquiryPriceUpgradeDBInstance(instanceId: String, memory: Int64, storage: Int64, cpu: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceUpgradeDBInstanceResponse {
         try await self.inquiryPriceUpgradeDBInstance(.init(instanceId: instanceId, memory: memory, storage: storage, cpu: cpu), region: region, logger: logger, on: eventLoop)

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeImageRegistryNamespaceList请求参数结构体
-    public struct DescribeImageRegistryNamespaceListRequest: TCPaginatedRequest {
+    public struct DescribeImageRegistryNamespaceListRequest: TCRequest {
         /// 本次查询的起始偏移量，默认为0。
         public let offset: UInt64?
 
@@ -41,23 +41,18 @@ extension Tcss {
             case limit = "Limit"
             case filters = "Filters"
         }
-
-        /// Compute the next request based on API response.
-        public func makeNextRequest(with response: DescribeImageRegistryNamespaceListResponse) -> DescribeImageRegistryNamespaceListRequest? {
-            guard !response.getItems().isEmpty else {
-                return nil
-            }
-            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters)
-        }
     }
 
     /// DescribeImageRegistryNamespaceList返回参数结构体
-    public struct DescribeImageRegistryNamespaceListResponse: TCPaginatedResponse {
-        /// 可返回的项目空间的总量。
+    public struct DescribeImageRegistryNamespaceListResponse: TCResponse {
+        /// 可返回的命令空间的总量。
         public let totalCount: UInt64
 
-        /// 返回的项目空间列表
+        /// 返回的命令空间列表
         public let namespaceList: [String]
+
+        /// 返回的命令空间详细信息列表
+        public let namespaceDetail: [NamespaceInfo]?
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -65,61 +60,32 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case namespaceList = "NamespaceList"
+            case namespaceDetail = "NamespaceDetail"
             case requestId = "RequestId"
-        }
-
-        /// Extract the returned ``String`` list from the paginated response.
-        public func getItems() -> [String] {
-            self.namespaceList
-        }
-
-        /// Extract the total count from the paginated response.
-        public func getTotalCount() -> UInt64? {
-            self.totalCount
         }
     }
 
-    /// 查询用户镜像仓库下的项目名称列表
+    /// 查询用户镜像仓库下的命令空间列表
     @inlinable
     public func describeImageRegistryNamespaceList(_ input: DescribeImageRegistryNamespaceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageRegistryNamespaceListResponse> {
         self.client.execute(action: "DescribeImageRegistryNamespaceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询用户镜像仓库下的项目名称列表
+    /// 查询用户镜像仓库下的命令空间列表
     @inlinable
     public func describeImageRegistryNamespaceList(_ input: DescribeImageRegistryNamespaceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRegistryNamespaceListResponse {
         try await self.client.execute(action: "DescribeImageRegistryNamespaceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询用户镜像仓库下的项目名称列表
+    /// 查询用户镜像仓库下的命令空间列表
     @inlinable
     public func describeImageRegistryNamespaceList(offset: UInt64? = nil, limit: UInt64? = nil, filters: [AssetFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageRegistryNamespaceListResponse> {
         self.describeImageRegistryNamespaceList(.init(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询用户镜像仓库下的项目名称列表
+    /// 查询用户镜像仓库下的命令空间列表
     @inlinable
     public func describeImageRegistryNamespaceList(offset: UInt64? = nil, limit: UInt64? = nil, filters: [AssetFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRegistryNamespaceListResponse {
         try await self.describeImageRegistryNamespaceList(.init(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
-    }
-
-    /// 查询用户镜像仓库下的项目名称列表
-    @inlinable
-    public func describeImageRegistryNamespaceListPaginated(_ input: DescribeImageRegistryNamespaceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [String])> {
-        self.client.paginate(input: input, region: region, command: self.describeImageRegistryNamespaceList, logger: logger, on: eventLoop)
-    }
-
-    /// 查询用户镜像仓库下的项目名称列表
-    @inlinable @discardableResult
-    public func describeImageRegistryNamespaceListPaginated(_ input: DescribeImageRegistryNamespaceListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeImageRegistryNamespaceListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
-        self.client.paginate(input: input, region: region, command: self.describeImageRegistryNamespaceList, callback: onResponse, logger: logger, on: eventLoop)
-    }
-
-    /// 查询用户镜像仓库下的项目名称列表
-    ///
-    /// - Returns: `AsyncSequence`s of ``String`` and ``DescribeImageRegistryNamespaceListResponse`` that can be iterated over asynchronously on demand.
-    @inlinable
-    public func describeImageRegistryNamespaceListPaginator(_ input: DescribeImageRegistryNamespaceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeImageRegistryNamespaceListRequest> {
-        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImageRegistryNamespaceList, logger: logger, on: eventLoop)
     }
 }

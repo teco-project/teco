@@ -106,7 +106,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func listAliases(_ input: ListAliasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAliasesResponse> {
-        fatalError("ListAliases is no longer available.")
+        fatalError("'ListAliases' is no longer available.")
     }
 
     /// 检索帐户下的所有别名
@@ -115,7 +115,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func listAliases(_ input: ListAliasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAliasesResponse {
-        fatalError("ListAliases is no longer available.")
+        fatalError("'ListAliases' is no longer available.")
     }
 
     /// 检索帐户下的所有别名
@@ -124,7 +124,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func listAliases(name: String? = nil, routingStrategyType: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderWay: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAliasesResponse> {
-        fatalError("ListAliases is no longer available.")
+        fatalError("'ListAliases' is no longer available.")
     }
 
     /// 检索帐户下的所有别名
@@ -133,7 +133,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func listAliases(name: String? = nil, routingStrategyType: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderWay: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAliasesResponse {
-        fatalError("ListAliases is no longer available.")
+        fatalError("'ListAliases' is no longer available.")
     }
 
     /// 检索帐户下的所有别名
@@ -142,7 +142,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func listAliasesPaginated(_ input: ListAliasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [Alias])> {
-        fatalError("ListAliases is no longer available.")
+        fatalError("'ListAliases' is no longer available.")
     }
 
     /// 检索帐户下的所有别名
@@ -151,7 +151,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func listAliasesPaginated(_ input: ListAliasesRequest, region: TCRegion? = nil, onResponse: @escaping (ListAliasesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
-        fatalError("ListAliases is no longer available.")
+        fatalError("'ListAliases' is no longer available.")
     }
 
     /// 检索帐户下的所有别名
@@ -162,6 +162,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func listAliasesPaginator(_ input: ListAliasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListAliasesRequest> {
-        fatalError("ListAliases is no longer available.")
+        fatalError("'ListAliases' is no longer available.")
     }
 }

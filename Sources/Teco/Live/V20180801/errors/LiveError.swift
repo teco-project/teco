@@ -160,6 +160,7 @@ public struct TCLiveError: TCLiveErrorType {
         case invalidParameter_GopMustEqualAndExists = "InvalidParameter.GopMustEqualAndExists"
         case invalidParameter_InputNumLimitExceeded = "InvalidParameter.InputNumLimitExceeded"
         case invalidParameter_InvalidBackgroudResolution = "InvalidParameter.InvalidBackgroudResolution"
+        case invalidParameter_InvalidBackupToUrl = "InvalidParameter.InvalidBackupToUrl"
         case invalidParameter_InvalidBitrate = "InvalidParameter.InvalidBitrate"
         case invalidParameter_InvalidCallbackUrl = "InvalidParameter.InvalidCallbackUrl"
         case invalidParameter_InvalidCropParam = "InvalidParameter.InvalidCropParam"
@@ -984,6 +985,10 @@ public struct TCLiveError: TCLiveErrorType {
     /// 非法的背景长宽。
     public static var invalidParameter_InvalidBackgroudResolution: TCLiveError {
         TCLiveError(.invalidParameter_InvalidBackgroudResolution)
+    }
+
+    public static var invalidParameter_InvalidBackupToUrl: TCLiveError {
+        TCLiveError(.invalidParameter_InvalidBackupToUrl)
     }
 
     /// 非法的输出码率。

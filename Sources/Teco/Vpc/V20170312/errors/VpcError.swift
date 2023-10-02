@@ -275,10 +275,13 @@ public struct TCVpcError: TCVpcErrorType {
         case unsupportedOperation_EcmpWithCcnRoute = "UnsupportedOperation.EcmpWithCcnRoute"
         case unsupportedOperation_EcmpWithUserRoute = "UnsupportedOperation.EcmpWithUserRoute"
         case unsupportedOperation_EnableMulticast = "UnsupportedOperation.EnableMulticast"
+        case unsupportedOperation_EndPointMismatchEndPointServiceCdcId = "UnsupportedOperation.EndPointMismatchEndPointServiceCdcId"
         case unsupportedOperation_EndPointService = "UnsupportedOperation.EndPointService"
         case unsupportedOperation_FlowLogInstanceExisted = "UnsupportedOperation.FlowLogInstanceExisted"
         case unsupportedOperation_FlowLogsNotSupportKoInstanceEni = "UnsupportedOperation.FlowLogsNotSupportKoInstanceEni"
         case unsupportedOperation_FlowLogsNotSupportNullInstanceEni = "UnsupportedOperation.FlowLogsNotSupportNullInstanceEni"
+        case unsupportedOperation_IdempotentParameterMismatch = "UnsupportedOperation.IdempotentParameterMismatch"
+        case unsupportedOperation_IdempotentProcessing = "UnsupportedOperation.IdempotentProcessing"
         case unsupportedOperation_IncorrectAddressResourceType = "UnsupportedOperation.IncorrectAddressResourceType"
         case unsupportedOperation_InstanceAndRtbNotMatch = "UnsupportedOperation.InstanceAndRtbNotMatch"
         case unsupportedOperation_InstanceCdcIdNotMatchCcnCdcId = "UnsupportedOperation.InstanceCdcIdNotMatchCcnCdcId"
@@ -335,6 +338,7 @@ public struct TCVpcError: TCVpcErrorType {
         case unsupportedOperation_ResourceMismatch = "UnsupportedOperation.ResourceMismatch"
         case unsupportedOperation_RoleNotFound = "UnsupportedOperation.RoleNotFound"
         case unsupportedOperation_RouteTableHasSubnetRule = "UnsupportedOperation.RouteTableHasSubnetRule"
+        case unsupportedOperation_SSLClientCertAlreadyEnableOrCertAbnormal = "UnsupportedOperation.SSLClientCertAlreadyEnableOrCertAbnormal"
         case unsupportedOperation_SSLClientCertDisableUnsupportedDownloadSSLClientCert = "UnsupportedOperation.SSLClientCertDisableUnsupportedDownloadSSLClientCert"
         case unsupportedOperation_SnapshotAttached = "UnsupportedOperation.SnapshotAttached"
         case unsupportedOperation_SnapshotBackupTypeModify = "UnsupportedOperation.SnapshotBackupTypeModify"
@@ -1695,6 +1699,11 @@ public struct TCVpcError: TCVpcErrorType {
         TCVpcError(.unsupportedOperation_EnableMulticast)
     }
 
+    /// 终端节点和终端节点服务需要属于同一个 cdc集群
+    public static var unsupportedOperation_EndPointMismatchEndPointServiceCdcId: TCVpcError {
+        TCVpcError(.unsupportedOperation_EndPointMismatchEndPointServiceCdcId)
+    }
+
     /// 终端节点服务本身不能是终端节点。
     public static var unsupportedOperation_EndPointService: TCVpcError {
         TCVpcError(.unsupportedOperation_EndPointService)
@@ -1713,6 +1722,14 @@ public struct TCVpcError: TCVpcErrorType {
     /// 不支持创建流日志：当前弹性网卡未绑定实例。
     public static var unsupportedOperation_FlowLogsNotSupportNullInstanceEni: TCVpcError {
         TCVpcError(.unsupportedOperation_FlowLogsNotSupportNullInstanceEni)
+    }
+
+    public static var unsupportedOperation_IdempotentParameterMismatch: TCVpcError {
+        TCVpcError(.unsupportedOperation_IdempotentParameterMismatch)
+    }
+
+    public static var unsupportedOperation_IdempotentProcessing: TCVpcError {
+        TCVpcError(.unsupportedOperation_IdempotentProcessing)
     }
 
     /// 该种类型地址不支持此操作。
@@ -2003,6 +2020,10 @@ public struct TCVpcError: TCVpcErrorType {
     /// 请解除该路由表和子网的绑定后重试。
     public static var unsupportedOperation_RouteTableHasSubnetRule: TCVpcError {
         TCVpcError(.unsupportedOperation_RouteTableHasSubnetRule)
+    }
+
+    public static var unsupportedOperation_SSLClientCertAlreadyEnableOrCertAbnormal: TCVpcError {
+        TCVpcError(.unsupportedOperation_SSLClientCertAlreadyEnableOrCertAbnormal)
     }
 
     public static var unsupportedOperation_SSLClientCertDisableUnsupportedDownloadSSLClientCert: TCVpcError {

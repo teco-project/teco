@@ -26,6 +26,10 @@ extension Faceid {
         public let seq: String
 
         /// 一比一时使用的、脱敏后的身份证号。
+        public let idCard: String
+
+        /// 已废弃。请使用“IdCard”字段
+        @available(*, deprecated)
         public let idcard: String
 
         /// 一比一时使用的、脱敏后的姓名。
@@ -49,6 +53,7 @@ extension Faceid {
         enum CodingKeys: String, CodingKey {
             case reqTime = "ReqTime"
             case seq = "Seq"
+            case idCard = "IdCard"
             case idcard = "Idcard"
             case name = "Name"
             case sim = "Sim"
@@ -467,7 +472,7 @@ extension Faceid {
         /// 是否使用意愿核身，默认不使用。注意：如开启使用，则计费标签按【意愿核身】计费标签计价；如不开启，则计费标签按【E证通】计费标签计价，价格详见：[价格说明](https://cloud.tencent.com/document/product/1007/56804)。
         public let useIntentionVerify: Bool?
 
-        /// 意愿核身模式。枚举值：1( 朗读模式)，2（问答模式） 。默认值1
+        /// 意愿核身模式。枚举值：1( 语音朗读模式)，2（语音问答模式） ，3（点头确认模式）。默认值为1。
         public let intentionMode: String?
 
         /// 意愿核身朗读模式使用的文案，若未使用意愿核身朗读功能，该字段无需传入。默认为空，最长可接受120的字符串长度。
@@ -476,18 +481,22 @@ extension Faceid {
         /// 意愿核身问答模式的配置列表。当前仅支持一个问答。
         public let intentionQuestions: [IntentionQuestion]?
 
+        /// 意愿核身（点头确认模式）使用的文案，若未使用意愿核身（点头确认模式），则该字段无需传入。默认为空，最长可接受150的字符串长度。
+        public let intentionActions: [IntentionActionConfig]?
+
         /// 意愿核身过程中识别用户的回答意图，开启后除了IntentionQuestions的Answers列表中的标准回答会通过，近似意图的回答也会通过，默认不开启。
         public let intentionRecognition: Bool?
 
         /// 是否支持港澳台居住证识别
         public let isSupportHMTResidentPermitOCR: Bool?
 
-        public init(inputType: String? = nil, useIntentionVerify: Bool? = nil, intentionMode: String? = nil, intentionVerifyText: String? = nil, intentionQuestions: [IntentionQuestion]? = nil, intentionRecognition: Bool? = nil, isSupportHMTResidentPermitOCR: Bool? = nil) {
+        public init(inputType: String? = nil, useIntentionVerify: Bool? = nil, intentionMode: String? = nil, intentionVerifyText: String? = nil, intentionQuestions: [IntentionQuestion]? = nil, intentionActions: [IntentionActionConfig]? = nil, intentionRecognition: Bool? = nil, isSupportHMTResidentPermitOCR: Bool? = nil) {
             self.inputType = inputType
             self.useIntentionVerify = useIntentionVerify
             self.intentionMode = intentionMode
             self.intentionVerifyText = intentionVerifyText
             self.intentionQuestions = intentionQuestions
+            self.intentionActions = intentionActions
             self.intentionRecognition = intentionRecognition
             self.isSupportHMTResidentPermitOCR = isSupportHMTResidentPermitOCR
         }
@@ -498,6 +507,7 @@ extension Faceid {
             case intentionMode = "IntentionMode"
             case intentionVerifyText = "IntentionVerifyText"
             case intentionQuestions = "IntentionQuestions"
+            case intentionActions = "IntentionActions"
             case intentionRecognition = "IntentionRecognition"
             case isSupportHMTResidentPermitOCR = "IsSupportHMTResidentPermitOCR"
         }
@@ -683,6 +693,7 @@ extension Faceid {
 
         /// 本次流程用户语音与传入文本比对的相似度分值，取值范围 [0.00, 100.00]。只有配置了相似度阈值后才进行语音校验并返回相似度分值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
+        @available(*, deprecated)
         public let asrResultSimilarity: String?
 
         enum CodingKeys: String, CodingKey {

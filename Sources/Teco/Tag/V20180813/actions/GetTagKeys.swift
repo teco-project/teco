@@ -29,14 +29,19 @@ extension Tag {
         /// 缺省值：50。
         public let maxResults: UInt64?
 
-        public init(paginationToken: String? = nil, maxResults: UInt64? = nil) {
+        /// 标签类型。取值： Custom：自定义标签。 System：系统标签。 All：全部标签。 默认值：All。
+        public let category: String?
+
+        public init(paginationToken: String? = nil, maxResults: UInt64? = nil, category: String? = nil) {
             self.paginationToken = paginationToken
             self.maxResults = maxResults
+            self.category = category
         }
 
         enum CodingKeys: String, CodingKey {
             case paginationToken = "PaginationToken"
             case maxResults = "MaxResults"
+            case category = "Category"
         }
 
         /// Compute the next request based on API response.
@@ -44,7 +49,7 @@ extension Tag {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return .init(paginationToken: response.paginationToken, maxResults: self.maxResults)
+            return .init(paginationToken: response.paginationToken, maxResults: self.maxResults, category: self.category)
         }
     }
 
@@ -91,16 +96,16 @@ extension Tag {
     ///
     /// 查询标签键列表。
     @inlinable
-    public func getTagKeys(paginationToken: String? = nil, maxResults: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTagKeysResponse> {
-        self.getTagKeys(.init(paginationToken: paginationToken, maxResults: maxResults), region: region, logger: logger, on: eventLoop)
+    public func getTagKeys(paginationToken: String? = nil, maxResults: UInt64? = nil, category: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTagKeysResponse> {
+        self.getTagKeys(.init(paginationToken: paginationToken, maxResults: maxResults, category: category), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询标签键列表
     ///
     /// 查询标签键列表。
     @inlinable
-    public func getTagKeys(paginationToken: String? = nil, maxResults: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTagKeysResponse {
-        try await self.getTagKeys(.init(paginationToken: paginationToken, maxResults: maxResults), region: region, logger: logger, on: eventLoop)
+    public func getTagKeys(paginationToken: String? = nil, maxResults: UInt64? = nil, category: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTagKeysResponse {
+        try await self.getTagKeys(.init(paginationToken: paginationToken, maxResults: maxResults, category: category), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询标签键列表

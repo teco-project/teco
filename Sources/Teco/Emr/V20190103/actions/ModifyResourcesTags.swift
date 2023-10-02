@@ -52,6 +52,10 @@ extension Emr {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let partSuccessList: [String]?
 
+        /// 集群id与流程id的映射列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterToFlowIdList: [ClusterIDToFlowID]?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -59,6 +63,7 @@ extension Emr {
             case successList = "SuccessList"
             case failList = "FailList"
             case partSuccessList = "PartSuccessList"
+            case clusterToFlowIdList = "ClusterToFlowIdList"
             case requestId = "RequestId"
         }
     }

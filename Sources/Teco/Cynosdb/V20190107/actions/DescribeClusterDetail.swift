@@ -47,7 +47,7 @@ extension Cynosdb {
         }
     }
 
-    /// 集群详情
+    /// 集群信息描述
     ///
     /// 该接口（DescribeClusterDetail）显示集群详情
     @inlinable
@@ -55,7 +55,7 @@ extension Cynosdb {
         self.client.execute(action: "DescribeClusterDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 集群详情
+    /// 集群信息描述
     ///
     /// 该接口（DescribeClusterDetail）显示集群详情
     @inlinable
@@ -63,7 +63,7 @@ extension Cynosdb {
         try await self.client.execute(action: "DescribeClusterDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 集群详情
+    /// 集群信息描述
     ///
     /// 该接口（DescribeClusterDetail）显示集群详情
     @inlinable
@@ -71,7 +71,7 @@ extension Cynosdb {
         self.describeClusterDetail(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 集群详情
+    /// 集群信息描述
     ///
     /// 该接口（DescribeClusterDetail）显示集群详情
     @inlinable

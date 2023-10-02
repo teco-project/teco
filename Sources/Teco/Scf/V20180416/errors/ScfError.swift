@@ -82,6 +82,7 @@ public struct TCScfError: TCScfErrorType {
         case failedOperation_UpdateFunctionCode = "FailedOperation.UpdateFunctionCode"
         case failedOperation_UpdateFunctionConfiguration = "FailedOperation.UpdateFunctionConfiguration"
         case failedOperation_UpdateStatus = "FailedOperation.UpdateStatus"
+        case failedOperation_UpdateTrigger = "FailedOperation.UpdateTrigger"
         case failedOperation_UpdateTriggerStatus = "FailedOperation.UpdateTriggerStatus"
         case internalError = "InternalError"
         case internalError_ApiGateway = "InternalError.ApiGateway"
@@ -647,6 +648,11 @@ public struct TCScfError: TCScfErrorType {
     /// 更新状态操作失败。
     public static var failedOperation_UpdateStatus: TCScfError {
         TCScfError(.failedOperation_UpdateStatus)
+    }
+
+    /// 更新触发器出错。
+    public static var failedOperation_UpdateTrigger: TCScfError {
+        TCScfError(.failedOperation_UpdateTrigger)
     }
 
     /// 与原状态一致，无需更改。

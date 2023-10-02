@@ -83,7 +83,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createDataDeposit(_ input: CreateDataDepositRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDataDepositResponse> {
-        fatalError("CreateDataDeposit is no longer available.")
+        fatalError("'CreateDataDeposit' is no longer available.")
     }
 
     /// 业务数据明文存证
@@ -92,7 +92,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createDataDeposit(_ input: CreateDataDepositRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataDepositResponse {
-        fatalError("CreateDataDeposit is no longer available.")
+        fatalError("'CreateDataDeposit' is no longer available.")
     }
 
     /// 业务数据明文存证
@@ -101,7 +101,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createDataDeposit(evidenceInfo: String, evidenceName: String, evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDataDepositResponse> {
-        fatalError("CreateDataDeposit is no longer available.")
+        fatalError("'CreateDataDeposit' is no longer available.")
     }
 
     /// 业务数据明文存证
@@ -110,6 +110,6 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createDataDeposit(evidenceInfo: String, evidenceName: String, evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataDepositResponse {
-        fatalError("CreateDataDeposit is no longer available.")
+        fatalError("'CreateDataDeposit' is no longer available.")
     }
 }

@@ -32,6 +32,7 @@ extension TCCdbError {
             case failedOperationError = "FailedOperation.FailedOperationError"
             case getPrivilegeError = "FailedOperation.GetPrivilegeError"
             case instanceQueryError = "FailedOperation.InstanceQueryError"
+            case instanceTaskConflictError = "FailedOperation.InstanceTaskConflictError"
             case jsonMarshalError = "FailedOperation.JsonMarshalError"
             case jsonUnmarshalError = "FailedOperation.JsonUnmarshalError"
             case notChangeStrategy = "FailedOperation.NotChangeStrategy"
@@ -44,6 +45,7 @@ extension TCCdbError {
             case remoteCallUnmarshalError = "FailedOperation.RemoteCallUnmarshalError"
             case repeatCreateProxyError = "FailedOperation.RepeatCreateProxyError"
             case responseValueError = "FailedOperation.ResponseValueError"
+            case resultSetOverLimit = "FailedOperation.ResultSetOverLimit"
             case startFlowError = "FailedOperation.StartFlowError"
             case statusConflict = "FailedOperation.StatusConflict"
             case submitAsyncTaskError = "FailedOperation.SubmitAsyncTaskError"
@@ -143,6 +145,11 @@ extension TCCdbError {
             FailedOperation(.instanceQueryError)
         }
 
+        /// 实例任务冲突错误。
+        public static var instanceTaskConflictError: FailedOperation {
+            FailedOperation(.instanceTaskConflictError)
+        }
+
         /// json序列化失败。
         public static var jsonMarshalError: FailedOperation {
             FailedOperation(.jsonMarshalError)
@@ -201,6 +208,10 @@ extension TCCdbError {
         /// 后台请求服务异常，请您联系客服解决。
         public static var responseValueError: FailedOperation {
             FailedOperation(.responseValueError)
+        }
+
+        public static var resultSetOverLimit: FailedOperation {
+            FailedOperation(.resultSetOverLimit)
         }
 
         /// 操作发起失败，请稍后重试。如果操作持续不成功，请您联系客服进行处理。
@@ -274,6 +285,8 @@ extension TCCdbError {
                 code = .failedOperation_GetPrivilegeError
             case .instanceQueryError:
                 code = .failedOperation_InstanceQueryError
+            case .instanceTaskConflictError:
+                code = .failedOperation_InstanceTaskConflictError
             case .jsonMarshalError:
                 code = .failedOperation_JsonMarshalError
             case .jsonUnmarshalError:
@@ -298,6 +311,8 @@ extension TCCdbError {
                 code = .failedOperation_RepeatCreateProxyError
             case .responseValueError:
                 code = .failedOperation_ResponseValueError
+            case .resultSetOverLimit:
+                code = .failedOperation_ResultSetOverLimit
             case .startFlowError:
                 code = .failedOperation_StartFlowError
             case .statusConflict:

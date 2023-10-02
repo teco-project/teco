@@ -110,7 +110,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetStatisticDetails(_ input: DescribeFleetStatisticDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFleetStatisticDetailsResponse> {
-        fatalError("DescribeFleetStatisticDetails is no longer available.")
+        fatalError("'DescribeFleetStatisticDetails' is no longer available.")
     }
 
     /// 查询服务部署统计详情
@@ -119,7 +119,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetStatisticDetails(_ input: DescribeFleetStatisticDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetStatisticDetailsResponse {
-        fatalError("DescribeFleetStatisticDetails is no longer available.")
+        fatalError("'DescribeFleetStatisticDetails' is no longer available.")
     }
 
     /// 查询服务部署统计详情
@@ -128,7 +128,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetStatisticDetails(fleetId: String? = nil, beginTime: Date? = nil, endTime: Date? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFleetStatisticDetailsResponse> {
-        fatalError("DescribeFleetStatisticDetails is no longer available.")
+        fatalError("'DescribeFleetStatisticDetails' is no longer available.")
     }
 
     /// 查询服务部署统计详情
@@ -137,7 +137,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetStatisticDetails(fleetId: String? = nil, beginTime: Date? = nil, endTime: Date? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetStatisticDetailsResponse {
-        fatalError("DescribeFleetStatisticDetails is no longer available.")
+        fatalError("'DescribeFleetStatisticDetails' is no longer available.")
     }
 
     /// 查询服务部署统计详情
@@ -146,7 +146,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetStatisticDetailsPaginated(_ input: DescribeFleetStatisticDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [FleetStatisticDetail])> {
-        fatalError("DescribeFleetStatisticDetails is no longer available.")
+        fatalError("'DescribeFleetStatisticDetails' is no longer available.")
     }
 
     /// 查询服务部署统计详情
@@ -155,7 +155,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func describeFleetStatisticDetailsPaginated(_ input: DescribeFleetStatisticDetailsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeFleetStatisticDetailsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
-        fatalError("DescribeFleetStatisticDetails is no longer available.")
+        fatalError("'DescribeFleetStatisticDetails' is no longer available.")
     }
 
     /// 查询服务部署统计详情
@@ -166,6 +166,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetStatisticDetailsPaginator(_ input: DescribeFleetStatisticDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFleetStatisticDetailsRequest> {
-        fatalError("DescribeFleetStatisticDetails is no longer available.")
+        fatalError("'DescribeFleetStatisticDetails' is no longer available.")
     }
 }

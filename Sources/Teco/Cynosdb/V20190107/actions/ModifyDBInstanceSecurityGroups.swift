@@ -53,7 +53,7 @@ extension Cynosdb {
         }
     }
 
-    /// 修改云数据库安全组
+    /// 修改实例绑定安全组
     ///
     /// 本接口(ModifyDBInstanceSecurityGroups)用于修改实例绑定的安全组。
     @inlinable @discardableResult
@@ -61,7 +61,7 @@ extension Cynosdb {
         self.client.execute(action: "ModifyDBInstanceSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 修改云数据库安全组
+    /// 修改实例绑定安全组
     ///
     /// 本接口(ModifyDBInstanceSecurityGroups)用于修改实例绑定的安全组。
     @inlinable @discardableResult
@@ -69,7 +69,7 @@ extension Cynosdb {
         try await self.client.execute(action: "ModifyDBInstanceSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 修改云数据库安全组
+    /// 修改实例绑定安全组
     ///
     /// 本接口(ModifyDBInstanceSecurityGroups)用于修改实例绑定的安全组。
     @inlinable @discardableResult
@@ -77,7 +77,7 @@ extension Cynosdb {
         self.modifyDBInstanceSecurityGroups(.init(instanceId: instanceId, securityGroupIds: securityGroupIds, zone: zone), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 修改云数据库安全组
+    /// 修改实例绑定安全组
     ///
     /// 本接口(ModifyDBInstanceSecurityGroups)用于修改实例绑定的安全组。
     @inlinable @discardableResult

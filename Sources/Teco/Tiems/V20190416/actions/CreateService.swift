@@ -116,27 +116,27 @@ extension Tiems {
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func createService(_ input: CreateServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceResponse> {
-        fatalError("CreateService is no longer available.")
+        fatalError("'CreateService' is no longer available.")
     }
 
     /// 创建服务
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func createService(_ input: CreateServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceResponse {
-        fatalError("CreateService is no longer available.")
+        fatalError("'CreateService' is no longer available.")
     }
 
     /// 创建服务
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func createService(scaler: Scaler, serviceConfigId: String, name: String, scaleMode: String, resourceGroupId: String, cpu: UInt64, memory: UInt64, cluster: String? = nil, authentication: String? = nil, gpu: UInt64? = nil, gpuMemory: UInt64? = nil, description: String? = nil, gpuType: String? = nil, logTopicId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceResponse> {
-        fatalError("CreateService is no longer available.")
+        fatalError("'CreateService' is no longer available.")
     }
 
     /// 创建服务
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func createService(scaler: Scaler, serviceConfigId: String, name: String, scaleMode: String, resourceGroupId: String, cpu: UInt64, memory: UInt64, cluster: String? = nil, authentication: String? = nil, gpu: UInt64? = nil, gpuMemory: UInt64? = nil, description: String? = nil, gpuType: String? = nil, logTopicId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceResponse {
-        fatalError("CreateService is no longer available.")
+        fatalError("'CreateService' is no longer available.")
     }
 }

@@ -51,7 +51,7 @@ extension Ecdn {
     @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable
     public func describePurgeQuota(_ input: DescribePurgeQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePurgeQuotaResponse> {
-        fatalError("DescribePurgeQuota is no longer available.")
+        fatalError("'DescribePurgeQuota' is no longer available.")
     }
 
     /// 查询刷新用量配额
@@ -62,7 +62,7 @@ extension Ecdn {
     @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable
     public func describePurgeQuota(_ input: DescribePurgeQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePurgeQuotaResponse {
-        fatalError("DescribePurgeQuota is no longer available.")
+        fatalError("'DescribePurgeQuota' is no longer available.")
     }
 
     /// 查询刷新用量配额
@@ -73,7 +73,7 @@ extension Ecdn {
     @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable
     public func describePurgeQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePurgeQuotaResponse> {
-        fatalError("DescribePurgeQuota is no longer available.")
+        fatalError("'DescribePurgeQuota' is no longer available.")
     }
 
     /// 查询刷新用量配额
@@ -84,6 +84,6 @@ extension Ecdn {
     @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable
     public func describePurgeQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePurgeQuotaResponse {
-        fatalError("DescribePurgeQuota is no longer available.")
+        fatalError("'DescribePurgeQuota' is no longer available.")
     }
 }

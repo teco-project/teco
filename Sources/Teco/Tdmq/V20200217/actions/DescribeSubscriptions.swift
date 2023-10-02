@@ -27,6 +27,9 @@ extension Tdmq {
         /// 主题名称。
         public let topicName: String
 
+        /// Pulsar 集群的ID
+        public let clusterId: String
+
         /// 起始下标，不填默认为0。
         public let offset: UInt64?
 
@@ -39,27 +42,24 @@ extension Tdmq {
         /// 数据过滤条件。
         public let filters: [FilterSubscription]?
 
-        /// Pulsar 集群的ID
-        public let clusterId: String?
-
-        public init(environmentId: String, topicName: String, offset: UInt64? = nil, limit: UInt64? = nil, subscriptionName: String? = nil, filters: [FilterSubscription]? = nil, clusterId: String? = nil) {
+        public init(environmentId: String, topicName: String, clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, subscriptionName: String? = nil, filters: [FilterSubscription]? = nil) {
             self.environmentId = environmentId
             self.topicName = topicName
+            self.clusterId = clusterId
             self.offset = offset
             self.limit = limit
             self.subscriptionName = subscriptionName
             self.filters = filters
-            self.clusterId = clusterId
         }
 
         enum CodingKeys: String, CodingKey {
             case environmentId = "EnvironmentId"
             case topicName = "TopicName"
+            case clusterId = "ClusterId"
             case offset = "Offset"
             case limit = "Limit"
             case subscriptionName = "SubscriptionName"
             case filters = "Filters"
-            case clusterId = "ClusterId"
         }
 
         /// Compute the next request based on API response.
@@ -67,7 +67,7 @@ extension Tdmq {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return .init(environmentId: self.environmentId, topicName: self.topicName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, subscriptionName: self.subscriptionName, filters: self.filters, clusterId: self.clusterId)
+            return .init(environmentId: self.environmentId, topicName: self.topicName, clusterId: self.clusterId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, subscriptionName: self.subscriptionName, filters: self.filters)
         }
     }
 
@@ -119,16 +119,16 @@ extension Tdmq {
     ///
     /// 查询指定环境和主题下的订阅者列表
     @inlinable
-    public func describeSubscriptions(environmentId: String, topicName: String, offset: UInt64? = nil, limit: UInt64? = nil, subscriptionName: String? = nil, filters: [FilterSubscription]? = nil, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubscriptionsResponse> {
-        self.describeSubscriptions(.init(environmentId: environmentId, topicName: topicName, offset: offset, limit: limit, subscriptionName: subscriptionName, filters: filters, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+    public func describeSubscriptions(environmentId: String, topicName: String, clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, subscriptionName: String? = nil, filters: [FilterSubscription]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubscriptionsResponse> {
+        self.describeSubscriptions(.init(environmentId: environmentId, topicName: topicName, clusterId: clusterId, offset: offset, limit: limit, subscriptionName: subscriptionName, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取消费订阅列表
     ///
     /// 查询指定环境和主题下的订阅者列表
     @inlinable
-    public func describeSubscriptions(environmentId: String, topicName: String, offset: UInt64? = nil, limit: UInt64? = nil, subscriptionName: String? = nil, filters: [FilterSubscription]? = nil, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubscriptionsResponse {
-        try await self.describeSubscriptions(.init(environmentId: environmentId, topicName: topicName, offset: offset, limit: limit, subscriptionName: subscriptionName, filters: filters, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+    public func describeSubscriptions(environmentId: String, topicName: String, clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, subscriptionName: String? = nil, filters: [FilterSubscription]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubscriptionsResponse {
+        try await self.describeSubscriptions(.init(environmentId: environmentId, topicName: topicName, clusterId: clusterId, offset: offset, limit: limit, subscriptionName: subscriptionName, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取消费订阅列表

@@ -41,21 +41,31 @@ extension Essbasic {
         @available(*, deprecated)
         public let `operator`: UserInfo? = nil
 
-        public init(agent: Agent, proxyOrganizationName: String, businessLicense: String? = nil, uniformSocialCreditCode: String? = nil, proxyLegalName: String? = nil) {
+        /// 第三方平台子客企业法人/负责人证件类型，默认居民身份证（ID_CARD）类型，暂不支持其他类型
+        public let proxyLegalIdCardType: String?
+
+        /// 第三方平台子客企业法人/负责人证件号
+        public let proxyLegalIdCardNumber: String?
+
+        public init(agent: Agent, proxyOrganizationName: String, businessLicense: String? = nil, uniformSocialCreditCode: String? = nil, proxyLegalName: String? = nil, proxyLegalIdCardType: String? = nil, proxyLegalIdCardNumber: String? = nil) {
             self.agent = agent
             self.proxyOrganizationName = proxyOrganizationName
             self.businessLicense = businessLicense
             self.uniformSocialCreditCode = uniformSocialCreditCode
             self.proxyLegalName = proxyLegalName
+            self.proxyLegalIdCardType = proxyLegalIdCardType
+            self.proxyLegalIdCardNumber = proxyLegalIdCardNumber
         }
 
-        @available(*, deprecated, renamed: "init(agent:proxyOrganizationName:businessLicense:uniformSocialCreditCode:proxyLegalName:)", message: "'operator' is deprecated in 'SyncProxyOrganizationRequest'. Setting this parameter has no effect.")
-        public init(agent: Agent, proxyOrganizationName: String, businessLicense: String? = nil, uniformSocialCreditCode: String? = nil, proxyLegalName: String? = nil, operator: UserInfo? = nil) {
+        @available(*, deprecated, renamed: "init(agent:proxyOrganizationName:businessLicense:uniformSocialCreditCode:proxyLegalName:proxyLegalIdCardType:proxyLegalIdCardNumber:)", message: "'operator' is deprecated in 'SyncProxyOrganizationRequest'. Setting this parameter has no effect.")
+        public init(agent: Agent, proxyOrganizationName: String, businessLicense: String? = nil, uniformSocialCreditCode: String? = nil, proxyLegalName: String? = nil, operator: UserInfo? = nil, proxyLegalIdCardType: String? = nil, proxyLegalIdCardNumber: String? = nil) {
             self.agent = agent
             self.proxyOrganizationName = proxyOrganizationName
             self.businessLicense = businessLicense
             self.uniformSocialCreditCode = uniformSocialCreditCode
             self.proxyLegalName = proxyLegalName
+            self.proxyLegalIdCardType = proxyLegalIdCardType
+            self.proxyLegalIdCardNumber = proxyLegalIdCardNumber
         }
 
         enum CodingKeys: String, CodingKey {
@@ -65,6 +75,8 @@ extension Essbasic {
             case uniformSocialCreditCode = "UniformSocialCreditCode"
             case proxyLegalName = "ProxyLegalName"
             case `operator` = "Operator"
+            case proxyLegalIdCardType = "ProxyLegalIdCardType"
+            case proxyLegalIdCardNumber = "ProxyLegalIdCardNumber"
         }
     }
 
@@ -80,7 +92,9 @@ extension Essbasic {
 
     /// 同步企业信息
     ///
-    /// 此接口（SyncProxyOrganization）用于同步第三方平台子客企业信息，主要是子客企业的营业执照，便于子客企业开通过程中不用手动上传。若有需要调用此接口，需要在创建控制链接CreateConsoleLoginUrl之后即刻进行调用。
+    /// 此接口（SyncProxyOrganization）用于同步第三方平台子客企业信息，包括企业名称，企业营业执照，企业统一社会信用代码和法人姓名等，便于子客企业在企业激活过程中无需手动上传营业执照或补充企业信息。注意：
+    /// 1. 需要在子客企业激活前调用该接口，如果您的企业已经提交企业信息或者企业已经激活，同步的企业信息将不会生效。
+    /// 2. 如果您同时传递了营业执照信息和企业名称等信息，在认证过程中将以营业执照中的企业信息为准，请注意企业信息需要和营业执照信息对应。
     @inlinable @discardableResult
     public func syncProxyOrganization(_ input: SyncProxyOrganizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncProxyOrganizationResponse> {
         self.client.execute(action: "SyncProxyOrganization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -88,7 +102,9 @@ extension Essbasic {
 
     /// 同步企业信息
     ///
-    /// 此接口（SyncProxyOrganization）用于同步第三方平台子客企业信息，主要是子客企业的营业执照，便于子客企业开通过程中不用手动上传。若有需要调用此接口，需要在创建控制链接CreateConsoleLoginUrl之后即刻进行调用。
+    /// 此接口（SyncProxyOrganization）用于同步第三方平台子客企业信息，包括企业名称，企业营业执照，企业统一社会信用代码和法人姓名等，便于子客企业在企业激活过程中无需手动上传营业执照或补充企业信息。注意：
+    /// 1. 需要在子客企业激活前调用该接口，如果您的企业已经提交企业信息或者企业已经激活，同步的企业信息将不会生效。
+    /// 2. 如果您同时传递了营业执照信息和企业名称等信息，在认证过程中将以营业执照中的企业信息为准，请注意企业信息需要和营业执照信息对应。
     @inlinable @discardableResult
     public func syncProxyOrganization(_ input: SyncProxyOrganizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncProxyOrganizationResponse {
         try await self.client.execute(action: "SyncProxyOrganization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -96,35 +112,43 @@ extension Essbasic {
 
     /// 同步企业信息
     ///
-    /// 此接口（SyncProxyOrganization）用于同步第三方平台子客企业信息，主要是子客企业的营业执照，便于子客企业开通过程中不用手动上传。若有需要调用此接口，需要在创建控制链接CreateConsoleLoginUrl之后即刻进行调用。
+    /// 此接口（SyncProxyOrganization）用于同步第三方平台子客企业信息，包括企业名称，企业营业执照，企业统一社会信用代码和法人姓名等，便于子客企业在企业激活过程中无需手动上传营业执照或补充企业信息。注意：
+    /// 1. 需要在子客企业激活前调用该接口，如果您的企业已经提交企业信息或者企业已经激活，同步的企业信息将不会生效。
+    /// 2. 如果您同时传递了营业执照信息和企业名称等信息，在认证过程中将以营业执照中的企业信息为准，请注意企业信息需要和营业执照信息对应。
     @inlinable @discardableResult
-    public func syncProxyOrganization(agent: Agent, proxyOrganizationName: String, businessLicense: String? = nil, uniformSocialCreditCode: String? = nil, proxyLegalName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncProxyOrganizationResponse> {
-        self.syncProxyOrganization(.init(agent: agent, proxyOrganizationName: proxyOrganizationName, businessLicense: businessLicense, uniformSocialCreditCode: uniformSocialCreditCode, proxyLegalName: proxyLegalName), region: region, logger: logger, on: eventLoop)
+    public func syncProxyOrganization(agent: Agent, proxyOrganizationName: String, businessLicense: String? = nil, uniformSocialCreditCode: String? = nil, proxyLegalName: String? = nil, proxyLegalIdCardType: String? = nil, proxyLegalIdCardNumber: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncProxyOrganizationResponse> {
+        self.syncProxyOrganization(.init(agent: agent, proxyOrganizationName: proxyOrganizationName, businessLicense: businessLicense, uniformSocialCreditCode: uniformSocialCreditCode, proxyLegalName: proxyLegalName, proxyLegalIdCardType: proxyLegalIdCardType, proxyLegalIdCardNumber: proxyLegalIdCardNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 同步企业信息
     ///
-    /// 此接口（SyncProxyOrganization）用于同步第三方平台子客企业信息，主要是子客企业的营业执照，便于子客企业开通过程中不用手动上传。若有需要调用此接口，需要在创建控制链接CreateConsoleLoginUrl之后即刻进行调用。
-    @available(*, deprecated, renamed: "syncProxyOrganization(agent:proxyOrganizationName:businessLicense:uniformSocialCreditCode:proxyLegalName:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    /// 此接口（SyncProxyOrganization）用于同步第三方平台子客企业信息，包括企业名称，企业营业执照，企业统一社会信用代码和法人姓名等，便于子客企业在企业激活过程中无需手动上传营业执照或补充企业信息。注意：
+    /// 1. 需要在子客企业激活前调用该接口，如果您的企业已经提交企业信息或者企业已经激活，同步的企业信息将不会生效。
+    /// 2. 如果您同时传递了营业执照信息和企业名称等信息，在认证过程中将以营业执照中的企业信息为准，请注意企业信息需要和营业执照信息对应。
+    @available(*, deprecated, renamed: "syncProxyOrganization(agent:proxyOrganizationName:businessLicense:uniformSocialCreditCode:proxyLegalName:proxyLegalIdCardType:proxyLegalIdCardNumber:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable @discardableResult
-    public func syncProxyOrganization(agent: Agent, proxyOrganizationName: String, businessLicense: String? = nil, uniformSocialCreditCode: String? = nil, proxyLegalName: String? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncProxyOrganizationResponse> {
-        self.syncProxyOrganization(.init(agent: agent, proxyOrganizationName: proxyOrganizationName, businessLicense: businessLicense, uniformSocialCreditCode: uniformSocialCreditCode, proxyLegalName: proxyLegalName, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func syncProxyOrganization(agent: Agent, proxyOrganizationName: String, businessLicense: String? = nil, uniformSocialCreditCode: String? = nil, proxyLegalName: String? = nil, operator: UserInfo? = nil, proxyLegalIdCardType: String? = nil, proxyLegalIdCardNumber: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncProxyOrganizationResponse> {
+        self.syncProxyOrganization(.init(agent: agent, proxyOrganizationName: proxyOrganizationName, businessLicense: businessLicense, uniformSocialCreditCode: uniformSocialCreditCode, proxyLegalName: proxyLegalName, operator: `operator`, proxyLegalIdCardType: proxyLegalIdCardType, proxyLegalIdCardNumber: proxyLegalIdCardNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 同步企业信息
     ///
-    /// 此接口（SyncProxyOrganization）用于同步第三方平台子客企业信息，主要是子客企业的营业执照，便于子客企业开通过程中不用手动上传。若有需要调用此接口，需要在创建控制链接CreateConsoleLoginUrl之后即刻进行调用。
+    /// 此接口（SyncProxyOrganization）用于同步第三方平台子客企业信息，包括企业名称，企业营业执照，企业统一社会信用代码和法人姓名等，便于子客企业在企业激活过程中无需手动上传营业执照或补充企业信息。注意：
+    /// 1. 需要在子客企业激活前调用该接口，如果您的企业已经提交企业信息或者企业已经激活，同步的企业信息将不会生效。
+    /// 2. 如果您同时传递了营业执照信息和企业名称等信息，在认证过程中将以营业执照中的企业信息为准，请注意企业信息需要和营业执照信息对应。
     @inlinable @discardableResult
-    public func syncProxyOrganization(agent: Agent, proxyOrganizationName: String, businessLicense: String? = nil, uniformSocialCreditCode: String? = nil, proxyLegalName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncProxyOrganizationResponse {
-        try await self.syncProxyOrganization(.init(agent: agent, proxyOrganizationName: proxyOrganizationName, businessLicense: businessLicense, uniformSocialCreditCode: uniformSocialCreditCode, proxyLegalName: proxyLegalName), region: region, logger: logger, on: eventLoop)
+    public func syncProxyOrganization(agent: Agent, proxyOrganizationName: String, businessLicense: String? = nil, uniformSocialCreditCode: String? = nil, proxyLegalName: String? = nil, proxyLegalIdCardType: String? = nil, proxyLegalIdCardNumber: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncProxyOrganizationResponse {
+        try await self.syncProxyOrganization(.init(agent: agent, proxyOrganizationName: proxyOrganizationName, businessLicense: businessLicense, uniformSocialCreditCode: uniformSocialCreditCode, proxyLegalName: proxyLegalName, proxyLegalIdCardType: proxyLegalIdCardType, proxyLegalIdCardNumber: proxyLegalIdCardNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 同步企业信息
     ///
-    /// 此接口（SyncProxyOrganization）用于同步第三方平台子客企业信息，主要是子客企业的营业执照，便于子客企业开通过程中不用手动上传。若有需要调用此接口，需要在创建控制链接CreateConsoleLoginUrl之后即刻进行调用。
-    @available(*, deprecated, renamed: "syncProxyOrganization(agent:proxyOrganizationName:businessLicense:uniformSocialCreditCode:proxyLegalName:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    /// 此接口（SyncProxyOrganization）用于同步第三方平台子客企业信息，包括企业名称，企业营业执照，企业统一社会信用代码和法人姓名等，便于子客企业在企业激活过程中无需手动上传营业执照或补充企业信息。注意：
+    /// 1. 需要在子客企业激活前调用该接口，如果您的企业已经提交企业信息或者企业已经激活，同步的企业信息将不会生效。
+    /// 2. 如果您同时传递了营业执照信息和企业名称等信息，在认证过程中将以营业执照中的企业信息为准，请注意企业信息需要和营业执照信息对应。
+    @available(*, deprecated, renamed: "syncProxyOrganization(agent:proxyOrganizationName:businessLicense:uniformSocialCreditCode:proxyLegalName:proxyLegalIdCardType:proxyLegalIdCardNumber:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable @discardableResult
-    public func syncProxyOrganization(agent: Agent, proxyOrganizationName: String, businessLicense: String? = nil, uniformSocialCreditCode: String? = nil, proxyLegalName: String? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncProxyOrganizationResponse {
-        try await self.syncProxyOrganization(.init(agent: agent, proxyOrganizationName: proxyOrganizationName, businessLicense: businessLicense, uniformSocialCreditCode: uniformSocialCreditCode, proxyLegalName: proxyLegalName, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func syncProxyOrganization(agent: Agent, proxyOrganizationName: String, businessLicense: String? = nil, uniformSocialCreditCode: String? = nil, proxyLegalName: String? = nil, operator: UserInfo? = nil, proxyLegalIdCardType: String? = nil, proxyLegalIdCardNumber: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncProxyOrganizationResponse {
+        try await self.syncProxyOrganization(.init(agent: agent, proxyOrganizationName: proxyOrganizationName, businessLicense: businessLicense, uniformSocialCreditCode: uniformSocialCreditCode, proxyLegalName: proxyLegalName, operator: `operator`, proxyLegalIdCardType: proxyLegalIdCardType, proxyLegalIdCardNumber: proxyLegalIdCardNumber), region: region, logger: logger, on: eventLoop)
     }
 }

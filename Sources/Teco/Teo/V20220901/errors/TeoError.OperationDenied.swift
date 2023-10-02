@@ -21,6 +21,7 @@ extension TCTeoError {
         enum Code: String {
             case accelerateMainlandDisable = "OperationDenied.AccelerateMainlandDisable"
             case accelerateMainlandIpv6Conflict = "OperationDenied.AccelerateMainlandIpv6Conflict"
+            case configLocked = "OperationDenied.ConfigLocked"
             case disableZoneNotCompleted = "OperationDenied.DisableZoneNotCompleted"
             case domainInShareCnameGroup = "OperationDenied.DomainInShareCnameGroup"
             case domainIsBlocked = "OperationDenied.DomainIsBlocked"
@@ -36,8 +37,12 @@ extension TCTeoError {
             case l7HostInProcessStatus = "OperationDenied.L7HostInProcessStatus"
             case multipleCnameZone = "OperationDenied.MultipleCnameZone"
             case nsNotAllowTrafficStrategy = "OperationDenied.NSNotAllowTrafficStrategy"
+            case planNotSupportModifyZoneArea = "OperationDenied.PlanNotSupportModifyZoneArea"
             case recordIsForbidden = "OperationDenied.RecordIsForbidden"
             case resourceLockedTemporary = "OperationDenied.ResourceLockedTemporary"
+            case sharedCNAMEUnsupportedAccelerateMainland = "OperationDenied.SharedCNAMEUnsupportedAccelerateMainland"
+            case sharedCNAMEUnsupportedIPv6 = "OperationDenied.SharedCNAMEUnsupportedIPv6"
+            case zoneIsBindingSharedCNAME = "OperationDenied.ZoneIsBindingSharedCNAME"
             case other = "OperationDenied"
         }
 
@@ -71,6 +76,10 @@ extension TCTeoError {
         /// 中国大陆加速与IPv6冲突，不能同时配置。
         public static var accelerateMainlandIpv6Conflict: OperationDenied {
             OperationDenied(.accelerateMainlandIpv6Conflict)
+        }
+
+        public static var configLocked: OperationDenied {
+            OperationDenied(.configLocked)
         }
 
         public static var disableZoneNotCompleted: OperationDenied {
@@ -143,6 +152,10 @@ extension TCTeoError {
             OperationDenied(.nsNotAllowTrafficStrategy)
         }
 
+        public static var planNotSupportModifyZoneArea: OperationDenied {
+            OperationDenied(.planNotSupportModifyZoneArea)
+        }
+
         /// DNS 记录不允许添加。
         public static var recordIsForbidden: OperationDenied {
             OperationDenied(.recordIsForbidden)
@@ -151,6 +164,18 @@ extension TCTeoError {
         /// 当前有互相排斥的请求操作并行发起，请稍后重试。
         public static var resourceLockedTemporary: OperationDenied {
             OperationDenied(.resourceLockedTemporary)
+        }
+
+        public static var sharedCNAMEUnsupportedAccelerateMainland: OperationDenied {
+            OperationDenied(.sharedCNAMEUnsupportedAccelerateMainland)
+        }
+
+        public static var sharedCNAMEUnsupportedIPv6: OperationDenied {
+            OperationDenied(.sharedCNAMEUnsupportedIPv6)
+        }
+
+        public static var zoneIsBindingSharedCNAME: OperationDenied {
+            OperationDenied(.zoneIsBindingSharedCNAME)
         }
 
         /// 操作被拒绝。
@@ -165,6 +190,8 @@ extension TCTeoError {
                 code = .operationDenied_AccelerateMainlandDisable
             case .accelerateMainlandIpv6Conflict:
                 code = .operationDenied_AccelerateMainlandIpv6Conflict
+            case .configLocked:
+                code = .operationDenied_ConfigLocked
             case .disableZoneNotCompleted:
                 code = .operationDenied_DisableZoneNotCompleted
             case .domainInShareCnameGroup:
@@ -195,10 +222,18 @@ extension TCTeoError {
                 code = .operationDenied_MultipleCnameZone
             case .nsNotAllowTrafficStrategy:
                 code = .operationDenied_NSNotAllowTrafficStrategy
+            case .planNotSupportModifyZoneArea:
+                code = .operationDenied_PlanNotSupportModifyZoneArea
             case .recordIsForbidden:
                 code = .operationDenied_RecordIsForbidden
             case .resourceLockedTemporary:
                 code = .operationDenied_ResourceLockedTemporary
+            case .sharedCNAMEUnsupportedAccelerateMainland:
+                code = .operationDenied_SharedCNAMEUnsupportedAccelerateMainland
+            case .sharedCNAMEUnsupportedIPv6:
+                code = .operationDenied_SharedCNAMEUnsupportedIPv6
+            case .zoneIsBindingSharedCNAME:
+                code = .operationDenied_ZoneIsBindingSharedCNAME
             case .other:
                 code = .operationDenied
             }

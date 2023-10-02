@@ -407,6 +407,10 @@ extension Bma {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let whiteList: String?
 
+        /// 白名单备注
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let remark: String?
+
         /// 新增时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let insertTime: String?
@@ -417,6 +421,7 @@ extension Bma {
             case brandName = "BrandName"
             case assetsType = "AssetsType"
             case whiteList = "WhiteList"
+            case remark = "Remark"
             case insertTime = "InsertTime"
         }
     }

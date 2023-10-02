@@ -57,25 +57,25 @@ extension Cynosdb {
         }
     }
 
-    /// 更新集群Cynos内核版本
+    /// 更新内核小版本
     @inlinable
     public func upgradeClusterVersion(_ input: UpgradeClusterVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeClusterVersionResponse> {
         self.client.execute(action: "UpgradeClusterVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 更新集群Cynos内核版本
+    /// 更新内核小版本
     @inlinable
     public func upgradeClusterVersion(_ input: UpgradeClusterVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeClusterVersionResponse {
         try await self.client.execute(action: "UpgradeClusterVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 更新集群Cynos内核版本
+    /// 更新内核小版本
     @inlinable
     public func upgradeClusterVersion(clusterId: String, cynosVersion: String, upgradeType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeClusterVersionResponse> {
         self.upgradeClusterVersion(.init(clusterId: clusterId, cynosVersion: cynosVersion, upgradeType: upgradeType), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 更新集群Cynos内核版本
+    /// 更新内核小版本
     @inlinable
     public func upgradeClusterVersion(clusterId: String, cynosVersion: String, upgradeType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeClusterVersionResponse {
         try await self.upgradeClusterVersion(.init(clusterId: clusterId, cynosVersion: cynosVersion, upgradeType: upgradeType), region: region, logger: logger, on: eventLoop)

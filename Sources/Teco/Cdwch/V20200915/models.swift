@@ -46,6 +46,40 @@ extension Cdwch {
         }
     }
 
+    /// 备份任务详情
+    public struct BackUpJobDisplay: TCOutputModel {
+        /// 备份任务id
+        public let jobId: Int64
+
+        /// 备份任务名
+        public let snapshot: String
+
+        /// 任务类型(元数据),(数据)
+        public let backUpType: String
+
+        /// 备份数据量
+        public let backUpSize: Int64
+
+        /// 任务创建时间
+        public let backUpTime: String
+
+        /// 任务过期时间
+        public let expireTime: String
+
+        /// 任务状态
+        public let jobStatus: String
+
+        enum CodingKeys: String, CodingKey {
+            case jobId = "JobId"
+            case snapshot = "Snapshot"
+            case backUpType = "BackUpType"
+            case backUpSize = "BackUpSize"
+            case backUpTime = "BackUpTime"
+            case expireTime = "ExpireTime"
+            case jobStatus = "JobStatus"
+        }
+    }
+
     /// 备份表信息
     public struct BackupTableContent: TCInputModel, TCOutputModel {
         /// 数据库
@@ -223,6 +257,32 @@ extension Cdwch {
             case oldConfValue = "OldConfValue"
             case newConfValue = "NewConfValue"
             case filePath = "FilePath"
+        }
+    }
+
+    /// 数据库权限信息
+    public struct DatabasePrivilegeInfo: TCInputModel, TCOutputModel {
+        /// 数据库名称
+        public let databaseName: String
+
+        /// //库表权限，SELECT、INSERT_ALL、ALTER、TRUNCATE、DROP_TABLE、CREATE_TABLE、DROP_DATABASE
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let databasePrivileges: [String]?
+
+        /// // 库下面的表权限
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tablePrivilegeList: [TablePrivilegeInfo]?
+
+        public init(databaseName: String, databasePrivileges: [String]? = nil, tablePrivilegeList: [TablePrivilegeInfo]? = nil) {
+            self.databaseName = databaseName
+            self.databasePrivileges = databasePrivileges
+            self.tablePrivilegeList = tablePrivilegeList
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case databaseName = "DatabaseName"
+            case databasePrivileges = "DatabasePrivileges"
+            case tablePrivilegeList = "TablePrivilegeList"
         }
     }
 
@@ -855,6 +915,25 @@ extension Cdwch {
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case version = "Version"
+        }
+    }
+
+    /// 表权限
+    public struct TablePrivilegeInfo: TCInputModel, TCOutputModel {
+        /// 表名称
+        public let tableName: String
+
+        /// 表权限列表 SELECT、INSERT_ALL、ALTER、TRUNCATE、DROP_TABLE 查询、插入、设置、清空表、删除表
+        public let tablePrivileges: [String]
+
+        public init(tableName: String, tablePrivileges: [String]) {
+            self.tableName = tableName
+            self.tablePrivileges = tablePrivileges
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case tableName = "TableName"
+            case tablePrivileges = "TablePrivileges"
         }
     }
 

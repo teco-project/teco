@@ -64,10 +64,19 @@ extension Tts {
         /// 回调 URL，用户自行搭建的用于接收识别结果的服务URL。如果用户使用轮询方式获取识别结果，则无需提交该参数。[回调说明](https://cloud.tencent.com/document/product/1073/55746)
         public let callbackUrl: String?
 
+        /// 是否开启时间戳功能，默认为false。
+        public let enableSubtitle: Bool?
+
         /// 旁白与对白文本解析，分别合成相应风格（仅适用于旁对白音色10510000、100510000），默认 false
         public let voiceoverDialogueSplit: Bool?
 
-        public init(text: String, modelType: Int64, volume: Float? = nil, speed: Float? = nil, projectId: Int64? = nil, voiceType: Int64? = nil, primaryLanguage: Int64? = nil, sampleRate: UInt64? = nil, codec: String? = nil, callbackUrl: String? = nil, voiceoverDialogueSplit: Bool? = nil) {
+        /// 控制合成音频的情感，仅支持多情感音色使用。取值: neutral(中性)、sad(悲伤)、happy(高兴)、angry(生气)、fear(恐惧)、news(新闻)、story(故事)、radio(广播)、poetry(诗歌)、call(客服)、撒娇(sajiao)、厌恶(disgusted)、震惊(amaze)、平静(peaceful)、兴奋(exciting)、傲娇(aojiao)、解说(jieshuo)
+        public let emotionCategory: String?
+
+        /// 控制合成音频情感程度，取值范围为[50,200],默认为100；只有EmotionCategory不为空时生效。
+        public let emotionIntensity: Int64?
+
+        public init(text: String, modelType: Int64, volume: Float? = nil, speed: Float? = nil, projectId: Int64? = nil, voiceType: Int64? = nil, primaryLanguage: Int64? = nil, sampleRate: UInt64? = nil, codec: String? = nil, callbackUrl: String? = nil, enableSubtitle: Bool? = nil, voiceoverDialogueSplit: Bool? = nil, emotionCategory: String? = nil, emotionIntensity: Int64? = nil) {
             self.text = text
             self.modelType = modelType
             self.volume = volume
@@ -78,7 +87,10 @@ extension Tts {
             self.sampleRate = sampleRate
             self.codec = codec
             self.callbackUrl = callbackUrl
+            self.enableSubtitle = enableSubtitle
             self.voiceoverDialogueSplit = voiceoverDialogueSplit
+            self.emotionCategory = emotionCategory
+            self.emotionIntensity = emotionIntensity
         }
 
         enum CodingKeys: String, CodingKey {
@@ -92,7 +104,10 @@ extension Tts {
             case sampleRate = "SampleRate"
             case codec = "Codec"
             case callbackUrl = "CallbackUrl"
+            case enableSubtitle = "EnableSubtitle"
             case voiceoverDialogueSplit = "VoiceoverDialogueSplit"
+            case emotionCategory = "EmotionCategory"
+            case emotionIntensity = "EmotionIntensity"
         }
     }
 
@@ -169,8 +184,8 @@ extension Tts {
     /// - 每个 speak 闭合标签内部，字符数不超过 150 字（标签字符本身不计算在内）；
     /// - 每个 speak 闭合标签内部，使用 break 标签数目最大为 10 个。如需要使用更多，可拆解到多个 speak 标签中；
     @inlinable
-    public func createTtsTask(text: String, modelType: Int64, volume: Float? = nil, speed: Float? = nil, projectId: Int64? = nil, voiceType: Int64? = nil, primaryLanguage: Int64? = nil, sampleRate: UInt64? = nil, codec: String? = nil, callbackUrl: String? = nil, voiceoverDialogueSplit: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTtsTaskResponse> {
-        self.createTtsTask(.init(text: text, modelType: modelType, volume: volume, speed: speed, projectId: projectId, voiceType: voiceType, primaryLanguage: primaryLanguage, sampleRate: sampleRate, codec: codec, callbackUrl: callbackUrl, voiceoverDialogueSplit: voiceoverDialogueSplit), region: region, logger: logger, on: eventLoop)
+    public func createTtsTask(text: String, modelType: Int64, volume: Float? = nil, speed: Float? = nil, projectId: Int64? = nil, voiceType: Int64? = nil, primaryLanguage: Int64? = nil, sampleRate: UInt64? = nil, codec: String? = nil, callbackUrl: String? = nil, enableSubtitle: Bool? = nil, voiceoverDialogueSplit: Bool? = nil, emotionCategory: String? = nil, emotionIntensity: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTtsTaskResponse> {
+        self.createTtsTask(.init(text: text, modelType: modelType, volume: volume, speed: speed, projectId: projectId, voiceType: voiceType, primaryLanguage: primaryLanguage, sampleRate: sampleRate, codec: codec, callbackUrl: callbackUrl, enableSubtitle: enableSubtitle, voiceoverDialogueSplit: voiceoverDialogueSplit, emotionCategory: emotionCategory, emotionIntensity: emotionIntensity), region: region, logger: logger, on: eventLoop)
     }
 
     /// 长文本语音合成请求
@@ -190,7 +205,7 @@ extension Tts {
     /// - 每个 speak 闭合标签内部，字符数不超过 150 字（标签字符本身不计算在内）；
     /// - 每个 speak 闭合标签内部，使用 break 标签数目最大为 10 个。如需要使用更多，可拆解到多个 speak 标签中；
     @inlinable
-    public func createTtsTask(text: String, modelType: Int64, volume: Float? = nil, speed: Float? = nil, projectId: Int64? = nil, voiceType: Int64? = nil, primaryLanguage: Int64? = nil, sampleRate: UInt64? = nil, codec: String? = nil, callbackUrl: String? = nil, voiceoverDialogueSplit: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTtsTaskResponse {
-        try await self.createTtsTask(.init(text: text, modelType: modelType, volume: volume, speed: speed, projectId: projectId, voiceType: voiceType, primaryLanguage: primaryLanguage, sampleRate: sampleRate, codec: codec, callbackUrl: callbackUrl, voiceoverDialogueSplit: voiceoverDialogueSplit), region: region, logger: logger, on: eventLoop)
+    public func createTtsTask(text: String, modelType: Int64, volume: Float? = nil, speed: Float? = nil, projectId: Int64? = nil, voiceType: Int64? = nil, primaryLanguage: Int64? = nil, sampleRate: UInt64? = nil, codec: String? = nil, callbackUrl: String? = nil, enableSubtitle: Bool? = nil, voiceoverDialogueSplit: Bool? = nil, emotionCategory: String? = nil, emotionIntensity: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTtsTaskResponse {
+        try await self.createTtsTask(.init(text: text, modelType: modelType, volume: volume, speed: speed, projectId: projectId, voiceType: voiceType, primaryLanguage: primaryLanguage, sampleRate: sampleRate, codec: codec, callbackUrl: callbackUrl, enableSubtitle: enableSubtitle, voiceoverDialogueSplit: voiceoverDialogueSplit, emotionCategory: emotionCategory, emotionIntensity: emotionIntensity), region: region, logger: logger, on: eventLoop)
     }
 }

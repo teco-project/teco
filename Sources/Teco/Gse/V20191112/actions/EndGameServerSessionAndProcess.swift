@@ -59,7 +59,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func endGameServerSessionAndProcess(_ input: EndGameServerSessionAndProcessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EndGameServerSessionAndProcessResponse> {
-        fatalError("EndGameServerSessionAndProcess is no longer available.")
+        fatalError("'EndGameServerSessionAndProcess' is no longer available.")
     }
 
     /// 终止游戏服务器会话和对应的进程
@@ -68,7 +68,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func endGameServerSessionAndProcess(_ input: EndGameServerSessionAndProcessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EndGameServerSessionAndProcessResponse {
-        fatalError("EndGameServerSessionAndProcess is no longer available.")
+        fatalError("'EndGameServerSessionAndProcess' is no longer available.")
     }
 
     /// 终止游戏服务器会话和对应的进程
@@ -77,7 +77,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func endGameServerSessionAndProcess(gameServerSessionId: String? = nil, ipAddress: String? = nil, port: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EndGameServerSessionAndProcessResponse> {
-        fatalError("EndGameServerSessionAndProcess is no longer available.")
+        fatalError("'EndGameServerSessionAndProcess' is no longer available.")
     }
 
     /// 终止游戏服务器会话和对应的进程
@@ -86,6 +86,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func endGameServerSessionAndProcess(gameServerSessionId: String? = nil, ipAddress: String? = nil, port: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EndGameServerSessionAndProcessResponse {
-        fatalError("EndGameServerSessionAndProcess is no longer available.")
+        fatalError("'EndGameServerSessionAndProcess' is no longer available.")
     }
 }

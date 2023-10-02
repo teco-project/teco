@@ -85,7 +85,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createHashDepositNoCert(_ input: CreateHashDepositNoCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHashDepositNoCertResponse> {
-        fatalError("CreateHashDepositNoCert is no longer available.")
+        fatalError("'CreateHashDepositNoCert' is no longer available.")
     }
 
     /// 哈希上链存证(无证书)
@@ -94,7 +94,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createHashDepositNoCert(_ input: CreateHashDepositNoCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHashDepositNoCertResponse {
-        fatalError("CreateHashDepositNoCert is no longer available.")
+        fatalError("'CreateHashDepositNoCert' is no longer available.")
     }
 
     /// 哈希上链存证(无证书)
@@ -103,7 +103,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createHashDepositNoCert(evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHashDepositNoCertResponse> {
-        fatalError("CreateHashDepositNoCert is no longer available.")
+        fatalError("'CreateHashDepositNoCert' is no longer available.")
     }
 
     /// 哈希上链存证(无证书)
@@ -112,6 +112,6 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createHashDepositNoCert(evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHashDepositNoCertResponse {
-        fatalError("CreateHashDepositNoCert is no longer available.")
+        fatalError("'CreateHashDepositNoCert' is no longer available.")
     }
 }

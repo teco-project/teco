@@ -29,10 +29,10 @@ extension Cvm {
         /// 镜像ID必须指定为状态为`NORMAL`的镜像。镜像状态请参考[镜像数据表](https://cloud.tencent.com/document/product/213/15753#Image)。
         public let imageId: String
 
-        /// 接收分享镜像的账号Id列表，array型参数的格式可以参考[API简介](/document/api/213/568)。帐号ID不同于QQ号，查询用户帐号ID请查看[帐号信息](https://console.cloud.tencent.com/developer)中的帐号ID栏。
+        /// 接收共享镜像的账号Id列表，array型参数的格式可以参考[API简介](/document/api/213/568)。账号ID不同于QQ号，查询用户账号ID请查看[账号信息](https://console.cloud.tencent.com/developer)中的账号ID栏。
         public let accountIds: [String]
 
-        /// 操作，包括 `SHARE`，`CANCEL`。其中`SHARE`代表分享操作，`CANCEL`代表取消分享操作。
+        /// 操作，包括 `SHARE`，`CANCEL`。其中`SHARE`代表共享操作，`CANCEL`代表取消共享操作。
         public let permission: String
 
         public init(imageId: String, accountIds: [String], permission: String) {
@@ -58,53 +58,53 @@ extension Cvm {
         }
     }
 
-    /// 修改镜像分享信息
+    /// 修改镜像共享信息
     ///
-    /// 本接口（ModifyImageSharePermission）用于修改镜像分享信息。
+    /// 本接口（ModifyImageSharePermission）用于修改镜像共享信息。
     ///
-    /// * 分享镜像后，被分享账户可以通过该镜像创建实例。
+    /// * 共享镜像后，被共享账户可以通过该镜像创建实例。
     /// * 每个自定义镜像最多可共享给50个账户。
-    /// * 分享镜像无法更改名称，描述，仅可用于创建实例。
-    /// * 只支持分享到对方账户相同地域。
+    /// * 共享镜像无法更改名称，描述，仅可用于创建实例。
+    /// * 只支持共享到对方账户相同地域。
     @inlinable @discardableResult
     public func modifyImageSharePermission(_ input: ModifyImageSharePermissionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyImageSharePermissionResponse> {
         self.client.execute(action: "ModifyImageSharePermission", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 修改镜像分享信息
+    /// 修改镜像共享信息
     ///
-    /// 本接口（ModifyImageSharePermission）用于修改镜像分享信息。
+    /// 本接口（ModifyImageSharePermission）用于修改镜像共享信息。
     ///
-    /// * 分享镜像后，被分享账户可以通过该镜像创建实例。
+    /// * 共享镜像后，被共享账户可以通过该镜像创建实例。
     /// * 每个自定义镜像最多可共享给50个账户。
-    /// * 分享镜像无法更改名称，描述，仅可用于创建实例。
-    /// * 只支持分享到对方账户相同地域。
+    /// * 共享镜像无法更改名称，描述，仅可用于创建实例。
+    /// * 只支持共享到对方账户相同地域。
     @inlinable @discardableResult
     public func modifyImageSharePermission(_ input: ModifyImageSharePermissionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageSharePermissionResponse {
         try await self.client.execute(action: "ModifyImageSharePermission", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 修改镜像分享信息
+    /// 修改镜像共享信息
     ///
-    /// 本接口（ModifyImageSharePermission）用于修改镜像分享信息。
+    /// 本接口（ModifyImageSharePermission）用于修改镜像共享信息。
     ///
-    /// * 分享镜像后，被分享账户可以通过该镜像创建实例。
+    /// * 共享镜像后，被共享账户可以通过该镜像创建实例。
     /// * 每个自定义镜像最多可共享给50个账户。
-    /// * 分享镜像无法更改名称，描述，仅可用于创建实例。
-    /// * 只支持分享到对方账户相同地域。
+    /// * 共享镜像无法更改名称，描述，仅可用于创建实例。
+    /// * 只支持共享到对方账户相同地域。
     @inlinable @discardableResult
     public func modifyImageSharePermission(imageId: String, accountIds: [String], permission: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyImageSharePermissionResponse> {
         self.modifyImageSharePermission(.init(imageId: imageId, accountIds: accountIds, permission: permission), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 修改镜像分享信息
+    /// 修改镜像共享信息
     ///
-    /// 本接口（ModifyImageSharePermission）用于修改镜像分享信息。
+    /// 本接口（ModifyImageSharePermission）用于修改镜像共享信息。
     ///
-    /// * 分享镜像后，被分享账户可以通过该镜像创建实例。
+    /// * 共享镜像后，被共享账户可以通过该镜像创建实例。
     /// * 每个自定义镜像最多可共享给50个账户。
-    /// * 分享镜像无法更改名称，描述，仅可用于创建实例。
-    /// * 只支持分享到对方账户相同地域。
+    /// * 共享镜像无法更改名称，描述，仅可用于创建实例。
+    /// * 只支持共享到对方账户相同地域。
     @inlinable @discardableResult
     public func modifyImageSharePermission(imageId: String, accountIds: [String], permission: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageSharePermissionResponse {
         try await self.modifyImageSharePermission(.init(imageId: imageId, accountIds: accountIds, permission: permission), region: region, logger: logger, on: eventLoop)

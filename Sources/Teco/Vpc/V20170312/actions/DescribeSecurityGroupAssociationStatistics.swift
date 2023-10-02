@@ -21,7 +21,7 @@ import TecoCore
 extension Vpc {
     /// DescribeSecurityGroupAssociationStatistics请求参数结构体
     public struct DescribeSecurityGroupAssociationStatisticsRequest: TCRequest {
-        /// 安全实例ID，例如sg-33ocnj9n，可通过DescribeSecurityGroups获取。
+        /// 安全实例ID，例如sg-33ocnj9n，可通过[DescribeSecurityGroups](https://cloud.tencent.com/document/product/215/15808)获取。
         public let securityGroupIds: [String]
 
         public init(securityGroupIds: [String]) {

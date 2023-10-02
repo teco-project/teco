@@ -84,10 +84,12 @@ extension Ocr {
 
         /// Code 告警码列表和释义：
         /// -9102 黑白复印件告警
+        /// -9104 翻拍件告警
         public let recognizeWarnCode: [Int64]
 
         /// 告警码说明：
         /// WARN_COPY_CARD 黑白复印件告警
+        /// WARN_RESHOOT_SCREENED_CARD 翻拍件告警
         public let recognizeWarnMsg: [String]
 
         /// 是否为副本。1为是，-1为不是。

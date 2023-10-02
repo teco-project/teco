@@ -47,27 +47,27 @@ extension Tdid {
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable @discardableResult
     public func setCredentialStatus(_ input: SetCredentialStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetCredentialStatusResponse> {
-        fatalError("SetCredentialStatus is no longer available.")
+        fatalError("'SetCredentialStatus' is no longer available.")
     }
 
     /// 设置凭证链上状态
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable @discardableResult
     public func setCredentialStatus(_ input: SetCredentialStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCredentialStatusResponse {
-        fatalError("SetCredentialStatus is no longer available.")
+        fatalError("'SetCredentialStatus' is no longer available.")
     }
 
     /// 设置凭证链上状态
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable @discardableResult
     public func setCredentialStatus(credentialStatus: CredentialStatus, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetCredentialStatusResponse> {
-        fatalError("SetCredentialStatus is no longer available.")
+        fatalError("'SetCredentialStatus' is no longer available.")
     }
 
     /// 设置凭证链上状态
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable @discardableResult
     public func setCredentialStatus(credentialStatus: CredentialStatus, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCredentialStatusResponse {
-        fatalError("SetCredentialStatus is no longer available.")
+        fatalError("'SetCredentialStatus' is no longer available.")
     }
 }

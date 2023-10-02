@@ -250,6 +250,9 @@ extension Sqlserver {
         /// 备份策略（0-实例备份；1-多库备份）
         public let strategy: Int64
 
+        /// 备份存储策略 0-跟随自定义备份保留策略 1-跟随实例生命周期直到实例下线
+        public let storageStrategy: Int64?
+
         /// 备份方式，0-定时备份；1-手动临时备份；2-定期备份
         public let backupWay: Int64
 
@@ -282,6 +285,7 @@ extension Sqlserver {
             case status = "Status"
             case dBs = "DBs"
             case strategy = "Strategy"
+            case storageStrategy = "StorageStrategy"
             case backupWay = "BackupWay"
             case backupName = "BackupName"
             case groupId = "GroupId"
@@ -844,7 +848,7 @@ extension Sqlserver {
         /// 数据库名称
         public let dbName: String?
 
-        /// enable-开启加密，disable-关闭加密
+        /// enable-开启数据库TDE加密，disable-关闭数据库TDE加密
         public let encryption: String?
 
         public init(dbName: String? = nil, encryption: String? = nil) {
@@ -2135,6 +2139,37 @@ extension Sqlserver {
             case msg = "Msg"
             case status = "Status"
             case name = "Name"
+        }
+    }
+
+    /// 主备切换日志
+    public struct SwitchLog: TCOutputModel {
+        /// 切换事件ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let eventId: String?
+
+        /// 切换模式 0-系统自动切换，1-手动切换
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let switchType: UInt64?
+
+        /// 切换开始时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let startTime: String?
+
+        /// 切换结束时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let endTime: String?
+
+        /// 机器故障导致自动切换
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let reason: String?
+
+        enum CodingKeys: String, CodingKey {
+            case eventId = "EventId"
+            case switchType = "SwitchType"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+            case reason = "Reason"
         }
     }
 

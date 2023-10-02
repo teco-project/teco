@@ -36,12 +36,16 @@ extension Tsf {
         /// 部署组ID
         public let gatewayDeployGroupId: String?
 
-        public init(groupId: String, offset: Int64, limit: Int64, searchWord: String? = nil, gatewayDeployGroupId: String? = nil) {
+        /// 发布状态, drafted(未发布)/released(已发布)/releasing(发布中)/failed(发布失败)
+        public let releaseStatus: String?
+
+        public init(groupId: String, offset: Int64, limit: Int64, searchWord: String? = nil, gatewayDeployGroupId: String? = nil, releaseStatus: String? = nil) {
             self.groupId = groupId
             self.offset = offset
             self.limit = limit
             self.searchWord = searchWord
             self.gatewayDeployGroupId = gatewayDeployGroupId
+            self.releaseStatus = releaseStatus
         }
 
         enum CodingKeys: String, CodingKey {
@@ -50,6 +54,7 @@ extension Tsf {
             case limit = "Limit"
             case searchWord = "SearchWord"
             case gatewayDeployGroupId = "GatewayDeployGroupId"
+            case releaseStatus = "ReleaseStatus"
         }
 
         /// Compute the next request based on API response.
@@ -57,7 +62,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return .init(groupId: self.groupId, offset: self.offset + .init(response.getItems().count), limit: self.limit, searchWord: self.searchWord, gatewayDeployGroupId: self.gatewayDeployGroupId)
+            return .init(groupId: self.groupId, offset: self.offset + .init(response.getItems().count), limit: self.limit, searchWord: self.searchWord, gatewayDeployGroupId: self.gatewayDeployGroupId, releaseStatus: self.releaseStatus)
         }
     }
 
@@ -99,14 +104,14 @@ extension Tsf {
 
     /// 查询API分组下的Api列表信息
     @inlinable
-    public func describeGatewayApis(groupId: String, offset: Int64, limit: Int64, searchWord: String? = nil, gatewayDeployGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGatewayApisResponse> {
-        self.describeGatewayApis(.init(groupId: groupId, offset: offset, limit: limit, searchWord: searchWord, gatewayDeployGroupId: gatewayDeployGroupId), region: region, logger: logger, on: eventLoop)
+    public func describeGatewayApis(groupId: String, offset: Int64, limit: Int64, searchWord: String? = nil, gatewayDeployGroupId: String? = nil, releaseStatus: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGatewayApisResponse> {
+        self.describeGatewayApis(.init(groupId: groupId, offset: offset, limit: limit, searchWord: searchWord, gatewayDeployGroupId: gatewayDeployGroupId, releaseStatus: releaseStatus), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询API分组下的Api列表信息
     @inlinable
-    public func describeGatewayApis(groupId: String, offset: Int64, limit: Int64, searchWord: String? = nil, gatewayDeployGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayApisResponse {
-        try await self.describeGatewayApis(.init(groupId: groupId, offset: offset, limit: limit, searchWord: searchWord, gatewayDeployGroupId: gatewayDeployGroupId), region: region, logger: logger, on: eventLoop)
+    public func describeGatewayApis(groupId: String, offset: Int64, limit: Int64, searchWord: String? = nil, gatewayDeployGroupId: String? = nil, releaseStatus: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayApisResponse {
+        try await self.describeGatewayApis(.init(groupId: groupId, offset: offset, limit: limit, searchWord: searchWord, gatewayDeployGroupId: gatewayDeployGroupId, releaseStatus: releaseStatus), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询API分组下的Api列表信息

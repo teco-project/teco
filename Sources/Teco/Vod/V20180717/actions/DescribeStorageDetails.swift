@@ -51,6 +51,7 @@ extension Vod {
         /// - ArchiveBulkRetrieval：归档批量取回量。
         /// - DeepArchiveStandardRetrieval：深度归档标准取回量。
         /// - DeepArchiveBulkRetrieval：深度归档批量取回量。
+        /// - InfrequentRetrieval：低频存储取回量。
         ///
         /// 默认值为 TotalStorage。
         public let storageType: String?

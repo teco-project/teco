@@ -65,26 +65,30 @@ extension Tiw {
     }
 
     /// 创建课后录制任务
+    @available(*, unavailable, message: "课后录制服务已下线")
     @inlinable @discardableResult
     public func createOfflineRecord(_ input: CreateOfflineRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOfflineRecordResponse> {
-        self.client.execute(action: "CreateOfflineRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("'CreateOfflineRecord' is no longer available.")
     }
 
     /// 创建课后录制任务
+    @available(*, unavailable, message: "课后录制服务已下线")
     @inlinable @discardableResult
     public func createOfflineRecord(_ input: CreateOfflineRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOfflineRecordResponse {
-        try await self.client.execute(action: "CreateOfflineRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("'CreateOfflineRecord' is no longer available.")
     }
 
     /// 创建课后录制任务
+    @available(*, unavailable, message: "课后录制服务已下线")
     @inlinable @discardableResult
     public func createOfflineRecord(sdkAppId: Int64, roomId: Int64, groupId: String? = nil, mixStream: MixStream? = nil, whiteboard: Whiteboard? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOfflineRecordResponse> {
-        self.createOfflineRecord(.init(sdkAppId: sdkAppId, roomId: roomId, groupId: groupId, mixStream: mixStream, whiteboard: whiteboard), region: region, logger: logger, on: eventLoop)
+        fatalError("'CreateOfflineRecord' is no longer available.")
     }
 
     /// 创建课后录制任务
+    @available(*, unavailable, message: "课后录制服务已下线")
     @inlinable @discardableResult
     public func createOfflineRecord(sdkAppId: Int64, roomId: Int64, groupId: String? = nil, mixStream: MixStream? = nil, whiteboard: Whiteboard? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOfflineRecordResponse {
-        try await self.createOfflineRecord(.init(sdkAppId: sdkAppId, roomId: roomId, groupId: groupId, mixStream: mixStream, whiteboard: whiteboard), region: region, logger: logger, on: eventLoop)
+        fatalError("'CreateOfflineRecord' is no longer available.")
     }
 }

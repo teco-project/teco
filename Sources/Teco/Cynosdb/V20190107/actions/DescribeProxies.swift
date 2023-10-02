@@ -21,7 +21,7 @@ import TecoCore
 extension Cynosdb {
     /// DescribeProxies请求参数结构体
     public struct DescribeProxiesRequest: TCRequest {
-        /// 集群ID
+        /// 集群ID（该参数必传，例如cynosdbmysql-xxxxxx）
         public let clusterId: String?
 
         /// 返回数量，默认为 20，最大值为 100

@@ -161,6 +161,10 @@ extension Monitor {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dimensions: String?
 
+        /// 告警等级
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let alarmLevel: String?
+
         enum CodingKeys: String, CodingKey {
             case alarmId = "AlarmId"
             case monitorType = "MonitorType"
@@ -186,6 +190,7 @@ extension Monitor {
             case policyExists = "PolicyExists"
             case metricsInfo = "MetricsInfo"
             case dimensions = "Dimensions"
+            case alarmLevel = "AlarmLevel"
         }
     }
 
@@ -2307,10 +2312,10 @@ extension Monitor {
         /// 子网 ID 数组
         public let subnetIds: [String]
 
-        /// Grafana 内网地址
+        /// Grafana 公网地址
         public let internetUrl: String
 
-        /// Grafana 公网地址
+        /// Grafana 内网地址
         public let internalUrl: String
 
         /// 创建时间
@@ -4023,6 +4028,40 @@ extension Monitor {
             case status = "Status"
             case id = "Id"
             case count = "Count"
+        }
+    }
+
+    /// DescribePrometheusRegions 响应结构体
+    public struct PrometheusRegionItem: TCOutputModel {
+        /// 区域
+        public let region: String
+
+        /// 区域 ID
+        public let regionId: Int64
+
+        /// 区域状态( 0: 不可用；1: 可用)
+        public let regionState: Int64
+
+        /// 区域名(中文)
+        public let regionName: String
+
+        /// 区域名(英文缩写)
+        public let regionShortName: String
+
+        /// 区域所在大区名
+        public let area: String
+
+        /// 1-仅支持预付费，2-仅支持后付费，3-支持两种计费模式实例
+        public let regionPayMode: Int64
+
+        enum CodingKeys: String, CodingKey {
+            case region = "Region"
+            case regionId = "RegionId"
+            case regionState = "RegionState"
+            case regionName = "RegionName"
+            case regionShortName = "RegionShortName"
+            case area = "Area"
+            case regionPayMode = "RegionPayMode"
         }
     }
 

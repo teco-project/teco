@@ -21,6 +21,18 @@ import TecoCore
 extension Cdwch {
     /// CreateBackUpSchedule请求参数结构体
     public struct CreateBackUpScheduleRequest: TCRequest {
+        /// 集群id
+        public let instanceId: String
+
+        /// 策略类型 meta(元数据)  data (表数据)
+        public let scheduleType: String
+
+        /// 操作类型 create(创建) update(编辑修改)
+        public let operationType: String
+
+        /// 保留天数 例如7
+        public let retainDays: Int64?
+
         /// 编辑时需要传
         public let scheduleId: Int64?
 
@@ -33,7 +45,11 @@ extension Cdwch {
         /// 备份表列表
         public let backUpTables: [BackupTableContent]?
 
-        public init(scheduleId: Int64? = nil, weekDays: String? = nil, executeHour: Int64? = nil, backUpTables: [BackupTableContent]? = nil) {
+        public init(instanceId: String, scheduleType: String, operationType: String, retainDays: Int64? = nil, scheduleId: Int64? = nil, weekDays: String? = nil, executeHour: Int64? = nil, backUpTables: [BackupTableContent]? = nil) {
+            self.instanceId = instanceId
+            self.scheduleType = scheduleType
+            self.operationType = operationType
+            self.retainDays = retainDays
             self.scheduleId = scheduleId
             self.weekDays = weekDays
             self.executeHour = executeHour
@@ -41,6 +57,10 @@ extension Cdwch {
         }
 
         enum CodingKeys: String, CodingKey {
+            case instanceId = "InstanceId"
+            case scheduleType = "ScheduleType"
+            case operationType = "OperationType"
+            case retainDays = "RetainDays"
             case scheduleId = "ScheduleId"
             case weekDays = "WeekDays"
             case executeHour = "ExecuteHour"
@@ -50,35 +70,39 @@ extension Cdwch {
 
     /// CreateBackUpSchedule返回参数结构体
     public struct CreateBackUpScheduleResponse: TCResponse {
+        /// 错误描述
+        public let errorMsg: String
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
+            case errorMsg = "ErrorMsg"
             case requestId = "RequestId"
         }
     }
 
     /// 创建或者修改备份策略
-    @inlinable @discardableResult
+    @inlinable
     public func createBackUpSchedule(_ input: CreateBackUpScheduleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackUpScheduleResponse> {
         self.client.execute(action: "CreateBackUpSchedule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建或者修改备份策略
-    @inlinable @discardableResult
+    @inlinable
     public func createBackUpSchedule(_ input: CreateBackUpScheduleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackUpScheduleResponse {
         try await self.client.execute(action: "CreateBackUpSchedule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建或者修改备份策略
-    @inlinable @discardableResult
-    public func createBackUpSchedule(scheduleId: Int64? = nil, weekDays: String? = nil, executeHour: Int64? = nil, backUpTables: [BackupTableContent]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackUpScheduleResponse> {
-        self.createBackUpSchedule(.init(scheduleId: scheduleId, weekDays: weekDays, executeHour: executeHour, backUpTables: backUpTables), region: region, logger: logger, on: eventLoop)
+    @inlinable
+    public func createBackUpSchedule(instanceId: String, scheduleType: String, operationType: String, retainDays: Int64? = nil, scheduleId: Int64? = nil, weekDays: String? = nil, executeHour: Int64? = nil, backUpTables: [BackupTableContent]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackUpScheduleResponse> {
+        self.createBackUpSchedule(.init(instanceId: instanceId, scheduleType: scheduleType, operationType: operationType, retainDays: retainDays, scheduleId: scheduleId, weekDays: weekDays, executeHour: executeHour, backUpTables: backUpTables), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建或者修改备份策略
-    @inlinable @discardableResult
-    public func createBackUpSchedule(scheduleId: Int64? = nil, weekDays: String? = nil, executeHour: Int64? = nil, backUpTables: [BackupTableContent]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackUpScheduleResponse {
-        try await self.createBackUpSchedule(.init(scheduleId: scheduleId, weekDays: weekDays, executeHour: executeHour, backUpTables: backUpTables), region: region, logger: logger, on: eventLoop)
+    @inlinable
+    public func createBackUpSchedule(instanceId: String, scheduleType: String, operationType: String, retainDays: Int64? = nil, scheduleId: Int64? = nil, weekDays: String? = nil, executeHour: Int64? = nil, backUpTables: [BackupTableContent]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackUpScheduleResponse {
+        try await self.createBackUpSchedule(.init(instanceId: instanceId, scheduleType: scheduleType, operationType: operationType, retainDays: retainDays, scheduleId: scheduleId, weekDays: weekDays, executeHour: executeHour, backUpTables: backUpTables), region: region, logger: logger, on: eventLoop)
     }
 }

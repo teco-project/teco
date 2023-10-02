@@ -111,7 +111,7 @@ extension Ecdn {
     @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable @discardableResult
     public func addEcdnDomain(_ input: AddEcdnDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEcdnDomainResponse> {
-        fatalError("AddEcdnDomain is no longer available.")
+        fatalError("'AddEcdnDomain' is no longer available.")
     }
 
     /// 新增加速域名
@@ -122,7 +122,7 @@ extension Ecdn {
     @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable @discardableResult
     public func addEcdnDomain(_ input: AddEcdnDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEcdnDomainResponse {
-        fatalError("AddEcdnDomain is no longer available.")
+        fatalError("'AddEcdnDomain' is no longer available.")
     }
 
     /// 新增加速域名
@@ -133,7 +133,7 @@ extension Ecdn {
     @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable @discardableResult
     public func addEcdnDomain(domain: String, origin: Origin, area: String, projectId: Int64? = nil, ipFilter: IpFilter? = nil, ipFreqLimit: IpFreqLimit? = nil, responseHeader: ResponseHeader? = nil, cacheKey: CacheKey? = nil, cache: Cache? = nil, https: Https? = nil, forceRedirect: ForceRedirect? = nil, tag: [Tag]? = nil, webSocket: WebSocket? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEcdnDomainResponse> {
-        fatalError("AddEcdnDomain is no longer available.")
+        fatalError("'AddEcdnDomain' is no longer available.")
     }
 
     /// 新增加速域名
@@ -144,6 +144,6 @@ extension Ecdn {
     @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable @discardableResult
     public func addEcdnDomain(domain: String, origin: Origin, area: String, projectId: Int64? = nil, ipFilter: IpFilter? = nil, ipFreqLimit: IpFreqLimit? = nil, responseHeader: ResponseHeader? = nil, cacheKey: CacheKey? = nil, cache: Cache? = nil, https: Https? = nil, forceRedirect: ForceRedirect? = nil, tag: [Tag]? = nil, webSocket: WebSocket? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEcdnDomainResponse {
-        fatalError("AddEcdnDomain is no longer available.")
+        fatalError("'AddEcdnDomain' is no longer available.")
     }
 }

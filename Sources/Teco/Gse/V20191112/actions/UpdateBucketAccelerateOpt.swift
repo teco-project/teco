@@ -49,7 +49,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func updateBucketAccelerateOpt(_ input: UpdateBucketAccelerateOptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateBucketAccelerateOptResponse> {
-        fatalError("UpdateBucketAccelerateOpt is no longer available.")
+        fatalError("'UpdateBucketAccelerateOpt' is no longer available.")
     }
 
     /// cos设置全球加速
@@ -58,7 +58,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func updateBucketAccelerateOpt(_ input: UpdateBucketAccelerateOptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateBucketAccelerateOptResponse {
-        fatalError("UpdateBucketAccelerateOpt is no longer available.")
+        fatalError("'UpdateBucketAccelerateOpt' is no longer available.")
     }
 
     /// cos设置全球加速
@@ -67,7 +67,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func updateBucketAccelerateOpt(allowed: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateBucketAccelerateOptResponse> {
-        fatalError("UpdateBucketAccelerateOpt is no longer available.")
+        fatalError("'UpdateBucketAccelerateOpt' is no longer available.")
     }
 
     /// cos设置全球加速
@@ -76,6 +76,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func updateBucketAccelerateOpt(allowed: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateBucketAccelerateOptResponse {
-        fatalError("UpdateBucketAccelerateOpt is no longer available.")
+        fatalError("'UpdateBucketAccelerateOpt' is no longer available.")
     }
 }

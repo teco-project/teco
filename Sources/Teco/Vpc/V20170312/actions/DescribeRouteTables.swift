@@ -49,7 +49,7 @@ extension Vpc {
         /// 偏移量。
         public let offset: String?
 
-        /// 请求对象个数。
+        /// 返回数量，默认为20，最大值为100。
         public let limit: String?
 
         public init(filters: [Filter]? = nil, routeTableIds: [String]? = nil, offset: String? = nil, limit: String? = nil) {

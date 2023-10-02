@@ -23,6 +23,7 @@ extension TCLighthouseError {
             case mfaExpired = "UnauthorizedOperation.MFAExpired"
             case mfaNotFound = "UnauthorizedOperation.MFANotFound"
             case noPermission = "UnauthorizedOperation.NoPermission"
+            case tokenInvalid = "UnauthorizedOperation.TokenInvalid"
             case other = "UnauthorizedOperation"
         }
 
@@ -68,6 +69,10 @@ extension TCLighthouseError {
             UnauthorizedOperation(.noPermission)
         }
 
+        public static var tokenInvalid: UnauthorizedOperation {
+            UnauthorizedOperation(.tokenInvalid)
+        }
+
         /// 未授权操作。
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
@@ -84,6 +89,8 @@ extension TCLighthouseError {
                 code = .unauthorizedOperation_MFANotFound
             case .noPermission:
                 code = .unauthorizedOperation_NoPermission
+            case .tokenInvalid:
+                code = .unauthorizedOperation_TokenInvalid
             case .other:
                 code = .unauthorizedOperation
             }

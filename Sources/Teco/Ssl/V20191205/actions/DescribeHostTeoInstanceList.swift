@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssl {
     /// DescribeHostTeoInstanceList请求参数结构体
-    public struct DescribeHostTeoInstanceListRequest: TCRequest {
+    public struct DescribeHostTeoInstanceListRequest: TCPaginatedRequest {
         /// 待部署的证书ID
         public let certificateId: String
 
@@ -36,12 +36,24 @@ extension Ssl {
         /// 已部署的证书ID
         public let oldCertificateId: String?
 
-        public init(certificateId: String, resourceType: String, isCache: UInt64? = nil, filters: [Filter]? = nil, oldCertificateId: String? = nil) {
+        /// 分页偏移量，从0开始。
+        public let offset: UInt64?
+
+        /// 每页数量，默认10。
+        public let limit: UInt64?
+
+        /// 是否异步
+        public let asyncCache: Int64?
+
+        public init(certificateId: String, resourceType: String, isCache: UInt64? = nil, filters: [Filter]? = nil, oldCertificateId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, asyncCache: Int64? = nil) {
             self.certificateId = certificateId
             self.resourceType = resourceType
             self.isCache = isCache
             self.filters = filters
             self.oldCertificateId = oldCertificateId
+            self.offset = offset
+            self.limit = limit
+            self.asyncCache = asyncCache
         }
 
         enum CodingKeys: String, CodingKey {
@@ -50,11 +62,22 @@ extension Ssl {
             case isCache = "IsCache"
             case filters = "Filters"
             case oldCertificateId = "OldCertificateId"
+            case offset = "Offset"
+            case limit = "Limit"
+            case asyncCache = "AsyncCache"
+        }
+
+        /// Compute the next request based on API response.
+        public func makeNextRequest(with response: DescribeHostTeoInstanceListResponse) -> DescribeHostTeoInstanceListRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return .init(certificateId: self.certificateId, resourceType: self.resourceType, isCache: self.isCache, filters: self.filters, oldCertificateId: self.oldCertificateId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, asyncCache: self.asyncCache)
         }
     }
 
     /// DescribeHostTeoInstanceList返回参数结构体
-    public struct DescribeHostTeoInstanceListResponse: TCResponse {
+    public struct DescribeHostTeoInstanceListResponse: TCPaginatedResponse {
         /// teo实例列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceList: [TeoInstanceDetail]?
@@ -69,6 +92,16 @@ extension Ssl {
             case instanceList = "InstanceList"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned ``TeoInstanceDetail`` list from the paginated response.
+        public func getItems() -> [TeoInstanceDetail] {
+            self.instanceList ?? []
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> Int64? {
+            self.totalCount
         }
     }
 
@@ -86,13 +119,33 @@ extension Ssl {
 
     /// 查询证书EdgeOne云资源部署实例列表
     @inlinable
-    public func describeHostTeoInstanceList(certificateId: String, resourceType: String, isCache: UInt64? = nil, filters: [Filter]? = nil, oldCertificateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHostTeoInstanceListResponse> {
-        self.describeHostTeoInstanceList(.init(certificateId: certificateId, resourceType: resourceType, isCache: isCache, filters: filters, oldCertificateId: oldCertificateId), region: region, logger: logger, on: eventLoop)
+    public func describeHostTeoInstanceList(certificateId: String, resourceType: String, isCache: UInt64? = nil, filters: [Filter]? = nil, oldCertificateId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, asyncCache: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHostTeoInstanceListResponse> {
+        self.describeHostTeoInstanceList(.init(certificateId: certificateId, resourceType: resourceType, isCache: isCache, filters: filters, oldCertificateId: oldCertificateId, offset: offset, limit: limit, asyncCache: asyncCache), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询证书EdgeOne云资源部署实例列表
     @inlinable
-    public func describeHostTeoInstanceList(certificateId: String, resourceType: String, isCache: UInt64? = nil, filters: [Filter]? = nil, oldCertificateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostTeoInstanceListResponse {
-        try await self.describeHostTeoInstanceList(.init(certificateId: certificateId, resourceType: resourceType, isCache: isCache, filters: filters, oldCertificateId: oldCertificateId), region: region, logger: logger, on: eventLoop)
+    public func describeHostTeoInstanceList(certificateId: String, resourceType: String, isCache: UInt64? = nil, filters: [Filter]? = nil, oldCertificateId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, asyncCache: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostTeoInstanceListResponse {
+        try await self.describeHostTeoInstanceList(.init(certificateId: certificateId, resourceType: resourceType, isCache: isCache, filters: filters, oldCertificateId: oldCertificateId, offset: offset, limit: limit, asyncCache: asyncCache), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 查询证书EdgeOne云资源部署实例列表
+    @inlinable
+    public func describeHostTeoInstanceListPaginated(_ input: DescribeHostTeoInstanceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [TeoInstanceDetail])> {
+        self.client.paginate(input: input, region: region, command: self.describeHostTeoInstanceList, logger: logger, on: eventLoop)
+    }
+
+    /// 查询证书EdgeOne云资源部署实例列表
+    @inlinable @discardableResult
+    public func describeHostTeoInstanceListPaginated(_ input: DescribeHostTeoInstanceListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeHostTeoInstanceListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeHostTeoInstanceList, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询证书EdgeOne云资源部署实例列表
+    ///
+    /// - Returns: `AsyncSequence`s of ``TeoInstanceDetail`` and ``DescribeHostTeoInstanceListResponse`` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeHostTeoInstanceListPaginator(_ input: DescribeHostTeoInstanceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHostTeoInstanceListRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHostTeoInstanceList, logger: logger, on: eventLoop)
     }
 }

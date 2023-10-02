@@ -51,7 +51,15 @@ extension Mps {
         /// 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
         public let sessionContext: String?
 
-        public init(url: String, taskNotifyConfig: LiveStreamTaskNotifyConfig, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiQualityControlTask: AiQualityControlTaskInput? = nil, sessionId: String? = nil, sessionContext: String? = nil) {
+        /// 直播编排ID。
+        /// 注意1：对于OutputStorage、OutputDir参数：
+        /// - 当服务编排中子任务节点配置了OutputStorage、OutputDir时，该子任务节点中配置的输出作为子任务的输出。
+        /// - 当服务编排中子任务节点没有配置OutputStorage、OutputDir时，若对直播流发起处理（ProcessLiveStream）有输出，将覆盖原有编排的默认输出。
+        ///
+        /// 注意2：对于TaskNotifyConfig参数，若创建任务接口（ProcessLiveStream）有设置，将覆盖原有编排的默认回调。
+        public let scheduleId: Int64?
+
+        public init(url: String, taskNotifyConfig: LiveStreamTaskNotifyConfig, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiQualityControlTask: AiQualityControlTaskInput? = nil, sessionId: String? = nil, sessionContext: String? = nil, scheduleId: Int64? = nil) {
             self.url = url
             self.taskNotifyConfig = taskNotifyConfig
             self.outputStorage = outputStorage
@@ -62,6 +70,7 @@ extension Mps {
             self.aiQualityControlTask = aiQualityControlTask
             self.sessionId = sessionId
             self.sessionContext = sessionContext
+            self.scheduleId = scheduleId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -75,6 +84,7 @@ extension Mps {
             case aiQualityControlTask = "AiQualityControlTask"
             case sessionId = "SessionId"
             case sessionContext = "SessionContext"
+            case scheduleId = "ScheduleId"
         }
     }
 
@@ -97,9 +107,12 @@ extension Mps {
     /// 对直播流媒体发起处理任务，功能包括：
     ///
     /// * 智能内容审核（画面鉴黄、敏感信息检测、声音鉴黄）；
-    /// * 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词、语音实时翻译）。
+    /// * 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词、语音实时翻译、物体识别、游戏打点）。
+    /// * 智能内容分析（新闻实时拆条）。
+    /// * 质检（直播流格式诊断、音画内容检测（抖动、模糊、低光照、过曝光、黑边、白边、黑屏、白屏、花屏、噪点、马赛克、二维码等）、无参考打分）。
+    /// * 录制
     ///
-    /// 直播流处理事件通知实时写入用户指定的消息队列 CMQ 中，用户需要从消息队列 CMQ 中获取事件通知结果，同时处理过程中存在输出文件的，会写入用户指定的输出文件的目标存储中。
+    /// 直播流处理事件通知支持HTTP回调，也支持实时写入用户指定的消息队列 CMQ 中，用户从消息队列 CMQ 中获取事件通知结果，同时处理过程中存在输出文件的，会写入用户指定的输出文件的目标存储中。
     @inlinable
     public func processLiveStream(_ input: ProcessLiveStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ProcessLiveStreamResponse> {
         self.client.execute(action: "ProcessLiveStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -110,9 +123,12 @@ extension Mps {
     /// 对直播流媒体发起处理任务，功能包括：
     ///
     /// * 智能内容审核（画面鉴黄、敏感信息检测、声音鉴黄）；
-    /// * 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词、语音实时翻译）。
+    /// * 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词、语音实时翻译、物体识别、游戏打点）。
+    /// * 智能内容分析（新闻实时拆条）。
+    /// * 质检（直播流格式诊断、音画内容检测（抖动、模糊、低光照、过曝光、黑边、白边、黑屏、白屏、花屏、噪点、马赛克、二维码等）、无参考打分）。
+    /// * 录制
     ///
-    /// 直播流处理事件通知实时写入用户指定的消息队列 CMQ 中，用户需要从消息队列 CMQ 中获取事件通知结果，同时处理过程中存在输出文件的，会写入用户指定的输出文件的目标存储中。
+    /// 直播流处理事件通知支持HTTP回调，也支持实时写入用户指定的消息队列 CMQ 中，用户从消息队列 CMQ 中获取事件通知结果，同时处理过程中存在输出文件的，会写入用户指定的输出文件的目标存储中。
     @inlinable
     public func processLiveStream(_ input: ProcessLiveStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessLiveStreamResponse {
         try await self.client.execute(action: "ProcessLiveStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -123,12 +139,15 @@ extension Mps {
     /// 对直播流媒体发起处理任务，功能包括：
     ///
     /// * 智能内容审核（画面鉴黄、敏感信息检测、声音鉴黄）；
-    /// * 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词、语音实时翻译）。
+    /// * 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词、语音实时翻译、物体识别、游戏打点）。
+    /// * 智能内容分析（新闻实时拆条）。
+    /// * 质检（直播流格式诊断、音画内容检测（抖动、模糊、低光照、过曝光、黑边、白边、黑屏、白屏、花屏、噪点、马赛克、二维码等）、无参考打分）。
+    /// * 录制
     ///
-    /// 直播流处理事件通知实时写入用户指定的消息队列 CMQ 中，用户需要从消息队列 CMQ 中获取事件通知结果，同时处理过程中存在输出文件的，会写入用户指定的输出文件的目标存储中。
+    /// 直播流处理事件通知支持HTTP回调，也支持实时写入用户指定的消息队列 CMQ 中，用户从消息队列 CMQ 中获取事件通知结果，同时处理过程中存在输出文件的，会写入用户指定的输出文件的目标存储中。
     @inlinable
-    public func processLiveStream(url: String, taskNotifyConfig: LiveStreamTaskNotifyConfig, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiQualityControlTask: AiQualityControlTaskInput? = nil, sessionId: String? = nil, sessionContext: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ProcessLiveStreamResponse> {
-        self.processLiveStream(.init(url: url, taskNotifyConfig: taskNotifyConfig, outputStorage: outputStorage, outputDir: outputDir, aiContentReviewTask: aiContentReviewTask, aiRecognitionTask: aiRecognitionTask, aiAnalysisTask: aiAnalysisTask, aiQualityControlTask: aiQualityControlTask, sessionId: sessionId, sessionContext: sessionContext), region: region, logger: logger, on: eventLoop)
+    public func processLiveStream(url: String, taskNotifyConfig: LiveStreamTaskNotifyConfig, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiQualityControlTask: AiQualityControlTaskInput? = nil, sessionId: String? = nil, sessionContext: String? = nil, scheduleId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ProcessLiveStreamResponse> {
+        self.processLiveStream(.init(url: url, taskNotifyConfig: taskNotifyConfig, outputStorage: outputStorage, outputDir: outputDir, aiContentReviewTask: aiContentReviewTask, aiRecognitionTask: aiRecognitionTask, aiAnalysisTask: aiAnalysisTask, aiQualityControlTask: aiQualityControlTask, sessionId: sessionId, sessionContext: sessionContext, scheduleId: scheduleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 对直播流发起处理
@@ -136,11 +155,14 @@ extension Mps {
     /// 对直播流媒体发起处理任务，功能包括：
     ///
     /// * 智能内容审核（画面鉴黄、敏感信息检测、声音鉴黄）；
-    /// * 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词、语音实时翻译）。
+    /// * 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词、语音实时翻译、物体识别、游戏打点）。
+    /// * 智能内容分析（新闻实时拆条）。
+    /// * 质检（直播流格式诊断、音画内容检测（抖动、模糊、低光照、过曝光、黑边、白边、黑屏、白屏、花屏、噪点、马赛克、二维码等）、无参考打分）。
+    /// * 录制
     ///
-    /// 直播流处理事件通知实时写入用户指定的消息队列 CMQ 中，用户需要从消息队列 CMQ 中获取事件通知结果，同时处理过程中存在输出文件的，会写入用户指定的输出文件的目标存储中。
+    /// 直播流处理事件通知支持HTTP回调，也支持实时写入用户指定的消息队列 CMQ 中，用户从消息队列 CMQ 中获取事件通知结果，同时处理过程中存在输出文件的，会写入用户指定的输出文件的目标存储中。
     @inlinable
-    public func processLiveStream(url: String, taskNotifyConfig: LiveStreamTaskNotifyConfig, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiQualityControlTask: AiQualityControlTaskInput? = nil, sessionId: String? = nil, sessionContext: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessLiveStreamResponse {
-        try await self.processLiveStream(.init(url: url, taskNotifyConfig: taskNotifyConfig, outputStorage: outputStorage, outputDir: outputDir, aiContentReviewTask: aiContentReviewTask, aiRecognitionTask: aiRecognitionTask, aiAnalysisTask: aiAnalysisTask, aiQualityControlTask: aiQualityControlTask, sessionId: sessionId, sessionContext: sessionContext), region: region, logger: logger, on: eventLoop)
+    public func processLiveStream(url: String, taskNotifyConfig: LiveStreamTaskNotifyConfig, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiQualityControlTask: AiQualityControlTaskInput? = nil, sessionId: String? = nil, sessionContext: String? = nil, scheduleId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessLiveStreamResponse {
+        try await self.processLiveStream(.init(url: url, taskNotifyConfig: taskNotifyConfig, outputStorage: outputStorage, outputDir: outputDir, aiContentReviewTask: aiContentReviewTask, aiRecognitionTask: aiRecognitionTask, aiAnalysisTask: aiAnalysisTask, aiQualityControlTask: aiQualityControlTask, sessionId: sessionId, sessionContext: sessionContext, scheduleId: scheduleId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -21,6 +21,9 @@ import TecoCore
 extension Tdmq {
     /// DescribeEnvironments请求参数结构体
     public struct DescribeEnvironmentsRequest: TCPaginatedRequest {
+        /// Pulsar 集群的ID
+        public let clusterId: String
+
         /// 命名空间名称，模糊搜索。
         public let environmentId: String?
 
@@ -30,28 +33,25 @@ extension Tdmq {
         /// 返回数量，不填则默认为10，最大值为20。
         public let limit: UInt64?
 
-        /// Pulsar 集群的ID
-        public let clusterId: String?
-
         /// * EnvironmentId
         /// 按照名称空间进行过滤，精确查询。
         /// 类型：String
         /// 必选：否
         public let filters: [Filter]?
 
-        public init(environmentId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, clusterId: String? = nil, filters: [Filter]? = nil) {
+        public init(clusterId: String, environmentId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil) {
+            self.clusterId = clusterId
             self.environmentId = environmentId
             self.offset = offset
             self.limit = limit
-            self.clusterId = clusterId
             self.filters = filters
         }
 
         enum CodingKeys: String, CodingKey {
+            case clusterId = "ClusterId"
             case environmentId = "EnvironmentId"
             case offset = "Offset"
             case limit = "Limit"
-            case clusterId = "ClusterId"
             case filters = "Filters"
         }
 
@@ -60,7 +60,7 @@ extension Tdmq {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return .init(environmentId: self.environmentId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, clusterId: self.clusterId, filters: self.filters)
+            return .init(clusterId: self.clusterId, environmentId: self.environmentId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters)
         }
     }
 
@@ -112,16 +112,16 @@ extension Tdmq {
     ///
     /// 获取租户下命名空间列表
     @inlinable
-    public func describeEnvironments(environmentId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, clusterId: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvironmentsResponse> {
-        self.describeEnvironments(.init(environmentId: environmentId, offset: offset, limit: limit, clusterId: clusterId, filters: filters), region: region, logger: logger, on: eventLoop)
+    public func describeEnvironments(clusterId: String, environmentId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvironmentsResponse> {
+        self.describeEnvironments(.init(clusterId: clusterId, environmentId: environmentId, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取命名空间列表
     ///
     /// 获取租户下命名空间列表
     @inlinable
-    public func describeEnvironments(environmentId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, clusterId: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentsResponse {
-        try await self.describeEnvironments(.init(environmentId: environmentId, offset: offset, limit: limit, clusterId: clusterId, filters: filters), region: region, logger: logger, on: eventLoop)
+    public func describeEnvironments(clusterId: String, environmentId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentsResponse {
+        try await self.describeEnvironments(.init(clusterId: clusterId, environmentId: environmentId, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取命名空间列表

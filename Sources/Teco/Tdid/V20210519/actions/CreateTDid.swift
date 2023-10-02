@@ -61,27 +61,27 @@ extension Tdid {
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createTDid(_ input: CreateTDidRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTDidResponse> {
-        fatalError("CreateTDid is no longer available.")
+        fatalError("'CreateTDid' is no longer available.")
     }
 
     /// 创建机构DID
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createTDid(_ input: CreateTDidRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidResponse {
-        fatalError("CreateTDid is no longer available.")
+        fatalError("'CreateTDid' is no longer available.")
     }
 
     /// 创建机构DID
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createTDid(groupId: UInt64, clusterId: String, relegation: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTDidResponse> {
-        fatalError("CreateTDid is no longer available.")
+        fatalError("'CreateTDid' is no longer available.")
     }
 
     /// 创建机构DID
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createTDid(groupId: UInt64, clusterId: String, relegation: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidResponse {
-        fatalError("CreateTDid is no longer available.")
+        fatalError("'CreateTDid' is no longer available.")
     }
 }

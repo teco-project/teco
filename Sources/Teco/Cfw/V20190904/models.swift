@@ -180,6 +180,10 @@ extension Cfw {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let domain: String?
 
+        /// IP
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ip: String?
+
         /// 规则ip
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ioc: String?
@@ -242,6 +246,7 @@ extension Cfw {
 
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
+            case ip = "IP"
             case ioc = "Ioc"
             case level = "Level"
             case eventName = "EventName"
@@ -407,6 +412,90 @@ extension Cfw {
             case enable = "Enable"
             case uuid = "Uuid"
             case description = "Description"
+        }
+    }
+
+    /// 创建互联网边界规则参数结构
+    public struct CreateRuleItem: TCInputModel {
+        /// 访问源示例： net：IP/CIDR(192.168.0.2)
+        public let sourceContent: String
+
+        /// 访问源类型：入向规则时类型可以为 ip,net,template,location；出向规则时可以为 ip,net,template,instance,group,tag
+        public let sourceType: String
+
+        /// 访问目的示例： net：IP/CIDR(192.168.0.2) domain：域名规则，例如*.qq.com
+        public let targetContent: String
+
+        /// 访问目的类型：入向规则时类型可以为ip,net,template,instance,group,tag；出向规则时可以为  ip,net,domain,template,location
+        public let targetType: String
+
+        /// 协议，可选的值： TCP UDP ICMP ANY HTTP HTTPS HTTP/HTTPS SMTP SMTPS SMTP/SMTPS FTP DNS
+        public let `protocol`: String
+
+        /// 访问控制策略中设置的流量通过云防火墙的方式。取值： accept：放行 drop：拒绝 log：观察
+        public let ruleAction: String
+
+        /// 访问控制策略的端口。取值： -1/-1：全部端口 80：80端口
+        public let port: String
+
+        /// 规则方向：1，入站；0，出站
+        public let direction: UInt64
+
+        /// 规则序号
+        public let orderIndex: Int64
+
+        /// 规则对应的唯一id，创建规则时无需填写
+        public let uuid: Int64?
+
+        /// 规则状态，true表示启用，false表示禁用
+        public let enable: String?
+
+        /// 描述
+        public let description: String?
+
+        /// all
+        public let scope: String?
+
+        /// 0，正常规则添加；1，入侵检测添加
+        public let ruleSource: Int64?
+
+        /// 告警Id
+        public let logId: String?
+
+        public init(sourceContent: String, sourceType: String, targetContent: String, targetType: String, protocol: String, ruleAction: String, port: String, direction: UInt64, orderIndex: Int64, uuid: Int64? = nil, enable: String? = nil, description: String? = nil, scope: String? = nil, ruleSource: Int64? = nil, logId: String? = nil) {
+            self.sourceContent = sourceContent
+            self.sourceType = sourceType
+            self.targetContent = targetContent
+            self.targetType = targetType
+            self.protocol = `protocol`
+            self.ruleAction = ruleAction
+            self.port = port
+            self.direction = direction
+            self.orderIndex = orderIndex
+            self.uuid = uuid
+            self.enable = enable
+            self.description = description
+            self.scope = scope
+            self.ruleSource = ruleSource
+            self.logId = logId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case sourceContent = "SourceContent"
+            case sourceType = "SourceType"
+            case targetContent = "TargetContent"
+            case targetType = "TargetType"
+            case `protocol` = "Protocol"
+            case ruleAction = "RuleAction"
+            case port = "Port"
+            case direction = "Direction"
+            case orderIndex = "OrderIndex"
+            case uuid = "Uuid"
+            case enable = "Enable"
+            case description = "Description"
+            case scope = "Scope"
+            case ruleSource = "RuleSource"
+            case logId = "LogId"
         }
     }
 
@@ -642,6 +731,159 @@ extension Cfw {
         }
     }
 
+    /// 边界防火墙公网IP开关列表
+    public struct EdgeIpInfo: TCOutputModel {
+        /// 公网IP
+        public let publicIp: String?
+
+        /// 公网 IP 类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let publicIpType: Int64?
+
+        /// 实例ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceId: String?
+
+        /// 实例名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceName: String?
+
+        /// 内网IP
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let intranetIp: String?
+
+        /// 资产类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let assetType: String?
+
+        /// 地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let region: String?
+
+        /// 风险端口数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let portRiskCount: Int64?
+
+        /// 最近扫描时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lastScanTime: String?
+
+        /// 是否为region eip
+        /// 0 不为region eip，不能选择串行
+        /// 1 为region eip 可以选择串行
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isRegionEip: Int64?
+
+        /// EIP 所关联的VPC
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpcId: String?
+
+        /// 0: 该地域暂未支持串行
+        /// 1: 该用户未在该地域配置串行带宽
+        /// 2: 该用户已在该地域配置串行带宽，可以开启串行开关
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isSerialRegion: Int64?
+
+        /// 0: 不是公网CLB 可以开启串行开关
+        /// 1: 是公网CLB 不可以开启串行开关
+        ///
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isPublicClb: Int64?
+
+        /// 0: 开启开关时提示要创建私有连接。
+        /// 1: 关闭该开关是提示删除私有连接。
+        /// 如果大于 1: 关闭开关 、开启开关不需提示创建删除私有连接。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let endpointBindEipNum: Int64?
+
+        /// 扫描深度
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scanMode: String?
+
+        /// 扫描状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scanStatus: Int64?
+
+        /// 开关状态
+        /// 0 : 关闭
+        /// 1 : 开启
+        /// 2 : 开启中
+        /// 3 : 关闭中
+        /// 4 : 异常
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: Int64?
+
+        /// 私有连接ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let endpointId: String?
+
+        /// 私有连接IP
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let endpointIp: String?
+
+        /// 0 : 旁路
+        /// 1 : 串行
+        /// 2 : 正在模式切换
+        public let switchMode: UInt64?
+
+        /// 开关权重
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let switchWeight: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case publicIp = "PublicIp"
+            case publicIpType = "PublicIpType"
+            case instanceId = "InstanceId"
+            case instanceName = "InstanceName"
+            case intranetIp = "IntranetIp"
+            case assetType = "AssetType"
+            case region = "Region"
+            case portRiskCount = "PortRiskCount"
+            case lastScanTime = "LastScanTime"
+            case isRegionEip = "IsRegionEip"
+            case vpcId = "VpcId"
+            case isSerialRegion = "IsSerialRegion"
+            case isPublicClb = "IsPublicClb"
+            case endpointBindEipNum = "EndpointBindEipNum"
+            case scanMode = "ScanMode"
+            case scanStatus = "ScanStatus"
+            case status = "Status"
+            case endpointId = "EndpointId"
+            case endpointIp = "EndpointIp"
+            case switchMode = "SwitchMode"
+            case switchWeight = "SwitchWeight"
+        }
+    }
+
+    /// 开启、关闭 防火墙互联网边界开关
+    public struct EdgeIpSwitch: TCInputModel {
+        /// 公网IP
+        public let publicIp: String
+
+        /// vpc 中第一个EIP开关打开，需要指定子网创建私有连接
+        public let subnetId: String?
+
+        /// 创建私有连接指定IP
+        public let endpointIp: String?
+
+        /// 0 : 旁路 1 : 串行
+        public let switchMode: Int64?
+
+        public init(publicIp: String, subnetId: String? = nil, endpointIp: String? = nil, switchMode: Int64? = nil) {
+            self.publicIp = publicIp
+            self.subnetId = subnetId
+            self.endpointIp = endpointIp
+            self.switchMode = switchMode
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case publicIp = "PublicIp"
+            case subnetId = "SubnetId"
+            case endpointIp = "EndpointIp"
+            case switchMode = "SwitchMode"
+        }
+    }
+
     /// 防火墙网段信息
     public struct FwCidrInfo: TCInputModel {
         /// 防火墙使用的网段类型，值VpcSelf/Assis/Custom分别代表自有网段优先/扩展网段优先/自定义
@@ -663,6 +905,184 @@ extension Cfw {
             case fwCidrType = "FwCidrType"
             case fwCidrLst = "FwCidrLst"
             case comFwCidr = "ComFwCidr"
+        }
+    }
+
+    /// 防火墙部署输入参数列表
+    public struct FwDeploy: TCInputModel {
+        /// 防火墙部署地域
+        public let deployRegion: String
+
+        /// 带宽，单位：Mbps
+        public let width: Int64
+
+        /// 异地灾备 1：使用异地灾备；0：不使用异地灾备；为空则默认不使用异地灾备
+        public let crossAZone: Int64?
+
+        /// 主可用区，为空则选择默认可用区
+        public let zone: String?
+
+        /// 备可用区，为空则选择默认可用区
+        public let zoneBak: String?
+
+        /// 若为cdc防火墙时填充该id
+        public let cdcId: String?
+
+        public init(deployRegion: String, width: Int64, crossAZone: Int64? = nil, zone: String? = nil, zoneBak: String? = nil, cdcId: String? = nil) {
+            self.deployRegion = deployRegion
+            self.width = width
+            self.crossAZone = crossAZone
+            self.zone = zone
+            self.zoneBak = zoneBak
+            self.cdcId = cdcId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case deployRegion = "DeployRegion"
+            case width = "Width"
+            case crossAZone = "CrossAZone"
+            case zone = "Zone"
+            case zoneBak = "ZoneBak"
+            case cdcId = "CdcId"
+        }
+    }
+
+    /// 防火墙引流网关信息
+    public struct FwGateway: TCOutputModel {
+        /// 防火墙网关id
+        public let gatewayId: String
+
+        /// 网关所属vpc id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpcId: String?
+
+        /// 网关ip地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ipAddress: String?
+
+        enum CodingKeys: String, CodingKey {
+            case gatewayId = "GatewayId"
+            case vpcId = "VpcId"
+            case ipAddress = "IpAddress"
+        }
+    }
+
+    /// 多种VPC墙模式开关结构
+    public struct FwGroupSwitch: TCInputModel {
+        /// 防火墙实例的开关模式 1: 单点互通 2: 多点互通 3: 全互通 4: 自定义路由
+        public let switchMode: Int64?
+
+        /// 防火墙开关ID
+        /// 支持三种类型
+        /// 1. 边开关(单点互通)
+        /// 2. 点开关(多点互通)
+        /// 3. 全开关(全互通)
+        public let switchId: String?
+
+        public init(switchMode: Int64? = nil, switchId: String? = nil) {
+            self.switchMode = switchMode
+            self.switchId = switchId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case switchMode = "SwitchMode"
+            case switchId = "SwitchId"
+        }
+    }
+
+    /// VPC防火墙(组)四种开关展示
+    public struct FwGroupSwitchShow: TCOutputModel {
+        /// 防火墙开关ID
+        public let switchId: String
+
+        /// 防火墙开关NAME
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let switchName: String?
+
+        /// 互通模式
+        public let switchMode: Int64?
+
+        /// 开关边连接类型 0：对等连接， 1：云连网
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let connectType: Int64?
+
+        /// 连接ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let connectId: String?
+
+        /// 连接名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let connectName: String?
+
+        /// 源实例信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let srcInstancesInfo: [NetInstancesInfo]?
+
+        /// 目的实例信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dstInstancesInfo: [NetInstancesInfo]?
+
+        /// 防火墙(组)数据
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fwGroupId: String?
+
+        /// 防火墙(组)名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fwGroupName: String?
+
+        /// 开关状态 0：关 ， 1：开
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let enable: Int64?
+
+        /// 开关的状态 0：正常， 1：转换中
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: Int64?
+
+        /// 0-非sase实例，忽略，1-未绑定状态，2-已绑定
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let attachWithEdge: Int64?
+
+        /// 对等防火墙和开关状态 0：正常， 1：对等未创建防火墙，2：对等已创建防火墙，未打开开关
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let crossEdgeStatus: Int64?
+
+        /// 网络经过VPC防火墙CVM所在地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fwInsRegion: [String]?
+
+        /// 0 观察 1 拦截 2 严格 3 关闭
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ipsAction: Int64?
+
+        /// 开关关联的防火墙实例列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fwInsLst: [VpcFwInstanceShow]?
+
+        /// 开关是否处于bypass状态
+        /// 0：正常状态
+        /// 1：bypass状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bypassStatus: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case switchId = "SwitchId"
+            case switchName = "SwitchName"
+            case switchMode = "SwitchMode"
+            case connectType = "ConnectType"
+            case connectId = "ConnectId"
+            case connectName = "ConnectName"
+            case srcInstancesInfo = "SrcInstancesInfo"
+            case dstInstancesInfo = "DstInstancesInfo"
+            case fwGroupId = "FwGroupId"
+            case fwGroupName = "FwGroupName"
+            case enable = "Enable"
+            case status = "Status"
+            case attachWithEdge = "AttachWithEdge"
+            case crossEdgeStatus = "CrossEdgeStatus"
+            case fwInsRegion = "FwInsRegion"
+            case ipsAction = "IpsAction"
+            case fwInsLst = "FwInsLst"
+            case bypassStatus = "BypassStatus"
         }
     }
 
@@ -791,18 +1211,60 @@ extension Cfw {
         }
     }
 
-    /// 黑白名单IOC列表
-    public struct IocListData: TCInputModel {
-        /// 待处置IP地址，IP/Domain字段二选一
-        public let ip: String
-
-        /// 只能为0或者1   0代表出站 1代表入站
+    /// 入侵防御封禁列表、放通列表添加规则入参
+    public struct IntrusionDefenseRule: TCInputModel {
+        /// 规则方向，0出站，1入站，3内网间
         public let direction: Int64
 
-        /// 待处置域名，IP/Domain字段二选一
+        /// 规则结束时间，格式：2006-01-02 15:04:05，必须大于当前时间
+        public let endTime: String
+
+        /// 规则IP地址，IP与Domain必填其中之一
+        public let ip: String?
+
+        /// 规则域名，IP与Domain必填其中之一
         public let domain: String?
 
-        public init(ip: String, direction: Int64, domain: String? = nil) {
+        /// 备注信息，长度不能超过50
+        public let comment: String?
+
+        /// 规则开始时间
+        public let startTime: String?
+
+        public init(direction: Int64, endTime: String, ip: String? = nil, domain: String? = nil, comment: String? = nil, startTime: String? = nil) {
+            self.direction = direction
+            self.endTime = endTime
+            self.ip = ip
+            self.domain = domain
+            self.comment = comment
+            self.startTime = startTime
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case direction = "Direction"
+            case endTime = "EndTime"
+            case ip = "IP"
+            case domain = "Domain"
+            case comment = "Comment"
+            case startTime = "StartTime"
+        }
+    }
+
+    /// 封禁放通IOC列表
+    public struct IocListData: TCInputModel, TCOutputModel {
+        /// 待处置IP地址，IP/Domain字段二选一
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ip: String?
+
+        /// 只能为0或者1   0代表出站 1代表入站
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let direction: Int64?
+
+        /// 待处置域名，IP/Domain字段二选一
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let domain: String?
+
+        public init(ip: String? = nil, direction: Int64? = nil, domain: String? = nil) {
             self.ip = ip
             self.direction = direction
             self.domain = domain
@@ -972,6 +1434,10 @@ extension Cfw {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateEnable: Int64?
 
+        /// 是的需要升级引擎 支持 nat拨测 1需要 0不需要
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let needProbeEngineUpdate: Int64?
+
         enum CodingKeys: String, CodingKey {
             case natinsId = "NatinsId"
             case natinsName = "NatinsName"
@@ -992,6 +1458,120 @@ extension Cfw {
             case ruleMax = "RuleMax"
             case engineVersion = "EngineVersion"
             case updateEnable = "UpdateEnable"
+            case needProbeEngineUpdate = "NeedProbeEngineUpdate"
+        }
+    }
+
+    /// NAT防火墙开关列表数据
+    public struct NatSwitchListData: TCOutputModel {
+        /// 列表ID
+        public let id: UInt64
+
+        /// 子网ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subnetId: String?
+
+        /// 子网名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subnetName: String?
+
+        /// IPv4 CIDR
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subnetCidr: String?
+
+        /// 关联路由ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let routeId: String?
+
+        /// 关联路由名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let routeName: String?
+
+        /// 云服务器个数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cvmNum: UInt64?
+
+        /// 所属VPC ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpcId: String?
+
+        /// 所属VPC名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpcName: String?
+
+        /// 是否生效
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let enable: UInt64?
+
+        /// 开关状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: UInt64?
+
+        /// NAT网关ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let natId: String?
+
+        /// NAT网关名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let natName: String?
+
+        /// NAT防火墙实例ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let natInsId: String?
+
+        /// NAT防火墙实例名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let natInsName: String?
+
+        /// 地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let region: String?
+
+        /// 开关是否异常,0:正常,1:异常
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let abnormal: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case subnetId = "SubnetId"
+            case subnetName = "SubnetName"
+            case subnetCidr = "SubnetCidr"
+            case routeId = "RouteId"
+            case routeName = "RouteName"
+            case cvmNum = "CvmNum"
+            case vpcId = "VpcId"
+            case vpcName = "VpcName"
+            case enable = "Enable"
+            case status = "Status"
+            case natId = "NatId"
+            case natName = "NatName"
+            case natInsId = "NatInsId"
+            case natInsName = "NatInsName"
+            case region = "Region"
+            case abnormal = "Abnormal"
+        }
+    }
+
+    /// 网络实例信息
+    public struct NetInstancesInfo: TCOutputModel {
+        /// 网络实例ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceId: String?
+
+        /// 网络实例名称
+        public let instanceName: String?
+
+        /// 网络cidr (多段以逗号分隔)
+        public let instanceCidr: String?
+
+        /// 网络实例所在地域
+        public let region: String?
+
+        enum CodingKeys: String, CodingKey {
+            case instanceId = "InstanceId"
+            case instanceName = "InstanceName"
+            case instanceCidr = "InstanceCidr"
+            case region = "Region"
         }
     }
 
@@ -1094,7 +1674,10 @@ extension Cfw {
         /// 国家名
         public let countryName: String?
 
-        public init(orderIndex: UInt64, sourceIp: String, targetIp: String, protocol: String, strategy: String, sourceType: UInt64, direction: UInt64, detail: String, targetType: UInt64, port: String? = nil, id: UInt64? = nil, logId: String? = nil, city: UInt64? = nil, country: UInt64? = nil, cloudCode: String? = nil, isRegion: UInt64? = nil, cityName: String? = nil, countryName: String? = nil) {
+        /// 国家二位iso代码或者省份缩写代码
+        public let regionIso: String?
+
+        public init(orderIndex: UInt64, sourceIp: String, targetIp: String, protocol: String, strategy: String, sourceType: UInt64, direction: UInt64, detail: String, targetType: UInt64, port: String? = nil, id: UInt64? = nil, logId: String? = nil, city: UInt64? = nil, country: UInt64? = nil, cloudCode: String? = nil, isRegion: UInt64? = nil, cityName: String? = nil, countryName: String? = nil, regionIso: String? = nil) {
             self.orderIndex = orderIndex
             self.sourceIp = sourceIp
             self.targetIp = targetIp
@@ -1113,6 +1696,7 @@ extension Cfw {
             self.isRegion = isRegion
             self.cityName = cityName
             self.countryName = countryName
+            self.regionIso = regionIso
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1134,6 +1718,7 @@ extension Cfw {
             case isRegion = "IsRegion"
             case cityName = "CityName"
             case countryName = "CountryName"
+            case regionIso = "RegionIso"
         }
     }
 
@@ -1518,10 +2103,10 @@ extension Cfw {
     public struct SecurityGroupRule: TCInputModel, TCOutputModel {
         /// 访问源示例：
         /// net：IP/CIDR(192.168.0.2)
-        /// template：参数模板(ipm-dyodhpby)
-        /// instance：资产实例(ins-123456)
-        /// resourcegroup：资产分组(/全部分组/分组1/子分组1)
-        /// tag：资源标签({"Key":"标签key值","Value":"标签Value值"})
+        /// template：参数模板id(ipm-dyodhpby)
+        /// instance：资产实例id(ins-123456)
+        /// resourcegroup：资产分组id(cfwrg-xxxx)
+        /// tag：资源标签({\"Key\":\"标签key值\",\"Value\":\"标签Value值\"})
         /// region：地域(ap-gaungzhou)
         public let sourceContent: String
 
@@ -1530,10 +2115,10 @@ extension Cfw {
 
         /// 访问目的示例：
         /// net：IP/CIDR(192.168.0.2)
-        /// template：参数模板(ipm-dyodhpby)
-        /// instance：资产实例(ins-123456)
-        /// resourcegroup：资产分组(/全部分组/分组1/子分组1)
-        /// tag：资源标签({"Key":"标签key值","Value":"标签Value值"})
+        /// template：参数模板id(ipm-dyodhpby)
+        /// instance：资产实例id(ins-123456)
+        /// resourcegroup：资产分组id(cfwrg-xxxx)
+        /// tag：资源标签({\"Key\":\"标签key值\",\"Value\":\"标签Value值\"})
         /// region：地域(ap-gaungzhou)
         public let destContent: String
 
@@ -1548,7 +2133,7 @@ extension Cfw {
         /// 描述
         public let description: String
 
-        /// 规则顺序，-1表示最低，1表示最高
+        /// 规则顺序，-1表示最低，1表示最高，请勿和外层Type冲突（和外层的Type配合使用，当中间插入时，指定添加位置）
         public let orderIndex: String
 
         /// 协议；TCP/UDP/ICMP/ANY
@@ -1565,9 +2150,10 @@ extension Cfw {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceTemplateId: String?
 
-        /// 规则对应的唯一id
+        /// （入参时无需填写，自动生成）规则对应的唯一id
         public let id: String?
 
+        /// （入参时、Enable已弃用；由通用配置中新增规则启用状态控制）
         /// 规则状态，true表示启用，false表示禁用
         public let enable: String?
 
@@ -1802,6 +2388,52 @@ extension Cfw {
         }
     }
 
+    /// 地址模版列表数据
+    public struct TemplateListInfo: TCOutputModel {
+        /// 模版ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let uuid: String?
+
+        /// 模版名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let detail: String?
+
+        /// IP模版
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ipString: String?
+
+        /// 插入时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let insertTime: String?
+
+        /// 修改时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updateTime: String?
+
+        /// 模版类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let type: Int64?
+
+        /// 关联规则条数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rulesNum: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case uuid = "Uuid"
+            case name = "Name"
+            case detail = "Detail"
+            case ipString = "IpString"
+            case insertTime = "InsertTime"
+            case updateTime = "UpdateTime"
+            case type = "Type"
+            case rulesNum = "RulesNum"
+        }
+    }
+
     /// 未处置事件详情
     public struct UnHandleEvent: TCOutputModel {
         /// 伪攻击链类型
@@ -1890,6 +2522,464 @@ extension Cfw {
             case switchStatus = "SwitchStatus"
             case protectedStatus = "ProtectedStatus"
             case supportDNSFW = "SupportDNSFW"
+        }
+    }
+
+    /// VPC防火墙实例的CVM信息
+    public struct VpcFwCvmInsInfo: TCInputModel, TCOutputModel {
+        /// VPC防火墙实例ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fwInsId: String?
+
+        /// CVM所在地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let region: String?
+
+        /// CVM所在地域中文
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let regionZh: String?
+
+        /// CVM所在地域详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let regionDetail: String?
+
+        /// 主机所在可用区
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let zoneZh: String?
+
+        /// 备机所在可用区
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let zoneZhBack: String?
+
+        /// 防火墙CVM带宽值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bandWidth: Int64?
+
+        public init(fwInsId: String, region: String? = nil, regionZh: String? = nil, regionDetail: String? = nil, zoneZh: String? = nil, zoneZhBack: String? = nil, bandWidth: Int64? = nil) {
+            self.fwInsId = fwInsId
+            self.region = region
+            self.regionZh = regionZh
+            self.regionDetail = regionDetail
+            self.zoneZh = zoneZh
+            self.zoneZhBack = zoneZhBack
+            self.bandWidth = bandWidth
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case fwInsId = "FwInsId"
+            case region = "Region"
+            case regionZh = "RegionZh"
+            case regionDetail = "RegionDetail"
+            case zoneZh = "ZoneZh"
+            case zoneZhBack = "ZoneZhBack"
+            case bandWidth = "BandWidth"
+        }
+    }
+
+    /// VPC防火墙(组)及防火墙实例详情信息
+    public struct VpcFwGroupInfo: TCOutputModel {
+        /// 防火墙(组)ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fwGroupId: String?
+
+        /// 防火墙(组)名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fwGroupName: String?
+
+        /// 防火墙组涉及到的开关个数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fwSwitchNum: Int64?
+
+        /// 防火墙(组)部署的地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let regionLst: [String]?
+
+        /// 模式 1：CCN云联网模式；0：私有网络模式 2: sase 模式 3：ccn 高级模式 4: 私有网络(跨租户单边模式)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let mode: Int64?
+
+        /// 防火墙实例的开关模式 1: 单点互通 2: 多点互通 3: 全互通 4: 自定义路由
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let switchMode: Int64?
+
+        /// VPC防火墙实例卡片信息数组
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fwInstanceLst: [VpcFwInstanceInfo]?
+
+        /// 防火墙(状态) 0：正常 1: 初始化或操作中
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: Int64?
+
+        /// auto :自动选择
+        /// 如果为网段，则为用户自定义 192.168.0.0/20
+        public let fwVpcCidr: String?
+
+        /// cdc专用集群场景时表示部署所属的cdc
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cdcId: String?
+
+        /// cdc专用集群场景时表示cdc名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cdcName: String?
+
+        /// 跨租户模式 1管理员 2单边 0 非跨租户
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let crossUserMode: String?
+
+        enum CodingKeys: String, CodingKey {
+            case fwGroupId = "FwGroupId"
+            case fwGroupName = "FwGroupName"
+            case fwSwitchNum = "FwSwitchNum"
+            case regionLst = "RegionLst"
+            case mode = "Mode"
+            case switchMode = "SwitchMode"
+            case fwInstanceLst = "FwInstanceLst"
+            case status = "Status"
+            case fwVpcCidr = "FwVpcCidr"
+            case cdcId = "CdcId"
+            case cdcName = "CdcName"
+            case crossUserMode = "CrossUserMode"
+        }
+    }
+
+    /// vpc 防火墙下单防火墙实例结构体
+    public struct VpcFwInstance: TCInputModel {
+        /// 防火墙实例名称
+        public let name: String?
+
+        /// 私有网络模式下接入的VpcId列表；仅私有网络模式使用
+        public let vpcIds: [String]?
+
+        /// 部署地域信息
+        public let fwDeploy: FwDeploy?
+
+        /// 防火墙实例ID (编辑场景传)
+        public let fwInsId: String?
+
+        public init(name: String, vpcIds: [String], fwDeploy: FwDeploy, fwInsId: String? = nil) {
+            self.name = name
+            self.vpcIds = vpcIds
+            self.fwDeploy = fwDeploy
+            self.fwInsId = fwInsId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case vpcIds = "VpcIds"
+            case fwDeploy = "FwDeploy"
+            case fwInsId = "FwInsId"
+        }
+    }
+
+    /// VPC防火墙实例卡片信息
+    public struct VpcFwInstanceInfo: TCInputModel, TCOutputModel {
+        /// VPC防火墙实例名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fwInsName: String?
+
+        /// VPC防火墙实例ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fwInsId: String?
+
+        /// VPC防火墙实例模式 0: 旧VPC模式防火墙 1: CCN模式防火墙
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fwMode: Int64?
+
+        /// VPC防火墙接入网络实例个数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let joinInsNum: Int64?
+
+        /// VPC防火墙开关个数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fwSwitchNum: Int64?
+
+        /// VPC防火墙状态 0:正常 ， 1：创建中 2: 变更中
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: Int64?
+
+        /// VPC防火墙创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let time: String?
+
+        /// VPC 相关云联网ID列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ccnId: [String]?
+
+        /// VPC 相关云联网名称列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ccnName: [String]?
+
+        /// VPC 相关对等连接ID列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let peerConnectionId: [String]?
+
+        /// VPC 相关对等连接名称列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let peerConnectionName: [String]?
+
+        /// VPC防火墙CVM的列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fwCvmLst: [VpcFwCvmInsInfo]?
+
+        /// VPC防火墙接入网络实例类型列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let joinInsLst: [VpcFwJoinInstanceType]?
+
+        /// 防火墙网关信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fwGateway: [FwGateway]?
+
+        /// 防火墙(组)ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fwGroupId: String?
+
+        /// 已使用规则数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ruleUsed: Int64?
+
+        /// 最大规则数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ruleMax: Int64?
+
+        /// 防火墙实例带宽
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let width: Int64?
+
+        /// 用户VPC墙总带宽
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userVpcWidth: Int64?
+
+        /// 接入的vpc列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let joinInsIdLst: [String]?
+
+        /// 内网间峰值带宽 (单位 bps )
+        public let flowMax: Int64?
+
+        /// 实例引擎版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let engineVersion: String?
+
+        /// 引擎是否可升级：0，不可升级；1，可升级
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updateEnable: Int64?
+
+        public init(fwInsName: String, fwInsId: String, fwMode: Int64, joinInsNum: Int64, fwSwitchNum: Int64, status: Int64, time: String, ccnId: [String]? = nil, ccnName: [String]? = nil, peerConnectionId: [String]? = nil, peerConnectionName: [String]? = nil, fwCvmLst: [VpcFwCvmInsInfo]? = nil, joinInsLst: [VpcFwJoinInstanceType]? = nil, fwGateway: [FwGateway]? = nil, fwGroupId: String? = nil, ruleUsed: Int64? = nil, ruleMax: Int64? = nil, width: Int64? = nil, userVpcWidth: Int64? = nil, joinInsIdLst: [String]? = nil, flowMax: Int64? = nil, engineVersion: String? = nil, updateEnable: Int64? = nil) {
+            self.fwInsName = fwInsName
+            self.fwInsId = fwInsId
+            self.fwMode = fwMode
+            self.joinInsNum = joinInsNum
+            self.fwSwitchNum = fwSwitchNum
+            self.status = status
+            self.time = time
+            self.ccnId = ccnId
+            self.ccnName = ccnName
+            self.peerConnectionId = peerConnectionId
+            self.peerConnectionName = peerConnectionName
+            self.fwCvmLst = fwCvmLst
+            self.joinInsLst = joinInsLst
+            self.fwGateway = fwGateway
+            self.fwGroupId = fwGroupId
+            self.ruleUsed = ruleUsed
+            self.ruleMax = ruleMax
+            self.width = width
+            self.userVpcWidth = userVpcWidth
+            self.joinInsIdLst = joinInsIdLst
+            self.flowMax = flowMax
+            self.engineVersion = engineVersion
+            self.updateEnable = updateEnable
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case fwInsName = "FwInsName"
+            case fwInsId = "FwInsId"
+            case fwMode = "FwMode"
+            case joinInsNum = "JoinInsNum"
+            case fwSwitchNum = "FwSwitchNum"
+            case status = "Status"
+            case time = "Time"
+            case ccnId = "CcnId"
+            case ccnName = "CcnName"
+            case peerConnectionId = "PeerConnectionId"
+            case peerConnectionName = "PeerConnectionName"
+            case fwCvmLst = "FwCvmLst"
+            case joinInsLst = "JoinInsLst"
+            case fwGateway = "FwGateway"
+            case fwGroupId = "FwGroupId"
+            case ruleUsed = "RuleUsed"
+            case ruleMax = "RuleMax"
+            case width = "Width"
+            case userVpcWidth = "UserVpcWidth"
+            case joinInsIdLst = "JoinInsIdLst"
+            case flowMax = "FlowMax"
+            case engineVersion = "EngineVersion"
+            case updateEnable = "UpdateEnable"
+        }
+    }
+
+    /// VPC防火墙实例信息
+    public struct VpcFwInstanceShow: TCOutputModel {
+        /// VPC防火墙实例ID
+        public let fwInsId: String?
+
+        /// VPC防火墙实例名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fwInsName: String?
+
+        /// 网络经过VPC防火墙CVM所在地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fwInsRegion: String?
+
+        enum CodingKeys: String, CodingKey {
+            case fwInsId = "FwInsId"
+            case fwInsName = "FwInsName"
+            case fwInsRegion = "FwInsRegion"
+        }
+    }
+
+    /// VPC防火墙接入的网络实例类型及数量
+    public struct VpcFwJoinInstanceType: TCOutputModel {
+        /// 接入实例类型，VPC、DIRECTCONNECT、 VPNGW 等
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let joinType: String?
+
+        /// 接入的对应网络实例类型的数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let num: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case joinType = "JoinType"
+            case num = "Num"
+        }
+    }
+
+    /// VPC内网间规则
+    public struct VpcRuleItem: TCInputModel, TCOutputModel {
+        /// 访问源示例：
+        /// net：IP/CIDR(192.168.0.2)
+        public let sourceContent: String
+
+        /// 访问源类型，类型可以为：net
+        public let sourceType: String
+
+        /// 访问目的示例：
+        /// net：IP/CIDR(192.168.0.2)
+        /// domain：域名规则，例如*.qq.com
+        public let destContent: String
+
+        /// 访问目的类型，类型可以为：net，domain
+        public let destType: String
+
+        /// 协议，可选的值：
+        /// TCP
+        /// UDP
+        /// ICMP
+        /// ANY
+        /// HTTP
+        /// HTTPS
+        /// HTTP/HTTPS
+        /// SMTP
+        /// SMTPS
+        /// SMTP/SMTPS
+        /// FTP
+        /// DNS
+        /// TLS/SSL
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let `protocol`: String?
+
+        /// 访问控制策略中设置的流量通过云防火墙的方式。取值：
+        /// accept：放行
+        /// drop：拒绝
+        /// log：观察
+        public let ruleAction: String
+
+        /// 访问控制策略的端口。取值：
+        /// -1/-1：全部端口
+        /// 80：80端口
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let port: String?
+
+        /// 描述
+        public let description: String
+
+        /// 规则顺序，-1表示最低，1表示最高
+        public let orderIndex: Int64
+
+        /// 规则对应的唯一id
+        public let uuid: Int64
+
+        /// 规则状态，true表示启用，false表示禁用
+        public let enable: String
+
+        /// 规则生效的范围，是在哪对vpc之间还是针对所有vpc间生效
+        public let edgeId: String
+
+        /// 规则的命中次数，增删改查规则时无需传入此参数，主要用于返回查询结果数据
+        public let detectedTimes: Int64?
+
+        /// EdgeId对应的这对VPC间防火墙的描述
+        public let edgeName: String?
+
+        /// 内部使用的uuid，一般情况下不会使用到该字段
+        public let internalUuid: Int64?
+
+        /// 规则被删除：1，已删除；0，未删除
+        public let deleted: Int64?
+
+        /// 规则生效的防火墙实例ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fwGroupId: String?
+
+        /// 防火墙名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fwGroupName: String?
+
+        /// beta任务详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let betaList: [BetaInfoByACL]?
+
+        public init(sourceContent: String, sourceType: String, destContent: String, destType: String, protocol: String, ruleAction: String, port: String, description: String, orderIndex: Int64, uuid: Int64, enable: String, edgeId: String, detectedTimes: Int64? = nil, edgeName: String? = nil, internalUuid: Int64? = nil, deleted: Int64? = nil, fwGroupId: String? = nil, fwGroupName: String? = nil, betaList: [BetaInfoByACL]? = nil) {
+            self.sourceContent = sourceContent
+            self.sourceType = sourceType
+            self.destContent = destContent
+            self.destType = destType
+            self.protocol = `protocol`
+            self.ruleAction = ruleAction
+            self.port = port
+            self.description = description
+            self.orderIndex = orderIndex
+            self.uuid = uuid
+            self.enable = enable
+            self.edgeId = edgeId
+            self.detectedTimes = detectedTimes
+            self.edgeName = edgeName
+            self.internalUuid = internalUuid
+            self.deleted = deleted
+            self.fwGroupId = fwGroupId
+            self.fwGroupName = fwGroupName
+            self.betaList = betaList
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case sourceContent = "SourceContent"
+            case sourceType = "SourceType"
+            case destContent = "DestContent"
+            case destType = "DestType"
+            case `protocol` = "Protocol"
+            case ruleAction = "RuleAction"
+            case port = "Port"
+            case description = "Description"
+            case orderIndex = "OrderIndex"
+            case uuid = "Uuid"
+            case enable = "Enable"
+            case edgeId = "EdgeId"
+            case detectedTimes = "DetectedTimes"
+            case edgeName = "EdgeName"
+            case internalUuid = "InternalUuid"
+            case deleted = "Deleted"
+            case fwGroupId = "FwGroupId"
+            case fwGroupName = "FwGroupName"
+            case betaList = "BetaList"
         }
     }
 

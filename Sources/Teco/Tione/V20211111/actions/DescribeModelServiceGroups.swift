@@ -40,13 +40,17 @@ extension Tione {
         /// 标签过滤参数
         public let tagFilters: [TagFilter]?
 
-        public init(offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderField: String? = nil, filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil) {
+        /// 服务分类
+        public let serviceCategory: String?
+
+        public init(offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderField: String? = nil, filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, serviceCategory: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.order = order
             self.orderField = orderField
             self.filters = filters
             self.tagFilters = tagFilters
+            self.serviceCategory = serviceCategory
         }
 
         enum CodingKeys: String, CodingKey {
@@ -56,6 +60,7 @@ extension Tione {
             case orderField = "OrderField"
             case filters = "Filters"
             case tagFilters = "TagFilters"
+            case serviceCategory = "ServiceCategory"
         }
 
         /// Compute the next request based on API response.
@@ -63,7 +68,7 @@ extension Tione {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, order: self.order, orderField: self.orderField, filters: self.filters, tagFilters: self.tagFilters)
+            return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, order: self.order, orderField: self.orderField, filters: self.filters, tagFilters: self.tagFilters, serviceCategory: self.serviceCategory)
         }
     }
 
@@ -111,14 +116,14 @@ extension Tione {
 
     /// 列举在线推理服务组
     @inlinable
-    public func describeModelServiceGroups(offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderField: String? = nil, filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelServiceGroupsResponse> {
-        self.describeModelServiceGroups(.init(offset: offset, limit: limit, order: order, orderField: orderField, filters: filters, tagFilters: tagFilters), region: region, logger: logger, on: eventLoop)
+    public func describeModelServiceGroups(offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderField: String? = nil, filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, serviceCategory: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelServiceGroupsResponse> {
+        self.describeModelServiceGroups(.init(offset: offset, limit: limit, order: order, orderField: orderField, filters: filters, tagFilters: tagFilters, serviceCategory: serviceCategory), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列举在线推理服务组
     @inlinable
-    public func describeModelServiceGroups(offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderField: String? = nil, filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceGroupsResponse {
-        try await self.describeModelServiceGroups(.init(offset: offset, limit: limit, order: order, orderField: orderField, filters: filters, tagFilters: tagFilters), region: region, logger: logger, on: eventLoop)
+    public func describeModelServiceGroups(offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderField: String? = nil, filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, serviceCategory: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceGroupsResponse {
+        try await self.describeModelServiceGroups(.init(offset: offset, limit: limit, order: order, orderField: orderField, filters: filters, tagFilters: tagFilters, serviceCategory: serviceCategory), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列举在线推理服务组

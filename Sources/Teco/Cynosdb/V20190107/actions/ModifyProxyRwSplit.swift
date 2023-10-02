@@ -21,22 +21,24 @@ import TecoCore
 extension Cynosdb {
     /// ModifyProxyRwSplit请求参数结构体
     public struct ModifyProxyRwSplitRequest: TCRequest {
-        /// 集群ID
+        /// 集群ID，例如cynosdbmysql-asd123
         public let clusterId: String
 
-        /// 数据库代理组ID
+        /// 数据库代理组ID，例如cynosdbmysql-proxy-qwe123
         public let proxyGroupId: String
 
         /// 一致性类型；“eventual"-最终一致性, "session"-会话一致性, "global"-全局一致性
         public let consistencyType: String?
 
-        /// 一致性超时时间
+        /// 一致性超时时间。
+        /// 取值范围：0~1000000（微秒）,设置0则表示若只读实例出现延迟, 导致一致性策略不满足, 请求将一直等待。
         public let consistencyTimeOut: String?
 
         /// 读写权重分配模式；系统自动分配："system"， 自定义："custom"
         public let weightMode: String?
 
-        /// 实例只读权重
+        /// 实例只读权重。
+        /// 该参数必填。
         public let instanceWeights: [ProxyInstanceWeight]?
 
         /// 是否开启故障转移，代理出现故障后，连接地址将路由到主实例，取值："yes" , "no"
@@ -45,14 +47,16 @@ extension Cynosdb {
         /// 是否自动添加只读实例，取值："yes" , "no"
         public let autoAddRo: String?
 
-        /// 是否打开读写分离
+        /// 是否打开读写分离。
+        /// 该参数已废弃，请通过RwType设置读写属性。
         public let openRw: String?
 
         /// 读写类型：
         /// READWRITE,READONLY
         public let rwType: String?
 
-        /// 事务拆分
+        /// 事务拆分。
+        /// 在一个事务中拆分读和写到不同的实例上去执行。
         public let transSplit: Bool?
 
         /// 连接模式：
@@ -67,7 +71,8 @@ extension Cynosdb {
         /// SessionConnectionPool
         public let connectionPoolType: String?
 
-        /// 连接池时间
+        /// 连接池时间。
+        /// 可选范围:0~300（秒）
         public let connectionPoolTimeOut: Int64?
 
         public init(clusterId: String, proxyGroupId: String, consistencyType: String? = nil, consistencyTimeOut: String? = nil, weightMode: String? = nil, instanceWeights: [ProxyInstanceWeight]? = nil, failOver: String? = nil, autoAddRo: String? = nil, openRw: String? = nil, rwType: String? = nil, transSplit: Bool? = nil, accessMode: String? = nil, openConnectionPool: String? = nil, connectionPoolType: String? = nil, connectionPoolTimeOut: Int64? = nil) {

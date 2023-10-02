@@ -64,7 +64,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func joinGameServerSession(_ input: JoinGameServerSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<JoinGameServerSessionResponse> {
-        fatalError("JoinGameServerSession is no longer available.")
+        fatalError("'JoinGameServerSession' is no longer available.")
     }
 
     /// 加入游戏服务器会话
@@ -73,7 +73,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func joinGameServerSession(_ input: JoinGameServerSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> JoinGameServerSessionResponse {
-        fatalError("JoinGameServerSession is no longer available.")
+        fatalError("'JoinGameServerSession' is no longer available.")
     }
 
     /// 加入游戏服务器会话
@@ -82,7 +82,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func joinGameServerSession(gameServerSessionId: String, playerId: String, playerData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<JoinGameServerSessionResponse> {
-        fatalError("JoinGameServerSession is no longer available.")
+        fatalError("'JoinGameServerSession' is no longer available.")
     }
 
     /// 加入游戏服务器会话
@@ -91,6 +91,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func joinGameServerSession(gameServerSessionId: String, playerId: String, playerData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> JoinGameServerSessionResponse {
-        fatalError("JoinGameServerSession is no longer available.")
+        fatalError("'JoinGameServerSession' is no longer available.")
     }
 }

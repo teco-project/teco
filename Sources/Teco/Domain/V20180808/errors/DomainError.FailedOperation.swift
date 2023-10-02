@@ -77,6 +77,8 @@ extension TCDomainError {
         }
 
         /// 删除模版操作失败，请稍后重试。
+        ///
+        /// None
         public static var deleteTemplateFailed: FailedOperation {
             FailedOperation(.deleteTemplateFailed)
         }

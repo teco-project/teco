@@ -21,6 +21,7 @@ extension TCTseError {
         enum Code: String {
             case camNoAuth = "UnauthorizedOperation.CamNoAuth"
             case camPassRoleNotExist = "UnauthorizedOperation.CamPassRoleNotExist"
+            case clsNotActivated = "UnauthorizedOperation.ClsNotActivated"
             case uin = "UnauthorizedOperation.Uin"
             case unauthorizedOperation = "UnauthorizedOperation.UnauthorizedOperation"
             case other = "UnauthorizedOperation"
@@ -58,6 +59,11 @@ extension TCTseError {
             UnauthorizedOperation(.camPassRoleNotExist)
         }
 
+        /// 当前CLS产品未开通
+        public static var clsNotActivated: UnauthorizedOperation {
+            UnauthorizedOperation(.clsNotActivated)
+        }
+
         /// Uin未授权
         public static var uin: UnauthorizedOperation {
             UnauthorizedOperation(.uin)
@@ -80,6 +86,8 @@ extension TCTseError {
                 code = .unauthorizedOperation_CamNoAuth
             case .camPassRoleNotExist:
                 code = .unauthorizedOperation_CamPassRoleNotExist
+            case .clsNotActivated:
+                code = .unauthorizedOperation_ClsNotActivated
             case .uin:
                 code = .unauthorizedOperation_Uin
             case .unauthorizedOperation:

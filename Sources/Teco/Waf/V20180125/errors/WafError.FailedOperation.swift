@@ -19,10 +19,14 @@ import TecoCore
 extension TCWafError {
     public struct FailedOperation: TCWafErrorType {
         enum Code: String {
+            case clickHouseOperationFailed = "FailedOperation.ClickHouseOperationFailed"
             case clsInternalError = "FailedOperation.CLSInternalError"
             case clsdbOperationFailed = "FailedOperation.CLSDBOperationFailed"
             case mysqlDBOperationFailed = "FailedOperation.MysqlDBOperationFailed"
             case redisOperationFailed = "FailedOperation.RedisOperationFailed"
+            case sessionInUsed = "FailedOperation.SessionInUsed"
+            case theNumberOfAddedBlackAndWhiteListExceedsTheUpperLimit = "FailedOperation.TheNumberOfAddedBlackAndWhiteListExceedsTheUpperLimit"
+            case theNumberOfOneTimeDeletionsReachedTheUpperLimit = "FailedOperation.TheNumberOfOneTimeDeletionsReachedTheUpperLimit"
             case other = "FailedOperation"
         }
 
@@ -48,6 +52,11 @@ extension TCWafError {
             self.context = context
         }
 
+        /// 操作CH数据库失败
+        public static var clickHouseOperationFailed: FailedOperation {
+            FailedOperation(.clickHouseOperationFailed)
+        }
+
         /// CLS内部错误。
         ///
         /// 错误表示WAF的API后端访问CLS接口失败,包括接口失败,语法失败,参数校验不通过等。
@@ -70,6 +79,18 @@ extension TCWafError {
             FailedOperation(.redisOperationFailed)
         }
 
+        public static var sessionInUsed: FailedOperation {
+            FailedOperation(.sessionInUsed)
+        }
+
+        public static var theNumberOfAddedBlackAndWhiteListExceedsTheUpperLimit: FailedOperation {
+            FailedOperation(.theNumberOfAddedBlackAndWhiteListExceedsTheUpperLimit)
+        }
+
+        public static var theNumberOfOneTimeDeletionsReachedTheUpperLimit: FailedOperation {
+            FailedOperation(.theNumberOfOneTimeDeletionsReachedTheUpperLimit)
+        }
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
@@ -78,6 +99,8 @@ extension TCWafError {
         public func asWafError() -> TCWafError {
             let code: TCWafError.Code
             switch self.error {
+            case .clickHouseOperationFailed:
+                code = .failedOperation_ClickHouseOperationFailed
             case .clsInternalError:
                 code = .failedOperation_CLSInternalError
             case .clsdbOperationFailed:
@@ -86,6 +109,12 @@ extension TCWafError {
                 code = .failedOperation_MysqlDBOperationFailed
             case .redisOperationFailed:
                 code = .failedOperation_RedisOperationFailed
+            case .sessionInUsed:
+                code = .failedOperation_SessionInUsed
+            case .theNumberOfAddedBlackAndWhiteListExceedsTheUpperLimit:
+                code = .failedOperation_TheNumberOfAddedBlackAndWhiteListExceedsTheUpperLimit
+            case .theNumberOfOneTimeDeletionsReachedTheUpperLimit:
+                code = .failedOperation_TheNumberOfOneTimeDeletionsReachedTheUpperLimit
             case .other:
                 code = .failedOperation
             }

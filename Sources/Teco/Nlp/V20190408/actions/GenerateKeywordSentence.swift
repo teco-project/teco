@@ -63,7 +63,7 @@ extension Nlp {
 
     /// 句子生成
     ///
-    /// 提取文本中的关键信息，生成简洁明了的关键句子，便于用户快速获取核心观点。
+    /// 根据提供的关键词，生成简洁明了的关键句子，便于用户快速获取核心观点。
     @inlinable
     public func generateKeywordSentence(_ input: GenerateKeywordSentenceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateKeywordSentenceResponse> {
         self.client.execute(action: "GenerateKeywordSentence", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -71,7 +71,7 @@ extension Nlp {
 
     /// 句子生成
     ///
-    /// 提取文本中的关键信息，生成简洁明了的关键句子，便于用户快速获取核心观点。
+    /// 根据提供的关键词，生成简洁明了的关键句子，便于用户快速获取核心观点。
     @inlinable
     public func generateKeywordSentence(_ input: GenerateKeywordSentenceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateKeywordSentenceResponse {
         try await self.client.execute(action: "GenerateKeywordSentence", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -79,7 +79,7 @@ extension Nlp {
 
     /// 句子生成
     ///
-    /// 提取文本中的关键信息，生成简洁明了的关键句子，便于用户快速获取核心观点。
+    /// 根据提供的关键词，生成简洁明了的关键句子，便于用户快速获取核心观点。
     @inlinable
     public func generateKeywordSentence(wordList: [String], number: Int64, domain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateKeywordSentenceResponse> {
         self.generateKeywordSentence(.init(wordList: wordList, number: number, domain: domain), region: region, logger: logger, on: eventLoop)
@@ -87,7 +87,7 @@ extension Nlp {
 
     /// 句子生成
     ///
-    /// 提取文本中的关键信息，生成简洁明了的关键句子，便于用户快速获取核心观点。
+    /// 根据提供的关键词，生成简洁明了的关键句子，便于用户快速获取核心观点。
     @inlinable
     public func generateKeywordSentence(wordList: [String], number: Int64, domain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateKeywordSentenceResponse {
         try await self.generateKeywordSentence(.init(wordList: wordList, number: number, domain: domain), region: region, logger: logger, on: eventLoop)

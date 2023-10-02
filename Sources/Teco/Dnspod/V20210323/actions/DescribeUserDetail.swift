@@ -27,7 +27,7 @@ extension Dnspod {
 
     /// DescribeUserDetail返回参数结构体
     public struct DescribeUserDetailResponse: TCResponse {
-        /// 帐户信息
+        /// 账户信息
         public let userInfo: UserInfo
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -39,24 +39,32 @@ extension Dnspod {
         }
     }
 
+    /// 获取账户信息
+    ///
     /// 获取帐户信息
     @inlinable
     public func describeUserDetail(_ input: DescribeUserDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserDetailResponse> {
         self.client.execute(action: "DescribeUserDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
+    /// 获取账户信息
+    ///
     /// 获取帐户信息
     @inlinable
     public func describeUserDetail(_ input: DescribeUserDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserDetailResponse {
         try await self.client.execute(action: "DescribeUserDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
+    /// 获取账户信息
+    ///
     /// 获取帐户信息
     @inlinable
     public func describeUserDetail(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserDetailResponse> {
         self.describeUserDetail(.init(), region: region, logger: logger, on: eventLoop)
     }
 
+    /// 获取账户信息
+    ///
     /// 获取帐户信息
     @inlinable
     public func describeUserDetail(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserDetailResponse {

@@ -21,13 +21,18 @@ import TecoCore
 extension Ess {
     /// DeleteIntegrationEmployees请求参数结构体
     public struct DeleteIntegrationEmployeesRequest: TCRequest {
-        /// 操作人信息，userId必填
+        /// 执行本接口操作的员工信息。使用此接口时，必须填写UserId。
+        /// 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         public let `operator`: UserInfo
 
-        /// 待移除员工的信息，userId和openId二选一，必填一个，如果需要指定交接人的话，ReceiveUserId或者ReceiveOpenId字段二选一
+        /// 待移除员工的信息。应符合以下规则：
+        ///
+        /// - UserId和OpenId不可同时为空。
+        /// - 若需要进行离职交接，交接人信息ReceiveUserId和ReceiveOpenId不可同时为空。否则视为不进行离职交接。
         public let employees: [Staff]
 
-        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId需填充子企业Id
+        /// 代理企业和员工的信息。
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         public let agent: Agent?
 
         public init(operator: UserInfo, employees: [Staff], agent: Agent? = nil) {
@@ -45,7 +50,10 @@ extension Ess {
 
     /// DeleteIntegrationEmployees返回参数结构体
     public struct DeleteIntegrationEmployeesResponse: TCResponse {
-        /// 员工删除数据
+        /// 员工删除结果。包含成功数据与失败数据。
+        ///
+        /// - **成功数据**：展示员工姓名、手机号与电子签平台UserId
+        /// - **失败数据**：展示员工电子签平台UserId、第三方平台OpenId和失败原因
         public let deleteEmployeeResult: DeleteStaffsResult
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -59,10 +67,11 @@ extension Ess {
 
     /// 移除企业员工
     ///
-    /// 移除员工
-    /// 这里分两个场景
-    /// 如果不传交接人的ReceiveUserId或者ReceiveOpenId，则会直接把这个人进行离职
-    /// 如果传了交接人，会把离职人未处理完的合同交接给交接人后再离职
+    /// 该接口（DeleteIntegrationEmployees）用于移除企业员工，同时可选择是否进行离职交接。
+    /// -  如果不设置交接人的ReceiveUserId或ReceiveOpenId，则该员工将被直接移除而不进行交接操作。
+    /// -  如果设置了ReceiveUserId或ReceiveOpenId，该员工未处理的合同将会被系统交接给设置的交接人，然后再对该员工进行离职操作。
+    ///
+    /// 注：`1. 超管或法人身份的员工不能被删除。2. 员工存在待处理合同且无人交接时不能被删除。`
     @inlinable
     public func deleteIntegrationEmployees(_ input: DeleteIntegrationEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIntegrationEmployeesResponse> {
         self.client.execute(action: "DeleteIntegrationEmployees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -70,10 +79,11 @@ extension Ess {
 
     /// 移除企业员工
     ///
-    /// 移除员工
-    /// 这里分两个场景
-    /// 如果不传交接人的ReceiveUserId或者ReceiveOpenId，则会直接把这个人进行离职
-    /// 如果传了交接人，会把离职人未处理完的合同交接给交接人后再离职
+    /// 该接口（DeleteIntegrationEmployees）用于移除企业员工，同时可选择是否进行离职交接。
+    /// -  如果不设置交接人的ReceiveUserId或ReceiveOpenId，则该员工将被直接移除而不进行交接操作。
+    /// -  如果设置了ReceiveUserId或ReceiveOpenId，该员工未处理的合同将会被系统交接给设置的交接人，然后再对该员工进行离职操作。
+    ///
+    /// 注：`1. 超管或法人身份的员工不能被删除。2. 员工存在待处理合同且无人交接时不能被删除。`
     @inlinable
     public func deleteIntegrationEmployees(_ input: DeleteIntegrationEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIntegrationEmployeesResponse {
         try await self.client.execute(action: "DeleteIntegrationEmployees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -81,10 +91,11 @@ extension Ess {
 
     /// 移除企业员工
     ///
-    /// 移除员工
-    /// 这里分两个场景
-    /// 如果不传交接人的ReceiveUserId或者ReceiveOpenId，则会直接把这个人进行离职
-    /// 如果传了交接人，会把离职人未处理完的合同交接给交接人后再离职
+    /// 该接口（DeleteIntegrationEmployees）用于移除企业员工，同时可选择是否进行离职交接。
+    /// -  如果不设置交接人的ReceiveUserId或ReceiveOpenId，则该员工将被直接移除而不进行交接操作。
+    /// -  如果设置了ReceiveUserId或ReceiveOpenId，该员工未处理的合同将会被系统交接给设置的交接人，然后再对该员工进行离职操作。
+    ///
+    /// 注：`1. 超管或法人身份的员工不能被删除。2. 员工存在待处理合同且无人交接时不能被删除。`
     @inlinable
     public func deleteIntegrationEmployees(operator: UserInfo, employees: [Staff], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIntegrationEmployeesResponse> {
         self.deleteIntegrationEmployees(.init(operator: `operator`, employees: employees, agent: agent), region: region, logger: logger, on: eventLoop)
@@ -92,10 +103,11 @@ extension Ess {
 
     /// 移除企业员工
     ///
-    /// 移除员工
-    /// 这里分两个场景
-    /// 如果不传交接人的ReceiveUserId或者ReceiveOpenId，则会直接把这个人进行离职
-    /// 如果传了交接人，会把离职人未处理完的合同交接给交接人后再离职
+    /// 该接口（DeleteIntegrationEmployees）用于移除企业员工，同时可选择是否进行离职交接。
+    /// -  如果不设置交接人的ReceiveUserId或ReceiveOpenId，则该员工将被直接移除而不进行交接操作。
+    /// -  如果设置了ReceiveUserId或ReceiveOpenId，该员工未处理的合同将会被系统交接给设置的交接人，然后再对该员工进行离职操作。
+    ///
+    /// 注：`1. 超管或法人身份的员工不能被删除。2. 员工存在待处理合同且无人交接时不能被删除。`
     @inlinable
     public func deleteIntegrationEmployees(operator: UserInfo, employees: [Staff], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIntegrationEmployeesResponse {
         try await self.deleteIntegrationEmployees(.init(operator: `operator`, employees: employees, agent: agent), region: region, logger: logger, on: eventLoop)

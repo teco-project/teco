@@ -71,27 +71,27 @@ extension Tiems {
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func updateRsgAsGroup(_ input: UpdateRsgAsGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRsgAsGroupResponse> {
-        fatalError("UpdateRsgAsGroup is no longer available.")
+        fatalError("'UpdateRsgAsGroup' is no longer available.")
     }
 
     /// 更新资源组的伸缩组
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func updateRsgAsGroup(_ input: UpdateRsgAsGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRsgAsGroupResponse {
-        fatalError("UpdateRsgAsGroup is no longer available.")
+        fatalError("'UpdateRsgAsGroup' is no longer available.")
     }
 
     /// 更新资源组的伸缩组
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func updateRsgAsGroup(id: String, name: String? = nil, maxSize: UInt64? = nil, minSize: UInt64? = nil, desiredSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRsgAsGroupResponse> {
-        fatalError("UpdateRsgAsGroup is no longer available.")
+        fatalError("'UpdateRsgAsGroup' is no longer available.")
     }
 
     /// 更新资源组的伸缩组
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func updateRsgAsGroup(id: String, name: String? = nil, maxSize: UInt64? = nil, minSize: UInt64? = nil, desiredSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRsgAsGroupResponse {
-        fatalError("UpdateRsgAsGroup is no longer available.")
+        fatalError("'UpdateRsgAsGroup' is no longer available.")
     }
 }

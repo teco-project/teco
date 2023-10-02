@@ -59,7 +59,7 @@ extension Gpm {
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeToken(_ input: DescribeTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTokenResponse> {
-        fatalError("DescribeToken is no longer available.")
+        fatalError("'DescribeToken' is no longer available.")
     }
 
     /// 查询匹配Token
@@ -68,7 +68,7 @@ extension Gpm {
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeToken(_ input: DescribeTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTokenResponse {
-        fatalError("DescribeToken is no longer available.")
+        fatalError("'DescribeToken' is no longer available.")
     }
 
     /// 查询匹配Token
@@ -77,7 +77,7 @@ extension Gpm {
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeToken(matchCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTokenResponse> {
-        fatalError("DescribeToken is no longer available.")
+        fatalError("'DescribeToken' is no longer available.")
     }
 
     /// 查询匹配Token
@@ -86,6 +86,6 @@ extension Gpm {
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeToken(matchCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTokenResponse {
-        fatalError("DescribeToken is no longer available.")
+        fatalError("'DescribeToken' is no longer available.")
     }
 }

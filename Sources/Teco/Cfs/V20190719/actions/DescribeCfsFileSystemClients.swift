@@ -20,30 +20,62 @@ import TecoCore
 
 extension Cfs {
     /// DescribeCfsFileSystemClients请求参数结构体
-    public struct DescribeCfsFileSystemClientsRequest: TCRequest {
+    public struct DescribeCfsFileSystemClientsRequest: TCPaginatedRequest {
         /// 文件系统 ID。
         public let fileSystemId: String
 
-        public init(fileSystemId: String) {
+        /// Offset 分页码
+        public let offset: UInt64?
+
+        /// Limit 页面大小
+        public let limit: UInt64?
+
+        public init(fileSystemId: String, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.fileSystemId = fileSystemId
+            self.offset = offset
+            self.limit = limit
         }
 
         enum CodingKeys: String, CodingKey {
             case fileSystemId = "FileSystemId"
+            case offset = "Offset"
+            case limit = "Limit"
+        }
+
+        /// Compute the next request based on API response.
+        public func makeNextRequest(with response: DescribeCfsFileSystemClientsResponse) -> DescribeCfsFileSystemClientsRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return .init(fileSystemId: self.fileSystemId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 
     /// DescribeCfsFileSystemClients返回参数结构体
-    public struct DescribeCfsFileSystemClientsResponse: TCResponse {
+    public struct DescribeCfsFileSystemClientsResponse: TCPaginatedResponse {
         /// 客户端列表
         public let clientList: [FileSystemClient]
+
+        /// 文件系统总数
+        public let totalCount: UInt64?
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case clientList = "ClientList"
+            case totalCount = "TotalCount"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned ``FileSystemClient`` list from the paginated response.
+        public func getItems() -> [FileSystemClient] {
+            self.clientList
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.totalCount
         }
     }
 
@@ -67,15 +99,41 @@ extension Cfs {
     ///
     /// 查询挂载该文件系统的客户端。此功能需要客户端安装CFS监控插件。
     @inlinable
-    public func describeCfsFileSystemClients(fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfsFileSystemClientsResponse> {
-        self.describeCfsFileSystemClients(.init(fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
+    public func describeCfsFileSystemClients(fileSystemId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfsFileSystemClientsResponse> {
+        self.describeCfsFileSystemClients(.init(fileSystemId: fileSystemId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询文件系统客户端
     ///
     /// 查询挂载该文件系统的客户端。此功能需要客户端安装CFS监控插件。
     @inlinable
-    public func describeCfsFileSystemClients(fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsFileSystemClientsResponse {
-        try await self.describeCfsFileSystemClients(.init(fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
+    public func describeCfsFileSystemClients(fileSystemId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsFileSystemClientsResponse {
+        try await self.describeCfsFileSystemClients(.init(fileSystemId: fileSystemId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 查询文件系统客户端
+    ///
+    /// 查询挂载该文件系统的客户端。此功能需要客户端安装CFS监控插件。
+    @inlinable
+    public func describeCfsFileSystemClientsPaginated(_ input: DescribeCfsFileSystemClientsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [FileSystemClient])> {
+        self.client.paginate(input: input, region: region, command: self.describeCfsFileSystemClients, logger: logger, on: eventLoop)
+    }
+
+    /// 查询文件系统客户端
+    ///
+    /// 查询挂载该文件系统的客户端。此功能需要客户端安装CFS监控插件。
+    @inlinable @discardableResult
+    public func describeCfsFileSystemClientsPaginated(_ input: DescribeCfsFileSystemClientsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCfsFileSystemClientsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCfsFileSystemClients, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询文件系统客户端
+    ///
+    /// 查询挂载该文件系统的客户端。此功能需要客户端安装CFS监控插件。
+    ///
+    /// - Returns: `AsyncSequence`s of ``FileSystemClient`` and ``DescribeCfsFileSystemClientsResponse`` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCfsFileSystemClientsPaginator(_ input: DescribeCfsFileSystemClientsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCfsFileSystemClientsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCfsFileSystemClients, logger: logger, on: eventLoop)
     }
 }

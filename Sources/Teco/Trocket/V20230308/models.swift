@@ -17,6 +17,57 @@
 import TecoCore
 
 extension Trocket {
+    /// 接入点信息
+    public struct Endpoint: TCOutputModel {
+        /// 接入点类型，
+        /// VPC，
+        /// PUBLIC 公网
+        public let type: String?
+
+        /// 状态，
+        /// OPEN 开启，
+        /// CLOSE 关闭，
+        /// PROCESSING 操作中，
+        public let status: String?
+
+        /// 付费类型，仅公网
+        /// PREPAID 包年包月
+        /// POSTPAID 按量付费
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let payMode: String?
+
+        /// 接入点地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let endpointUrl: String?
+
+        /// VPC ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpcId: String?
+
+        /// 子网ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subnetId: String?
+
+        /// 公网带宽，Mbps为单位
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bandwidth: Int64?
+
+        /// 公网放通规则
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ipRules: [IpRule]?
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case status = "Status"
+            case payMode = "PayMode"
+            case endpointUrl = "EndpointUrl"
+            case vpcId = "VpcId"
+            case subnetId = "SubnetId"
+            case bandwidth = "Bandwidth"
+            case ipRules = "IpRules"
+        }
+    }
+
     /// 查询过滤器
     public struct Filter: TCInputModel {
         /// 过滤条件名
@@ -137,6 +188,145 @@ extension Trocket {
         }
     }
 
+    /// IP规则
+    public struct IpRule: TCInputModel, TCOutputModel {
+        /// IP地址
+        public let ip: String
+
+        /// 是否允许放行
+        public let allow: Bool
+
+        /// 备注信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let remark: String?
+
+        public init(ip: String, allow: Bool, remark: String) {
+            self.ip = ip
+            self.allow = allow
+            self.remark = remark
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case ip = "Ip"
+            case allow = "Allow"
+            case remark = "Remark"
+        }
+    }
+
+    /// 角色信息
+    public struct RoleItem: TCOutputModel {
+        /// 角色名称
+        public let roleName: String?
+
+        /// Access Key
+        public let accessKey: String?
+
+        /// Secret Key
+        public let secretKey: String?
+
+        /// 是否开启消费
+        public let permRead: Bool?
+
+        /// 是否开启生产
+        public let permWrite: Bool?
+
+        /// 备注信息
+        public let remark: String?
+
+        /// 创建时间，秒为单位
+        public let createdTime: Int64?
+
+        /// 修改时间，秒为单位
+        public let modifiedTime: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case roleName = "RoleName"
+            case accessKey = "AccessKey"
+            case secretKey = "SecretKey"
+            case permRead = "PermRead"
+            case permWrite = "PermWrite"
+            case remark = "Remark"
+            case createdTime = "CreatedTime"
+            case modifiedTime = "ModifiedTime"
+        }
+    }
+
+    /// 主题与消费组的订阅关系数据
+    public struct SubscriptionData: TCOutputModel {
+        /// 实例ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceId: String?
+
+        /// 主题名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let topic: String?
+
+        /// 主题类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let topicType: String?
+
+        /// 单个节点上主题队列数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let topicQueueNum: Int64?
+
+        /// 消费组名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let consumerGroup: String?
+
+        /// 是否在线
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isOnline: Bool?
+
+        /// 消费类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let consumeType: String?
+
+        /// 订阅规则
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subString: String?
+
+        /// 过滤类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let expressionType: String?
+
+        /// 订阅一致性
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let consistency: Int64?
+
+        /// 消费堆积
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let consumerLag: Int64?
+
+        /// 最后消费进度更新时间，秒为单位
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lastUpdateTime: Int64?
+
+        /// 最大重试次数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let maxRetryTimes: Int64?
+
+        /// 是否顺序消费
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let consumeMessageOrderly: Bool?
+
+        enum CodingKeys: String, CodingKey {
+            case instanceId = "InstanceId"
+            case topic = "Topic"
+            case topicType = "TopicType"
+            case topicQueueNum = "TopicQueueNum"
+            case consumerGroup = "ConsumerGroup"
+            case isOnline = "IsOnline"
+            case consumeType = "ConsumeType"
+            case subString = "SubString"
+            case expressionType = "ExpressionType"
+            case consistency = "Consistency"
+            case consumerLag = "ConsumerLag"
+            case lastUpdateTime = "LastUpdateTime"
+            case maxRetryTimes = "MaxRetryTimes"
+            case consumeMessageOrderly = "ConsumeMessageOrderly"
+        }
+    }
+
     /// 标签数据
     public struct Tag: TCInputModel, TCOutputModel {
         /// 标签名称
@@ -209,6 +399,25 @@ extension Trocket {
             case topicType = "TopicType"
             case queueNum = "QueueNum"
             case remark = "Remark"
+        }
+    }
+
+    /// VPC信息
+    public struct VpcInfo: TCInputModel {
+        /// VPC ID
+        public let vpcId: String
+
+        /// 子网ID
+        public let subnetId: String
+
+        public init(vpcId: String, subnetId: String) {
+            self.vpcId = vpcId
+            self.subnetId = subnetId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case vpcId = "VpcId"
+            case subnetId = "SubnetId"
         }
     }
 }

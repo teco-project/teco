@@ -97,7 +97,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetStatisticFlows(_ input: DescribeFleetStatisticFlowsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFleetStatisticFlowsResponse> {
-        fatalError("DescribeFleetStatisticFlows is no longer available.")
+        fatalError("'DescribeFleetStatisticFlows' is no longer available.")
     }
 
     /// 查询服务部署统计用量
@@ -106,7 +106,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetStatisticFlows(_ input: DescribeFleetStatisticFlowsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetStatisticFlowsResponse {
-        fatalError("DescribeFleetStatisticFlows is no longer available.")
+        fatalError("'DescribeFleetStatisticFlows' is no longer available.")
     }
 
     /// 查询服务部署统计用量
@@ -115,7 +115,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetStatisticFlows(fleetId: String? = nil, beginTime: Date? = nil, endTime: Date? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFleetStatisticFlowsResponse> {
-        fatalError("DescribeFleetStatisticFlows is no longer available.")
+        fatalError("'DescribeFleetStatisticFlows' is no longer available.")
     }
 
     /// 查询服务部署统计用量
@@ -124,6 +124,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetStatisticFlows(fleetId: String? = nil, beginTime: Date? = nil, endTime: Date? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetStatisticFlowsResponse {
-        fatalError("DescribeFleetStatisticFlows is no longer available.")
+        fatalError("'DescribeFleetStatisticFlows' is no longer available.")
     }
 }

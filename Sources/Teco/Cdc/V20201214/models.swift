@@ -437,6 +437,22 @@ extension Cdc {
         }
     }
 
+    /// 带有时间的详细数据。
+    public struct DetailData: TCOutputModel {
+        /// 时间戳
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let timestamps: [Float]?
+
+        /// 对应的具体值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let values: [Float]?
+
+        enum CodingKeys: String, CodingKey {
+            case timestamps = "Timestamps"
+            case values = "Values"
+        }
+    }
+
     /// CDC宿主机的详细信息
     public struct HostInfo: TCOutputModel {
         /// 宿主机IP
@@ -505,12 +521,47 @@ extension Cdc {
         /// 该规格宿主机的数量
         public let count: UInt64
 
+        /// 平均cpu负载百分比
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cpuAverage: Float?
+
+        /// 平均内存使用率百分比
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let memAverage: Float?
+
+        /// 平均网络流量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let netAverage: Float?
+
+        /// cpu详细监控数据
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cpuDetailData: DetailData?
+
+        /// 内存详细数据
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let memDetailData: DetailData?
+
+        /// 网络速率详细数据
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let netRateDetailData: DetailData?
+
+        /// 网速包详细数据
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let netPacketDetailData: DetailData?
+
         enum CodingKeys: String, CodingKey {
             case hostType = "HostType"
             case hostFamily = "HostFamily"
             case cpu = "Cpu"
             case memory = "Memory"
             case count = "Count"
+            case cpuAverage = "CpuAverage"
+            case memAverage = "MemAverage"
+            case netAverage = "NetAverage"
+            case cpuDetailData = "CpuDetailData"
+            case memDetailData = "MemDetailData"
+            case netRateDetailData = "NetRateDetailData"
+            case netPacketDetailData = "NetPacketDetailData"
         }
     }
 

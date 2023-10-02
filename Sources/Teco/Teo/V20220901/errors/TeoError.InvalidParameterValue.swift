@@ -28,6 +28,10 @@ extension TCTeoError {
             case invalidDNSName = "InvalidParameterValue.InvalidDNSName"
             case invalidDomainName = "InvalidParameterValue.InvalidDomainName"
             case invalidDomainStatus = "InvalidParameterValue.InvalidDomainStatus"
+            case invalidProxyOrigin = "InvalidParameterValue.InvalidProxyOrigin"
+            case notAllowedWildcardSharedCNAME = "InvalidParameterValue.NotAllowedWildcardSharedCNAME"
+            case originGroupNotExists = "InvalidParameterValue.OriginGroupNotExists"
+            case sharedCNAMEPrefixNotMatch = "InvalidParameterValue.SharedCNAMEPrefixNotMatch"
             case zoneSameAsName = "InvalidParameterValue.ZoneSameAsName"
             case other = "InvalidParameterValue"
         }
@@ -99,6 +103,25 @@ extension TCTeoError {
             InvalidParameterValue(.invalidDomainStatus)
         }
 
+        /// DNS 代理域名源站错误。
+        public static var invalidProxyOrigin: InvalidParameterValue {
+            InvalidParameterValue(.invalidProxyOrigin)
+        }
+
+        /// 不支持接入泛域名 CNAME
+        public static var notAllowedWildcardSharedCNAME: InvalidParameterValue {
+            InvalidParameterValue(.notAllowedWildcardSharedCNAME)
+        }
+
+        /// 指定的源站组不存在。
+        public static var originGroupNotExists: InvalidParameterValue {
+            InvalidParameterValue(.originGroupNotExists)
+        }
+
+        public static var sharedCNAMEPrefixNotMatch: InvalidParameterValue {
+            InvalidParameterValue(.sharedCNAMEPrefixNotMatch)
+        }
+
         /// 该同名站点标识已被占用，请重新输入。
         ///
         /// 同名站点标识已被使用，用户需重新输入不一样的
@@ -132,6 +155,14 @@ extension TCTeoError {
                 code = .invalidParameterValue_InvalidDomainName
             case .invalidDomainStatus:
                 code = .invalidParameterValue_InvalidDomainStatus
+            case .invalidProxyOrigin:
+                code = .invalidParameterValue_InvalidProxyOrigin
+            case .notAllowedWildcardSharedCNAME:
+                code = .invalidParameterValue_NotAllowedWildcardSharedCNAME
+            case .originGroupNotExists:
+                code = .invalidParameterValue_OriginGroupNotExists
+            case .sharedCNAMEPrefixNotMatch:
+                code = .invalidParameterValue_SharedCNAMEPrefixNotMatch
             case .zoneSameAsName:
                 code = .invalidParameterValue_ZoneSameAsName
             case .other:

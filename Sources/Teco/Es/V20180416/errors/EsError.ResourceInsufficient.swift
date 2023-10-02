@@ -20,8 +20,11 @@ extension TCEsError {
     public struct ResourceInsufficient: TCEsErrorType {
         enum Code: String {
             case balance = "ResourceInsufficient.Balance"
+            case cvm = "ResourceInsufficient.CVM"
             case hiddenZone = "ResourceInsufficient.HiddenZone"
             case subnet = "ResourceInsufficient.Subnet"
+            case subnetIp = "ResourceInsufficient.SubnetIp"
+            case zone = "ResourceInsufficient.Zone"
             case other = "ResourceInsufficient"
         }
 
@@ -52,6 +55,10 @@ extension TCEsError {
             ResourceInsufficient(.balance)
         }
 
+        public static var cvm: ResourceInsufficient {
+            ResourceInsufficient(.cvm)
+        }
+
         /// 隐藏可用区专用主节点资源不足。
         public static var hiddenZone: ResourceInsufficient {
             ResourceInsufficient(.hiddenZone)
@@ -60,6 +67,14 @@ extension TCEsError {
         /// 子网剩余ip数量不足。
         public static var subnet: ResourceInsufficient {
             ResourceInsufficient(.subnet)
+        }
+
+        public static var subnetIp: ResourceInsufficient {
+            ResourceInsufficient(.subnetIp)
+        }
+
+        public static var zone: ResourceInsufficient {
+            ResourceInsufficient(.zone)
         }
 
         /// 资源不足。
@@ -72,10 +87,16 @@ extension TCEsError {
             switch self.error {
             case .balance:
                 code = .resourceInsufficient_Balance
+            case .cvm:
+                code = .resourceInsufficient_CVM
             case .hiddenZone:
                 code = .resourceInsufficient_HiddenZone
             case .subnet:
                 code = .resourceInsufficient_Subnet
+            case .subnetIp:
+                code = .resourceInsufficient_SubnetIp
+            case .zone:
+                code = .resourceInsufficient_Zone
             case .other:
                 code = .resourceInsufficient
             }

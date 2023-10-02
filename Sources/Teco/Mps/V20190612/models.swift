@@ -253,7 +253,7 @@ extension Mps {
 
         /// 时间点截图任务输出
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let snapshotByTimeOffsetTask: MediaProcessTaskSampleSnapshotResult?
+        public let snapshotByTimeOffsetTask: MediaProcessTaskSnapshotByTimeOffsetResult?
 
         /// 采样截图任务输出
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -362,7 +362,11 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let addOnSubtitles: [AddOnSubtitle]?
 
-        public init(definition: UInt64, watermarkSet: [WatermarkInput]? = nil, outputStorage: TaskOutputStorage? = nil, outputObjectPath: String? = nil, subStreamObjectName: String? = nil, segmentObjectName: String? = nil, addOnSubtitles: [AddOnSubtitle]? = nil) {
+        /// Drm信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let drmInfo: DrmInfo?
+
+        public init(definition: UInt64, watermarkSet: [WatermarkInput]? = nil, outputStorage: TaskOutputStorage? = nil, outputObjectPath: String? = nil, subStreamObjectName: String? = nil, segmentObjectName: String? = nil, addOnSubtitles: [AddOnSubtitle]? = nil, drmInfo: DrmInfo? = nil) {
             self.definition = definition
             self.watermarkSet = watermarkSet
             self.outputStorage = outputStorage
@@ -370,6 +374,7 @@ extension Mps {
             self.subStreamObjectName = subStreamObjectName
             self.segmentObjectName = segmentObjectName
             self.addOnSubtitles = addOnSubtitles
+            self.drmInfo = drmInfo
         }
 
         enum CodingKeys: String, CodingKey {
@@ -380,6 +385,7 @@ extension Mps {
             case subStreamObjectName = "SubStreamObjectName"
             case segmentObjectName = "SegmentObjectName"
             case addOnSubtitles = "AddOnSubtitles"
+            case drmInfo = "DrmInfo"
         }
     }
 
@@ -474,7 +480,8 @@ extension Mps {
     public struct AddOnSubtitle: TCInputModel, TCOutputModel {
         /// 插入形式，可选值：
         /// - subtitle-stream：插入字幕轨道
-        /// - close-caption：编码到SEI帧
+        /// - close-caption-708：CEA-708字幕编码到SEI帧
+        /// - close-caption-608：CEA-608字幕编码到SEI帧
         ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
@@ -707,7 +714,8 @@ extension Mps {
         public let highlightSet: [MediaAiAnalysisHighlightItem]
 
         /// 精彩片段的存储位置。
-        public let outputStorage: TaskOutputStorage
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let outputStorage: TaskOutputStorage?
 
         enum CodingKeys: String, CodingKey {
             case highlightSet = "HighlightSet"
@@ -1030,7 +1038,8 @@ extension Mps {
         public let subtitlePath: String
 
         /// 字幕文件存储位置。
-        public let outputStorage: TaskOutputStorage
+        @available(*, deprecated)
+        public let outputStorage: TaskOutputStorage?
 
         enum CodingKeys: String, CodingKey {
             case segmentSet = "SegmentSet"
@@ -1530,15 +1539,11 @@ extension Mps {
         public let segmentSet: [AiRecognitionTaskTransTextSegmentItem]
 
         /// 字幕文件地址。
-        public let subtitlePath: String
-
-        /// 字幕文件存储位置。
-        public let outputStorage: TaskOutputStorage
+        public let subtitlePath: String?
 
         enum CodingKeys: String, CodingKey {
             case segmentSet = "SegmentSet"
             case subtitlePath = "SubtitlePath"
-            case outputStorage = "OutputStorage"
         }
     }
 
@@ -1733,11 +1738,12 @@ extension Mps {
     }
 
     /// 内容审核鉴黄任务输入参数类型
-    public struct AiReviewPornTaskInput: TCInputModel {
+    public struct AiReviewPornTaskInput: TCInputModel, TCOutputModel {
         /// 鉴黄模板 ID。
-        public let definition: UInt64
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let definition: UInt64?
 
-        public init(definition: UInt64) {
+        public init(definition: UInt64? = nil) {
             self.definition = definition
         }
 
@@ -2621,6 +2627,123 @@ extension Mps {
         }
     }
 
+    /// 音量美化配置
+    public struct AudioBeautifyConfig: TCInputModel, TCOutputModel {
+        /// 能力配置开关，可选值：
+        /// - ON：开启；
+        /// - OFF：关闭。
+        ///
+        /// 默认值：ON。
+        public let `switch`: String?
+
+        /// 类型，可多选，可选值：
+        /// - declick：杂音去除
+        /// - deesser：齿音压制
+        ///
+        /// 默认值：declick。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let types: [String]?
+
+        public init(switch: String? = nil, types: [String]? = nil) {
+            self.switch = `switch`
+            self.types = types
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+            case types = "Types"
+        }
+    }
+
+    /// 音频降噪配置
+    public struct AudioDenoiseConfig: TCInputModel, TCOutputModel {
+        /// 能力配置开关，可选值：
+        /// - ON：开启；
+        /// - OFF：关闭。
+        ///
+        /// 默认值：ON。
+        public let `switch`: String?
+
+        public init(switch: String? = nil) {
+            self.switch = `switch`
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+        }
+    }
+
+    /// 音频增强配置
+    public struct AudioEnhanceConfig: TCInputModel, TCOutputModel {
+        /// 音频降噪配置。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let denoise: AudioDenoiseConfig?
+
+        /// 音频分离配置。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let separate: AudioSeparateConfig?
+
+        /// 音量均衡配置。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let volumeBalance: VolumeBalanceConfig?
+
+        /// 音频美化配置。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let beautify: AudioBeautifyConfig?
+
+        public init(denoise: AudioDenoiseConfig? = nil, separate: AudioSeparateConfig? = nil, volumeBalance: VolumeBalanceConfig? = nil, beautify: AudioBeautifyConfig? = nil) {
+            self.denoise = denoise
+            self.separate = separate
+            self.volumeBalance = volumeBalance
+            self.beautify = beautify
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case denoise = "Denoise"
+            case separate = "Separate"
+            case volumeBalance = "VolumeBalance"
+            case beautify = "Beautify"
+        }
+    }
+
+    /// 音频分离配置
+    public struct AudioSeparateConfig: TCInputModel, TCOutputModel {
+        /// 能力配置开关，可选值：
+        /// - ON：开启；
+        /// - OFF：关闭。
+        ///
+        /// 默认值：ON。
+        public let `switch`: String?
+
+        /// 场景类型，可选值：
+        /// - normal：人声背景声场景
+        /// - music：演唱伴奏场景
+        ///
+        /// 默认值：normal。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let type: String?
+
+        /// 输出音轨，可选值：
+        /// - vocal：输出人声
+        /// - background：应用场景为normal时输出背景声，应用场景为music时输出伴奏
+        ///
+        /// 默认值：vocal。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let track: String?
+
+        public init(switch: String? = nil, type: String? = nil, track: String? = nil) {
+            self.switch = `switch`
+            self.type = type
+            self.track = track
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+            case type = "Type"
+            case track = "Track"
+        }
+    }
+
     /// 音频流配置参数
     public struct AudioTemplateInfo: TCInputModel, TCOutputModel {
         /// 音频流的编码格式。
@@ -2646,7 +2769,7 @@ extension Mps {
 
         /// 音频流的码率，取值范围：0 和 [26, 256]，单位：kbps。
         /// 当取值为 0，表示音频码率和原始音频保持一致。
-        public let bitrate: UInt64
+        public let bitrate: Int64
 
         /// 音频流的采样率，可选值：
         /// - 32000
@@ -2665,7 +2788,7 @@ extension Mps {
         /// 默认值：2。
         public let audioChannel: Int64?
 
-        public init(codec: String, bitrate: UInt64, sampleRate: UInt64, audioChannel: Int64? = nil) {
+        public init(codec: String, bitrate: Int64, sampleRate: UInt64, audioChannel: Int64? = nil) {
             self.codec = codec
             self.bitrate = bitrate
             self.sampleRate = sampleRate
@@ -2708,7 +2831,7 @@ extension Mps {
 
         /// 音频流的码率，取值范围：0 和 [26, 256]，单位：kbps。 当取值为 0，表示音频码率和原始音频保持一致。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let bitrate: UInt64?
+        public let bitrate: Int64?
 
         /// 音频流的采样率，可选值：
         /// - 32000
@@ -2732,7 +2855,7 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let streamSelects: [Int64]?
 
-        public init(codec: String? = nil, bitrate: UInt64? = nil, sampleRate: UInt64? = nil, audioChannel: Int64? = nil, streamSelects: [Int64]? = nil) {
+        public init(codec: String? = nil, bitrate: Int64? = nil, sampleRate: UInt64? = nil, audioChannel: Int64? = nil, streamSelects: [Int64]? = nil) {
             self.codec = codec
             self.bitrate = bitrate
             self.sampleRate = sampleRate
@@ -2800,20 +2923,24 @@ extension Mps {
     }
 
     /// Aws SQS 队列信息
-    public struct AwsSQS: TCInputModel {
+    public struct AwsSQS: TCInputModel, TCOutputModel {
         /// SQS 队列区域。
-        public let sqsRegion: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sqsRegion: String?
 
         /// SQS 队列名称。
-        public let sqsQueueName: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sqsQueueName: String?
 
         /// 读写SQS的秘钥id。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let s3SecretId: String?
 
         /// 读写SQS的秘钥key。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let s3SecretKey: String?
 
-        public init(sqsRegion: String, sqsQueueName: String, s3SecretId: String? = nil, s3SecretKey: String? = nil) {
+        public init(sqsRegion: String? = nil, sqsQueueName: String? = nil, s3SecretId: String? = nil, s3SecretKey: String? = nil) {
             self.sqsRegion = sqsRegion
             self.sqsQueueName = sqsQueueName
             self.s3SecretId = s3SecretId
@@ -2886,6 +3013,767 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case type = "Type"
+        }
+    }
+
+    /// 视频编辑/合成任务 音频元素信息。
+    public struct ComposeAudioItem: TCInputModel {
+        /// 元素对应媒体信息。
+        public let sourceMedia: ComposeSourceMedia
+
+        /// 元素在轨道时间轴上的时间信息，不填则紧跟上一个元素。
+        public let trackTime: ComposeTrackTime?
+
+        /// 对音频进行操作，如静音等。
+        public let audioOperations: [ComposeAudioOperation]?
+
+        public init(sourceMedia: ComposeSourceMedia, trackTime: ComposeTrackTime? = nil, audioOperations: [ComposeAudioOperation]? = nil) {
+            self.sourceMedia = sourceMedia
+            self.trackTime = trackTime
+            self.audioOperations = audioOperations
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case sourceMedia = "SourceMedia"
+            case trackTime = "TrackTime"
+            case audioOperations = "AudioOperations"
+        }
+    }
+
+    /// 视频编辑/合成任务 音频操作。
+    public struct ComposeAudioOperation: TCInputModel {
+        /// 音频操作类型，取值有：
+        /// - Volume：音量调节。
+        public let type: String
+
+        /// 当 Type = Volume 时有效。音量调节参数，取值范围: 0~5。
+        /// - 0 表示静音。
+        /// - 小于1 表示降低音量。
+        /// - 1 表示不变。
+        /// - 大于1表示升高音量。
+        public let volume: Float?
+
+        public init(type: String, volume: Float? = nil) {
+            self.type = type
+            self.volume = volume
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case volume = "Volume"
+        }
+    }
+
+    /// 视频编辑/合成任务 音频流信息。
+    public struct ComposeAudioStream: TCInputModel {
+        /// 音频流的编码方式，可选值：
+        /// - AAC：AAC 编码（默认），用于容器为 mp4。
+        /// - MP3：mp3 编码，用于容器为 mp3。
+        public let codec: String?
+
+        /// 音频流的采样率，单位：Hz，可选值：
+        /// - 16000（默认）
+        /// - 32000
+        /// - 44100
+        /// - 48000
+        public let sampleRate: Int64?
+
+        /// 声道数，可选值：
+        /// - 1：单声道 。
+        /// - 2：双声道（默认）。
+        public let audioChannel: Int64?
+
+        public init(codec: String? = nil, sampleRate: Int64? = nil, audioChannel: Int64? = nil) {
+            self.codec = codec
+            self.sampleRate = sampleRate
+            self.audioChannel = audioChannel
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case codec = "Codec"
+            case sampleRate = "SampleRate"
+            case audioChannel = "AudioChannel"
+        }
+    }
+
+    /// 视频编辑/合成任务画布信息。
+    public struct ComposeCanvas: TCInputModel {
+        /// 背景颜色对应的 RGB 参考值，取值格式： #RRGGBB，如 #F0F0F0 。
+        /// 默认值：#000000（黑色）。
+        public let color: String?
+
+        /// 画布宽度，即输出视频的宽度，取值范围：0~ 3840，单位：px。
+        /// 默认值：0，表示和第一个视频宽度一致。
+        public let width: Int64?
+
+        /// 画布高度，即输出视频的高度，取值范围：0~ 3840，单位：px。
+        /// 默认值：0，表示和第一个视频高度一致。
+        public let height: Int64?
+
+        public init(color: String? = nil, width: Int64? = nil, height: Int64? = nil) {
+            self.color = color
+            self.width = width
+            self.height = height
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case color = "Color"
+            case width = "Width"
+            case height = "Height"
+        }
+    }
+
+    /// 视频编辑/合成任务 空白占位元素信息。
+    public struct ComposeEmptyItem: TCInputModel {
+        /// 元素时长，时间支持：
+        /// - 以 s 结尾，表示时间点单位为秒，如 3.5s 表示时间点为第3.5秒。
+        public let duration: String
+
+        public init(duration: String) {
+            self.duration = duration
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case duration = "Duration"
+        }
+    }
+
+    /// 视频编辑/合成任务 图片元素信息。
+    public struct ComposeImageItem: TCInputModel {
+        /// 元素对应媒体信息。
+        public let sourceMedia: ComposeSourceMedia
+
+        /// 元素在轨道时间轴上的时间信息，不填则紧跟上一个元素。
+        public let trackTime: ComposeTrackTime?
+
+        /// 元素中心点距离画布原点的水平位置。支持 %、px 两种格式：
+        /// - 当字符串以 % 结尾，表示元素 XPos 为画布宽度指定百分比的位置，如 10% 表示 XPos 为画布宽度的 10%。
+        /// - 当字符串以 px 结尾，表示元素 XPos 单位为像素，如 100px 表示 XPos 为100像素。
+        ///
+        /// 默认：50%。
+        public let xPos: String?
+
+        /// 元素中心点距离画布原点的垂直位置。支持 %、px 两种格式：
+        /// - 当字符串以 % 结尾，表示元素 YPos 为画布高度指定百分比的位置，如 10% 表示 YPos 为画布高度的 10%。
+        /// - 当字符串以 px 结尾，表示元素 YPos 单位为像素，如 100px 表示 YPos 为100像素。
+        ///
+        /// 默认：50%。
+        public let yPos: String?
+
+        /// 视频片段的宽度。支持 %、px 两种格式：
+        /// - 当字符串以 % 结尾，表示元素 Width 为画布宽度的百分比大小，如 10% 表示 Width 为画布宽度的 10%。
+        /// - 当字符串以 px 结尾，表示元素 Width 单位为像素，如 100px 表示 Width 为100像素。
+        ///
+        /// 为空（或0） 的场景：
+        /// - 当 Width、Height 均为空，则 Width 和 Height 取源素材本身的 Width、Height。
+        /// - 当 Width 为空，Height 非空，则 Width 按源素材比例缩放。
+        /// - 当 Width 非空，Height 为空，则 Height 按源素材比例缩放。
+        public let width: String?
+
+        /// 元素的高度。支持 %、px 两种格式：
+        /// - 当字符串以 % 结尾，表示元素 Height 为画布高度的百分比大小，如 10% 表示 Height 为画布高度的 10%。
+        /// - 当字符串以 px 结尾，表示元素 Height 单位为像素，如 100px 表示 Height 为100像素。
+        ///
+        /// 为空（或0） 的场景：
+        /// - 当 Width、Height 均为空，则 Width 和 Height 取源素材本身的 Width、Height。
+        /// - 当 Width 为空，Height 非空，则 Width 按源素材比例缩放。
+        /// - 当 Width 非空，Height 为空，则 Height 按源素材比例缩放。
+        public let height: String?
+
+        /// 对图像画面进行的操作，如图像旋转等。
+        public let imageOperations: [ComposeImageOperation]?
+
+        public init(sourceMedia: ComposeSourceMedia, trackTime: ComposeTrackTime? = nil, xPos: String? = nil, yPos: String? = nil, width: String? = nil, height: String? = nil, imageOperations: [ComposeImageOperation]? = nil) {
+            self.sourceMedia = sourceMedia
+            self.trackTime = trackTime
+            self.xPos = xPos
+            self.yPos = yPos
+            self.width = width
+            self.height = height
+            self.imageOperations = imageOperations
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case sourceMedia = "SourceMedia"
+            case trackTime = "TrackTime"
+            case xPos = "XPos"
+            case yPos = "YPos"
+            case width = "Width"
+            case height = "Height"
+            case imageOperations = "ImageOperations"
+        }
+    }
+
+    /// 视频编辑/合成任务 视频图像转换操作。
+    public struct ComposeImageOperation: TCInputModel {
+        /// 类型，取值有：
+        /// - Rotate：图像旋转。
+        /// - Flip：图像翻转。
+        public let type: String
+
+        /// 当 Type = Rotate 时有效。图像以中心点为原点进行旋转的角度，取值范围0~360。
+        public let rotateAngle: Float?
+
+        /// 当 Type = Flip 时有效。图像翻转动作，取值有：
+        /// - Horizental：水平翻转，即左右镜像。
+        /// - Vertical：垂直翻转，即上下镜像。
+        public let flipType: String?
+
+        public init(type: String, rotateAngle: Float? = nil, flipType: String? = nil) {
+            self.type = type
+            self.rotateAngle = rotateAngle
+            self.flipType = flipType
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case rotateAngle = "RotateAngle"
+            case flipType = "FlipType"
+        }
+    }
+
+    /// 视频编辑/合成任务 信息。
+    ///
+    /// 关于 轨道、元素、时间轴 关系示意图：
+    ///
+    /// ![image](https://ie-mps-1258344699.cos.ap-nanjing.tencentcos.cn/common/cloud/EditMedia-Compose-Track-Item.png)
+    public struct ComposeMediaConfig: TCInputModel {
+        /// 合成目标视频信息。
+        public let targetInfo: ComposeTargetInfo?
+
+        /// 合成目标视频的画布信息。
+        public let canvas: ComposeCanvas?
+
+        /// 全局样式，和轨道 Tracks 配合使用，用于定于样式，如字幕样式。
+        public let styles: [ComposeStyles]?
+
+        /// 用于描述合成视频的轨道列表，包括：视频、音频、图片、文字等元素组成的多个轨道信息。关于轨道和时间：
+        ///
+        /// - 轨道时间轴即为目标视频时间轴。
+        /// - 时间轴上相同时间点的不同轨道上的元素会重叠：
+        /// - 视频、图片、文字：按轨道顺序进行图像的叠加，轨道顺序靠前的在上面。
+        /// - 音频 ：进行混音。
+        /// 注意：同一轨道中各个元素（除字幕元素外）的轨道时间不能重叠。
+        public let tracks: [ComposeMediaTrack]?
+
+        public init(targetInfo: ComposeTargetInfo? = nil, canvas: ComposeCanvas? = nil, styles: [ComposeStyles]? = nil, tracks: [ComposeMediaTrack]? = nil) {
+            self.targetInfo = targetInfo
+            self.canvas = canvas
+            self.styles = styles
+            self.tracks = tracks
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case targetInfo = "TargetInfo"
+            case canvas = "Canvas"
+            case styles = "Styles"
+            case tracks = "Tracks"
+        }
+    }
+
+    /// 视频编辑/合成任务 轨道元素信息。
+    public struct ComposeMediaItem: TCInputModel {
+        /// 元素类型。取值有：
+        /// - Video：视频元素。
+        /// - Audio：音频元素。
+        /// - Image：图片元素。
+        /// - Transition：转场元素。
+        /// - Subtitle：字幕元素。
+        /// - Empty：空白元素。
+        public let type: String
+
+        /// 视频元素，当 Type = Video 时有效。
+        public let video: ComposeVideoItem?
+
+        /// 音频元素，当 Type = Audio 时有效。
+        public let audio: ComposeAudioItem?
+
+        /// 图片元素，当 Type = Image 时有效。
+        public let image: ComposeImageItem?
+
+        /// 转场元素，当 Type = Transition 时有效。
+        public let transition: ComposeTransitionItem?
+
+        /// 字幕元素，当 Type = Subtitle 是有效。
+        public let subtitle: ComposeSubtitleItem?
+
+        /// 空白元素，当 Type = Empty 时有效。用于时间轴的占位。
+        public let empty: ComposeEmptyItem?
+
+        public init(type: String, video: ComposeVideoItem? = nil, audio: ComposeAudioItem? = nil, image: ComposeImageItem? = nil, transition: ComposeTransitionItem? = nil, subtitle: ComposeSubtitleItem? = nil, empty: ComposeEmptyItem? = nil) {
+            self.type = type
+            self.video = video
+            self.audio = audio
+            self.image = image
+            self.transition = transition
+            self.subtitle = subtitle
+            self.empty = empty
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case video = "Video"
+            case audio = "Audio"
+            case image = "Image"
+            case transition = "Transition"
+            case subtitle = "Subtitle"
+            case empty = "Empty"
+        }
+    }
+
+    /// 视频编辑/合成任务 轨道信息。
+    public struct ComposeMediaTrack: TCInputModel {
+        /// 轨道类型，取值有：
+        /// - Video ：视频轨道。视频轨道可由以下元素组成：
+        /// - Video 元素
+        /// - Image 元素
+        /// - Transition 元素
+        /// - Empty 元素
+        /// - Audio ：音频轨道。音频轨道可由以下元素组成：
+        /// - Audio 元素
+        /// - Transition 元素
+        /// - Empty 元素
+        /// - Title：文字轨道。文字轨道可由以下元素组成：
+        /// - Subtitle 元素
+        public let type: String
+
+        /// 轨道上的元素列表。
+        public let items: [ComposeMediaItem]
+
+        public init(type: String, items: [ComposeMediaItem]) {
+            self.type = type
+            self.items = items
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case items = "Items"
+        }
+    }
+
+    /// 视频编辑/合成任务  媒体素材源信息。
+    public struct ComposeSourceMedia: TCInputModel {
+        /// 媒体对应的素材ID，即 FileInfos 列表中对应素材的 ID。
+        public let fileId: String
+
+        /// 媒体位于素材的起始时间，时间点支持 s、% 两种格式：
+        /// - 当字符串以 s 结尾，表示时间点单位为秒，如 3.5s 表示时间点为第3.5秒；
+        /// - 当字符串以 % 结尾，表示时间点为素材时长的百分比大小，如10%表示时间点为素材第10% 的时刻。
+        ///
+        /// 默认：0s
+        public let startTime: String?
+
+        /// 媒体位于素材的结束时间，和 StartTime 构成媒体在源素材的时间区间，时间点支持 s、% 两种格式：
+        /// - 当字符串以 s 结尾，表示时间点单位为秒，如 3.5s 表示时间点为第3.5秒；
+        /// - 当字符串以 % 结尾，表示时间点为素材时长的百分比大小，如10%表示时间点为素材第10%的时间。
+        ///
+        /// 默认：如果对应轨道时长有设置，则默认轨道时长，否则为素材时长，无时长的素材默认为 1 秒。
+        /// 注意：至少需要大于 StartTime 0.02 秒。
+        public let endTime: String?
+
+        public init(fileId: String, startTime: String? = nil, endTime: String? = nil) {
+            self.fileId = fileId
+            self.startTime = startTime
+            self.endTime = endTime
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case fileId = "FileId"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+        }
+    }
+
+    /// 视频编辑/合成任务 样式信息。
+    public struct ComposeStyles: TCInputModel {
+        /// 样式 Id，用于和轨道元素中的样式关联。
+        /// 注意：允许字母、数字、-、_ 组合，最长 32 字符。
+        public let id: String
+
+        /// 样式类型，取值有：
+        /// - Subtitle：字幕样式。
+        public let type: String
+
+        /// 字幕样式信息，当 Type = Subtitle 时有效。
+        public let subtitle: ComposeSubtitleStyle?
+
+        public init(id: String, type: String, subtitle: ComposeSubtitleStyle? = nil) {
+            self.id = id
+            self.type = type
+            self.subtitle = subtitle
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case type = "Type"
+            case subtitle = "Subtitle"
+        }
+    }
+
+    /// 视频编辑/合成任务 字幕元素信息。
+    public struct ComposeSubtitleItem: TCInputModel {
+        /// 字幕样式，Styles 列表中对应的 Subtitle样式的 ID。
+        public let styleId: String
+
+        /// 字幕文本。
+        public let text: String
+
+        /// 元素在轨道时间轴上的时间信息，不填则紧跟上一个元素。
+        public let trackTime: ComposeTrackTime?
+
+        public init(styleId: String, text: String, trackTime: ComposeTrackTime? = nil) {
+            self.styleId = styleId
+            self.text = text
+            self.trackTime = trackTime
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case styleId = "StyleId"
+            case text = "Text"
+            case trackTime = "TrackTime"
+        }
+    }
+
+    /// 视频编辑/合成任务 字幕样式。
+    public struct ComposeSubtitleStyle: TCInputModel {
+        /// 字幕高度。支持 %、px 两种格式：
+        /// - 当字符串以 % 结尾，表示为画布高度的百分比大小，如 10% 表示为画布高度的 10%。
+        /// - 当字符串以 px 结尾，表示单位为像素，如 100px 表示为100像素。
+        ///
+        /// 默认为 FontSize 大小。
+        public let height: String?
+
+        /// 字幕距离下边框距离，支持 %、px 两种格式：
+        /// - 当字符串以 % 结尾，表示为画布高度的百分比大小，如 10% 表示为画布高度的 10%。
+        /// - 当字符串以 px 结尾，表示单位为像素，如 100px 表示为100像素。
+        ///
+        /// 默认：0px
+        public let marginBottom: String?
+
+        /// 字体类型，支持：
+        /// - SimHei：黑体（默认）。
+        /// - SimSun：宋体。
+        public let fontType: String?
+
+        /// 字体大小，支持 %、px 两种格式：
+        /// - 当字符串以 % 结尾，表示为画布高度的百分比大小，如 10% 表示为画布高度的 10%。
+        /// - 当字符串以 px 结尾，表示单位为像素，如 100px 表示为100像素。
+        ///
+        /// 默认：2%
+        public let fontSize: String?
+
+        /// 是否使用粗体，和字体相关，可选值：
+        /// - 0：否（默认）。
+        /// - 1：是。
+        public let fontBold: Int64?
+
+        /// 是否使用斜体，和字体相关，可选值：
+        /// - 0：否（默认）。
+        /// - 1：是。
+        public let fontItalic: Int64?
+
+        /// 字体颜色，格式：#RRGGBBAA。
+        /// 默认值：0x000000FF（黑色）。
+        /// 注意：其中 AA 部分指的是透明度，为可选。
+        public let fontColor: String?
+
+        /// 文字对齐方式：
+        /// - Center：居中（默认）。
+        /// - Left：左对齐。
+        /// - Right：右对齐。
+        public let fontAlign: String?
+
+        /// 用于字幕对齐留白：
+        /// - FontAlign=Left 时，表示距离左边距离。
+        /// - FontAlign=Right时，表示距离右边距离。
+        ///
+        /// 支持 %、px 两种格式：
+        /// - 当字符串以 % 结尾，表示为画布宽度的百分比大小，如 10% 表示为画布宽度的 10%。
+        /// - 当字符串以 px 结尾，表示单位为像素，如 100px 表示为100像素。
+        public let fontAlignMargin: String?
+
+        /// 字体边框宽度，支持 %、px 两种格式：
+        /// - 当字符串以 % 结尾，表示为画布高度的百分比大小，如 10% 表示为画布高度的 10%。
+        /// - 当字符串以 px 结尾，表示单位为像素，如 100px 表示为100像素。
+        ///
+        /// 默认： 0，表示不需要边框。
+        public let borderWidth: String?
+
+        /// 边框颜色，当 BorderWidth 不为 0 时生效，其值格式和 FontColor 一致。
+        public let borderColor: String?
+
+        /// 文字底色，其值格式和 FontColor 一致。
+        /// 默认为空， 表示不使用底色。
+        public let bottomColor: String?
+
+        public init(height: String? = nil, marginBottom: String? = nil, fontType: String? = nil, fontSize: String? = nil, fontBold: Int64? = nil, fontItalic: Int64? = nil, fontColor: String? = nil, fontAlign: String? = nil, fontAlignMargin: String? = nil, borderWidth: String? = nil, borderColor: String? = nil, bottomColor: String? = nil) {
+            self.height = height
+            self.marginBottom = marginBottom
+            self.fontType = fontType
+            self.fontSize = fontSize
+            self.fontBold = fontBold
+            self.fontItalic = fontItalic
+            self.fontColor = fontColor
+            self.fontAlign = fontAlign
+            self.fontAlignMargin = fontAlignMargin
+            self.borderWidth = borderWidth
+            self.borderColor = borderColor
+            self.bottomColor = bottomColor
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case height = "Height"
+            case marginBottom = "MarginBottom"
+            case fontType = "FontType"
+            case fontSize = "FontSize"
+            case fontBold = "FontBold"
+            case fontItalic = "FontItalic"
+            case fontColor = "FontColor"
+            case fontAlign = "FontAlign"
+            case fontAlignMargin = "FontAlignMargin"
+            case borderWidth = "BorderWidth"
+            case borderColor = "BorderColor"
+            case bottomColor = "BottomColor"
+        }
+    }
+
+    /// 视频编辑/合成任务 目标视频信息。
+    public struct ComposeTargetInfo: TCInputModel {
+        /// 封装容器格式，可选值：
+        /// - mp4：视频文件（默认）。
+        /// - mp3：纯音频文件。
+        public let container: String?
+
+        /// 是否去除视频数据，可选值：
+        /// - 0：保留（默认）。
+        /// - 1：去除。
+        public let removeVideo: Int64?
+
+        /// 是否去除音频数据，可选值：
+        /// - 0：保留（默认）。
+        /// - 1：去除。
+        public let removeAudio: Int64?
+
+        /// 输出视频流信息。
+        public let videoStream: ComposeVideoStream?
+
+        /// 输出音频流信息。
+        public let audioStream: ComposeAudioStream?
+
+        public init(container: String? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil, videoStream: ComposeVideoStream? = nil, audioStream: ComposeAudioStream? = nil) {
+            self.container = container
+            self.removeVideo = removeVideo
+            self.removeAudio = removeAudio
+            self.videoStream = videoStream
+            self.audioStream = audioStream
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case container = "Container"
+            case removeVideo = "RemoveVideo"
+            case removeAudio = "RemoveAudio"
+            case videoStream = "VideoStream"
+            case audioStream = "AudioStream"
+        }
+    }
+
+    /// 视频编辑/合成任务 对应元素在目标视频轨道上的时间信息。
+    public struct ComposeTrackTime: TCInputModel {
+        /// 元素在轨道上的起始时间，时间点支持：
+        /// - 以 s 结尾，表示时间点单位为秒，如 3.5s 表示时间点为第3.5秒；
+        ///
+        /// 注意：不填则默认为前一个元素的结束时间，此时可以通过 ComposeEmptyItem 元素来进行占位，实现轨道起始时间设置。
+        public let start: String?
+
+        /// 元素时长，时间支持：
+        /// - 以 s 结尾，表示时间点单位为秒，如 3.5s 表示时间点为第3.5秒；
+        ///
+        /// 默认：取对应 ComposeSourceMedia 媒体的有效时长（即 EndTime-StartTime），没有 ComposeSourceMedia 则默认为 1 秒。
+        public let duration: String?
+
+        public init(start: String? = nil, duration: String? = nil) {
+            self.start = start
+            self.duration = duration
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case start = "Start"
+            case duration = "Duration"
+        }
+    }
+
+    /// 视频编辑/合成任务 转场元素信息。
+    public struct ComposeTransitionItem: TCInputModel {
+        /// 元素时长，时间支持：
+        /// - 以 s 结尾，表示时间点单位为秒，如 3s 表示时间点为第3秒。
+        ///
+        /// 默认：1s
+        /// 注意：
+        /// - 必须是整数s，否则向下取整。
+        /// - 转场 前后必须紧挨着两个不为 Empty 的元素。
+        /// - 转场 Duration 必须小于前一个元素的 Duration，同时必须小于后一个元素的 Duration。
+        /// - 进行转场处理的两个元素，第二个元素在轨道上的起始时间会自动调整为前一个元素的结束时间减去转场的 Duration。
+        public let duration: String?
+
+        /// 转场操作列表。
+        /// 默认：淡入淡出。
+        /// 注意：图像转场操作和音频转场操作各自最多支持一个。
+        public let transitions: [ComposeTransitionOperation]?
+
+        public init(duration: String? = nil, transitions: [ComposeTransitionOperation]? = nil) {
+            self.duration = duration
+            self.transitions = transitions
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case duration = "Duration"
+            case transitions = "Transitions"
+        }
+    }
+
+    /// 视频编辑/合成任务 元素转场信息。
+    public struct ComposeTransitionOperation: TCInputModel {
+        /// 转场类型。
+        ///
+        /// 图像的转场操作，用于两个视频片段图像间的转场处理：
+        /// - ImageFadeInFadeOut：图像淡入淡出。
+        /// - BowTieHorizontal：水平蝴蝶结。
+        /// - BowTieVertical：垂直蝴蝶结。
+        /// - ButterflyWaveScrawler：晃动。
+        /// - Cannabisleaf：枫叶。
+        /// - Circle：弧形收放。
+        /// - CircleCrop：圆环聚拢。
+        /// - Circleopen：椭圆聚拢。
+        /// - Crosswarp：横向翘曲。
+        /// - Cube：立方体。
+        /// - DoomScreenTransition：幕布。
+        /// - Doorway：门廊。
+        /// - Dreamy：波浪。
+        /// - DreamyZoom：水平聚拢。
+        /// - FilmBurn：火烧云。
+        /// - GlitchMemories：抖动。
+        /// - Heart：心形。
+        /// - InvertedPageCurl：翻页。
+        /// - Luma：腐蚀。
+        /// - Mosaic：九宫格。
+        /// - Pinwheel：风车。
+        /// - PolarFunction：椭圆扩散。
+        /// - PolkaDotsCurtain：弧形扩散。
+        /// - Radial：雷达扫描。
+        /// - RotateScaleFade：上下收放。
+        /// - Squeeze：上下聚拢。
+        /// - Swap：放大切换。
+        /// - Swirl：螺旋。
+        /// - UndulatingBurnOutSwirl：水流蔓延。
+        /// - Windowblinds：百叶窗。
+        /// - WipeDown：向下收起。
+        /// - WipeLeft：向左收起。
+        /// - WipeRight：向右收起。
+        /// - WipeUp：向上收起。
+        /// - ZoomInCircles：水波纹。
+        ///
+        /// 音频的转场操作，用于两个音频片段间的转场处理：
+        /// - AudioFadeInFadeOut：声音淡入淡出。
+        public let type: String
+
+        public init(type: String) {
+            self.type = type
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+        }
+    }
+
+    /// 视频编辑/合成任务 视频元素信息。
+    public struct ComposeVideoItem: TCInputModel {
+        /// 元素对应媒体信息。
+        public let sourceMedia: ComposeSourceMedia
+
+        /// 元素在轨道时间轴上的时间信息，不填则紧跟上一个元素。
+        public let trackTime: ComposeTrackTime?
+
+        /// 元素中心点距离画布原点的水平位置。支持 %、px 两种格式：
+        /// - 当字符串以 % 结尾，表示元素 XPos 为画布宽度指定百分比的位置，如 10% 表示 XPos 为画布宽度的 10%。
+        /// - 当字符串以 px 结尾，表示元素 XPos 单位为像素，如 100px 表示 XPos 为100像素。
+        ///
+        /// 默认：50%。
+        public let xPos: String?
+
+        /// 元素中心点距离画布原点的垂直位置。支持 %、px 两种格式：
+        /// - 当字符串以 % 结尾，表示元素 YPos 为画布高度指定百分比的位置，如 10% 表示 YPos 为画布高度的 10%。
+        /// - 当字符串以 px 结尾，表示元素 YPos 单位为像素，如 100px 表示 YPos 为100像素。
+        ///
+        /// 默认：50%。
+        public let yPos: String?
+
+        /// 视频片段的宽度。支持 %、px 两种格式：
+        /// - 当字符串以 % 结尾，表示元素 Width 为画布宽度的百分比大小，如 10% 表示 Width 为画布宽度的 10%。
+        /// - 当字符串以 px 结尾，表示元素 Width 单位为像素，如 100px 表示 Width 为100像素。
+        ///
+        /// 为空（或0） 的场景：
+        /// - 当 Width、Height 均为空，则 Width 和 Height 取源素材本身的 Width、Height。
+        /// - 当 Width 为空，Height 非空，则 Width 按源素材比例缩放。
+        /// - 当 Width 非空，Height 为空，则 Height 按源素材比例缩放。
+        public let width: String?
+
+        /// 元素的高度。支持 %、px 两种格式：
+        /// - 当字符串以 % 结尾，表示元素 Height 为画布高度的百分比大小，如 10% 表示 Height 为画布高度的 10%。
+        /// - 当字符串以 px 结尾，表示元素 Height 单位为像素，如 100px 表示 Height 为100像素。
+        ///
+        /// 为空（或0） 的场景：
+        /// - 当 Width、Height 均为空，则 Width 和 Height 取源素材本身的 Width、Height。
+        /// - 当 Width 为空，Height 非空，则 Width 按源素材比例缩放。
+        /// - 当 Width 非空，Height 为空，则 Height 按源素材比例缩放。
+        public let height: String?
+
+        /// 对图像画面进行的操作，如图像旋转等。
+        public let imageOperations: [ComposeImageOperation]?
+
+        /// 对音频进行操作，如静音等。
+        public let audioOperations: [ComposeAudioOperation]?
+
+        public init(sourceMedia: ComposeSourceMedia, trackTime: ComposeTrackTime? = nil, xPos: String? = nil, yPos: String? = nil, width: String? = nil, height: String? = nil, imageOperations: [ComposeImageOperation]? = nil, audioOperations: [ComposeAudioOperation]? = nil) {
+            self.sourceMedia = sourceMedia
+            self.trackTime = trackTime
+            self.xPos = xPos
+            self.yPos = yPos
+            self.width = width
+            self.height = height
+            self.imageOperations = imageOperations
+            self.audioOperations = audioOperations
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case sourceMedia = "SourceMedia"
+            case trackTime = "TrackTime"
+            case xPos = "XPos"
+            case yPos = "YPos"
+            case width = "Width"
+            case height = "Height"
+            case imageOperations = "ImageOperations"
+            case audioOperations = "AudioOperations"
+        }
+    }
+
+    /// 视频编辑/合成任务 视频流信息。
+    public struct ComposeVideoStream: TCInputModel {
+        /// 视频流的编码方式，可选值：
+        /// - H.264：H.264 编码（默认）。
+        public let codec: String?
+
+        /// 视频帧率，取值范围：[0, 60]，单位：Hz。
+        /// 默认值：0，表示和第一个视频帧率一致。
+        public let fps: Int64?
+
+        public init(codec: String? = nil, fps: Int64? = nil) {
+            self.codec = codec
+            self.fps = fps
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case codec = "Codec"
+            case fps = "Fps"
         }
     }
 
@@ -3089,7 +3977,10 @@ extension Mps {
         /// 延播平滑吐流配置信息。
         public let resilientStream: ResilientStreamConf?
 
-        public init(inputName: String, protocol: String, description: String? = nil, allowIpList: [String]? = nil, srtSettings: CreateInputSRTSettings? = nil, rtpSettings: CreateInputRTPSettings? = nil, failOver: String? = nil, rtmpPullSettings: CreateInputRTMPPullSettings? = nil, rtspPullSettings: CreateInputRTSPPullSettings? = nil, hlsPullSettings: CreateInputHLSPullSettings? = nil, resilientStream: ResilientStreamConf? = nil) {
+        /// 绑定的输入安全组 ID。
+        public let securityGroupIds: [String]?
+
+        public init(inputName: String, protocol: String, description: String? = nil, allowIpList: [String]? = nil, srtSettings: CreateInputSRTSettings? = nil, rtpSettings: CreateInputRTPSettings? = nil, failOver: String? = nil, rtmpPullSettings: CreateInputRTMPPullSettings? = nil, rtspPullSettings: CreateInputRTSPPullSettings? = nil, hlsPullSettings: CreateInputHLSPullSettings? = nil, resilientStream: ResilientStreamConf? = nil, securityGroupIds: [String]? = nil) {
             self.inputName = inputName
             self.protocol = `protocol`
             self.description = description
@@ -3101,6 +3992,7 @@ extension Mps {
             self.rtspPullSettings = rtspPullSettings
             self.hlsPullSettings = hlsPullSettings
             self.resilientStream = resilientStream
+            self.securityGroupIds = securityGroupIds
         }
 
         enum CodingKeys: String, CodingKey {
@@ -3115,6 +4007,7 @@ extension Mps {
             case rtspPullSettings = "RTSPPullSettings"
             case hlsPullSettings = "HLSPullSettings"
             case resilientStream = "ResilientStream"
+            case securityGroupIds = "SecurityGroupIds"
         }
     }
 
@@ -3263,7 +4156,10 @@ extension Mps {
         /// 最大拉流并发数，最大4，默认4。
         public let maxConcurrent: UInt64?
 
-        public init(outputName: String, description: String, protocol: String, outputRegion: String, srtSettings: CreateOutputSRTSettings? = nil, rtmpSettings: CreateOutputRTMPSettings? = nil, rtpSettings: CreateOutputInfoRTPSettings? = nil, allowIpList: [String]? = nil, maxConcurrent: UInt64? = nil) {
+        /// 绑定的输入安全组 ID。
+        public let securityGroupIds: [String]?
+
+        public init(outputName: String, description: String, protocol: String, outputRegion: String, srtSettings: CreateOutputSRTSettings? = nil, rtmpSettings: CreateOutputRTMPSettings? = nil, rtpSettings: CreateOutputInfoRTPSettings? = nil, allowIpList: [String]? = nil, maxConcurrent: UInt64? = nil, securityGroupIds: [String]? = nil) {
             self.outputName = outputName
             self.description = description
             self.protocol = `protocol`
@@ -3273,6 +4169,7 @@ extension Mps {
             self.rtpSettings = rtpSettings
             self.allowIpList = allowIpList
             self.maxConcurrent = maxConcurrent
+            self.securityGroupIds = securityGroupIds
         }
 
         enum CodingKeys: String, CodingKey {
@@ -3285,6 +4182,7 @@ extension Mps {
             case rtpSettings = "RTPSettings"
             case allowIpList = "AllowIpList"
             case maxConcurrent = "MaxConcurrent"
+            case securityGroupIds = "SecurityGroupIds"
         }
     }
 
@@ -3599,6 +4497,10 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resilientStream: ResilientStreamConf?
 
+        /// 绑定的输入安全组 ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let securityGroupIds: [String]?
+
         enum CodingKeys: String, CodingKey {
             case inputId = "InputId"
             case inputName = "InputName"
@@ -3615,6 +4517,7 @@ extension Mps {
             case rtspPullSettings = "RTSPPullSettings"
             case hlsPullSettings = "HLSPullSettings"
             case resilientStream = "ResilientStream"
+            case securityGroupIds = "SecurityGroupIds"
         }
     }
 
@@ -3777,7 +4680,11 @@ extension Mps {
         public let hlsPullSettings: DescribeOutputHLSPullSettings?
 
         /// 最大拉流并发数，最大为4，默认4。
-        public let maxConcurrent: UInt64?
+        public let maxConcurrent: UInt64
+
+        /// 绑定的安全组 ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let securityGroupIds: [String]?
 
         enum CodingKeys: String, CodingKey {
             case outputId = "OutputId"
@@ -3795,6 +4702,7 @@ extension Mps {
             case rtspPullSettings = "RTSPPullSettings"
             case hlsPullSettings = "HLSPullSettings"
             case maxConcurrent = "MaxConcurrent"
+            case securityGroupIds = "SecurityGroupIds"
         }
     }
 
@@ -4026,36 +4934,69 @@ extension Mps {
         }
     }
 
+    /// Drm 加密信息。
+    public struct DrmInfo: TCInputModel, TCOutputModel {
+        /// 加密类型：
+        /// - simpleaes: aes-128 加密
+        ///
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let type: String?
+
+        /// SimpleAes 加密信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let simpleAesDrm: SimpleAesDrm?
+
+        public init(type: String? = nil, simpleAesDrm: SimpleAesDrm? = nil) {
+            self.type = type
+            self.simpleAesDrm = simpleAesDrm
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case simpleAesDrm = "SimpleAesDrm"
+        }
+    }
+
     /// 编辑点播视频文件信息
     public struct EditMediaFileInfo: TCInputModel, TCOutputModel {
         /// 视频的输入信息。
         public let inputInfo: MediaInputInfo
 
-        /// 视频剪辑的起始时间偏移，单位：秒。
+        /// 【剪辑】任务生效，视频剪辑的起始时间偏移，单位：秒。
         public let startTimeOffset: Float?
 
-        /// 视频剪辑的结束时间偏移，单位：秒。
+        /// 【剪辑】任务生效，视频剪辑的结束时间偏移，单位：秒。
         public let endTimeOffset: Float?
 
-        public init(inputInfo: MediaInputInfo, startTimeOffset: Float? = nil, endTimeOffset: Float? = nil) {
+        /// 【合成】任务必选，用于轨道元素中媒体关联源素材 ID。
+        ///
+        /// 注意：允许字母、数字、-、_ ，最长 32 字符
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: String?
+
+        public init(inputInfo: MediaInputInfo, startTimeOffset: Float? = nil, endTimeOffset: Float? = nil, id: String? = nil) {
             self.inputInfo = inputInfo
             self.startTimeOffset = startTimeOffset
             self.endTimeOffset = endTimeOffset
+            self.id = id
         }
 
         enum CodingKeys: String, CodingKey {
             case inputInfo = "InputInfo"
             case startTimeOffset = "StartTimeOffset"
             case endTimeOffset = "EndTimeOffset"
+            case id = "Id"
         }
     }
 
     /// 编辑视频的结果文件输出配置。
-    public struct EditMediaOutputConfig: TCInputModel {
+    public struct EditMediaOutputConfig: TCInputModel, TCOutputModel {
         /// 封装格式，可选值：mp4、hls、mov、flv、avi。默认是 mp4。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let container: String?
 
         /// 剪辑模式，可选值 normal、fast。默认是精确剪辑 normal
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
 
         public init(container: String? = nil, type: String? = nil) {
@@ -4139,12 +5080,18 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let videoEnhance: VideoEnhanceConfig?
 
-        public init(videoEnhance: VideoEnhanceConfig? = nil) {
+        /// 音频增强配置。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let audioEnhance: AudioEnhanceConfig?
+
+        public init(videoEnhance: VideoEnhanceConfig? = nil, audioEnhance: AudioEnhanceConfig? = nil) {
             self.videoEnhance = videoEnhance
+            self.audioEnhance = audioEnhance
         }
 
         enum CodingKeys: String, CodingKey {
             case videoEnhance = "VideoEnhance"
+            case audioEnhance = "AudioEnhance"
         }
     }
 
@@ -4751,11 +5698,13 @@ extension Mps {
     }
 
     /// 片头片尾参数
-    public struct HeadTailParameter: TCInputModel {
+    public struct HeadTailParameter: TCInputModel, TCOutputModel {
         /// 片头列表。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headSet: [MediaInputInfo]?
 
         /// 片尾列表。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tailSet: [MediaInputInfo]?
 
         public init(headSet: [MediaInputInfo]? = nil, tailSet: [MediaInputInfo]? = nil) {
@@ -5063,6 +6012,192 @@ extension Mps {
         }
     }
 
+    /// 直播编排子任务输出
+    public struct LiveActivityResItem: TCOutputModel {
+        /// 直播录制任务输出
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let liveRecordTask: LiveScheduleLiveRecordTaskResult?
+
+        enum CodingKeys: String, CodingKey {
+            case liveRecordTask = "LiveRecordTask"
+        }
+    }
+
+    /// 直播编排任务输出
+    public struct LiveActivityResult: TCOutputModel {
+        /// 原子任务类型。
+        /// - LiveRecord：直播录制。
+        ///
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let activityType: String?
+
+        /// 原子任务输出。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let liveActivityResItem: LiveActivityResItem?
+
+        enum CodingKeys: String, CodingKey {
+            case activityType = "ActivityType"
+            case liveActivityResItem = "LiveActivityResItem"
+        }
+    }
+
+    /// 直播录制输出文件信息
+    public struct LiveRecordFile: TCOutputModel {
+        /// 直播录制文件地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let url: String?
+
+        /// 直播录制文件大小
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let size: Int64?
+
+        /// 直播录制文件时长
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let duration: Int64?
+
+        /// 直播录制文件开始时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let startTime: String?
+
+        /// 直播录制文件结束时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let endTime: String?
+
+        enum CodingKeys: String, CodingKey {
+            case url = "Url"
+            case size = "Size"
+            case duration = "Duration"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+        }
+    }
+
+    /// 直播录制结果
+    public struct LiveRecordResult: TCOutputModel {
+        /// 直播录制文件的目标存储。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let outputStorage: TaskOutputStorage?
+
+        /// 直播录制文件列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fileList: [LiveRecordFile]?
+
+        enum CodingKeys: String, CodingKey {
+            case outputStorage = "OutputStorage"
+            case fileList = "FileList"
+        }
+    }
+
+    /// 直播录制任务输入参数类型
+    public struct LiveRecordTaskInput: TCInputModel, TCOutputModel {
+        /// 直播录制模板 ID。
+        public let definition: Int64
+
+        /// 直播录制后文件的目标存储，不填则继承上层的 OutputStorage 值。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let outputStorage: TaskOutputStorage?
+
+        /// 直播录制后文件的输出路径。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let outputObjectPath: String?
+
+        public init(definition: Int64, outputStorage: TaskOutputStorage? = nil, outputObjectPath: String? = nil) {
+            self.definition = definition
+            self.outputStorage = outputStorage
+            self.outputObjectPath = outputObjectPath
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case definition = "Definition"
+            case outputStorage = "OutputStorage"
+            case outputObjectPath = "OutputObjectPath"
+        }
+    }
+
+    /// 直播编排直播录制任务结果类型
+    public struct LiveScheduleLiveRecordTaskResult: TCOutputModel {
+        /// 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        public let status: String
+
+        /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let errCodeExt: String?
+
+        /// 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let errCode: Int64?
+
+        /// 错误信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let message: String?
+
+        /// 直播录制任务的输入。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let input: LiveRecordTaskInput?
+
+        /// 直播录制任务的输出。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let output: LiveRecordResult?
+
+        /// 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let beginProcessTime: String?
+
+        /// 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let finishTime: String?
+
+        enum CodingKeys: String, CodingKey {
+            case status = "Status"
+            case errCodeExt = "ErrCodeExt"
+            case errCode = "ErrCode"
+            case message = "Message"
+            case input = "Input"
+            case output = "Output"
+            case beginProcessTime = "BeginProcessTime"
+            case finishTime = "FinishTime"
+        }
+    }
+
+    /// 直播编排任务信息
+    public struct LiveScheduleTask: TCOutputModel {
+        /// 直播编排任务 ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskId: String?
+
+        /// 任务流状态，取值：
+        /// - PROCESSING：处理中；
+        /// - FINISH：已完成。
+        ///
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: String?
+
+        /// 源异常时返回非0错误码，返回0 时请使用各个具体任务的 ErrCode。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let errCode: Int64?
+
+        /// 源异常时返回对应异常Message，否则请使用各个具体任务的 Message。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let message: String?
+
+        /// 直播流 URL。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let url: String?
+
+        /// 直播编排任务输出。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let liveActivityResultSet: [LiveActivityResult]?
+
+        enum CodingKeys: String, CodingKey {
+            case taskId = "TaskId"
+            case status = "Status"
+            case errCode = "ErrCode"
+            case message = "Message"
+            case url = "Url"
+            case liveActivityResultSet = "LiveActivityResultSet"
+        }
+    }
+
     /// 直播流分析结果
     public struct LiveStreamAiAnalysisResultInfo: TCOutputModel {
         /// 直播分析子任务结果，暂时只支持直播拆条。
@@ -5126,6 +6261,7 @@ extension Mps {
         /// - AsrFullTextRecognition：语音全文识别，
         /// - OcrFullTextRecognition：文本全文识别。
         /// - TransTextRecognition：语音翻译。
+        /// - TagRecognition：精彩打点。
         public let type: String
 
         /// 人脸识别结果，当 Type 为
@@ -5151,6 +6287,10 @@ extension Mps {
         /// 翻译结果，当Type 为 TransTextRecognition 时有效。
         public let transTextRecognitionResultSet: [LiveStreamTransTextRecognitionResult]
 
+        /// 打点结果，当Type 为 TagRecognition 时有效。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tagRecognitionResultSet: [LiveStreamTagRecognitionResult]?
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case faceRecognitionResultSet = "FaceRecognitionResultSet"
@@ -5159,6 +6299,7 @@ extension Mps {
             case asrFullTextRecognitionResultSet = "AsrFullTextRecognitionResultSet"
             case ocrFullTextRecognitionResultSet = "OcrFullTextRecognitionResultSet"
             case transTextRecognitionResultSet = "TransTextRecognitionResultSet"
+            case tagRecognitionResultSet = "TagRecognitionResultSet"
         }
     }
 
@@ -5556,6 +6697,28 @@ extension Mps {
             case errCode = "ErrCode"
             case message = "Message"
             case url = "Url"
+        }
+    }
+
+    /// 直播 AI 打点识别结果
+    public struct LiveStreamTagRecognitionResult: TCOutputModel {
+        /// 打点事件。
+        public let id: String
+
+        /// 识别片段起始的 PTS 时间，单位：秒。
+        public let startPtsTime: Float
+
+        /// 识别片段终止的 PTS 时间，单位：秒。
+        public let endPtsTime: Float
+
+        /// 识别片段置信度。取值：0~100。
+        public let confidence: Float
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case startPtsTime = "StartPtsTime"
+            case endPtsTime = "EndPtsTime"
+            case confidence = "Confidence"
         }
     }
 
@@ -6702,7 +7865,10 @@ extension Mps {
         /// 延播平滑吐流配置信息。
         public let resilientStream: ResilientStreamConf?
 
-        public init(inputId: String, inputName: String, description: String, allowIpList: [String], srtSettings: CreateInputSRTSettings, rtpSettings: CreateInputRTPSettings, protocol: String? = nil, failOver: String? = nil, rtmpPullSettings: CreateInputRTMPPullSettings? = nil, rtspPullSettings: CreateInputRTSPPullSettings? = nil, hlsPullSettings: CreateInputHLSPullSettings? = nil, resilientStream: ResilientStreamConf? = nil) {
+        /// 绑定的输入安全组 ID。 仅支持关联一组安全组。
+        public let securityGroupIds: [String]?
+
+        public init(inputId: String, inputName: String, description: String, allowIpList: [String], srtSettings: CreateInputSRTSettings, rtpSettings: CreateInputRTPSettings, protocol: String? = nil, failOver: String? = nil, rtmpPullSettings: CreateInputRTMPPullSettings? = nil, rtspPullSettings: CreateInputRTSPPullSettings? = nil, hlsPullSettings: CreateInputHLSPullSettings? = nil, resilientStream: ResilientStreamConf? = nil, securityGroupIds: [String]? = nil) {
             self.inputId = inputId
             self.inputName = inputName
             self.description = description
@@ -6715,6 +7881,7 @@ extension Mps {
             self.rtspPullSettings = rtspPullSettings
             self.hlsPullSettings = hlsPullSettings
             self.resilientStream = resilientStream
+            self.securityGroupIds = securityGroupIds
         }
 
         enum CodingKeys: String, CodingKey {
@@ -6730,6 +7897,7 @@ extension Mps {
             case rtspPullSettings = "RTSPPullSettings"
             case hlsPullSettings = "HLSPullSettings"
             case resilientStream = "ResilientStream"
+            case securityGroupIds = "SecurityGroupIds"
         }
     }
 
@@ -6763,7 +7931,10 @@ extension Mps {
         /// 最大拉流并发数，最大4，默认4。
         public let maxConcurrent: UInt64?
 
-        public init(outputId: String, outputName: String, description: String, protocol: String, srtSettings: CreateOutputSRTSettings? = nil, rtpSettings: CreateOutputInfoRTPSettings? = nil, rtmpSettings: CreateOutputRTMPSettings? = nil, allowIpList: [String]? = nil, maxConcurrent: UInt64? = nil) {
+        /// 绑定的安全组 ID。 仅支持关联一组安全组。
+        public let securityGroupIds: [String]?
+
+        public init(outputId: String, outputName: String, description: String, protocol: String, srtSettings: CreateOutputSRTSettings? = nil, rtpSettings: CreateOutputInfoRTPSettings? = nil, rtmpSettings: CreateOutputRTMPSettings? = nil, allowIpList: [String]? = nil, maxConcurrent: UInt64? = nil, securityGroupIds: [String]? = nil) {
             self.outputId = outputId
             self.outputName = outputName
             self.description = description
@@ -6773,6 +7944,7 @@ extension Mps {
             self.rtmpSettings = rtmpSettings
             self.allowIpList = allowIpList
             self.maxConcurrent = maxConcurrent
+            self.securityGroupIds = securityGroupIds
         }
 
         enum CodingKeys: String, CodingKey {
@@ -6785,6 +7957,7 @@ extension Mps {
             case rtmpSettings = "RTMPSettings"
             case allowIpList = "AllowIpList"
             case maxConcurrent = "MaxConcurrent"
+            case securityGroupIds = "SecurityGroupIds"
         }
     }
 
@@ -6973,14 +8146,16 @@ extension Mps {
     }
 
     /// SRT输出的监听地址。
-    public struct OutputSRTSourceAddressResp: TCInputModel {
+    public struct OutputSRTSourceAddressResp: TCInputModel, TCOutputModel {
         /// 监听IP。
-        public let ip: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ip: String?
 
         /// 监听端口。
-        public let port: Int64
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let port: Int64?
 
-        public init(ip: String, port: Int64) {
+        public init(ip: String? = nil, port: Int64? = nil) {
             self.ip = ip
             self.port = port
         }
@@ -8069,14 +9244,16 @@ extension Mps {
     }
 
     /// SRT输入源地址。
-    public struct SRTSourceAddressResp: TCInputModel {
+    public struct SRTSourceAddressResp: TCInputModel, TCOutputModel {
         /// 对端IP。
-        public let ip: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ip: String?
 
         /// 对端端口。
-        public let port: Int64
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let port: Int64?
 
-        public init(ip: String, port: Int64) {
+        public init(ip: String? = nil, port: Int64? = nil) {
             self.ip = ip
             self.port = port
         }
@@ -8407,6 +9584,13 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scheduleName: String?
 
+        /// 编排类型，可选值：
+        /// - Preset：系统预置编排；
+        /// - Custom：用户自定义编排。
+        ///
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let type: String?
+
         /// 编排状态，取值范围：
         /// Enabled：已启用，
         /// Disabled：已禁用。
@@ -8444,6 +9628,7 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case scheduleId = "ScheduleId"
             case scheduleName = "ScheduleName"
+            case type = "Type"
             case status = "Status"
             case trigger = "Trigger"
             case activities = "Activities"
@@ -8525,6 +9710,33 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case intensity = "Intensity"
+        }
+    }
+
+    /// SimpleAes 加密信息。
+    public struct SimpleAesDrm: TCInputModel, TCOutputModel {
+        /// 请求解密秘钥uri地址。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let uri: String?
+
+        /// 加密key(32字节字符串)。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let key: String?
+
+        /// 加密初始化向量(32字节字符串)。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vector: String?
+
+        public init(uri: String? = nil, key: String? = nil, vector: String? = nil) {
+            self.uri = uri
+            self.key = key
+            self.vector = vector
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case uri = "Uri"
+            case key = "Key"
+            case vector = "Vector"
         }
     }
 
@@ -8841,9 +10053,9 @@ extension Mps {
 
         /// 视频码率上限，当 Type 指定了极速高清类型时有效。
         /// 不填或填0表示不设视频码率上限。
-        public let maxVideoBitrate: UInt64?
+        public let maxVideoBitrate: Int64?
 
-        public init(type: String, maxVideoBitrate: UInt64? = nil) {
+        public init(type: String, maxVideoBitrate: Int64? = nil) {
             self.type = type
             self.maxVideoBitrate = maxVideoBitrate
         }
@@ -8866,9 +10078,9 @@ extension Mps {
 
         /// 视频码率上限，不填代表不修改。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let maxVideoBitrate: UInt64?
+        public let maxVideoBitrate: Int64?
 
-        public init(type: String? = nil, maxVideoBitrate: UInt64? = nil) {
+        public init(type: String? = nil, maxVideoBitrate: Int64? = nil) {
             self.type = type
             self.maxVideoBitrate = maxVideoBitrate
         }
@@ -8913,6 +10125,22 @@ extension Mps {
 
     /// 任务的事件通知配置。
     public struct TaskNotifyConfig: TCInputModel, TCOutputModel {
+        /// 通知类型，可选值：
+        /// - CMQ：已下线，建议切换到TDMQ-CMQ
+        /// - TDMQ-CMQ：消息队列
+        /// - URL：指定URL时HTTP回调推送到 NotifyUrl 指定的地址，回调协议http+json，包体内容同解析事件通知接口的输出参数
+        /// - SCF：不推荐使用，需要在控制台额外配置SCF
+        /// - AWS-SQS：AWS 队列，只适用于 AWS 任务，且要求同区域
+        ///
+        /// _ 注：不填或为空时默认 CMQ，如需采用其他类型需填写对应类型值。 _
+        public let notifyType: String?
+
+        /// 工作流通知的模式，可取值有 Finish 和 Change，不填代表 Finish。
+        public let notifyMode: String?
+
+        /// HTTP回调地址，NotifyType为URL时必填。
+        public let notifyUrl: String?
+
         /// CMQ或TDMQ-CMQ 的模型，有 Queue 和 Topic 两种。
         public let cmqModel: String?
 
@@ -8925,47 +10153,37 @@ extension Mps {
         /// 当模型为 Queue 时有效，表示接收事件通知的 CMQ 或 TDMQ-CMQ 的队列名。
         public let queueName: String?
 
-        /// 工作流通知的模式，可取值有 Finish 和 Change，不填代表 Finish。
-        public let notifyMode: String?
-
-        /// 通知类型，可选值：
-        /// - CMQ：已下线，建议切换到TDMQ-CMQ
-        /// - TDMQ-CMQ：消息队列
-        /// - URL：指定URL时HTTP回调推送到 NotifyUrl 指定的地址，回调协议http+json，包体内容同解析事件通知接口的输出参数
-        /// - SCF：不推荐使用，需要在控制台额外配置SCF
-        /// - AWS-SQS：AWS 队列，只适用于 AWS 任务，且要求同区域
-        ///
-        /// _ 注：不填或为空时默认 CMQ，如需采用其他类型需填写对应类型值。 _
-        public let notifyType: String?
-
-        /// HTTP回调地址，NotifyType为URL时必填。
-        public let notifyUrl: String?
-
         /// AWS SQS 回调，NotifyType为 AWS-SQS 时必填。
         ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let awsSQS: AwsSQS?
 
-        public init(cmqModel: String? = nil, cmqRegion: String? = nil, topicName: String? = nil, queueName: String? = nil, notifyMode: String? = nil, notifyType: String? = nil, notifyUrl: String? = nil, awsSQS: AwsSQS? = nil) {
+        /// 用于生成回调签名的key。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let notifyKey: String?
+
+        public init(notifyType: String? = nil, notifyMode: String? = nil, notifyUrl: String? = nil, cmqModel: String? = nil, cmqRegion: String? = nil, topicName: String? = nil, queueName: String? = nil, awsSQS: AwsSQS? = nil, notifyKey: String? = nil) {
+            self.notifyType = notifyType
+            self.notifyMode = notifyMode
+            self.notifyUrl = notifyUrl
             self.cmqModel = cmqModel
             self.cmqRegion = cmqRegion
             self.topicName = topicName
             self.queueName = queueName
-            self.notifyMode = notifyMode
-            self.notifyType = notifyType
-            self.notifyUrl = notifyUrl
             self.awsSQS = awsSQS
+            self.notifyKey = notifyKey
         }
 
         enum CodingKeys: String, CodingKey {
+            case notifyType = "NotifyType"
+            case notifyMode = "NotifyMode"
+            case notifyUrl = "NotifyUrl"
             case cmqModel = "CmqModel"
             case cmqRegion = "CmqRegion"
             case topicName = "TopicName"
             case queueName = "QueueName"
-            case notifyMode = "NotifyMode"
-            case notifyType = "NotifyType"
-            case notifyUrl = "NotifyUrl"
             case awsSQS = "AwsSQS"
+            case notifyKey = "NotifyKey"
         }
     }
 
@@ -9842,11 +11060,11 @@ extension Mps {
         /// 视频帧率，取值范围：[0, 120]，单位：Hz。
         /// 当取值为 0，表示帧率和原始视频保持一致。
         /// 注意：自适应码率时取值范围是 [0, 60]
-        public let fps: UInt64
+        public let fps: Int64
 
         /// 视频流的码率，取值范围：0 和 [128, 35000]，单位：kbps。
         /// 当取值为 0，表示视频码率和原始视频保持一致。
-        public let bitrate: UInt64
+        public let bitrate: Int64
 
         /// 分辨率自适应，可选值：
         /// - open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；
@@ -9893,7 +11111,7 @@ extension Mps {
         /// 如果没有特殊需求，不建议指定该参数。
         public let vcrf: UInt64?
 
-        public init(codec: String, fps: UInt64, bitrate: UInt64, resolutionAdaptive: String? = nil, width: UInt64? = nil, height: UInt64? = nil, gop: UInt64? = nil, fillType: String? = nil, vcrf: UInt64? = nil) {
+        public init(codec: String, fps: Int64, bitrate: Int64, resolutionAdaptive: String? = nil, width: UInt64? = nil, height: UInt64? = nil, gop: UInt64? = nil, fillType: String? = nil, vcrf: UInt64? = nil) {
             self.codec = codec
             self.fps = fps
             self.bitrate = bitrate
@@ -9933,12 +11151,12 @@ extension Mps {
         /// 视频帧率，取值范围：[0, 120]，单位：Hz。
         /// 当取值为 0，表示帧率和原始视频保持一致。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let fps: UInt64?
+        public let fps: Int64?
 
         /// 视频流的码率，取值范围：0 和 [128, 35000]，单位：kbps。
         /// 当取值为 0，表示视频码率和原始视频保持一致。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let bitrate: UInt64?
+        public let bitrate: Int64?
 
         /// 分辨率自适应，可选值：
         /// - open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；
@@ -9987,7 +11205,7 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let contentAdaptStream: UInt64?
 
-        public init(codec: String? = nil, fps: UInt64? = nil, bitrate: UInt64? = nil, resolutionAdaptive: String? = nil, width: UInt64? = nil, height: UInt64? = nil, gop: UInt64? = nil, fillType: String? = nil, vcrf: UInt64? = nil, contentAdaptStream: UInt64? = nil) {
+        public init(codec: String? = nil, fps: Int64? = nil, bitrate: Int64? = nil, resolutionAdaptive: String? = nil, width: UInt64? = nil, height: UInt64? = nil, gop: UInt64? = nil, fillType: String? = nil, vcrf: UInt64? = nil, contentAdaptStream: UInt64? = nil) {
             self.codec = codec
             self.fps = fps
             self.bitrate = bitrate
@@ -10011,6 +11229,34 @@ extension Mps {
             case fillType = "FillType"
             case vcrf = "Vcrf"
             case contentAdaptStream = "ContentAdaptStream"
+        }
+    }
+
+    /// 音量均衡配置
+    public struct VolumeBalanceConfig: TCInputModel, TCOutputModel {
+        /// 能力配置开关，可选值：
+        /// - ON：开启；
+        /// - OFF：关闭。
+        ///
+        /// 默认值：ON。
+        public let `switch`: String?
+
+        /// 类型，可选值：
+        /// - loudNorm：响度标准化
+        /// - gainControl：减小突变
+        ///
+        /// 默认值：loudNorm。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let type: String?
+
+        public init(switch: String? = nil, type: String? = nil) {
+            self.switch = `switch`
+            self.type = type
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+            case type = "Type"
         }
     }
 

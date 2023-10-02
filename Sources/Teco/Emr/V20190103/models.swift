@@ -270,6 +270,22 @@ extension Emr {
         }
     }
 
+    /// 集群id与流程id的mapping
+    public struct ClusterIDToFlowID: TCOutputModel {
+        /// 集群id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterId: String?
+
+        /// 流程id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let flowId: UInt64?
+
+        enum CodingKeys: String, CodingKey {
+            case clusterId = "ClusterId"
+            case flowId = "FlowId"
+        }
+    }
+
     /// 集群实例信息
     public struct ClusterInstancesInfo: TCOutputModel {
         /// ID号

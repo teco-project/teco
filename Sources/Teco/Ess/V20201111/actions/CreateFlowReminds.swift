@@ -21,13 +21,15 @@ import TecoCore
 extension Ess {
     /// CreateFlowReminds请求参数结构体
     public struct CreateFlowRemindsRequest: TCRequest {
-        /// 调用方用户信息，userId 必填
+        /// 执行本接口操作的员工信息。
+        /// 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         public let `operator`: UserInfo
 
-        /// 需要执行催办的签署流程id数组，最多100个
+        /// 需执行催办的签署流程ID数组，最多包含100个。
         public let flowIds: [String]
 
-        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        /// 代理企业和员工的信息。
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         public let agent: Agent?
 
         public init(operator: UserInfo, flowIds: [String], agent: Agent? = nil) {
@@ -45,7 +47,7 @@ extension Ess {
 
     /// CreateFlowReminds返回参数结构体
     public struct CreateFlowRemindsResponse: TCResponse {
-        /// 催办合同详情列表
+        /// 合同催办结果的详细信息列表。
         public let remindFlowRecords: [RemindFlowRecords]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -59,11 +61,13 @@ extension Ess {
 
     /// 合同催办
     ///
-    /// 指定需要批量催办的签署流程Id，批量催办合同，最多100个; 接口失败后返回错误信息
-    /// 注意:
-    /// 该接口不可直接调用，请联系客户经理申请使用
-    /// 仅能催办当前状态为“待签署”的签署人，且只能催办一次
-    /// 发起合同时，签署人的NotifyType需设置为sms，否则无法催办
+    /// 指定需要批量催办的签署流程ID，批量催办合同，最多100个。需要符合以下条件的合同才可被催办：
+    ///
+    /// 1. 发起合同时，签署人的NotifyType需设置为sms
+    /// 2. 合同中当前状态为“待签署”的签署人是催办的对象
+    /// 3. 每个合同只能催办一次
+    ///
+    /// 注意：该接口无法直接调用，请联系客户经理申请使用。
     @inlinable
     public func createFlowReminds(_ input: CreateFlowRemindsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowRemindsResponse> {
         self.client.execute(action: "CreateFlowReminds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -71,11 +75,13 @@ extension Ess {
 
     /// 合同催办
     ///
-    /// 指定需要批量催办的签署流程Id，批量催办合同，最多100个; 接口失败后返回错误信息
-    /// 注意:
-    /// 该接口不可直接调用，请联系客户经理申请使用
-    /// 仅能催办当前状态为“待签署”的签署人，且只能催办一次
-    /// 发起合同时，签署人的NotifyType需设置为sms，否则无法催办
+    /// 指定需要批量催办的签署流程ID，批量催办合同，最多100个。需要符合以下条件的合同才可被催办：
+    ///
+    /// 1. 发起合同时，签署人的NotifyType需设置为sms
+    /// 2. 合同中当前状态为“待签署”的签署人是催办的对象
+    /// 3. 每个合同只能催办一次
+    ///
+    /// 注意：该接口无法直接调用，请联系客户经理申请使用。
     @inlinable
     public func createFlowReminds(_ input: CreateFlowRemindsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowRemindsResponse {
         try await self.client.execute(action: "CreateFlowReminds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -83,11 +89,13 @@ extension Ess {
 
     /// 合同催办
     ///
-    /// 指定需要批量催办的签署流程Id，批量催办合同，最多100个; 接口失败后返回错误信息
-    /// 注意:
-    /// 该接口不可直接调用，请联系客户经理申请使用
-    /// 仅能催办当前状态为“待签署”的签署人，且只能催办一次
-    /// 发起合同时，签署人的NotifyType需设置为sms，否则无法催办
+    /// 指定需要批量催办的签署流程ID，批量催办合同，最多100个。需要符合以下条件的合同才可被催办：
+    ///
+    /// 1. 发起合同时，签署人的NotifyType需设置为sms
+    /// 2. 合同中当前状态为“待签署”的签署人是催办的对象
+    /// 3. 每个合同只能催办一次
+    ///
+    /// 注意：该接口无法直接调用，请联系客户经理申请使用。
     @inlinable
     public func createFlowReminds(operator: UserInfo, flowIds: [String], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowRemindsResponse> {
         self.createFlowReminds(.init(operator: `operator`, flowIds: flowIds, agent: agent), region: region, logger: logger, on: eventLoop)
@@ -95,11 +103,13 @@ extension Ess {
 
     /// 合同催办
     ///
-    /// 指定需要批量催办的签署流程Id，批量催办合同，最多100个; 接口失败后返回错误信息
-    /// 注意:
-    /// 该接口不可直接调用，请联系客户经理申请使用
-    /// 仅能催办当前状态为“待签署”的签署人，且只能催办一次
-    /// 发起合同时，签署人的NotifyType需设置为sms，否则无法催办
+    /// 指定需要批量催办的签署流程ID，批量催办合同，最多100个。需要符合以下条件的合同才可被催办：
+    ///
+    /// 1. 发起合同时，签署人的NotifyType需设置为sms
+    /// 2. 合同中当前状态为“待签署”的签署人是催办的对象
+    /// 3. 每个合同只能催办一次
+    ///
+    /// 注意：该接口无法直接调用，请联系客户经理申请使用。
     @inlinable
     public func createFlowReminds(operator: UserInfo, flowIds: [String], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowRemindsResponse {
         try await self.createFlowReminds(.init(operator: `operator`, flowIds: flowIds, agent: agent), region: region, logger: logger, on: eventLoop)

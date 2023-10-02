@@ -30,6 +30,8 @@ extension TCLighthouseError {
             case diskNotFound = "ResourceNotFound.DiskNotFound"
             case firewallNotFound = "ResourceNotFound.FirewallNotFound"
             case firewallRulesNotFound = "ResourceNotFound.FirewallRulesNotFound"
+            case firewallTemplateNotFound = "ResourceNotFound.FirewallTemplateNotFound"
+            case firewallTemplateRuleNotFound = "ResourceNotFound.FirewallTemplateRuleNotFound"
             case instanceDataDiskNotFound = "ResourceNotFound.InstanceDataDiskNotFound"
             case instanceIdNotFound = "ResourceNotFound.InstanceIdNotFound"
             case instanceNotFound = "ResourceNotFound.InstanceNotFound"
@@ -120,6 +122,14 @@ extension TCLighthouseError {
             ResourceNotFound(.firewallRulesNotFound)
         }
 
+        public static var firewallTemplateNotFound: ResourceNotFound {
+            ResourceNotFound(.firewallTemplateNotFound)
+        }
+
+        public static var firewallTemplateRuleNotFound: ResourceNotFound {
+            ResourceNotFound(.firewallTemplateRuleNotFound)
+        }
+
         /// 实例不存在挂载的数据盘。
         public static var instanceDataDiskNotFound: ResourceNotFound {
             ResourceNotFound(.instanceDataDiskNotFound)
@@ -200,6 +210,10 @@ extension TCLighthouseError {
                 code = .resourceNotFound_FirewallNotFound
             case .firewallRulesNotFound:
                 code = .resourceNotFound_FirewallRulesNotFound
+            case .firewallTemplateNotFound:
+                code = .resourceNotFound_FirewallTemplateNotFound
+            case .firewallTemplateRuleNotFound:
+                code = .resourceNotFound_FirewallTemplateRuleNotFound
             case .instanceDataDiskNotFound:
                 code = .resourceNotFound_InstanceDataDiskNotFound
             case .instanceIdNotFound:

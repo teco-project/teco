@@ -21,15 +21,17 @@ import TecoCore
 extension Ess {
     /// CreateIntegrationEmployees请求参数结构体
     public struct CreateIntegrationEmployeesRequest: TCRequest {
-        /// 操作人信息，userId必填
+        /// 执行本接口操作的员工信息。使用此接口时，必须填写userId。
+        /// 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         public let `operator`: UserInfo
 
-        /// 待创建员工的信息，不超过20个。
-        /// 所有类型的企业支持的入参：Mobile和DisplayName必填,OpenId、Email和Department.DepartmentId选填，其他字段暂不支持。
-        /// 企微类型的企业特有支持的入参：WeworkOpenId，传入此字段无需在传入其他信息
+        /// 待创建员工的信息，最多不超过20个。
+        /// 其中入参Mobile和DisplayName必填，OpenId、Email和Department.DepartmentId选填，其他字段暂不支持设置。
+        /// 在创建企微企业员工场景下，只需传入WeworkOpenId，无需再传其他信息。
         public let employees: [Staff]
 
-        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        /// 代理企业和员工的信息。
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         public let agent: Agent?
 
         public init(operator: UserInfo, employees: [Staff], agent: Agent? = nil) {
@@ -47,7 +49,7 @@ extension Ess {
 
     /// CreateIntegrationEmployees返回参数结构体
     public struct CreateIntegrationEmployeesResponse: TCResponse {
-        /// 创建员工的结果
+        /// 创建员工的结果。包含创建成功的数据与创建失败数据。
         public let createEmployeeResult: CreateStaffResult
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -61,8 +63,7 @@ extension Ess {
 
     /// 创建企业员工
     ///
-    /// 创建员工,此接口会发送提醒员工实名的短信，如果通过手机号发现员工已经创建，则不会重新创建，会发送短信提醒员工实名
-    /// 注意：此接口支持企微组织架构的 openid 创建员工，这种场景下传递明文的企微 openid 到WeworkOpenId字段即可（企微明文的 openid 一定要在应用的可见范围内才行），通过企微创建的员工，会发送企微消息去提醒实名
+    /// 此接口（CreateIntegrationEmployees）用于创建企业员工。调用成功后会给员工发送提醒员工实名的短信。若通过手机号发现员工已经创建，则不会重新创建，但会发送短信提醒员工实名。另外，此接口还支持通过企微组织架构的openid 创建员工（将WeworkOpenId字段设置为企微员工明文的openid，但需确保该企微员工在应用的可见范围内），该场景下，员工会接收到提醒实名的企微消息。
     @inlinable
     public func createIntegrationEmployees(_ input: CreateIntegrationEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIntegrationEmployeesResponse> {
         self.client.execute(action: "CreateIntegrationEmployees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -70,8 +71,7 @@ extension Ess {
 
     /// 创建企业员工
     ///
-    /// 创建员工,此接口会发送提醒员工实名的短信，如果通过手机号发现员工已经创建，则不会重新创建，会发送短信提醒员工实名
-    /// 注意：此接口支持企微组织架构的 openid 创建员工，这种场景下传递明文的企微 openid 到WeworkOpenId字段即可（企微明文的 openid 一定要在应用的可见范围内才行），通过企微创建的员工，会发送企微消息去提醒实名
+    /// 此接口（CreateIntegrationEmployees）用于创建企业员工。调用成功后会给员工发送提醒员工实名的短信。若通过手机号发现员工已经创建，则不会重新创建，但会发送短信提醒员工实名。另外，此接口还支持通过企微组织架构的openid 创建员工（将WeworkOpenId字段设置为企微员工明文的openid，但需确保该企微员工在应用的可见范围内），该场景下，员工会接收到提醒实名的企微消息。
     @inlinable
     public func createIntegrationEmployees(_ input: CreateIntegrationEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIntegrationEmployeesResponse {
         try await self.client.execute(action: "CreateIntegrationEmployees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -79,8 +79,7 @@ extension Ess {
 
     /// 创建企业员工
     ///
-    /// 创建员工,此接口会发送提醒员工实名的短信，如果通过手机号发现员工已经创建，则不会重新创建，会发送短信提醒员工实名
-    /// 注意：此接口支持企微组织架构的 openid 创建员工，这种场景下传递明文的企微 openid 到WeworkOpenId字段即可（企微明文的 openid 一定要在应用的可见范围内才行），通过企微创建的员工，会发送企微消息去提醒实名
+    /// 此接口（CreateIntegrationEmployees）用于创建企业员工。调用成功后会给员工发送提醒员工实名的短信。若通过手机号发现员工已经创建，则不会重新创建，但会发送短信提醒员工实名。另外，此接口还支持通过企微组织架构的openid 创建员工（将WeworkOpenId字段设置为企微员工明文的openid，但需确保该企微员工在应用的可见范围内），该场景下，员工会接收到提醒实名的企微消息。
     @inlinable
     public func createIntegrationEmployees(operator: UserInfo, employees: [Staff], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIntegrationEmployeesResponse> {
         self.createIntegrationEmployees(.init(operator: `operator`, employees: employees, agent: agent), region: region, logger: logger, on: eventLoop)
@@ -88,8 +87,7 @@ extension Ess {
 
     /// 创建企业员工
     ///
-    /// 创建员工,此接口会发送提醒员工实名的短信，如果通过手机号发现员工已经创建，则不会重新创建，会发送短信提醒员工实名
-    /// 注意：此接口支持企微组织架构的 openid 创建员工，这种场景下传递明文的企微 openid 到WeworkOpenId字段即可（企微明文的 openid 一定要在应用的可见范围内才行），通过企微创建的员工，会发送企微消息去提醒实名
+    /// 此接口（CreateIntegrationEmployees）用于创建企业员工。调用成功后会给员工发送提醒员工实名的短信。若通过手机号发现员工已经创建，则不会重新创建，但会发送短信提醒员工实名。另外，此接口还支持通过企微组织架构的openid 创建员工（将WeworkOpenId字段设置为企微员工明文的openid，但需确保该企微员工在应用的可见范围内），该场景下，员工会接收到提醒实名的企微消息。
     @inlinable
     public func createIntegrationEmployees(operator: UserInfo, employees: [Staff], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIntegrationEmployeesResponse {
         try await self.createIntegrationEmployees(.init(operator: `operator`, employees: employees, agent: agent), region: region, logger: logger, on: eventLoop)

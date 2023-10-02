@@ -21,36 +21,41 @@ import TecoCore
 extension Ess {
     /// DescribeExtendedServiceAuthInfos请求参数结构体
     public struct DescribeExtendedServiceAuthInfosRequest: TCRequest {
-        /// 操作人信息
+        /// 执行本接口操作的员工信息。
+        /// 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         public let `operator`: UserInfo
 
-        /// 代理相关应用信息，如集团主企业代子企业操作
-        public let agent: Agent?
-
-        /// 扩展服务类型，默认为空，查询目前支持的所有扩展服务信息，单个指定则查询单个扩展服务开通信息，取值：
-        /// OPEN_SERVER_SIGN：开通企业静默签署
-        /// OVERSEA_SIGN：企业与港澳台居民签署合同
-        /// MOBILE_CHECK_APPROVER：使用手机号验证签署方身份
-        /// PAGING_SEAL：骑缝章
-        /// BATCH_SIGN：批量签署
+        /// 要查询的扩展服务类型。
+        /// 默认为空，即查询当前支持的所有扩展服务信息。
+        /// 若需查询单个扩展服务的开通情况，请传递相应的值，如下所示：
+        ///
+        /// - OPEN_SERVER_SIGN：企业静默签署
+        /// - OVERSEA_SIGN：企业与港澳台居民签署合同
+        /// - MOBILE_CHECK_APPROVER：使用手机号验证签署方身份
+        /// - PAGING_SEAL：骑缝章
+        /// - BATCH_SIGN：批量签署
         public let extendServiceType: String?
 
-        public init(operator: UserInfo, agent: Agent? = nil, extendServiceType: String? = nil) {
+        /// 代理企业和员工的信息。
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        public let agent: Agent?
+
+        public init(operator: UserInfo, extendServiceType: String? = nil, agent: Agent? = nil) {
             self.operator = `operator`
-            self.agent = agent
             self.extendServiceType = extendServiceType
+            self.agent = agent
         }
 
         enum CodingKeys: String, CodingKey {
             case `operator` = "Operator"
-            case agent = "Agent"
             case extendServiceType = "ExtendServiceType"
+            case agent = "Agent"
         }
     }
 
     /// DescribeExtendedServiceAuthInfos返回参数结构体
     public struct DescribeExtendedServiceAuthInfosResponse: TCResponse {
-        /// 授权服务信息列表
+        /// 服务开通和授权的信息列表，根据查询类型返回所有支持的扩展服务开通和授权状况，或者返回特定扩展服务的开通和授权状况。
         public let authInfoList: [ExtendAuthInfo]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -64,7 +69,12 @@ extension Ess {
 
     /// 查询企业扩展服务授权信息
     ///
-    /// 查询企业扩展服务授权信息，目前支持查询：企业静默签，企业与港澳台居民签署合同，使用手机号验证签署方身份，骑缝章，批量签署能力是否已经开通
+    /// 查询企业扩展服务的开通和授权情况，当前支持查询以下内容：
+    /// 1. 企业静默签
+    /// 2. 企业与港澳台居民签署合同
+    /// 3. 使用手机号验证签署方身份
+    /// 4. 骑缝章
+    /// 5. 批量签署能力
     @inlinable
     public func describeExtendedServiceAuthInfos(_ input: DescribeExtendedServiceAuthInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExtendedServiceAuthInfosResponse> {
         self.client.execute(action: "DescribeExtendedServiceAuthInfos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -72,7 +82,12 @@ extension Ess {
 
     /// 查询企业扩展服务授权信息
     ///
-    /// 查询企业扩展服务授权信息，目前支持查询：企业静默签，企业与港澳台居民签署合同，使用手机号验证签署方身份，骑缝章，批量签署能力是否已经开通
+    /// 查询企业扩展服务的开通和授权情况，当前支持查询以下内容：
+    /// 1. 企业静默签
+    /// 2. 企业与港澳台居民签署合同
+    /// 3. 使用手机号验证签署方身份
+    /// 4. 骑缝章
+    /// 5. 批量签署能力
     @inlinable
     public func describeExtendedServiceAuthInfos(_ input: DescribeExtendedServiceAuthInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtendedServiceAuthInfosResponse {
         try await self.client.execute(action: "DescribeExtendedServiceAuthInfos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -80,17 +95,27 @@ extension Ess {
 
     /// 查询企业扩展服务授权信息
     ///
-    /// 查询企业扩展服务授权信息，目前支持查询：企业静默签，企业与港澳台居民签署合同，使用手机号验证签署方身份，骑缝章，批量签署能力是否已经开通
+    /// 查询企业扩展服务的开通和授权情况，当前支持查询以下内容：
+    /// 1. 企业静默签
+    /// 2. 企业与港澳台居民签署合同
+    /// 3. 使用手机号验证签署方身份
+    /// 4. 骑缝章
+    /// 5. 批量签署能力
     @inlinable
-    public func describeExtendedServiceAuthInfos(operator: UserInfo, agent: Agent? = nil, extendServiceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExtendedServiceAuthInfosResponse> {
-        self.describeExtendedServiceAuthInfos(.init(operator: `operator`, agent: agent, extendServiceType: extendServiceType), region: region, logger: logger, on: eventLoop)
+    public func describeExtendedServiceAuthInfos(operator: UserInfo, extendServiceType: String? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExtendedServiceAuthInfosResponse> {
+        self.describeExtendedServiceAuthInfos(.init(operator: `operator`, extendServiceType: extendServiceType, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询企业扩展服务授权信息
     ///
-    /// 查询企业扩展服务授权信息，目前支持查询：企业静默签，企业与港澳台居民签署合同，使用手机号验证签署方身份，骑缝章，批量签署能力是否已经开通
+    /// 查询企业扩展服务的开通和授权情况，当前支持查询以下内容：
+    /// 1. 企业静默签
+    /// 2. 企业与港澳台居民签署合同
+    /// 3. 使用手机号验证签署方身份
+    /// 4. 骑缝章
+    /// 5. 批量签署能力
     @inlinable
-    public func describeExtendedServiceAuthInfos(operator: UserInfo, agent: Agent? = nil, extendServiceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtendedServiceAuthInfosResponse {
-        try await self.describeExtendedServiceAuthInfos(.init(operator: `operator`, agent: agent, extendServiceType: extendServiceType), region: region, logger: logger, on: eventLoop)
+    public func describeExtendedServiceAuthInfos(operator: UserInfo, extendServiceType: String? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtendedServiceAuthInfosResponse {
+        try await self.describeExtendedServiceAuthInfos(.init(operator: `operator`, extendServiceType: extendServiceType, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 }

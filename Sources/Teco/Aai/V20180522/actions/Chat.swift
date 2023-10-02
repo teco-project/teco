@@ -30,7 +30,7 @@ extension Aai {
         /// json格式，比如 {"id":"test","gender":"male"}。记录当前与机器人交互的用户id，非必须但强烈建议传入，否则多轮聊天功能会受影响
         public let user: String?
 
-        public init(text: String, projectId: Int64 = 0, user: String? = nil) {
+        public init(text: String, projectId: Int64, user: String? = nil) {
             self.text = text
             self.projectId = projectId
             self.user = user
@@ -77,7 +77,7 @@ extension Aai {
     ///
     /// 提供基于文本的基础聊天能力，可以让您的应用快速拥有具备深度语义理解的机器聊天功能。
     @inlinable
-    public func chat(text: String, projectId: Int64 = 0, user: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChatResponse> {
+    public func chat(text: String, projectId: Int64, user: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChatResponse> {
         self.chat(.init(text: text, projectId: projectId, user: user), region: region, logger: logger, on: eventLoop)
     }
 
@@ -85,7 +85,7 @@ extension Aai {
     ///
     /// 提供基于文本的基础聊天能力，可以让您的应用快速拥有具备深度语义理解的机器聊天功能。
     @inlinable
-    public func chat(text: String, projectId: Int64 = 0, user: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChatResponse {
+    public func chat(text: String, projectId: Int64, user: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChatResponse {
         try await self.chat(.init(text: text, projectId: projectId, user: user), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -24,14 +24,14 @@ extension Tsf {
         /// 插件ID
         public let pluginId: String
 
-        /// 绑定/未绑定: true / false
-        public let bound: Bool
-
         /// 翻页偏移量
         public let offset: Int64
 
         /// 每页记录数量
         public let limit: Int64
+
+        /// 绑定/未绑定: true / false
+        public let bound: Bool?
 
         /// 搜索关键字
         public let searchWord: String?
@@ -39,20 +39,20 @@ extension Tsf {
         /// 网关实体ID
         public let gatewayInstanceId: String?
 
-        public init(pluginId: String, bound: Bool, offset: Int64, limit: Int64, searchWord: String? = nil, gatewayInstanceId: String? = nil) {
+        public init(pluginId: String, offset: Int64, limit: Int64, bound: Bool? = nil, searchWord: String? = nil, gatewayInstanceId: String? = nil) {
             self.pluginId = pluginId
-            self.bound = bound
             self.offset = offset
             self.limit = limit
+            self.bound = bound
             self.searchWord = searchWord
             self.gatewayInstanceId = gatewayInstanceId
         }
 
         enum CodingKeys: String, CodingKey {
             case pluginId = "PluginId"
-            case bound = "Bound"
             case offset = "Offset"
             case limit = "Limit"
+            case bound = "Bound"
             case searchWord = "SearchWord"
             case gatewayInstanceId = "GatewayInstanceId"
         }
@@ -62,7 +62,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return .init(pluginId: self.pluginId, bound: self.bound, offset: self.offset + .init(response.getItems().count), limit: self.limit, searchWord: self.searchWord, gatewayInstanceId: self.gatewayInstanceId)
+            return .init(pluginId: self.pluginId, offset: self.offset + .init(response.getItems().count), limit: self.limit, bound: self.bound, searchWord: self.searchWord, gatewayInstanceId: self.gatewayInstanceId)
         }
     }
 
@@ -104,14 +104,14 @@ extension Tsf {
 
     /// 查询某个插件下绑定或未绑定的API分组
     @inlinable
-    public func describeGroupsWithPlugin(pluginId: String, bound: Bool, offset: Int64, limit: Int64, searchWord: String? = nil, gatewayInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupsWithPluginResponse> {
-        self.describeGroupsWithPlugin(.init(pluginId: pluginId, bound: bound, offset: offset, limit: limit, searchWord: searchWord, gatewayInstanceId: gatewayInstanceId), region: region, logger: logger, on: eventLoop)
+    public func describeGroupsWithPlugin(pluginId: String, offset: Int64, limit: Int64, bound: Bool? = nil, searchWord: String? = nil, gatewayInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupsWithPluginResponse> {
+        self.describeGroupsWithPlugin(.init(pluginId: pluginId, offset: offset, limit: limit, bound: bound, searchWord: searchWord, gatewayInstanceId: gatewayInstanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询某个插件下绑定或未绑定的API分组
     @inlinable
-    public func describeGroupsWithPlugin(pluginId: String, bound: Bool, offset: Int64, limit: Int64, searchWord: String? = nil, gatewayInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupsWithPluginResponse {
-        try await self.describeGroupsWithPlugin(.init(pluginId: pluginId, bound: bound, offset: offset, limit: limit, searchWord: searchWord, gatewayInstanceId: gatewayInstanceId), region: region, logger: logger, on: eventLoop)
+    public func describeGroupsWithPlugin(pluginId: String, offset: Int64, limit: Int64, bound: Bool? = nil, searchWord: String? = nil, gatewayInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupsWithPluginResponse {
+        try await self.describeGroupsWithPlugin(.init(pluginId: pluginId, offset: offset, limit: limit, bound: bound, searchWord: searchWord, gatewayInstanceId: gatewayInstanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询某个插件下绑定或未绑定的API分组

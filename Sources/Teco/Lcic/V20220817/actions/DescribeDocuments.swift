@@ -88,7 +88,7 @@ extension Lcic {
     @available(*, unavailable, message: "有新接口替换")
     @inlinable
     public func describeDocuments(_ input: DescribeDocumentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDocumentsResponse> {
-        fatalError("DescribeDocuments is no longer available.")
+        fatalError("'DescribeDocuments' is no longer available.")
     }
 
     /// 批量获取文档信息【已废弃】
@@ -97,7 +97,7 @@ extension Lcic {
     @available(*, unavailable, message: "有新接口替换")
     @inlinable
     public func describeDocuments(_ input: DescribeDocumentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDocumentsResponse {
-        fatalError("DescribeDocuments is no longer available.")
+        fatalError("'DescribeDocuments' is no longer available.")
     }
 
     /// 批量获取文档信息【已废弃】
@@ -106,7 +106,7 @@ extension Lcic {
     @available(*, unavailable, message: "有新接口替换")
     @inlinable
     public func describeDocuments(schoolId: UInt64, page: Int64, limit: Int64, permission: [UInt64], owner: String? = nil, keyword: String? = nil, documentId: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDocumentsResponse> {
-        fatalError("DescribeDocuments is no longer available.")
+        fatalError("'DescribeDocuments' is no longer available.")
     }
 
     /// 批量获取文档信息【已废弃】
@@ -115,6 +115,6 @@ extension Lcic {
     @available(*, unavailable, message: "有新接口替换")
     @inlinable
     public func describeDocuments(schoolId: UInt64, page: Int64, limit: Int64, permission: [UInt64], owner: String? = nil, keyword: String? = nil, documentId: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDocumentsResponse {
-        fatalError("DescribeDocuments is no longer available.")
+        fatalError("'DescribeDocuments' is no longer available.")
     }
 }

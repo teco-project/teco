@@ -27,14 +27,19 @@ extension Waf {
         /// clb-waf 或者 sprta-waf
         public let edition: String?
 
-        public init(domain: String, edition: String? = nil) {
+        /// 要删除的SessionID
+        public let sessionID: Int64?
+
+        public init(domain: String, edition: String? = nil, sessionID: Int64? = nil) {
             self.domain = domain
             self.edition = edition
+            self.sessionID = sessionID
         }
 
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case edition = "Edition"
+            case sessionID = "SessionID"
         }
     }
 
@@ -67,13 +72,13 @@ extension Waf {
 
     /// 删除CC攻击的session设置
     @inlinable
-    public func deleteSession(domain: String, edition: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSessionResponse> {
-        self.deleteSession(.init(domain: domain, edition: edition), region: region, logger: logger, on: eventLoop)
+    public func deleteSession(domain: String, edition: String? = nil, sessionID: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSessionResponse> {
+        self.deleteSession(.init(domain: domain, edition: edition, sessionID: sessionID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除CC攻击的session设置
     @inlinable
-    public func deleteSession(domain: String, edition: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSessionResponse {
-        try await self.deleteSession(.init(domain: domain, edition: edition), region: region, logger: logger, on: eventLoop)
+    public func deleteSession(domain: String, edition: String? = nil, sessionID: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSessionResponse {
+        try await self.deleteSession(.init(domain: domain, edition: edition, sessionID: sessionID), region: region, logger: logger, on: eventLoop)
     }
 }

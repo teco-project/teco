@@ -45,6 +45,7 @@ public struct TCFtError: TCFtErrorType {
         case failedOperation_JobHasBeenCanceled = "FailedOperation.JobHasBeenCanceled"
         case failedOperation_JobNotExist = "FailedOperation.JobNotExist"
         case failedOperation_JobStopProcessing = "FailedOperation.JobStopProcessing"
+        case failedOperation_ParameterValueError = "FailedOperation.ParameterValueError"
         case failedOperation_RequestEntityTooLarge = "FailedOperation.RequestEntityTooLarge"
         case failedOperation_RequestTimeout = "FailedOperation.RequestTimeout"
         case failedOperation_RpcFail = "FailedOperation.RpcFail"
@@ -197,6 +198,11 @@ public struct TCFtError: TCFtErrorType {
     /// 任务已停止处理，请重新提交任务。
     public static var failedOperation_JobStopProcessing: TCFtError {
         TCFtError(.failedOperation_JobStopProcessing)
+    }
+
+    /// FailedOperation.ParameterValueError
+    public static var failedOperation_ParameterValueError: TCFtError {
+        TCFtError(.failedOperation_ParameterValueError)
     }
 
     /// 整个请求体太大（通常主要是图片）。

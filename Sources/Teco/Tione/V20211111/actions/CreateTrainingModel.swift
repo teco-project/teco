@@ -27,9 +27,6 @@ extension Tione {
         /// EXIST：导入现有版本
         public let importMethod: String
 
-        /// 模型来源cos目录，以/结尾
-        public let trainingModelCosPath: CosPathInfo
-
         /// 推理环境来源（SYSTEM/CUSTOM）
         public let reasoningEnvironmentSource: String
 
@@ -41,6 +38,9 @@ extension Tione {
 
         /// 训练任务名称
         public let trainingJobName: String?
+
+        /// 模型来源cos目录，以/结尾
+        public let trainingModelCosPath: CosPathInfo?
 
         /// 算法框架 （PYTORCH/TENSORFLOW/DETECTRON2/PMML/MMDETECTION)
         public let algorithmFramework: String?
@@ -104,13 +104,13 @@ extension Tione {
         /// 是否QAT模型
         public let isQAT: Bool?
 
-        public init(importMethod: String, trainingModelCosPath: CosPathInfo, reasoningEnvironmentSource: String, trainingModelName: String? = nil, tags: [Tag]? = nil, trainingJobName: String? = nil, algorithmFramework: String? = nil, reasoningEnvironment: String? = nil, trainingModelIndex: String? = nil, trainingModelVersion: String? = nil, reasoningImageInfo: ImageInfo? = nil, modelMoveMode: String? = nil, trainingJobId: String? = nil, trainingModelId: String? = nil, modelOutputPath: CosPathInfo? = nil, trainingModelSource: String? = nil, trainingPreference: String? = nil, autoMLTaskId: String? = nil, trainingJobVersion: String? = nil, modelVersionType: String? = nil, modelFormat: String? = nil, reasoningEnvironmentId: String? = nil, autoClean: String? = nil, maxReservedModels: UInt64? = nil, modelCleanPeriod: UInt64? = nil, isQAT: Bool? = nil) {
+        public init(importMethod: String, reasoningEnvironmentSource: String, trainingModelName: String? = nil, tags: [Tag]? = nil, trainingJobName: String? = nil, trainingModelCosPath: CosPathInfo? = nil, algorithmFramework: String? = nil, reasoningEnvironment: String? = nil, trainingModelIndex: String? = nil, trainingModelVersion: String? = nil, reasoningImageInfo: ImageInfo? = nil, modelMoveMode: String? = nil, trainingJobId: String? = nil, trainingModelId: String? = nil, modelOutputPath: CosPathInfo? = nil, trainingModelSource: String? = nil, trainingPreference: String? = nil, autoMLTaskId: String? = nil, trainingJobVersion: String? = nil, modelVersionType: String? = nil, modelFormat: String? = nil, reasoningEnvironmentId: String? = nil, autoClean: String? = nil, maxReservedModels: UInt64? = nil, modelCleanPeriod: UInt64? = nil, isQAT: Bool? = nil) {
             self.importMethod = importMethod
-            self.trainingModelCosPath = trainingModelCosPath
             self.reasoningEnvironmentSource = reasoningEnvironmentSource
             self.trainingModelName = trainingModelName
             self.tags = tags
             self.trainingJobName = trainingJobName
+            self.trainingModelCosPath = trainingModelCosPath
             self.algorithmFramework = algorithmFramework
             self.reasoningEnvironment = reasoningEnvironment
             self.trainingModelIndex = trainingModelIndex
@@ -135,11 +135,11 @@ extension Tione {
 
         enum CodingKeys: String, CodingKey {
             case importMethod = "ImportMethod"
-            case trainingModelCosPath = "TrainingModelCosPath"
             case reasoningEnvironmentSource = "ReasoningEnvironmentSource"
             case trainingModelName = "TrainingModelName"
             case tags = "Tags"
             case trainingJobName = "TrainingJobName"
+            case trainingModelCosPath = "TrainingModelCosPath"
             case algorithmFramework = "AlgorithmFramework"
             case reasoningEnvironment = "ReasoningEnvironment"
             case trainingModelIndex = "TrainingModelIndex"
@@ -195,13 +195,13 @@ extension Tione {
 
     /// 导入模型
     @inlinable
-    public func createTrainingModel(importMethod: String, trainingModelCosPath: CosPathInfo, reasoningEnvironmentSource: String, trainingModelName: String? = nil, tags: [Tag]? = nil, trainingJobName: String? = nil, algorithmFramework: String? = nil, reasoningEnvironment: String? = nil, trainingModelIndex: String? = nil, trainingModelVersion: String? = nil, reasoningImageInfo: ImageInfo? = nil, modelMoveMode: String? = nil, trainingJobId: String? = nil, trainingModelId: String? = nil, modelOutputPath: CosPathInfo? = nil, trainingModelSource: String? = nil, trainingPreference: String? = nil, autoMLTaskId: String? = nil, trainingJobVersion: String? = nil, modelVersionType: String? = nil, modelFormat: String? = nil, reasoningEnvironmentId: String? = nil, autoClean: String? = nil, maxReservedModels: UInt64? = nil, modelCleanPeriod: UInt64? = nil, isQAT: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTrainingModelResponse> {
-        self.createTrainingModel(.init(importMethod: importMethod, trainingModelCosPath: trainingModelCosPath, reasoningEnvironmentSource: reasoningEnvironmentSource, trainingModelName: trainingModelName, tags: tags, trainingJobName: trainingJobName, algorithmFramework: algorithmFramework, reasoningEnvironment: reasoningEnvironment, trainingModelIndex: trainingModelIndex, trainingModelVersion: trainingModelVersion, reasoningImageInfo: reasoningImageInfo, modelMoveMode: modelMoveMode, trainingJobId: trainingJobId, trainingModelId: trainingModelId, modelOutputPath: modelOutputPath, trainingModelSource: trainingModelSource, trainingPreference: trainingPreference, autoMLTaskId: autoMLTaskId, trainingJobVersion: trainingJobVersion, modelVersionType: modelVersionType, modelFormat: modelFormat, reasoningEnvironmentId: reasoningEnvironmentId, autoClean: autoClean, maxReservedModels: maxReservedModels, modelCleanPeriod: modelCleanPeriod, isQAT: isQAT), region: region, logger: logger, on: eventLoop)
+    public func createTrainingModel(importMethod: String, reasoningEnvironmentSource: String, trainingModelName: String? = nil, tags: [Tag]? = nil, trainingJobName: String? = nil, trainingModelCosPath: CosPathInfo? = nil, algorithmFramework: String? = nil, reasoningEnvironment: String? = nil, trainingModelIndex: String? = nil, trainingModelVersion: String? = nil, reasoningImageInfo: ImageInfo? = nil, modelMoveMode: String? = nil, trainingJobId: String? = nil, trainingModelId: String? = nil, modelOutputPath: CosPathInfo? = nil, trainingModelSource: String? = nil, trainingPreference: String? = nil, autoMLTaskId: String? = nil, trainingJobVersion: String? = nil, modelVersionType: String? = nil, modelFormat: String? = nil, reasoningEnvironmentId: String? = nil, autoClean: String? = nil, maxReservedModels: UInt64? = nil, modelCleanPeriod: UInt64? = nil, isQAT: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTrainingModelResponse> {
+        self.createTrainingModel(.init(importMethod: importMethod, reasoningEnvironmentSource: reasoningEnvironmentSource, trainingModelName: trainingModelName, tags: tags, trainingJobName: trainingJobName, trainingModelCosPath: trainingModelCosPath, algorithmFramework: algorithmFramework, reasoningEnvironment: reasoningEnvironment, trainingModelIndex: trainingModelIndex, trainingModelVersion: trainingModelVersion, reasoningImageInfo: reasoningImageInfo, modelMoveMode: modelMoveMode, trainingJobId: trainingJobId, trainingModelId: trainingModelId, modelOutputPath: modelOutputPath, trainingModelSource: trainingModelSource, trainingPreference: trainingPreference, autoMLTaskId: autoMLTaskId, trainingJobVersion: trainingJobVersion, modelVersionType: modelVersionType, modelFormat: modelFormat, reasoningEnvironmentId: reasoningEnvironmentId, autoClean: autoClean, maxReservedModels: maxReservedModels, modelCleanPeriod: modelCleanPeriod, isQAT: isQAT), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导入模型
     @inlinable
-    public func createTrainingModel(importMethod: String, trainingModelCosPath: CosPathInfo, reasoningEnvironmentSource: String, trainingModelName: String? = nil, tags: [Tag]? = nil, trainingJobName: String? = nil, algorithmFramework: String? = nil, reasoningEnvironment: String? = nil, trainingModelIndex: String? = nil, trainingModelVersion: String? = nil, reasoningImageInfo: ImageInfo? = nil, modelMoveMode: String? = nil, trainingJobId: String? = nil, trainingModelId: String? = nil, modelOutputPath: CosPathInfo? = nil, trainingModelSource: String? = nil, trainingPreference: String? = nil, autoMLTaskId: String? = nil, trainingJobVersion: String? = nil, modelVersionType: String? = nil, modelFormat: String? = nil, reasoningEnvironmentId: String? = nil, autoClean: String? = nil, maxReservedModels: UInt64? = nil, modelCleanPeriod: UInt64? = nil, isQAT: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTrainingModelResponse {
-        try await self.createTrainingModel(.init(importMethod: importMethod, trainingModelCosPath: trainingModelCosPath, reasoningEnvironmentSource: reasoningEnvironmentSource, trainingModelName: trainingModelName, tags: tags, trainingJobName: trainingJobName, algorithmFramework: algorithmFramework, reasoningEnvironment: reasoningEnvironment, trainingModelIndex: trainingModelIndex, trainingModelVersion: trainingModelVersion, reasoningImageInfo: reasoningImageInfo, modelMoveMode: modelMoveMode, trainingJobId: trainingJobId, trainingModelId: trainingModelId, modelOutputPath: modelOutputPath, trainingModelSource: trainingModelSource, trainingPreference: trainingPreference, autoMLTaskId: autoMLTaskId, trainingJobVersion: trainingJobVersion, modelVersionType: modelVersionType, modelFormat: modelFormat, reasoningEnvironmentId: reasoningEnvironmentId, autoClean: autoClean, maxReservedModels: maxReservedModels, modelCleanPeriod: modelCleanPeriod, isQAT: isQAT), region: region, logger: logger, on: eventLoop)
+    public func createTrainingModel(importMethod: String, reasoningEnvironmentSource: String, trainingModelName: String? = nil, tags: [Tag]? = nil, trainingJobName: String? = nil, trainingModelCosPath: CosPathInfo? = nil, algorithmFramework: String? = nil, reasoningEnvironment: String? = nil, trainingModelIndex: String? = nil, trainingModelVersion: String? = nil, reasoningImageInfo: ImageInfo? = nil, modelMoveMode: String? = nil, trainingJobId: String? = nil, trainingModelId: String? = nil, modelOutputPath: CosPathInfo? = nil, trainingModelSource: String? = nil, trainingPreference: String? = nil, autoMLTaskId: String? = nil, trainingJobVersion: String? = nil, modelVersionType: String? = nil, modelFormat: String? = nil, reasoningEnvironmentId: String? = nil, autoClean: String? = nil, maxReservedModels: UInt64? = nil, modelCleanPeriod: UInt64? = nil, isQAT: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTrainingModelResponse {
+        try await self.createTrainingModel(.init(importMethod: importMethod, reasoningEnvironmentSource: reasoningEnvironmentSource, trainingModelName: trainingModelName, tags: tags, trainingJobName: trainingJobName, trainingModelCosPath: trainingModelCosPath, algorithmFramework: algorithmFramework, reasoningEnvironment: reasoningEnvironment, trainingModelIndex: trainingModelIndex, trainingModelVersion: trainingModelVersion, reasoningImageInfo: reasoningImageInfo, modelMoveMode: modelMoveMode, trainingJobId: trainingJobId, trainingModelId: trainingModelId, modelOutputPath: modelOutputPath, trainingModelSource: trainingModelSource, trainingPreference: trainingPreference, autoMLTaskId: autoMLTaskId, trainingJobVersion: trainingJobVersion, modelVersionType: modelVersionType, modelFormat: modelFormat, reasoningEnvironmentId: reasoningEnvironmentId, autoClean: autoClean, maxReservedModels: maxReservedModels, modelCleanPeriod: modelCleanPeriod, isQAT: isQAT), region: region, logger: logger, on: eventLoop)
     }
 }

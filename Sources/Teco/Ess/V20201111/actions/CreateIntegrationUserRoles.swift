@@ -21,16 +21,16 @@ import TecoCore
 extension Ess {
     /// CreateIntegrationUserRoles请求参数结构体
     public struct CreateIntegrationUserRolesRequest: TCRequest {
-        /// 操作人信息，UserId必填
+        /// 执行本接口操作的员工信息。 注: 在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。
         public let `operator`: UserInfo
 
         /// 绑定角色的用户id列表，不能重复，不能大于 100 个
         public let userIds: [String]
 
-        /// 绑定角色的角色id列表，不能重复，不能大于 100，可以通过DescribeIntegrationRoles接口获取
+        /// 绑定角色的角色id列表，不能重复，不能大于 100，可以通过DescribeIntegrationRoles接口获取角色信息
         public let roleIds: [String]
 
-        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        /// 代理企业和员工的信息。 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         public let agent: Agent?
 
         public init(operator: UserInfo, userIds: [String], roleIds: [String], agent: Agent? = nil) {
@@ -64,7 +64,7 @@ extension Ess {
 
     /// 绑定员工角色
     ///
-    /// 绑定员工与对应角色
+    /// 此接口用于赋予员工指定的角色权限，如需解绑请使用 DeleteIntegrationRoleUsers 接口。
     @inlinable
     public func createIntegrationUserRoles(_ input: CreateIntegrationUserRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIntegrationUserRolesResponse> {
         self.client.execute(action: "CreateIntegrationUserRoles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -72,7 +72,7 @@ extension Ess {
 
     /// 绑定员工角色
     ///
-    /// 绑定员工与对应角色
+    /// 此接口用于赋予员工指定的角色权限，如需解绑请使用 DeleteIntegrationRoleUsers 接口。
     @inlinable
     public func createIntegrationUserRoles(_ input: CreateIntegrationUserRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIntegrationUserRolesResponse {
         try await self.client.execute(action: "CreateIntegrationUserRoles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -80,7 +80,7 @@ extension Ess {
 
     /// 绑定员工角色
     ///
-    /// 绑定员工与对应角色
+    /// 此接口用于赋予员工指定的角色权限，如需解绑请使用 DeleteIntegrationRoleUsers 接口。
     @inlinable
     public func createIntegrationUserRoles(operator: UserInfo, userIds: [String], roleIds: [String], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIntegrationUserRolesResponse> {
         self.createIntegrationUserRoles(.init(operator: `operator`, userIds: userIds, roleIds: roleIds, agent: agent), region: region, logger: logger, on: eventLoop)
@@ -88,7 +88,7 @@ extension Ess {
 
     /// 绑定员工角色
     ///
-    /// 绑定员工与对应角色
+    /// 此接口用于赋予员工指定的角色权限，如需解绑请使用 DeleteIntegrationRoleUsers 接口。
     @inlinable
     public func createIntegrationUserRoles(operator: UserInfo, userIds: [String], roleIds: [String], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIntegrationUserRolesResponse {
         try await self.createIntegrationUserRoles(.init(operator: `operator`, userIds: userIds, roleIds: roleIds, agent: agent), region: region, logger: logger, on: eventLoop)

@@ -94,7 +94,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createGameServerSession(_ input: CreateGameServerSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGameServerSessionResponse> {
-        fatalError("CreateGameServerSession is no longer available.")
+        fatalError("'CreateGameServerSession' is no longer available.")
     }
 
     /// 创建游戏服务器会话
@@ -103,7 +103,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createGameServerSession(_ input: CreateGameServerSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGameServerSessionResponse {
-        fatalError("CreateGameServerSession is no longer available.")
+        fatalError("'CreateGameServerSession' is no longer available.")
     }
 
     /// 创建游戏服务器会话
@@ -112,7 +112,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createGameServerSession(maximumPlayerSessionCount: UInt64, aliasId: String? = nil, creatorId: String? = nil, fleetId: String? = nil, gameProperties: [GameProperty]? = nil, gameServerSessionData: String? = nil, gameServerSessionId: String? = nil, idempotencyToken: String? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGameServerSessionResponse> {
-        fatalError("CreateGameServerSession is no longer available.")
+        fatalError("'CreateGameServerSession' is no longer available.")
     }
 
     /// 创建游戏服务器会话
@@ -121,6 +121,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createGameServerSession(maximumPlayerSessionCount: UInt64, aliasId: String? = nil, creatorId: String? = nil, fleetId: String? = nil, gameProperties: [GameProperty]? = nil, gameServerSessionData: String? = nil, gameServerSessionId: String? = nil, idempotencyToken: String? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGameServerSessionResponse {
-        fatalError("CreateGameServerSession is no longer available.")
+        fatalError("'CreateGameServerSession' is no longer available.")
     }
 }

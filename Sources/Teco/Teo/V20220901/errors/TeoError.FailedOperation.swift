@@ -19,6 +19,7 @@ import TecoCore
 extension TCTeoError {
     public struct FailedOperation: TCTeoErrorType {
         enum Code: String {
+            case certificateHasExpired = "FailedOperation.CertificateHasExpired"
             case certificateNotFound = "FailedOperation.CertificateNotFound"
             case insufficientAccountBalance = "FailedOperation.InsufficientAccountBalance"
             case invalidZoneStatus = "FailedOperation.InvalidZoneStatus"
@@ -46,6 +47,10 @@ extension TCTeoError {
         internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
+        }
+
+        public static var certificateHasExpired: FailedOperation {
+            FailedOperation(.certificateHasExpired)
         }
 
         /// 证书不存在。
@@ -76,6 +81,8 @@ extension TCTeoError {
         public func asTeoError() -> TCTeoError {
             let code: TCTeoError.Code
             switch self.error {
+            case .certificateHasExpired:
+                code = .failedOperation_CertificateHasExpired
             case .certificateNotFound:
                 code = .failedOperation_CertificateNotFound
             case .insufficientAccountBalance:

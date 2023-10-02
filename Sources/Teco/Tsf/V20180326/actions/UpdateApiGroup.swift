@@ -30,7 +30,7 @@ extension Tsf {
         /// Api 分组描述
         public let description: String?
 
-        /// 鉴权类型
+        /// 鉴权类型。 secret： 密钥鉴权； none:无鉴权
         public let authType: String?
 
         /// 分组上下文

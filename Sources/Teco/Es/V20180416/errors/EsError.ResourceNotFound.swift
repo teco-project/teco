@@ -19,9 +19,18 @@ import TecoCore
 extension TCEsError {
     public struct ResourceNotFound: TCEsErrorType {
         enum Code: String {
+            case camInfoNotFound = "ResourceNotFound.CAMInfoNotFound"
+            case clusterInfoNotFound = "ResourceNotFound.ClusterInfoNotFound"
+            case cosInfoNotFound = "ResourceNotFound.CosInfoNotFound"
+            case dataNodeNotFound = "ResourceNotFound.DataNodeNotFound"
             case dbInfoNotFound = "ResourceNotFound.DBInfoNotFound"
+            case diagnoseNotFound = "ResourceNotFound.DiagnoseNotFound"
+            case diskInfoNotFound = "ResourceNotFound.DiskInfoNotFound"
+            case ossInfoNotFound = "ResourceNotFound.OssInfoNotFound"
             case securityGroupNotFound = "ResourceNotFound.SecurityGroupNotFound"
-            case other = "ResourceNotFound"
+            case tradeCgwNotFound = "ResourceNotFound.TradeCgwNotFound"
+            case vpcInfoNotFound = "ResourceNotFound.VPCInfoNotFound"
+            case whiteListNotFound = "ResourceNotFound.WhiteListNotFound"
         }
 
         private let error: Code
@@ -46,28 +55,81 @@ extension TCEsError {
             self.context = context
         }
 
+        public static var camInfoNotFound: ResourceNotFound {
+            ResourceNotFound(.camInfoNotFound)
+        }
+
+        public static var clusterInfoNotFound: ResourceNotFound {
+            ResourceNotFound(.clusterInfoNotFound)
+        }
+
+        public static var cosInfoNotFound: ResourceNotFound {
+            ResourceNotFound(.cosInfoNotFound)
+        }
+
+        public static var dataNodeNotFound: ResourceNotFound {
+            ResourceNotFound(.dataNodeNotFound)
+        }
+
         public static var dbInfoNotFound: ResourceNotFound {
             ResourceNotFound(.dbInfoNotFound)
+        }
+
+        public static var diagnoseNotFound: ResourceNotFound {
+            ResourceNotFound(.diagnoseNotFound)
+        }
+
+        public static var diskInfoNotFound: ResourceNotFound {
+            ResourceNotFound(.diskInfoNotFound)
+        }
+
+        public static var ossInfoNotFound: ResourceNotFound {
+            ResourceNotFound(.ossInfoNotFound)
         }
 
         public static var securityGroupNotFound: ResourceNotFound {
             ResourceNotFound(.securityGroupNotFound)
         }
 
-        /// 资源不存在。
-        public static var other: ResourceNotFound {
-            ResourceNotFound(.other)
+        public static var tradeCgwNotFound: ResourceNotFound {
+            ResourceNotFound(.tradeCgwNotFound)
+        }
+
+        public static var vpcInfoNotFound: ResourceNotFound {
+            ResourceNotFound(.vpcInfoNotFound)
+        }
+
+        public static var whiteListNotFound: ResourceNotFound {
+            ResourceNotFound(.whiteListNotFound)
         }
 
         public func asEsError() -> TCEsError {
             let code: TCEsError.Code
             switch self.error {
+            case .camInfoNotFound:
+                code = .resourceNotFound_CAMInfoNotFound
+            case .clusterInfoNotFound:
+                code = .resourceNotFound_ClusterInfoNotFound
+            case .cosInfoNotFound:
+                code = .resourceNotFound_CosInfoNotFound
+            case .dataNodeNotFound:
+                code = .resourceNotFound_DataNodeNotFound
             case .dbInfoNotFound:
                 code = .resourceNotFound_DBInfoNotFound
+            case .diagnoseNotFound:
+                code = .resourceNotFound_DiagnoseNotFound
+            case .diskInfoNotFound:
+                code = .resourceNotFound_DiskInfoNotFound
+            case .ossInfoNotFound:
+                code = .resourceNotFound_OssInfoNotFound
             case .securityGroupNotFound:
                 code = .resourceNotFound_SecurityGroupNotFound
-            case .other:
-                code = .resourceNotFound
+            case .tradeCgwNotFound:
+                code = .resourceNotFound_TradeCgwNotFound
+            case .vpcInfoNotFound:
+                code = .resourceNotFound_VPCInfoNotFound
+            case .whiteListNotFound:
+                code = .resourceNotFound_WhiteListNotFound
             }
             return TCEsError(code, context: self.context)
         }

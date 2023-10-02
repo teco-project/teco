@@ -52,26 +52,30 @@ extension Antiddos {
     }
 
     /// 获取DDoS防护的IP黑白名单
+    @available(*, unavailable, message: "接口变更")
     @inlinable
     public func describeBlackWhiteIpList(_ input: DescribeBlackWhiteIpListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBlackWhiteIpListResponse> {
-        self.client.execute(action: "DescribeBlackWhiteIpList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("'DescribeBlackWhiteIpList' is no longer available.")
     }
 
     /// 获取DDoS防护的IP黑白名单
+    @available(*, unavailable, message: "接口变更")
     @inlinable
     public func describeBlackWhiteIpList(_ input: DescribeBlackWhiteIpListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlackWhiteIpListResponse {
-        try await self.client.execute(action: "DescribeBlackWhiteIpList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("'DescribeBlackWhiteIpList' is no longer available.")
     }
 
     /// 获取DDoS防护的IP黑白名单
+    @available(*, unavailable, message: "接口变更")
     @inlinable
     public func describeBlackWhiteIpList(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBlackWhiteIpListResponse> {
-        self.describeBlackWhiteIpList(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        fatalError("'DescribeBlackWhiteIpList' is no longer available.")
     }
 
     /// 获取DDoS防护的IP黑白名单
+    @available(*, unavailable, message: "接口变更")
     @inlinable
     public func describeBlackWhiteIpList(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlackWhiteIpListResponse {
-        try await self.describeBlackWhiteIpList(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        fatalError("'DescribeBlackWhiteIpList' is no longer available.")
     }
 }

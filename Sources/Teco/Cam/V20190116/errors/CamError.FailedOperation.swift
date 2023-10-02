@@ -20,6 +20,7 @@ extension TCCamError {
     public struct FailedOperation: TCCamErrorType {
         enum Code: String {
             case accesskey = "FailedOperation.Accesskey"
+            case organizationPolicyOperateError = "FailedOperation.OrganizationPolicyOperateError"
             case policyFull = "FailedOperation.PolicyFull"
             case policyNameInUse = "FailedOperation.PolicyNameInUse"
             case policyVersionAlreadyDefault = "FailedOperation.PolicyVersionAlreadyDefault"
@@ -57,6 +58,10 @@ extension TCCamError {
         /// 操作访问密钥错误。
         public static var accesskey: FailedOperation {
             FailedOperation(.accesskey)
+        }
+
+        public static var organizationPolicyOperateError: FailedOperation {
+            FailedOperation(.organizationPolicyOperateError)
         }
 
         /// 用户策略数超过上限。
@@ -114,6 +119,8 @@ extension TCCamError {
             switch self.error {
             case .accesskey:
                 code = .failedOperation_Accesskey
+            case .organizationPolicyOperateError:
+                code = .failedOperation_OrganizationPolicyOperateError
             case .policyFull:
                 code = .failedOperation_PolicyFull
             case .policyNameInUse:

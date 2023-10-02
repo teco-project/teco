@@ -22,9 +22,11 @@ extension TCAsError {
             case autoScalingGroupAbnormalStatus = "ResourceUnavailable.AutoScalingGroupAbnormalStatus"
             case autoScalingGroupDisabled = "ResourceUnavailable.AutoScalingGroupDisabled"
             case autoScalingGroupInActivity = "ResourceUnavailable.AutoScalingGroupInActivity"
+            case autoScalingGroupInRefreshActivity = "ResourceUnavailable.AutoScalingGroupInRefreshActivity"
             case cmqTopicHasNoSubscriber = "ResourceUnavailable.CmqTopicHasNoSubscriber"
             case cvmVpcInconsistent = "ResourceUnavailable.CvmVpcInconsistent"
             case forbiddenModifyVpc = "ResourceUnavailable.ForbiddenModifyVpc"
+            case inquiryPriceResetInstanceFailed = "ResourceUnavailable.InquiryPriceResetInstanceFailed"
             case instanceCannotAttach = "ResourceUnavailable.InstanceCannotAttach"
             case instanceInOperation = "ResourceUnavailable.InstanceInOperation"
             case instanceNotSupportStopCharging = "ResourceUnavailable.InstanceNotSupportStopCharging"
@@ -35,7 +37,12 @@ extension TCAsError {
             case lbVpcInconsistent = "ResourceUnavailable.LbVpcInconsistent"
             case lifecycleActionResultHasSet = "ResourceUnavailable.LifecycleActionResultHasSet"
             case loadBalancerInOperation = "ResourceUnavailable.LoadBalancerInOperation"
+            case noInstanceCanRefresh = "ResourceUnavailable.NoInstanceCanRefresh"
+            case noInstanceCanRollback = "ResourceUnavailable.NoInstanceCanRollback"
             case projectInconsistent = "ResourceUnavailable.ProjectInconsistent"
+            case refreshActivityCanNotRollback = "ResourceUnavailable.RefreshActivityCanNotRollback"
+            case refreshActivityStatusConflictWithOperation = "ResourceUnavailable.RefreshActivityStatusConflictWithOperation"
+            case rollbackTypeActivityCanNotRollbackAgain = "ResourceUnavailable.RollbackTypeActivityCanNotRollbackAgain"
             case stoppedInstanceNotAllowAttach = "ResourceUnavailable.StoppedInstanceNotAllowAttach"
             case tdmqcmqTopicHasNoSubscriber = "ResourceUnavailable.TDMQCMQTopicHasNoSubscriber"
             case zoneUnavailable = "ResourceUnavailable.ZoneUnavailable"
@@ -78,6 +85,11 @@ extension TCAsError {
             ResourceUnavailable(.autoScalingGroupInActivity)
         }
 
+        /// 请确认上一个实例刷新活动已结束。
+        public static var autoScalingGroupInRefreshActivity: ResourceUnavailable {
+            ResourceUnavailable(.autoScalingGroupInRefreshActivity)
+        }
+
         /// 指定的 CMQ Topic 无订阅者。
         ///
         /// 请核实您的 Topic。
@@ -95,6 +107,11 @@ extension TCAsError {
         /// 先解绑负载均衡器，再修改伸缩组的Vpc。
         public static var forbiddenModifyVpc: ResourceUnavailable {
             ResourceUnavailable(.forbiddenModifyVpc)
+        }
+
+        /// 检查新镜像与原有实例的其他参数是否存在冲突，新镜像是否存在。
+        public static var inquiryPriceResetInstanceFailed: ResourceUnavailable {
+            ResourceUnavailable(.inquiryPriceResetInstanceFailed)
         }
 
         /// 实例无法添加至伸缩组。
@@ -147,9 +164,34 @@ extension TCAsError {
             ResourceUnavailable(.loadBalancerInOperation)
         }
 
+        /// 检查伸缩组内是否存在运行中状态的实例。
+        public static var noInstanceCanRefresh: ResourceUnavailable {
+            ResourceUnavailable(.noInstanceCanRefresh)
+        }
+
+        /// 检查前置刷新活动中已刷新的实例是否存在于现有伸缩组中。
+        public static var noInstanceCanRollback: ResourceUnavailable {
+            ResourceUnavailable(.noInstanceCanRollback)
+        }
+
         /// 项目不一致。
         public static var projectInconsistent: ResourceUnavailable {
             ResourceUnavailable(.projectInconsistent)
+        }
+
+        /// 仅支持回滚最近一次已成功实例刷新活动。
+        public static var refreshActivityCanNotRollback: ResourceUnavailable {
+            ResourceUnavailable(.refreshActivityCanNotRollback)
+        }
+
+        /// 请检查当前活动状态与操作是否存在冲突。例如，已结束的活动无法暂停，已取消的活动无法回滚。
+        public static var refreshActivityStatusConflictWithOperation: ResourceUnavailable {
+            ResourceUnavailable(.refreshActivityStatusConflictWithOperation)
+        }
+
+        /// 不支持对回滚的活动再回滚，可尝试使用StartRefreshInstance将实例刷新到指定的镜像版本。
+        public static var rollbackTypeActivityCanNotRollbackAgain: ResourceUnavailable {
+            ResourceUnavailable(.rollbackTypeActivityCanNotRollbackAgain)
         }
 
         /// 关机实例不允许添加到伸缩组。
@@ -176,12 +218,16 @@ extension TCAsError {
                 code = .resourceUnavailable_AutoScalingGroupDisabled
             case .autoScalingGroupInActivity:
                 code = .resourceUnavailable_AutoScalingGroupInActivity
+            case .autoScalingGroupInRefreshActivity:
+                code = .resourceUnavailable_AutoScalingGroupInRefreshActivity
             case .cmqTopicHasNoSubscriber:
                 code = .resourceUnavailable_CmqTopicHasNoSubscriber
             case .cvmVpcInconsistent:
                 code = .resourceUnavailable_CvmVpcInconsistent
             case .forbiddenModifyVpc:
                 code = .resourceUnavailable_ForbiddenModifyVpc
+            case .inquiryPriceResetInstanceFailed:
+                code = .resourceUnavailable_InquiryPriceResetInstanceFailed
             case .instanceCannotAttach:
                 code = .resourceUnavailable_InstanceCannotAttach
             case .instanceInOperation:
@@ -202,8 +248,18 @@ extension TCAsError {
                 code = .resourceUnavailable_LifecycleActionResultHasSet
             case .loadBalancerInOperation:
                 code = .resourceUnavailable_LoadBalancerInOperation
+            case .noInstanceCanRefresh:
+                code = .resourceUnavailable_NoInstanceCanRefresh
+            case .noInstanceCanRollback:
+                code = .resourceUnavailable_NoInstanceCanRollback
             case .projectInconsistent:
                 code = .resourceUnavailable_ProjectInconsistent
+            case .refreshActivityCanNotRollback:
+                code = .resourceUnavailable_RefreshActivityCanNotRollback
+            case .refreshActivityStatusConflictWithOperation:
+                code = .resourceUnavailable_RefreshActivityStatusConflictWithOperation
+            case .rollbackTypeActivityCanNotRollbackAgain:
+                code = .resourceUnavailable_RollbackTypeActivityCanNotRollbackAgain
             case .stoppedInstanceNotAllowAttach:
                 code = .resourceUnavailable_StoppedInstanceNotAllowAttach
             case .tdmqcmqTopicHasNoSubscriber:

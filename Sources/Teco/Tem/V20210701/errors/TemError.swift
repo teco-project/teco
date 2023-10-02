@@ -69,10 +69,12 @@ public struct TCTemError: TCTemErrorType {
         case invalidParameterValue_ApplicationServiceNotFound = "InvalidParameterValue.ApplicationServiceNotFound"
         case invalidParameterValue_AtLeastOneScalerRuleShouldBeApplied = "InvalidParameterValue.AtLeastOneScalerRuleShouldBeApplied"
         case invalidParameterValue_AutoScalerLargerThanOne = "InvalidParameterValue.AutoScalerLargerThanOne"
+        case invalidParameterValue_AutoScalerNameInvalid = "InvalidParameterValue.AutoScalerNameInvalid"
         case invalidParameterValue_CannotOverWriteOtherApplicationService = "InvalidParameterValue.CannotOverWriteOtherApplicationService"
         case invalidParameterValue_CannotUpdateServiceByBothMethods = "InvalidParameterValue.CannotUpdateServiceByBothMethods"
         case invalidParameterValue_ConfigDataAlreadyExist = "InvalidParameterValue.ConfigDataAlreadyExist"
         case invalidParameterValue_ConfigDataInvalid = "InvalidParameterValue.ConfigDataInvalid"
+        case invalidParameterValue_CreateNamespaceUnsupportRegionError = "InvalidParameterValue.CreateNamespaceUnsupportRegionError"
         case invalidParameterValue_CronHpaReplicasInvalid = "InvalidParameterValue.CronHpaReplicasInvalid"
         case invalidParameterValue_DailyCreateNamespaceReachMaximum = "InvalidParameterValue.DailyCreateNamespaceReachMaximum"
         case invalidParameterValue_DisableScalerBeforeDelete = "InvalidParameterValue.DisableScalerBeforeDelete"
@@ -417,6 +419,11 @@ public struct TCTemError: TCTemErrorType {
         TCTemError(.invalidParameterValue_AutoScalerLargerThanOne)
     }
 
+    /// 弹性规则名称不合法, 长度必须小于20。
+    public static var invalidParameterValue_AutoScalerNameInvalid: TCTemError {
+        TCTemError(.invalidParameterValue_AutoScalerNameInvalid)
+    }
+
     /// 不能覆盖其他应用的访问方式。
     public static var invalidParameterValue_CannotOverWriteOtherApplicationService: TCTemError {
         TCTemError(.invalidParameterValue_CannotOverWriteOtherApplicationService)
@@ -435,6 +442,11 @@ public struct TCTemError: TCTemErrorType {
     /// 配置不合法。
     public static var invalidParameterValue_ConfigDataInvalid: TCTemError {
         TCTemError(.invalidParameterValue_ConfigDataInvalid)
+    }
+
+    /// 创建环境createRegion参数错误。
+    public static var invalidParameterValue_CreateNamespaceUnsupportRegionError: TCTemError {
+        TCTemError(.invalidParameterValue_CreateNamespaceUnsupportRegionError)
     }
 
     /// 定时弹性伸缩目标实例数不合法。

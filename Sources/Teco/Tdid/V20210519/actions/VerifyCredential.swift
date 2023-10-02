@@ -59,27 +59,27 @@ extension Tdid {
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func verifyCredential(_ input: VerifyCredentialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyCredentialResponse> {
-        fatalError("VerifyCredential is no longer available.")
+        fatalError("'VerifyCredential' is no longer available.")
     }
 
     /// 验证凭证
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func verifyCredential(_ input: VerifyCredentialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyCredentialResponse {
-        fatalError("VerifyCredential is no longer available.")
+        fatalError("'VerifyCredential' is no longer available.")
     }
 
     /// 验证凭证
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func verifyCredential(functionArg: VerifyFunctionArg, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyCredentialResponse> {
-        fatalError("VerifyCredential is no longer available.")
+        fatalError("'VerifyCredential' is no longer available.")
     }
 
     /// 验证凭证
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func verifyCredential(functionArg: VerifyFunctionArg, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyCredentialResponse {
-        fatalError("VerifyCredential is no longer available.")
+        fatalError("'VerifyCredential' is no longer available.")
     }
 }

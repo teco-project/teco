@@ -19,8 +19,10 @@ import TecoCore
 extension TCTseError {
     public struct FailedOperation: TCTseErrorType {
         enum Code: String {
+            case cls = "FailedOperation.Cls"
             case failedOperation = "FailedOperation.FailedOperation"
             case internalError = "FailedOperation.InternalError"
+            case resource = "FailedOperation.Resource"
             case role = "FailedOperation.Role"
             case vpc = "FailedOperation.Vpc"
             case other = "FailedOperation"
@@ -48,6 +50,11 @@ extension TCTseError {
             self.context = context
         }
 
+        /// 调用CLS服务失败
+        public static var cls: FailedOperation {
+            FailedOperation(.cls)
+        }
+
         /// 操作失败。
         public static var failedOperation: FailedOperation {
             FailedOperation(.failedOperation)
@@ -56,6 +63,11 @@ extension TCTseError {
         /// 操作失败，内部错误。
         public static var internalError: FailedOperation {
             FailedOperation(.internalError)
+        }
+
+        /// 超过购买实例的最大数量。
+        public static var resource: FailedOperation {
+            FailedOperation(.resource)
         }
 
         /// 获取临时密钥失败
@@ -76,10 +88,14 @@ extension TCTseError {
         public func asTseError() -> TCTseError {
             let code: TCTseError.Code
             switch self.error {
+            case .cls:
+                code = .failedOperation_Cls
             case .failedOperation:
                 code = .failedOperation_FailedOperation
             case .internalError:
                 code = .failedOperation_InternalError
+            case .resource:
+                code = .failedOperation_Resource
             case .role:
                 code = .failedOperation_Role
             case .vpc:

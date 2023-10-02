@@ -600,10 +600,10 @@ extension Tcaplusdb {
 
     /// ckafka地址信息
     public struct KafkaInfo: TCInputModel {
-        /// kafaka address
+        /// Kafka address
         public let address: String
 
-        /// kafaka topic
+        /// Kafka topic
         public let topic: String
 
         /// kafka username

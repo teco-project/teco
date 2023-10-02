@@ -28,10 +28,17 @@ extension Mps {
         public let outputStorage: TaskOutputStorage
 
         /// 媒体处理输出文件的目标路径。
+        ///
+        /// 注意：对于复杂合成任务，路径中的文件名只可为数字、字母、-、_ 的组合，最长 64 个字符。
         public let outputObjectPath: String
 
-        /// 编辑后生成的文件配置。
+        /// 【剪辑】任务生成的文件配置。
         public let outputConfig: EditMediaOutputConfig?
+
+        /// 【合成】任务配置。
+        ///
+        /// 注意：当其不为空时，认为是合成任务，否则按剪辑任务处理。
+        public let composeConfig: ComposeMediaConfig?
 
         /// 任务的事件通知信息，不填代表不获取事件通知。
         public let taskNotifyConfig: TaskNotifyConfig?
@@ -45,11 +52,12 @@ extension Mps {
         /// 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
         public let sessionContext: String?
 
-        public init(fileInfos: [EditMediaFileInfo], outputStorage: TaskOutputStorage, outputObjectPath: String, outputConfig: EditMediaOutputConfig? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, tasksPriority: Int64? = nil, sessionId: String? = nil, sessionContext: String? = nil) {
+        public init(fileInfos: [EditMediaFileInfo], outputStorage: TaskOutputStorage, outputObjectPath: String, outputConfig: EditMediaOutputConfig? = nil, composeConfig: ComposeMediaConfig? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, tasksPriority: Int64? = nil, sessionId: String? = nil, sessionContext: String? = nil) {
             self.fileInfos = fileInfos
             self.outputStorage = outputStorage
             self.outputObjectPath = outputObjectPath
             self.outputConfig = outputConfig
+            self.composeConfig = composeConfig
             self.taskNotifyConfig = taskNotifyConfig
             self.tasksPriority = tasksPriority
             self.sessionId = sessionId
@@ -61,6 +69,7 @@ extension Mps {
             case outputStorage = "OutputStorage"
             case outputObjectPath = "OutputObjectPath"
             case outputConfig = "OutputConfig"
+            case composeConfig = "ComposeConfig"
             case taskNotifyConfig = "TaskNotifyConfig"
             case tasksPriority = "TasksPriority"
             case sessionId = "SessionId"
@@ -84,11 +93,18 @@ extension Mps {
 
     /// 编辑视频
     ///
-    /// 对视频进行编辑（剪辑、拼接等），生成一个新的点播视频。编辑的功能包括：
+    /// 对视频进行编辑，生成一个新的视频。编辑的功能包括：
     ///
+    /// 一、**剪辑任务**：简单的视频剪辑，如剪辑、拼接等
     /// 1. 对一个文件进行剪辑，生成一个新的视频；
     /// 2. 对多个文件进行拼接，生成一个新的视频；
     /// 3. 对多个文件进行剪辑，然后再拼接，生成一个新的视频。
+    ///
+    /// 二、**合成任务**：通过接口描述信息，合成一个新的视频。
+    /// 1. 多轨道（视频、音频、字幕）、多类型元素（视频、图片、音频、文字、空）
+    /// 2. 图像级别：贴图、缩放、任意角度旋转、镜像等
+    /// 3. 音频级别：音量控制、淡入淡出、混音等
+    /// 4. 视频级别：转场、倍数播放、拼接、剪切、字幕、画中画、音画分离、出入场动效等
     @inlinable
     public func editMedia(_ input: EditMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditMediaResponse> {
         self.client.execute(action: "EditMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -96,11 +112,18 @@ extension Mps {
 
     /// 编辑视频
     ///
-    /// 对视频进行编辑（剪辑、拼接等），生成一个新的点播视频。编辑的功能包括：
+    /// 对视频进行编辑，生成一个新的视频。编辑的功能包括：
     ///
+    /// 一、**剪辑任务**：简单的视频剪辑，如剪辑、拼接等
     /// 1. 对一个文件进行剪辑，生成一个新的视频；
     /// 2. 对多个文件进行拼接，生成一个新的视频；
     /// 3. 对多个文件进行剪辑，然后再拼接，生成一个新的视频。
+    ///
+    /// 二、**合成任务**：通过接口描述信息，合成一个新的视频。
+    /// 1. 多轨道（视频、音频、字幕）、多类型元素（视频、图片、音频、文字、空）
+    /// 2. 图像级别：贴图、缩放、任意角度旋转、镜像等
+    /// 3. 音频级别：音量控制、淡入淡出、混音等
+    /// 4. 视频级别：转场、倍数播放、拼接、剪切、字幕、画中画、音画分离、出入场动效等
     @inlinable
     public func editMedia(_ input: EditMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditMediaResponse {
         try await self.client.execute(action: "EditMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -108,25 +131,39 @@ extension Mps {
 
     /// 编辑视频
     ///
-    /// 对视频进行编辑（剪辑、拼接等），生成一个新的点播视频。编辑的功能包括：
+    /// 对视频进行编辑，生成一个新的视频。编辑的功能包括：
     ///
+    /// 一、**剪辑任务**：简单的视频剪辑，如剪辑、拼接等
     /// 1. 对一个文件进行剪辑，生成一个新的视频；
     /// 2. 对多个文件进行拼接，生成一个新的视频；
     /// 3. 对多个文件进行剪辑，然后再拼接，生成一个新的视频。
+    ///
+    /// 二、**合成任务**：通过接口描述信息，合成一个新的视频。
+    /// 1. 多轨道（视频、音频、字幕）、多类型元素（视频、图片、音频、文字、空）
+    /// 2. 图像级别：贴图、缩放、任意角度旋转、镜像等
+    /// 3. 音频级别：音量控制、淡入淡出、混音等
+    /// 4. 视频级别：转场、倍数播放、拼接、剪切、字幕、画中画、音画分离、出入场动效等
     @inlinable
-    public func editMedia(fileInfos: [EditMediaFileInfo], outputStorage: TaskOutputStorage, outputObjectPath: String, outputConfig: EditMediaOutputConfig? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, tasksPriority: Int64? = nil, sessionId: String? = nil, sessionContext: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditMediaResponse> {
-        self.editMedia(.init(fileInfos: fileInfos, outputStorage: outputStorage, outputObjectPath: outputObjectPath, outputConfig: outputConfig, taskNotifyConfig: taskNotifyConfig, tasksPriority: tasksPriority, sessionId: sessionId, sessionContext: sessionContext), region: region, logger: logger, on: eventLoop)
+    public func editMedia(fileInfos: [EditMediaFileInfo], outputStorage: TaskOutputStorage, outputObjectPath: String, outputConfig: EditMediaOutputConfig? = nil, composeConfig: ComposeMediaConfig? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, tasksPriority: Int64? = nil, sessionId: String? = nil, sessionContext: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditMediaResponse> {
+        self.editMedia(.init(fileInfos: fileInfos, outputStorage: outputStorage, outputObjectPath: outputObjectPath, outputConfig: outputConfig, composeConfig: composeConfig, taskNotifyConfig: taskNotifyConfig, tasksPriority: tasksPriority, sessionId: sessionId, sessionContext: sessionContext), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑视频
     ///
-    /// 对视频进行编辑（剪辑、拼接等），生成一个新的点播视频。编辑的功能包括：
+    /// 对视频进行编辑，生成一个新的视频。编辑的功能包括：
     ///
+    /// 一、**剪辑任务**：简单的视频剪辑，如剪辑、拼接等
     /// 1. 对一个文件进行剪辑，生成一个新的视频；
     /// 2. 对多个文件进行拼接，生成一个新的视频；
     /// 3. 对多个文件进行剪辑，然后再拼接，生成一个新的视频。
+    ///
+    /// 二、**合成任务**：通过接口描述信息，合成一个新的视频。
+    /// 1. 多轨道（视频、音频、字幕）、多类型元素（视频、图片、音频、文字、空）
+    /// 2. 图像级别：贴图、缩放、任意角度旋转、镜像等
+    /// 3. 音频级别：音量控制、淡入淡出、混音等
+    /// 4. 视频级别：转场、倍数播放、拼接、剪切、字幕、画中画、音画分离、出入场动效等
     @inlinable
-    public func editMedia(fileInfos: [EditMediaFileInfo], outputStorage: TaskOutputStorage, outputObjectPath: String, outputConfig: EditMediaOutputConfig? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, tasksPriority: Int64? = nil, sessionId: String? = nil, sessionContext: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditMediaResponse {
-        try await self.editMedia(.init(fileInfos: fileInfos, outputStorage: outputStorage, outputObjectPath: outputObjectPath, outputConfig: outputConfig, taskNotifyConfig: taskNotifyConfig, tasksPriority: tasksPriority, sessionId: sessionId, sessionContext: sessionContext), region: region, logger: logger, on: eventLoop)
+    public func editMedia(fileInfos: [EditMediaFileInfo], outputStorage: TaskOutputStorage, outputObjectPath: String, outputConfig: EditMediaOutputConfig? = nil, composeConfig: ComposeMediaConfig? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, tasksPriority: Int64? = nil, sessionId: String? = nil, sessionContext: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditMediaResponse {
+        try await self.editMedia(.init(fileInfos: fileInfos, outputStorage: outputStorage, outputObjectPath: outputObjectPath, outputConfig: outputConfig, composeConfig: composeConfig, taskNotifyConfig: taskNotifyConfig, tasksPriority: tasksPriority, sessionId: sessionId, sessionContext: sessionContext), region: region, logger: logger, on: eventLoop)
     }
 }

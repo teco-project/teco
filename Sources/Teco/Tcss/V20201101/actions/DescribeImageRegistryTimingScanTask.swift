@@ -42,6 +42,7 @@ extension Tcss {
         public let scanType: [String]?
 
         /// 扫描全部镜像
+        @available(*, deprecated)
         public let all: Bool
 
         /// 自定义扫描镜像
@@ -56,6 +57,22 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let latest: Bool?
 
+        /// 扫描结束时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scanEndTime: String?
+
+        /// 仓库类型 tcr,ccr,harbor
+        public let registryType: [String]?
+
+        /// 是否存在运行中的容器
+        public let containerRunning: Bool?
+
+        /// 扫描范围 0全部镜像，1自选镜像，2推荐扫描镜像
+        public let scanScope: UInt64?
+
+        /// 命名空间
+        public let namespace: [String]?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -68,6 +85,11 @@ extension Tcss {
             case images = "Images"
             case id = "Id"
             case latest = "Latest"
+            case scanEndTime = "ScanEndTime"
+            case registryType = "RegistryType"
+            case containerRunning = "ContainerRunning"
+            case scanScope = "ScanScope"
+            case namespace = "Namespace"
             case requestId = "RequestId"
         }
     }

@@ -77,33 +77,33 @@ extension Cynosdb {
         }
     }
 
-    /// 开启集群密码复杂度
+    /// 开启自定义密码复杂度功能
     ///
-    /// 本接口（OpenClusterPasswordComplexity）用于开启集群密码复杂度
+    /// 本接口（OpenClusterPasswordComplexity）用于开启自定义密码复杂度功能
     @inlinable
     public func openClusterPasswordComplexity(_ input: OpenClusterPasswordComplexityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenClusterPasswordComplexityResponse> {
         self.client.execute(action: "OpenClusterPasswordComplexity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 开启集群密码复杂度
+    /// 开启自定义密码复杂度功能
     ///
-    /// 本接口（OpenClusterPasswordComplexity）用于开启集群密码复杂度
+    /// 本接口（OpenClusterPasswordComplexity）用于开启自定义密码复杂度功能
     @inlinable
     public func openClusterPasswordComplexity(_ input: OpenClusterPasswordComplexityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenClusterPasswordComplexityResponse {
         try await self.client.execute(action: "OpenClusterPasswordComplexity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 开启集群密码复杂度
+    /// 开启自定义密码复杂度功能
     ///
-    /// 本接口（OpenClusterPasswordComplexity）用于开启集群密码复杂度
+    /// 本接口（OpenClusterPasswordComplexity）用于开启自定义密码复杂度功能
     @inlinable
     public func openClusterPasswordComplexity(clusterId: String, validatePasswordLength: Int64, validatePasswordMixedCaseCount: Int64, validatePasswordSpecialCharCount: Int64, validatePasswordNumberCount: Int64, validatePasswordPolicy: String, validatePasswordDictionary: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenClusterPasswordComplexityResponse> {
         self.openClusterPasswordComplexity(.init(clusterId: clusterId, validatePasswordLength: validatePasswordLength, validatePasswordMixedCaseCount: validatePasswordMixedCaseCount, validatePasswordSpecialCharCount: validatePasswordSpecialCharCount, validatePasswordNumberCount: validatePasswordNumberCount, validatePasswordPolicy: validatePasswordPolicy, validatePasswordDictionary: validatePasswordDictionary), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 开启集群密码复杂度
+    /// 开启自定义密码复杂度功能
     ///
-    /// 本接口（OpenClusterPasswordComplexity）用于开启集群密码复杂度
+    /// 本接口（OpenClusterPasswordComplexity）用于开启自定义密码复杂度功能
     @inlinable
     public func openClusterPasswordComplexity(clusterId: String, validatePasswordLength: Int64, validatePasswordMixedCaseCount: Int64, validatePasswordSpecialCharCount: Int64, validatePasswordNumberCount: Int64, validatePasswordPolicy: String, validatePasswordDictionary: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenClusterPasswordComplexityResponse {
         try await self.openClusterPasswordComplexity(.init(clusterId: clusterId, validatePasswordLength: validatePasswordLength, validatePasswordMixedCaseCount: validatePasswordMixedCaseCount, validatePasswordSpecialCharCount: validatePasswordSpecialCharCount, validatePasswordNumberCount: validatePasswordNumberCount, validatePasswordPolicy: validatePasswordPolicy, validatePasswordDictionary: validatePasswordDictionary), region: region, logger: logger, on: eventLoop)

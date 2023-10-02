@@ -22,14 +22,17 @@ extension TCEsError {
             case clusterResourceLimitError = "FailedOperation.ClusterResourceLimitError"
             case diskCountParamError = "FailedOperation.DiskCountParamError"
             case errorClusterState = "FailedOperation.ErrorClusterState"
-            case errorClusterStateNoReplication = "FailedOperation.ErrorClusterStateNoReplication"
-            case errorClusterStateUnhealth = "FailedOperation.ErrorClusterStateUnhealth"
+            case esDictionaryInfoError = "FailedOperation.EsDictionaryInfoError"
+            case fileNameError = "FailedOperation.FileNameError"
+            case fileSizeError = "FailedOperation.FileSizeError"
+            case getTagInfoError = "FailedOperation.GetTagInfoError"
             case noPayment = "FailedOperation.NoPayment"
             case notAuthenticated = "FailedOperation.NotAuthenticated"
+            case refundError = "FailedOperation.RefundError"
+            case unsupportedLocalDiskRollUpScaleUpOrDown = "FailedOperation.UnsupportedLocalDiskRollUpScaleUpOrDown"
             case unsupportedResetNodeTypeAndScaleOutDisk = "FailedOperation.UnsupportedResetNodeTypeAndScaleOutDisk"
             case unsupportedRestScaleDownAndModifyDisk = "FailedOperation.UnsupportedRestScaleDownAndModifyDisk"
             case unsupportedReverseRegulationNodeTypeAndDisk = "FailedOperation.UnsupportedReverseRegulationNodeTypeAndDisk"
-            case other = "FailedOperation"
         }
 
         private let error: Code
@@ -71,18 +74,20 @@ extension TCEsError {
             FailedOperation(.errorClusterState)
         }
 
-        /// 集群索引没有副本存在。
-        ///
-        /// 给集群中0副本的索引添加副本
-        public static var errorClusterStateNoReplication: FailedOperation {
-            FailedOperation(.errorClusterStateNoReplication)
+        public static var esDictionaryInfoError: FailedOperation {
+            FailedOperation(.esDictionaryInfoError)
         }
 
-        /// 集群状态不健康。
-        ///
-        /// 等集群状态健康后在进行操作。
-        public static var errorClusterStateUnhealth: FailedOperation {
-            FailedOperation(.errorClusterStateUnhealth)
+        public static var fileNameError: FailedOperation {
+            FailedOperation(.fileNameError)
+        }
+
+        public static var fileSizeError: FailedOperation {
+            FailedOperation(.fileSizeError)
+        }
+
+        public static var getTagInfoError: FailedOperation {
+            FailedOperation(.getTagInfoError)
         }
 
         /// 账户未绑定信用卡或paypal，无法支付。
@@ -93,6 +98,17 @@ extension TCEsError {
         /// 用户未实名认证。
         public static var notAuthenticated: FailedOperation {
             FailedOperation(.notAuthenticated)
+        }
+
+        public static var refundError: FailedOperation {
+            FailedOperation(.refundError)
+        }
+
+        /// 不支持对本地盘集群通过滚动重启方式扩缩容。
+        ///
+        /// 选择蓝绿变更方式扩缩容集群。
+        public static var unsupportedLocalDiskRollUpScaleUpOrDown: FailedOperation {
+            FailedOperation(.unsupportedLocalDiskRollUpScaleUpOrDown)
         }
 
         /// 不支持在滚动重启扩容计算资源同时扩容磁盘数量。
@@ -112,11 +128,6 @@ extension TCEsError {
             FailedOperation(.unsupportedReverseRegulationNodeTypeAndDisk)
         }
 
-        /// 操作失败。
-        public static var other: FailedOperation {
-            FailedOperation(.other)
-        }
-
         public func asEsError() -> TCEsError {
             let code: TCEsError.Code
             switch self.error {
@@ -126,22 +137,28 @@ extension TCEsError {
                 code = .failedOperation_DiskCountParamError
             case .errorClusterState:
                 code = .failedOperation_ErrorClusterState
-            case .errorClusterStateNoReplication:
-                code = .failedOperation_ErrorClusterStateNoReplication
-            case .errorClusterStateUnhealth:
-                code = .failedOperation_ErrorClusterStateUnhealth
+            case .esDictionaryInfoError:
+                code = .failedOperation_EsDictionaryInfoError
+            case .fileNameError:
+                code = .failedOperation_FileNameError
+            case .fileSizeError:
+                code = .failedOperation_FileSizeError
+            case .getTagInfoError:
+                code = .failedOperation_GetTagInfoError
             case .noPayment:
                 code = .failedOperation_NoPayment
             case .notAuthenticated:
                 code = .failedOperation_NotAuthenticated
+            case .refundError:
+                code = .failedOperation_RefundError
+            case .unsupportedLocalDiskRollUpScaleUpOrDown:
+                code = .failedOperation_UnsupportedLocalDiskRollUpScaleUpOrDown
             case .unsupportedResetNodeTypeAndScaleOutDisk:
                 code = .failedOperation_UnsupportedResetNodeTypeAndScaleOutDisk
             case .unsupportedRestScaleDownAndModifyDisk:
                 code = .failedOperation_UnsupportedRestScaleDownAndModifyDisk
             case .unsupportedReverseRegulationNodeTypeAndDisk:
                 code = .failedOperation_UnsupportedReverseRegulationNodeTypeAndDisk
-            case .other:
-                code = .failedOperation
             }
             return TCEsError(code, context: self.context)
         }

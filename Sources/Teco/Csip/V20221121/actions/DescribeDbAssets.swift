@@ -23,12 +23,17 @@ extension Csip {
     public struct DescribeDbAssetsRequest: TCRequest {
         public let filter: Filter?
 
-        public init(filter: Filter? = nil) {
+        /// 资产类型:MYSQL/MARIADB/REDIS/MONGODB/POSTGRES/CTS/ES/KAFKA/COS/CBS/CFS
+        public let assetTypes: [String]?
+
+        public init(filter: Filter? = nil, assetTypes: [String]? = nil) {
             self.filter = filter
+            self.assetTypes = assetTypes
         }
 
         enum CodingKeys: String, CodingKey {
             case filter = "Filter"
+            case assetTypes = "AssetTypes"
         }
     }
 
@@ -72,27 +77,27 @@ extension Csip {
         }
     }
 
-    /// 资产列表
+    /// 数据库资产列表
     @inlinable
     public func describeDbAssets(_ input: DescribeDbAssetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDbAssetsResponse> {
         self.client.execute(action: "DescribeDbAssets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 资产列表
+    /// 数据库资产列表
     @inlinable
     public func describeDbAssets(_ input: DescribeDbAssetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDbAssetsResponse {
         try await self.client.execute(action: "DescribeDbAssets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 资产列表
+    /// 数据库资产列表
     @inlinable
-    public func describeDbAssets(filter: Filter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDbAssetsResponse> {
-        self.describeDbAssets(.init(filter: filter), region: region, logger: logger, on: eventLoop)
+    public func describeDbAssets(filter: Filter? = nil, assetTypes: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDbAssetsResponse> {
+        self.describeDbAssets(.init(filter: filter, assetTypes: assetTypes), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 资产列表
+    /// 数据库资产列表
     @inlinable
-    public func describeDbAssets(filter: Filter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDbAssetsResponse {
-        try await self.describeDbAssets(.init(filter: filter), region: region, logger: logger, on: eventLoop)
+    public func describeDbAssets(filter: Filter? = nil, assetTypes: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDbAssetsResponse {
+        try await self.describeDbAssets(.init(filter: filter, assetTypes: assetTypes), region: region, logger: logger, on: eventLoop)
     }
 }

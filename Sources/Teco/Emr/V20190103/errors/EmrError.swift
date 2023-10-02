@@ -157,6 +157,7 @@ public struct TCEmrError: TCEmrErrorType {
         case resourcesSoldOut = "ResourcesSoldOut"
         case resourcesSoldOut_CbsSoldOut = "ResourcesSoldOut.CbsSoldOut"
         case resourcesSoldOut_CvmSoldOut = "ResourcesSoldOut.CvmSoldOut"
+        case unauthorizedOperation_AppIdMismatched = "UnauthorizedOperation.AppIdMismatched"
         case unauthorizedOperation_CheckCamAuth = "UnauthorizedOperation.CheckCamAuth"
         case unknownParameter = "UnknownParameter"
         case unsupportedOperation = "UnsupportedOperation"
@@ -856,6 +857,11 @@ public struct TCEmrError: TCEmrErrorType {
     /// 云服务器已售罄。
     public static var resourcesSoldOut_CvmSoldOut: TCEmrError {
         TCEmrError(.resourcesSoldOut_CvmSoldOut)
+    }
+
+    /// appid不一致。
+    public static var unauthorizedOperation_AppIdMismatched: TCEmrError {
+        TCEmrError(.unauthorizedOperation_AppIdMismatched)
     }
 
     /// 校验账号操作无权限。

@@ -41,7 +41,7 @@ extension Cr {
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var fileDate: Date
 
-        public init(module: String = "Data", operation: String = "UploadFile", fileUrl: String, fileName: String, fileDate: Date) {
+        public init(module: String, operation: String, fileUrl: String, fileName: String, fileDate: Date) {
             self.module = module
             self.operation = operation
             self.fileUrl = fileUrl
@@ -92,7 +92,7 @@ extension Cr {
     ///
     /// 客户通过调用该接口上传需催收文档，格式需为excel格式。接口返回任务ID。
     @inlinable
-    public func uploadFile(module: String = "Data", operation: String = "UploadFile", fileUrl: String, fileName: String, fileDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFileResponse> {
+    public func uploadFile(module: String, operation: String, fileUrl: String, fileName: String, fileDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFileResponse> {
         self.uploadFile(.init(module: module, operation: operation, fileUrl: fileUrl, fileName: fileName, fileDate: fileDate), region: region, logger: logger, on: eventLoop)
     }
 
@@ -100,7 +100,7 @@ extension Cr {
     ///
     /// 客户通过调用该接口上传需催收文档，格式需为excel格式。接口返回任务ID。
     @inlinable
-    public func uploadFile(module: String = "Data", operation: String = "UploadFile", fileUrl: String, fileName: String, fileDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFileResponse {
+    public func uploadFile(module: String, operation: String, fileUrl: String, fileName: String, fileDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFileResponse {
         try await self.uploadFile(.init(module: module, operation: operation, fileUrl: fileUrl, fileName: fileName, fileDate: fileDate), region: region, logger: logger, on: eventLoop)
     }
 }

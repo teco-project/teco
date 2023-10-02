@@ -50,7 +50,7 @@ extension Tsf {
 
     /// CreateUnitRuleWithDetailResp返回参数结构体
     public struct CreateUnitRuleWithDetailRespResponse: TCResponse {
-        /// 单元化规则 ID
+        /// 单元化规则信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: UnitRule?
 

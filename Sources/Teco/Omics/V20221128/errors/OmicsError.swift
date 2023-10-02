@@ -28,13 +28,17 @@ public struct TCOmicsError: TCOmicsErrorType {
     enum Code: String {
         case authFailure = "AuthFailure"
         case failedOperation = "FailedOperation"
+        case failedOperation_DuplicateTableHeader = "FailedOperation.DuplicateTableHeader"
+        case failedOperation_EmptyTableHeader = "FailedOperation.EmptyTableHeader"
+        case failedOperation_InvalidTableHeader = "FailedOperation.InvalidTableHeader"
+        case failedOperation_InvalidTableLength = "FailedOperation.InvalidTableLength"
         case failedOperation_RetryLimitExceeded = "FailedOperation.RetryLimitExceeded"
         case failedOperation_StatusNotSupported = "FailedOperation.StatusNotSupported"
+        case failedOperation_TableDataTypeMismatch = "FailedOperation.TableDataTypeMismatch"
         case failedOperation_VersionNotReleased = "FailedOperation.VersionNotReleased"
         case internalError = "InternalError"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
-        case invalidParameterValue_DuplicateHeader = "InvalidParameterValue.DuplicateHeader"
         case invalidParameterValue_DuplicateName = "InvalidParameterValue.DuplicateName"
         case invalidParameterValue_EntrypointNotSet = "InvalidParameterValue.EntrypointNotSet"
         case invalidParameterValue_EnvironmentNotAvailable = "InvalidParameterValue.EnvironmentNotAvailable"
@@ -42,14 +46,12 @@ public struct TCOmicsError: TCOmicsErrorType {
         case invalidParameterValue_InvalidCosKey = "InvalidParameterValue.InvalidCosKey"
         case invalidParameterValue_InvalidCsvFormat = "InvalidParameterValue.InvalidCsvFormat"
         case invalidParameterValue_InvalidDescription = "InvalidParameterValue.InvalidDescription"
-        case invalidParameterValue_InvalidHeader = "InvalidParameterValue.InvalidHeader"
         case invalidParameterValue_InvalidInputJsonFormat = "InvalidParameterValue.InvalidInputJsonFormat"
         case invalidParameterValue_InvalidInputPlaceholder = "InvalidParameterValue.InvalidInputPlaceholder"
         case invalidParameterValue_InvalidName = "InvalidParameterValue.InvalidName"
         case invalidParameterValue_InvalidRunOption = "InvalidParameterValue.InvalidRunOption"
-        case invalidParameterValue_InvalidTableRow = "InvalidParameterValue.InvalidTableRow"
-        case invalidParameterValue_LengthLimitExceeded = "InvalidParameterValue.LengthLimitExceeded"
-        case invalidParameterValue_UnsupportedDataType = "InvalidParameterValue.UnsupportedDataType"
+        case invalidParameterValue_TableDataTypeLengthMismatch = "InvalidParameterValue.TableDataTypeLengthMismatch"
+        case invalidParameterValue_UnsupportedTableDataType = "InvalidParameterValue.UnsupportedTableDataType"
         case limitExceeded = "LimitExceeded"
         case operationDenied = "OperationDenied"
         case resourceInUse = "ResourceInUse"
@@ -106,12 +108,32 @@ public struct TCOmicsError: TCOmicsErrorType {
         TCOmicsError(.failedOperation)
     }
 
+    public static var failedOperation_DuplicateTableHeader: TCOmicsError {
+        TCOmicsError(.failedOperation_DuplicateTableHeader)
+    }
+
+    public static var failedOperation_EmptyTableHeader: TCOmicsError {
+        TCOmicsError(.failedOperation_EmptyTableHeader)
+    }
+
+    public static var failedOperation_InvalidTableHeader: TCOmicsError {
+        TCOmicsError(.failedOperation_InvalidTableHeader)
+    }
+
+    public static var failedOperation_InvalidTableLength: TCOmicsError {
+        TCOmicsError(.failedOperation_InvalidTableLength)
+    }
+
     public static var failedOperation_RetryLimitExceeded: TCOmicsError {
         TCOmicsError(.failedOperation_RetryLimitExceeded)
     }
 
     public static var failedOperation_StatusNotSupported: TCOmicsError {
         TCOmicsError(.failedOperation_StatusNotSupported)
+    }
+
+    public static var failedOperation_TableDataTypeMismatch: TCOmicsError {
+        TCOmicsError(.failedOperation_TableDataTypeMismatch)
     }
 
     public static var failedOperation_VersionNotReleased: TCOmicsError {
@@ -131,10 +153,6 @@ public struct TCOmicsError: TCOmicsErrorType {
     /// 参数取值错误。
     public static var invalidParameterValue: TCOmicsError {
         TCOmicsError(.invalidParameterValue)
-    }
-
-    public static var invalidParameterValue_DuplicateHeader: TCOmicsError {
-        TCOmicsError(.invalidParameterValue_DuplicateHeader)
     }
 
     public static var invalidParameterValue_DuplicateName: TCOmicsError {
@@ -165,10 +183,6 @@ public struct TCOmicsError: TCOmicsErrorType {
         TCOmicsError(.invalidParameterValue_InvalidDescription)
     }
 
-    public static var invalidParameterValue_InvalidHeader: TCOmicsError {
-        TCOmicsError(.invalidParameterValue_InvalidHeader)
-    }
-
     public static var invalidParameterValue_InvalidInputJsonFormat: TCOmicsError {
         TCOmicsError(.invalidParameterValue_InvalidInputJsonFormat)
     }
@@ -185,16 +199,12 @@ public struct TCOmicsError: TCOmicsErrorType {
         TCOmicsError(.invalidParameterValue_InvalidRunOption)
     }
 
-    public static var invalidParameterValue_InvalidTableRow: TCOmicsError {
-        TCOmicsError(.invalidParameterValue_InvalidTableRow)
+    public static var invalidParameterValue_TableDataTypeLengthMismatch: TCOmicsError {
+        TCOmicsError(.invalidParameterValue_TableDataTypeLengthMismatch)
     }
 
-    public static var invalidParameterValue_LengthLimitExceeded: TCOmicsError {
-        TCOmicsError(.invalidParameterValue_LengthLimitExceeded)
-    }
-
-    public static var invalidParameterValue_UnsupportedDataType: TCOmicsError {
-        TCOmicsError(.invalidParameterValue_UnsupportedDataType)
+    public static var invalidParameterValue_UnsupportedTableDataType: TCOmicsError {
+        TCOmicsError(.invalidParameterValue_UnsupportedTableDataType)
     }
 
     /// 超过配额限制。

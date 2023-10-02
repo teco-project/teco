@@ -37,7 +37,8 @@ extension Tcss {
         public let images: [ImageInfo]?
 
         /// 是否扫描所有
-        public let all: Bool?
+        @available(*, deprecated)
+        public let all: Bool? = nil
 
         /// 扫描镜像Id
         public let id: [UInt64]?
@@ -45,15 +46,50 @@ extension Tcss {
         /// 是否扫描最新版本
         public let latest: Bool?
 
-        public init(scanPeriod: UInt64, enable: Bool, scanTime: String, scanType: [String]? = nil, images: [ImageInfo]? = nil, all: Bool? = nil, id: [UInt64]? = nil, latest: Bool? = nil) {
+        /// 是否存在运行中的容器
+        public let containerRunning: Bool?
+
+        /// 扫描结束时间
+        public let scanEndTime: String?
+
+        /// 扫描范围 0全部镜像，1自选镜像，2推荐扫描镜像
+        public let scanScope: UInt64?
+
+        /// 仓库类型 tcr,ccr,harbor
+        public let registryType: [String]?
+
+        /// 命名空间
+        public let namespace: [String]?
+
+        public init(scanPeriod: UInt64, enable: Bool, scanTime: String, scanType: [String]? = nil, images: [ImageInfo]? = nil, id: [UInt64]? = nil, latest: Bool? = nil, containerRunning: Bool? = nil, scanEndTime: String? = nil, scanScope: UInt64? = nil, registryType: [String]? = nil, namespace: [String]? = nil) {
             self.scanPeriod = scanPeriod
             self.enable = enable
             self.scanTime = scanTime
             self.scanType = scanType
             self.images = images
-            self.all = all
             self.id = id
             self.latest = latest
+            self.containerRunning = containerRunning
+            self.scanEndTime = scanEndTime
+            self.scanScope = scanScope
+            self.registryType = registryType
+            self.namespace = namespace
+        }
+
+        @available(*, deprecated, renamed: "init(scanPeriod:enable:scanTime:scanType:images:id:latest:containerRunning:scanEndTime:scanScope:registryType:namespace:)", message: "'all' is deprecated in 'UpdateImageRegistryTimingScanTaskRequest'. Setting this parameter has no effect.")
+        public init(scanPeriod: UInt64, enable: Bool, scanTime: String, scanType: [String]? = nil, images: [ImageInfo]? = nil, all: Bool? = nil, id: [UInt64]? = nil, latest: Bool? = nil, containerRunning: Bool? = nil, scanEndTime: String? = nil, scanScope: UInt64? = nil, registryType: [String]? = nil, namespace: [String]? = nil) {
+            self.scanPeriod = scanPeriod
+            self.enable = enable
+            self.scanTime = scanTime
+            self.scanType = scanType
+            self.images = images
+            self.id = id
+            self.latest = latest
+            self.containerRunning = containerRunning
+            self.scanEndTime = scanEndTime
+            self.scanScope = scanScope
+            self.registryType = registryType
+            self.namespace = namespace
         }
 
         enum CodingKeys: String, CodingKey {
@@ -65,6 +101,11 @@ extension Tcss {
             case all = "All"
             case id = "Id"
             case latest = "Latest"
+            case containerRunning = "ContainerRunning"
+            case scanEndTime = "ScanEndTime"
+            case scanScope = "ScanScope"
+            case registryType = "RegistryType"
+            case namespace = "Namespace"
         }
     }
 
@@ -92,13 +133,27 @@ extension Tcss {
 
     /// 镜像仓库更新定时任务
     @inlinable @discardableResult
-    public func updateImageRegistryTimingScanTask(scanPeriod: UInt64, enable: Bool, scanTime: String, scanType: [String]? = nil, images: [ImageInfo]? = nil, all: Bool? = nil, id: [UInt64]? = nil, latest: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateImageRegistryTimingScanTaskResponse> {
-        self.updateImageRegistryTimingScanTask(.init(scanPeriod: scanPeriod, enable: enable, scanTime: scanTime, scanType: scanType, images: images, all: all, id: id, latest: latest), region: region, logger: logger, on: eventLoop)
+    public func updateImageRegistryTimingScanTask(scanPeriod: UInt64, enable: Bool, scanTime: String, scanType: [String]? = nil, images: [ImageInfo]? = nil, id: [UInt64]? = nil, latest: Bool? = nil, containerRunning: Bool? = nil, scanEndTime: String? = nil, scanScope: UInt64? = nil, registryType: [String]? = nil, namespace: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateImageRegistryTimingScanTaskResponse> {
+        self.updateImageRegistryTimingScanTask(.init(scanPeriod: scanPeriod, enable: enable, scanTime: scanTime, scanType: scanType, images: images, id: id, latest: latest, containerRunning: containerRunning, scanEndTime: scanEndTime, scanScope: scanScope, registryType: registryType, namespace: namespace), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 镜像仓库更新定时任务
+    @available(*, deprecated, renamed: "updateImageRegistryTimingScanTask(scanPeriod:enable:scanTime:scanType:images:id:latest:containerRunning:scanEndTime:scanScope:registryType:namespace:region:logger:on:)", message: "'all' is deprecated. Setting this parameter has no effect.")
+    @inlinable @discardableResult
+    public func updateImageRegistryTimingScanTask(scanPeriod: UInt64, enable: Bool, scanTime: String, scanType: [String]? = nil, images: [ImageInfo]? = nil, all: Bool? = nil, id: [UInt64]? = nil, latest: Bool? = nil, containerRunning: Bool? = nil, scanEndTime: String? = nil, scanScope: UInt64? = nil, registryType: [String]? = nil, namespace: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateImageRegistryTimingScanTaskResponse> {
+        self.updateImageRegistryTimingScanTask(.init(scanPeriod: scanPeriod, enable: enable, scanTime: scanTime, scanType: scanType, images: images, all: all, id: id, latest: latest, containerRunning: containerRunning, scanEndTime: scanEndTime, scanScope: scanScope, registryType: registryType, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库更新定时任务
     @inlinable @discardableResult
-    public func updateImageRegistryTimingScanTask(scanPeriod: UInt64, enable: Bool, scanTime: String, scanType: [String]? = nil, images: [ImageInfo]? = nil, all: Bool? = nil, id: [UInt64]? = nil, latest: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateImageRegistryTimingScanTaskResponse {
-        try await self.updateImageRegistryTimingScanTask(.init(scanPeriod: scanPeriod, enable: enable, scanTime: scanTime, scanType: scanType, images: images, all: all, id: id, latest: latest), region: region, logger: logger, on: eventLoop)
+    public func updateImageRegistryTimingScanTask(scanPeriod: UInt64, enable: Bool, scanTime: String, scanType: [String]? = nil, images: [ImageInfo]? = nil, id: [UInt64]? = nil, latest: Bool? = nil, containerRunning: Bool? = nil, scanEndTime: String? = nil, scanScope: UInt64? = nil, registryType: [String]? = nil, namespace: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateImageRegistryTimingScanTaskResponse {
+        try await self.updateImageRegistryTimingScanTask(.init(scanPeriod: scanPeriod, enable: enable, scanTime: scanTime, scanType: scanType, images: images, id: id, latest: latest, containerRunning: containerRunning, scanEndTime: scanEndTime, scanScope: scanScope, registryType: registryType, namespace: namespace), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 镜像仓库更新定时任务
+    @available(*, deprecated, renamed: "updateImageRegistryTimingScanTask(scanPeriod:enable:scanTime:scanType:images:id:latest:containerRunning:scanEndTime:scanScope:registryType:namespace:region:logger:on:)", message: "'all' is deprecated. Setting this parameter has no effect.")
+    @inlinable @discardableResult
+    public func updateImageRegistryTimingScanTask(scanPeriod: UInt64, enable: Bool, scanTime: String, scanType: [String]? = nil, images: [ImageInfo]? = nil, all: Bool? = nil, id: [UInt64]? = nil, latest: Bool? = nil, containerRunning: Bool? = nil, scanEndTime: String? = nil, scanScope: UInt64? = nil, registryType: [String]? = nil, namespace: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateImageRegistryTimingScanTaskResponse {
+        try await self.updateImageRegistryTimingScanTask(.init(scanPeriod: scanPeriod, enable: enable, scanTime: scanTime, scanType: scanType, images: images, all: all, id: id, latest: latest, containerRunning: containerRunning, scanEndTime: scanEndTime, scanScope: scanScope, registryType: registryType, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

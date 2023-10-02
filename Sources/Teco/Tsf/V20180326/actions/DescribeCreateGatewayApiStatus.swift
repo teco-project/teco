@@ -21,7 +21,7 @@ import TecoCore
 extension Tsf {
     /// DescribeCreateGatewayApiStatus请求参数结构体
     public struct DescribeCreateGatewayApiStatusRequest: TCRequest {
-        /// 请求方法
+        /// 所属分组ID
         public let groupId: String?
 
         /// 微服务ID

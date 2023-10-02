@@ -43,6 +43,8 @@ extension TCSslError {
             case certificateNotAvailable = "FailedOperation.CertificateNotAvailable"
             case certificateNotDeployInstance = "FailedOperation.CertificateNotDeployInstance"
             case certificateNotFound = "FailedOperation.CertificateNotFound"
+            case certificateNotFoundOrCantCancel = "FailedOperation.CertificateNotFoundOrCantCancel"
+            case certificateStatusNotAllowResubmit = "FailedOperation.CertificateStatusNotAllowResubmit"
             case confirmLetterTooLarge = "FailedOperation.ConfirmLetterTooLarge"
             case confirmLetterTooSmall = "FailedOperation.ConfirmLetterTooSmall"
             case deleteResourceFailed = "FailedOperation.DeleteResourceFailed"
@@ -230,6 +232,16 @@ extension TCSslError {
         /// 证书不存在。
         public static var certificateNotFound: FailedOperation {
             FailedOperation(.certificateNotFound)
+        }
+
+        /// 该证书不存在或不可取消。
+        public static var certificateNotFoundOrCantCancel: FailedOperation {
+            FailedOperation(.certificateNotFoundOrCantCancel)
+        }
+
+        /// 证书状态不允许重新申请。
+        public static var certificateStatusNotAllowResubmit: FailedOperation {
+            FailedOperation(.certificateStatusNotAllowResubmit)
         }
 
         /// 证书确认函文件过大（需小于1.4M）。
@@ -434,6 +446,10 @@ extension TCSslError {
                 code = .failedOperation_CertificateNotDeployInstance
             case .certificateNotFound:
                 code = .failedOperation_CertificateNotFound
+            case .certificateNotFoundOrCantCancel:
+                code = .failedOperation_CertificateNotFoundOrCantCancel
+            case .certificateStatusNotAllowResubmit:
+                code = .failedOperation_CertificateStatusNotAllowResubmit
             case .confirmLetterTooLarge:
                 code = .failedOperation_ConfirmLetterTooLarge
             case .confirmLetterTooSmall:

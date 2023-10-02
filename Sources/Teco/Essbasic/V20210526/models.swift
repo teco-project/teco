@@ -61,17 +61,71 @@ extension Essbasic {
         }
     }
 
+    /// 指定签署方经办人控件类型是个人印章签署控件（SIGN_SIGNATURE） 时，可选的签名方式。
+    public struct ApproverComponentLimitType: TCInputModel {
+        /// 签署方经办人在模板中配置的参与方ID，与控件绑定，是控件的归属方，ID为32位字符串。
+        public let recipientId: String
+
+        /// 签署方经办人控件类型是个人印章签署控件（SIGN_SIGNATURE） 时，可选的签名方式。
+        ///
+        /// 签名方式：
+        ///
+        /// - HANDWRITE-手写签名
+        /// - ESIGN-个人印章类型
+        /// - OCR_ESIGN-AI智能识别手写签名
+        /// - SYSTEM_ESIGN-系统签名
+        public let values: [String]?
+
+        public init(recipientId: String, values: [String]? = nil) {
+            self.recipientId = recipientId
+            self.values = values
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case recipientId = "RecipientId"
+            case values = "Values"
+        }
+    }
+
+    /// 签署方信息，发起合同后可获取到对应的签署方信息，如角色ID，角色名称
+    public struct ApproverItem: TCOutputModel {
+        /// 签署方唯一编号
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let signId: String?
+
+        /// 签署方角色编号
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let recipientId: String?
+
+        /// 签署方角色名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let approverRoleName: String?
+
+        enum CodingKeys: String, CodingKey {
+            case signId = "SignId"
+            case recipientId = "RecipientId"
+            case approverRoleName = "ApproverRoleName"
+        }
+    }
+
     /// 签署人个性化能力信息
     public struct ApproverOption: TCInputModel {
         /// 是否隐藏一键签署 默认false-不隐藏true-隐藏
         public let hideOneKeySign: Bool?
 
-        public init(hideOneKeySign: Bool? = nil) {
+        /// 签署人信息补充类型，默认无需补充。
+        ///
+        /// - **1** : ( 动态签署人（可发起合同后再补充签署人信息）
+        public let fillType: Int64?
+
+        public init(hideOneKeySign: Bool? = nil, fillType: Int64? = nil) {
             self.hideOneKeySign = hideOneKeySign
+            self.fillType = fillType
         }
 
         enum CodingKeys: String, CodingKey {
             case hideOneKeySign = "HideOneKeySign"
+            case fillType = "FillType"
         }
     }
 
@@ -148,13 +202,17 @@ extension Essbasic {
         /// 开通时候的验证方式，取值：WEIXINAPP（微信人脸识别），INSIGHT（慧眼人脸认别），TELECOM（运营商三要素验证）。如果是小程序开通链接，支持传 WEIXINAPP / TELECOM。如果是 H5 开通链接，支持传 INSIGHT / TELECOM。默认值 WEIXINAPP / INSIGHT。
         public let verifyChannels: [String]?
 
-        public init(userInfo: UserThreeFactor, certInfoCallback: Bool? = nil, userDefineSeal: Bool? = nil, sealImgCallback: Bool? = nil, callbackUrl: String? = nil, verifyChannels: [String]? = nil) {
+        /// 设置用户开通自动签时是否绑定个人自动签账号许可。一旦绑定后，将扣减购买的个人自动签账号许可一次（1年有效期），不可解绑释放。不传默认为绑定自动签账号许可。 0-绑定个人自动签账号许可，开通后将扣减购买的个人自动签账号许可一次
+        public let licenseType: Int64?
+
+        public init(userInfo: UserThreeFactor, certInfoCallback: Bool? = nil, userDefineSeal: Bool? = nil, sealImgCallback: Bool? = nil, callbackUrl: String? = nil, verifyChannels: [String]? = nil, licenseType: Int64? = nil) {
             self.userInfo = userInfo
             self.certInfoCallback = certInfoCallback
             self.userDefineSeal = userDefineSeal
             self.sealImgCallback = sealImgCallback
             self.callbackUrl = callbackUrl
             self.verifyChannels = verifyChannels
+            self.licenseType = licenseType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -164,6 +222,7 @@ extension Essbasic {
             case sealImgCallback = "SealImgCallback"
             case callbackUrl = "CallbackUrl"
             case verifyChannels = "VerifyChannels"
+            case licenseType = "LicenseType"
         }
     }
 
@@ -218,7 +277,10 @@ extension Essbasic {
         /// 当指定NeedCreateReview=true，则提交审核后，需要使用接口：ChannelCreateFlowSignReview，来完成发起前审核，审核通过后，可以继续查看，签署合同
         public let needCreateReview: Bool?
 
-        public init(flowName: String, flowType: String, flowDescription: String, deadline: Int64, unordered: Bool? = nil, intelligentStatus: String? = nil, formFields: [FormField]? = nil, needSignReview: Bool? = nil, userData: String? = nil, ccInfos: [CcInfo]? = nil, needCreateReview: Bool? = nil) {
+        /// 填写控件：文件发起使用
+        public let components: [Component]?
+
+        public init(flowName: String, flowType: String, flowDescription: String, deadline: Int64, unordered: Bool? = nil, intelligentStatus: String? = nil, formFields: [FormField]? = nil, needSignReview: Bool? = nil, userData: String? = nil, ccInfos: [CcInfo]? = nil, needCreateReview: Bool? = nil, components: [Component]? = nil) {
             self.flowName = flowName
             self.flowType = flowType
             self.flowDescription = flowDescription
@@ -230,6 +292,7 @@ extension Essbasic {
             self.userData = userData
             self.ccInfos = ccInfos
             self.needCreateReview = needCreateReview
+            self.components = components
         }
 
         enum CodingKeys: String, CodingKey {
@@ -244,6 +307,7 @@ extension Essbasic {
             case userData = "UserData"
             case ccInfos = "CcInfos"
             case needCreateReview = "NeedCreateReview"
+            case components = "Components"
         }
     }
 
@@ -293,10 +357,15 @@ extension Essbasic {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let roleStatus: UInt64?
 
+        /// 权限树
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let permissionGroups: [PermissionGroup]?
+
         enum CodingKeys: String, CodingKey {
             case roleId = "RoleId"
             case roleName = "RoleName"
             case roleStatus = "RoleStatus"
+            case permissionGroups = "PermissionGroups"
         }
     }
 
@@ -354,30 +423,21 @@ extension Essbasic {
         public let isFullText: Bool?
 
         /// 通知类型：SMS（短信） NONE（不做通知）, 不传 默认SMS
-        @available(*, deprecated)
-        public let notifyType: String? = nil
+        public let notifyType: String?
 
         /// 签署人配置
         public let approverOption: CommonApproverOption?
 
-        public init(notChannelOrganization: Bool, approverType: Int64? = nil, organizationId: String? = nil, organizationOpenId: String? = nil, organizationName: String? = nil, userId: String? = nil, openId: String? = nil, approverName: String? = nil, approverMobile: String? = nil, recipientId: String? = nil, preReadTime: Int64? = nil, isFullText: Bool? = nil, approverOption: CommonApproverOption? = nil) {
-            self.notChannelOrganization = notChannelOrganization
-            self.approverType = approverType
-            self.organizationId = organizationId
-            self.organizationOpenId = organizationOpenId
-            self.organizationName = organizationName
-            self.userId = userId
-            self.openId = openId
-            self.approverName = approverName
-            self.approverMobile = approverMobile
-            self.recipientId = recipientId
-            self.preReadTime = preReadTime
-            self.isFullText = isFullText
-            self.approverOption = approverOption
-        }
+        /// 签署控件：文件发起使用
+        public let signComponents: [Component]?
 
-        @available(*, deprecated, renamed: "init(notChannelOrganization:approverType:organizationId:organizationOpenId:organizationName:userId:openId:approverName:approverMobile:recipientId:preReadTime:isFullText:approverOption:)", message: "'notifyType' is deprecated in 'CommonFlowApprover'. Setting this parameter has no effect.")
-        public init(notChannelOrganization: Bool, approverType: Int64? = nil, organizationId: String? = nil, organizationOpenId: String? = nil, organizationName: String? = nil, userId: String? = nil, openId: String? = nil, approverName: String? = nil, approverMobile: String? = nil, recipientId: String? = nil, preReadTime: Int64? = nil, isFullText: Bool? = nil, notifyType: String? = nil, approverOption: CommonApproverOption? = nil) {
+        /// 签署人查看合同时认证方式, 1-实名查看 2-短信验证码查看(企业签署方不支持该方式) 如果不传默认为1 查看合同的认证方式 Flow层级的优先于approver层级的 （当手写签名方式为OCR_ESIGN时，合同认证方式2无效，因为这种签名方式依赖实名认证）
+        public let approverVerifyTypes: [Int64]?
+
+        /// 签署人签署合同时的认证方式 1-人脸认证 2-签署密码 3-运营商三要素(默认为1,2)
+        public let approverSignTypes: [Int64]?
+
+        public init(notChannelOrganization: Bool, approverType: Int64? = nil, organizationId: String? = nil, organizationOpenId: String? = nil, organizationName: String? = nil, userId: String? = nil, openId: String? = nil, approverName: String? = nil, approverMobile: String? = nil, recipientId: String? = nil, preReadTime: Int64? = nil, isFullText: Bool? = nil, notifyType: String? = nil, approverOption: CommonApproverOption? = nil, signComponents: [Component]? = nil, approverVerifyTypes: [Int64]? = nil, approverSignTypes: [Int64]? = nil) {
             self.notChannelOrganization = notChannelOrganization
             self.approverType = approverType
             self.organizationId = organizationId
@@ -390,7 +450,11 @@ extension Essbasic {
             self.recipientId = recipientId
             self.preReadTime = preReadTime
             self.isFullText = isFullText
+            self.notifyType = notifyType
             self.approverOption = approverOption
+            self.signComponents = signComponents
+            self.approverVerifyTypes = approverVerifyTypes
+            self.approverSignTypes = approverSignTypes
         }
 
         enum CodingKeys: String, CodingKey {
@@ -408,6 +472,9 @@ extension Essbasic {
             case isFullText = "IsFullText"
             case notifyType = "NotifyType"
             case approverOption = "ApproverOption"
+            case signComponents = "SignComponents"
+            case approverVerifyTypes = "ApproverVerifyTypes"
+            case approverSignTypes = "ApproverSignTypes"
         }
     }
 
@@ -527,7 +594,7 @@ extension Essbasic {
         ///
         /// ComponentType为SIGN_SEAL类型时，支持以下参数：
         /// 1.PageRanges：PageRange的数组，通过PageRanges属性设置该印章在PDF所有页面上盖章（适用于标书在所有页面盖章的情况）
-        /// 参数样例： "ComponentExtra":"{["PageRange":{"BeginPage":1,"EndPage":-1}]}"
+        /// 参数样例： "ComponentExtra":"{"PageRange":[{"BeginPage":1,"EndPage":-1}]}"
         public let componentExtra: String?
 
         /// 控件填充vaule，ComponentType和传入值类型对应关系：
@@ -657,7 +724,19 @@ extension Essbasic {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let placeholder: String?
 
-        public init(componentId: String? = nil, componentType: String? = nil, componentName: String? = nil, componentRequired: Bool? = nil, componentRecipientId: String? = nil, fileIndex: Int64? = nil, generateMode: String? = nil, componentWidth: Float? = nil, componentHeight: Float? = nil, componentPage: Int64? = nil, componentPosX: Float? = nil, componentPosY: Float? = nil, componentExtra: String? = nil, componentValue: String? = nil, componentDateFontSize: Int64? = nil, documentId: String? = nil, componentDescription: String? = nil, offsetX: Float? = nil, offsetY: Float? = nil, channelComponentId: String? = nil, keywordOrder: String? = nil, keywordPage: Int64? = nil, relativeLocation: String? = nil, keywordIndexes: [Int64]? = nil, placeholder: String? = nil) {
+        /// 是否锁定控件值不允许编辑（嵌入式发起使用）
+        ///
+        /// 默认false：不锁定控件值，允许在页面编辑控件值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lockComponentValue: Bool?
+
+        /// 是否禁止移动和删除控件
+        ///
+        /// 默认false，不禁止移动和删除控件
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let forbidMoveAndDelete: Bool?
+
+        public init(componentId: String? = nil, componentType: String? = nil, componentName: String? = nil, componentRequired: Bool? = nil, componentRecipientId: String? = nil, fileIndex: Int64? = nil, generateMode: String? = nil, componentWidth: Float? = nil, componentHeight: Float? = nil, componentPage: Int64? = nil, componentPosX: Float? = nil, componentPosY: Float? = nil, componentExtra: String? = nil, componentValue: String? = nil, componentDateFontSize: Int64? = nil, documentId: String? = nil, componentDescription: String? = nil, offsetX: Float? = nil, offsetY: Float? = nil, channelComponentId: String? = nil, keywordOrder: String? = nil, keywordPage: Int64? = nil, relativeLocation: String? = nil, keywordIndexes: [Int64]? = nil, placeholder: String? = nil, lockComponentValue: Bool? = nil, forbidMoveAndDelete: Bool? = nil) {
             self.componentId = componentId
             self.componentType = componentType
             self.componentName = componentName
@@ -683,6 +762,8 @@ extension Essbasic {
             self.relativeLocation = relativeLocation
             self.keywordIndexes = keywordIndexes
             self.placeholder = placeholder
+            self.lockComponentValue = lockComponentValue
+            self.forbidMoveAndDelete = forbidMoveAndDelete
         }
 
         enum CodingKeys: String, CodingKey {
@@ -711,6 +792,43 @@ extension Essbasic {
             case relativeLocation = "RelativeLocation"
             case keywordIndexes = "KeywordIndexes"
             case placeholder = "Placeholder"
+            case lockComponentValue = "LockComponentValue"
+            case forbidMoveAndDelete = "ForbidMoveAndDelete"
+        }
+    }
+
+    /// 签署控件的类型和范围限制条件，用于控制文件发起后签署人拖拽签署区时可使用的控件类型和具体的印章或签名方式。
+    public struct ComponentLimit: TCInputModel {
+        /// 控件类型，支持以下类型
+        ///
+        /// - SIGN_SEAL : 印章控件
+        /// - SIGN_PAGING_SEAL : 骑缝章控件
+        /// - SIGN_LEGAL_PERSON_SEAL : 企业法定代表人控件
+        /// - SIGN_SIGNATURE : 用户签名控件
+        public let componentType: String
+
+        /// 签署控件类型的值(可选)，用与限制签署时印章或者签名的选择范围
+        ///
+        /// 1.当ComponentType 是 SIGN_SEAL 或者 SIGN_PAGING_SEAL 时可传入企业印章Id（支持多个）
+        ///
+        /// 2.当ComponentType 是 SIGN_SIGNATURE 时可传入以下类型（支持多个）
+        ///
+        /// - HANDWRITE : 手写签名
+        /// - OCR_ESIGN : OCR印章（智慧手写签名）
+        /// - ESIGN : 个人印章
+        /// - SYSTEM_ESIGN : 系统印章
+        ///
+        /// 3.当ComponentType 是 SIGN_LEGAL_PERSON_SEAL 时无需传递此参数。
+        public let componentValue: [String]?
+
+        public init(componentType: String, componentValue: [String]? = nil) {
+            self.componentType = componentType
+            self.componentValue = componentValue
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case componentType = "ComponentType"
+            case componentValue = "ComponentValue"
         }
     }
 
@@ -958,6 +1076,10 @@ extension Essbasic {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let approveType: String?
 
+        /// 自定义签署人角色
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let approverRoleName: String?
+
         enum CodingKeys: String, CodingKey {
             case receiptId = "ReceiptId"
             case proxyOrganizationOpenId = "ProxyOrganizationOpenId"
@@ -970,20 +1092,24 @@ extension Essbasic {
             case approveMessage = "ApproveMessage"
             case approveTime = "ApproveTime"
             case approveType = "ApproveType"
+            case approverRoleName = "ApproverRoleName"
         }
     }
 
     /// 创建签署流程签署人入参。
     ///
     /// 其中签署方FlowApproverInfo需要传递的参数
-    /// 非单C、单B、B2C合同，ApproverType、RecipientId（模板发起合同时）必传，建议都传。其他身份标识
-    /// 1-个人：Name、Mobile必传
-    /// 2-第三方平台子客企业指定经办人：OpenId必传，OrgName必传、OrgOpenId必传；
-    /// 3-第三方平台子客企业不指定经办人：OrgName必传、OrgOpenId必传；
-    /// 4-非第三方平台子客企业：Name、Mobile必传，OrgName必传，且NotChannelOrganization=True。
+    /// 非单C、单B、B2C合同，ApproverType、RecipientId（模板发起合同时）必传，建议都传。
+    ///
+    /// 其他身份标识
+    ///
+    /// - 1-个人：Name、Mobile必传
+    /// - 2-第三方平台子客企业指定经办人：OpenId必传，OrgName必传、OrgOpenId必传；
+    /// - 3-第三方平台子客企业不指定经办人：OrgName必传、OrgOpenId必传；
+    /// - 4-非第三方平台子客企业：Name、Mobile必传，OrgName必传，且NotChannelOrganization=True。
     ///
     /// RecipientId参数：
-    /// 从DescribeTemplates接口中，可以得到模板下的签署方Recipient列表，根据模板自定义的Rolename在此结构体中确定其RecipientId
+    /// 从DescribeTemplates接口中，可以得到模板下的签署方Recipient列表，根据模板自定义的Rolename在此结构体中确定其RecipientId。
     public struct FlowApproverInfo: TCInputModel {
         /// 签署人姓名，最大长度50个字符
         public let name: String?
@@ -1020,7 +1146,12 @@ extension Essbasic {
         /// PERSON_AUTO_SIGN-个人自动签署，适用于个人自动签场景
         /// 注: 个人自动签场景为白名单功能, 使用前请联系对接的客户经理沟通。
         /// ORGANIZATION-企业（企业签署方或模板发起时的企业静默签）；
-        /// ENTERPRISESERVER-企业静默签（文件发起时的企业静默签字）。
+        /// ENTERPRISESERVER-企业自动签（他方企业自动签署或文件发起时的本方企业自动签）
+        ///
+        /// 若要实现他方企业（同一应用下）自动签，需要满足3个条件：
+        /// 条件1：ApproverType 设置为ENTERPRISESERVER
+        /// 条件2：子客之间完成授权
+        /// 条件3：联系对接的客户经理沟通
         public let approverType: String?
 
         /// 签署流程签署人在模板中对应的签署人Id；在非单方签署、以及非B2C签署的场景下必传，用于指定当前签署方在签署流程中的位置；
@@ -1061,6 +1192,7 @@ extension Essbasic {
 
         /// 签署人查看合同时认证方式, 1-实名查看 2-短信验证码查看(企业签署方不支持该方式) 如果不传默认为1
         /// 查看合同的认证方式 Flow层级的优先于approver层级的
+        /// （当手写签名方式为OCR_ESIGN时，合同认证方式2无效，因为这种签名方式依赖实名认证）
         public let approverVerifyTypes: [Int64]?
 
         /// 签署人签署合同时的认证方式
@@ -1076,7 +1208,15 @@ extension Essbasic {
         /// 默认为SMS(签署方为子客时该字段不生效)
         public let notifyType: String?
 
-        public init(name: String? = nil, idCardType: String? = nil, idCardNumber: String? = nil, mobile: String? = nil, organizationName: String? = nil, notChannelOrganization: Bool? = nil, openId: String? = nil, organizationOpenId: String? = nil, approverType: String? = nil, recipientId: String? = nil, deadline: Int64? = nil, signComponents: [Component]? = nil, componentLimitType: [String]? = nil, preReadTime: Int64? = nil, jumpUrl: String? = nil, approverOption: ApproverOption? = nil, approverNeedSignReview: Bool? = nil, approverVerifyTypes: [Int64]? = nil, approverSignTypes: [Int64]? = nil, signId: String? = nil, notifyType: String? = nil) {
+        /// [通过文件创建签署流程](https://qian.tencent.com/developers/partnerApis/startFlows/ChannelCreateFlowByFiles)时,如果设置了外层参数SignBeanTag=1(允许签署过程中添加签署控件),则可通过此参数明确规定合同所使用的签署控件类型（骑缝章、普通章法人章等）和具体的印章（印章ID）或签名方式。
+        ///
+        /// 注：`限制印章控件或骑缝章控件情况下,仅本企业签署方可以指定具体印章（通过传递ComponentValue,支持多个），他方企业或个人只支持限制控件类型。`
+        public let addSignComponentsLimits: [ComponentLimit]?
+
+        /// 自定义签署方角色名称
+        public let approverRoleName: String?
+
+        public init(name: String? = nil, idCardType: String? = nil, idCardNumber: String? = nil, mobile: String? = nil, organizationName: String? = nil, notChannelOrganization: Bool? = nil, openId: String? = nil, organizationOpenId: String? = nil, approverType: String? = nil, recipientId: String? = nil, deadline: Int64? = nil, signComponents: [Component]? = nil, componentLimitType: [String]? = nil, preReadTime: Int64? = nil, jumpUrl: String? = nil, approverOption: ApproverOption? = nil, approverNeedSignReview: Bool? = nil, approverVerifyTypes: [Int64]? = nil, approverSignTypes: [Int64]? = nil, signId: String? = nil, notifyType: String? = nil, addSignComponentsLimits: [ComponentLimit]? = nil, approverRoleName: String? = nil) {
             self.name = name
             self.idCardType = idCardType
             self.idCardNumber = idCardNumber
@@ -1098,10 +1238,12 @@ extension Essbasic {
             self.approverSignTypes = approverSignTypes
             self.signId = signId
             self.notifyType = notifyType
+            self.addSignComponentsLimits = addSignComponentsLimits
+            self.approverRoleName = approverRoleName
         }
 
-        @available(*, deprecated, renamed: "init(name:idCardType:idCardNumber:mobile:organizationName:notChannelOrganization:openId:organizationOpenId:approverType:recipientId:deadline:signComponents:componentLimitType:preReadTime:jumpUrl:approverOption:approverNeedSignReview:approverVerifyTypes:approverSignTypes:signId:notifyType:)", message: "'callbackUrl' is deprecated in 'FlowApproverInfo'. Setting this parameter has no effect.")
-        public init(name: String? = nil, idCardType: String? = nil, idCardNumber: String? = nil, mobile: String? = nil, organizationName: String? = nil, notChannelOrganization: Bool? = nil, openId: String? = nil, organizationOpenId: String? = nil, approverType: String? = nil, recipientId: String? = nil, deadline: Int64? = nil, callbackUrl: String? = nil, signComponents: [Component]? = nil, componentLimitType: [String]? = nil, preReadTime: Int64? = nil, jumpUrl: String? = nil, approverOption: ApproverOption? = nil, approverNeedSignReview: Bool? = nil, approverVerifyTypes: [Int64]? = nil, approverSignTypes: [Int64]? = nil, signId: String? = nil, notifyType: String? = nil) {
+        @available(*, deprecated, renamed: "init(name:idCardType:idCardNumber:mobile:organizationName:notChannelOrganization:openId:organizationOpenId:approverType:recipientId:deadline:signComponents:componentLimitType:preReadTime:jumpUrl:approverOption:approverNeedSignReview:approverVerifyTypes:approverSignTypes:signId:notifyType:addSignComponentsLimits:approverRoleName:)", message: "'callbackUrl' is deprecated in 'FlowApproverInfo'. Setting this parameter has no effect.")
+        public init(name: String? = nil, idCardType: String? = nil, idCardNumber: String? = nil, mobile: String? = nil, organizationName: String? = nil, notChannelOrganization: Bool? = nil, openId: String? = nil, organizationOpenId: String? = nil, approverType: String? = nil, recipientId: String? = nil, deadline: Int64? = nil, callbackUrl: String? = nil, signComponents: [Component]? = nil, componentLimitType: [String]? = nil, preReadTime: Int64? = nil, jumpUrl: String? = nil, approverOption: ApproverOption? = nil, approverNeedSignReview: Bool? = nil, approverVerifyTypes: [Int64]? = nil, approverSignTypes: [Int64]? = nil, signId: String? = nil, notifyType: String? = nil, addSignComponentsLimits: [ComponentLimit]? = nil, approverRoleName: String? = nil) {
             self.name = name
             self.idCardType = idCardType
             self.idCardNumber = idCardNumber
@@ -1123,6 +1265,8 @@ extension Essbasic {
             self.approverSignTypes = approverSignTypes
             self.signId = signId
             self.notifyType = notifyType
+            self.addSignComponentsLimits = addSignComponentsLimits
+            self.approverRoleName = approverRoleName
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1148,6 +1292,24 @@ extension Essbasic {
             case approverSignTypes = "ApproverSignTypes"
             case signId = "SignId"
             case notifyType = "NotifyType"
+            case addSignComponentsLimits = "AddSignComponentsLimits"
+            case approverRoleName = "ApproverRoleName"
+        }
+    }
+
+    /// 签署方信息，如角色ID、角色名称等
+    public struct FlowApproverItem: TCOutputModel {
+        /// 合同编号
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let flowId: String?
+
+        /// 签署方信息，如角色ID、角色名称等
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let approvers: [ApproverItem]?
+
+        enum CodingKeys: String, CodingKey {
+            case flowId = "FlowId"
+            case approvers = "Approvers"
         }
     }
 
@@ -1543,13 +1705,16 @@ extension Essbasic {
 
     /// 此结构 (FormField) 用于描述内容控件填充结构。
     public struct FormField: TCInputModel, TCOutputModel {
-        /// 控件填充vaule，ComponentType和传入值类型对应关系：
-        /// TEXT - 文本内容
-        /// MULTI_LINE_TEXT - 文本内容
-        /// CHECK_BOX - true/false
-        /// FILL_IMAGE、ATTACHMENT - 附件的FileId，需要通过UploadFiles接口上传获取
-        /// SELECTOR - 选项值
-        /// DYNAMIC_TABLE - 传入json格式的表格内容，具体见数据结构FlowInfo
+        /// 控件填充值，ComponentType和传入值格式对应关系如下：
+        ///
+        /// - TEXT - 普通文本控件，需输入文本字符串；
+        /// - MULTI_LINE_TEXT - 多行文本控件，需输入文本字符串；
+        /// - CHECK_BOX - 勾选框控件，若选中需填写ComponentValue，填写 true或者 false 字符串；
+        /// - FILL_IMAGE - 图片控件，需填写ComponentValue为图片的资源 ID；
+        /// - DYNAMIC_TABLE - 动态表格控件；
+        /// - ATTACHMENT - 附件控件，需填写ComponentValue为附件图片的资源 ID列表，以逗号分割；
+        /// - DATE - 日期控件；格式为 **xxxx年xx月xx日** 字符串；
+        /// - DISTRICT - 省市区行政区控件，需填写ComponentValue为省市区行政区字符串内容；
         public let componentValue: String
 
         /// 表单域或控件的ID，跟ComponentName二选一，不能全为空；
@@ -1731,6 +1896,114 @@ extension Essbasic {
             case componentWidth = "ComponentWidth"
             case componentHeight = "ComponentHeight"
             case componentPage = "ComponentPage"
+        }
+    }
+
+    /// 权限树节点权限
+    public struct Permission: TCInputModel, TCOutputModel {
+        /// 权限名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 权限key
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let key: String?
+
+        /// 权限类型 1前端，2后端
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let type: Int64?
+
+        /// 是否隐藏
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hide: Int64?
+
+        /// 数据权限标签 1:表示根节点，2:表示叶子结点
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dataLabel: Int64?
+
+        /// 数据权限独有，1:关联其他模块鉴权，2:表示关联自己模块鉴权
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dataType: Int64?
+
+        /// 数据权限独有，表示数据范围，1：全公司，2:部门及下级部门，3:自己
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dataRange: Int64?
+
+        /// 关联权限, 表示这个功能权限要受哪个数据权限管控
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dataTo: String?
+
+        /// 父级权限key
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let parentKey: String?
+
+        /// 是否选中
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isChecked: Bool?
+
+        /// 子权限集合
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let children: [Permission]?
+
+        public init(name: String? = nil, key: String? = nil, type: Int64? = nil, hide: Int64? = nil, dataLabel: Int64? = nil, dataType: Int64? = nil, dataRange: Int64? = nil, dataTo: String? = nil, parentKey: String? = nil, isChecked: Bool? = nil, children: [Permission]? = nil) {
+            self.name = name
+            self.key = key
+            self.type = type
+            self.hide = hide
+            self.dataLabel = dataLabel
+            self.dataType = dataType
+            self.dataRange = dataRange
+            self.dataTo = dataTo
+            self.parentKey = parentKey
+            self.isChecked = isChecked
+            self.children = children
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case key = "Key"
+            case type = "Type"
+            case hide = "Hide"
+            case dataLabel = "DataLabel"
+            case dataType = "DataType"
+            case dataRange = "DataRange"
+            case dataTo = "DataTo"
+            case parentKey = "ParentKey"
+            case isChecked = "IsChecked"
+            case children = "Children"
+        }
+    }
+
+    /// 权限树中的权限组
+    public struct PermissionGroup: TCInputModel, TCOutputModel {
+        /// 权限组名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let groupName: String?
+
+        /// 权限组key
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let groupKey: String?
+
+        /// 是否隐藏分组，0否1是
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hide: Int64?
+
+        /// 权限集合
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let permissions: [Permission]?
+
+        public init(groupName: String? = nil, groupKey: String? = nil, hide: Int64? = nil, permissions: [Permission]? = nil) {
+            self.groupName = groupName
+            self.groupKey = groupKey
+            self.hide = hide
+            self.permissions = permissions
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case groupName = "GroupName"
+            case groupKey = "GroupKey"
+            case hide = "Hide"
+            case permissions = "Permissions"
         }
     }
 
@@ -2060,7 +2333,7 @@ extension Essbasic {
 
     /// 签署链接内容
     public struct SignUrlInfo: TCOutputModel {
-        /// 签署链接，过期时间为30天
+        /// 签署链接，过期时间为90天
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let signUrl: String?
 
@@ -2115,6 +2388,10 @@ extension Essbasic {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowGroupId: String?
 
+        /// 二维码，在生成动态签署人跳转封面页链接时返回
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let signQrcodeUrl: String?
+
         enum CodingKeys: String, CodingKey {
             case signUrl = "SignUrl"
             case deadline = "Deadline"
@@ -2129,6 +2406,7 @@ extension Essbasic {
             case flowId = "FlowId"
             case openId = "OpenId"
             case flowGroupId = "FlowGroupId"
+            case signQrcodeUrl = "SignQrcodeUrl"
         }
     }
 
@@ -2455,15 +2733,13 @@ extension Essbasic {
 
     /// 主题配置
     public struct WebThemeConfig: TCInputModel {
-        /// 页面底部是否显示电子签logo
+        /// 是否显示页面底部电子签logo，取值如下：
         ///
-        /// true：允许在页面底部隐藏电子签logo
-        ///
-        /// 默认false，不允许允许在页面底部隐藏电子签logo
+        /// - **true**：页面底部显示电子签logo
+        /// - **false**：页面底部不显示电子签logo（默认）
         public let displaySignBrandLogo: Bool?
 
-        /// 嵌入式主题颜色
-        ///
+        /// 主题颜色：
         /// 支持十六进制颜色值以及RGB格式颜色值，例如：#D54941，rgb(213, 73, 65)
         public let webEmbedThemeColor: String?
 

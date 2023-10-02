@@ -25,9 +25,9 @@ extension Tdmq {
         public let environmentIds: [String]
 
         /// Pulsar 集群的ID
-        public let clusterId: String?
+        public let clusterId: String
 
-        public init(environmentIds: [String], clusterId: String? = nil) {
+        public init(environmentIds: [String], clusterId: String) {
             self.environmentIds = environmentIds
             self.clusterId = clusterId
         }
@@ -72,7 +72,7 @@ extension Tdmq {
     ///
     /// 批量删除租户下的命名空间
     @inlinable
-    public func deleteEnvironments(environmentIds: [String], clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEnvironmentsResponse> {
+    public func deleteEnvironments(environmentIds: [String], clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEnvironmentsResponse> {
         self.deleteEnvironments(.init(environmentIds: environmentIds, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
@@ -80,7 +80,7 @@ extension Tdmq {
     ///
     /// 批量删除租户下的命名空间
     @inlinable
-    public func deleteEnvironments(environmentIds: [String], clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEnvironmentsResponse {
+    public func deleteEnvironments(environmentIds: [String], clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEnvironmentsResponse {
         try await self.deleteEnvironments(.init(environmentIds: environmentIds, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

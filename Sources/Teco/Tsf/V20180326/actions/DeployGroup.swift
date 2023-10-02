@@ -51,7 +51,7 @@ extension Tsf {
         /// 滚动发布每个批次参与的实例比率
         public let deployBatch: [Float]?
 
-        /// 滚动发布的执行方式
+        /// 滚动发布的执行方式，auto表示自动， manual表示手动
         public let deployExeMode: String?
 
         /// 滚动发布每个批次的时间间隔
@@ -69,7 +69,8 @@ extension Tsf {
         /// JDK名称: konaJDK或openJDK
         public let jdkName: String?
 
-        /// JDK版本: 8或11 (openJDK只支持8)
+        /// konaJDK版本：8、11和17
+        /// openJDK版本：8、17
         public let jdkVersion: String?
 
         /// 部署agent的类型、版本

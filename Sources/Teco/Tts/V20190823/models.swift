@@ -41,6 +41,9 @@ extension Tts {
         /// 合成音频COS地址（链接有效期1天）。
         public let resultUrl: String
 
+        /// 时间戳信息，若未开启时间戳，则返回空数组。
+        public let subtitles: [Subtitle]
+
         /// 失败原因说明。
         public let errorMsg: String
 
@@ -49,6 +52,7 @@ extension Tts {
             case status = "Status"
             case statusStr = "StatusStr"
             case resultUrl = "ResultUrl"
+            case subtitles = "Subtitles"
             case errorMsg = "ErrorMsg"
         }
     }

@@ -36,6 +36,7 @@ public struct TCApmError: TCApmErrorType {
         case failedOperation_InstanceIdIsEmpty = "FailedOperation.InstanceIdIsEmpty"
         case failedOperation_InstanceNotFound = "FailedOperation.InstanceNotFound"
         case failedOperation_InvalidInstanceID = "FailedOperation.InvalidInstanceID"
+        case failedOperation_InvalidRequest = "FailedOperation.InvalidRequest"
         case failedOperation_MetricFiltersLackParams = "FailedOperation.MetricFiltersLackParams"
         case failedOperation_NotInnerVPC = "FailedOperation.NotInnerVPC"
         case failedOperation_QueryTimeIntervalIsNotSupported = "FailedOperation.QueryTimeIntervalIsNotSupported"
@@ -129,6 +130,11 @@ public struct TCApmError: TCApmErrorType {
     /// 非法实例id。
     public static var failedOperation_InvalidInstanceID: TCApmError {
         TCApmError(.failedOperation_InvalidInstanceID)
+    }
+
+    /// 修改为合法请求
+    public static var failedOperation_InvalidRequest: TCApmError {
+        TCApmError(.failedOperation_InvalidRequest)
     }
 
     /// 查询指标类数据查询条件缺少过滤参数。

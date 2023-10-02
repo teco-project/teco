@@ -28,9 +28,9 @@ extension Tdmq {
         public let roleNames: [String]
 
         /// 必填字段，集群的ID
-        public let clusterId: String?
+        public let clusterId: String
 
-        public init(environmentId: String, roleNames: [String], clusterId: String? = nil) {
+        public init(environmentId: String, roleNames: [String], clusterId: String) {
             self.environmentId = environmentId
             self.roleNames = roleNames
             self.clusterId = clusterId
@@ -73,7 +73,7 @@ extension Tdmq {
     ///
     /// 删除环境角色授权。
     @inlinable @discardableResult
-    public func deleteEnvironmentRoles(environmentId: String, roleNames: [String], clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEnvironmentRolesResponse> {
+    public func deleteEnvironmentRoles(environmentId: String, roleNames: [String], clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEnvironmentRolesResponse> {
         self.deleteEnvironmentRoles(.init(environmentId: environmentId, roleNames: roleNames, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
@@ -81,7 +81,7 @@ extension Tdmq {
     ///
     /// 删除环境角色授权。
     @inlinable @discardableResult
-    public func deleteEnvironmentRoles(environmentId: String, roleNames: [String], clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEnvironmentRolesResponse {
+    public func deleteEnvironmentRoles(environmentId: String, roleNames: [String], clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEnvironmentRolesResponse {
         try await self.deleteEnvironmentRoles(.init(environmentId: environmentId, roleNames: roleNames, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

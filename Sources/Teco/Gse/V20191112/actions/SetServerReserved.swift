@@ -61,7 +61,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func setServerReserved(_ input: SetServerReservedRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetServerReservedResponse> {
-        fatalError("SetServerReserved is no longer available.")
+        fatalError("'SetServerReserved' is no longer available.")
     }
 
     /// 设置实例保留
@@ -72,7 +72,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func setServerReserved(_ input: SetServerReservedRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetServerReservedResponse {
-        fatalError("SetServerReserved is no longer available.")
+        fatalError("'SetServerReserved' is no longer available.")
     }
 
     /// 设置实例保留
@@ -83,7 +83,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func setServerReserved(fleetId: String, instanceId: String, reserveValue: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetServerReservedResponse> {
-        fatalError("SetServerReserved is no longer available.")
+        fatalError("'SetServerReserved' is no longer available.")
     }
 
     /// 设置实例保留
@@ -94,6 +94,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func setServerReserved(fleetId: String, instanceId: String, reserveValue: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetServerReservedResponse {
-        fatalError("SetServerReserved is no longer available.")
+        fatalError("'SetServerReserved' is no longer available.")
     }
 }

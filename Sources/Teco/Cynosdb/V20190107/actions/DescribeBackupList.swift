@@ -61,7 +61,13 @@ extension Cynosdb {
         /// 快照备份Id列表
         public let snapshotIdList: [Int64]?
 
-        public init(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, dbType: String? = nil, backupIds: [Int64]? = nil, backupType: String? = nil, backupMethod: String? = nil, snapShotType: String? = nil, startTime: String? = nil, endTime: String? = nil, fileNames: [String]? = nil, backupNames: [String]? = nil, snapshotIdList: [Int64]? = nil) {
+        /// 备份地域
+        public let backupRegion: String?
+
+        /// 是否跨地域备份
+        public let isCrossRegionsBackup: String?
+
+        public init(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, dbType: String? = nil, backupIds: [Int64]? = nil, backupType: String? = nil, backupMethod: String? = nil, snapShotType: String? = nil, startTime: String? = nil, endTime: String? = nil, fileNames: [String]? = nil, backupNames: [String]? = nil, snapshotIdList: [Int64]? = nil, backupRegion: String? = nil, isCrossRegionsBackup: String? = nil) {
             self.clusterId = clusterId
             self.limit = limit
             self.offset = offset
@@ -75,6 +81,8 @@ extension Cynosdb {
             self.fileNames = fileNames
             self.backupNames = backupNames
             self.snapshotIdList = snapshotIdList
+            self.backupRegion = backupRegion
+            self.isCrossRegionsBackup = isCrossRegionsBackup
         }
 
         enum CodingKeys: String, CodingKey {
@@ -91,6 +99,8 @@ extension Cynosdb {
             case fileNames = "FileNames"
             case backupNames = "BackupNames"
             case snapshotIdList = "SnapshotIdList"
+            case backupRegion = "BackupRegion"
+            case isCrossRegionsBackup = "IsCrossRegionsBackup"
         }
 
         /// Compute the next request based on API response.
@@ -98,7 +108,7 @@ extension Cynosdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return .init(clusterId: self.clusterId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), dbType: self.dbType, backupIds: self.backupIds, backupType: self.backupType, backupMethod: self.backupMethod, snapShotType: self.snapShotType, startTime: self.startTime, endTime: self.endTime, fileNames: self.fileNames, backupNames: self.backupNames, snapshotIdList: self.snapshotIdList)
+            return .init(clusterId: self.clusterId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), dbType: self.dbType, backupIds: self.backupIds, backupType: self.backupType, backupMethod: self.backupMethod, snapShotType: self.snapShotType, startTime: self.startTime, endTime: self.endTime, fileNames: self.fileNames, backupNames: self.backupNames, snapshotIdList: self.snapshotIdList, backupRegion: self.backupRegion, isCrossRegionsBackup: self.isCrossRegionsBackup)
         }
     }
 
@@ -144,14 +154,14 @@ extension Cynosdb {
 
     /// 查询备份文件列表
     @inlinable
-    public func describeBackupList(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, dbType: String? = nil, backupIds: [Int64]? = nil, backupType: String? = nil, backupMethod: String? = nil, snapShotType: String? = nil, startTime: String? = nil, endTime: String? = nil, fileNames: [String]? = nil, backupNames: [String]? = nil, snapshotIdList: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupListResponse> {
-        self.describeBackupList(.init(clusterId: clusterId, limit: limit, offset: offset, dbType: dbType, backupIds: backupIds, backupType: backupType, backupMethod: backupMethod, snapShotType: snapShotType, startTime: startTime, endTime: endTime, fileNames: fileNames, backupNames: backupNames, snapshotIdList: snapshotIdList), region: region, logger: logger, on: eventLoop)
+    public func describeBackupList(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, dbType: String? = nil, backupIds: [Int64]? = nil, backupType: String? = nil, backupMethod: String? = nil, snapShotType: String? = nil, startTime: String? = nil, endTime: String? = nil, fileNames: [String]? = nil, backupNames: [String]? = nil, snapshotIdList: [Int64]? = nil, backupRegion: String? = nil, isCrossRegionsBackup: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupListResponse> {
+        self.describeBackupList(.init(clusterId: clusterId, limit: limit, offset: offset, dbType: dbType, backupIds: backupIds, backupType: backupType, backupMethod: backupMethod, snapShotType: snapShotType, startTime: startTime, endTime: endTime, fileNames: fileNames, backupNames: backupNames, snapshotIdList: snapshotIdList, backupRegion: backupRegion, isCrossRegionsBackup: isCrossRegionsBackup), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询备份文件列表
     @inlinable
-    public func describeBackupList(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, dbType: String? = nil, backupIds: [Int64]? = nil, backupType: String? = nil, backupMethod: String? = nil, snapShotType: String? = nil, startTime: String? = nil, endTime: String? = nil, fileNames: [String]? = nil, backupNames: [String]? = nil, snapshotIdList: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupListResponse {
-        try await self.describeBackupList(.init(clusterId: clusterId, limit: limit, offset: offset, dbType: dbType, backupIds: backupIds, backupType: backupType, backupMethod: backupMethod, snapShotType: snapShotType, startTime: startTime, endTime: endTime, fileNames: fileNames, backupNames: backupNames, snapshotIdList: snapshotIdList), region: region, logger: logger, on: eventLoop)
+    public func describeBackupList(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, dbType: String? = nil, backupIds: [Int64]? = nil, backupType: String? = nil, backupMethod: String? = nil, snapShotType: String? = nil, startTime: String? = nil, endTime: String? = nil, fileNames: [String]? = nil, backupNames: [String]? = nil, snapshotIdList: [Int64]? = nil, backupRegion: String? = nil, isCrossRegionsBackup: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupListResponse {
+        try await self.describeBackupList(.init(clusterId: clusterId, limit: limit, offset: offset, dbType: dbType, backupIds: backupIds, backupType: backupType, backupMethod: backupMethod, snapShotType: snapShotType, startTime: startTime, endTime: endTime, fileNames: fileNames, backupNames: backupNames, snapshotIdList: snapshotIdList, backupRegion: backupRegion, isCrossRegionsBackup: isCrossRegionsBackup), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询备份文件列表

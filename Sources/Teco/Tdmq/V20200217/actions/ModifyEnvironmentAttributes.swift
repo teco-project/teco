@@ -27,11 +27,11 @@ extension Tdmq {
         /// 未消费消息过期时间，单位：秒，范围60秒~15天。
         public let msgTTL: UInt64
 
+        /// 集群ID
+        public let clusterId: String
+
         /// 备注，字符串最长不超过128。
         public let remark: String?
-
-        /// 集群ID
-        public let clusterId: String?
 
         /// 消息保留策略
         public let retentionPolicy: RetentionPolicy?
@@ -39,11 +39,11 @@ extension Tdmq {
         /// 是否开启自动创建订阅
         public let autoSubscriptionCreation: Bool?
 
-        public init(environmentId: String, msgTTL: UInt64, remark: String? = nil, clusterId: String? = nil, retentionPolicy: RetentionPolicy? = nil, autoSubscriptionCreation: Bool? = nil) {
+        public init(environmentId: String, msgTTL: UInt64, clusterId: String, remark: String? = nil, retentionPolicy: RetentionPolicy? = nil, autoSubscriptionCreation: Bool? = nil) {
             self.environmentId = environmentId
             self.msgTTL = msgTTL
-            self.remark = remark
             self.clusterId = clusterId
+            self.remark = remark
             self.retentionPolicy = retentionPolicy
             self.autoSubscriptionCreation = autoSubscriptionCreation
         }
@@ -51,8 +51,8 @@ extension Tdmq {
         enum CodingKeys: String, CodingKey {
             case environmentId = "EnvironmentId"
             case msgTTL = "MsgTTL"
-            case remark = "Remark"
             case clusterId = "ClusterId"
+            case remark = "Remark"
             case retentionPolicy = "RetentionPolicy"
             case autoSubscriptionCreation = "AutoSubscriptionCreation"
         }
@@ -106,15 +106,15 @@ extension Tdmq {
     ///
     /// 修改指定命名空间的属性值
     @inlinable
-    public func modifyEnvironmentAttributes(environmentId: String, msgTTL: UInt64, remark: String? = nil, clusterId: String? = nil, retentionPolicy: RetentionPolicy? = nil, autoSubscriptionCreation: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEnvironmentAttributesResponse> {
-        self.modifyEnvironmentAttributes(.init(environmentId: environmentId, msgTTL: msgTTL, remark: remark, clusterId: clusterId, retentionPolicy: retentionPolicy, autoSubscriptionCreation: autoSubscriptionCreation), region: region, logger: logger, on: eventLoop)
+    public func modifyEnvironmentAttributes(environmentId: String, msgTTL: UInt64, clusterId: String, remark: String? = nil, retentionPolicy: RetentionPolicy? = nil, autoSubscriptionCreation: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEnvironmentAttributesResponse> {
+        self.modifyEnvironmentAttributes(.init(environmentId: environmentId, msgTTL: msgTTL, clusterId: clusterId, remark: remark, retentionPolicy: retentionPolicy, autoSubscriptionCreation: autoSubscriptionCreation), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改命名空间属性
     ///
     /// 修改指定命名空间的属性值
     @inlinable
-    public func modifyEnvironmentAttributes(environmentId: String, msgTTL: UInt64, remark: String? = nil, clusterId: String? = nil, retentionPolicy: RetentionPolicy? = nil, autoSubscriptionCreation: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvironmentAttributesResponse {
-        try await self.modifyEnvironmentAttributes(.init(environmentId: environmentId, msgTTL: msgTTL, remark: remark, clusterId: clusterId, retentionPolicy: retentionPolicy, autoSubscriptionCreation: autoSubscriptionCreation), region: region, logger: logger, on: eventLoop)
+    public func modifyEnvironmentAttributes(environmentId: String, msgTTL: UInt64, clusterId: String, remark: String? = nil, retentionPolicy: RetentionPolicy? = nil, autoSubscriptionCreation: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvironmentAttributesResponse {
+        try await self.modifyEnvironmentAttributes(.init(environmentId: environmentId, msgTTL: msgTTL, clusterId: clusterId, remark: remark, retentionPolicy: retentionPolicy, autoSubscriptionCreation: autoSubscriptionCreation), region: region, logger: logger, on: eventLoop)
     }
 }

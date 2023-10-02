@@ -66,6 +66,7 @@ extension TCApigatewayError {
             case setCustomPathMappingError = "FailedOperation.SetCustomPathMappingError"
             case subDomainFormatError = "FailedOperation.SubDomainFormatError"
             case tagBindServiceError = "FailedOperation.TagBindServiceError"
+            case taskAlreadyExist = "FailedOperation.TaskAlreadyExist"
             case unknownProtocolTypeError = "FailedOperation.UnknownProtocolTypeError"
             case other = "FailedOperation"
         }
@@ -326,6 +327,10 @@ extension TCApigatewayError {
             FailedOperation(.tagBindServiceError)
         }
 
+        public static var taskAlreadyExist: FailedOperation {
+            FailedOperation(.taskAlreadyExist)
+        }
+
         /// 协议类型错误。
         public static var unknownProtocolTypeError: FailedOperation {
             FailedOperation(.unknownProtocolTypeError)
@@ -433,6 +438,8 @@ extension TCApigatewayError {
                 code = .failedOperation_SubDomainFormatError
             case .tagBindServiceError:
                 code = .failedOperation_TagBindServiceError
+            case .taskAlreadyExist:
+                code = .failedOperation_TaskAlreadyExist
             case .unknownProtocolTypeError:
                 code = .failedOperation_UnknownProtocolTypeError
             case .other:

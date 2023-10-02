@@ -32,16 +32,21 @@ extension Vpc {
         /// 返回数量，默认为20，最大值为100。
         public let limit: String?
 
-        public init(filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil) {
+        /// 是否获取协议端口模板成员标识。
+        public let needMemberInfo: Bool?
+
+        public init(filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, needMemberInfo: Bool? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
+            self.needMemberInfo = needMemberInfo
         }
 
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
             case offset = "Offset"
             case limit = "Limit"
+            case needMemberInfo = "NeedMemberInfo"
         }
     }
 
@@ -83,15 +88,15 @@ extension Vpc {
     ///
     /// 本接口（DescribeServiceTemplateGroups）用于查询协议端口模板集合。
     @inlinable
-    public func describeServiceTemplateGroups(filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceTemplateGroupsResponse> {
-        self.describeServiceTemplateGroups(.init(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+    public func describeServiceTemplateGroups(filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, needMemberInfo: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceTemplateGroupsResponse> {
+        self.describeServiceTemplateGroups(.init(filters: filters, offset: offset, limit: limit, needMemberInfo: needMemberInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询协议端口模板集合
     ///
     /// 本接口（DescribeServiceTemplateGroups）用于查询协议端口模板集合。
     @inlinable
-    public func describeServiceTemplateGroups(filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceTemplateGroupsResponse {
-        try await self.describeServiceTemplateGroups(.init(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+    public func describeServiceTemplateGroups(filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, needMemberInfo: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceTemplateGroupsResponse {
+        try await self.describeServiceTemplateGroups(.init(filters: filters, offset: offset, limit: limit, needMemberInfo: needMemberInfo), region: region, logger: logger, on: eventLoop)
     }
 }

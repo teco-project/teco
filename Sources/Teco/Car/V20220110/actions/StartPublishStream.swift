@@ -24,12 +24,17 @@ extension Car {
         /// 唯一用户身份标识，由业务方自定义，平台不予理解。（UserId将作为StreamId进行推流，比如绑定推流域名为abc.livepush.myqcloud.com，那么推流地址为rtmp://abc.livepush.myqcloud.com/live/UserId?txSecret=xxx&txTime=xxx）
         public let userId: String
 
-        public init(userId: String) {
+        /// 推流参数，推流时携带自定义参数。
+        public let publishStreamArgs: String?
+
+        public init(userId: String, publishStreamArgs: String? = nil) {
             self.userId = userId
+            self.publishStreamArgs = publishStreamArgs
         }
 
         enum CodingKeys: String, CodingKey {
             case userId = "UserId"
+            case publishStreamArgs = "PublishStreamArgs"
         }
     }
 
@@ -57,13 +62,13 @@ extension Car {
 
     /// 开始云端推流
     @inlinable @discardableResult
-    public func startPublishStream(userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartPublishStreamResponse> {
-        self.startPublishStream(.init(userId: userId), region: region, logger: logger, on: eventLoop)
+    public func startPublishStream(userId: String, publishStreamArgs: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartPublishStreamResponse> {
+        self.startPublishStream(.init(userId: userId, publishStreamArgs: publishStreamArgs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开始云端推流
     @inlinable @discardableResult
-    public func startPublishStream(userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartPublishStreamResponse {
-        try await self.startPublishStream(.init(userId: userId), region: region, logger: logger, on: eventLoop)
+    public func startPublishStream(userId: String, publishStreamArgs: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartPublishStreamResponse {
+        try await self.startPublishStream(.init(userId: userId, publishStreamArgs: publishStreamArgs), region: region, logger: logger, on: eventLoop)
     }
 }

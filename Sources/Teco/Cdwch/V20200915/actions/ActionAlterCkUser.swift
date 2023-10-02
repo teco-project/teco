@@ -54,7 +54,7 @@ extension Cdwch {
         }
     }
 
-    /// 新增、修改ck用户接口
+    /// 新增、修改集群用户接口
     ///
     /// 新增和修改用户接口
     @inlinable
@@ -62,7 +62,7 @@ extension Cdwch {
         self.client.execute(action: "ActionAlterCkUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 新增、修改ck用户接口
+    /// 新增、修改集群用户接口
     ///
     /// 新增和修改用户接口
     @inlinable
@@ -70,7 +70,7 @@ extension Cdwch {
         try await self.client.execute(action: "ActionAlterCkUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 新增、修改ck用户接口
+    /// 新增、修改集群用户接口
     ///
     /// 新增和修改用户接口
     @inlinable
@@ -78,7 +78,7 @@ extension Cdwch {
         self.actionAlterCkUser(.init(userInfo: userInfo, apiType: apiType), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 新增、修改ck用户接口
+    /// 新增、修改集群用户接口
     ///
     /// 新增和修改用户接口
     @inlinable

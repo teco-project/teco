@@ -1400,52 +1400,6 @@ extension Dcdb {
         }
     }
 
-    /// 描述一条sql日志的详细信息。
-    public struct SqlLogItem: TCOutputModel {
-        /// 本条日志在消息队列中的偏移量。
-        public let offset: UInt64
-
-        /// 执行本条sql的用户。
-        public let user: String
-
-        /// 执行本条sql的客户端IP+端口。
-        public let client: String
-
-        /// 数据库名称。
-        public let dbName: String
-
-        /// 执行的sql语句。
-        public let sql: String
-
-        /// 返回的数据行数。
-        public let selectRowNum: UInt64
-
-        /// 影响行数。
-        public let affectRowNum: UInt64
-
-        /// Sql执行时间戳。
-        public let timestamp: UInt64
-
-        /// Sql耗时，单位为毫秒。
-        public let timeCostMs: UInt64
-
-        /// Sql返回码，0为成功。
-        public let resultCode: UInt64
-
-        enum CodingKeys: String, CodingKey {
-            case offset = "Offset"
-            case user = "User"
-            case client = "Client"
-            case dbName = "DbName"
-            case sql = "Sql"
-            case selectRowNum = "SelectRowNum"
-            case affectRowNum = "AffectRowNum"
-            case timestamp = "Timestamp"
-            case timeCostMs = "TimeCostMs"
-            case resultCode = "ResultCode"
-        }
-    }
-
     /// 数据库列信息
     public struct TableColumn: TCOutputModel {
         /// 列名称

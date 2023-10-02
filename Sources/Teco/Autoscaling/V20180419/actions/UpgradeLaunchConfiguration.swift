@@ -177,9 +177,10 @@ extension As {
     ///
     /// * 本接口用于升级启动配置，采用“完全覆盖”风格，无论之前参数如何，统一按照接口参数设置为新的配置。对于非必填字段，不填写则按照默认值赋值。
     /// * 升级修改启动配置后，已经使用该启动配置扩容的存量实例不会发生变更，此后使用该启动配置的新增实例会按照新的配置进行扩容。
+    @available(*, unavailable, message: "已有替代接口ModifyLaunchConfiguration。该接口存在覆盖参数风险，目前官网已隐藏")
     @inlinable @discardableResult
     public func upgradeLaunchConfiguration(_ input: UpgradeLaunchConfigurationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeLaunchConfigurationResponse> {
-        self.client.execute(action: "UpgradeLaunchConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("'UpgradeLaunchConfiguration' is no longer available.")
     }
 
     /// 升级启动配置
@@ -188,9 +189,10 @@ extension As {
     ///
     /// * 本接口用于升级启动配置，采用“完全覆盖”风格，无论之前参数如何，统一按照接口参数设置为新的配置。对于非必填字段，不填写则按照默认值赋值。
     /// * 升级修改启动配置后，已经使用该启动配置扩容的存量实例不会发生变更，此后使用该启动配置的新增实例会按照新的配置进行扩容。
+    @available(*, unavailable, message: "已有替代接口ModifyLaunchConfiguration。该接口存在覆盖参数风险，目前官网已隐藏")
     @inlinable @discardableResult
     public func upgradeLaunchConfiguration(_ input: UpgradeLaunchConfigurationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeLaunchConfigurationResponse {
-        try await self.client.execute(action: "UpgradeLaunchConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("'UpgradeLaunchConfiguration' is no longer available.")
     }
 
     /// 升级启动配置
@@ -199,9 +201,10 @@ extension As {
     ///
     /// * 本接口用于升级启动配置，采用“完全覆盖”风格，无论之前参数如何，统一按照接口参数设置为新的配置。对于非必填字段，不填写则按照默认值赋值。
     /// * 升级修改启动配置后，已经使用该启动配置扩容的存量实例不会发生变更，此后使用该启动配置的新增实例会按照新的配置进行扩容。
+    @available(*, unavailable, message: "已有替代接口ModifyLaunchConfiguration。该接口存在覆盖参数风险，目前官网已隐藏")
     @inlinable @discardableResult
     public func upgradeLaunchConfiguration(launchConfigurationId: String, imageId: String, instanceTypes: [String], launchConfigurationName: String, dataDisks: [DataDisk]? = nil, enhancedService: EnhancedService? = nil, instanceChargeType: String? = nil, instanceMarketOptions: InstanceMarketOptionsRequest? = nil, instanceTypesCheckPolicy: String? = nil, internetAccessible: InternetAccessible? = nil, loginSettings: LoginSettings? = nil, projectId: Int64? = nil, securityGroupIds: [String]? = nil, systemDisk: SystemDisk? = nil, userData: String? = nil, instanceTags: [InstanceTag]? = nil, camRoleName: String? = nil, hostNameSettings: HostNameSettings? = nil, instanceNameSettings: InstanceNameSettings? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, diskTypePolicy: String? = nil, iPv6InternetAccessible: IPv6InternetAccessible? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeLaunchConfigurationResponse> {
-        self.upgradeLaunchConfiguration(.init(launchConfigurationId: launchConfigurationId, imageId: imageId, instanceTypes: instanceTypes, launchConfigurationName: launchConfigurationName, dataDisks: dataDisks, enhancedService: enhancedService, instanceChargeType: instanceChargeType, instanceMarketOptions: instanceMarketOptions, instanceTypesCheckPolicy: instanceTypesCheckPolicy, internetAccessible: internetAccessible, loginSettings: loginSettings, projectId: projectId, securityGroupIds: securityGroupIds, systemDisk: systemDisk, userData: userData, instanceTags: instanceTags, camRoleName: camRoleName, hostNameSettings: hostNameSettings, instanceNameSettings: instanceNameSettings, instanceChargePrepaid: instanceChargePrepaid, diskTypePolicy: diskTypePolicy, iPv6InternetAccessible: iPv6InternetAccessible), region: region, logger: logger, on: eventLoop)
+        fatalError("'UpgradeLaunchConfiguration' is no longer available.")
     }
 
     /// 升级启动配置
@@ -210,8 +213,9 @@ extension As {
     ///
     /// * 本接口用于升级启动配置，采用“完全覆盖”风格，无论之前参数如何，统一按照接口参数设置为新的配置。对于非必填字段，不填写则按照默认值赋值。
     /// * 升级修改启动配置后，已经使用该启动配置扩容的存量实例不会发生变更，此后使用该启动配置的新增实例会按照新的配置进行扩容。
+    @available(*, unavailable, message: "已有替代接口ModifyLaunchConfiguration。该接口存在覆盖参数风险，目前官网已隐藏")
     @inlinable @discardableResult
     public func upgradeLaunchConfiguration(launchConfigurationId: String, imageId: String, instanceTypes: [String], launchConfigurationName: String, dataDisks: [DataDisk]? = nil, enhancedService: EnhancedService? = nil, instanceChargeType: String? = nil, instanceMarketOptions: InstanceMarketOptionsRequest? = nil, instanceTypesCheckPolicy: String? = nil, internetAccessible: InternetAccessible? = nil, loginSettings: LoginSettings? = nil, projectId: Int64? = nil, securityGroupIds: [String]? = nil, systemDisk: SystemDisk? = nil, userData: String? = nil, instanceTags: [InstanceTag]? = nil, camRoleName: String? = nil, hostNameSettings: HostNameSettings? = nil, instanceNameSettings: InstanceNameSettings? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, diskTypePolicy: String? = nil, iPv6InternetAccessible: IPv6InternetAccessible? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeLaunchConfigurationResponse {
-        try await self.upgradeLaunchConfiguration(.init(launchConfigurationId: launchConfigurationId, imageId: imageId, instanceTypes: instanceTypes, launchConfigurationName: launchConfigurationName, dataDisks: dataDisks, enhancedService: enhancedService, instanceChargeType: instanceChargeType, instanceMarketOptions: instanceMarketOptions, instanceTypesCheckPolicy: instanceTypesCheckPolicy, internetAccessible: internetAccessible, loginSettings: loginSettings, projectId: projectId, securityGroupIds: securityGroupIds, systemDisk: systemDisk, userData: userData, instanceTags: instanceTags, camRoleName: camRoleName, hostNameSettings: hostNameSettings, instanceNameSettings: instanceNameSettings, instanceChargePrepaid: instanceChargePrepaid, diskTypePolicy: diskTypePolicy, iPv6InternetAccessible: iPv6InternetAccessible), region: region, logger: logger, on: eventLoop)
+        fatalError("'UpgradeLaunchConfiguration' is no longer available.")
     }
 }

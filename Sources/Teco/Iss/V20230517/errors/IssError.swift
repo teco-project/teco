@@ -29,9 +29,11 @@ public struct TCIssError: TCIssErrorType {
         case failedOperation = "FailedOperation"
         case failedOperation_AITaskStatusIsOff = "FailedOperation.AITaskStatusIsOff"
         case failedOperation_AITaskStatusIsOn = "FailedOperation.AITaskStatusIsOn"
+        case failedOperation_DatabaseError = "FailedOperation.DatabaseError"
         case failedOperation_DeviceResponseTimeOut = "FailedOperation.DeviceResponseTimeOut"
         case failedOperation_DeviceResultTimeOut = "FailedOperation.DeviceResultTimeOut"
         case failedOperation_NoMatchedCname = "FailedOperation.NoMatchedCname"
+        case failedOperation_RequestTimeout = "FailedOperation.RequestTimeout"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
         case invalidParameterValue_BakTimeNotEnough = "InvalidParameterValue.BakTimeNotEnough"
@@ -88,6 +90,7 @@ public struct TCIssError: TCIssErrorType {
         case invalidParameterValue_InvalidOrgName = "InvalidParameterValue.InvalidOrgName"
         case invalidParameterValue_InvalidOrganizationId = "InvalidParameterValue.InvalidOrganizationId"
         case invalidParameterValue_InvalidPageNumber = "InvalidParameterValue.InvalidPageNumber"
+        case invalidParameterValue_InvalidPageParameter = "InvalidParameterValue.InvalidPageParameter"
         case invalidParameterValue_InvalidPageSize = "InvalidParameterValue.InvalidPageSize"
         case invalidParameterValue_InvalidPlanId = "InvalidParameterValue.InvalidPlanId"
         case invalidParameterValue_InvalidPullState = "InvalidParameterValue.InvalidPullState"
@@ -96,6 +99,7 @@ public struct TCIssError: TCIssErrorType {
         case invalidParameterValue_InvalidRetrieveTaskId = "InvalidParameterValue.InvalidRetrieveTaskId"
         case invalidParameterValue_InvalidSecret = "InvalidParameterValue.InvalidSecret"
         case invalidParameterValue_InvalidStartTimeOrEndTime = "InvalidParameterValue.InvalidStartTimeOrEndTime"
+        case invalidParameterValue_InvalidStatus = "InvalidParameterValue.InvalidStatus"
         case invalidParameterValue_InvalidStreamType = "InvalidParameterValue.InvalidStreamType"
         case invalidParameterValue_InvalidTemplateId = "InvalidParameterValue.InvalidTemplateId"
         case invalidParameterValue_InvalidTemplateTag = "InvalidParameterValue.InvalidTemplateTag"
@@ -119,11 +123,13 @@ public struct TCIssError: TCIssErrorType {
         case invalidParameterValue_StartTimeGreaterThanOrEqualEndTime = "InvalidParameterValue.StartTimeGreaterThanOrEqualEndTime"
         case invalidParameterValue_StartTimeZero = "InvalidParameterValue.StartTimeZero"
         case invalidParameterValue_StatusMustBeNotEmpty = "InvalidParameterValue.StatusMustBeNotEmpty"
+        case invalidParameterValue_TaskTypeNotSupported = "InvalidParameterValue.TaskTypeNotSupported"
         case invalidParameterValue_TemplateTagMustBeConsistent = "InvalidParameterValue.TemplateTagMustBeConsistent"
         case invalidParameterValue_TimeLessThanTenMinutes = "InvalidParameterValue.TimeLessThanTenMinutes"
         case invalidParameterValue_TooLongDescribe = "InvalidParameterValue.TooLongDescribe"
         case invalidParameterValue_TooLongName = "InvalidParameterValue.TooLongName"
         case invalidParameterValue_TooLongStreamType = "InvalidParameterValue.TooLongStreamType"
+        case invalidParameterValue_UnSupportOperateCMD = "InvalidParameterValue.UnSupportOperateCMD"
         case invalidParameterValue_UnSupportScale = "InvalidParameterValue.UnSupportScale"
         case invalidParameterValue_UnSupportedAccessType = "InvalidParameterValue.UnSupportedAccessType"
         case invalidParameterValue_UnSupportedPTZCMD = "InvalidParameterValue.UnSupportedPTZCMD"
@@ -132,11 +138,15 @@ public struct TCIssError: TCIssErrorType {
         case invalidParameterValue_UnsupportedStreamProtocol = "InvalidParameterValue.UnsupportedStreamProtocol"
         case invalidParameter_DownloadUrlError = "InvalidParameter.DownloadUrlError"
         case invalidParameter_DownloadUrlHasExpired = "InvalidParameter.DownloadUrlHasExpired"
+        case invalidParameter_InvalidAction = "InvalidParameter.InvalidAction"
         case invalidParameter_InvalidBodyFormat = "InvalidParameter.InvalidBodyFormat"
         case invalidParameter_InvalidChannels = "InvalidParameter.InvalidChannels"
         case invalidParameter_InvalidLifeRuleParam = "InvalidParameter.InvalidLifeRuleParam"
         case invalidParameter_InvalidOrganizationParam = "InvalidParameter.InvalidOrganizationParam"
+        case invalidParameter_InvalidParameterFormat = "InvalidParameter.InvalidParameterFormat"
         case invalidParameter_InvalidTimeSection = "InvalidParameter.InvalidTimeSection"
+        case invalidParameter_RequiredHeaderParameterEmpty = "InvalidParameter.RequiredHeaderParameterEmpty"
+        case invalidParameter_TaskIdNotExist = "InvalidParameter.TaskIdNotExist"
         case missingParameter_EmptyTimeSection = "MissingParameter.EmptyTimeSection"
         case missingParameter_MissingLifeRuleParam = "MissingParameter.MissingLifeRuleParam"
         case missingParameter_MissingRetrieveTaskParam = "MissingParameter.MissingRetrieveTaskParam"
@@ -144,6 +154,7 @@ public struct TCIssError: TCIssErrorType {
         case operationDenied_BandwidthLimitZero = "OperationDenied.BandwidthLimitZero"
         case operationDenied_ConcurrentDownloadsOverLimit = "OperationDenied.ConcurrentDownloadsOverLimit"
         case operationDenied_ConnectsLimitZero = "OperationDenied.ConnectsLimitZero"
+        case regionError_ResourceUnreachable = "RegionError.ResourceUnreachable"
         case resourceInUse_ChannelRepeatAdd = "ResourceInUse.ChannelRepeatAdd"
         case resourceInUse_PlanDeleting = "ResourceInUse.PlanDeleting"
         case resourceInUse_PlanLinkTemplate = "ResourceInUse.PlanLinkTemplate"
@@ -159,6 +170,7 @@ public struct TCIssError: TCIssErrorType {
         case resourceNotFound_OrganizationIdNotExist = "ResourceNotFound.OrganizationIdNotExist"
         case resourceNotFound_PlanNotExist = "ResourceNotFound.PlanNotExist"
         case resourceNotFound_RetrieveTaskNotExist = "ResourceNotFound.RetrieveTaskNotExist"
+        case resourceNotFound_StreamNotExistOrClose = "ResourceNotFound.StreamNotExistOrClose"
         case resourceNotFound_TemplateNotExist = "ResourceNotFound.TemplateNotExist"
         case resourceNotFound_VideoNotFound = "ResourceNotFound.VideoNotFound"
         case resourceUnavailable_ChannelOffline = "ResourceUnavailable.ChannelOffline"
@@ -181,6 +193,7 @@ public struct TCIssError: TCIssErrorType {
             InvalidParameterValue.self,
             MissingParameter.self,
             OperationDenied.self,
+            RegionError.self,
             ResourceInUse.self,
             ResourceNotFound.self,
             ResourceUnavailable.self,
@@ -222,6 +235,10 @@ public struct TCIssError: TCIssErrorType {
         TCIssError(.failedOperation_AITaskStatusIsOn)
     }
 
+    public static var failedOperation_DatabaseError: TCIssError {
+        TCIssError(.failedOperation_DatabaseError)
+    }
+
     public static var failedOperation_DeviceResponseTimeOut: TCIssError {
         TCIssError(.failedOperation_DeviceResponseTimeOut)
     }
@@ -232,6 +249,10 @@ public struct TCIssError: TCIssErrorType {
 
     public static var failedOperation_NoMatchedCname: TCIssError {
         TCIssError(.failedOperation_NoMatchedCname)
+    }
+
+    public static var failedOperation_RequestTimeout: TCIssError {
+        TCIssError(.failedOperation_RequestTimeout)
     }
 
     public static var invalidParameter: TCIssError {
@@ -458,6 +479,10 @@ public struct TCIssError: TCIssErrorType {
         TCIssError(.invalidParameterValue_InvalidPageNumber)
     }
 
+    public static var invalidParameterValue_InvalidPageParameter: TCIssError {
+        TCIssError(.invalidParameterValue_InvalidPageParameter)
+    }
+
     public static var invalidParameterValue_InvalidPageSize: TCIssError {
         TCIssError(.invalidParameterValue_InvalidPageSize)
     }
@@ -488,6 +513,10 @@ public struct TCIssError: TCIssErrorType {
 
     public static var invalidParameterValue_InvalidStartTimeOrEndTime: TCIssError {
         TCIssError(.invalidParameterValue_InvalidStartTimeOrEndTime)
+    }
+
+    public static var invalidParameterValue_InvalidStatus: TCIssError {
+        TCIssError(.invalidParameterValue_InvalidStatus)
     }
 
     public static var invalidParameterValue_InvalidStreamType: TCIssError {
@@ -583,6 +612,10 @@ public struct TCIssError: TCIssErrorType {
         TCIssError(.invalidParameterValue_StatusMustBeNotEmpty)
     }
 
+    public static var invalidParameterValue_TaskTypeNotSupported: TCIssError {
+        TCIssError(.invalidParameterValue_TaskTypeNotSupported)
+    }
+
     public static var invalidParameterValue_TemplateTagMustBeConsistent: TCIssError {
         TCIssError(.invalidParameterValue_TemplateTagMustBeConsistent)
     }
@@ -601,6 +634,11 @@ public struct TCIssError: TCIssErrorType {
 
     public static var invalidParameterValue_TooLongStreamType: TCIssError {
         TCIssError(.invalidParameterValue_TooLongStreamType)
+    }
+
+    /// 请检查 Cmd 参数
+    public static var invalidParameterValue_UnSupportOperateCMD: TCIssError {
+        TCIssError(.invalidParameterValue_UnSupportOperateCMD)
     }
 
     public static var invalidParameterValue_UnSupportScale: TCIssError {
@@ -635,6 +673,10 @@ public struct TCIssError: TCIssErrorType {
         TCIssError(.invalidParameter_DownloadUrlHasExpired)
     }
 
+    public static var invalidParameter_InvalidAction: TCIssError {
+        TCIssError(.invalidParameter_InvalidAction)
+    }
+
     public static var invalidParameter_InvalidBodyFormat: TCIssError {
         TCIssError(.invalidParameter_InvalidBodyFormat)
     }
@@ -651,8 +693,20 @@ public struct TCIssError: TCIssErrorType {
         TCIssError(.invalidParameter_InvalidOrganizationParam)
     }
 
+    public static var invalidParameter_InvalidParameterFormat: TCIssError {
+        TCIssError(.invalidParameter_InvalidParameterFormat)
+    }
+
     public static var invalidParameter_InvalidTimeSection: TCIssError {
         TCIssError(.invalidParameter_InvalidTimeSection)
+    }
+
+    public static var invalidParameter_RequiredHeaderParameterEmpty: TCIssError {
+        TCIssError(.invalidParameter_RequiredHeaderParameterEmpty)
+    }
+
+    public static var invalidParameter_TaskIdNotExist: TCIssError {
+        TCIssError(.invalidParameter_TaskIdNotExist)
     }
 
     public static var missingParameter_EmptyTimeSection: TCIssError {
@@ -681,6 +735,10 @@ public struct TCIssError: TCIssErrorType {
 
     public static var operationDenied_ConnectsLimitZero: TCIssError {
         TCIssError(.operationDenied_ConnectsLimitZero)
+    }
+
+    public static var regionError_ResourceUnreachable: TCIssError {
+        TCIssError(.regionError_ResourceUnreachable)
     }
 
     public static var resourceInUse_ChannelRepeatAdd: TCIssError {
@@ -741,6 +799,10 @@ public struct TCIssError: TCIssErrorType {
 
     public static var resourceNotFound_RetrieveTaskNotExist: TCIssError {
         TCIssError(.resourceNotFound_RetrieveTaskNotExist)
+    }
+
+    public static var resourceNotFound_StreamNotExistOrClose: TCIssError {
+        TCIssError(.resourceNotFound_StreamNotExistOrClose)
     }
 
     public static var resourceNotFound_TemplateNotExist: TCIssError {

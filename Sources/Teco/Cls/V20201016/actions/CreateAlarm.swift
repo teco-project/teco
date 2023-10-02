@@ -30,9 +30,6 @@ extension Cls {
         /// 监控任务运行时间点。
         public let monitorTime: MonitorTime
 
-        /// 触发条件。
-        public let condition: String
-
         /// 持续周期。持续满足触发条件TriggerCount个周期后，再进行告警；最小值为1，最大值为10。
         public let triggerCount: Int64
 
@@ -41,6 +38,19 @@ extension Cls {
 
         /// 关联的告警通知模板列表。
         public let alarmNoticeIds: [String]
+
+        /// 触发条件。
+        ///
+        ///  注意:
+        ///
+        /// - Condition和AlarmLevel是一组配置，MultiConditions是另一组配置，2组配置互斥。
+        public let condition: String?
+
+        /// 多触发条件。
+        ///
+        ///  注意:
+        /// - Condition和AlarmLevel是一组配置，MultiConditions是另一组配置，2组配置互斥。</li>
+        public let multiConditions: [MultiCondition]?
 
         /// 是否开启告警策略。默认值为true
         public let status: Bool?
@@ -54,14 +64,15 @@ extension Cls {
         /// 多维分析
         public let analysis: [AnalysisDimensional]?
 
-        public init(name: String, alarmTargets: [AlarmTarget], monitorTime: MonitorTime, condition: String, triggerCount: Int64, alarmPeriod: Int64, alarmNoticeIds: [String], status: Bool? = nil, messageTemplate: String? = nil, callBack: CallBackInfo? = nil, analysis: [AnalysisDimensional]? = nil) {
+        public init(name: String, alarmTargets: [AlarmTarget], monitorTime: MonitorTime, triggerCount: Int64, alarmPeriod: Int64, alarmNoticeIds: [String], condition: String? = nil, multiConditions: [MultiCondition]? = nil, status: Bool? = nil, messageTemplate: String? = nil, callBack: CallBackInfo? = nil, analysis: [AnalysisDimensional]? = nil) {
             self.name = name
             self.alarmTargets = alarmTargets
             self.monitorTime = monitorTime
-            self.condition = condition
             self.triggerCount = triggerCount
             self.alarmPeriod = alarmPeriod
             self.alarmNoticeIds = alarmNoticeIds
+            self.condition = condition
+            self.multiConditions = multiConditions
             self.status = status
             self.messageTemplate = messageTemplate
             self.callBack = callBack
@@ -72,10 +83,11 @@ extension Cls {
             case name = "Name"
             case alarmTargets = "AlarmTargets"
             case monitorTime = "MonitorTime"
-            case condition = "Condition"
             case triggerCount = "TriggerCount"
             case alarmPeriod = "AlarmPeriod"
             case alarmNoticeIds = "AlarmNoticeIds"
+            case condition = "Condition"
+            case multiConditions = "MultiConditions"
             case status = "Status"
             case messageTemplate = "MessageTemplate"
             case callBack = "CallBack"
@@ -117,15 +129,15 @@ extension Cls {
     ///
     /// 本接口用于创建告警策略。
     @inlinable
-    public func createAlarm(name: String, alarmTargets: [AlarmTarget], monitorTime: MonitorTime, condition: String, triggerCount: Int64, alarmPeriod: Int64, alarmNoticeIds: [String], status: Bool? = nil, messageTemplate: String? = nil, callBack: CallBackInfo? = nil, analysis: [AnalysisDimensional]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAlarmResponse> {
-        self.createAlarm(.init(name: name, alarmTargets: alarmTargets, monitorTime: monitorTime, condition: condition, triggerCount: triggerCount, alarmPeriod: alarmPeriod, alarmNoticeIds: alarmNoticeIds, status: status, messageTemplate: messageTemplate, callBack: callBack, analysis: analysis), region: region, logger: logger, on: eventLoop)
+    public func createAlarm(name: String, alarmTargets: [AlarmTarget], monitorTime: MonitorTime, triggerCount: Int64, alarmPeriod: Int64, alarmNoticeIds: [String], condition: String? = nil, multiConditions: [MultiCondition]? = nil, status: Bool? = nil, messageTemplate: String? = nil, callBack: CallBackInfo? = nil, analysis: [AnalysisDimensional]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAlarmResponse> {
+        self.createAlarm(.init(name: name, alarmTargets: alarmTargets, monitorTime: monitorTime, triggerCount: triggerCount, alarmPeriod: alarmPeriod, alarmNoticeIds: alarmNoticeIds, condition: condition, multiConditions: multiConditions, status: status, messageTemplate: messageTemplate, callBack: callBack, analysis: analysis), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建告警策略
     ///
     /// 本接口用于创建告警策略。
     @inlinable
-    public func createAlarm(name: String, alarmTargets: [AlarmTarget], monitorTime: MonitorTime, condition: String, triggerCount: Int64, alarmPeriod: Int64, alarmNoticeIds: [String], status: Bool? = nil, messageTemplate: String? = nil, callBack: CallBackInfo? = nil, analysis: [AnalysisDimensional]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlarmResponse {
-        try await self.createAlarm(.init(name: name, alarmTargets: alarmTargets, monitorTime: monitorTime, condition: condition, triggerCount: triggerCount, alarmPeriod: alarmPeriod, alarmNoticeIds: alarmNoticeIds, status: status, messageTemplate: messageTemplate, callBack: callBack, analysis: analysis), region: region, logger: logger, on: eventLoop)
+    public func createAlarm(name: String, alarmTargets: [AlarmTarget], monitorTime: MonitorTime, triggerCount: Int64, alarmPeriod: Int64, alarmNoticeIds: [String], condition: String? = nil, multiConditions: [MultiCondition]? = nil, status: Bool? = nil, messageTemplate: String? = nil, callBack: CallBackInfo? = nil, analysis: [AnalysisDimensional]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlarmResponse {
+        try await self.createAlarm(.init(name: name, alarmTargets: alarmTargets, monitorTime: monitorTime, triggerCount: triggerCount, alarmPeriod: alarmPeriod, alarmNoticeIds: alarmNoticeIds, condition: condition, multiConditions: multiConditions, status: status, messageTemplate: messageTemplate, callBack: callBack, analysis: analysis), region: region, logger: logger, on: eventLoop)
     }
 }

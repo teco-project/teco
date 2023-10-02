@@ -49,7 +49,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func getUploadFederationToken(_ input: GetUploadFederationTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUploadFederationTokenResponse> {
-        fatalError("GetUploadFederationToken is no longer available.")
+        fatalError("'GetUploadFederationToken' is no longer available.")
     }
 
     /// 获取上传的临时密钥
@@ -58,7 +58,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func getUploadFederationToken(_ input: GetUploadFederationTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUploadFederationTokenResponse {
-        fatalError("GetUploadFederationToken is no longer available.")
+        fatalError("'GetUploadFederationToken' is no longer available.")
     }
 
     /// 获取上传的临时密钥
@@ -67,7 +67,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func getUploadFederationToken(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUploadFederationTokenResponse> {
-        fatalError("GetUploadFederationToken is no longer available.")
+        fatalError("'GetUploadFederationToken' is no longer available.")
     }
 
     /// 获取上传的临时密钥
@@ -76,6 +76,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func getUploadFederationToken(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUploadFederationTokenResponse {
-        fatalError("GetUploadFederationToken is no longer available.")
+        fatalError("'GetUploadFederationToken' is no longer available.")
     }
 }

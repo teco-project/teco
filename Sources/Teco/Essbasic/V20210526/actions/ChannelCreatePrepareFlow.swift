@@ -24,7 +24,7 @@ extension Essbasic {
         /// 资源id，与ResourceType对应
         public let resourceId: String
 
-        /// 资源类型，1：模板，目前仅支持模板，与ResourceId对应
+        /// 资源类型，与ResourceId对应1：模板   2: 文件
         public let resourceType: Int64
 
         /// 合同流程基础信息
@@ -107,7 +107,7 @@ extension Essbasic {
         }
     }
 
-    /// 获取模板发起合同web页面
+    /// 获取发起合同web页面
     ///
     /// 创建预发起合同
     /// 通过此接口指定：合同，签署人，填写控件信息，生成预创建合同链接，点击后跳转到web页面完成合同创建并发起
@@ -119,7 +119,7 @@ extension Essbasic {
         self.client.execute(action: "ChannelCreatePrepareFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取模板发起合同web页面
+    /// 获取发起合同web页面
     ///
     /// 创建预发起合同
     /// 通过此接口指定：合同，签署人，填写控件信息，生成预创建合同链接，点击后跳转到web页面完成合同创建并发起
@@ -131,7 +131,7 @@ extension Essbasic {
         try await self.client.execute(action: "ChannelCreatePrepareFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取模板发起合同web页面
+    /// 获取发起合同web页面
     ///
     /// 创建预发起合同
     /// 通过此接口指定：合同，签署人，填写控件信息，生成预创建合同链接，点击后跳转到web页面完成合同创建并发起
@@ -143,7 +143,7 @@ extension Essbasic {
         self.channelCreatePrepareFlow(.init(resourceId: resourceId, resourceType: resourceType, flowInfo: flowInfo, agent: agent, flowOption: flowOption, flowApproverList: flowApproverList, flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取模板发起合同web页面
+    /// 获取发起合同web页面
     ///
     /// 创建预发起合同
     /// 通过此接口指定：合同，签署人，填写控件信息，生成预创建合同链接，点击后跳转到web页面完成合同创建并发起
@@ -156,7 +156,7 @@ extension Essbasic {
         self.channelCreatePrepareFlow(.init(resourceId: resourceId, resourceType: resourceType, flowInfo: flowInfo, agent: agent, flowOption: flowOption, flowApproverList: flowApproverList, flowId: flowId, needPreview: needPreview, organization: organization, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取模板发起合同web页面
+    /// 获取发起合同web页面
     ///
     /// 创建预发起合同
     /// 通过此接口指定：合同，签署人，填写控件信息，生成预创建合同链接，点击后跳转到web页面完成合同创建并发起
@@ -168,7 +168,7 @@ extension Essbasic {
         try await self.channelCreatePrepareFlow(.init(resourceId: resourceId, resourceType: resourceType, flowInfo: flowInfo, agent: agent, flowOption: flowOption, flowApproverList: flowApproverList, flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取模板发起合同web页面
+    /// 获取发起合同web页面
     ///
     /// 创建预发起合同
     /// 通过此接口指定：合同，签署人，填写控件信息，生成预创建合同链接，点击后跳转到web页面完成合同创建并发起

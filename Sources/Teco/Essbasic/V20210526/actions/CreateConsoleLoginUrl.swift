@@ -26,57 +26,95 @@ extension Essbasic {
         public let agent: Agent
 
         /// 子客企业名称，最大长度64个字符
+        /// 注意：
+        /// 1、如果您的企业已经在认证授权中或者激活完成，这里修改子客企业名字将不会生效。
+        /// 2、该名称需要与Agent.ProxyOrganizationOpenId相匹配。
         public let proxyOrganizationName: String
 
-        /// 子客企业经办人的姓名，最大长度50个字符
-        public let proxyOperatorName: String?
-
-        /// PC控制台指定模块，文件/合同管理:"DOCUMENT"，模板管理:"TEMPLATE"，印章管理:"SEAL"，组织架构/人员:"OPERATOR"，空字符串："账号信息"。 EndPoint为"CHANNEL"/"APP"只支持"SEAL"-印章管理
-        public let module: String?
-
-        /// 控制台指定模块Id
-        public let moduleId: String?
-
         /// 子客企业统一社会信用代码，最大长度200个字符
+        /// 注意：
+        /// 1、如果您的企业已经在认证授权中或者激活完成，这里修改子客企业名字将不会生效。
         public let uniformSocialCreditCode: String?
 
-        /// 是否展示左侧菜单栏 是：ENABLE（默认） 否：DISABLE
+        /// 子客企业经办人的姓名，最大长度50个字符
+        /// 注意：
+        /// 1、若经办人已经实名，这里修改经办人名字传入将不会生效。
+        /// 2、该名称需要和Agent. ProxyOperator.OpenId相匹配
+        public let proxyOperatorName: String?
+
+        /// PC控制台登录后进入该参数指定的模块，如果不传递，将默认进入控制台首页。支持的模块包括：
+        /// 1、DOCUMENT:合同管理模块，
+        /// 2、TEMPLATE:企业模板管理模块，
+        /// 3、SEAL:印章管理模块，
+        /// 4、OPERATOR:组织管理模块，
+        /// 默认将进入企业中心模块
+        /// 注意：
+        /// 1、如果EndPoint选择"CHANNEL"或"APP"，该参数仅支持传递"SEAL"，进入印章管理模块
+        /// 2、该参数仅在企业和员工激活完成，登录控制台场景才生效。
+        public let module: String?
+
+        /// 该参数和Module参数配合使用，用于指定模块下的资源Id，指定后链接登录将展示该资源的详情。
+        /// 根据Module参数的不同所代表的含义不同。当前支持：
+        /// 1、如果Module="SEAL"，ModuleId代表印章Id, 登录链接将直接查看指定印章的详情。
+        /// 2、如果Module="TEMPLATE"，ModuleId代表模版Id，登录链接将直接查看指定模版的详情。
+        /// 3、如果Module="1、DOCUMENT"，ModuleId代表合同Id，登录链接将直接查看指定合同的详情。
+        /// 注意：
+        /// 1、该参数仅在企业和员工激活完成，登录控制台场景才生效。
+        /// 2、ModuleId需要和Module对应，ModuleId可以通过API或者控制台获取到。
+        public let moduleId: String?
+
+        /// 是否展示左侧菜单栏
+        /// "ENABLE": 是，展示
+        /// “DISABLE”: 否，不展示
+        /// 默认值为ENABLE
+        /// 注意：
+        /// 1、该参数仅在企业和员工激活完成，登录控制台场景才生效。
         public let menuStatus: String?
 
-        /// 链接跳转类型："PC"-PC控制台，“CHANNEL”-H5跳转到电子签小程序；“APP”-第三方APP或小程序跳转电子签小程序，默认为PC控制台
+        /// 生成链接的类型：
+        /// "PC"：PC控制台链接
+        /// "CHANNEL"：H5跳转到电子签小程序链接
+        /// "APP"：第三方APP或小程序跳转电子签小程序链接
+        /// 默认将生成PC控制台链接
         public let endpoint: String?
 
-        /// 触发自动跳转事件，仅对App类型有效，"VERIFIED":企业认证完成/员工认证完成后跳回原App/小程序
+        /// 触发自动跳转事件，仅对EndPoint为App类型有效，可选值包括：
+        /// "VERIFIED":企业认证完成/员工认证完成后跳回原App/小程序
         public let autoJumpBackEvent: String?
 
-        /// 支持的授权方式,授权方式: "1" - 上传授权书认证  "2" - 法定代表人认证
+        /// 可选的企业授权方式:
+        /// 1：上传授权书
+        /// 2：转法定代表人授权
+        /// 4：企业实名认证（信任第三方认证源）（此项仅支持单选）
+        /// 未选择信任第三方认证源时，如果是法人进行企业激活，仅支持法人扫脸直接授权，该配置不生效；选择信任第三方认证源时，请先通过“同步企业信息”接口同步信息。
+        /// 该参数仅在企业激活场景生效
         public let authorizationTypes: [Int64]?
 
         /// 暂未开放
         @available(*, deprecated)
         public let `operator`: UserInfo? = nil
 
-        public init(agent: Agent, proxyOrganizationName: String, proxyOperatorName: String? = nil, module: String? = nil, moduleId: String? = nil, uniformSocialCreditCode: String? = nil, menuStatus: String? = nil, endpoint: String? = nil, autoJumpBackEvent: String? = nil, authorizationTypes: [Int64]? = nil) {
+        public init(agent: Agent, proxyOrganizationName: String, uniformSocialCreditCode: String? = nil, proxyOperatorName: String? = nil, module: String? = nil, moduleId: String? = nil, menuStatus: String? = nil, endpoint: String? = nil, autoJumpBackEvent: String? = nil, authorizationTypes: [Int64]? = nil) {
             self.agent = agent
             self.proxyOrganizationName = proxyOrganizationName
+            self.uniformSocialCreditCode = uniformSocialCreditCode
             self.proxyOperatorName = proxyOperatorName
             self.module = module
             self.moduleId = moduleId
-            self.uniformSocialCreditCode = uniformSocialCreditCode
             self.menuStatus = menuStatus
             self.endpoint = endpoint
             self.autoJumpBackEvent = autoJumpBackEvent
             self.authorizationTypes = authorizationTypes
         }
 
-        @available(*, deprecated, renamed: "init(agent:proxyOrganizationName:proxyOperatorName:module:moduleId:uniformSocialCreditCode:menuStatus:endpoint:autoJumpBackEvent:authorizationTypes:)", message: "'operator' is deprecated in 'CreateConsoleLoginUrlRequest'. Setting this parameter has no effect.")
-        public init(agent: Agent, proxyOrganizationName: String, proxyOperatorName: String? = nil, module: String? = nil, moduleId: String? = nil, uniformSocialCreditCode: String? = nil, menuStatus: String? = nil, endpoint: String? = nil, autoJumpBackEvent: String? = nil, authorizationTypes: [Int64]? = nil, operator: UserInfo? = nil) {
+        @available(*, deprecated, renamed: "init(agent:proxyOrganizationName:uniformSocialCreditCode:proxyOperatorName:module:moduleId:menuStatus:endpoint:autoJumpBackEvent:authorizationTypes:)", message: "'operator' is deprecated in 'CreateConsoleLoginUrlRequest'. Setting this parameter has no effect.")
+        public init(agent: Agent, proxyOrganizationName: String, uniformSocialCreditCode: String? = nil, proxyOperatorName: String? = nil, module: String? = nil, moduleId: String? = nil, menuStatus: String? = nil, endpoint: String? = nil, autoJumpBackEvent: String? = nil, authorizationTypes: [Int64]? = nil, operator: UserInfo? = nil) {
             self.agent = agent
             self.proxyOrganizationName = proxyOrganizationName
+            self.uniformSocialCreditCode = uniformSocialCreditCode
             self.proxyOperatorName = proxyOperatorName
             self.module = module
             self.moduleId = moduleId
-            self.uniformSocialCreditCode = uniformSocialCreditCode
             self.menuStatus = menuStatus
             self.endpoint = endpoint
             self.autoJumpBackEvent = autoJumpBackEvent
@@ -86,10 +124,10 @@ extension Essbasic {
         enum CodingKeys: String, CodingKey {
             case agent = "Agent"
             case proxyOrganizationName = "ProxyOrganizationName"
+            case uniformSocialCreditCode = "UniformSocialCreditCode"
             case proxyOperatorName = "ProxyOperatorName"
             case module = "Module"
             case moduleId = "ModuleId"
-            case uniformSocialCreditCode = "UniformSocialCreditCode"
             case menuStatus = "MenuStatus"
             case endpoint = "Endpoint"
             case autoJumpBackEvent = "AutoJumpBackEvent"
@@ -102,16 +140,20 @@ extension Essbasic {
     public struct CreateConsoleLoginUrlResponse: TCResponse {
         /// 子客企业Web控制台url注意事项：
         /// 1. 所有类型的链接在企业未认证/员工未认证完成时，只要在有效期内（一年）都可以访问
-        /// 2. 若企业认证完成且员工认证完成后，重新获取pc端的链接5分钟之内有效，且只能访问一次
-        /// 3. 若企业认证完成且员工认证完成后，重新获取H5/APP的链接只要在有效期内（一年）都可以访问
-        /// 4. 此链接仅单次有效，使用后需要再次创建新的链接（部分聊天软件，如企业微信默认会对链接进行解析，此时需要使用类似“代码片段”的方式或者放到txt文件里发送链接）
+        /// 2. 若企业认证完成且员工认证完成后，重新获取pc端的链接在5分钟之内有效，且只能访问一次
+        /// 3. 若企业认证完成且员工认证完成后，重新获取CHANNEL/APP的链接只要在有效期内（一年）都可以访问
+        /// 4. 此链接仅单次有效，每次登录需要需要重新创建新的链接，尽量不要做链接存储，多次使用。
         /// 5. 创建的链接应避免被转义，如：&被转义为\u0026；如使用Postman请求后，请选择响应类型为 JSON，否则链接将被转义
         public let consoleUrl: String
 
         /// 子客企业是否已开通腾讯电子签，true-是，false-否
+        /// 注意：
+        /// 1、企业是否实名根据传参Agent.ProxyOrganizationOpenId进行判断，非企业名称或者社会信用代码
         public let isActivated: Bool
 
-        /// 当前经办人是否已认证（false:未认证 true:已认证）
+        /// 当前经办人是否已认证，true-是，false-否
+        /// 注意：
+        /// 1、经办人是否实名是根据Agent.ProxyOperator.OpenId判断，非经办人姓名
         public let proxyOperatorIsVerified: Bool
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -125,71 +167,107 @@ extension Essbasic {
         }
     }
 
-    /// 生成控制台、移动端链接
+    /// 生成子客登录链接
     ///
-    /// 此接口（CreateConsoleLoginUrl）用于创建第三方平台子客企业控制台Web/移动登录链接。登录链接是子客控制台的唯一入口。
-    /// 若子客企业未激活，会进入企业激活流程，首次参与激活流程的经办人会成为超管。（若企业激活过程中填写信息有误，需要重置激活流程，可以换一个经办人OpenId获取新的链接进入。）
-    /// 若子客企业已激活，使用了新的经办人OpenId进入，则会进入经办人的实名流程。
-    /// 若子客企业、经办人均已完成认证，则会直接进入子客Web控制台。
+    /// 此接口（CreateConsoleLoginUrl）用于创建第三方平台子客企业控制台Web/移动登录链接。支持web控制台、电子签小程序和H5链接。登录链接是进入子客控制台的唯一入口。
+    /// 链接访问后，会根据企业的和员工的状态（企业根据ProxyOrganizationOpenId参数，员工根据OpenId参数判断），进入不同的流程，主要情况分类如下：
+    /// 1. 若子客企业未激活，会进入企业激活流程，首次参与激活流程的经办人会成为超管。
+    /// 2. 若子客企业已激活，员工未激活，则会进入经办人激活流程。
+    /// 3. 若子客企业、经办人均已完成认证，则会直接进入子客Web控制台。
+    ///
+    /// 如果是企业激活流程，需要注意如下情况：
+    ///
+    /// 1. 若在激活过程中，更换用户OpenID重新生成链接，之前的认证会被清理。因此不要在认证过程中多人同时操作，导致认证过程互相影响。
+    /// 2. 若您认证中发现信息有误需要重新认证，可以通过更换OpenID重新生成链接的方式，来清理掉已有的流程。
     @inlinable
     public func createConsoleLoginUrl(_ input: CreateConsoleLoginUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConsoleLoginUrlResponse> {
         self.client.execute(action: "CreateConsoleLoginUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 生成控制台、移动端链接
+    /// 生成子客登录链接
     ///
-    /// 此接口（CreateConsoleLoginUrl）用于创建第三方平台子客企业控制台Web/移动登录链接。登录链接是子客控制台的唯一入口。
-    /// 若子客企业未激活，会进入企业激活流程，首次参与激活流程的经办人会成为超管。（若企业激活过程中填写信息有误，需要重置激活流程，可以换一个经办人OpenId获取新的链接进入。）
-    /// 若子客企业已激活，使用了新的经办人OpenId进入，则会进入经办人的实名流程。
-    /// 若子客企业、经办人均已完成认证，则会直接进入子客Web控制台。
+    /// 此接口（CreateConsoleLoginUrl）用于创建第三方平台子客企业控制台Web/移动登录链接。支持web控制台、电子签小程序和H5链接。登录链接是进入子客控制台的唯一入口。
+    /// 链接访问后，会根据企业的和员工的状态（企业根据ProxyOrganizationOpenId参数，员工根据OpenId参数判断），进入不同的流程，主要情况分类如下：
+    /// 1. 若子客企业未激活，会进入企业激活流程，首次参与激活流程的经办人会成为超管。
+    /// 2. 若子客企业已激活，员工未激活，则会进入经办人激活流程。
+    /// 3. 若子客企业、经办人均已完成认证，则会直接进入子客Web控制台。
+    ///
+    /// 如果是企业激活流程，需要注意如下情况：
+    ///
+    /// 1. 若在激活过程中，更换用户OpenID重新生成链接，之前的认证会被清理。因此不要在认证过程中多人同时操作，导致认证过程互相影响。
+    /// 2. 若您认证中发现信息有误需要重新认证，可以通过更换OpenID重新生成链接的方式，来清理掉已有的流程。
     @inlinable
     public func createConsoleLoginUrl(_ input: CreateConsoleLoginUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConsoleLoginUrlResponse {
         try await self.client.execute(action: "CreateConsoleLoginUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 生成控制台、移动端链接
+    /// 生成子客登录链接
     ///
-    /// 此接口（CreateConsoleLoginUrl）用于创建第三方平台子客企业控制台Web/移动登录链接。登录链接是子客控制台的唯一入口。
-    /// 若子客企业未激活，会进入企业激活流程，首次参与激活流程的经办人会成为超管。（若企业激活过程中填写信息有误，需要重置激活流程，可以换一个经办人OpenId获取新的链接进入。）
-    /// 若子客企业已激活，使用了新的经办人OpenId进入，则会进入经办人的实名流程。
-    /// 若子客企业、经办人均已完成认证，则会直接进入子客Web控制台。
+    /// 此接口（CreateConsoleLoginUrl）用于创建第三方平台子客企业控制台Web/移动登录链接。支持web控制台、电子签小程序和H5链接。登录链接是进入子客控制台的唯一入口。
+    /// 链接访问后，会根据企业的和员工的状态（企业根据ProxyOrganizationOpenId参数，员工根据OpenId参数判断），进入不同的流程，主要情况分类如下：
+    /// 1. 若子客企业未激活，会进入企业激活流程，首次参与激活流程的经办人会成为超管。
+    /// 2. 若子客企业已激活，员工未激活，则会进入经办人激活流程。
+    /// 3. 若子客企业、经办人均已完成认证，则会直接进入子客Web控制台。
+    ///
+    /// 如果是企业激活流程，需要注意如下情况：
+    ///
+    /// 1. 若在激活过程中，更换用户OpenID重新生成链接，之前的认证会被清理。因此不要在认证过程中多人同时操作，导致认证过程互相影响。
+    /// 2. 若您认证中发现信息有误需要重新认证，可以通过更换OpenID重新生成链接的方式，来清理掉已有的流程。
     @inlinable
-    public func createConsoleLoginUrl(agent: Agent, proxyOrganizationName: String, proxyOperatorName: String? = nil, module: String? = nil, moduleId: String? = nil, uniformSocialCreditCode: String? = nil, menuStatus: String? = nil, endpoint: String? = nil, autoJumpBackEvent: String? = nil, authorizationTypes: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConsoleLoginUrlResponse> {
-        self.createConsoleLoginUrl(.init(agent: agent, proxyOrganizationName: proxyOrganizationName, proxyOperatorName: proxyOperatorName, module: module, moduleId: moduleId, uniformSocialCreditCode: uniformSocialCreditCode, menuStatus: menuStatus, endpoint: endpoint, autoJumpBackEvent: autoJumpBackEvent, authorizationTypes: authorizationTypes), region: region, logger: logger, on: eventLoop)
+    public func createConsoleLoginUrl(agent: Agent, proxyOrganizationName: String, uniformSocialCreditCode: String? = nil, proxyOperatorName: String? = nil, module: String? = nil, moduleId: String? = nil, menuStatus: String? = nil, endpoint: String? = nil, autoJumpBackEvent: String? = nil, authorizationTypes: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConsoleLoginUrlResponse> {
+        self.createConsoleLoginUrl(.init(agent: agent, proxyOrganizationName: proxyOrganizationName, uniformSocialCreditCode: uniformSocialCreditCode, proxyOperatorName: proxyOperatorName, module: module, moduleId: moduleId, menuStatus: menuStatus, endpoint: endpoint, autoJumpBackEvent: autoJumpBackEvent, authorizationTypes: authorizationTypes), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 生成控制台、移动端链接
+    /// 生成子客登录链接
     ///
-    /// 此接口（CreateConsoleLoginUrl）用于创建第三方平台子客企业控制台Web/移动登录链接。登录链接是子客控制台的唯一入口。
-    /// 若子客企业未激活，会进入企业激活流程，首次参与激活流程的经办人会成为超管。（若企业激活过程中填写信息有误，需要重置激活流程，可以换一个经办人OpenId获取新的链接进入。）
-    /// 若子客企业已激活，使用了新的经办人OpenId进入，则会进入经办人的实名流程。
-    /// 若子客企业、经办人均已完成认证，则会直接进入子客Web控制台。
-    @available(*, deprecated, renamed: "createConsoleLoginUrl(agent:proxyOrganizationName:proxyOperatorName:module:moduleId:uniformSocialCreditCode:menuStatus:endpoint:autoJumpBackEvent:authorizationTypes:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    /// 此接口（CreateConsoleLoginUrl）用于创建第三方平台子客企业控制台Web/移动登录链接。支持web控制台、电子签小程序和H5链接。登录链接是进入子客控制台的唯一入口。
+    /// 链接访问后，会根据企业的和员工的状态（企业根据ProxyOrganizationOpenId参数，员工根据OpenId参数判断），进入不同的流程，主要情况分类如下：
+    /// 1. 若子客企业未激活，会进入企业激活流程，首次参与激活流程的经办人会成为超管。
+    /// 2. 若子客企业已激活，员工未激活，则会进入经办人激活流程。
+    /// 3. 若子客企业、经办人均已完成认证，则会直接进入子客Web控制台。
+    ///
+    /// 如果是企业激活流程，需要注意如下情况：
+    ///
+    /// 1. 若在激活过程中，更换用户OpenID重新生成链接，之前的认证会被清理。因此不要在认证过程中多人同时操作，导致认证过程互相影响。
+    /// 2. 若您认证中发现信息有误需要重新认证，可以通过更换OpenID重新生成链接的方式，来清理掉已有的流程。
+    @available(*, deprecated, renamed: "createConsoleLoginUrl(agent:proxyOrganizationName:uniformSocialCreditCode:proxyOperatorName:module:moduleId:menuStatus:endpoint:autoJumpBackEvent:authorizationTypes:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable
-    public func createConsoleLoginUrl(agent: Agent, proxyOrganizationName: String, proxyOperatorName: String? = nil, module: String? = nil, moduleId: String? = nil, uniformSocialCreditCode: String? = nil, menuStatus: String? = nil, endpoint: String? = nil, autoJumpBackEvent: String? = nil, authorizationTypes: [Int64]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConsoleLoginUrlResponse> {
-        self.createConsoleLoginUrl(.init(agent: agent, proxyOrganizationName: proxyOrganizationName, proxyOperatorName: proxyOperatorName, module: module, moduleId: moduleId, uniformSocialCreditCode: uniformSocialCreditCode, menuStatus: menuStatus, endpoint: endpoint, autoJumpBackEvent: autoJumpBackEvent, authorizationTypes: authorizationTypes, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func createConsoleLoginUrl(agent: Agent, proxyOrganizationName: String, uniformSocialCreditCode: String? = nil, proxyOperatorName: String? = nil, module: String? = nil, moduleId: String? = nil, menuStatus: String? = nil, endpoint: String? = nil, autoJumpBackEvent: String? = nil, authorizationTypes: [Int64]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConsoleLoginUrlResponse> {
+        self.createConsoleLoginUrl(.init(agent: agent, proxyOrganizationName: proxyOrganizationName, uniformSocialCreditCode: uniformSocialCreditCode, proxyOperatorName: proxyOperatorName, module: module, moduleId: moduleId, menuStatus: menuStatus, endpoint: endpoint, autoJumpBackEvent: autoJumpBackEvent, authorizationTypes: authorizationTypes, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 生成控制台、移动端链接
+    /// 生成子客登录链接
     ///
-    /// 此接口（CreateConsoleLoginUrl）用于创建第三方平台子客企业控制台Web/移动登录链接。登录链接是子客控制台的唯一入口。
-    /// 若子客企业未激活，会进入企业激活流程，首次参与激活流程的经办人会成为超管。（若企业激活过程中填写信息有误，需要重置激活流程，可以换一个经办人OpenId获取新的链接进入。）
-    /// 若子客企业已激活，使用了新的经办人OpenId进入，则会进入经办人的实名流程。
-    /// 若子客企业、经办人均已完成认证，则会直接进入子客Web控制台。
+    /// 此接口（CreateConsoleLoginUrl）用于创建第三方平台子客企业控制台Web/移动登录链接。支持web控制台、电子签小程序和H5链接。登录链接是进入子客控制台的唯一入口。
+    /// 链接访问后，会根据企业的和员工的状态（企业根据ProxyOrganizationOpenId参数，员工根据OpenId参数判断），进入不同的流程，主要情况分类如下：
+    /// 1. 若子客企业未激活，会进入企业激活流程，首次参与激活流程的经办人会成为超管。
+    /// 2. 若子客企业已激活，员工未激活，则会进入经办人激活流程。
+    /// 3. 若子客企业、经办人均已完成认证，则会直接进入子客Web控制台。
+    ///
+    /// 如果是企业激活流程，需要注意如下情况：
+    ///
+    /// 1. 若在激活过程中，更换用户OpenID重新生成链接，之前的认证会被清理。因此不要在认证过程中多人同时操作，导致认证过程互相影响。
+    /// 2. 若您认证中发现信息有误需要重新认证，可以通过更换OpenID重新生成链接的方式，来清理掉已有的流程。
     @inlinable
-    public func createConsoleLoginUrl(agent: Agent, proxyOrganizationName: String, proxyOperatorName: String? = nil, module: String? = nil, moduleId: String? = nil, uniformSocialCreditCode: String? = nil, menuStatus: String? = nil, endpoint: String? = nil, autoJumpBackEvent: String? = nil, authorizationTypes: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConsoleLoginUrlResponse {
-        try await self.createConsoleLoginUrl(.init(agent: agent, proxyOrganizationName: proxyOrganizationName, proxyOperatorName: proxyOperatorName, module: module, moduleId: moduleId, uniformSocialCreditCode: uniformSocialCreditCode, menuStatus: menuStatus, endpoint: endpoint, autoJumpBackEvent: autoJumpBackEvent, authorizationTypes: authorizationTypes), region: region, logger: logger, on: eventLoop)
+    public func createConsoleLoginUrl(agent: Agent, proxyOrganizationName: String, uniformSocialCreditCode: String? = nil, proxyOperatorName: String? = nil, module: String? = nil, moduleId: String? = nil, menuStatus: String? = nil, endpoint: String? = nil, autoJumpBackEvent: String? = nil, authorizationTypes: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConsoleLoginUrlResponse {
+        try await self.createConsoleLoginUrl(.init(agent: agent, proxyOrganizationName: proxyOrganizationName, uniformSocialCreditCode: uniformSocialCreditCode, proxyOperatorName: proxyOperatorName, module: module, moduleId: moduleId, menuStatus: menuStatus, endpoint: endpoint, autoJumpBackEvent: autoJumpBackEvent, authorizationTypes: authorizationTypes), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 生成控制台、移动端链接
+    /// 生成子客登录链接
     ///
-    /// 此接口（CreateConsoleLoginUrl）用于创建第三方平台子客企业控制台Web/移动登录链接。登录链接是子客控制台的唯一入口。
-    /// 若子客企业未激活，会进入企业激活流程，首次参与激活流程的经办人会成为超管。（若企业激活过程中填写信息有误，需要重置激活流程，可以换一个经办人OpenId获取新的链接进入。）
-    /// 若子客企业已激活，使用了新的经办人OpenId进入，则会进入经办人的实名流程。
-    /// 若子客企业、经办人均已完成认证，则会直接进入子客Web控制台。
-    @available(*, deprecated, renamed: "createConsoleLoginUrl(agent:proxyOrganizationName:proxyOperatorName:module:moduleId:uniformSocialCreditCode:menuStatus:endpoint:autoJumpBackEvent:authorizationTypes:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    /// 此接口（CreateConsoleLoginUrl）用于创建第三方平台子客企业控制台Web/移动登录链接。支持web控制台、电子签小程序和H5链接。登录链接是进入子客控制台的唯一入口。
+    /// 链接访问后，会根据企业的和员工的状态（企业根据ProxyOrganizationOpenId参数，员工根据OpenId参数判断），进入不同的流程，主要情况分类如下：
+    /// 1. 若子客企业未激活，会进入企业激活流程，首次参与激活流程的经办人会成为超管。
+    /// 2. 若子客企业已激活，员工未激活，则会进入经办人激活流程。
+    /// 3. 若子客企业、经办人均已完成认证，则会直接进入子客Web控制台。
+    ///
+    /// 如果是企业激活流程，需要注意如下情况：
+    ///
+    /// 1. 若在激活过程中，更换用户OpenID重新生成链接，之前的认证会被清理。因此不要在认证过程中多人同时操作，导致认证过程互相影响。
+    /// 2. 若您认证中发现信息有误需要重新认证，可以通过更换OpenID重新生成链接的方式，来清理掉已有的流程。
+    @available(*, deprecated, renamed: "createConsoleLoginUrl(agent:proxyOrganizationName:uniformSocialCreditCode:proxyOperatorName:module:moduleId:menuStatus:endpoint:autoJumpBackEvent:authorizationTypes:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable
-    public func createConsoleLoginUrl(agent: Agent, proxyOrganizationName: String, proxyOperatorName: String? = nil, module: String? = nil, moduleId: String? = nil, uniformSocialCreditCode: String? = nil, menuStatus: String? = nil, endpoint: String? = nil, autoJumpBackEvent: String? = nil, authorizationTypes: [Int64]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConsoleLoginUrlResponse {
-        try await self.createConsoleLoginUrl(.init(agent: agent, proxyOrganizationName: proxyOrganizationName, proxyOperatorName: proxyOperatorName, module: module, moduleId: moduleId, uniformSocialCreditCode: uniformSocialCreditCode, menuStatus: menuStatus, endpoint: endpoint, autoJumpBackEvent: autoJumpBackEvent, authorizationTypes: authorizationTypes, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func createConsoleLoginUrl(agent: Agent, proxyOrganizationName: String, uniformSocialCreditCode: String? = nil, proxyOperatorName: String? = nil, module: String? = nil, moduleId: String? = nil, menuStatus: String? = nil, endpoint: String? = nil, autoJumpBackEvent: String? = nil, authorizationTypes: [Int64]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConsoleLoginUrlResponse {
+        try await self.createConsoleLoginUrl(.init(agent: agent, proxyOrganizationName: proxyOrganizationName, uniformSocialCreditCode: uniformSocialCreditCode, proxyOperatorName: proxyOperatorName, module: module, moduleId: moduleId, menuStatus: menuStatus, endpoint: endpoint, autoJumpBackEvent: autoJumpBackEvent, authorizationTypes: authorizationTypes, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

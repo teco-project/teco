@@ -2437,25 +2437,35 @@ extension Tcss {
         public let isolateTime: String?
 
         /// 超级节点id
-        public let nodeID: String?
+        public let nodeID: String
 
         /// podip
-        public let podIP: String?
+        public let podIP: String
 
         /// pod名称
-        public let podName: String?
+        public let podName: String
 
         /// 节点类型:节点类型：NORMAL普通节点、SUPER超级节点
-        public let nodeType: String?
+        public let nodeType: String
 
         /// 超级节点唯一id
-        public let nodeUniqueID: String?
+        public let nodeUniqueID: String
 
         /// 所属Pod的CPU
-        public let podCpu: Int64?
+        public let podCpu: Int64
 
         /// 所属Pod的内存
-        public let podMem: Int64?
+        public let podMem: Int64
+
+        /// 集群名称
+        public let clusterName: String
+
+        /// 集群ID
+        public let clusterID: String
+
+        /// pod uid
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let podUid: String?
 
         enum CodingKeys: String, CodingKey {
             case containerID = "ContainerID"
@@ -2485,6 +2495,9 @@ extension Tcss {
             case nodeUniqueID = "NodeUniqueID"
             case podCpu = "PodCpu"
             case podMem = "PodMem"
+            case clusterName = "ClusterName"
+            case clusterID = "ClusterID"
+            case podUid = "PodUid"
         }
     }
 
@@ -3369,6 +3382,7 @@ extension Tcss {
         public let riskCnt: UInt64
 
         /// 敏感信息数
+        @available(*, deprecated)
         public let sentiveInfoCnt: UInt64
 
         /// 是否可信镜像
@@ -3454,6 +3468,34 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isLatestImage: Bool?
 
+        /// low级别漏洞个数
+        public let lowLevelVulCnt: UInt64?
+
+        /// medium级别漏洞个数
+        public let mediumLevelVulCnt: UInt64?
+
+        /// high级别漏洞个数
+        public let highLevelVulCnt: UInt64?
+
+        /// critical级别漏洞个数
+        public let criticalLevelVulCnt: UInt64?
+
+        /// 关联容器数
+        public let containerCnt: UInt64?
+
+        /// 组件数
+        public let componentCnt: UInt64?
+
+        /// 是否运行中
+        public let isRunning: Bool?
+
+        /// 是否存在必修漏洞
+        public let hasNeedFixVul: Bool?
+
+        /// 敏感信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sensitiveInfoCnt: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case imageDigest = "ImageDigest"
             case imageRepoAddress = "ImageRepoAddress"
@@ -3489,6 +3531,15 @@ extension Tcss {
             case imageId = "ImageId"
             case imageCreateTime = "ImageCreateTime"
             case isLatestImage = "IsLatestImage"
+            case lowLevelVulCnt = "LowLevelVulCnt"
+            case mediumLevelVulCnt = "MediumLevelVulCnt"
+            case highLevelVulCnt = "HighLevelVulCnt"
+            case criticalLevelVulCnt = "CriticalLevelVulCnt"
+            case containerCnt = "ContainerCnt"
+            case componentCnt = "ComponentCnt"
+            case isRunning = "IsRunning"
+            case hasNeedFixVul = "HasNeedFixVul"
+            case sensitiveInfoCnt = "SensitiveInfoCnt"
         }
     }
 
@@ -3812,6 +3863,10 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let version: String?
 
+        /// 攻击热度 0-3
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let attackLevel: Int64?
+
         enum CodingKeys: String, CodingKey {
             case cveid = "CVEID"
             case pocid = "POCID"
@@ -3832,6 +3887,7 @@ extension Tcss {
             case tag = "Tag"
             case component = "Component"
             case version = "Version"
+            case attackLevel = "AttackLevel"
         }
     }
 
@@ -4399,6 +4455,28 @@ extension Tcss {
             case pocID = "PocID"
             case imageIDs = "ImageIDs"
             case imageType = "ImageType"
+        }
+    }
+
+    /// 返回的命名空间列表信息
+    public struct NamespaceInfo: TCOutputModel {
+        /// 命名空间名称
+        public let namespace: String
+
+        /// 包含仓库数
+        public let registryCnt: Int64
+
+        /// 包含镜像数
+        public let imageCnt: Int64
+
+        /// 包含风险镜像数
+        public let riskImageCnt: Int64
+
+        enum CodingKeys: String, CodingKey {
+            case namespace = "Namespace"
+            case registryCnt = "RegistryCnt"
+            case imageCnt = "ImageCnt"
+            case riskImageCnt = "RiskImageCnt"
         }
     }
 

@@ -39,13 +39,13 @@ extension Cynosdb {
         /// 连接池阈值：单位（秒）
         public let connectionPoolTimeOut: Int64?
 
-        /// 安全组ID数组
+        /// 绑定的安全组ID数组
         public let securityGroupIds: [String]?
 
         /// 描述说明
         public let description: String?
 
-        /// vip信息
+        /// 想要绑定的vip信息，需与UniqueVpcId对应。
         public let vip: String?
 
         /// 权重模式：
@@ -55,7 +55,10 @@ extension Cynosdb {
         /// 是否自动添加只读实例，yes-是，no-不自动添加
         public let autoAddRo: String?
 
-        /// 是否开启故障转移
+        /// 是否开启故障转移。
+        /// yes：开启
+        /// no：不开启。
+        /// 数据库代理出现故障时，链接地址将会路由到主实例
         public let failOver: String?
 
         /// 一致性类型：
@@ -66,10 +69,10 @@ extension Cynosdb {
         /// READWRITE,READONLY
         public let rwType: String?
 
-        /// 一致性超时时间
+        /// 一致性超时时间。取值范围：0~1000000（微秒）,设置0则表示若只读实例出现延迟, 导致一致性策略不满足, 请求将一直等待
         public let consistencyTimeOut: Int64?
 
-        /// 事务拆分
+        /// 是否开启事务拆分。在一个事务中拆分读和写到不同的实例上去执行
         public let transSplit: Bool?
 
         /// 连接模式：

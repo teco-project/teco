@@ -74,7 +74,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func updateFleetCapacity(_ input: UpdateFleetCapacityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateFleetCapacityResponse> {
-        fatalError("UpdateFleetCapacity is no longer available.")
+        fatalError("'UpdateFleetCapacity' is no longer available.")
     }
 
     /// 更新服务器舰队容量配置
@@ -83,7 +83,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func updateFleetCapacity(_ input: UpdateFleetCapacityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFleetCapacityResponse {
-        fatalError("UpdateFleetCapacity is no longer available.")
+        fatalError("'UpdateFleetCapacity' is no longer available.")
     }
 
     /// 更新服务器舰队容量配置
@@ -92,7 +92,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func updateFleetCapacity(fleetId: String, desiredInstances: UInt64? = nil, minSize: UInt64? = nil, maxSize: UInt64? = nil, scalingInterval: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateFleetCapacityResponse> {
-        fatalError("UpdateFleetCapacity is no longer available.")
+        fatalError("'UpdateFleetCapacity' is no longer available.")
     }
 
     /// 更新服务器舰队容量配置
@@ -101,6 +101,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func updateFleetCapacity(fleetId: String, desiredInstances: UInt64? = nil, minSize: UInt64? = nil, maxSize: UInt64? = nil, scalingInterval: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFleetCapacityResponse {
-        fatalError("UpdateFleetCapacity is no longer available.")
+        fatalError("'UpdateFleetCapacity' is no longer available.")
     }
 }

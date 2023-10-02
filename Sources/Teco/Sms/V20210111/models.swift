@@ -80,14 +80,16 @@ extension Sms {
     }
 
     /// 删除签名响应
-    public struct DeleteSignStatus: TCInputModel {
+    public struct DeleteSignStatus: TCInputModel, TCOutputModel {
         /// 删除状态信息。
-        public let deleteStatus: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let deleteStatus: String?
 
         /// 删除时间，UNIX 时间戳（单位：秒）。
-        public let deleteTime: UInt64
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let deleteTime: UInt64?
 
-        public init(deleteStatus: String, deleteTime: UInt64) {
+        public init(deleteStatus: String? = nil, deleteTime: UInt64? = nil) {
             self.deleteStatus = deleteStatus
             self.deleteTime = deleteTime
         }
@@ -148,10 +150,10 @@ extension Sms {
         /// 模板ID。
         public let templateId: UInt64
 
-        /// 是否国际/港澳台短信，其中0表示国内短信，1表示国际/港澳台短信。
+        /// 是否国际/港澳台短信，其中0表示国内短信，1表示国际/港澳台短信，3表示该模板既支持国内短信也支持国际/港澳台短信。
         public let international: UInt64
 
-        /// 申请模板状态，其中0表示审核通过且已生效，1表示审核中，2表示审核通过待生效，-1表示审核未通过或审核失败。
+        /// 申请模板状态，其中0表示审核通过且已生效，1表示审核中，2表示审核通过待生效，-1表示审核未通过或审核失败。注：只有状态值为0时该模板才能使用。
         public let statusCode: Int64
 
         /// 审核回复，审核人员审核后给出的回复，通常是审核未通过的原因。

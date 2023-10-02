@@ -48,25 +48,25 @@ extension Cynosdb {
         }
     }
 
-    /// 删除账号
+    /// 删除用户账号
     @inlinable @discardableResult
     public func deleteAccounts(_ input: DeleteAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccountsResponse> {
         self.client.execute(action: "DeleteAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 删除账号
+    /// 删除用户账号
     @inlinable @discardableResult
     public func deleteAccounts(_ input: DeleteAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccountsResponse {
         try await self.client.execute(action: "DeleteAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 删除账号
+    /// 删除用户账号
     @inlinable @discardableResult
     public func deleteAccounts(clusterId: String, accounts: [InputAccount]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccountsResponse> {
         self.deleteAccounts(.init(clusterId: clusterId, accounts: accounts), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 删除账号
+    /// 删除用户账号
     @inlinable @discardableResult
     public func deleteAccounts(clusterId: String, accounts: [InputAccount]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccountsResponse {
         try await self.deleteAccounts(.init(clusterId: clusterId, accounts: accounts), region: region, logger: logger, on: eventLoop)

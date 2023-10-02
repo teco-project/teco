@@ -25,9 +25,9 @@ extension Tdmq {
         public let environmentId: String
 
         /// Pulsar 集群的ID
-        public let clusterId: String?
+        public let clusterId: String
 
-        public init(environmentId: String, clusterId: String? = nil) {
+        public init(environmentId: String, clusterId: String) {
             self.environmentId = environmentId
             self.clusterId = clusterId
         }
@@ -100,7 +100,7 @@ extension Tdmq {
     ///
     /// 获取指定命名空间的属性
     @inlinable
-    public func describeEnvironmentAttributes(environmentId: String, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvironmentAttributesResponse> {
+    public func describeEnvironmentAttributes(environmentId: String, clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvironmentAttributesResponse> {
         self.describeEnvironmentAttributes(.init(environmentId: environmentId, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
@@ -108,7 +108,7 @@ extension Tdmq {
     ///
     /// 获取指定命名空间的属性
     @inlinable
-    public func describeEnvironmentAttributes(environmentId: String, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentAttributesResponse {
+    public func describeEnvironmentAttributes(environmentId: String, clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentAttributesResponse {
         try await self.describeEnvironmentAttributes(.init(environmentId: environmentId, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -676,8 +676,12 @@ extension Cfg {
 
     /// 监控指标
     public struct TaskMonitor: TCOutputModel {
-        /// 监控指标ID
+        /// 演练监控指标ID
         public let taskMonitorId: Int64
+
+        /// 监控指标ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let metricId: UInt64?
 
         /// 监控指标对象类型ID
         public let taskMonitorObjectTypeId: Int64
@@ -698,6 +702,7 @@ extension Cfg {
 
         enum CodingKeys: String, CodingKey {
             case taskMonitorId = "TaskMonitorId"
+            case metricId = "MetricId"
             case taskMonitorObjectTypeId = "TaskMonitorObjectTypeId"
             case metricName = "MetricName"
             case instancesIds = "InstancesIds"
@@ -1000,8 +1005,12 @@ extension Cfg {
 
     /// 监控指标
     public struct TemplateMonitor: TCOutputModel {
-        /// 监控指标ID
+        /// pk
         public let monitorId: Int64
+
+        /// 监控指标ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let metricId: Int64?
 
         /// 监控指标对象类型ID
         public let objectTypeId: Int64
@@ -1015,6 +1024,7 @@ extension Cfg {
 
         enum CodingKeys: String, CodingKey {
             case monitorId = "MonitorId"
+            case metricId = "MetricId"
             case objectTypeId = "ObjectTypeId"
             case metricName = "MetricName"
             case metricChineseName = "MetricChineseName"

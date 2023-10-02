@@ -57,7 +57,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func getDepositCert(_ input: GetDepositCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositCertResponse> {
-        fatalError("GetDepositCert is no longer available.")
+        fatalError("'GetDepositCert' is no longer available.")
     }
 
     /// BTOE存证电子凭证查询
@@ -66,7 +66,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func getDepositCert(_ input: GetDepositCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositCertResponse {
-        fatalError("GetDepositCert is no longer available.")
+        fatalError("'GetDepositCert' is no longer available.")
     }
 
     /// BTOE存证电子凭证查询
@@ -75,7 +75,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func getDepositCert(evidenceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositCertResponse> {
-        fatalError("GetDepositCert is no longer available.")
+        fatalError("'GetDepositCert' is no longer available.")
     }
 
     /// BTOE存证电子凭证查询
@@ -84,6 +84,6 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func getDepositCert(evidenceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositCertResponse {
-        fatalError("GetDepositCert is no longer available.")
+        fatalError("'GetDepositCert' is no longer available.")
     }
 }

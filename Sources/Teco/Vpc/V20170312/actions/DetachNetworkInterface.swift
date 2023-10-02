@@ -27,14 +27,19 @@ extension Vpc {
         /// CVM实例ID。形如：ins-r8hr2upy。
         public let instanceId: String
 
-        public init(networkInterfaceId: String, instanceId: String) {
+        /// 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
+        public let clientToken: String?
+
+        public init(networkInterfaceId: String, instanceId: String, clientToken: String? = nil) {
             self.networkInterfaceId = networkInterfaceId
             self.instanceId = instanceId
+            self.clientToken = clientToken
         }
 
         enum CodingKeys: String, CodingKey {
             case networkInterfaceId = "NetworkInterfaceId"
             case instanceId = "InstanceId"
+            case clientToken = "ClientToken"
         }
     }
 
@@ -71,8 +76,8 @@ extension Vpc {
     /// 本接口（DetachNetworkInterface）用于弹性网卡解绑云服务器。
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable @discardableResult
-    public func detachNetworkInterface(networkInterfaceId: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachNetworkInterfaceResponse> {
-        self.detachNetworkInterface(.init(networkInterfaceId: networkInterfaceId, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+    public func detachNetworkInterface(networkInterfaceId: String, instanceId: String, clientToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachNetworkInterfaceResponse> {
+        self.detachNetworkInterface(.init(networkInterfaceId: networkInterfaceId, instanceId: instanceId, clientToken: clientToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 弹性网卡解绑云服务器
@@ -80,7 +85,7 @@ extension Vpc {
     /// 本接口（DetachNetworkInterface）用于弹性网卡解绑云服务器。
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable @discardableResult
-    public func detachNetworkInterface(networkInterfaceId: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachNetworkInterfaceResponse {
-        try await self.detachNetworkInterface(.init(networkInterfaceId: networkInterfaceId, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+    public func detachNetworkInterface(networkInterfaceId: String, instanceId: String, clientToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachNetworkInterfaceResponse {
+        try await self.detachNetworkInterface(.init(networkInterfaceId: networkInterfaceId, instanceId: instanceId, clientToken: clientToken), region: region, logger: logger, on: eventLoop)
     }
 }

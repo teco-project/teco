@@ -41,7 +41,7 @@ extension Vod {
         /// - Widevine
         /// - FairPlay
         ///
-        /// 如果取值为空字符串，代表不对视频做 DRM 保护。
+        /// 默认值为空字符串，如果取值为空字符串，代表不对视频做 DRM 保护。
         public let drmType: String?
 
         /// DRM 的密钥提供商，取值范围：

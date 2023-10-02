@@ -21,48 +21,64 @@ import TecoCore
 extension Ess {
     /// CreateReleaseFlow请求参数结构体
     public struct CreateReleaseFlowRequest: TCRequest {
-        /// 调用方用户信息，userId 必填
+        /// 执行本接口操作的员工信息。
+        /// 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         public let `operator`: UserInfo
 
-        /// 待解除的签署流程编号（即原签署流程的编号）
+        /// 待解除的签署流程编号（即原签署流程的编号）。
         public let needRelievedFlowId: String
 
-        /// 解除协议内容
+        /// 解除协议内容, 包括解除理由等信息。
         public let reliveInfo: RelieveInfo
 
-        /// 非必须，解除协议的本企业签署人列表，
-        /// 默认使用原流程的签署人列表,当解除协议的签署人与原流程的签署人不能相同时（例如原流程签署人离职了），需要指定本企业其他已实名员工来替换原流程中的原签署人，注意需要指明原签署人的编号(ReceiptId,通过DescribeFlowInfo接口获取)来代表需要替换哪一个签署人
-        /// 解除协议的签署人数量不能多于原流程的签署人数量
-        public let releasedApprovers: [ReleasedApprover]?
-
-        /// 签署流程的签署截止时间。 值为unix时间戳,精确到秒,不传默认为当前时间七天后
-        public let deadline: Int64?
-
-        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        /// 关于渠道应用的相关信息，包括子客企业及应用编、号等详细内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
         public let agent: Agent?
 
-        public init(operator: UserInfo, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil, deadline: Int64? = nil, agent: Agent? = nil) {
+        /// 替换解除协议的签署人， 如不指定替换签署人,  则使用原流程的签署人。
+        ///
+        /// 如需更换原合同中的企业端签署人，可通过指定该签署人的RecipientId编号更换此企业端签署人。(可通过接口[DescribeFlowInfo](https://qian.tencent.com/developers/companyApis/queryFlows/DescribeFlowInfo/)查询签署人的RecipientId编号)
+        ///
+        /// 注意：
+        /// `只能更换自己企业的签署人,  不支持更换个人类型或者其他企业的签署人。`
+        /// `可以不指定替换签署人, 使用原流程的签署人 `
+        public let releasedApprovers: [ReleasedApprover]?
+
+        /// 合同流程的签署截止时间，格式为Unix标准时间戳（秒），如果未设置签署截止时间，则默认为合同流程创建后的7天时截止。
+        /// 如果在签署截止时间前未完成签署，则合同状态会变为已过期，导致合同作废。
+        public let deadline: Int64?
+
+        /// 调用方自定义的个性化字段，该字段的值可以是字符串JSON或其他字符串形式，客户可以根据自身需求自定义数据格式并在需要时进行解析。该字段的信息将以Base64编码的形式传输，支持的最大数据大小为20480长度。
+        ///
+        /// 在合同状态变更的回调信息等场景中，该字段的信息将原封不动地透传给贵方。
+        ///
+        /// 回调的相关说明可参考开发者中心的[回调通知](https://qian.tencent.com/developers/company/callback_types_v2)模块。
+        public let userData: String?
+
+        public init(operator: UserInfo, needRelievedFlowId: String, reliveInfo: RelieveInfo, agent: Agent? = nil, releasedApprovers: [ReleasedApprover]? = nil, deadline: Int64? = nil, userData: String? = nil) {
             self.operator = `operator`
             self.needRelievedFlowId = needRelievedFlowId
             self.reliveInfo = reliveInfo
+            self.agent = agent
             self.releasedApprovers = releasedApprovers
             self.deadline = deadline
-            self.agent = agent
+            self.userData = userData
         }
 
         enum CodingKeys: String, CodingKey {
             case `operator` = "Operator"
             case needRelievedFlowId = "NeedRelievedFlowId"
             case reliveInfo = "ReliveInfo"
+            case agent = "Agent"
             case releasedApprovers = "ReleasedApprovers"
             case deadline = "Deadline"
-            case agent = "Agent"
+            case userData = "UserData"
         }
     }
 
     /// CreateReleaseFlow返回参数结构体
     public struct CreateReleaseFlowResponse: TCResponse {
         /// 解除协议流程编号
+        /// `注意：这里的流程编号对应的合同是本次发起的解除协议。`
         public let flowId: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -76,7 +92,17 @@ extension Ess {
 
     /// 发起解除协议
     ///
-    /// 发起解除协议，主要应用场景为：基于一份已经签署的合同(签署流程)，进行解除操作。
+    /// 发起解除协议的主要应用场景为：基于一份已经签署的合同（签署流程），进行解除操作。
+    /// 解除协议的模板是官方提供 ，经过提供法务审核，暂不支持自定义。
+    ///
+    /// 注意：
+    ///
+    /// - `原合同必须签署完`成后才能发起解除协议。
+    /// - 只有原合同企业类型的参与人才能发起解除协议，`个人参与方不能发起解除协议`。
+    /// - 原合同个人类型参与人必须是解除协议的参与人，`不能更换其他第三方个人`参与解除协议。
+    /// - 如果原合同企业参与人无法参与解除协议，可以指定同企业具有同等权限的`企业员工代为处理`。
+    /// - 发起解除协议同发起其他企业合同一样，也会参与合同`扣费`，扣费标准同其他类型合同。
+    /// - 在解除协议发起之后，原合同的状态将转变为解除中。一旦解除协议签署完毕，原合同及解除协议均变为已解除状态。
     @inlinable
     public func createReleaseFlow(_ input: CreateReleaseFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReleaseFlowResponse> {
         self.client.execute(action: "CreateReleaseFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -84,7 +110,17 @@ extension Ess {
 
     /// 发起解除协议
     ///
-    /// 发起解除协议，主要应用场景为：基于一份已经签署的合同(签署流程)，进行解除操作。
+    /// 发起解除协议的主要应用场景为：基于一份已经签署的合同（签署流程），进行解除操作。
+    /// 解除协议的模板是官方提供 ，经过提供法务审核，暂不支持自定义。
+    ///
+    /// 注意：
+    ///
+    /// - `原合同必须签署完`成后才能发起解除协议。
+    /// - 只有原合同企业类型的参与人才能发起解除协议，`个人参与方不能发起解除协议`。
+    /// - 原合同个人类型参与人必须是解除协议的参与人，`不能更换其他第三方个人`参与解除协议。
+    /// - 如果原合同企业参与人无法参与解除协议，可以指定同企业具有同等权限的`企业员工代为处理`。
+    /// - 发起解除协议同发起其他企业合同一样，也会参与合同`扣费`，扣费标准同其他类型合同。
+    /// - 在解除协议发起之后，原合同的状态将转变为解除中。一旦解除协议签署完毕，原合同及解除协议均变为已解除状态。
     @inlinable
     public func createReleaseFlow(_ input: CreateReleaseFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReleaseFlowResponse {
         try await self.client.execute(action: "CreateReleaseFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -92,17 +128,37 @@ extension Ess {
 
     /// 发起解除协议
     ///
-    /// 发起解除协议，主要应用场景为：基于一份已经签署的合同(签署流程)，进行解除操作。
+    /// 发起解除协议的主要应用场景为：基于一份已经签署的合同（签署流程），进行解除操作。
+    /// 解除协议的模板是官方提供 ，经过提供法务审核，暂不支持自定义。
+    ///
+    /// 注意：
+    ///
+    /// - `原合同必须签署完`成后才能发起解除协议。
+    /// - 只有原合同企业类型的参与人才能发起解除协议，`个人参与方不能发起解除协议`。
+    /// - 原合同个人类型参与人必须是解除协议的参与人，`不能更换其他第三方个人`参与解除协议。
+    /// - 如果原合同企业参与人无法参与解除协议，可以指定同企业具有同等权限的`企业员工代为处理`。
+    /// - 发起解除协议同发起其他企业合同一样，也会参与合同`扣费`，扣费标准同其他类型合同。
+    /// - 在解除协议发起之后，原合同的状态将转变为解除中。一旦解除协议签署完毕，原合同及解除协议均变为已解除状态。
     @inlinable
-    public func createReleaseFlow(operator: UserInfo, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil, deadline: Int64? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReleaseFlowResponse> {
-        self.createReleaseFlow(.init(operator: `operator`, needRelievedFlowId: needRelievedFlowId, reliveInfo: reliveInfo, releasedApprovers: releasedApprovers, deadline: deadline, agent: agent), region: region, logger: logger, on: eventLoop)
+    public func createReleaseFlow(operator: UserInfo, needRelievedFlowId: String, reliveInfo: RelieveInfo, agent: Agent? = nil, releasedApprovers: [ReleasedApprover]? = nil, deadline: Int64? = nil, userData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReleaseFlowResponse> {
+        self.createReleaseFlow(.init(operator: `operator`, needRelievedFlowId: needRelievedFlowId, reliveInfo: reliveInfo, agent: agent, releasedApprovers: releasedApprovers, deadline: deadline, userData: userData), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发起解除协议
     ///
-    /// 发起解除协议，主要应用场景为：基于一份已经签署的合同(签署流程)，进行解除操作。
+    /// 发起解除协议的主要应用场景为：基于一份已经签署的合同（签署流程），进行解除操作。
+    /// 解除协议的模板是官方提供 ，经过提供法务审核，暂不支持自定义。
+    ///
+    /// 注意：
+    ///
+    /// - `原合同必须签署完`成后才能发起解除协议。
+    /// - 只有原合同企业类型的参与人才能发起解除协议，`个人参与方不能发起解除协议`。
+    /// - 原合同个人类型参与人必须是解除协议的参与人，`不能更换其他第三方个人`参与解除协议。
+    /// - 如果原合同企业参与人无法参与解除协议，可以指定同企业具有同等权限的`企业员工代为处理`。
+    /// - 发起解除协议同发起其他企业合同一样，也会参与合同`扣费`，扣费标准同其他类型合同。
+    /// - 在解除协议发起之后，原合同的状态将转变为解除中。一旦解除协议签署完毕，原合同及解除协议均变为已解除状态。
     @inlinable
-    public func createReleaseFlow(operator: UserInfo, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil, deadline: Int64? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReleaseFlowResponse {
-        try await self.createReleaseFlow(.init(operator: `operator`, needRelievedFlowId: needRelievedFlowId, reliveInfo: reliveInfo, releasedApprovers: releasedApprovers, deadline: deadline, agent: agent), region: region, logger: logger, on: eventLoop)
+    public func createReleaseFlow(operator: UserInfo, needRelievedFlowId: String, reliveInfo: RelieveInfo, agent: Agent? = nil, releasedApprovers: [ReleasedApprover]? = nil, deadline: Int64? = nil, userData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReleaseFlowResponse {
+        try await self.createReleaseFlow(.init(operator: `operator`, needRelievedFlowId: needRelievedFlowId, reliveInfo: reliveInfo, agent: agent, releasedApprovers: releasedApprovers, deadline: deadline, userData: userData), region: region, logger: logger, on: eventLoop)
     }
 }

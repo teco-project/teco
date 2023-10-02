@@ -116,27 +116,27 @@ extension Tiems {
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func createJob(_ input: CreateJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateJobResponse> {
-        fatalError("CreateJob is no longer available.")
+        fatalError("'CreateJob' is no longer available.")
     }
 
     /// 创建任务
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func createJob(_ input: CreateJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateJobResponse {
-        fatalError("CreateJob is no longer available.")
+        fatalError("'CreateJob' is no longer available.")
     }
 
     /// 创建任务
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func createJob(name: String, resourceGroupId: String, cpu: UInt64, memory: UInt64, cluster: String? = nil, predictInput: PredictInput? = nil, description: String? = nil, workerCount: UInt64? = nil, configId: String? = nil, gpu: UInt64? = nil, gpuMemory: UInt64? = nil, gpuType: String? = nil, quantizationInput: QuantizationInput? = nil, logTopicId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateJobResponse> {
-        fatalError("CreateJob is no longer available.")
+        fatalError("'CreateJob' is no longer available.")
     }
 
     /// 创建任务
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func createJob(name: String, resourceGroupId: String, cpu: UInt64, memory: UInt64, cluster: String? = nil, predictInput: PredictInput? = nil, description: String? = nil, workerCount: UInt64? = nil, configId: String? = nil, gpu: UInt64? = nil, gpuMemory: UInt64? = nil, gpuType: String? = nil, quantizationInput: QuantizationInput? = nil, logTopicId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateJobResponse {
-        fatalError("CreateJob is no longer available.")
+        fatalError("'CreateJob' is no longer available.")
     }
 }

@@ -77,24 +77,32 @@ extension Ms {
     }
 
     /// client任务请求地址
+    ///
+    /// client任务请求
     @inlinable
     public func requestLocalTask(_ input: RequestLocalTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RequestLocalTaskResponse> {
         self.client.execute(action: "RequestLocalTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// client任务请求地址
+    ///
+    /// client任务请求
     @inlinable
     public func requestLocalTask(_ input: RequestLocalTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RequestLocalTaskResponse {
         try await self.client.execute(action: "RequestLocalTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// client任务请求地址
+    ///
+    /// client任务请求
     @inlinable
     public func requestLocalTask(clientId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RequestLocalTaskResponse> {
         self.requestLocalTask(.init(clientId: clientId), region: region, logger: logger, on: eventLoop)
     }
 
     /// client任务请求地址
+    ///
+    /// client任务请求
     @inlinable
     public func requestLocalTask(clientId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RequestLocalTaskResponse {
         try await self.requestLocalTask(.init(clientId: clientId), region: region, logger: logger, on: eventLoop)

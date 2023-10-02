@@ -19,7 +19,24 @@ import TecoCore
 extension TCEsError {
     public struct UnsupportedOperation: TCEsErrorType {
         enum Code: String {
+            case basicSecurityType = "UnsupportedOperation.BasicSecurityType"
+            case changeNodeType = "UnsupportedOperation.ChangeNodeType"
+            case clusterStateClose = "UnsupportedOperation.ClusterStateClose"
+            case clusterStateNoReplication = "UnsupportedOperation.ClusterStateNoReplication"
+            case clusterStateUnHealth = "UnsupportedOperation.ClusterStateUnHealth"
+            case cosBackUp = "UnsupportedOperation.CosBackUp"
+            case diagnoseJob = "UnsupportedOperation.DiagnoseJob"
+            case diagnoseNotOpen = "UnsupportedOperation.DiagnoseNotOpen"
+            case instanceTypeError = "UnsupportedOperation.InstanceTypeError"
+            case licenseError = "UnsupportedOperation.LicenseError"
+            case localDisk = "UnsupportedOperation.LocalDisk"
+            case multiZonesUpgrade = "UnsupportedOperation.MultiZonesUpgrade"
+            case plugin = "UnsupportedOperation.Plugin"
+            case restartMode = "UnsupportedOperation.RestartMode"
+            case statusNotNormal = "UnsupportedOperation.StatusNotNormal"
             case statusNotSupport = "UnsupportedOperation.StatusNotSupport"
+            case vpcInfoNotFound = "UnsupportedOperation.VPCInfoNotFound"
+            case webServiceType = "UnsupportedOperation.WebServiceType"
             case other = "UnsupportedOperation"
         }
 
@@ -45,8 +62,76 @@ extension TCEsError {
             self.context = context
         }
 
+        public static var basicSecurityType: UnsupportedOperation {
+            UnsupportedOperation(.basicSecurityType)
+        }
+
+        public static var changeNodeType: UnsupportedOperation {
+            UnsupportedOperation(.changeNodeType)
+        }
+
+        public static var clusterStateClose: UnsupportedOperation {
+            UnsupportedOperation(.clusterStateClose)
+        }
+
+        public static var clusterStateNoReplication: UnsupportedOperation {
+            UnsupportedOperation(.clusterStateNoReplication)
+        }
+
+        public static var clusterStateUnHealth: UnsupportedOperation {
+            UnsupportedOperation(.clusterStateUnHealth)
+        }
+
+        public static var cosBackUp: UnsupportedOperation {
+            UnsupportedOperation(.cosBackUp)
+        }
+
+        public static var diagnoseJob: UnsupportedOperation {
+            UnsupportedOperation(.diagnoseJob)
+        }
+
+        public static var diagnoseNotOpen: UnsupportedOperation {
+            UnsupportedOperation(.diagnoseNotOpen)
+        }
+
+        public static var instanceTypeError: UnsupportedOperation {
+            UnsupportedOperation(.instanceTypeError)
+        }
+
+        public static var licenseError: UnsupportedOperation {
+            UnsupportedOperation(.licenseError)
+        }
+
+        public static var localDisk: UnsupportedOperation {
+            UnsupportedOperation(.localDisk)
+        }
+
+        public static var multiZonesUpgrade: UnsupportedOperation {
+            UnsupportedOperation(.multiZonesUpgrade)
+        }
+
+        public static var plugin: UnsupportedOperation {
+            UnsupportedOperation(.plugin)
+        }
+
+        public static var restartMode: UnsupportedOperation {
+            UnsupportedOperation(.restartMode)
+        }
+
+        public static var statusNotNormal: UnsupportedOperation {
+            UnsupportedOperation(.statusNotNormal)
+        }
+
         public static var statusNotSupport: UnsupportedOperation {
             UnsupportedOperation(.statusNotSupport)
+        }
+
+        public static var vpcInfoNotFound: UnsupportedOperation {
+            UnsupportedOperation(.vpcInfoNotFound)
+        }
+
+        public static var webServiceType: UnsupportedOperation {
+            UnsupportedOperation(.webServiceType)
         }
 
         /// 操作不支持。
@@ -57,8 +142,42 @@ extension TCEsError {
         public func asEsError() -> TCEsError {
             let code: TCEsError.Code
             switch self.error {
+            case .basicSecurityType:
+                code = .unsupportedOperation_BasicSecurityType
+            case .changeNodeType:
+                code = .unsupportedOperation_ChangeNodeType
+            case .clusterStateClose:
+                code = .unsupportedOperation_ClusterStateClose
+            case .clusterStateNoReplication:
+                code = .unsupportedOperation_ClusterStateNoReplication
+            case .clusterStateUnHealth:
+                code = .unsupportedOperation_ClusterStateUnHealth
+            case .cosBackUp:
+                code = .unsupportedOperation_CosBackUp
+            case .diagnoseJob:
+                code = .unsupportedOperation_DiagnoseJob
+            case .diagnoseNotOpen:
+                code = .unsupportedOperation_DiagnoseNotOpen
+            case .instanceTypeError:
+                code = .unsupportedOperation_InstanceTypeError
+            case .licenseError:
+                code = .unsupportedOperation_LicenseError
+            case .localDisk:
+                code = .unsupportedOperation_LocalDisk
+            case .multiZonesUpgrade:
+                code = .unsupportedOperation_MultiZonesUpgrade
+            case .plugin:
+                code = .unsupportedOperation_Plugin
+            case .restartMode:
+                code = .unsupportedOperation_RestartMode
+            case .statusNotNormal:
+                code = .unsupportedOperation_StatusNotNormal
             case .statusNotSupport:
                 code = .unsupportedOperation_StatusNotSupport
+            case .vpcInfoNotFound:
+                code = .unsupportedOperation_VPCInfoNotFound
+            case .webServiceType:
+                code = .unsupportedOperation_WebServiceType
             case .other:
                 code = .unsupportedOperation
             }

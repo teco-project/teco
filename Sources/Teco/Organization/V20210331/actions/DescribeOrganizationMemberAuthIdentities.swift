@@ -27,19 +27,24 @@ extension Organization {
         /// 限制数目。取值范围：1~50，默认值：10
         public let limit: Int64
 
-        /// 组织成员Uin。
-        public let memberUin: Int64
+        /// 组织成员Uin。入参MemberUin与IdentityId至少填写一个
+        public let memberUin: Int64?
 
-        public init(offset: Int64, limit: Int64, memberUin: Int64) {
+        /// 身份ID。入参MemberUin与IdentityId至少填写一个
+        public let identityId: UInt64?
+
+        public init(offset: Int64, limit: Int64, memberUin: Int64? = nil, identityId: UInt64? = nil) {
             self.offset = offset
             self.limit = limit
             self.memberUin = memberUin
+            self.identityId = identityId
         }
 
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
             case memberUin = "MemberUin"
+            case identityId = "IdentityId"
         }
 
         /// Compute the next request based on API response.
@@ -47,7 +52,7 @@ extension Organization {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, memberUin: self.memberUin)
+            return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, memberUin: self.memberUin, identityId: self.identityId)
         }
     }
 
@@ -81,43 +86,43 @@ extension Organization {
         }
     }
 
-    /// 获取组织成员可被管理的身份列表
+    /// 获取组织成员访问授权列表
     @inlinable
     public func describeOrganizationMemberAuthIdentities(_ input: DescribeOrganizationMemberAuthIdentitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationMemberAuthIdentitiesResponse> {
         self.client.execute(action: "DescribeOrganizationMemberAuthIdentities", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取组织成员可被管理的身份列表
+    /// 获取组织成员访问授权列表
     @inlinable
     public func describeOrganizationMemberAuthIdentities(_ input: DescribeOrganizationMemberAuthIdentitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMemberAuthIdentitiesResponse {
         try await self.client.execute(action: "DescribeOrganizationMemberAuthIdentities", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取组织成员可被管理的身份列表
+    /// 获取组织成员访问授权列表
     @inlinable
-    public func describeOrganizationMemberAuthIdentities(offset: Int64, limit: Int64, memberUin: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationMemberAuthIdentitiesResponse> {
-        self.describeOrganizationMemberAuthIdentities(.init(offset: offset, limit: limit, memberUin: memberUin), region: region, logger: logger, on: eventLoop)
+    public func describeOrganizationMemberAuthIdentities(offset: Int64, limit: Int64, memberUin: Int64? = nil, identityId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationMemberAuthIdentitiesResponse> {
+        self.describeOrganizationMemberAuthIdentities(.init(offset: offset, limit: limit, memberUin: memberUin, identityId: identityId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取组织成员可被管理的身份列表
+    /// 获取组织成员访问授权列表
     @inlinable
-    public func describeOrganizationMemberAuthIdentities(offset: Int64, limit: Int64, memberUin: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMemberAuthIdentitiesResponse {
-        try await self.describeOrganizationMemberAuthIdentities(.init(offset: offset, limit: limit, memberUin: memberUin), region: region, logger: logger, on: eventLoop)
+    public func describeOrganizationMemberAuthIdentities(offset: Int64, limit: Int64, memberUin: Int64? = nil, identityId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMemberAuthIdentitiesResponse {
+        try await self.describeOrganizationMemberAuthIdentities(.init(offset: offset, limit: limit, memberUin: memberUin, identityId: identityId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取组织成员可被管理的身份列表
+    /// 获取组织成员访问授权列表
     @inlinable
     public func describeOrganizationMemberAuthIdentitiesPaginated(_ input: DescribeOrganizationMemberAuthIdentitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [OrgMemberAuthIdentity])> {
         self.client.paginate(input: input, region: region, command: self.describeOrganizationMemberAuthIdentities, logger: logger, on: eventLoop)
     }
 
-    /// 获取组织成员可被管理的身份列表
+    /// 获取组织成员访问授权列表
     @inlinable @discardableResult
     public func describeOrganizationMemberAuthIdentitiesPaginated(_ input: DescribeOrganizationMemberAuthIdentitiesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeOrganizationMemberAuthIdentitiesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeOrganizationMemberAuthIdentities, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 获取组织成员可被管理的身份列表
+    /// 获取组织成员访问授权列表
     ///
     /// - Returns: `AsyncSequence`s of ``OrgMemberAuthIdentity`` and ``DescribeOrganizationMemberAuthIdentitiesResponse`` that can be iterated over asynchronously on demand.
     @inlinable

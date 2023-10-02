@@ -198,6 +198,10 @@ extension Cdb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let trxLivingTime: UInt64?
 
+        /// 日志命中规则模板的基本信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let templateInfo: [LogRuleTemplateInfo]?
+
         enum CodingKeys: String, CodingKey {
             case affectRows = "AffectRows"
             case errCode = "ErrCode"
@@ -217,6 +221,7 @@ extension Cdb {
             case lockWaitTime = "LockWaitTime"
             case nsTime = "NsTime"
             case trxLivingTime = "TrxLivingTime"
+            case templateInfo = "TemplateInfo"
         }
     }
 
@@ -1458,7 +1463,7 @@ extension Cdb {
         /// 过滤项。目前支持以下搜索条件：
         ///
         /// 包含、不包含、包含（分词维度）、不包含（分词维度）:
-        /// sql - SQL详情
+        /// sql - SQL详情；alarmLevel - 告警等级；ruleTemplateId - 规则模板Id
         ///
         /// 等于、不等于、包含、不包含：
         /// host - 客户端地址；
@@ -1775,6 +1780,32 @@ extension Cdb {
         }
     }
 
+    /// 审计日志命中规则模板的基本信息
+    public struct LogRuleTemplateInfo: TCOutputModel {
+        /// 模板ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ruleTemplateId: String?
+
+        /// 规则模板名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ruleTemplateName: String?
+
+        /// 告警等级。1-低风险，2-中风险，3-高风险。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let alarmLevel: String?
+
+        /// 规则模板变更状态：0-未变更；1-已变更；2-已删除
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ruleTemplateStatus: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case ruleTemplateId = "RuleTemplateId"
+            case ruleTemplateName = "RuleTemplateName"
+            case alarmLevel = "AlarmLevel"
+            case ruleTemplateStatus = "RuleTemplateStatus"
+        }
+    }
+
     /// 主实例信息
     public struct MasterInfo: TCOutputModel {
         /// 地域信息
@@ -1921,10 +1952,14 @@ extension Cdb {
         public let newValue: String
 
         /// 参数是否修改成功
+        @available(*, deprecated)
         public let isSucess: Bool
 
         /// 修改时间
         public let modifyTime: String
+
+        /// 参数是否修改成功
+        public let isSuccess: Bool
 
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
@@ -1933,6 +1968,7 @@ extension Cdb {
             case newValue = "NewValue"
             case isSucess = "IsSucess"
             case modifyTime = "ModifyTime"
+            case isSuccess = "IsSuccess"
         }
     }
 

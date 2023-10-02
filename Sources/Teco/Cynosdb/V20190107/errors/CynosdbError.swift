@@ -102,6 +102,7 @@ public struct TCCynosdbError: TCCynosdbErrorType {
         case limitExceeded_ClusterInstanceLimit = "LimitExceeded.ClusterInstanceLimit"
         case limitExceeded_UserInstanceLimit = "LimitExceeded.UserInstanceLimit"
         case missingParameter = "MissingParameter"
+        case operationDenied_AuditPolicyNotExistError = "OperationDenied.AuditPolicyNotExistError"
         case operationDenied_CamDeniedError = "OperationDenied.CamDeniedError"
         case operationDenied_ClusterOpNotAllowedError = "OperationDenied.ClusterOpNotAllowedError"
         case operationDenied_ClusterStatusDeniedError = "OperationDenied.ClusterStatusDeniedError"
@@ -535,6 +536,10 @@ public struct TCCynosdbError: TCCynosdbErrorType {
     /// 缺少参数错误。
     public static var missingParameter: TCCynosdbError {
         TCCynosdbError(.missingParameter)
+    }
+
+    public static var operationDenied_AuditPolicyNotExistError: TCCynosdbError {
+        TCCynosdbError(.operationDenied_AuditPolicyNotExistError)
     }
 
     /// 权限校验失败。

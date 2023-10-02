@@ -25,10 +25,12 @@ extension TCTemError {
             case applicationServiceNotFound = "InvalidParameterValue.ApplicationServiceNotFound"
             case atLeastOneScalerRuleShouldBeApplied = "InvalidParameterValue.AtLeastOneScalerRuleShouldBeApplied"
             case autoScalerLargerThanOne = "InvalidParameterValue.AutoScalerLargerThanOne"
+            case autoScalerNameInvalid = "InvalidParameterValue.AutoScalerNameInvalid"
             case cannotOverWriteOtherApplicationService = "InvalidParameterValue.CannotOverWriteOtherApplicationService"
             case cannotUpdateServiceByBothMethods = "InvalidParameterValue.CannotUpdateServiceByBothMethods"
             case configDataAlreadyExist = "InvalidParameterValue.ConfigDataAlreadyExist"
             case configDataInvalid = "InvalidParameterValue.ConfigDataInvalid"
+            case createNamespaceUnsupportRegionError = "InvalidParameterValue.CreateNamespaceUnsupportRegionError"
             case cronHpaReplicasInvalid = "InvalidParameterValue.CronHpaReplicasInvalid"
             case dailyCreateNamespaceReachMaximum = "InvalidParameterValue.DailyCreateNamespaceReachMaximum"
             case disableScalerBeforeDelete = "InvalidParameterValue.DisableScalerBeforeDelete"
@@ -128,6 +130,11 @@ extension TCTemError {
             InvalidParameterValue(.autoScalerLargerThanOne)
         }
 
+        /// 弹性规则名称不合法, 长度必须小于20。
+        public static var autoScalerNameInvalid: InvalidParameterValue {
+            InvalidParameterValue(.autoScalerNameInvalid)
+        }
+
         /// 不能覆盖其他应用的访问方式。
         public static var cannotOverWriteOtherApplicationService: InvalidParameterValue {
             InvalidParameterValue(.cannotOverWriteOtherApplicationService)
@@ -146,6 +153,11 @@ extension TCTemError {
         /// 配置不合法。
         public static var configDataInvalid: InvalidParameterValue {
             InvalidParameterValue(.configDataInvalid)
+        }
+
+        /// 创建环境createRegion参数错误。
+        public static var createNamespaceUnsupportRegionError: InvalidParameterValue {
+            InvalidParameterValue(.createNamespaceUnsupportRegionError)
         }
 
         /// 定时弹性伸缩目标实例数不合法。
@@ -388,6 +400,8 @@ extension TCTemError {
                 code = .invalidParameterValue_AtLeastOneScalerRuleShouldBeApplied
             case .autoScalerLargerThanOne:
                 code = .invalidParameterValue_AutoScalerLargerThanOne
+            case .autoScalerNameInvalid:
+                code = .invalidParameterValue_AutoScalerNameInvalid
             case .cannotOverWriteOtherApplicationService:
                 code = .invalidParameterValue_CannotOverWriteOtherApplicationService
             case .cannotUpdateServiceByBothMethods:
@@ -396,6 +410,8 @@ extension TCTemError {
                 code = .invalidParameterValue_ConfigDataAlreadyExist
             case .configDataInvalid:
                 code = .invalidParameterValue_ConfigDataInvalid
+            case .createNamespaceUnsupportRegionError:
+                code = .invalidParameterValue_CreateNamespaceUnsupportRegionError
             case .cronHpaReplicasInvalid:
                 code = .invalidParameterValue_CronHpaReplicasInvalid
             case .dailyCreateNamespaceReachMaximum:

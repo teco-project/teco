@@ -24,7 +24,7 @@ extension Trtc {
         /// TRTC的SDKAppId。
         public let sdkAppId: UInt64
 
-        /// 房间号。
+        /// 数字房间号。本接口仅支持解散数字类型房间号，如需解散字符串类型房间号，请使用DismissRoomByStrRoomId。
         public let roomId: UInt64
 
         public init(sdkAppId: UInt64, roomId: UInt64) {

@@ -54,7 +54,10 @@ extension Vpc {
         /// 绑定类型：0 标准型 1 扩展型。
         public let attachType: UInt64?
 
-        public init(vpcId: String, networkInterfaceName: String, subnetId: String, instanceId: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, qosLevel: String? = nil, securityGroupIds: [String]? = nil, networkInterfaceDescription: String? = nil, tags: [Tag]? = nil, attachType: UInt64? = nil) {
+        /// 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
+        public let clientToken: String?
+
+        public init(vpcId: String, networkInterfaceName: String, subnetId: String, instanceId: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, qosLevel: String? = nil, securityGroupIds: [String]? = nil, networkInterfaceDescription: String? = nil, tags: [Tag]? = nil, attachType: UInt64? = nil, clientToken: String? = nil) {
             self.vpcId = vpcId
             self.networkInterfaceName = networkInterfaceName
             self.subnetId = subnetId
@@ -66,6 +69,7 @@ extension Vpc {
             self.networkInterfaceDescription = networkInterfaceDescription
             self.tags = tags
             self.attachType = attachType
+            self.clientToken = clientToken
         }
 
         enum CodingKeys: String, CodingKey {
@@ -80,6 +84,7 @@ extension Vpc {
             case networkInterfaceDescription = "NetworkInterfaceDescription"
             case tags = "Tags"
             case attachType = "AttachType"
+            case clientToken = "ClientToken"
         }
     }
 
@@ -135,8 +140,8 @@ extension Vpc {
     /// * 创建弹性网卡同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     /// > Important: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     @inlinable
-    public func createAndAttachNetworkInterface(vpcId: String, networkInterfaceName: String, subnetId: String, instanceId: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, qosLevel: String? = nil, securityGroupIds: [String]? = nil, networkInterfaceDescription: String? = nil, tags: [Tag]? = nil, attachType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAndAttachNetworkInterfaceResponse> {
-        self.createAndAttachNetworkInterface(.init(vpcId: vpcId, networkInterfaceName: networkInterfaceName, subnetId: subnetId, instanceId: instanceId, privateIpAddresses: privateIpAddresses, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, qosLevel: qosLevel, securityGroupIds: securityGroupIds, networkInterfaceDescription: networkInterfaceDescription, tags: tags, attachType: attachType), region: region, logger: logger, on: eventLoop)
+    public func createAndAttachNetworkInterface(vpcId: String, networkInterfaceName: String, subnetId: String, instanceId: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, qosLevel: String? = nil, securityGroupIds: [String]? = nil, networkInterfaceDescription: String? = nil, tags: [Tag]? = nil, attachType: UInt64? = nil, clientToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAndAttachNetworkInterfaceResponse> {
+        self.createAndAttachNetworkInterface(.init(vpcId: vpcId, networkInterfaceName: networkInterfaceName, subnetId: subnetId, instanceId: instanceId, privateIpAddresses: privateIpAddresses, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, qosLevel: qosLevel, securityGroupIds: securityGroupIds, networkInterfaceDescription: networkInterfaceDescription, tags: tags, attachType: attachType, clientToken: clientToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建弹性网卡并绑定云服务器
@@ -149,7 +154,7 @@ extension Vpc {
     /// * 创建弹性网卡同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     /// > Important: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     @inlinable
-    public func createAndAttachNetworkInterface(vpcId: String, networkInterfaceName: String, subnetId: String, instanceId: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, qosLevel: String? = nil, securityGroupIds: [String]? = nil, networkInterfaceDescription: String? = nil, tags: [Tag]? = nil, attachType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAndAttachNetworkInterfaceResponse {
-        try await self.createAndAttachNetworkInterface(.init(vpcId: vpcId, networkInterfaceName: networkInterfaceName, subnetId: subnetId, instanceId: instanceId, privateIpAddresses: privateIpAddresses, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, qosLevel: qosLevel, securityGroupIds: securityGroupIds, networkInterfaceDescription: networkInterfaceDescription, tags: tags, attachType: attachType), region: region, logger: logger, on: eventLoop)
+    public func createAndAttachNetworkInterface(vpcId: String, networkInterfaceName: String, subnetId: String, instanceId: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, qosLevel: String? = nil, securityGroupIds: [String]? = nil, networkInterfaceDescription: String? = nil, tags: [Tag]? = nil, attachType: UInt64? = nil, clientToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAndAttachNetworkInterfaceResponse {
+        try await self.createAndAttachNetworkInterface(.init(vpcId: vpcId, networkInterfaceName: networkInterfaceName, subnetId: subnetId, instanceId: instanceId, privateIpAddresses: privateIpAddresses, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, qosLevel: qosLevel, securityGroupIds: securityGroupIds, networkInterfaceDescription: networkInterfaceDescription, tags: tags, attachType: attachType, clientToken: clientToken), region: region, logger: logger, on: eventLoop)
     }
 }

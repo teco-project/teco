@@ -78,7 +78,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createHashDeposit(_ input: CreateHashDepositRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHashDepositResponse> {
-        fatalError("CreateHashDeposit is no longer available.")
+        fatalError("'CreateHashDeposit' is no longer available.")
     }
 
     /// 哈希上链存证
@@ -87,7 +87,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createHashDeposit(_ input: CreateHashDepositRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHashDepositResponse {
-        fatalError("CreateHashDeposit is no longer available.")
+        fatalError("'CreateHashDeposit' is no longer available.")
     }
 
     /// 哈希上链存证
@@ -96,7 +96,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createHashDeposit(evidenceName: String, evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHashDepositResponse> {
-        fatalError("CreateHashDeposit is no longer available.")
+        fatalError("'CreateHashDeposit' is no longer available.")
     }
 
     /// 哈希上链存证
@@ -105,6 +105,6 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createHashDeposit(evidenceName: String, evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHashDepositResponse {
-        fatalError("CreateHashDeposit is no longer available.")
+        fatalError("'CreateHashDeposit' is no longer available.")
     }
 }

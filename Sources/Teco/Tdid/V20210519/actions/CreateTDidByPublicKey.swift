@@ -66,27 +66,27 @@ extension Tdid {
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createTDidByPublicKey(_ input: CreateTDidByPublicKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTDidByPublicKeyResponse> {
-        fatalError("CreateTDidByPublicKey is no longer available.")
+        fatalError("'CreateTDidByPublicKey' is no longer available.")
     }
 
     /// 新建DID根据公钥生成Tdid
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createTDidByPublicKey(_ input: CreateTDidByPublicKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidByPublicKeyResponse {
-        fatalError("CreateTDidByPublicKey is no longer available.")
+        fatalError("'CreateTDidByPublicKey' is no longer available.")
     }
 
     /// 新建DID根据公钥生成Tdid
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createTDidByPublicKey(clusterId: String, groupId: UInt64, publicKey: String, encryptPubKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTDidByPublicKeyResponse> {
-        fatalError("CreateTDidByPublicKey is no longer available.")
+        fatalError("'CreateTDidByPublicKey' is no longer available.")
     }
 
     /// 新建DID根据公钥生成Tdid
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createTDidByPublicKey(clusterId: String, groupId: UInt64, publicKey: String, encryptPubKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidByPublicKeyResponse {
-        fatalError("CreateTDidByPublicKey is no longer available.")
+        fatalError("'CreateTDidByPublicKey' is no longer available.")
     }
 }

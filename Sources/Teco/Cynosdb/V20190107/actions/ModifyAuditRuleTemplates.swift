@@ -21,23 +21,31 @@ import TecoCore
 extension Cynosdb {
     /// ModifyAuditRuleTemplates请求参数结构体
     public struct ModifyAuditRuleTemplatesRequest: TCRequest {
-        /// 审计规则模版ID。
+        /// 审计规则模板ID。
         public let ruleTemplateIds: [String]
 
         /// 修改后的审计规则。
         public let ruleFilters: [RuleFilters]?
 
-        /// 修改后的规则模版名称。
+        /// 修改后的规则模板名称。
         public let ruleTemplateName: String?
 
-        /// 修改后的规则模版描述。
+        /// 修改后的规则模板描述。
         public let description: String?
 
-        public init(ruleTemplateIds: [String], ruleFilters: [RuleFilters]? = nil, ruleTemplateName: String? = nil, description: String? = nil) {
+        /// 告警等级。1-低风险，2-中风险，3-高风险。
+        public let alarmLevel: UInt64?
+
+        /// 告警策略。0-不告警，1-告警。
+        public let alarmPolicy: UInt64?
+
+        public init(ruleTemplateIds: [String], ruleFilters: [RuleFilters]? = nil, ruleTemplateName: String? = nil, description: String? = nil, alarmLevel: UInt64? = nil, alarmPolicy: UInt64? = nil) {
             self.ruleTemplateIds = ruleTemplateIds
             self.ruleFilters = ruleFilters
             self.ruleTemplateName = ruleTemplateName
             self.description = description
+            self.alarmLevel = alarmLevel
+            self.alarmPolicy = alarmPolicy
         }
 
         enum CodingKeys: String, CodingKey {
@@ -45,6 +53,8 @@ extension Cynosdb {
             case ruleFilters = "RuleFilters"
             case ruleTemplateName = "RuleTemplateName"
             case description = "Description"
+            case alarmLevel = "AlarmLevel"
+            case alarmPolicy = "AlarmPolicy"
         }
     }
 
@@ -58,27 +68,27 @@ extension Cynosdb {
         }
     }
 
-    /// 修改审计规则模版
+    /// 修改审计规则模板
     @inlinable @discardableResult
     public func modifyAuditRuleTemplates(_ input: ModifyAuditRuleTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAuditRuleTemplatesResponse> {
         self.client.execute(action: "ModifyAuditRuleTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 修改审计规则模版
+    /// 修改审计规则模板
     @inlinable @discardableResult
     public func modifyAuditRuleTemplates(_ input: ModifyAuditRuleTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAuditRuleTemplatesResponse {
         try await self.client.execute(action: "ModifyAuditRuleTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 修改审计规则模版
+    /// 修改审计规则模板
     @inlinable @discardableResult
-    public func modifyAuditRuleTemplates(ruleTemplateIds: [String], ruleFilters: [RuleFilters]? = nil, ruleTemplateName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAuditRuleTemplatesResponse> {
-        self.modifyAuditRuleTemplates(.init(ruleTemplateIds: ruleTemplateIds, ruleFilters: ruleFilters, ruleTemplateName: ruleTemplateName, description: description), region: region, logger: logger, on: eventLoop)
+    public func modifyAuditRuleTemplates(ruleTemplateIds: [String], ruleFilters: [RuleFilters]? = nil, ruleTemplateName: String? = nil, description: String? = nil, alarmLevel: UInt64? = nil, alarmPolicy: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAuditRuleTemplatesResponse> {
+        self.modifyAuditRuleTemplates(.init(ruleTemplateIds: ruleTemplateIds, ruleFilters: ruleFilters, ruleTemplateName: ruleTemplateName, description: description, alarmLevel: alarmLevel, alarmPolicy: alarmPolicy), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 修改审计规则模版
+    /// 修改审计规则模板
     @inlinable @discardableResult
-    public func modifyAuditRuleTemplates(ruleTemplateIds: [String], ruleFilters: [RuleFilters]? = nil, ruleTemplateName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAuditRuleTemplatesResponse {
-        try await self.modifyAuditRuleTemplates(.init(ruleTemplateIds: ruleTemplateIds, ruleFilters: ruleFilters, ruleTemplateName: ruleTemplateName, description: description), region: region, logger: logger, on: eventLoop)
+    public func modifyAuditRuleTemplates(ruleTemplateIds: [String], ruleFilters: [RuleFilters]? = nil, ruleTemplateName: String? = nil, description: String? = nil, alarmLevel: UInt64? = nil, alarmPolicy: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAuditRuleTemplatesResponse {
+        try await self.modifyAuditRuleTemplates(.init(ruleTemplateIds: ruleTemplateIds, ruleFilters: ruleFilters, ruleTemplateName: ruleTemplateName, description: description, alarmLevel: alarmLevel, alarmPolicy: alarmPolicy), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -50,34 +50,39 @@ extension Organization {
 
     /// AddOrganizationMemberEmail返回参数结构体
     public struct AddOrganizationMemberEmailResponse: TCResponse {
+        /// 绑定Id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bindId: UInt64?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
+            case bindId = "BindId"
             case requestId = "RequestId"
         }
     }
 
     /// 添加组织成员邮箱
-    @inlinable @discardableResult
+    @inlinable
     public func addOrganizationMemberEmail(_ input: AddOrganizationMemberEmailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddOrganizationMemberEmailResponse> {
         self.client.execute(action: "AddOrganizationMemberEmail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加组织成员邮箱
-    @inlinable @discardableResult
+    @inlinable
     public func addOrganizationMemberEmail(_ input: AddOrganizationMemberEmailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddOrganizationMemberEmailResponse {
         try await self.client.execute(action: "AddOrganizationMemberEmail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加组织成员邮箱
-    @inlinable @discardableResult
+    @inlinable
     public func addOrganizationMemberEmail(memberUin: Int64, email: String, countryCode: String, phone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddOrganizationMemberEmailResponse> {
         self.addOrganizationMemberEmail(.init(memberUin: memberUin, email: email, countryCode: countryCode, phone: phone), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加组织成员邮箱
-    @inlinable @discardableResult
+    @inlinable
     public func addOrganizationMemberEmail(memberUin: Int64, email: String, countryCode: String, phone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddOrganizationMemberEmailResponse {
         try await self.addOrganizationMemberEmail(.init(memberUin: memberUin, email: email, countryCode: countryCode, phone: phone), region: region, logger: logger, on: eventLoop)
     }

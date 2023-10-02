@@ -75,7 +75,10 @@ extension Tke {
         /// dockerd --graph 指定值, 默认为 /var/lib/docker
         public let dockerGraphPath: String?
 
-        public init(clusterId: String, nodePoolId: String, name: String? = nil, maxNodesNum: Int64? = nil, minNodesNum: Int64? = nil, labels: [Label]? = nil, taints: [Taint]? = nil, enableAutoscale: Bool? = nil, osName: String? = nil, osCustomizeType: String? = nil, gpuArgs: GPUArgs? = nil, userScript: String? = nil, ignoreExistedNode: Bool? = nil, extraArgs: InstanceExtraArgs? = nil, tags: [Tag]? = nil, unschedulable: Int64? = nil, deletionProtection: Bool? = nil, dockerGraphPath: String? = nil) {
+        /// base64编码后的自定义脚本
+        public let preStartUserScript: String?
+
+        public init(clusterId: String, nodePoolId: String, name: String? = nil, maxNodesNum: Int64? = nil, minNodesNum: Int64? = nil, labels: [Label]? = nil, taints: [Taint]? = nil, enableAutoscale: Bool? = nil, osName: String? = nil, osCustomizeType: String? = nil, gpuArgs: GPUArgs? = nil, userScript: String? = nil, ignoreExistedNode: Bool? = nil, extraArgs: InstanceExtraArgs? = nil, tags: [Tag]? = nil, unschedulable: Int64? = nil, deletionProtection: Bool? = nil, dockerGraphPath: String? = nil, preStartUserScript: String? = nil) {
             self.clusterId = clusterId
             self.nodePoolId = nodePoolId
             self.name = name
@@ -94,6 +97,7 @@ extension Tke {
             self.unschedulable = unschedulable
             self.deletionProtection = deletionProtection
             self.dockerGraphPath = dockerGraphPath
+            self.preStartUserScript = preStartUserScript
         }
 
         enum CodingKeys: String, CodingKey {
@@ -115,6 +119,7 @@ extension Tke {
             case unschedulable = "Unschedulable"
             case deletionProtection = "DeletionProtection"
             case dockerGraphPath = "DockerGraphPath"
+            case preStartUserScript = "PreStartUserScript"
         }
     }
 
@@ -142,13 +147,13 @@ extension Tke {
 
     /// 编辑节点池
     @inlinable @discardableResult
-    public func modifyClusterNodePool(clusterId: String, nodePoolId: String, name: String? = nil, maxNodesNum: Int64? = nil, minNodesNum: Int64? = nil, labels: [Label]? = nil, taints: [Taint]? = nil, enableAutoscale: Bool? = nil, osName: String? = nil, osCustomizeType: String? = nil, gpuArgs: GPUArgs? = nil, userScript: String? = nil, ignoreExistedNode: Bool? = nil, extraArgs: InstanceExtraArgs? = nil, tags: [Tag]? = nil, unschedulable: Int64? = nil, deletionProtection: Bool? = nil, dockerGraphPath: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterNodePoolResponse> {
-        self.modifyClusterNodePool(.init(clusterId: clusterId, nodePoolId: nodePoolId, name: name, maxNodesNum: maxNodesNum, minNodesNum: minNodesNum, labels: labels, taints: taints, enableAutoscale: enableAutoscale, osName: osName, osCustomizeType: osCustomizeType, gpuArgs: gpuArgs, userScript: userScript, ignoreExistedNode: ignoreExistedNode, extraArgs: extraArgs, tags: tags, unschedulable: unschedulable, deletionProtection: deletionProtection, dockerGraphPath: dockerGraphPath), region: region, logger: logger, on: eventLoop)
+    public func modifyClusterNodePool(clusterId: String, nodePoolId: String, name: String? = nil, maxNodesNum: Int64? = nil, minNodesNum: Int64? = nil, labels: [Label]? = nil, taints: [Taint]? = nil, enableAutoscale: Bool? = nil, osName: String? = nil, osCustomizeType: String? = nil, gpuArgs: GPUArgs? = nil, userScript: String? = nil, ignoreExistedNode: Bool? = nil, extraArgs: InstanceExtraArgs? = nil, tags: [Tag]? = nil, unschedulable: Int64? = nil, deletionProtection: Bool? = nil, dockerGraphPath: String? = nil, preStartUserScript: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterNodePoolResponse> {
+        self.modifyClusterNodePool(.init(clusterId: clusterId, nodePoolId: nodePoolId, name: name, maxNodesNum: maxNodesNum, minNodesNum: minNodesNum, labels: labels, taints: taints, enableAutoscale: enableAutoscale, osName: osName, osCustomizeType: osCustomizeType, gpuArgs: gpuArgs, userScript: userScript, ignoreExistedNode: ignoreExistedNode, extraArgs: extraArgs, tags: tags, unschedulable: unschedulable, deletionProtection: deletionProtection, dockerGraphPath: dockerGraphPath, preStartUserScript: preStartUserScript), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑节点池
     @inlinable @discardableResult
-    public func modifyClusterNodePool(clusterId: String, nodePoolId: String, name: String? = nil, maxNodesNum: Int64? = nil, minNodesNum: Int64? = nil, labels: [Label]? = nil, taints: [Taint]? = nil, enableAutoscale: Bool? = nil, osName: String? = nil, osCustomizeType: String? = nil, gpuArgs: GPUArgs? = nil, userScript: String? = nil, ignoreExistedNode: Bool? = nil, extraArgs: InstanceExtraArgs? = nil, tags: [Tag]? = nil, unschedulable: Int64? = nil, deletionProtection: Bool? = nil, dockerGraphPath: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterNodePoolResponse {
-        try await self.modifyClusterNodePool(.init(clusterId: clusterId, nodePoolId: nodePoolId, name: name, maxNodesNum: maxNodesNum, minNodesNum: minNodesNum, labels: labels, taints: taints, enableAutoscale: enableAutoscale, osName: osName, osCustomizeType: osCustomizeType, gpuArgs: gpuArgs, userScript: userScript, ignoreExistedNode: ignoreExistedNode, extraArgs: extraArgs, tags: tags, unschedulable: unschedulable, deletionProtection: deletionProtection, dockerGraphPath: dockerGraphPath), region: region, logger: logger, on: eventLoop)
+    public func modifyClusterNodePool(clusterId: String, nodePoolId: String, name: String? = nil, maxNodesNum: Int64? = nil, minNodesNum: Int64? = nil, labels: [Label]? = nil, taints: [Taint]? = nil, enableAutoscale: Bool? = nil, osName: String? = nil, osCustomizeType: String? = nil, gpuArgs: GPUArgs? = nil, userScript: String? = nil, ignoreExistedNode: Bool? = nil, extraArgs: InstanceExtraArgs? = nil, tags: [Tag]? = nil, unschedulable: Int64? = nil, deletionProtection: Bool? = nil, dockerGraphPath: String? = nil, preStartUserScript: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterNodePoolResponse {
+        try await self.modifyClusterNodePool(.init(clusterId: clusterId, nodePoolId: nodePoolId, name: name, maxNodesNum: maxNodesNum, minNodesNum: minNodesNum, labels: labels, taints: taints, enableAutoscale: enableAutoscale, osName: osName, osCustomizeType: osCustomizeType, gpuArgs: gpuArgs, userScript: userScript, ignoreExistedNode: ignoreExistedNode, extraArgs: extraArgs, tags: tags, unschedulable: unschedulable, deletionProtection: deletionProtection, dockerGraphPath: dockerGraphPath, preStartUserScript: preStartUserScript), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -42,10 +42,10 @@ extension Tat {
 
         /// 是否隐藏输出，取值范围：
         ///
-        /// - True：隐藏输出
-        /// - False：不隐藏
+        /// - true：隐藏输出
+        /// - false：不隐藏
         ///
-        /// 默认为 True。
+        /// 默认为 false。
         public let hideOutput: Bool?
 
         public init(invocationTaskIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, hideOutput: Bool? = nil) {

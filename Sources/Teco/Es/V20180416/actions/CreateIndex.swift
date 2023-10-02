@@ -30,7 +30,7 @@ extension Es {
         /// 创建的索引名
         public let indexName: String
 
-        /// 创建的索引元数据JSON，如mappings、settings
+        /// 【必填】创建的索引元数据JSON，如mappings、settings
         public let indexMetaJson: String?
 
         /// 集群访问用户名

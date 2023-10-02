@@ -522,50 +522,54 @@ extension Cvm {
     /// 专用宿主机实例详细信息
     public struct HostItem: TCOutputModel {
         /// 专用宿主机实例所在的位置。通过该参数可以指定实例所属可用区，所属项目等属性。
-        public let placement: Placement?
+        public let placement: Placement
 
         /// 专用宿主机实例ID
-        public let hostId: String?
+        public let hostId: String
 
         /// 专用宿主机实例类型
-        public let hostType: String?
+        public let hostType: String
 
         /// 专用宿主机实例名称
-        public let hostName: String?
+        public let hostName: String
 
         /// 专用宿主机实例付费模式
-        public let hostChargeType: String?
+        public let hostChargeType: String
 
         /// 专用宿主机实例自动续费标记
-        public let renewFlag: String?
+        public let renewFlag: String
 
         /// 专用宿主机实例创建时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
-        @TCTimestampISO8601Encoding public var createdTime: Date?
+        @TCTimestampISO8601Encoding public var createdTime: Date
 
         /// 专用宿主机实例过期时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
-        @TCTimestampISO8601Encoding public var expiredTime: Date?
+        @TCTimestampISO8601Encoding public var expiredTime: Date
 
         /// 专用宿主机实例上已创建云子机的实例id列表
-        public let instanceIds: [String]?
+        public let instanceIds: [String]
 
         /// 专用宿主机实例状态
-        public let hostState: String?
+        public let hostState: String
 
         /// 专用宿主机实例IP
-        public let hostIp: String?
+        public let hostIp: String
 
         /// 专用宿主机实例资源信息
-        public let hostResource: HostResource?
+        public let hostResource: HostResource
 
         /// 专用宿主机所属的围笼ID。该字段仅对金融专区围笼内的专用宿主机有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cageId: String?
+
+        /// 专用宿主机关联的标签列表。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tags: [Tag]?
 
         enum CodingKeys: String, CodingKey {
             case placement = "Placement"
@@ -581,6 +585,7 @@ extension Cvm {
             case hostIp = "HostIp"
             case hostResource = "HostResource"
             case cageId = "CageId"
+            case tags = "Tags"
         }
     }
 
@@ -597,31 +602,35 @@ extension Cvm {
     /// 专用宿主机实例的资源信息
     public struct HostResource: TCOutputModel {
         /// 专用宿主机实例总CPU核数
-        public let cpuTotal: UInt64?
+        public let cpuTotal: UInt64
 
         /// 专用宿主机实例可用CPU核数
-        public let cpuAvailable: UInt64?
+        public let cpuAvailable: UInt64
 
         /// 专用宿主机实例总内存大小（单位为:GiB）
-        public let memTotal: Float?
+        public let memTotal: Float
 
         /// 专用宿主机实例可用内存大小（单位为:GiB）
-        public let memAvailable: Float?
+        public let memAvailable: Float
 
         /// 专用宿主机实例总磁盘大小（单位为:GiB）
-        public let diskTotal: UInt64?
+        public let diskTotal: UInt64
 
         /// 专用宿主机实例可用磁盘大小（单位为:GiB）
-        public let diskAvailable: UInt64?
+        public let diskAvailable: UInt64
 
         /// 专用宿主机实例磁盘类型
         public let diskType: String
 
         /// 专用宿主机实例总GPU卡数
-        public let gpuTotal: UInt64?
+        public let gpuTotal: UInt64
 
         /// 专用宿主机实例可用GPU卡数
-        public let gpuAvailable: UInt64?
+        public let gpuAvailable: UInt64
+
+        /// CDH owner
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let exclusiveOwner: String?
 
         enum CodingKeys: String, CodingKey {
             case cpuTotal = "CpuTotal"
@@ -633,6 +642,7 @@ extension Cvm {
             case diskType = "DiskType"
             case gpuTotal = "GpuTotal"
             case gpuAvailable = "GpuAvailable"
+            case exclusiveOwner = "ExclusiveOwner"
         }
     }
 
@@ -1911,17 +1921,13 @@ extension Cvm {
         /// 实例所属的专用宿主机ID列表，仅用于入参。如果您有购买专用宿主机并且指定了该参数，则您购买的实例就会随机的部署在这些专用宿主机上。
         public let hostIds: [String]?
 
-        /// 指定母机IP生产子机
-        public let hostIps: [String]?
-
         /// 实例所属的专用宿主机ID，仅用于出参。
         public let hostId: String?
 
-        public init(zone: String, projectId: Int64? = nil, hostIds: [String]? = nil, hostIps: [String]? = nil, hostId: String? = nil) {
+        public init(zone: String, projectId: Int64? = nil, hostIds: [String]? = nil, hostId: String? = nil) {
             self.zone = zone
             self.projectId = projectId
             self.hostIds = hostIds
-            self.hostIps = hostIps
             self.hostId = hostId
         }
 
@@ -1929,7 +1935,6 @@ extension Cvm {
             case zone = "Zone"
             case projectId = "ProjectId"
             case hostIds = "HostIds"
-            case hostIps = "HostIps"
             case hostId = "HostId"
         }
     }
@@ -2570,7 +2575,7 @@ extension Cvm {
         /// 竞价请求类型，当前仅支持类型：one-time
         public let spotInstanceType: String?
 
-        public init(maxPrice: String = "one-time", spotInstanceType: String? = nil) {
+        public init(maxPrice: String, spotInstanceType: String? = nil) {
             self.maxPrice = maxPrice
             self.spotInstanceType = spotInstanceType
         }

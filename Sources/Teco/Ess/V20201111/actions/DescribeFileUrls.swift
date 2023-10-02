@@ -21,30 +21,41 @@ import TecoCore
 extension Ess {
     /// DescribeFileUrls请求参数结构体
     public struct DescribeFileUrlsRequest: TCPaginatedRequest {
-        /// 调用方用户信息，UserId 必填
+        /// 执行本接口操作的员工信息。
+        /// 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         public let `operator`: UserInfo
 
         /// 文件对应的业务类型，目前支持：
-        /// - 流程 "FLOW"，如需下载合同文件请选择此项
-        /// - 模板 "TEMPLATE"
-        /// - 文档 "DOCUMENT"
-        /// - 印章  “SEAL”
+        ///
+        /// - **FLOW ** : 如需下载合同文件请选择此项
+        /// - **TEMPLATE ** : 如需下载模板文件请选择此项
+        /// - **DOCUMENT  **: 如需下载文档文件请选择此项
+        /// - **SEAL  **: 如需下载印章图片请选择此项
         public let businessType: String
 
-        /// 业务编号的数组，如流程编号、模板编号、文档编号、印章编号。如需下载合同文件请传入FlowId
-        /// 最大支持20个资源
+        /// 业务编号的数组，取值如下：
+        ///
+        /// - 流程编号
+        /// - 模板编号
+        /// - 文档编号
+        /// - 印章编号
+        /// - 如需下载合同文件请传入FlowId，最大支持20个资源
         public let businessIds: [String]
 
         /// 下载后的文件命名，只有FileType为zip的时候生效
         public let fileName: String?
 
-        /// 文件类型，"JPG", "PDF","ZIP"等
+        /// 要下载的文件类型，取值如下：
+        ///
+        /// - JPG
+        /// - PDF
+        /// - ZIP
         public let fileType: String?
 
-        /// 指定资源起始偏移量，默认0
+        /// 指定分页返回第几页的数据，如果不传默认返回第一页，页码从 0 开始，即首页为 0，最大 1000。
         public let offset: Int64?
 
-        /// 指定资源数量，查询全部资源则传入-1
+        /// 指定分页每页返回的数据条数，如果不传默认为 20，单页最大支持 100。
         public let limit: Int64?
 
         /// 下载url过期时间，单位秒。0: 按默认值5分钟，允许范围：1s~24x60x60s(1天)
@@ -58,11 +69,11 @@ extension Ess {
         @available(*, deprecated)
         public let scene: String? = nil
 
-        /// 应用相关信息
-        @available(*, deprecated)
-        public let agent: Agent? = nil
+        /// 代理企业和员工的信息。
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        public let agent: Agent?
 
-        public init(operator: UserInfo, businessType: String, businessIds: [String], fileName: String? = nil, fileType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, urlTtl: Int64? = nil) {
+        public init(operator: UserInfo, businessType: String, businessIds: [String], fileName: String? = nil, fileType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, urlTtl: Int64? = nil, agent: Agent? = nil) {
             self.operator = `operator`
             self.businessType = businessType
             self.businessIds = businessIds
@@ -71,9 +82,10 @@ extension Ess {
             self.offset = offset
             self.limit = limit
             self.urlTtl = urlTtl
+            self.agent = agent
         }
 
-        @available(*, deprecated, renamed: "init(operator:businessType:businessIds:fileName:fileType:offset:limit:urlTtl:)", message: "'ccToken', 'scene' and 'agent' are deprecated in 'DescribeFileUrlsRequest'. Setting these parameters has no effect.")
+        @available(*, deprecated, renamed: "init(operator:businessType:businessIds:fileName:fileType:offset:limit:urlTtl:agent:)", message: "'ccToken' and 'scene' are deprecated in 'DescribeFileUrlsRequest'. Setting these parameters has no effect.")
         public init(operator: UserInfo, businessType: String, businessIds: [String], fileName: String? = nil, fileType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, urlTtl: Int64? = nil, ccToken: String? = nil, scene: String? = nil, agent: Agent? = nil) {
             self.operator = `operator`
             self.businessType = businessType
@@ -83,6 +95,7 @@ extension Ess {
             self.offset = offset
             self.limit = limit
             self.urlTtl = urlTtl
+            self.agent = agent
         }
 
         enum CodingKeys: String, CodingKey {
@@ -104,14 +117,14 @@ extension Ess {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return .init(operator: self.operator, businessType: self.businessType, businessIds: self.businessIds, fileName: self.fileName, fileType: self.fileType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, urlTtl: self.urlTtl)
+            return .init(operator: self.operator, businessType: self.businessType, businessIds: self.businessIds, fileName: self.fileName, fileType: self.fileType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, urlTtl: self.urlTtl, agent: self.agent)
         }
     }
 
     /// DescribeFileUrls返回参数结构体
     public struct DescribeFileUrlsResponse: TCPaginatedResponse {
         /// 文件URL信息；
-        /// 链接不是永久链接，有效期5分钟后链接失效。
+        /// 链接不是永久链接,  过期时间收UrlTtl入参的影响,  默认有效期5分钟后,  到期后链接失效。
         public let fileUrls: [FileUrl]
 
         /// URL数量
@@ -139,7 +152,7 @@ extension Ess {
 
     /// 查询文件下载URL
     ///
-    /// 查询文件下载URL。
+    /// 本接口（DescribeFileUrls）用于查询文件的下载URL。
     /// 适用场景：通过传参合同流程编号，下载对应的合同PDF文件流到本地。
     @inlinable
     public func describeFileUrls(_ input: DescribeFileUrlsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileUrlsResponse> {
@@ -148,7 +161,7 @@ extension Ess {
 
     /// 查询文件下载URL
     ///
-    /// 查询文件下载URL。
+    /// 本接口（DescribeFileUrls）用于查询文件的下载URL。
     /// 适用场景：通过传参合同流程编号，下载对应的合同PDF文件流到本地。
     @inlinable
     public func describeFileUrls(_ input: DescribeFileUrlsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileUrlsResponse {
@@ -157,18 +170,18 @@ extension Ess {
 
     /// 查询文件下载URL
     ///
-    /// 查询文件下载URL。
+    /// 本接口（DescribeFileUrls）用于查询文件的下载URL。
     /// 适用场景：通过传参合同流程编号，下载对应的合同PDF文件流到本地。
     @inlinable
-    public func describeFileUrls(operator: UserInfo, businessType: String, businessIds: [String], fileName: String? = nil, fileType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, urlTtl: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileUrlsResponse> {
-        self.describeFileUrls(.init(operator: `operator`, businessType: businessType, businessIds: businessIds, fileName: fileName, fileType: fileType, offset: offset, limit: limit, urlTtl: urlTtl), region: region, logger: logger, on: eventLoop)
+    public func describeFileUrls(operator: UserInfo, businessType: String, businessIds: [String], fileName: String? = nil, fileType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, urlTtl: Int64? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileUrlsResponse> {
+        self.describeFileUrls(.init(operator: `operator`, businessType: businessType, businessIds: businessIds, fileName: fileName, fileType: fileType, offset: offset, limit: limit, urlTtl: urlTtl, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询文件下载URL
     ///
-    /// 查询文件下载URL。
+    /// 本接口（DescribeFileUrls）用于查询文件的下载URL。
     /// 适用场景：通过传参合同流程编号，下载对应的合同PDF文件流到本地。
-    @available(*, deprecated, renamed: "describeFileUrls(operator:businessType:businessIds:fileName:fileType:offset:limit:urlTtl:region:logger:on:)", message: "'ccToken', 'scene' and 'agent' are deprecated. Setting these parameters has no effect.")
+    @available(*, deprecated, renamed: "describeFileUrls(operator:businessType:businessIds:fileName:fileType:offset:limit:urlTtl:agent:region:logger:on:)", message: "'ccToken' and 'scene' are deprecated. Setting these parameters has no effect.")
     @inlinable
     public func describeFileUrls(operator: UserInfo, businessType: String, businessIds: [String], fileName: String? = nil, fileType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, urlTtl: Int64? = nil, ccToken: String? = nil, scene: String? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileUrlsResponse> {
         self.describeFileUrls(.init(operator: `operator`, businessType: businessType, businessIds: businessIds, fileName: fileName, fileType: fileType, offset: offset, limit: limit, urlTtl: urlTtl, ccToken: ccToken, scene: scene, agent: agent), region: region, logger: logger, on: eventLoop)
@@ -176,18 +189,18 @@ extension Ess {
 
     /// 查询文件下载URL
     ///
-    /// 查询文件下载URL。
+    /// 本接口（DescribeFileUrls）用于查询文件的下载URL。
     /// 适用场景：通过传参合同流程编号，下载对应的合同PDF文件流到本地。
     @inlinable
-    public func describeFileUrls(operator: UserInfo, businessType: String, businessIds: [String], fileName: String? = nil, fileType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, urlTtl: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileUrlsResponse {
-        try await self.describeFileUrls(.init(operator: `operator`, businessType: businessType, businessIds: businessIds, fileName: fileName, fileType: fileType, offset: offset, limit: limit, urlTtl: urlTtl), region: region, logger: logger, on: eventLoop)
+    public func describeFileUrls(operator: UserInfo, businessType: String, businessIds: [String], fileName: String? = nil, fileType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, urlTtl: Int64? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileUrlsResponse {
+        try await self.describeFileUrls(.init(operator: `operator`, businessType: businessType, businessIds: businessIds, fileName: fileName, fileType: fileType, offset: offset, limit: limit, urlTtl: urlTtl, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询文件下载URL
     ///
-    /// 查询文件下载URL。
+    /// 本接口（DescribeFileUrls）用于查询文件的下载URL。
     /// 适用场景：通过传参合同流程编号，下载对应的合同PDF文件流到本地。
-    @available(*, deprecated, renamed: "describeFileUrls(operator:businessType:businessIds:fileName:fileType:offset:limit:urlTtl:region:logger:on:)", message: "'ccToken', 'scene' and 'agent' are deprecated. Setting these parameters has no effect.")
+    @available(*, deprecated, renamed: "describeFileUrls(operator:businessType:businessIds:fileName:fileType:offset:limit:urlTtl:agent:region:logger:on:)", message: "'ccToken' and 'scene' are deprecated. Setting these parameters has no effect.")
     @inlinable
     public func describeFileUrls(operator: UserInfo, businessType: String, businessIds: [String], fileName: String? = nil, fileType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, urlTtl: Int64? = nil, ccToken: String? = nil, scene: String? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileUrlsResponse {
         try await self.describeFileUrls(.init(operator: `operator`, businessType: businessType, businessIds: businessIds, fileName: fileName, fileType: fileType, offset: offset, limit: limit, urlTtl: urlTtl, ccToken: ccToken, scene: scene, agent: agent), region: region, logger: logger, on: eventLoop)
@@ -195,7 +208,7 @@ extension Ess {
 
     /// 查询文件下载URL
     ///
-    /// 查询文件下载URL。
+    /// 本接口（DescribeFileUrls）用于查询文件的下载URL。
     /// 适用场景：通过传参合同流程编号，下载对应的合同PDF文件流到本地。
     @inlinable
     public func describeFileUrlsPaginated(_ input: DescribeFileUrlsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [FileUrl])> {
@@ -204,7 +217,7 @@ extension Ess {
 
     /// 查询文件下载URL
     ///
-    /// 查询文件下载URL。
+    /// 本接口（DescribeFileUrls）用于查询文件的下载URL。
     /// 适用场景：通过传参合同流程编号，下载对应的合同PDF文件流到本地。
     @inlinable @discardableResult
     public func describeFileUrlsPaginated(_ input: DescribeFileUrlsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeFileUrlsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
@@ -213,7 +226,7 @@ extension Ess {
 
     /// 查询文件下载URL
     ///
-    /// 查询文件下载URL。
+    /// 本接口（DescribeFileUrls）用于查询文件的下载URL。
     /// 适用场景：通过传参合同流程编号，下载对应的合同PDF文件流到本地。
     ///
     /// - Returns: `AsyncSequence`s of ``FileUrl`` and ``DescribeFileUrlsResponse`` that can be iterated over asynchronously on demand.

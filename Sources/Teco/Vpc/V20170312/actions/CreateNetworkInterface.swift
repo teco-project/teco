@@ -51,7 +51,10 @@ extension Vpc {
         /// 网卡trunking模式设置，Enable-开启，Disable--关闭，默认关闭。
         public let trunkingFlag: String?
 
-        public init(vpcId: String, networkInterfaceName: String, subnetId: String, networkInterfaceDescription: String? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, qosLevel: String? = nil, securityGroupIds: [String]? = nil, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, tags: [Tag]? = nil, trunkingFlag: String? = nil) {
+        /// 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
+        public let clientToken: String?
+
+        public init(vpcId: String, networkInterfaceName: String, subnetId: String, networkInterfaceDescription: String? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, qosLevel: String? = nil, securityGroupIds: [String]? = nil, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, tags: [Tag]? = nil, trunkingFlag: String? = nil, clientToken: String? = nil) {
             self.vpcId = vpcId
             self.networkInterfaceName = networkInterfaceName
             self.subnetId = subnetId
@@ -62,6 +65,7 @@ extension Vpc {
             self.privateIpAddresses = privateIpAddresses
             self.tags = tags
             self.trunkingFlag = trunkingFlag
+            self.clientToken = clientToken
         }
 
         enum CodingKeys: String, CodingKey {
@@ -75,6 +79,7 @@ extension Vpc {
             case privateIpAddresses = "PrivateIpAddresses"
             case tags = "Tags"
             case trunkingFlag = "TrunkingFlag"
+            case clientToken = "ClientToken"
         }
     }
 
@@ -130,8 +135,8 @@ extension Vpc {
     /// * 创建弹性网卡同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     /// > Important: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     @inlinable
-    public func createNetworkInterface(vpcId: String, networkInterfaceName: String, subnetId: String, networkInterfaceDescription: String? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, qosLevel: String? = nil, securityGroupIds: [String]? = nil, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, tags: [Tag]? = nil, trunkingFlag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkInterfaceResponse> {
-        self.createNetworkInterface(.init(vpcId: vpcId, networkInterfaceName: networkInterfaceName, subnetId: subnetId, networkInterfaceDescription: networkInterfaceDescription, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, qosLevel: qosLevel, securityGroupIds: securityGroupIds, privateIpAddresses: privateIpAddresses, tags: tags, trunkingFlag: trunkingFlag), region: region, logger: logger, on: eventLoop)
+    public func createNetworkInterface(vpcId: String, networkInterfaceName: String, subnetId: String, networkInterfaceDescription: String? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, qosLevel: String? = nil, securityGroupIds: [String]? = nil, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, tags: [Tag]? = nil, trunkingFlag: String? = nil, clientToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkInterfaceResponse> {
+        self.createNetworkInterface(.init(vpcId: vpcId, networkInterfaceName: networkInterfaceName, subnetId: subnetId, networkInterfaceDescription: networkInterfaceDescription, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, qosLevel: qosLevel, securityGroupIds: securityGroupIds, privateIpAddresses: privateIpAddresses, tags: tags, trunkingFlag: trunkingFlag, clientToken: clientToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建弹性网卡
@@ -144,7 +149,7 @@ extension Vpc {
     /// * 创建弹性网卡同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     /// > Important: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     @inlinable
-    public func createNetworkInterface(vpcId: String, networkInterfaceName: String, subnetId: String, networkInterfaceDescription: String? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, qosLevel: String? = nil, securityGroupIds: [String]? = nil, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, tags: [Tag]? = nil, trunkingFlag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkInterfaceResponse {
-        try await self.createNetworkInterface(.init(vpcId: vpcId, networkInterfaceName: networkInterfaceName, subnetId: subnetId, networkInterfaceDescription: networkInterfaceDescription, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, qosLevel: qosLevel, securityGroupIds: securityGroupIds, privateIpAddresses: privateIpAddresses, tags: tags, trunkingFlag: trunkingFlag), region: region, logger: logger, on: eventLoop)
+    public func createNetworkInterface(vpcId: String, networkInterfaceName: String, subnetId: String, networkInterfaceDescription: String? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, qosLevel: String? = nil, securityGroupIds: [String]? = nil, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, tags: [Tag]? = nil, trunkingFlag: String? = nil, clientToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkInterfaceResponse {
+        try await self.createNetworkInterface(.init(vpcId: vpcId, networkInterfaceName: networkInterfaceName, subnetId: subnetId, networkInterfaceDescription: networkInterfaceDescription, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, qosLevel: qosLevel, securityGroupIds: securityGroupIds, privateIpAddresses: privateIpAddresses, tags: tags, trunkingFlag: trunkingFlag, clientToken: clientToken), region: region, logger: logger, on: eventLoop)
     }
 }

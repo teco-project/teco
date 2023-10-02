@@ -21,7 +21,7 @@ import TecoCore
 extension Mariadb {
     /// CreateHourDBInstance请求参数结构体
     public struct CreateHourDBInstanceRequest: TCRequest {
-        /// 节点可用区分布，最多可填两个可用区。
+        /// 节点可用区分布，可填写多个可用区。
         public let zones: [String]
 
         /// 节点个数
@@ -77,7 +77,10 @@ extension Mariadb {
         /// 回档时间
         public let rollbackTime: String?
 
-        public init(zones: [String], nodeCount: Int64, memory: Int64, storage: Int64, count: Int64? = nil, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, dbVersionId: String? = nil, instanceName: String? = nil, securityGroupIds: [String]? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, initParams: [DBParamValue]? = nil, rollbackInstanceId: String? = nil, rollbackTime: String? = nil) {
+        /// DCN同步模式，0：普通DCN同步，1：一致性同步
+        public let dcnSyncMode: Int64?
+
+        public init(zones: [String], nodeCount: Int64, memory: Int64, storage: Int64, count: Int64? = nil, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, dbVersionId: String? = nil, instanceName: String? = nil, securityGroupIds: [String]? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, initParams: [DBParamValue]? = nil, rollbackInstanceId: String? = nil, rollbackTime: String? = nil, dcnSyncMode: Int64? = nil) {
             self.zones = zones
             self.nodeCount = nodeCount
             self.memory = memory
@@ -96,6 +99,7 @@ extension Mariadb {
             self.initParams = initParams
             self.rollbackInstanceId = rollbackInstanceId
             self.rollbackTime = rollbackTime
+            self.dcnSyncMode = dcnSyncMode
         }
 
         enum CodingKeys: String, CodingKey {
@@ -117,6 +121,7 @@ extension Mariadb {
             case initParams = "InitParams"
             case rollbackInstanceId = "RollbackInstanceId"
             case rollbackTime = "RollbackTime"
+            case dcnSyncMode = "DcnSyncMode"
         }
     }
 
@@ -159,13 +164,13 @@ extension Mariadb {
 
     /// 创建MariaDB按量计费实例
     @inlinable
-    public func createHourDBInstance(zones: [String], nodeCount: Int64, memory: Int64, storage: Int64, count: Int64? = nil, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, dbVersionId: String? = nil, instanceName: String? = nil, securityGroupIds: [String]? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, initParams: [DBParamValue]? = nil, rollbackInstanceId: String? = nil, rollbackTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHourDBInstanceResponse> {
-        self.createHourDBInstance(.init(zones: zones, nodeCount: nodeCount, memory: memory, storage: storage, count: count, projectId: projectId, vpcId: vpcId, subnetId: subnetId, dbVersionId: dbVersionId, instanceName: instanceName, securityGroupIds: securityGroupIds, ipv6Flag: ipv6Flag, resourceTags: resourceTags, dcnRegion: dcnRegion, dcnInstanceId: dcnInstanceId, initParams: initParams, rollbackInstanceId: rollbackInstanceId, rollbackTime: rollbackTime), region: region, logger: logger, on: eventLoop)
+    public func createHourDBInstance(zones: [String], nodeCount: Int64, memory: Int64, storage: Int64, count: Int64? = nil, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, dbVersionId: String? = nil, instanceName: String? = nil, securityGroupIds: [String]? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, initParams: [DBParamValue]? = nil, rollbackInstanceId: String? = nil, rollbackTime: String? = nil, dcnSyncMode: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHourDBInstanceResponse> {
+        self.createHourDBInstance(.init(zones: zones, nodeCount: nodeCount, memory: memory, storage: storage, count: count, projectId: projectId, vpcId: vpcId, subnetId: subnetId, dbVersionId: dbVersionId, instanceName: instanceName, securityGroupIds: securityGroupIds, ipv6Flag: ipv6Flag, resourceTags: resourceTags, dcnRegion: dcnRegion, dcnInstanceId: dcnInstanceId, initParams: initParams, rollbackInstanceId: rollbackInstanceId, rollbackTime: rollbackTime, dcnSyncMode: dcnSyncMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建MariaDB按量计费实例
     @inlinable
-    public func createHourDBInstance(zones: [String], nodeCount: Int64, memory: Int64, storage: Int64, count: Int64? = nil, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, dbVersionId: String? = nil, instanceName: String? = nil, securityGroupIds: [String]? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, initParams: [DBParamValue]? = nil, rollbackInstanceId: String? = nil, rollbackTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHourDBInstanceResponse {
-        try await self.createHourDBInstance(.init(zones: zones, nodeCount: nodeCount, memory: memory, storage: storage, count: count, projectId: projectId, vpcId: vpcId, subnetId: subnetId, dbVersionId: dbVersionId, instanceName: instanceName, securityGroupIds: securityGroupIds, ipv6Flag: ipv6Flag, resourceTags: resourceTags, dcnRegion: dcnRegion, dcnInstanceId: dcnInstanceId, initParams: initParams, rollbackInstanceId: rollbackInstanceId, rollbackTime: rollbackTime), region: region, logger: logger, on: eventLoop)
+    public func createHourDBInstance(zones: [String], nodeCount: Int64, memory: Int64, storage: Int64, count: Int64? = nil, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, dbVersionId: String? = nil, instanceName: String? = nil, securityGroupIds: [String]? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, initParams: [DBParamValue]? = nil, rollbackInstanceId: String? = nil, rollbackTime: String? = nil, dcnSyncMode: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHourDBInstanceResponse {
+        try await self.createHourDBInstance(.init(zones: zones, nodeCount: nodeCount, memory: memory, storage: storage, count: count, projectId: projectId, vpcId: vpcId, subnetId: subnetId, dbVersionId: dbVersionId, instanceName: instanceName, securityGroupIds: securityGroupIds, ipv6Flag: ipv6Flag, resourceTags: resourceTags, dcnRegion: dcnRegion, dcnInstanceId: dcnInstanceId, initParams: initParams, rollbackInstanceId: rollbackInstanceId, rollbackTime: rollbackTime, dcnSyncMode: dcnSyncMode), region: region, logger: logger, on: eventLoop)
     }
 }

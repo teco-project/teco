@@ -51,7 +51,7 @@ public struct Tke: TCService {
             region: region,
             language: language,
             endpoint: endpoint,
-            errorType: TCTkeError.self,
+            errorType: nil,
             timeout: timeout,
             byteBufferAllocator: byteBufferAllocator
         )

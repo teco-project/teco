@@ -53,33 +53,33 @@ extension Cynosdb {
         }
     }
 
-    /// 查询实例规格
+    /// 查询购买页可购买的实例规格
     ///
-    /// 本接口（DescribeInstanceSpecs）用于查询实例规格
+    /// 本接口（DescribeInstanceSpecs）用于查询购买页可购买的实例规格
     @inlinable
     public func describeInstanceSpecs(_ input: DescribeInstanceSpecsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceSpecsResponse> {
         self.client.execute(action: "DescribeInstanceSpecs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询实例规格
+    /// 查询购买页可购买的实例规格
     ///
-    /// 本接口（DescribeInstanceSpecs）用于查询实例规格
+    /// 本接口（DescribeInstanceSpecs）用于查询购买页可购买的实例规格
     @inlinable
     public func describeInstanceSpecs(_ input: DescribeInstanceSpecsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceSpecsResponse {
         try await self.client.execute(action: "DescribeInstanceSpecs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询实例规格
+    /// 查询购买页可购买的实例规格
     ///
-    /// 本接口（DescribeInstanceSpecs）用于查询实例规格
+    /// 本接口（DescribeInstanceSpecs）用于查询购买页可购买的实例规格
     @inlinable
     public func describeInstanceSpecs(dbType: String, includeZoneStocks: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceSpecsResponse> {
         self.describeInstanceSpecs(.init(dbType: dbType, includeZoneStocks: includeZoneStocks), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询实例规格
+    /// 查询购买页可购买的实例规格
     ///
-    /// 本接口（DescribeInstanceSpecs）用于查询实例规格
+    /// 本接口（DescribeInstanceSpecs）用于查询购买页可购买的实例规格
     @inlinable
     public func describeInstanceSpecs(dbType: String, includeZoneStocks: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceSpecsResponse {
         try await self.describeInstanceSpecs(.init(dbType: dbType, includeZoneStocks: includeZoneStocks), region: region, logger: logger, on: eventLoop)

@@ -24,22 +24,34 @@ extension Ccc {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         public let sdkAppId: Int64
 
-        /// 坐席邮箱
+        /// 座席邮箱
         public let staffEmail: String
 
         /// 绑定技能组列表
-        public let skillGroupList: [Int64]
+        @available(*, deprecated)
+        public let skillGroupList: [Int64]? = nil
 
-        public init(sdkAppId: Int64, staffEmail: String, skillGroupList: [Int64]) {
+        /// 绑定技能组列表(必填)
+        public let staffSkillGroupList: [StaffSkillGroupList]?
+
+        public init(sdkAppId: Int64, staffEmail: String, staffSkillGroupList: [StaffSkillGroupList]? = nil) {
             self.sdkAppId = sdkAppId
             self.staffEmail = staffEmail
-            self.skillGroupList = skillGroupList
+            self.staffSkillGroupList = staffSkillGroupList
+        }
+
+        @available(*, deprecated, renamed: "init(sdkAppId:staffEmail:staffSkillGroupList:)", message: "'skillGroupList' is deprecated in 'BindStaffSkillGroupListRequest'. Setting this parameter has no effect.")
+        public init(sdkAppId: Int64, staffEmail: String, skillGroupList: [Int64]? = nil, staffSkillGroupList: [StaffSkillGroupList]? = nil) {
+            self.sdkAppId = sdkAppId
+            self.staffEmail = staffEmail
+            self.staffSkillGroupList = staffSkillGroupList
         }
 
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case staffEmail = "StaffEmail"
             case skillGroupList = "SkillGroupList"
+            case staffSkillGroupList = "StaffSkillGroupList"
         }
     }
 
@@ -53,27 +65,41 @@ extension Ccc {
         }
     }
 
-    /// 绑定坐席所属技能组
+    /// 绑定座席所属技能组
     @inlinable @discardableResult
     public func bindStaffSkillGroupList(_ input: BindStaffSkillGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindStaffSkillGroupListResponse> {
         self.client.execute(action: "BindStaffSkillGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 绑定坐席所属技能组
+    /// 绑定座席所属技能组
     @inlinable @discardableResult
     public func bindStaffSkillGroupList(_ input: BindStaffSkillGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindStaffSkillGroupListResponse {
         try await self.client.execute(action: "BindStaffSkillGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 绑定坐席所属技能组
+    /// 绑定座席所属技能组
     @inlinable @discardableResult
-    public func bindStaffSkillGroupList(sdkAppId: Int64, staffEmail: String, skillGroupList: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindStaffSkillGroupListResponse> {
-        self.bindStaffSkillGroupList(.init(sdkAppId: sdkAppId, staffEmail: staffEmail, skillGroupList: skillGroupList), region: region, logger: logger, on: eventLoop)
+    public func bindStaffSkillGroupList(sdkAppId: Int64, staffEmail: String, staffSkillGroupList: [StaffSkillGroupList]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindStaffSkillGroupListResponse> {
+        self.bindStaffSkillGroupList(.init(sdkAppId: sdkAppId, staffEmail: staffEmail, staffSkillGroupList: staffSkillGroupList), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 绑定坐席所属技能组
+    /// 绑定座席所属技能组
+    @available(*, deprecated, renamed: "bindStaffSkillGroupList(sdkAppId:staffEmail:staffSkillGroupList:region:logger:on:)", message: "'skillGroupList' is deprecated. Setting this parameter has no effect.")
     @inlinable @discardableResult
-    public func bindStaffSkillGroupList(sdkAppId: Int64, staffEmail: String, skillGroupList: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindStaffSkillGroupListResponse {
-        try await self.bindStaffSkillGroupList(.init(sdkAppId: sdkAppId, staffEmail: staffEmail, skillGroupList: skillGroupList), region: region, logger: logger, on: eventLoop)
+    public func bindStaffSkillGroupList(sdkAppId: Int64, staffEmail: String, skillGroupList: [Int64]? = nil, staffSkillGroupList: [StaffSkillGroupList]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindStaffSkillGroupListResponse> {
+        self.bindStaffSkillGroupList(.init(sdkAppId: sdkAppId, staffEmail: staffEmail, skillGroupList: skillGroupList, staffSkillGroupList: staffSkillGroupList), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 绑定座席所属技能组
+    @inlinable @discardableResult
+    public func bindStaffSkillGroupList(sdkAppId: Int64, staffEmail: String, staffSkillGroupList: [StaffSkillGroupList]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindStaffSkillGroupListResponse {
+        try await self.bindStaffSkillGroupList(.init(sdkAppId: sdkAppId, staffEmail: staffEmail, staffSkillGroupList: staffSkillGroupList), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 绑定座席所属技能组
+    @available(*, deprecated, renamed: "bindStaffSkillGroupList(sdkAppId:staffEmail:staffSkillGroupList:region:logger:on:)", message: "'skillGroupList' is deprecated. Setting this parameter has no effect.")
+    @inlinable @discardableResult
+    public func bindStaffSkillGroupList(sdkAppId: Int64, staffEmail: String, skillGroupList: [Int64]? = nil, staffSkillGroupList: [StaffSkillGroupList]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindStaffSkillGroupListResponse {
+        try await self.bindStaffSkillGroupList(.init(sdkAppId: sdkAppId, staffEmail: staffEmail, skillGroupList: skillGroupList, staffSkillGroupList: staffSkillGroupList), region: region, logger: logger, on: eventLoop)
     }
 }
