@@ -17,7 +17,6 @@
 import Logging
 import NIOCore
 import TecoCore
-import TecoPaginationHelpers
 
 extension Ckafka {
     /// DescribeDatahubGroupOffsets请求参数结构体

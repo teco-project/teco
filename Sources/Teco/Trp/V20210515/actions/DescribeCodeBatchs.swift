@@ -17,7 +17,6 @@
 import Logging
 import NIOCore
 import TecoCore
-import TecoPaginationHelpers
 
 extension Trp {
     /// DescribeCodeBatchs请求参数结构体

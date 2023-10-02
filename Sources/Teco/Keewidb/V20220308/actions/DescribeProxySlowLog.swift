@@ -17,7 +17,6 @@
 import Logging
 import NIOCore
 import TecoCore
-import TecoPaginationHelpers
 
 extension Keewidb {
     /// DescribeProxySlowLog请求参数结构体

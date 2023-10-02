@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "multipart-kit",
+        "repositoryURL": "https://github.com/vapor/multipart-kit.git",
+        "state": {
+          "branch": null,
+          "revision": "1adfd69df2da08f7931d4281b257475e32c96734",
+          "version": "4.5.4"
+        }
+      },
+      {
         "package": "swift-atomics",
         "repositoryURL": "https://github.com/apple/swift-atomics.git",
         "state": {
@@ -105,8 +114,8 @@
         "repositoryURL": "https://github.com/teco-project/teco-core.git",
         "state": {
           "branch": null,
-          "revision": "6bdf166c5284a1a4b178080fe563fe3db06e5363",
-          "version": "0.5.3"
+          "revision": "5005cb05f352dfe898e3c45fadbce1ba15233132",
+          "version": "0.5.5"
         }
       }
     ]

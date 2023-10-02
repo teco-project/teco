@@ -17,7 +17,6 @@
 import Logging
 import NIOCore
 import TecoCore
-import TecoPaginationHelpers
 
 extension Tbaas {
     /// GetLatesdTransactionList请求参数结构体

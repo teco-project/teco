@@ -17,7 +17,6 @@
 import Logging
 import NIOCore
 import TecoCore
-import TecoPaginationHelpers
 
 extension Organization {
     /// DescribeOrganizationMemberAuthIdentities请求参数结构体

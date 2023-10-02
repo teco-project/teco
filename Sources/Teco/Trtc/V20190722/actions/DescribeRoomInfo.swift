@@ -17,7 +17,6 @@
 import Logging
 import NIOCore
 import TecoCore
-import TecoPaginationHelpers
 
 extension Trtc {
     /// DescribeRoomInfo请求参数结构体

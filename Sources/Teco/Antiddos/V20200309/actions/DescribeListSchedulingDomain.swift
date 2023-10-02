@@ -17,7 +17,6 @@
 import Logging
 import NIOCore
 import TecoCore
-import TecoPaginationHelpers
 
 extension Antiddos {
     /// DescribeListSchedulingDomain请求参数结构体

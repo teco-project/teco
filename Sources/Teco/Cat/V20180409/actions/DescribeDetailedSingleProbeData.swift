@@ -17,7 +17,6 @@
 import Logging
 import NIOCore
 import TecoCore
-import TecoPaginationHelpers
 
 extension Cat {
     /// DescribeDetailedSingleProbeData请求参数结构体

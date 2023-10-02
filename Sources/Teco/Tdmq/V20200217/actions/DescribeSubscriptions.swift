@@ -17,7 +17,6 @@
 import Logging
 import NIOCore
 import TecoCore
-import TecoPaginationHelpers
 
 extension Tdmq {
     /// DescribeSubscriptions请求参数结构体

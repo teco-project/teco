@@ -17,7 +17,6 @@
 import Logging
 import NIOCore
 import TecoCore
-import TecoPaginationHelpers
 
 extension Tdmq {
     /// DescribeRabbitMQVipInstances请求参数结构体

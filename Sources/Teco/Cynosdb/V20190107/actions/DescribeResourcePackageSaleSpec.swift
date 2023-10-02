@@ -17,7 +17,6 @@
 import Logging
 import NIOCore
 import TecoCore
-import TecoPaginationHelpers
 
 extension Cynosdb {
     /// DescribeResourcePackageSaleSpec请求参数结构体

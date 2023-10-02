@@ -17,7 +17,6 @@
 import Logging
 import NIOCore
 import TecoCore
-import TecoPaginationHelpers
 
 extension Sqlserver {
     /// DescribeInstanceParamRecords请求参数结构体
