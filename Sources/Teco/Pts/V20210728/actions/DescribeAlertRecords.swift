@@ -17,7 +17,6 @@
 import Logging
 import NIOCore
 import TecoCore
-import TecoPaginationHelpers
 
 extension Pts {
     /// DescribeAlertRecords请求参数结构体

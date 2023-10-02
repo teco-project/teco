@@ -17,7 +17,6 @@
 import Logging
 import NIOCore
 import TecoCore
-import TecoPaginationHelpers
 
 extension Wedata {
     /// DescribeMonitorsByPage请求参数结构体

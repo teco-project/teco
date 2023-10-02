@@ -19,7 +19,6 @@ import Logging
 import NIOCore
 import TecoCore
 import TecoDateHelpers
-import TecoPaginationHelpers
 
 extension Yunjing {
     /// DescribeWeeklyReportNonlocalLoginPlaces请求参数结构体

@@ -17,7 +17,6 @@
 import Logging
 import NIOCore
 import TecoCore
-import TecoPaginationHelpers
 
 extension Apigateway {
     /// DescribeServiceUsagePlan请求参数结构体

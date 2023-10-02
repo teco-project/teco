@@ -17,7 +17,6 @@
 import Logging
 import NIOCore
 import TecoCore
-import TecoPaginationHelpers
 
 extension Tourism {
     /// DescribeDrawResourceList请求参数结构体

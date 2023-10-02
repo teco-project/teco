@@ -17,7 +17,6 @@
 import Logging
 import NIOCore
 import TecoCore
-import TecoPaginationHelpers
 
 extension As {
     /// DescribeScalingPolicies请求参数结构体

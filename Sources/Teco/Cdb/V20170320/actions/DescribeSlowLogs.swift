@@ -17,7 +17,6 @@
 import Logging
 import NIOCore
 import TecoCore
-import TecoPaginationHelpers
 
 extension Cdb {
     /// DescribeSlowLogs请求参数结构体

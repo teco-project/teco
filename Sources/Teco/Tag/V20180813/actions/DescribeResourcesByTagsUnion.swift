@@ -17,7 +17,6 @@
 import Logging
 import NIOCore
 import TecoCore
-import TecoPaginationHelpers
 
 extension Tag {
     /// DescribeResourcesByTagsUnion请求参数结构体

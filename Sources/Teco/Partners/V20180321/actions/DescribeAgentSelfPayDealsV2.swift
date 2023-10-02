@@ -19,7 +19,6 @@ import Logging
 import NIOCore
 import TecoCore
 import TecoDateHelpers
-import TecoPaginationHelpers
 
 extension Partners {
     /// DescribeAgentSelfPayDealsV2请求参数结构体

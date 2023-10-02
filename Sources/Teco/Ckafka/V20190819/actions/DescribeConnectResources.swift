@@ -17,7 +17,6 @@
 import Logging
 import NIOCore
 import TecoCore
-import TecoPaginationHelpers
 
 extension Ckafka {
     /// DescribeConnectResources请求参数结构体

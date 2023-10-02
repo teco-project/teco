@@ -17,7 +17,6 @@
 import Logging
 import NIOCore
 import TecoCore
-import TecoPaginationHelpers
 
 extension Smh {
     /// DescribeTrafficPackages请求参数结构体

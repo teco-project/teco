@@ -17,7 +17,6 @@
 import Logging
 import NIOCore
 import TecoCore
-import TecoPaginationHelpers
 
 extension Yunjing {
     /// DescribeBruteAttacks请求参数结构体

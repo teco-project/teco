@@ -17,7 +17,6 @@
 import Logging
 import NIOCore
 import TecoCore
-import TecoPaginationHelpers
 
 extension Bmvpc {
     /// DescribeVpcResource请求参数结构体

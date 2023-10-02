@@ -17,7 +17,6 @@
 import Logging
 import NIOCore
 import TecoCore
-import TecoPaginationHelpers
 
 extension Lighthouse {
     /// DescribeDockerContainers请求参数结构体
