@@ -40,7 +40,8 @@ extension Hcm {
         public let rejectNonArithmeticImage: Bool?
 
         /// 异步模式标识，0：同步模式，1：异步模式。默认为同步模式
-        public let isAsync: Int64?
+        @available(*, deprecated)
+        public let isAsync: Int64? = nil
 
         /// 是否展开耦合算式中的竖式计算
         public let enableDispRelatedVertical: Bool?
@@ -60,6 +61,22 @@ extension Hcm {
         /// 用于选择是否拒绝模糊题 目。打开则丢弃模糊题目， 不进行后续的判题返回结 果。
         public let rejectVagueArithmetic: Bool?
 
+        public init(sessionId: String, image: String? = nil, hcmAppid: String? = nil, url: String? = nil, supportHorizontalImage: Bool? = nil, rejectNonArithmeticImage: Bool? = nil, enableDispRelatedVertical: Bool? = nil, enableDispMidresult: Bool? = nil, enablePdfRecognize: Bool? = nil, pdfPageIndex: Int64? = nil, laTex: Int64? = nil, rejectVagueArithmetic: Bool? = nil) {
+            self.sessionId = sessionId
+            self.image = image
+            self.hcmAppid = hcmAppid
+            self.url = url
+            self.supportHorizontalImage = supportHorizontalImage
+            self.rejectNonArithmeticImage = rejectNonArithmeticImage
+            self.enableDispRelatedVertical = enableDispRelatedVertical
+            self.enableDispMidresult = enableDispMidresult
+            self.enablePdfRecognize = enablePdfRecognize
+            self.pdfPageIndex = pdfPageIndex
+            self.laTex = laTex
+            self.rejectVagueArithmetic = rejectVagueArithmetic
+        }
+
+        @available(*, deprecated, renamed: "init(sessionId:image:hcmAppid:url:supportHorizontalImage:rejectNonArithmeticImage:enableDispRelatedVertical:enableDispMidresult:enablePdfRecognize:pdfPageIndex:laTex:rejectVagueArithmetic:)", message: "'isAsync' is deprecated in 'EvaluationRequest'. Setting this parameter has no effect.")
         public init(sessionId: String, image: String? = nil, hcmAppid: String? = nil, url: String? = nil, supportHorizontalImage: Bool? = nil, rejectNonArithmeticImage: Bool? = nil, isAsync: Int64? = nil, enableDispRelatedVertical: Bool? = nil, enableDispMidresult: Bool? = nil, enablePdfRecognize: Bool? = nil, pdfPageIndex: Int64? = nil, laTex: Int64? = nil, rejectVagueArithmetic: Bool? = nil) {
             self.sessionId = sessionId
             self.image = image
@@ -67,7 +84,6 @@ extension Hcm {
             self.url = url
             self.supportHorizontalImage = supportHorizontalImage
             self.rejectNonArithmeticImage = rejectNonArithmeticImage
-            self.isAsync = isAsync
             self.enableDispRelatedVertical = enableDispRelatedVertical
             self.enableDispMidresult = enableDispMidresult
             self.enablePdfRecognize = enablePdfRecognize
@@ -103,6 +119,7 @@ extension Hcm {
         public let items: [Item]?
 
         /// 任务 id，用于查询接口
+        @available(*, deprecated)
         public let taskId: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -136,6 +153,15 @@ extension Hcm {
     ///
     /// 速算题目批改接口，根据用户上传的图片或图片的URL识别图片中的数学算式，进而给出算式的正确性评估。
     @inlinable
+    public func evaluation(sessionId: String, image: String? = nil, hcmAppid: String? = nil, url: String? = nil, supportHorizontalImage: Bool? = nil, rejectNonArithmeticImage: Bool? = nil, enableDispRelatedVertical: Bool? = nil, enableDispMidresult: Bool? = nil, enablePdfRecognize: Bool? = nil, pdfPageIndex: Int64? = nil, laTex: Int64? = nil, rejectVagueArithmetic: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EvaluationResponse> {
+        self.evaluation(.init(sessionId: sessionId, image: image, hcmAppid: hcmAppid, url: url, supportHorizontalImage: supportHorizontalImage, rejectNonArithmeticImage: rejectNonArithmeticImage, enableDispRelatedVertical: enableDispRelatedVertical, enableDispMidresult: enableDispMidresult, enablePdfRecognize: enablePdfRecognize, pdfPageIndex: pdfPageIndex, laTex: laTex, rejectVagueArithmetic: rejectVagueArithmetic), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 速算题目批改接口
+    ///
+    /// 速算题目批改接口，根据用户上传的图片或图片的URL识别图片中的数学算式，进而给出算式的正确性评估。
+    @available(*, deprecated, renamed: "evaluation(sessionId:image:hcmAppid:url:supportHorizontalImage:rejectNonArithmeticImage:enableDispRelatedVertical:enableDispMidresult:enablePdfRecognize:pdfPageIndex:laTex:rejectVagueArithmetic:region:logger:on:)", message: "'isAsync' is deprecated. Setting this parameter has no effect.")
+    @inlinable
     public func evaluation(sessionId: String, image: String? = nil, hcmAppid: String? = nil, url: String? = nil, supportHorizontalImage: Bool? = nil, rejectNonArithmeticImage: Bool? = nil, isAsync: Int64? = nil, enableDispRelatedVertical: Bool? = nil, enableDispMidresult: Bool? = nil, enablePdfRecognize: Bool? = nil, pdfPageIndex: Int64? = nil, laTex: Int64? = nil, rejectVagueArithmetic: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EvaluationResponse> {
         self.evaluation(.init(sessionId: sessionId, image: image, hcmAppid: hcmAppid, url: url, supportHorizontalImage: supportHorizontalImage, rejectNonArithmeticImage: rejectNonArithmeticImage, isAsync: isAsync, enableDispRelatedVertical: enableDispRelatedVertical, enableDispMidresult: enableDispMidresult, enablePdfRecognize: enablePdfRecognize, pdfPageIndex: pdfPageIndex, laTex: laTex, rejectVagueArithmetic: rejectVagueArithmetic), region: region, logger: logger, on: eventLoop)
     }
@@ -143,6 +169,15 @@ extension Hcm {
     /// 速算题目批改接口
     ///
     /// 速算题目批改接口，根据用户上传的图片或图片的URL识别图片中的数学算式，进而给出算式的正确性评估。
+    @inlinable
+    public func evaluation(sessionId: String, image: String? = nil, hcmAppid: String? = nil, url: String? = nil, supportHorizontalImage: Bool? = nil, rejectNonArithmeticImage: Bool? = nil, enableDispRelatedVertical: Bool? = nil, enableDispMidresult: Bool? = nil, enablePdfRecognize: Bool? = nil, pdfPageIndex: Int64? = nil, laTex: Int64? = nil, rejectVagueArithmetic: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EvaluationResponse {
+        try await self.evaluation(.init(sessionId: sessionId, image: image, hcmAppid: hcmAppid, url: url, supportHorizontalImage: supportHorizontalImage, rejectNonArithmeticImage: rejectNonArithmeticImage, enableDispRelatedVertical: enableDispRelatedVertical, enableDispMidresult: enableDispMidresult, enablePdfRecognize: enablePdfRecognize, pdfPageIndex: pdfPageIndex, laTex: laTex, rejectVagueArithmetic: rejectVagueArithmetic), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 速算题目批改接口
+    ///
+    /// 速算题目批改接口，根据用户上传的图片或图片的URL识别图片中的数学算式，进而给出算式的正确性评估。
+    @available(*, deprecated, renamed: "evaluation(sessionId:image:hcmAppid:url:supportHorizontalImage:rejectNonArithmeticImage:enableDispRelatedVertical:enableDispMidresult:enablePdfRecognize:pdfPageIndex:laTex:rejectVagueArithmetic:region:logger:on:)", message: "'isAsync' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func evaluation(sessionId: String, image: String? = nil, hcmAppid: String? = nil, url: String? = nil, supportHorizontalImage: Bool? = nil, rejectNonArithmeticImage: Bool? = nil, isAsync: Int64? = nil, enableDispRelatedVertical: Bool? = nil, enableDispMidresult: Bool? = nil, enablePdfRecognize: Bool? = nil, pdfPageIndex: Int64? = nil, laTex: Int64? = nil, rejectVagueArithmetic: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EvaluationResponse {
         try await self.evaluation(.init(sessionId: sessionId, image: image, hcmAppid: hcmAppid, url: url, supportHorizontalImage: supportHorizontalImage, rejectNonArithmeticImage: rejectNonArithmeticImage, isAsync: isAsync, enableDispRelatedVertical: enableDispRelatedVertical, enableDispMidresult: enableDispMidresult, enablePdfRecognize: enablePdfRecognize, pdfPageIndex: pdfPageIndex, laTex: laTex, rejectVagueArithmetic: rejectVagueArithmetic), region: region, logger: logger, on: eventLoop)

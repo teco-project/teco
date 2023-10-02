@@ -55,27 +55,27 @@ extension Tdid {
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func getDidDocument(_ input: GetDidDocumentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidDocumentResponse> {
-        fatalError("GetDidDocument is no longer available.")
+        fatalError("'GetDidDocument' is no longer available.")
     }
 
     /// 查看DID文档
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func getDidDocument(_ input: GetDidDocumentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidDocumentResponse {
-        fatalError("GetDidDocument is no longer available.")
+        fatalError("'GetDidDocument' is no longer available.")
     }
 
     /// 查看DID文档
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func getDidDocument(did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidDocumentResponse> {
-        fatalError("GetDidDocument is no longer available.")
+        fatalError("'GetDidDocument' is no longer available.")
     }
 
     /// 查看DID文档
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func getDidDocument(did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidDocumentResponse {
-        fatalError("GetDidDocument is no longer available.")
+        fatalError("'GetDidDocument' is no longer available.")
     }
 }

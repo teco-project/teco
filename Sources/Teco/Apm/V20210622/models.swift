@@ -405,4 +405,167 @@ extension Apm {
             case compares = "Compares"
         }
     }
+
+    /// Span对象
+    public struct Span: TCInputModel, TCOutputModel {
+        /// Trace Id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let traceID: String?
+
+        /// 日志
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let logs: [SpanLog]?
+
+        /// 标签
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tags: [SpanTag]?
+
+        /// 上报应用服务信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let process: SpanProcess?
+
+        /// 产生时间戳(毫秒)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let timestamp: Int64?
+
+        /// Span名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let operationName: String?
+
+        /// 关联关系
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let references: [SpanReference]?
+
+        /// 产生时间戳(微秒)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let startTime: Int64?
+
+        /// 持续耗时(微妙)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let duration: Int64?
+
+        /// Span Id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let spanID: String?
+
+        /// 产生时间戳(毫秒)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let startTimeMillis: Int64?
+
+        public init(traceID: String? = nil, logs: [SpanLog]? = nil, tags: [SpanTag]? = nil, process: SpanProcess? = nil, timestamp: Int64? = nil, operationName: String? = nil, references: [SpanReference]? = nil, startTime: Int64? = nil, duration: Int64? = nil, spanID: String? = nil, startTimeMillis: Int64? = nil) {
+            self.traceID = traceID
+            self.logs = logs
+            self.tags = tags
+            self.process = process
+            self.timestamp = timestamp
+            self.operationName = operationName
+            self.references = references
+            self.startTime = startTime
+            self.duration = duration
+            self.spanID = spanID
+            self.startTimeMillis = startTimeMillis
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case traceID = "TraceID"
+            case logs = "Logs"
+            case tags = "Tags"
+            case process = "Process"
+            case timestamp = "Timestamp"
+            case operationName = "OperationName"
+            case references = "References"
+            case startTime = "StartTime"
+            case duration = "Duration"
+            case spanID = "SpanID"
+            case startTimeMillis = "StartTimeMillis"
+        }
+    }
+
+    /// Span日志部分
+    public struct SpanLog: TCInputModel, TCOutputModel {
+        /// 日志时间戳
+        public let timestamp: Int64
+
+        /// 标签
+        public let fields: [SpanTag]
+
+        public init(timestamp: Int64, fields: [SpanTag]) {
+            self.timestamp = timestamp
+            self.fields = fields
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case timestamp = "Timestamp"
+            case fields = "Fields"
+        }
+    }
+
+    /// 服务相关信息
+    public struct SpanProcess: TCInputModel, TCOutputModel {
+        /// 应用服务名称
+        public let serviceName: String
+
+        /// Tags 标签数组
+        public let tags: [SpanTag]
+
+        public init(serviceName: String, tags: [SpanTag]) {
+            self.serviceName = serviceName
+            self.tags = tags
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case serviceName = "ServiceName"
+            case tags = "Tags"
+        }
+    }
+
+    /// Span上下游关联关系
+    public struct SpanReference: TCInputModel, TCOutputModel {
+        /// 关联关系类型
+        public let refType: String
+
+        /// Span ID
+        public let spanID: String
+
+        /// Trace ID
+        public let traceID: String
+
+        public init(refType: String, spanID: String, traceID: String) {
+            self.refType = refType
+            self.spanID = spanID
+            self.traceID = traceID
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case refType = "RefType"
+            case spanID = "SpanID"
+            case traceID = "TraceID"
+        }
+    }
+
+    /// 标签
+    public struct SpanTag: TCInputModel, TCOutputModel {
+        /// 标签类型
+        public let type: String
+
+        /// 标签Key
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let key: String
+
+        /// 标签值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let value: String
+
+        public init(type: String, key: String, value: String) {
+            self.type = type
+            self.key = key
+            self.value = value
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case key = "Key"
+            case value = "Value"
+        }
+    }
 }

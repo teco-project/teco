@@ -24,7 +24,7 @@ extension Tat {
         /// 待触发的命令ID。
         public let commandId: String
 
-        /// 待执行命令的实例ID列表，上限100。
+        /// 待执行命令的实例ID列表，上限200。
         public let instanceIds: [String]
 
         /// Command 的自定义参数。字段类型为json encoded string。如：{\"varA\": \"222\"}。

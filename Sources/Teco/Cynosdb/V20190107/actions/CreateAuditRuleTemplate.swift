@@ -24,28 +24,38 @@ extension Cynosdb {
         /// 审计规则。
         public let ruleFilters: [RuleFilters]
 
-        /// 规则模版名称。
+        /// 规则模板名称。
         public let ruleTemplateName: String
 
-        /// 规则模版描述。
+        /// 规则模板描述。
         public let description: String?
 
-        public init(ruleFilters: [RuleFilters], ruleTemplateName: String, description: String? = nil) {
+        /// 告警等级。1-低风险，2-中风险，3-高风险
+        public let alarmLevel: UInt64?
+
+        /// 告警策略。0-不告警，1-告警。
+        public let alarmPolicy: UInt64?
+
+        public init(ruleFilters: [RuleFilters], ruleTemplateName: String, description: String? = nil, alarmLevel: UInt64? = nil, alarmPolicy: UInt64? = nil) {
             self.ruleFilters = ruleFilters
             self.ruleTemplateName = ruleTemplateName
             self.description = description
+            self.alarmLevel = alarmLevel
+            self.alarmPolicy = alarmPolicy
         }
 
         enum CodingKeys: String, CodingKey {
             case ruleFilters = "RuleFilters"
             case ruleTemplateName = "RuleTemplateName"
             case description = "Description"
+            case alarmLevel = "AlarmLevel"
+            case alarmPolicy = "AlarmPolicy"
         }
     }
 
     /// CreateAuditRuleTemplate返回参数结构体
     public struct CreateAuditRuleTemplateResponse: TCResponse {
-        /// 生成的规则模版ID。
+        /// 生成的规则模板ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleTemplateId: String?
 
@@ -58,27 +68,27 @@ extension Cynosdb {
         }
     }
 
-    /// 创建审计规则模版
+    /// 创建审计规则模板
     @inlinable
     public func createAuditRuleTemplate(_ input: CreateAuditRuleTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAuditRuleTemplateResponse> {
         self.client.execute(action: "CreateAuditRuleTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 创建审计规则模版
+    /// 创建审计规则模板
     @inlinable
     public func createAuditRuleTemplate(_ input: CreateAuditRuleTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuditRuleTemplateResponse {
         try await self.client.execute(action: "CreateAuditRuleTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 创建审计规则模版
+    /// 创建审计规则模板
     @inlinable
-    public func createAuditRuleTemplate(ruleFilters: [RuleFilters], ruleTemplateName: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAuditRuleTemplateResponse> {
-        self.createAuditRuleTemplate(.init(ruleFilters: ruleFilters, ruleTemplateName: ruleTemplateName, description: description), region: region, logger: logger, on: eventLoop)
+    public func createAuditRuleTemplate(ruleFilters: [RuleFilters], ruleTemplateName: String, description: String? = nil, alarmLevel: UInt64? = nil, alarmPolicy: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAuditRuleTemplateResponse> {
+        self.createAuditRuleTemplate(.init(ruleFilters: ruleFilters, ruleTemplateName: ruleTemplateName, description: description, alarmLevel: alarmLevel, alarmPolicy: alarmPolicy), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 创建审计规则模版
+    /// 创建审计规则模板
     @inlinable
-    public func createAuditRuleTemplate(ruleFilters: [RuleFilters], ruleTemplateName: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuditRuleTemplateResponse {
-        try await self.createAuditRuleTemplate(.init(ruleFilters: ruleFilters, ruleTemplateName: ruleTemplateName, description: description), region: region, logger: logger, on: eventLoop)
+    public func createAuditRuleTemplate(ruleFilters: [RuleFilters], ruleTemplateName: String, description: String? = nil, alarmLevel: UInt64? = nil, alarmPolicy: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuditRuleTemplateResponse {
+        try await self.createAuditRuleTemplate(.init(ruleFilters: ruleFilters, ruleTemplateName: ruleTemplateName, description: description, alarmLevel: alarmLevel, alarmPolicy: alarmPolicy), region: region, logger: logger, on: eventLoop)
     }
 }

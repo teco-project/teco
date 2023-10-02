@@ -20,14 +20,16 @@ import TecoDateHelpers
 
 extension Cls {
     /// 告警多维分析一些配置信息
-    public struct AlarmAnalysisConfig: TCInputModel {
+    public struct AlarmAnalysisConfig: TCInputModel, TCOutputModel {
         /// 键
-        public let key: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let key: String?
 
         /// 值
-        public let value: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let value: String?
 
-        public init(key: String, value: String) {
+        public init(key: String? = nil, value: String? = nil) {
             self.key = key
             self.value = value
         }
@@ -85,6 +87,11 @@ extension Cls {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let analysis: [AnalysisDimensional]?
 
+        /// 多触发条件。
+        ///
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let multiConditions: [MultiCondition]?
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case alarmTargets = "AlarmTargets"
@@ -100,6 +107,7 @@ extension Cls {
             case messageTemplate = "MessageTemplate"
             case callBack = "CallBack"
             case analysis = "Analysis"
+            case multiConditions = "MultiConditions"
         }
     }
 
@@ -135,6 +143,10 @@ extension Cls {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
 
+        /// 通知规则。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let noticeRules: [NoticeRule]?
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case type = "Type"
@@ -143,35 +155,43 @@ extension Cls {
             case alarmNoticeId = "AlarmNoticeId"
             case createTime = "CreateTime"
             case updateTime = "UpdateTime"
+            case noticeRules = "NoticeRules"
         }
     }
 
     /// 告警对象
-    public struct AlarmTarget: TCInputModel {
+    public struct AlarmTarget: TCInputModel, TCOutputModel {
         /// 日志主题ID。
-        public let topicId: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let topicId: String?
 
         /// 查询语句。
-        public let query: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let query: String?
 
         /// 告警对象序号；从1开始递增。
-        public let number: Int64
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let number: Int64?
 
         /// 查询范围起始时间相对于告警执行时间的偏移，单位为分钟，取值为非正，最大值为0，最小值为-1440。
-        public let startTimeOffset: Int64
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let startTimeOffset: Int64?
 
         /// 查询范围终止时间相对于告警执行时间的偏移，单位为分钟，取值为非正，须大于StartTimeOffset，最大值为0，最小值为-1440。
-        public let endTimeOffset: Int64
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let endTimeOffset: Int64?
 
         /// 日志集ID。
-        public let logsetId: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let logsetId: String?
 
         /// 检索语法规则，默认值为0。
         /// 0：Lucene语法，1：CQL语法。
         /// 详细说明参见[检索条件语法规则](https://cloud.tencent.com/document/product/614/47044#RetrievesConditionalRules)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let syntaxRule: UInt64?
 
-        public init(topicId: String, query: String, number: Int64, startTimeOffset: Int64, endTimeOffset: Int64, logsetId: String, syntaxRule: UInt64? = nil) {
+        public init(topicId: String? = nil, query: String? = nil, number: Int64? = nil, startTimeOffset: Int64? = nil, endTimeOffset: Int64? = nil, logsetId: String? = nil, syntaxRule: UInt64? = nil) {
             self.topicId = topicId
             self.query = query
             self.number = number
@@ -680,6 +700,9 @@ extension Cls {
         /// 日志名称
         public let filePattern: String
 
+        /// 日志文件信息
+        public let filePaths: [FilePathInfo]?
+
         /// pod标签信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let includeLabels: [String]?
@@ -696,15 +719,21 @@ extension Cls {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let excludeLabels: [String]?
 
-        public init(namespace: String, container: String, logPath: String, filePattern: String, includeLabels: [String]? = nil, workLoad: ContainerWorkLoadInfo? = nil, excludeNamespace: String? = nil, excludeLabels: [String]? = nil) {
+        /// metadata信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let customLabels: [String]?
+
+        public init(namespace: String, container: String, logPath: String, filePattern: String, filePaths: [FilePathInfo]? = nil, includeLabels: [String]? = nil, workLoad: ContainerWorkLoadInfo? = nil, excludeNamespace: String? = nil, excludeLabels: [String]? = nil, customLabels: [String]? = nil) {
             self.namespace = namespace
             self.container = container
             self.logPath = logPath
             self.filePattern = filePattern
+            self.filePaths = filePaths
             self.includeLabels = includeLabels
             self.workLoad = workLoad
             self.excludeNamespace = excludeNamespace
             self.excludeLabels = excludeLabels
+            self.customLabels = customLabels
         }
 
         enum CodingKeys: String, CodingKey {
@@ -712,10 +741,12 @@ extension Cls {
             case container = "Container"
             case logPath = "LogPath"
             case filePattern = "FilePattern"
+            case filePaths = "FilePaths"
             case includeLabels = "IncludeLabels"
             case workLoad = "WorkLoad"
             case excludeNamespace = "ExcludeNamespace"
             case excludeLabels = "ExcludeLabels"
+            case customLabels = "CustomLabels"
         }
     }
 
@@ -748,7 +779,11 @@ extension Cls {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let excludeLabels: [String]?
 
-        public init(allContainers: Bool, container: String? = nil, namespace: String? = nil, includeLabels: [String]? = nil, workLoads: [ContainerWorkLoadInfo]? = nil, excludeNamespace: String? = nil, excludeLabels: [String]? = nil) {
+        /// metadata信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let customLabels: [String]?
+
+        public init(allContainers: Bool, container: String? = nil, namespace: String? = nil, includeLabels: [String]? = nil, workLoads: [ContainerWorkLoadInfo]? = nil, excludeNamespace: String? = nil, excludeLabels: [String]? = nil, customLabels: [String]? = nil) {
             self.allContainers = allContainers
             self.container = container
             self.namespace = namespace
@@ -756,6 +791,7 @@ extension Cls {
             self.workLoads = workLoads
             self.excludeNamespace = excludeNamespace
             self.excludeLabels = excludeLabels
+            self.customLabels = customLabels
         }
 
         enum CodingKeys: String, CodingKey {
@@ -766,6 +802,7 @@ extension Cls {
             case workLoads = "WorkLoads"
             case excludeNamespace = "ExcludeNamespace"
             case excludeLabels = "ExcludeLabels"
+            case customLabels = "CustomLabels"
         }
     }
 
@@ -1209,6 +1246,10 @@ extension Cls {
         /// 日志导出创建时间
         public let createTime: String
 
+        /// 语法规则。 默认值为0。
+        /// 0：Lucene语法，1：CQL语法。
+        public let syntaxRule: UInt64
+
         enum CodingKeys: String, CodingKey {
             case topicId = "TopicId"
             case exportId = "ExportId"
@@ -1223,6 +1264,7 @@ extension Cls {
             case to = "To"
             case cosPath = "CosPath"
             case createTime = "CreateTime"
+            case syntaxRule = "SyntaxRule"
         }
     }
 
@@ -1348,6 +1390,25 @@ extension Cls {
             case pathRegex = "PathRegex"
             case metaTags = "MetaTags"
             case eventLogRules = "EventLogRules"
+        }
+    }
+
+    /// 文件路径信息
+    public struct FilePathInfo: TCInputModel, TCOutputModel {
+        /// 文件路径
+        public let path: String?
+
+        /// 文件名称
+        public let file: String?
+
+        public init(path: String? = nil, file: String? = nil) {
+            self.path = path
+            self.file = file
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case path = "Path"
+            case file = "File"
         }
     }
 
@@ -2026,6 +2087,10 @@ extension Cls {
         /// 机器的IP
         public let ip: String
 
+        /// 机器实例ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceID: String?
+
         /// 机器状态，0:异常，1:正常
         public let status: UInt64
 
@@ -2049,6 +2114,7 @@ extension Cls {
 
         enum CodingKeys: String, CodingKey {
             case ip = "Ip"
+            case instanceID = "InstanceID"
             case status = "Status"
             case offlineTime = "OfflineTime"
             case autoUpdate = "AutoUpdate"
@@ -2097,6 +2163,29 @@ extension Cls {
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case time = "Time"
+        }
+    }
+
+    /// 多触发条件。
+    public struct MultiCondition: TCInputModel, TCOutputModel {
+        /// 触发条件。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let condition: String?
+
+        /// 告警级别。0:警告(Warn); 1:提醒(Info); 2:紧急 (Critical)。
+        /// - 不填则默认为0。
+        ///
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let alarmLevel: UInt64?
+
+        public init(condition: String? = nil, alarmLevel: UInt64? = nil) {
+            self.condition = condition
+            self.alarmLevel = alarmLevel
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case condition = "Condition"
+            case alarmLevel = "AlarmLevel"
         }
     }
 
@@ -2165,6 +2254,33 @@ extension Cls {
             case startTime = "StartTime"
             case endTime = "EndTime"
             case index = "Index"
+        }
+    }
+
+    /// 通知规则
+    public struct NoticeRule: TCInputModel, TCOutputModel {
+        /// 告警通知模板接收者信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let noticeReceivers: [NoticeReceiver]?
+
+        /// 告警通知模板回调信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let webCallbacks: [WebCallback]?
+
+        /// 匹配规则。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rule: String?
+
+        public init(noticeReceivers: [NoticeReceiver]? = nil, webCallbacks: [WebCallback]? = nil, rule: String? = nil) {
+            self.noticeReceivers = noticeReceivers
+            self.webCallbacks = webCallbacks
+            self.rule = rule
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case noticeReceivers = "NoticeReceivers"
+            case webCallbacks = "WebCallbacks"
+            case rule = "Rule"
         }
     }
 

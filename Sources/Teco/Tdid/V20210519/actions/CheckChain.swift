@@ -69,27 +69,27 @@ extension Tdid {
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func checkChain(_ input: CheckChainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckChainResponse> {
-        fatalError("CheckChain is no longer available.")
+        fatalError("'CheckChain' is no longer available.")
     }
 
     /// 检查区块链信息
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func checkChain(_ input: CheckChainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckChainResponse {
-        fatalError("CheckChain is no longer available.")
+        fatalError("'CheckChain' is no longer available.")
     }
 
     /// 检查区块链信息
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func checkChain(groupId: Int64, clusterId: String, agencyName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckChainResponse> {
-        fatalError("CheckChain is no longer available.")
+        fatalError("'CheckChain' is no longer available.")
     }
 
     /// 检查区块链信息
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func checkChain(groupId: Int64, clusterId: String, agencyName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckChainResponse {
-        fatalError("CheckChain is no longer available.")
+        fatalError("'CheckChain' is no longer available.")
     }
 }

@@ -50,7 +50,7 @@ extension Ckafka {
 
     /// BatchCreateAcl返回参数结构体
     public struct BatchCreateAclResponse: TCResponse {
-        /// 状态码
+        /// 状态码：0-修改成功，否则修改失败
         public let result: Int64
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

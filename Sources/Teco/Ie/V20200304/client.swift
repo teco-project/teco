@@ -51,7 +51,7 @@ public struct Ie: TCService {
             region: region,
             language: language,
             endpoint: endpoint,
-            errorType: TCIeError.self,
+            errorType: nil,
             timeout: timeout,
             byteBufferAllocator: byteBufferAllocator
         )

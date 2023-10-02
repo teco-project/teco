@@ -31,7 +31,24 @@ extension Cls {
         public let monitorTime: MonitorTime?
 
         /// 触发条件。
+        ///
+        /// 注意:
+        /// - Condition和AlarmLevel是一组配置，MultiConditions是另一组配置，2组配置互斥。
         public let condition: String?
+
+        /// 告警级别。
+        ///
+        /// 0:警告(Warn);1:提醒(Info);2:紧急 (Critical)
+        ///
+        /// 注意:
+        /// - Condition和AlarmLevel是一组配置，MultiConditions是另一组配置，2组配置互斥。
+        public let alarmLevel: UInt64?
+
+        /// 多触发条件。
+        ///
+        /// 注意:
+        /// - Condition和AlarmLevel是一组配置，MultiConditions是另一组配置，2组配置互斥。
+        public let multiConditions: [MultiCondition]?
 
         /// 持续周期。持续满足触发条件TriggerCount个周期后，再进行告警；最小值为1，最大值为10。
         public let triggerCount: Int64?
@@ -57,11 +74,13 @@ extension Cls {
         /// 多维分析
         public let analysis: [AnalysisDimensional]?
 
-        public init(alarmId: String, name: String? = nil, monitorTime: MonitorTime? = nil, condition: String? = nil, triggerCount: Int64? = nil, alarmPeriod: Int64? = nil, alarmNoticeIds: [String]? = nil, alarmTargets: [AlarmTarget]? = nil, status: Bool? = nil, messageTemplate: String? = nil, callBack: CallBackInfo? = nil, analysis: [AnalysisDimensional]? = nil) {
+        public init(alarmId: String, name: String? = nil, monitorTime: MonitorTime? = nil, condition: String? = nil, alarmLevel: UInt64? = nil, multiConditions: [MultiCondition]? = nil, triggerCount: Int64? = nil, alarmPeriod: Int64? = nil, alarmNoticeIds: [String]? = nil, alarmTargets: [AlarmTarget]? = nil, status: Bool? = nil, messageTemplate: String? = nil, callBack: CallBackInfo? = nil, analysis: [AnalysisDimensional]? = nil) {
             self.alarmId = alarmId
             self.name = name
             self.monitorTime = monitorTime
             self.condition = condition
+            self.alarmLevel = alarmLevel
+            self.multiConditions = multiConditions
             self.triggerCount = triggerCount
             self.alarmPeriod = alarmPeriod
             self.alarmNoticeIds = alarmNoticeIds
@@ -77,6 +96,8 @@ extension Cls {
             case name = "Name"
             case monitorTime = "MonitorTime"
             case condition = "Condition"
+            case alarmLevel = "AlarmLevel"
+            case multiConditions = "MultiConditions"
             case triggerCount = "TriggerCount"
             case alarmPeriod = "AlarmPeriod"
             case alarmNoticeIds = "AlarmNoticeIds"
@@ -118,15 +139,15 @@ extension Cls {
     ///
     /// 本接口用于修改告警策略。需要至少修改一项有效内容。
     @inlinable @discardableResult
-    public func modifyAlarm(alarmId: String, name: String? = nil, monitorTime: MonitorTime? = nil, condition: String? = nil, triggerCount: Int64? = nil, alarmPeriod: Int64? = nil, alarmNoticeIds: [String]? = nil, alarmTargets: [AlarmTarget]? = nil, status: Bool? = nil, messageTemplate: String? = nil, callBack: CallBackInfo? = nil, analysis: [AnalysisDimensional]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmResponse> {
-        self.modifyAlarm(.init(alarmId: alarmId, name: name, monitorTime: monitorTime, condition: condition, triggerCount: triggerCount, alarmPeriod: alarmPeriod, alarmNoticeIds: alarmNoticeIds, alarmTargets: alarmTargets, status: status, messageTemplate: messageTemplate, callBack: callBack, analysis: analysis), region: region, logger: logger, on: eventLoop)
+    public func modifyAlarm(alarmId: String, name: String? = nil, monitorTime: MonitorTime? = nil, condition: String? = nil, alarmLevel: UInt64? = nil, multiConditions: [MultiCondition]? = nil, triggerCount: Int64? = nil, alarmPeriod: Int64? = nil, alarmNoticeIds: [String]? = nil, alarmTargets: [AlarmTarget]? = nil, status: Bool? = nil, messageTemplate: String? = nil, callBack: CallBackInfo? = nil, analysis: [AnalysisDimensional]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmResponse> {
+        self.modifyAlarm(.init(alarmId: alarmId, name: name, monitorTime: monitorTime, condition: condition, alarmLevel: alarmLevel, multiConditions: multiConditions, triggerCount: triggerCount, alarmPeriod: alarmPeriod, alarmNoticeIds: alarmNoticeIds, alarmTargets: alarmTargets, status: status, messageTemplate: messageTemplate, callBack: callBack, analysis: analysis), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改告警策略
     ///
     /// 本接口用于修改告警策略。需要至少修改一项有效内容。
     @inlinable @discardableResult
-    public func modifyAlarm(alarmId: String, name: String? = nil, monitorTime: MonitorTime? = nil, condition: String? = nil, triggerCount: Int64? = nil, alarmPeriod: Int64? = nil, alarmNoticeIds: [String]? = nil, alarmTargets: [AlarmTarget]? = nil, status: Bool? = nil, messageTemplate: String? = nil, callBack: CallBackInfo? = nil, analysis: [AnalysisDimensional]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmResponse {
-        try await self.modifyAlarm(.init(alarmId: alarmId, name: name, monitorTime: monitorTime, condition: condition, triggerCount: triggerCount, alarmPeriod: alarmPeriod, alarmNoticeIds: alarmNoticeIds, alarmTargets: alarmTargets, status: status, messageTemplate: messageTemplate, callBack: callBack, analysis: analysis), region: region, logger: logger, on: eventLoop)
+    public func modifyAlarm(alarmId: String, name: String? = nil, monitorTime: MonitorTime? = nil, condition: String? = nil, alarmLevel: UInt64? = nil, multiConditions: [MultiCondition]? = nil, triggerCount: Int64? = nil, alarmPeriod: Int64? = nil, alarmNoticeIds: [String]? = nil, alarmTargets: [AlarmTarget]? = nil, status: Bool? = nil, messageTemplate: String? = nil, callBack: CallBackInfo? = nil, analysis: [AnalysisDimensional]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmResponse {
+        try await self.modifyAlarm(.init(alarmId: alarmId, name: name, monitorTime: monitorTime, condition: condition, alarmLevel: alarmLevel, multiConditions: multiConditions, triggerCount: triggerCount, alarmPeriod: alarmPeriod, alarmNoticeIds: alarmNoticeIds, alarmTargets: alarmTargets, status: status, messageTemplate: messageTemplate, callBack: callBack, analysis: analysis), region: region, logger: logger, on: eventLoop)
     }
 }

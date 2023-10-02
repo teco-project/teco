@@ -130,6 +130,10 @@ extension Apigateway {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let specialUse: String?
 
+        /// vpc属性，存量可能为空字符串
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let uniqVpcId: String?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -159,6 +163,7 @@ extension Apigateway {
             case setType = "SetType"
             case deploymentType = "DeploymentType"
             case specialUse = "SpecialUse"
+            case uniqVpcId = "UniqVpcId"
             case requestId = "RequestId"
         }
     }

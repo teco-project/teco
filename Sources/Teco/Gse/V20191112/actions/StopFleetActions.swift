@@ -59,7 +59,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func stopFleetActions(_ input: StopFleetActionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopFleetActionsResponse> {
-        fatalError("StopFleetActions is no longer available.")
+        fatalError("'StopFleetActions' is no longer available.")
     }
 
     /// 停止服务器舰队自动扩缩容
@@ -68,7 +68,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func stopFleetActions(_ input: StopFleetActionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopFleetActionsResponse {
-        fatalError("StopFleetActions is no longer available.")
+        fatalError("'StopFleetActions' is no longer available.")
     }
 
     /// 停止服务器舰队自动扩缩容
@@ -77,7 +77,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func stopFleetActions(fleetId: String, actions: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopFleetActionsResponse> {
-        fatalError("StopFleetActions is no longer available.")
+        fatalError("'StopFleetActions' is no longer available.")
     }
 
     /// 停止服务器舰队自动扩缩容
@@ -86,6 +86,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func stopFleetActions(fleetId: String, actions: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopFleetActionsResponse {
-        fatalError("StopFleetActions is no longer available.")
+        fatalError("'StopFleetActions' is no longer available.")
     }
 }

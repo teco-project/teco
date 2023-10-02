@@ -96,7 +96,10 @@ extension Tione {
         /// 镜像类型
         public let imageType: String?
 
-        public init(id: String, name: String, chargeType: String, resourceConf: ResourceConf, logEnable: Bool, autoStopping: Bool, directInternetAccess: Bool, rootAccess: Bool, resourceGroupId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, volumeSizeInGB: UInt64? = nil, volumeSourceType: String? = nil, volumeSourceCFS: CFSConfig? = nil, logConfig: LogConfig? = nil, lifecycleScriptId: String? = nil, defaultCodeRepoId: String? = nil, additionalCodeRepoIds: [String]? = nil, automaticStopTime: Int64? = nil, tags: [Tag]? = nil, dataConfigs: [DataConfig]? = nil, imageInfo: ImageInfo? = nil, imageType: String? = nil) {
+        /// SSH配置
+        public let sshConfig: SSHConfig?
+
+        public init(id: String, name: String, chargeType: String, resourceConf: ResourceConf, logEnable: Bool, autoStopping: Bool, directInternetAccess: Bool, rootAccess: Bool, resourceGroupId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, volumeSizeInGB: UInt64? = nil, volumeSourceType: String? = nil, volumeSourceCFS: CFSConfig? = nil, logConfig: LogConfig? = nil, lifecycleScriptId: String? = nil, defaultCodeRepoId: String? = nil, additionalCodeRepoIds: [String]? = nil, automaticStopTime: Int64? = nil, tags: [Tag]? = nil, dataConfigs: [DataConfig]? = nil, imageInfo: ImageInfo? = nil, imageType: String? = nil, sshConfig: SSHConfig? = nil) {
             self.id = id
             self.name = name
             self.chargeType = chargeType
@@ -120,6 +123,7 @@ extension Tione {
             self.dataConfigs = dataConfigs
             self.imageInfo = imageInfo
             self.imageType = imageType
+            self.sshConfig = sshConfig
         }
 
         enum CodingKeys: String, CodingKey {
@@ -146,6 +150,7 @@ extension Tione {
             case dataConfigs = "DataConfigs"
             case imageInfo = "ImageInfo"
             case imageType = "ImageType"
+            case sshConfig = "SSHConfig"
         }
     }
 
@@ -173,13 +178,13 @@ extension Tione {
 
     /// 修改Notebook
     @inlinable @discardableResult
-    public func modifyNotebook(id: String, name: String, chargeType: String, resourceConf: ResourceConf, logEnable: Bool, autoStopping: Bool, directInternetAccess: Bool, rootAccess: Bool, resourceGroupId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, volumeSizeInGB: UInt64? = nil, volumeSourceType: String? = nil, volumeSourceCFS: CFSConfig? = nil, logConfig: LogConfig? = nil, lifecycleScriptId: String? = nil, defaultCodeRepoId: String? = nil, additionalCodeRepoIds: [String]? = nil, automaticStopTime: Int64? = nil, tags: [Tag]? = nil, dataConfigs: [DataConfig]? = nil, imageInfo: ImageInfo? = nil, imageType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNotebookResponse> {
-        self.modifyNotebook(.init(id: id, name: name, chargeType: chargeType, resourceConf: resourceConf, logEnable: logEnable, autoStopping: autoStopping, directInternetAccess: directInternetAccess, rootAccess: rootAccess, resourceGroupId: resourceGroupId, vpcId: vpcId, subnetId: subnetId, volumeSizeInGB: volumeSizeInGB, volumeSourceType: volumeSourceType, volumeSourceCFS: volumeSourceCFS, logConfig: logConfig, lifecycleScriptId: lifecycleScriptId, defaultCodeRepoId: defaultCodeRepoId, additionalCodeRepoIds: additionalCodeRepoIds, automaticStopTime: automaticStopTime, tags: tags, dataConfigs: dataConfigs, imageInfo: imageInfo, imageType: imageType), region: region, logger: logger, on: eventLoop)
+    public func modifyNotebook(id: String, name: String, chargeType: String, resourceConf: ResourceConf, logEnable: Bool, autoStopping: Bool, directInternetAccess: Bool, rootAccess: Bool, resourceGroupId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, volumeSizeInGB: UInt64? = nil, volumeSourceType: String? = nil, volumeSourceCFS: CFSConfig? = nil, logConfig: LogConfig? = nil, lifecycleScriptId: String? = nil, defaultCodeRepoId: String? = nil, additionalCodeRepoIds: [String]? = nil, automaticStopTime: Int64? = nil, tags: [Tag]? = nil, dataConfigs: [DataConfig]? = nil, imageInfo: ImageInfo? = nil, imageType: String? = nil, sshConfig: SSHConfig? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNotebookResponse> {
+        self.modifyNotebook(.init(id: id, name: name, chargeType: chargeType, resourceConf: resourceConf, logEnable: logEnable, autoStopping: autoStopping, directInternetAccess: directInternetAccess, rootAccess: rootAccess, resourceGroupId: resourceGroupId, vpcId: vpcId, subnetId: subnetId, volumeSizeInGB: volumeSizeInGB, volumeSourceType: volumeSourceType, volumeSourceCFS: volumeSourceCFS, logConfig: logConfig, lifecycleScriptId: lifecycleScriptId, defaultCodeRepoId: defaultCodeRepoId, additionalCodeRepoIds: additionalCodeRepoIds, automaticStopTime: automaticStopTime, tags: tags, dataConfigs: dataConfigs, imageInfo: imageInfo, imageType: imageType, sshConfig: sshConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改Notebook
     @inlinable @discardableResult
-    public func modifyNotebook(id: String, name: String, chargeType: String, resourceConf: ResourceConf, logEnable: Bool, autoStopping: Bool, directInternetAccess: Bool, rootAccess: Bool, resourceGroupId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, volumeSizeInGB: UInt64? = nil, volumeSourceType: String? = nil, volumeSourceCFS: CFSConfig? = nil, logConfig: LogConfig? = nil, lifecycleScriptId: String? = nil, defaultCodeRepoId: String? = nil, additionalCodeRepoIds: [String]? = nil, automaticStopTime: Int64? = nil, tags: [Tag]? = nil, dataConfigs: [DataConfig]? = nil, imageInfo: ImageInfo? = nil, imageType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNotebookResponse {
-        try await self.modifyNotebook(.init(id: id, name: name, chargeType: chargeType, resourceConf: resourceConf, logEnable: logEnable, autoStopping: autoStopping, directInternetAccess: directInternetAccess, rootAccess: rootAccess, resourceGroupId: resourceGroupId, vpcId: vpcId, subnetId: subnetId, volumeSizeInGB: volumeSizeInGB, volumeSourceType: volumeSourceType, volumeSourceCFS: volumeSourceCFS, logConfig: logConfig, lifecycleScriptId: lifecycleScriptId, defaultCodeRepoId: defaultCodeRepoId, additionalCodeRepoIds: additionalCodeRepoIds, automaticStopTime: automaticStopTime, tags: tags, dataConfigs: dataConfigs, imageInfo: imageInfo, imageType: imageType), region: region, logger: logger, on: eventLoop)
+    public func modifyNotebook(id: String, name: String, chargeType: String, resourceConf: ResourceConf, logEnable: Bool, autoStopping: Bool, directInternetAccess: Bool, rootAccess: Bool, resourceGroupId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, volumeSizeInGB: UInt64? = nil, volumeSourceType: String? = nil, volumeSourceCFS: CFSConfig? = nil, logConfig: LogConfig? = nil, lifecycleScriptId: String? = nil, defaultCodeRepoId: String? = nil, additionalCodeRepoIds: [String]? = nil, automaticStopTime: Int64? = nil, tags: [Tag]? = nil, dataConfigs: [DataConfig]? = nil, imageInfo: ImageInfo? = nil, imageType: String? = nil, sshConfig: SSHConfig? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNotebookResponse {
+        try await self.modifyNotebook(.init(id: id, name: name, chargeType: chargeType, resourceConf: resourceConf, logEnable: logEnable, autoStopping: autoStopping, directInternetAccess: directInternetAccess, rootAccess: rootAccess, resourceGroupId: resourceGroupId, vpcId: vpcId, subnetId: subnetId, volumeSizeInGB: volumeSizeInGB, volumeSourceType: volumeSourceType, volumeSourceCFS: volumeSourceCFS, logConfig: logConfig, lifecycleScriptId: lifecycleScriptId, defaultCodeRepoId: defaultCodeRepoId, additionalCodeRepoIds: additionalCodeRepoIds, automaticStopTime: automaticStopTime, tags: tags, dataConfigs: dataConfigs, imageInfo: imageInfo, imageType: imageType, sshConfig: sshConfig), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -21,7 +21,7 @@ import TecoCore
 extension Cynosdb {
     /// DeleteAuditRuleTemplates请求参数结构体
     public struct DeleteAuditRuleTemplatesRequest: TCRequest {
-        /// 审计规则模版ID。
+        /// 审计规则模板ID。
         public let ruleTemplateIds: [String]
 
         public init(ruleTemplateIds: [String]) {
@@ -43,25 +43,25 @@ extension Cynosdb {
         }
     }
 
-    /// 删除审计规则模版
+    /// 删除审计规则模板
     @inlinable @discardableResult
     public func deleteAuditRuleTemplates(_ input: DeleteAuditRuleTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAuditRuleTemplatesResponse> {
         self.client.execute(action: "DeleteAuditRuleTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 删除审计规则模版
+    /// 删除审计规则模板
     @inlinable @discardableResult
     public func deleteAuditRuleTemplates(_ input: DeleteAuditRuleTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditRuleTemplatesResponse {
         try await self.client.execute(action: "DeleteAuditRuleTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 删除审计规则模版
+    /// 删除审计规则模板
     @inlinable @discardableResult
     public func deleteAuditRuleTemplates(ruleTemplateIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAuditRuleTemplatesResponse> {
         self.deleteAuditRuleTemplates(.init(ruleTemplateIds: ruleTemplateIds), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 删除审计规则模版
+    /// 删除审计规则模板
     @inlinable @discardableResult
     public func deleteAuditRuleTemplates(ruleTemplateIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditRuleTemplatesResponse {
         try await self.deleteAuditRuleTemplates(.init(ruleTemplateIds: ruleTemplateIds), region: region, logger: logger, on: eventLoop)

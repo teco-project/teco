@@ -50,6 +50,7 @@ extension Cwp {
         /// 每个过滤条件只支持一个值，暂不支持多个值“或”关系查询
         /// - Quuid - String - 是否必填: 否 - 云服务器uuid  最大100条.
         /// - AddedOnTheFifteen- String 是否必填: 否 - 是否只查询15天内新增的主机( 1：是)
+        /// - TagId- String 是否必填: 否 - 查询指定标签关联的主机列表
         public let filters: [Filter]?
 
         /// 机器所属业务ID列表

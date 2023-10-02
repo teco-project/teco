@@ -30,6 +30,9 @@ extension Tdmq {
         /// 入参为1，即是创建非分区topic，无分区；入参大于1，表示分区topic的分区数，最大不允许超过128。
         public let partitions: UInt64
 
+        /// Pulsar 集群的ID
+        public let clusterId: String
+
         /// 备注，128字符以内。
         public let remark: String?
 
@@ -41,9 +44,6 @@ extension Tdmq {
         /// 4 ：死信队列。
         public let topicType: UInt64?
 
-        /// Pulsar 集群的ID
-        public let clusterId: String?
-
         /// Pulsar 主题类型
         /// 0: 非持久非分区
         /// 1: 非持久分区
@@ -51,24 +51,29 @@ extension Tdmq {
         /// 3: 持久分区
         public let pulsarTopicType: Int64?
 
-        public init(environmentId: String, topicName: String, partitions: UInt64, remark: String? = nil, topicType: UInt64? = nil, clusterId: String? = nil, pulsarTopicType: Int64? = nil) {
+        /// 未消费消息过期时间，单位：秒，取值范围：60秒~15天。
+        public let msgTTL: UInt64?
+
+        public init(environmentId: String, topicName: String, partitions: UInt64, clusterId: String, remark: String? = nil, topicType: UInt64? = nil, pulsarTopicType: Int64? = nil, msgTTL: UInt64? = nil) {
             self.environmentId = environmentId
             self.topicName = topicName
             self.partitions = partitions
+            self.clusterId = clusterId
             self.remark = remark
             self.topicType = topicType
-            self.clusterId = clusterId
             self.pulsarTopicType = pulsarTopicType
+            self.msgTTL = msgTTL
         }
 
         enum CodingKeys: String, CodingKey {
             case environmentId = "EnvironmentId"
             case topicName = "TopicName"
             case partitions = "Partitions"
+            case clusterId = "ClusterId"
             case remark = "Remark"
             case topicType = "TopicType"
-            case clusterId = "ClusterId"
             case pulsarTopicType = "PulsarTopicType"
+            case msgTTL = "MsgTTL"
         }
     }
 
@@ -128,15 +133,15 @@ extension Tdmq {
     ///
     /// 新增指定分区、类型的消息主题
     @inlinable
-    public func createTopic(environmentId: String, topicName: String, partitions: UInt64, remark: String? = nil, topicType: UInt64? = nil, clusterId: String? = nil, pulsarTopicType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTopicResponse> {
-        self.createTopic(.init(environmentId: environmentId, topicName: topicName, partitions: partitions, remark: remark, topicType: topicType, clusterId: clusterId, pulsarTopicType: pulsarTopicType), region: region, logger: logger, on: eventLoop)
+    public func createTopic(environmentId: String, topicName: String, partitions: UInt64, clusterId: String, remark: String? = nil, topicType: UInt64? = nil, pulsarTopicType: Int64? = nil, msgTTL: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTopicResponse> {
+        self.createTopic(.init(environmentId: environmentId, topicName: topicName, partitions: partitions, clusterId: clusterId, remark: remark, topicType: topicType, pulsarTopicType: pulsarTopicType, msgTTL: msgTTL), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增主题
     ///
     /// 新增指定分区、类型的消息主题
     @inlinable
-    public func createTopic(environmentId: String, topicName: String, partitions: UInt64, remark: String? = nil, topicType: UInt64? = nil, clusterId: String? = nil, pulsarTopicType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicResponse {
-        try await self.createTopic(.init(environmentId: environmentId, topicName: topicName, partitions: partitions, remark: remark, topicType: topicType, clusterId: clusterId, pulsarTopicType: pulsarTopicType), region: region, logger: logger, on: eventLoop)
+    public func createTopic(environmentId: String, topicName: String, partitions: UInt64, clusterId: String, remark: String? = nil, topicType: UInt64? = nil, pulsarTopicType: Int64? = nil, msgTTL: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicResponse {
+        try await self.createTopic(.init(environmentId: environmentId, topicName: topicName, partitions: partitions, clusterId: clusterId, remark: remark, topicType: topicType, pulsarTopicType: pulsarTopicType, msgTTL: msgTTL), region: region, logger: logger, on: eventLoop)
     }
 }

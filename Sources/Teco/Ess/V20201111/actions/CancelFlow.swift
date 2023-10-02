@@ -21,16 +21,20 @@ import TecoCore
 extension Ess {
     /// CancelFlow请求参数结构体
     public struct CancelFlowRequest: TCRequest {
-        /// 调用方用户信息，userId 必填
+        /// 执行本接口操作的员工信息。
+        /// 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         public let `operator`: UserInfo
 
-        /// 签署流程id
+        /// 合同流程ID, 为32位字符串。
+        ///
+        /// 可登录腾讯电子签控制台，在 "合同"->"合同中心" 中查看某个合同的FlowId(在页面中展示为合同ID)。
         public let flowId: String
 
-        /// 撤销原因，最长200个字符；
+        /// 撤销此合同流程的原因，最多支持200个字符长度。只能由中文、字母、数字、中文标点和英文标点组成（不支持表情）。
         public let cancelMessage: String
 
-        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        /// 代理企业和员工的信息。
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         public let agent: Agent?
 
         public init(operator: UserInfo, flowId: String, cancelMessage: String, agent: Agent? = nil) {
@@ -58,41 +62,53 @@ extension Ess {
         }
     }
 
-    /// 撤销单个签署流程
+    /// 撤销单个合同流程
     ///
-    /// 用于撤销签署流程
+    /// 用于撤销合同流程
+    ///
     /// 适用场景：如果某个合同流程当前至少还有一方没有签署，则可通过该接口取消该合同流程。常用于合同发错、内容填错，需要及时撤销的场景。
-    /// 注：如果合同流程中的参与方均已签署完毕，则无法通过该接口撤销合同。
+    ///
+    /// 注:
+    /// `如果合同流程中的参与方均已签署完毕，则无法通过该接口撤销合同，`签署完毕的合同需要双方走解除流程将合同作废，可以参考[发起解除合同流程](https://qian.tencent.com/developers/companyApis/operateFlows/CreateReleaseFlow)接口。
     @inlinable @discardableResult
     public func cancelFlow(_ input: CancelFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelFlowResponse> {
         self.client.execute(action: "CancelFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 撤销单个签署流程
+    /// 撤销单个合同流程
     ///
-    /// 用于撤销签署流程
+    /// 用于撤销合同流程
+    ///
     /// 适用场景：如果某个合同流程当前至少还有一方没有签署，则可通过该接口取消该合同流程。常用于合同发错、内容填错，需要及时撤销的场景。
-    /// 注：如果合同流程中的参与方均已签署完毕，则无法通过该接口撤销合同。
+    ///
+    /// 注:
+    /// `如果合同流程中的参与方均已签署完毕，则无法通过该接口撤销合同，`签署完毕的合同需要双方走解除流程将合同作废，可以参考[发起解除合同流程](https://qian.tencent.com/developers/companyApis/operateFlows/CreateReleaseFlow)接口。
     @inlinable @discardableResult
     public func cancelFlow(_ input: CancelFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelFlowResponse {
         try await self.client.execute(action: "CancelFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 撤销单个签署流程
+    /// 撤销单个合同流程
     ///
-    /// 用于撤销签署流程
+    /// 用于撤销合同流程
+    ///
     /// 适用场景：如果某个合同流程当前至少还有一方没有签署，则可通过该接口取消该合同流程。常用于合同发错、内容填错，需要及时撤销的场景。
-    /// 注：如果合同流程中的参与方均已签署完毕，则无法通过该接口撤销合同。
+    ///
+    /// 注:
+    /// `如果合同流程中的参与方均已签署完毕，则无法通过该接口撤销合同，`签署完毕的合同需要双方走解除流程将合同作废，可以参考[发起解除合同流程](https://qian.tencent.com/developers/companyApis/operateFlows/CreateReleaseFlow)接口。
     @inlinable @discardableResult
     public func cancelFlow(operator: UserInfo, flowId: String, cancelMessage: String, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelFlowResponse> {
         self.cancelFlow(.init(operator: `operator`, flowId: flowId, cancelMessage: cancelMessage, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 撤销单个签署流程
+    /// 撤销单个合同流程
     ///
-    /// 用于撤销签署流程
+    /// 用于撤销合同流程
+    ///
     /// 适用场景：如果某个合同流程当前至少还有一方没有签署，则可通过该接口取消该合同流程。常用于合同发错、内容填错，需要及时撤销的场景。
-    /// 注：如果合同流程中的参与方均已签署完毕，则无法通过该接口撤销合同。
+    ///
+    /// 注:
+    /// `如果合同流程中的参与方均已签署完毕，则无法通过该接口撤销合同，`签署完毕的合同需要双方走解除流程将合同作废，可以参考[发起解除合同流程](https://qian.tencent.com/developers/companyApis/operateFlows/CreateReleaseFlow)接口。
     @inlinable @discardableResult
     public func cancelFlow(operator: UserInfo, flowId: String, cancelMessage: String, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelFlowResponse {
         try await self.cancelFlow(.init(operator: `operator`, flowId: flowId, cancelMessage: cancelMessage, agent: agent), region: region, logger: logger, on: eventLoop)

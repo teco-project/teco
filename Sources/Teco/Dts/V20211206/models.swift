@@ -79,6 +79,27 @@ extension Dts {
         }
     }
 
+    /// 数据同步中的列信息
+    public struct Column: TCInputModel, TCOutputModel {
+        /// 列名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let columnName: String?
+
+        /// 新列名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let newColumnName: String?
+
+        public init(columnName: String? = nil, newColumnName: String? = nil) {
+            self.columnName = columnName
+            self.newColumnName = newColumnName
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case columnName = "ColumnName"
+            case newColumnName = "NewColumnName"
+        }
+    }
+
     /// 一致性校验摘要信息
     public struct CompareAbstractInfo: TCOutputModel {
         /// 校验配置参数
@@ -155,6 +176,21 @@ extension Dts {
         }
     }
 
+    /// 列选项
+    public struct CompareColumnItem: TCInputModel, TCOutputModel {
+        /// 列名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let columnName: String?
+
+        public init(columnName: String? = nil) {
+            self.columnName = columnName
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case columnName = "ColumnName"
+        }
+    }
+
     /// 一致性校验详细信息
     public struct CompareDetailInfo: TCOutputModel {
         /// 数据不一致的表详情
@@ -220,11 +256,11 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tables: [CompareTableItem]?
 
-        /// 视图选择模式: all 为当前对象下的所有视图对象,partial 为部分视图对象
+        /// 视图选择模式: all 为当前对象下的所有视图对象,partial 为部分视图对象(一致性校验不校验视图，当前参数未启作用)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let viewMode: String?
 
-        /// 用于一致性校验的视图配置，当 ViewMode 为 partial 时， 需要填写
+        /// 用于一致性校验的视图配置，当 ViewMode 为 partial 时， 需要填写(一致性校验不校验视图，当前参数未启作用)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let views: [CompareViewItem]?
 
@@ -282,12 +318,24 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableName: String?
 
-        public init(tableName: String? = nil) {
+        /// column 模式，all 为全部，partial 表示部分(该参数仅对数据同步任务有效)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let columnMode: String?
+
+        /// 当 ColumnMode 为 partial 时必填(该参数仅对数据同步任务有效)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let columns: [CompareColumnItem]?
+
+        public init(tableName: String? = nil, columnMode: String? = nil, columns: [CompareColumnItem]? = nil) {
             self.tableName = tableName
+            self.columnMode = columnMode
+            self.columns = columns
         }
 
         enum CodingKeys: String, CodingKey {
             case tableName = "TableName"
+            case columnMode = "ColumnMode"
+            case columns = "Columns"
         }
     }
 
@@ -2309,6 +2357,14 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let filterCondition: String?
 
+        /// 是否同步表中所有列，All：当前表下的所有列,Partial(ModifySyncJobConfig接口里的对应字段ColumnMode暂不支持Partial)：当前表下的部分列，通过填充Columns字段详细表信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let columnMode: String?
+
+        /// 同步的的列信息，当ColumnMode为Partial时，必填
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let columns: [Column]?
+
         /// 同步临时表，注意此配置与NewTableName互斥，只能使用其中一种。当配置的同步对象为表级别且TableEditMode为pt时此项有意义，针对pt-osc等工具在同步过程中产生的临时表进行同步，需要提前将可能的临时表配置在这里，否则不会同步任何临时表。示例，如要对t1进行pt-osc操作，此项配置应该为["\_t1\_new","\_t1\_old"]；如要对t1进行gh-ost操作，此项配置应该为["\_t1\_ghc","\_t1\_gho","\_t1\_del"]，pt-osc与gh-ost产生的临时表可同时配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tmpTables: [String]?
@@ -2317,10 +2373,12 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableEditMode: String?
 
-        public init(tableName: String? = nil, newTableName: String? = nil, filterCondition: String? = nil, tmpTables: [String]? = nil, tableEditMode: String? = nil) {
+        public init(tableName: String? = nil, newTableName: String? = nil, filterCondition: String? = nil, columnMode: String? = nil, columns: [Column]? = nil, tmpTables: [String]? = nil, tableEditMode: String? = nil) {
             self.tableName = tableName
             self.newTableName = newTableName
             self.filterCondition = filterCondition
+            self.columnMode = columnMode
+            self.columns = columns
             self.tmpTables = tmpTables
             self.tableEditMode = tableEditMode
         }
@@ -2329,6 +2387,8 @@ extension Dts {
             case tableName = "TableName"
             case newTableName = "NewTableName"
             case filterCondition = "FilterCondition"
+            case columnMode = "ColumnMode"
+            case columns = "Columns"
             case tmpTables = "TmpTables"
             case tableEditMode = "TableEditMode"
         }

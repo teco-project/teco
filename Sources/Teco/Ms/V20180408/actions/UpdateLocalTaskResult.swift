@@ -68,24 +68,32 @@ extension Ms {
     }
 
     /// 更新本地任务结果
+    ///
+    /// 更新本地任务执行结果
     @inlinable
     public func updateLocalTaskResult(_ input: UpdateLocalTaskResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateLocalTaskResultResponse> {
         self.client.execute(action: "UpdateLocalTaskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新本地任务结果
+    ///
+    /// 更新本地任务执行结果
     @inlinable
     public func updateLocalTaskResult(_ input: UpdateLocalTaskResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateLocalTaskResultResponse {
         try await self.client.execute(action: "UpdateLocalTaskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新本地任务结果
+    ///
+    /// 更新本地任务执行结果
     @inlinable
     public func updateLocalTaskResult(sid: String, resultCode: Int64, subCode: Int64, errMsg: String, result: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateLocalTaskResultResponse> {
         self.updateLocalTaskResult(.init(sid: sid, resultCode: resultCode, subCode: subCode, errMsg: errMsg, result: result), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新本地任务结果
+    ///
+    /// 更新本地任务执行结果
     @inlinable
     public func updateLocalTaskResult(sid: String, resultCode: Int64, subCode: Int64, errMsg: String, result: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateLocalTaskResultResponse {
         try await self.updateLocalTaskResult(.init(sid: sid, resultCode: resultCode, subCode: subCode, errMsg: errMsg, result: result), region: region, logger: logger, on: eventLoop)

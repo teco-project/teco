@@ -22,6 +22,7 @@ extension TCLighthouseError {
             case blueprintInvalid = "ResourceUnavailable.BlueprintInvalid"
             case blueprintUnavailable = "ResourceUnavailable.BlueprintUnavailable"
             case bundleUnavailable = "ResourceUnavailable.BundleUnavailable"
+            case cannotApplyEmptyFirewallTemplate = "ResourceUnavailable.CannotApplyEmptyFirewallTemplate"
             case dockerUnavailable = "ResourceUnavailable.DockerUnavailable"
             case tatAgentUnavailable = "ResourceUnavailable.TATAgentUnavailable"
             case tatServiceError = "ResourceUnavailable.TATServiceError"
@@ -65,6 +66,10 @@ extension TCLighthouseError {
             ResourceUnavailable(.bundleUnavailable)
         }
 
+        public static var cannotApplyEmptyFirewallTemplate: ResourceUnavailable {
+            ResourceUnavailable(.cannotApplyEmptyFirewallTemplate)
+        }
+
         /// Docker资源不可用。
         public static var dockerUnavailable: ResourceUnavailable {
             ResourceUnavailable(.dockerUnavailable)
@@ -94,6 +99,8 @@ extension TCLighthouseError {
                 code = .resourceUnavailable_BlueprintUnavailable
             case .bundleUnavailable:
                 code = .resourceUnavailable_BundleUnavailable
+            case .cannotApplyEmptyFirewallTemplate:
+                code = .resourceUnavailable_CannotApplyEmptyFirewallTemplate
             case .dockerUnavailable:
                 code = .resourceUnavailable_DockerUnavailable
             case .tatAgentUnavailable:

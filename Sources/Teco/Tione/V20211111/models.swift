@@ -1484,11 +1484,21 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let registryId: String?
 
-        public init(imageType: String, imageUrl: String, registryRegion: String? = nil, registryId: String? = nil) {
+        /// 是否允许导出全部内容
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let allowSaveAllContent: Bool?
+
+        /// 镜像名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let imageName: String?
+
+        public init(imageType: String, imageUrl: String, registryRegion: String? = nil, registryId: String? = nil, allowSaveAllContent: Bool? = nil, imageName: String? = nil) {
             self.imageType = imageType
             self.imageUrl = imageUrl
             self.registryRegion = registryRegion
             self.registryId = registryId
+            self.allowSaveAllContent = allowSaveAllContent
+            self.imageName = imageName
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1496,6 +1506,19 @@ extension Tione {
             case imageUrl = "ImageUrl"
             case registryRegion = "RegistryRegion"
             case registryId = "RegistryId"
+            case allowSaveAllContent = "AllowSaveAllContent"
+            case imageName = "ImageName"
+        }
+    }
+
+    /// 推理代码的信息
+    public struct InferCodeInfo: TCOutputModel {
+        /// 推理代码所在的cos详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cosPathInfo: CosPathInfo?
+
+        enum CodingKeys: String, CodingKey {
+            case cosPathInfo = "CosPathInfo"
         }
     }
 
@@ -1570,6 +1593,39 @@ extension Tione {
         }
     }
 
+    /// 私有连接通道信息
+    public struct IngressPrivateLinkInfo: TCInputModel, TCOutputModel {
+        /// 用户VpcId
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpcId: String?
+
+        /// 用户子网ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subnetId: String?
+
+        /// 内网http调用地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let innerHttpAddr: [String]?
+
+        /// 内网https调用地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let innerHttpsAddr: [String]?
+
+        public init(vpcId: String? = nil, subnetId: String? = nil, innerHttpAddr: [String]? = nil, innerHttpsAddr: [String]? = nil) {
+            self.vpcId = vpcId
+            self.subnetId = subnetId
+            self.innerHttpAddr = innerHttpAddr
+            self.innerHttpsAddr = innerHttpsAddr
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case vpcId = "VpcId"
+            case subnetId = "SubnetId"
+            case innerHttpAddr = "InnerHttpAddr"
+            case innerHttpsAddr = "InnerHttpsAddr"
+        }
+    }
+
     /// 资源组节点信息
     public struct Instance: TCOutputModel {
         /// 资源组节点id
@@ -1623,6 +1679,10 @@ extension Tione {
         /// 计费项别名
         public let specAlias: String
 
+        /// 计费项特性列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let specFeatures: [String]?
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case usedResource = "UsedResource"
@@ -1634,6 +1694,28 @@ extension Tione {
             case autoRenewFlag = "AutoRenewFlag"
             case specId = "SpecId"
             case specAlias = "SpecAlias"
+            case specFeatures = "SpecFeatures"
+        }
+    }
+
+    /// 内网调用信息
+    public struct IntranetCallInfo: TCInputModel, TCOutputModel {
+        /// 私有连接通道信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ingressPrivateLinkInfo: IngressPrivateLinkInfo?
+
+        /// 共享弹性网卡信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let serviceEIPInfo: [ServiceEIPInfo]?
+
+        public init(ingressPrivateLinkInfo: IngressPrivateLinkInfo? = nil, serviceEIPInfo: [ServiceEIPInfo]? = nil) {
+            self.ingressPrivateLinkInfo = ingressPrivateLinkInfo
+            self.serviceEIPInfo = serviceEIPInfo
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case ingressPrivateLinkInfo = "IngressPrivateLinkInfo"
+            case serviceEIPInfo = "ServiceEIPInfo"
         }
     }
 
@@ -2325,6 +2407,10 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userTypes: [String]?
 
+        /// SSH配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sshConfig: SSHConfig?
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
@@ -2351,6 +2437,7 @@ extension Tione {
             case volumeSourceCFS = "VolumeSourceCFS"
             case message = "Message"
             case userTypes = "UserTypes"
+            case sshConfig = "SSHConfig"
         }
     }
 
@@ -2486,9 +2573,29 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ip: String?
 
+        /// pod状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: String?
+
+        /// pod启动时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let startTime: String?
+
+        /// pod结束时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let endTime: String?
+
+        /// pod资源配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resourceConfigInfo: ResourceConfigInfo?
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case ip = "IP"
+            case status = "Status"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+            case resourceConfigInfo = "ResourceConfigInfo"
         }
     }
 
@@ -2783,6 +2890,39 @@ extension Tione {
         }
     }
 
+    /// notebook ssh端口配置
+    public struct SSHConfig: TCInputModel, TCOutputModel {
+        /// 是否开启ssh
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let enable: Bool?
+
+        /// 公钥信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let publicKey: String?
+
+        /// 端口号
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let port: Int64?
+
+        /// 登录命令
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let loginCommand: String?
+
+        public init(enable: Bool? = nil, publicKey: String? = nil, port: Int64? = nil, loginCommand: String? = nil) {
+            self.enable = enable
+            self.publicKey = publicKey
+            self.port = port
+            self.loginCommand = loginCommand
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case enable = "Enable"
+            case publicKey = "PublicKey"
+            case port = "Port"
+            case loginCommand = "LoginCommand"
+        }
+    }
+
     /// 定时的事务和行为
     public struct ScheduledAction: TCInputModel, TCOutputModel {
         /// 是否要定时停止服务，true or false。true 则 ScheduleStopTime 必填， false 则 ScheduleStopTime 不生效
@@ -3046,6 +3186,60 @@ extension Tione {
         }
     }
 
+    /// 服务共享弹性网卡设置
+    public struct ServiceEIP: TCInputModel, TCOutputModel {
+        /// 是否开启TIONE内网到外部的访问
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let enableEIP: Bool?
+
+        /// 用户VpcId
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpcId: String?
+
+        /// 用户subnetId
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subnetId: String?
+
+        public init(enableEIP: Bool? = nil, vpcId: String? = nil, subnetId: String? = nil) {
+            self.enableEIP = enableEIP
+            self.vpcId = vpcId
+            self.subnetId = subnetId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case enableEIP = "EnableEIP"
+            case vpcId = "VpcId"
+            case subnetId = "SubnetId"
+        }
+    }
+
+    /// 共享弹性网卡信息
+    public struct ServiceEIPInfo: TCInputModel, TCOutputModel {
+        /// 服务ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let serviceId: String?
+
+        /// 用户VpcId
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpcId: String?
+
+        /// 用户子网Id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subnetId: String?
+
+        public init(serviceId: String? = nil, vpcId: String? = nil, subnetId: String? = nil) {
+            self.serviceId = serviceId
+            self.vpcId = vpcId
+            self.subnetId = subnetId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case serviceId = "ServiceId"
+            case vpcId = "VpcId"
+            case subnetId = "SubnetId"
+        }
+    }
+
     /// 在线服务一个服务组的信息
     public struct ServiceGroup: TCOutputModel {
         /// 服务组id
@@ -3288,7 +3482,23 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let modelTurboEnable: Bool?
 
-        public init(replicas: Int64, imageInfo: ImageInfo, env: [EnvVar], resources: ResourceInfo, instanceType: String, modelInfo: ModelInfo, logEnable: Bool, logConfig: LogConfig, authorizationEnable: Bool, horizontalPodAutoscaler: HorizontalPodAutoscaler, status: WorkloadStatus, weight: UInt64, podList: [String], resourceTotal: ResourceInfo, oldReplicas: Int64, hybridBillingPrepaidReplicas: Int64, oldHybridBillingPrepaidReplicas: Int64, modelHotUpdateEnable: Bool, scaleMode: String? = nil, cronScaleJobs: [CronScaleJob]? = nil, scaleStrategy: String? = nil, scheduledAction: String? = nil, pods: Pod? = nil, podInfos: [Pod]? = nil, serviceLimit: ServiceLimit? = nil, modelTurboEnable: Bool? = nil) {
+        /// 挂载
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let volumeMount: VolumeMount?
+
+        /// 推理代码信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let inferCodeInfo: InferCodeInfo?
+
+        /// 服务的启动命令
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let command: String?
+
+        /// 开启TIONE内网访问外部设置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let serviceEIP: ServiceEIP?
+
+        public init(replicas: Int64, imageInfo: ImageInfo, env: [EnvVar], resources: ResourceInfo, instanceType: String, modelInfo: ModelInfo, logEnable: Bool, logConfig: LogConfig, authorizationEnable: Bool, horizontalPodAutoscaler: HorizontalPodAutoscaler, status: WorkloadStatus, weight: UInt64, podList: [String], resourceTotal: ResourceInfo, oldReplicas: Int64, hybridBillingPrepaidReplicas: Int64, oldHybridBillingPrepaidReplicas: Int64, modelHotUpdateEnable: Bool, scaleMode: String? = nil, cronScaleJobs: [CronScaleJob]? = nil, scaleStrategy: String? = nil, scheduledAction: String? = nil, pods: Pod? = nil, podInfos: [Pod]? = nil, serviceLimit: ServiceLimit? = nil, modelTurboEnable: Bool? = nil, volumeMount: VolumeMount? = nil, inferCodeInfo: InferCodeInfo? = nil, command: String? = nil, serviceEIP: ServiceEIP? = nil) {
             self.replicas = replicas
             self.imageInfo = imageInfo
             self.env = env
@@ -3315,6 +3525,10 @@ extension Tione {
             self.podInfos = podInfos
             self.serviceLimit = serviceLimit
             self.modelTurboEnable = modelTurboEnable
+            self.volumeMount = volumeMount
+            self.inferCodeInfo = inferCodeInfo
+            self.command = command
+            self.serviceEIP = serviceEIP
         }
 
         enum CodingKeys: String, CodingKey {
@@ -3344,6 +3558,10 @@ extension Tione {
             case podInfos = "PodInfos"
             case serviceLimit = "ServiceLimit"
             case modelTurboEnable = "ModelTurboEnable"
+            case volumeMount = "VolumeMount"
+            case inferCodeInfo = "InferCodeInfo"
+            case command = "Command"
+            case serviceEIP = "ServiceEIP"
         }
     }
 
@@ -3383,12 +3601,32 @@ extension Tione {
         /// 当前资源售罄时，可用的区域有哪些
         public let availableRegion: [String]
 
+        /// 当前计费项支持的特性
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let specFeatures: [String]?
+
+        /// 计费项类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let specType: String?
+
+        /// GPU类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gpuType: String?
+
+        /// 计费项CategoryId
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let categoryId: String?
+
         enum CodingKeys: String, CodingKey {
             case specId = "SpecId"
             case specName = "SpecName"
             case specAlias = "SpecAlias"
             case available = "Available"
             case availableRegion = "AvailableRegion"
+            case specFeatures = "SpecFeatures"
+            case specType = "SpecType"
+            case gpuType = "GpuType"
+            case categoryId = "CategoryId"
         }
     }
 
@@ -3479,12 +3717,17 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastTransitionTime: String?
 
-        public init(message: String, reason: String, status: String, type: String, lastTransitionTime: String) {
+        /// 上次更新的时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lastUpdateTime: String?
+
+        public init(message: String, reason: String, status: String, type: String, lastTransitionTime: String, lastUpdateTime: String? = nil) {
             self.message = message
             self.reason = reason
             self.status = status
             self.type = type
             self.lastTransitionTime = lastTransitionTime
+            self.lastUpdateTime = lastUpdateTime
         }
 
         enum CodingKeys: String, CodingKey {
@@ -3493,6 +3736,28 @@ extension Tione {
             case status = "Status"
             case type = "Type"
             case lastTransitionTime = "LastTransitionTime"
+            case lastUpdateTime = "LastUpdateTime"
+        }
+    }
+
+    /// 太极服务的调用信息
+    public struct TJCallInfo: TCOutputModel {
+        /// 调用地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let httpAddr: String?
+
+        /// token
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let token: String?
+
+        /// 调用示例
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let callExample: String?
+
+        enum CodingKeys: String, CodingKey {
+            case httpAddr = "HttpAddr"
+            case token = "Token"
+            case callExample = "CallExample"
         }
     }
 
@@ -4254,7 +4519,7 @@ extension Tione {
         /// cfs的配置信息
         public let cfsConfig: CFSConfig
 
-        /// 挂载源类型
+        /// 挂载源类型，CFS、COS，默认为CFS
         public let volumeSourceType: String?
 
         public init(cfsConfig: CFSConfig, volumeSourceType: String? = nil) {
@@ -4313,7 +4578,8 @@ extension Tione {
         public let status: String
 
         /// 工作负载的状况信息
-        public let statefulSetCondition: [StatefulSetCondition]?
+        @available(*, deprecated)
+        public let statefulSetCondition: [StatefulSetCondition]? = nil
 
         /// 工作负载历史的状况信息
         public let conditions: [StatefulSetCondition]?
@@ -4322,6 +4588,18 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reason: String?
 
+        public init(replicas: Int64, updatedReplicas: Int64, readyReplicas: Int64, availableReplicas: Int64, unavailableReplicas: Int64, status: String, conditions: [StatefulSetCondition]? = nil, reason: String? = nil) {
+            self.replicas = replicas
+            self.updatedReplicas = updatedReplicas
+            self.readyReplicas = readyReplicas
+            self.availableReplicas = availableReplicas
+            self.unavailableReplicas = unavailableReplicas
+            self.status = status
+            self.conditions = conditions
+            self.reason = reason
+        }
+
+        @available(*, deprecated, renamed: "init(replicas:updatedReplicas:readyReplicas:availableReplicas:unavailableReplicas:status:conditions:reason:)", message: "'statefulSetCondition' is deprecated in 'WorkloadStatus'. Setting this parameter has no effect.")
         public init(replicas: Int64, updatedReplicas: Int64, readyReplicas: Int64, availableReplicas: Int64, unavailableReplicas: Int64, status: String, statefulSetCondition: [StatefulSetCondition]? = nil, conditions: [StatefulSetCondition]? = nil, reason: String? = nil) {
             self.replicas = replicas
             self.updatedReplicas = updatedReplicas
@@ -4329,7 +4607,6 @@ extension Tione {
             self.availableReplicas = availableReplicas
             self.unavailableReplicas = unavailableReplicas
             self.status = status
-            self.statefulSetCondition = statefulSetCondition
             self.conditions = conditions
             self.reason = reason
         }

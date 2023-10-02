@@ -21,21 +21,32 @@ import TecoCore
 extension Ess {
     /// DescribeIntegrationDepartments请求参数结构体
     public struct DescribeIntegrationDepartmentsRequest: TCRequest {
-        /// 操作人信息，UserId必填且需拥有组织架构管理权限
+        /// 执行本接口操作的员工信息。
+        /// 注: `在调用此接口时，请确保指定的员工已获得组织架构管理权限，并具备接口传入的相应资源的数据权限。`
         public let `operator`: UserInfo
 
-        /// 查询类型 0-查询单个部门节点 1-单个部门节点及一级子节点部门列表
+        /// 查询类型，支持以下类型：
+        ///
+        /// - **0**：查询单个部门节点列表，不包含子节点部门信息
+        /// - **1**：查询单个部门节点级一级子节点部门信息列表
         public let queryType: UInt64
 
-        /// 部门ID,与DeptOpenId二选一,优先DeptId,都为空时获取根节点数据
+        /// 代理企业和员工的信息。
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        public let agent: Agent?
+
+        /// 查询的部门ID。
+        /// 注：`如果同时指定了DeptId与DeptOpenId参数，系统将优先使用DeptId参数进行查询。当二者都未指定时，系统将返回根节点部门数据。`
         public let deptId: String?
 
-        /// 客户系统部门ID,与DeptId二选一,优先DeptId,都为空时获取根节点数据
+        /// 查询的客户系统部门ID。
+        /// 注：`如果同时指定了DeptId与DeptOpenId参数，系统将优先使用DeptId参数进行查询。当二者都未指定时，系统将返回根节点部门数据。`
         public let deptOpenId: String?
 
-        public init(operator: UserInfo, queryType: UInt64, deptId: String? = nil, deptOpenId: String? = nil) {
+        public init(operator: UserInfo, queryType: UInt64, agent: Agent? = nil, deptId: String? = nil, deptOpenId: String? = nil) {
             self.operator = `operator`
             self.queryType = queryType
+            self.agent = agent
             self.deptId = deptId
             self.deptOpenId = deptOpenId
         }
@@ -43,6 +54,7 @@ extension Ess {
         enum CodingKeys: String, CodingKey {
             case `operator` = "Operator"
             case queryType = "QueryType"
+            case agent = "Agent"
             case deptId = "DeptId"
             case deptOpenId = "DeptOpenId"
         }
@@ -50,7 +62,7 @@ extension Ess {
 
     /// DescribeIntegrationDepartments返回参数结构体
     public struct DescribeIntegrationDepartmentsResponse: TCResponse {
-        /// 部门列表
+        /// 部门信息列表。部门信息根据部门排序号OrderNo降序排列，根据部门创建时间升序排列。
         public let departments: [IntegrationDepartment]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -62,35 +74,35 @@ extension Ess {
         }
     }
 
-    /// 获取企业部门列表
+    /// 获取企业部门信息列表
     ///
-    /// 通过此接口，查询企业的部门，支持查询单个部门节点或单个部门节点及一级子节点部门列表。
+    /// 此接口（DescribeIntegrationDepartments）用于查询企业的部门信息列表，支持查询单个部门节点或单个部门节点及一级子节点部门列表。
     @inlinable
     public func describeIntegrationDepartments(_ input: DescribeIntegrationDepartmentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationDepartmentsResponse> {
         self.client.execute(action: "DescribeIntegrationDepartments", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取企业部门列表
+    /// 获取企业部门信息列表
     ///
-    /// 通过此接口，查询企业的部门，支持查询单个部门节点或单个部门节点及一级子节点部门列表。
+    /// 此接口（DescribeIntegrationDepartments）用于查询企业的部门信息列表，支持查询单个部门节点或单个部门节点及一级子节点部门列表。
     @inlinable
     public func describeIntegrationDepartments(_ input: DescribeIntegrationDepartmentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationDepartmentsResponse {
         try await self.client.execute(action: "DescribeIntegrationDepartments", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取企业部门列表
+    /// 获取企业部门信息列表
     ///
-    /// 通过此接口，查询企业的部门，支持查询单个部门节点或单个部门节点及一级子节点部门列表。
+    /// 此接口（DescribeIntegrationDepartments）用于查询企业的部门信息列表，支持查询单个部门节点或单个部门节点及一级子节点部门列表。
     @inlinable
-    public func describeIntegrationDepartments(operator: UserInfo, queryType: UInt64, deptId: String? = nil, deptOpenId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationDepartmentsResponse> {
-        self.describeIntegrationDepartments(.init(operator: `operator`, queryType: queryType, deptId: deptId, deptOpenId: deptOpenId), region: region, logger: logger, on: eventLoop)
+    public func describeIntegrationDepartments(operator: UserInfo, queryType: UInt64, agent: Agent? = nil, deptId: String? = nil, deptOpenId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationDepartmentsResponse> {
+        self.describeIntegrationDepartments(.init(operator: `operator`, queryType: queryType, agent: agent, deptId: deptId, deptOpenId: deptOpenId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取企业部门列表
+    /// 获取企业部门信息列表
     ///
-    /// 通过此接口，查询企业的部门，支持查询单个部门节点或单个部门节点及一级子节点部门列表。
+    /// 此接口（DescribeIntegrationDepartments）用于查询企业的部门信息列表，支持查询单个部门节点或单个部门节点及一级子节点部门列表。
     @inlinable
-    public func describeIntegrationDepartments(operator: UserInfo, queryType: UInt64, deptId: String? = nil, deptOpenId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationDepartmentsResponse {
-        try await self.describeIntegrationDepartments(.init(operator: `operator`, queryType: queryType, deptId: deptId, deptOpenId: deptOpenId), region: region, logger: logger, on: eventLoop)
+    public func describeIntegrationDepartments(operator: UserInfo, queryType: UInt64, agent: Agent? = nil, deptId: String? = nil, deptOpenId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationDepartmentsResponse {
+        try await self.describeIntegrationDepartments(.init(operator: `operator`, queryType: queryType, agent: agent, deptId: deptId, deptOpenId: deptOpenId), region: region, logger: logger, on: eventLoop)
     }
 }

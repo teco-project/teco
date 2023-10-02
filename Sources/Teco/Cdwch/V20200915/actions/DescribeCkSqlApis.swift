@@ -44,11 +44,15 @@ extension Cdwch {
         /// 用户名称，api与user相关的必填
         public let userName: String?
 
-        public init(instanceId: String, apiType: String, cluster: String? = nil, userName: String? = nil) {
+        /// 账户的类型
+        public let userType: String?
+
+        public init(instanceId: String, apiType: String, cluster: String? = nil, userName: String? = nil, userType: String? = nil) {
             self.instanceId = instanceId
             self.apiType = apiType
             self.cluster = cluster
             self.userName = userName
+            self.userType = userType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -56,6 +60,7 @@ extension Cdwch {
             case apiType = "ApiType"
             case cluster = "Cluster"
             case userName = "UserName"
+            case userType = "UserType"
         }
     }
 
@@ -94,15 +99,15 @@ extension Cdwch {
     ///
     /// 查询集群用户、集群表，数据库等相关信息
     @inlinable
-    public func describeCkSqlApis(instanceId: String, apiType: String, cluster: String? = nil, userName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCkSqlApisResponse> {
-        self.describeCkSqlApis(.init(instanceId: instanceId, apiType: apiType, cluster: cluster, userName: userName), region: region, logger: logger, on: eventLoop)
+    public func describeCkSqlApis(instanceId: String, apiType: String, cluster: String? = nil, userName: String? = nil, userType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCkSqlApisResponse> {
+        self.describeCkSqlApis(.init(instanceId: instanceId, apiType: apiType, cluster: cluster, userName: userName, userType: userType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群用户相关信息
     ///
     /// 查询集群用户、集群表，数据库等相关信息
     @inlinable
-    public func describeCkSqlApis(instanceId: String, apiType: String, cluster: String? = nil, userName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCkSqlApisResponse {
-        try await self.describeCkSqlApis(.init(instanceId: instanceId, apiType: apiType, cluster: cluster, userName: userName), region: region, logger: logger, on: eventLoop)
+    public func describeCkSqlApis(instanceId: String, apiType: String, cluster: String? = nil, userName: String? = nil, userType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCkSqlApisResponse {
+        try await self.describeCkSqlApis(.init(instanceId: instanceId, apiType: apiType, cluster: cluster, userName: userName, userType: userType), region: region, logger: logger, on: eventLoop)
     }
 }

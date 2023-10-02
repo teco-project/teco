@@ -21,20 +21,30 @@ import TecoCore
 extension Ess {
     /// DescribeIntegrationEmployees请求参数结构体
     public struct DescribeIntegrationEmployeesRequest: TCPaginatedRequest {
-        /// 操作人信息，userId必填
+        /// 执行本接口操作的员工信息。使用此接口时，必须填写UserId。
+        /// 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         public let `operator`: UserInfo
 
-        /// 指定每页多少条数据，单页最大20
+        /// 指定分页每页返回的数据条数，单页最大支持 20。
         public let limit: Int64
 
-        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        /// 代理企业和员工的信息。
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         public let agent: Agent?
 
-        /// 查询过滤实名用户，Key为Status，Values为["IsVerified"]
-        /// 根据第三方系统openId过滤查询员工时,Key为StaffOpenId,Values为["OpenId","OpenId",...]
+        /// 查询的关键字段，支持Key-Values查询。可选键值如下：
+        ///
+        /// - Key:**"Status"**，根据实名状态查询员工，Values可选：
+        ///   - **["IsVerified"]**：查询已实名的员工
+        ///   - **["NotVerified"]**：查询未实名的员工
+        ///
+        /// - Key:**"DepartmentId"**，根据部门ID查询部门下的员工，Values为指定的部门ID：**["DepartmentId"]**
+        /// - Key:**"UserId"**，根据用户ID查询员工，Values为指定的用户ID：**["UserId"]**
+        /// - Key:**"UserWeWorkOpenId"**，根据用户企微账号ID查询员工，Values为指定用户的企微账号ID：**["UserWeWorkOpenId"]**
+        /// - Key:**"StaffOpenId"**，根据第三方系统用户OpenId查询员工，Values为第三方系统用户OpenId列表：**["OpenId1","OpenId2",...]**
         public let filters: [Filter]?
 
-        /// 查询结果分页返回，此处指定第几页，如果不传默认从第一页返回。页码从 0 开始，即首页为 0，最大20000
+        /// 指定分页返回第几页的数据，如果不传默认返回第一页。页码从 0 开始，即首页为 0，最大20000。
         public let offset: Int64?
 
         public init(operator: UserInfo, limit: Int64, agent: Agent? = nil, filters: [Filter]? = nil, offset: Int64? = nil) {
@@ -64,18 +74,18 @@ extension Ess {
 
     /// DescribeIntegrationEmployees返回参数结构体
     public struct DescribeIntegrationEmployeesResponse: TCPaginatedResponse {
-        /// 员工数据列表
+        /// 员工信息列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let employees: [Staff]?
 
-        /// 查询结果分页返回，此处指定第几页，如果不传默认从第一页返回。页码从 0 开始，即首页为 0，最大20000
+        /// 指定分页返回第几页的数据。页码从 0 开始，即首页为 0，最大20000。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let offset: Int64?
 
-        /// 指定每页多少条数据，单页最大20
+        /// 指定分页每页返回的数据条数，单页最大支持 20。
         public let limit: Int64
 
-        /// 符合条件的员工数量
+        /// 符合条件的员工数量。
         public let totalCount: Int64
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -100,57 +110,57 @@ extension Ess {
         }
     }
 
-    /// 查询企业员工列表
+    /// 查询企业员工信息列表
     ///
-    /// 查询企业员工列表，每次返回的数据量最大为20
+    /// 此接口（DescribeIntegrationEmployees）用于分页查询企业员工信息列表，支持设置过滤条件以筛选员工查询结果。
     @inlinable
     public func describeIntegrationEmployees(_ input: DescribeIntegrationEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationEmployeesResponse> {
         self.client.execute(action: "DescribeIntegrationEmployees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询企业员工列表
+    /// 查询企业员工信息列表
     ///
-    /// 查询企业员工列表，每次返回的数据量最大为20
+    /// 此接口（DescribeIntegrationEmployees）用于分页查询企业员工信息列表，支持设置过滤条件以筛选员工查询结果。
     @inlinable
     public func describeIntegrationEmployees(_ input: DescribeIntegrationEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationEmployeesResponse {
         try await self.client.execute(action: "DescribeIntegrationEmployees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询企业员工列表
+    /// 查询企业员工信息列表
     ///
-    /// 查询企业员工列表，每次返回的数据量最大为20
+    /// 此接口（DescribeIntegrationEmployees）用于分页查询企业员工信息列表，支持设置过滤条件以筛选员工查询结果。
     @inlinable
     public func describeIntegrationEmployees(operator: UserInfo, limit: Int64, agent: Agent? = nil, filters: [Filter]? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationEmployeesResponse> {
         self.describeIntegrationEmployees(.init(operator: `operator`, limit: limit, agent: agent, filters: filters, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询企业员工列表
+    /// 查询企业员工信息列表
     ///
-    /// 查询企业员工列表，每次返回的数据量最大为20
+    /// 此接口（DescribeIntegrationEmployees）用于分页查询企业员工信息列表，支持设置过滤条件以筛选员工查询结果。
     @inlinable
     public func describeIntegrationEmployees(operator: UserInfo, limit: Int64, agent: Agent? = nil, filters: [Filter]? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationEmployeesResponse {
         try await self.describeIntegrationEmployees(.init(operator: `operator`, limit: limit, agent: agent, filters: filters, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询企业员工列表
+    /// 查询企业员工信息列表
     ///
-    /// 查询企业员工列表，每次返回的数据量最大为20
+    /// 此接口（DescribeIntegrationEmployees）用于分页查询企业员工信息列表，支持设置过滤条件以筛选员工查询结果。
     @inlinable
     public func describeIntegrationEmployeesPaginated(_ input: DescribeIntegrationEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Staff])> {
         self.client.paginate(input: input, region: region, command: self.describeIntegrationEmployees, logger: logger, on: eventLoop)
     }
 
-    /// 查询企业员工列表
+    /// 查询企业员工信息列表
     ///
-    /// 查询企业员工列表，每次返回的数据量最大为20
+    /// 此接口（DescribeIntegrationEmployees）用于分页查询企业员工信息列表，支持设置过滤条件以筛选员工查询结果。
     @inlinable @discardableResult
     public func describeIntegrationEmployeesPaginated(_ input: DescribeIntegrationEmployeesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeIntegrationEmployeesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeIntegrationEmployees, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 查询企业员工列表
+    /// 查询企业员工信息列表
     ///
-    /// 查询企业员工列表，每次返回的数据量最大为20
+    /// 此接口（DescribeIntegrationEmployees）用于分页查询企业员工信息列表，支持设置过滤条件以筛选员工查询结果。
     ///
     /// - Returns: `AsyncSequence`s of ``Staff`` and ``DescribeIntegrationEmployeesResponse`` that can be iterated over asynchronously on demand.
     @inlinable

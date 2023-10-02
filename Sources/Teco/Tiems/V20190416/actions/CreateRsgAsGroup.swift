@@ -83,7 +83,7 @@ extension Tiems {
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func createRsgAsGroup(_ input: CreateRsgAsGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRsgAsGroupResponse> {
-        fatalError("CreateRsgAsGroup is no longer available.")
+        fatalError("'CreateRsgAsGroup' is no longer available.")
     }
 
     /// 创建资源组的伸缩组
@@ -92,7 +92,7 @@ extension Tiems {
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func createRsgAsGroup(_ input: CreateRsgAsGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRsgAsGroupResponse {
-        fatalError("CreateRsgAsGroup is no longer available.")
+        fatalError("'CreateRsgAsGroup' is no longer available.")
     }
 
     /// 创建资源组的伸缩组
@@ -101,7 +101,7 @@ extension Tiems {
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func createRsgAsGroup(rsgId: String, maxSize: UInt64, minSize: UInt64, instanceType: String, cluster: String? = nil, name: String? = nil, desiredSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRsgAsGroupResponse> {
-        fatalError("CreateRsgAsGroup is no longer available.")
+        fatalError("'CreateRsgAsGroup' is no longer available.")
     }
 
     /// 创建资源组的伸缩组
@@ -110,6 +110,6 @@ extension Tiems {
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func createRsgAsGroup(rsgId: String, maxSize: UInt64, minSize: UInt64, instanceType: String, cluster: String? = nil, name: String? = nil, desiredSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRsgAsGroupResponse {
-        fatalError("CreateRsgAsGroup is no longer available.")
+        fatalError("'CreateRsgAsGroup' is no longer available.")
     }
 }

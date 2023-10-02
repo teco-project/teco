@@ -51,7 +51,14 @@ extension Lcic {
         /// 文档大小，单位 字节
         public let documentSize: UInt64?
 
-        public init(sdkAppId: UInt64, documentUrl: String, documentName: String, owner: String, transcodeType: UInt64? = nil, permission: UInt64? = nil, documentType: String? = nil, documentSize: UInt64? = nil) {
+        /// 是否对不支持元素开启自动处理的功能。默认关闭。
+        /// 自动处理的元素如下：
+        /// 1. 墨迹：移除不支持的墨迹（例如WPS墨迹）
+        /// 2. 自动翻页：移除PPT上所有自动翻页设置，并设置为单击鼠标翻页
+        /// 3. 已损坏音视频：移除PPT上对损坏音视频的引用
+        public let autoHandleUnsupportedElement: Bool?
+
+        public init(sdkAppId: UInt64, documentUrl: String, documentName: String, owner: String, transcodeType: UInt64? = nil, permission: UInt64? = nil, documentType: String? = nil, documentSize: UInt64? = nil, autoHandleUnsupportedElement: Bool? = nil) {
             self.sdkAppId = sdkAppId
             self.documentUrl = documentUrl
             self.documentName = documentName
@@ -60,6 +67,7 @@ extension Lcic {
             self.permission = permission
             self.documentType = documentType
             self.documentSize = documentSize
+            self.autoHandleUnsupportedElement = autoHandleUnsupportedElement
         }
 
         enum CodingKeys: String, CodingKey {
@@ -71,6 +79,7 @@ extension Lcic {
             case permission = "Permission"
             case documentType = "DocumentType"
             case documentSize = "DocumentSize"
+            case autoHandleUnsupportedElement = "AutoHandleUnsupportedElement"
         }
     }
 
@@ -108,15 +117,15 @@ extension Lcic {
     ///
     /// 创建房间内可以使用的文档。
     @inlinable
-    public func createDocument(sdkAppId: UInt64, documentUrl: String, documentName: String, owner: String, transcodeType: UInt64? = nil, permission: UInt64? = nil, documentType: String? = nil, documentSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDocumentResponse> {
-        self.createDocument(.init(sdkAppId: sdkAppId, documentUrl: documentUrl, documentName: documentName, owner: owner, transcodeType: transcodeType, permission: permission, documentType: documentType, documentSize: documentSize), region: region, logger: logger, on: eventLoop)
+    public func createDocument(sdkAppId: UInt64, documentUrl: String, documentName: String, owner: String, transcodeType: UInt64? = nil, permission: UInt64? = nil, documentType: String? = nil, documentSize: UInt64? = nil, autoHandleUnsupportedElement: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDocumentResponse> {
+        self.createDocument(.init(sdkAppId: sdkAppId, documentUrl: documentUrl, documentName: documentName, owner: owner, transcodeType: transcodeType, permission: permission, documentType: documentType, documentSize: documentSize, autoHandleUnsupportedElement: autoHandleUnsupportedElement), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建文档
     ///
     /// 创建房间内可以使用的文档。
     @inlinable
-    public func createDocument(sdkAppId: UInt64, documentUrl: String, documentName: String, owner: String, transcodeType: UInt64? = nil, permission: UInt64? = nil, documentType: String? = nil, documentSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDocumentResponse {
-        try await self.createDocument(.init(sdkAppId: sdkAppId, documentUrl: documentUrl, documentName: documentName, owner: owner, transcodeType: transcodeType, permission: permission, documentType: documentType, documentSize: documentSize), region: region, logger: logger, on: eventLoop)
+    public func createDocument(sdkAppId: UInt64, documentUrl: String, documentName: String, owner: String, transcodeType: UInt64? = nil, permission: UInt64? = nil, documentType: String? = nil, documentSize: UInt64? = nil, autoHandleUnsupportedElement: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDocumentResponse {
+        try await self.createDocument(.init(sdkAppId: sdkAppId, documentUrl: documentUrl, documentName: documentName, owner: owner, transcodeType: transcodeType, permission: permission, documentType: documentType, documentSize: documentSize, autoHandleUnsupportedElement: autoHandleUnsupportedElement), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -26,40 +26,132 @@ public protocol TCEsErrorType: TCServiceErrorType {
 
 public struct TCEsError: TCEsErrorType {
     enum Code: String {
-        case authFailure = "AuthFailure"
+        case authFailure_UnAuthDescribeInstances = "AuthFailure.UnAuthDescribeInstances"
         case authFailure_UnAuthorizedOperation = "AuthFailure.UnAuthorizedOperation"
-        case failedOperation = "FailedOperation"
         case failedOperation_ClusterResourceLimitError = "FailedOperation.ClusterResourceLimitError"
         case failedOperation_DiskCountParamError = "FailedOperation.DiskCountParamError"
         case failedOperation_ErrorClusterState = "FailedOperation.ErrorClusterState"
-        case failedOperation_ErrorClusterStateNoReplication = "FailedOperation.ErrorClusterStateNoReplication"
-        case failedOperation_ErrorClusterStateUnhealth = "FailedOperation.ErrorClusterStateUnhealth"
+        case failedOperation_EsDictionaryInfoError = "FailedOperation.EsDictionaryInfoError"
+        case failedOperation_FileNameError = "FailedOperation.FileNameError"
+        case failedOperation_FileSizeError = "FailedOperation.FileSizeError"
+        case failedOperation_GetTagInfoError = "FailedOperation.GetTagInfoError"
         case failedOperation_NoPayment = "FailedOperation.NoPayment"
         case failedOperation_NotAuthenticated = "FailedOperation.NotAuthenticated"
+        case failedOperation_RefundError = "FailedOperation.RefundError"
+        case failedOperation_UnsupportedLocalDiskRollUpScaleUpOrDown = "FailedOperation.UnsupportedLocalDiskRollUpScaleUpOrDown"
         case failedOperation_UnsupportedResetNodeTypeAndScaleOutDisk = "FailedOperation.UnsupportedResetNodeTypeAndScaleOutDisk"
         case failedOperation_UnsupportedRestScaleDownAndModifyDisk = "FailedOperation.UnsupportedRestScaleDownAndModifyDisk"
         case failedOperation_UnsupportedReverseRegulationNodeTypeAndDisk = "FailedOperation.UnsupportedReverseRegulationNodeTypeAndDisk"
         case internalError = "InternalError"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
+        case invalidParameterValue_ChargeType = "InvalidParameterValue.ChargeType"
+        case invalidParameterValue_ConfigInfo = "InvalidParameterValue.ConfigInfo"
+        case invalidParameterValue_EsConfigType = "InvalidParameterValue.EsConfigType"
+        case invalidParameterValue_InstallPluginList = "InvalidParameterValue.InstallPluginList"
+        case invalidParameterValue_InstanceName = "InvalidParameterValue.InstanceName"
+        case invalidParameterValue_InvalidDeadline = "InvalidParameterValue.InvalidDeadline"
+        case invalidParameterValue_InvalidJDK = "InvalidParameterValue.InvalidJDK"
+        case invalidParameterValue_Password = "InvalidParameterValue.Password"
+        case invalidParameterValue_PluginType = "InvalidParameterValue.PluginType"
+        case invalidParameterValue_RenewFlag = "InvalidParameterValue.RenewFlag"
+        case invalidParameterValue_UpgradeMode = "InvalidParameterValue.UpgradeMode"
+        case invalidParameter_GC = "InvalidParameter.GC"
+        case invalidParameter_InvalidAppId = "InvalidParameter.InvalidAppId"
+        case invalidParameter_InvalidAutoVoucher = "InvalidParameter.InvalidAutoVoucher"
+        case invalidParameter_InvalidClusterName = "InvalidParameter.InvalidClusterName"
+        case invalidParameter_InvalidCosBackupInfo = "InvalidParameter.InvalidCosBackupInfo"
+        case invalidParameter_InvalidDeployMode = "InvalidParameter.InvalidDeployMode"
+        case invalidParameter_InvalidDiskCount = "InvalidParameter.InvalidDiskCount"
+        case invalidParameter_InvalidDiskEncrypt = "InvalidParameter.InvalidDiskEncrypt"
+        case invalidParameter_InvalidDiskEnhance = "InvalidParameter.InvalidDiskEnhance"
+        case invalidParameter_InvalidDiskSize = "InvalidParameter.InvalidDiskSize"
+        case invalidParameter_InvalidDiskType = "InvalidParameter.InvalidDiskType"
+        case invalidParameter_InvalidEsACL = "InvalidParameter.InvalidEsACL"
+        case invalidParameter_InvalidEsVersion = "InvalidParameter.InvalidEsVersion"
+        case invalidParameter_InvalidIndexMetaJson = "InvalidParameter.InvalidIndexMetaJson"
+        case invalidParameter_InvalidIndexName = "InvalidParameter.InvalidIndexName"
+        case invalidParameter_InvalidIndexType = "InvalidParameter.InvalidIndexType"
         case invalidParameter_InvalidInstanceId = "InvalidParameter.InvalidInstanceId"
+        case invalidParameter_InvalidIp = "InvalidParameter.InvalidIp"
+        case invalidParameter_InvalidIpList = "InvalidParameter.InvalidIpList"
+        case invalidParameter_InvalidKibanaPrivatePort = "InvalidParameter.InvalidKibanaPrivatePort"
+        case invalidParameter_InvalidLimit = "InvalidParameter.InvalidLimit"
+        case invalidParameter_InvalidLogType = "InvalidParameter.InvalidLogType"
+        case invalidParameter_InvalidMultiZoneInfo = "InvalidParameter.InvalidMultiZoneInfo"
+        case invalidParameter_InvalidNodeNames = "InvalidParameter.InvalidNodeNames"
+        case invalidParameter_InvalidNodeNum = "InvalidParameter.InvalidNodeNum"
+        case invalidParameter_InvalidNodeType = "InvalidParameter.InvalidNodeType"
+        case invalidParameter_InvalidOffset = "InvalidParameter.InvalidOffset"
+        case invalidParameter_InvalidOpType = "InvalidParameter.InvalidOpType"
+        case invalidParameter_InvalidOperationDuration = "InvalidParameter.InvalidOperationDuration"
+        case invalidParameter_InvalidOrderByKey = "InvalidParameter.InvalidOrderByKey"
+        case invalidParameter_InvalidOrderByType = "InvalidParameter.InvalidOrderByType"
+        case invalidParameter_InvalidPrivateAccess = "InvalidParameter.InvalidPrivateAccess"
+        case invalidParameter_InvalidPublicAccess = "InvalidParameter.InvalidPublicAccess"
+        case invalidParameter_InvalidRegion = "InvalidParameter.InvalidRegion"
+        case invalidParameter_InvalidRestartMode = "InvalidParameter.InvalidRestartMode"
+        case invalidParameter_InvalidRestartType = "InvalidParameter.InvalidRestartType"
         case invalidParameter_InvalidSecurityGroupIds = "InvalidParameter.InvalidSecurityGroupIds"
-        case missingParameter = "MissingParameter"
-        case requestLimitExceeded = "RequestLimitExceeded"
+        case invalidParameter_InvalidSubnetId = "InvalidParameter.InvalidSubnetId"
+        case invalidParameter_InvalidSubnetUidList = "InvalidParameter.InvalidSubnetUidList"
+        case invalidParameter_InvalidTagInfo = "InvalidParameter.InvalidTagInfo"
+        case invalidParameter_InvalidTagList = "InvalidParameter.InvalidTagList"
+        case invalidParameter_InvalidTimeParam = "InvalidParameter.InvalidTimeParam"
+        case invalidParameter_InvalidType = "InvalidParameter.InvalidType"
+        case invalidParameter_InvalidUpdateMetaJson = "InvalidParameter.InvalidUpdateMetaJson"
+        case invalidParameter_InvalidUpdateType = "InvalidParameter.InvalidUpdateType"
+        case invalidParameter_InvalidVoucherIds = "InvalidParameter.InvalidVoucherIds"
+        case invalidParameter_InvalidZone = "InvalidParameter.InvalidZone"
+        case limitExceeded_ClusterNum = "LimitExceeded.ClusterNum"
+        case limitExceeded_DiagnoseCount = "LimitExceeded.DiagnoseCount"
+        case limitExceeded_NodeNumOrIndices = "LimitExceeded.NodeNumOrIndices"
+        case limitExceeded_PluginInstall = "LimitExceeded.PluginInstall"
+        case limitExceeded_ResourceLimit = "LimitExceeded.ResourceLimit"
+        case limitExceeded_UpdateItemLimit = "LimitExceeded.UpdateItemLimit"
         case resourceInUse = "ResourceInUse"
+        case resourceInUse_Diagnose = "ResourceInUse.Diagnose"
+        case resourceInUse_Order = "ResourceInUse.Order"
         case resourceInsufficient = "ResourceInsufficient"
         case resourceInsufficient_Balance = "ResourceInsufficient.Balance"
+        case resourceInsufficient_CVM = "ResourceInsufficient.CVM"
         case resourceInsufficient_HiddenZone = "ResourceInsufficient.HiddenZone"
         case resourceInsufficient_Subnet = "ResourceInsufficient.Subnet"
-        case resourceNotFound = "ResourceNotFound"
+        case resourceInsufficient_SubnetIp = "ResourceInsufficient.SubnetIp"
+        case resourceInsufficient_Zone = "ResourceInsufficient.Zone"
+        case resourceNotFound_CAMInfoNotFound = "ResourceNotFound.CAMInfoNotFound"
+        case resourceNotFound_ClusterInfoNotFound = "ResourceNotFound.ClusterInfoNotFound"
+        case resourceNotFound_CosInfoNotFound = "ResourceNotFound.CosInfoNotFound"
         case resourceNotFound_DBInfoNotFound = "ResourceNotFound.DBInfoNotFound"
+        case resourceNotFound_DataNodeNotFound = "ResourceNotFound.DataNodeNotFound"
+        case resourceNotFound_DiagnoseNotFound = "ResourceNotFound.DiagnoseNotFound"
+        case resourceNotFound_DiskInfoNotFound = "ResourceNotFound.DiskInfoNotFound"
+        case resourceNotFound_OssInfoNotFound = "ResourceNotFound.OssInfoNotFound"
         case resourceNotFound_SecurityGroupNotFound = "ResourceNotFound.SecurityGroupNotFound"
+        case resourceNotFound_TradeCgwNotFound = "ResourceNotFound.TradeCgwNotFound"
+        case resourceNotFound_VPCInfoNotFound = "ResourceNotFound.VPCInfoNotFound"
+        case resourceNotFound_WhiteListNotFound = "ResourceNotFound.WhiteListNotFound"
         case resourceUnavailable = "ResourceUnavailable"
-        case resourcesSoldOut = "ResourcesSoldOut"
-        case unauthorizedOperation = "UnauthorizedOperation"
-        case unknownParameter = "UnknownParameter"
+        case unauthorizedOperation_UinNotInWhiteList = "UnauthorizedOperation.UinNotInWhiteList"
         case unsupportedOperation = "UnsupportedOperation"
+        case unsupportedOperation_BasicSecurityType = "UnsupportedOperation.BasicSecurityType"
+        case unsupportedOperation_ChangeNodeType = "UnsupportedOperation.ChangeNodeType"
+        case unsupportedOperation_ClusterStateClose = "UnsupportedOperation.ClusterStateClose"
+        case unsupportedOperation_ClusterStateNoReplication = "UnsupportedOperation.ClusterStateNoReplication"
+        case unsupportedOperation_ClusterStateUnHealth = "UnsupportedOperation.ClusterStateUnHealth"
+        case unsupportedOperation_CosBackUp = "UnsupportedOperation.CosBackUp"
+        case unsupportedOperation_DiagnoseJob = "UnsupportedOperation.DiagnoseJob"
+        case unsupportedOperation_DiagnoseNotOpen = "UnsupportedOperation.DiagnoseNotOpen"
+        case unsupportedOperation_InstanceTypeError = "UnsupportedOperation.InstanceTypeError"
+        case unsupportedOperation_LicenseError = "UnsupportedOperation.LicenseError"
+        case unsupportedOperation_LocalDisk = "UnsupportedOperation.LocalDisk"
+        case unsupportedOperation_MultiZonesUpgrade = "UnsupportedOperation.MultiZonesUpgrade"
+        case unsupportedOperation_Plugin = "UnsupportedOperation.Plugin"
+        case unsupportedOperation_RestartMode = "UnsupportedOperation.RestartMode"
+        case unsupportedOperation_StatusNotNormal = "UnsupportedOperation.StatusNotNormal"
         case unsupportedOperation_StatusNotSupport = "UnsupportedOperation.StatusNotSupport"
+        case unsupportedOperation_VPCInfoNotFound = "UnsupportedOperation.VPCInfoNotFound"
+        case unsupportedOperation_WebServiceType = "UnsupportedOperation.WebServiceType"
     }
 
     /// Error domains affliated to ``TCEsError``.
@@ -68,8 +160,12 @@ public struct TCEsError: TCEsErrorType {
             AuthFailure.self,
             FailedOperation.self,
             InvalidParameter.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            ResourceInUse.self,
             ResourceInsufficient.self,
             ResourceNotFound.self,
+            UnauthorizedOperation.self,
             UnsupportedOperation.self
         ]
     }
@@ -96,19 +192,13 @@ public struct TCEsError: TCEsErrorType {
         self.context = context
     }
 
-    /// CAM签名/鉴权错误。
-    public static var authFailure: TCEsError {
-        TCEsError(.authFailure)
+    public static var authFailure_UnAuthDescribeInstances: TCEsError {
+        TCEsError(.authFailure_UnAuthDescribeInstances)
     }
 
     /// 操作未授权。
     public static var authFailure_UnAuthorizedOperation: TCEsError {
         TCEsError(.authFailure_UnAuthorizedOperation)
-    }
-
-    /// 操作失败。
-    public static var failedOperation: TCEsError {
-        TCEsError(.failedOperation)
     }
 
     /// 集群资源配额限制错误。
@@ -128,18 +218,20 @@ public struct TCEsError: TCEsErrorType {
         TCEsError(.failedOperation_ErrorClusterState)
     }
 
-    /// 集群索引没有副本存在。
-    ///
-    /// 给集群中0副本的索引添加副本
-    public static var failedOperation_ErrorClusterStateNoReplication: TCEsError {
-        TCEsError(.failedOperation_ErrorClusterStateNoReplication)
+    public static var failedOperation_EsDictionaryInfoError: TCEsError {
+        TCEsError(.failedOperation_EsDictionaryInfoError)
     }
 
-    /// 集群状态不健康。
-    ///
-    /// 等集群状态健康后在进行操作。
-    public static var failedOperation_ErrorClusterStateUnhealth: TCEsError {
-        TCEsError(.failedOperation_ErrorClusterStateUnhealth)
+    public static var failedOperation_FileNameError: TCEsError {
+        TCEsError(.failedOperation_FileNameError)
+    }
+
+    public static var failedOperation_FileSizeError: TCEsError {
+        TCEsError(.failedOperation_FileSizeError)
+    }
+
+    public static var failedOperation_GetTagInfoError: TCEsError {
+        TCEsError(.failedOperation_GetTagInfoError)
     }
 
     /// 账户未绑定信用卡或paypal，无法支付。
@@ -150,6 +242,17 @@ public struct TCEsError: TCEsErrorType {
     /// 用户未实名认证。
     public static var failedOperation_NotAuthenticated: TCEsError {
         TCEsError(.failedOperation_NotAuthenticated)
+    }
+
+    public static var failedOperation_RefundError: TCEsError {
+        TCEsError(.failedOperation_RefundError)
+    }
+
+    /// 不支持对本地盘集群通过滚动重启方式扩缩容。
+    ///
+    /// 选择蓝绿变更方式扩缩容集群。
+    public static var failedOperation_UnsupportedLocalDiskRollUpScaleUpOrDown: TCEsError {
+        TCEsError(.failedOperation_UnsupportedLocalDiskRollUpScaleUpOrDown)
     }
 
     /// 不支持在滚动重启扩容计算资源同时扩容磁盘数量。
@@ -184,27 +287,274 @@ public struct TCEsError: TCEsErrorType {
         TCEsError(.invalidParameterValue)
     }
 
+    public static var invalidParameterValue_ChargeType: TCEsError {
+        TCEsError(.invalidParameterValue_ChargeType)
+    }
+
+    public static var invalidParameterValue_ConfigInfo: TCEsError {
+        TCEsError(.invalidParameterValue_ConfigInfo)
+    }
+
+    public static var invalidParameterValue_EsConfigType: TCEsError {
+        TCEsError(.invalidParameterValue_EsConfigType)
+    }
+
+    public static var invalidParameterValue_InstallPluginList: TCEsError {
+        TCEsError(.invalidParameterValue_InstallPluginList)
+    }
+
+    public static var invalidParameterValue_InstanceName: TCEsError {
+        TCEsError(.invalidParameterValue_InstanceName)
+    }
+
+    public static var invalidParameterValue_InvalidDeadline: TCEsError {
+        TCEsError(.invalidParameterValue_InvalidDeadline)
+    }
+
+    public static var invalidParameterValue_InvalidJDK: TCEsError {
+        TCEsError(.invalidParameterValue_InvalidJDK)
+    }
+
+    public static var invalidParameterValue_Password: TCEsError {
+        TCEsError(.invalidParameterValue_Password)
+    }
+
+    public static var invalidParameterValue_PluginType: TCEsError {
+        TCEsError(.invalidParameterValue_PluginType)
+    }
+
+    public static var invalidParameterValue_RenewFlag: TCEsError {
+        TCEsError(.invalidParameterValue_RenewFlag)
+    }
+
+    public static var invalidParameterValue_UpgradeMode: TCEsError {
+        TCEsError(.invalidParameterValue_UpgradeMode)
+    }
+
+    public static var invalidParameter_GC: TCEsError {
+        TCEsError(.invalidParameter_GC)
+    }
+
+    public static var invalidParameter_InvalidAppId: TCEsError {
+        TCEsError(.invalidParameter_InvalidAppId)
+    }
+
+    public static var invalidParameter_InvalidAutoVoucher: TCEsError {
+        TCEsError(.invalidParameter_InvalidAutoVoucher)
+    }
+
+    public static var invalidParameter_InvalidClusterName: TCEsError {
+        TCEsError(.invalidParameter_InvalidClusterName)
+    }
+
+    public static var invalidParameter_InvalidCosBackupInfo: TCEsError {
+        TCEsError(.invalidParameter_InvalidCosBackupInfo)
+    }
+
+    public static var invalidParameter_InvalidDeployMode: TCEsError {
+        TCEsError(.invalidParameter_InvalidDeployMode)
+    }
+
+    public static var invalidParameter_InvalidDiskCount: TCEsError {
+        TCEsError(.invalidParameter_InvalidDiskCount)
+    }
+
+    public static var invalidParameter_InvalidDiskEncrypt: TCEsError {
+        TCEsError(.invalidParameter_InvalidDiskEncrypt)
+    }
+
+    public static var invalidParameter_InvalidDiskEnhance: TCEsError {
+        TCEsError(.invalidParameter_InvalidDiskEnhance)
+    }
+
+    public static var invalidParameter_InvalidDiskSize: TCEsError {
+        TCEsError(.invalidParameter_InvalidDiskSize)
+    }
+
+    public static var invalidParameter_InvalidDiskType: TCEsError {
+        TCEsError(.invalidParameter_InvalidDiskType)
+    }
+
+    public static var invalidParameter_InvalidEsACL: TCEsError {
+        TCEsError(.invalidParameter_InvalidEsACL)
+    }
+
+    public static var invalidParameter_InvalidEsVersion: TCEsError {
+        TCEsError(.invalidParameter_InvalidEsVersion)
+    }
+
+    public static var invalidParameter_InvalidIndexMetaJson: TCEsError {
+        TCEsError(.invalidParameter_InvalidIndexMetaJson)
+    }
+
+    public static var invalidParameter_InvalidIndexName: TCEsError {
+        TCEsError(.invalidParameter_InvalidIndexName)
+    }
+
+    public static var invalidParameter_InvalidIndexType: TCEsError {
+        TCEsError(.invalidParameter_InvalidIndexType)
+    }
+
     public static var invalidParameter_InvalidInstanceId: TCEsError {
         TCEsError(.invalidParameter_InvalidInstanceId)
+    }
+
+    public static var invalidParameter_InvalidIp: TCEsError {
+        TCEsError(.invalidParameter_InvalidIp)
+    }
+
+    public static var invalidParameter_InvalidIpList: TCEsError {
+        TCEsError(.invalidParameter_InvalidIpList)
+    }
+
+    public static var invalidParameter_InvalidKibanaPrivatePort: TCEsError {
+        TCEsError(.invalidParameter_InvalidKibanaPrivatePort)
+    }
+
+    public static var invalidParameter_InvalidLimit: TCEsError {
+        TCEsError(.invalidParameter_InvalidLimit)
+    }
+
+    public static var invalidParameter_InvalidLogType: TCEsError {
+        TCEsError(.invalidParameter_InvalidLogType)
+    }
+
+    public static var invalidParameter_InvalidMultiZoneInfo: TCEsError {
+        TCEsError(.invalidParameter_InvalidMultiZoneInfo)
+    }
+
+    public static var invalidParameter_InvalidNodeNames: TCEsError {
+        TCEsError(.invalidParameter_InvalidNodeNames)
+    }
+
+    public static var invalidParameter_InvalidNodeNum: TCEsError {
+        TCEsError(.invalidParameter_InvalidNodeNum)
+    }
+
+    public static var invalidParameter_InvalidNodeType: TCEsError {
+        TCEsError(.invalidParameter_InvalidNodeType)
+    }
+
+    public static var invalidParameter_InvalidOffset: TCEsError {
+        TCEsError(.invalidParameter_InvalidOffset)
+    }
+
+    public static var invalidParameter_InvalidOpType: TCEsError {
+        TCEsError(.invalidParameter_InvalidOpType)
+    }
+
+    public static var invalidParameter_InvalidOperationDuration: TCEsError {
+        TCEsError(.invalidParameter_InvalidOperationDuration)
+    }
+
+    public static var invalidParameter_InvalidOrderByKey: TCEsError {
+        TCEsError(.invalidParameter_InvalidOrderByKey)
+    }
+
+    public static var invalidParameter_InvalidOrderByType: TCEsError {
+        TCEsError(.invalidParameter_InvalidOrderByType)
+    }
+
+    public static var invalidParameter_InvalidPrivateAccess: TCEsError {
+        TCEsError(.invalidParameter_InvalidPrivateAccess)
+    }
+
+    public static var invalidParameter_InvalidPublicAccess: TCEsError {
+        TCEsError(.invalidParameter_InvalidPublicAccess)
+    }
+
+    public static var invalidParameter_InvalidRegion: TCEsError {
+        TCEsError(.invalidParameter_InvalidRegion)
+    }
+
+    public static var invalidParameter_InvalidRestartMode: TCEsError {
+        TCEsError(.invalidParameter_InvalidRestartMode)
+    }
+
+    public static var invalidParameter_InvalidRestartType: TCEsError {
+        TCEsError(.invalidParameter_InvalidRestartType)
     }
 
     public static var invalidParameter_InvalidSecurityGroupIds: TCEsError {
         TCEsError(.invalidParameter_InvalidSecurityGroupIds)
     }
 
-    /// 缺少参数错误。
-    public static var missingParameter: TCEsError {
-        TCEsError(.missingParameter)
+    public static var invalidParameter_InvalidSubnetId: TCEsError {
+        TCEsError(.invalidParameter_InvalidSubnetId)
     }
 
-    /// 请求的次数超过了频率限制。
-    public static var requestLimitExceeded: TCEsError {
-        TCEsError(.requestLimitExceeded)
+    public static var invalidParameter_InvalidSubnetUidList: TCEsError {
+        TCEsError(.invalidParameter_InvalidSubnetUidList)
+    }
+
+    public static var invalidParameter_InvalidTagInfo: TCEsError {
+        TCEsError(.invalidParameter_InvalidTagInfo)
+    }
+
+    public static var invalidParameter_InvalidTagList: TCEsError {
+        TCEsError(.invalidParameter_InvalidTagList)
+    }
+
+    public static var invalidParameter_InvalidTimeParam: TCEsError {
+        TCEsError(.invalidParameter_InvalidTimeParam)
+    }
+
+    public static var invalidParameter_InvalidType: TCEsError {
+        TCEsError(.invalidParameter_InvalidType)
+    }
+
+    public static var invalidParameter_InvalidUpdateMetaJson: TCEsError {
+        TCEsError(.invalidParameter_InvalidUpdateMetaJson)
+    }
+
+    public static var invalidParameter_InvalidUpdateType: TCEsError {
+        TCEsError(.invalidParameter_InvalidUpdateType)
+    }
+
+    /// 目前只支持1张代金券
+    public static var invalidParameter_InvalidVoucherIds: TCEsError {
+        TCEsError(.invalidParameter_InvalidVoucherIds)
+    }
+
+    public static var invalidParameter_InvalidZone: TCEsError {
+        TCEsError(.invalidParameter_InvalidZone)
+    }
+
+    public static var limitExceeded_ClusterNum: TCEsError {
+        TCEsError(.limitExceeded_ClusterNum)
+    }
+
+    public static var limitExceeded_DiagnoseCount: TCEsError {
+        TCEsError(.limitExceeded_DiagnoseCount)
+    }
+
+    public static var limitExceeded_NodeNumOrIndices: TCEsError {
+        TCEsError(.limitExceeded_NodeNumOrIndices)
+    }
+
+    public static var limitExceeded_PluginInstall: TCEsError {
+        TCEsError(.limitExceeded_PluginInstall)
+    }
+
+    public static var limitExceeded_ResourceLimit: TCEsError {
+        TCEsError(.limitExceeded_ResourceLimit)
+    }
+
+    public static var limitExceeded_UpdateItemLimit: TCEsError {
+        TCEsError(.limitExceeded_UpdateItemLimit)
     }
 
     /// 资源被占用。
     public static var resourceInUse: TCEsError {
         TCEsError(.resourceInUse)
+    }
+
+    public static var resourceInUse_Diagnose: TCEsError {
+        TCEsError(.resourceInUse_Diagnose)
+    }
+
+    public static var resourceInUse_Order: TCEsError {
+        TCEsError(.resourceInUse_Order)
     }
 
     /// 资源不足。
@@ -217,6 +567,10 @@ public struct TCEsError: TCEsErrorType {
         TCEsError(.resourceInsufficient_Balance)
     }
 
+    public static var resourceInsufficient_CVM: TCEsError {
+        TCEsError(.resourceInsufficient_CVM)
+    }
+
     /// 隐藏可用区专用主节点资源不足。
     public static var resourceInsufficient_HiddenZone: TCEsError {
         TCEsError(.resourceInsufficient_HiddenZone)
@@ -227,17 +581,60 @@ public struct TCEsError: TCEsErrorType {
         TCEsError(.resourceInsufficient_Subnet)
     }
 
-    /// 资源不存在。
-    public static var resourceNotFound: TCEsError {
-        TCEsError(.resourceNotFound)
+    public static var resourceInsufficient_SubnetIp: TCEsError {
+        TCEsError(.resourceInsufficient_SubnetIp)
+    }
+
+    public static var resourceInsufficient_Zone: TCEsError {
+        TCEsError(.resourceInsufficient_Zone)
+    }
+
+    public static var resourceNotFound_CAMInfoNotFound: TCEsError {
+        TCEsError(.resourceNotFound_CAMInfoNotFound)
+    }
+
+    public static var resourceNotFound_ClusterInfoNotFound: TCEsError {
+        TCEsError(.resourceNotFound_ClusterInfoNotFound)
+    }
+
+    public static var resourceNotFound_CosInfoNotFound: TCEsError {
+        TCEsError(.resourceNotFound_CosInfoNotFound)
     }
 
     public static var resourceNotFound_DBInfoNotFound: TCEsError {
         TCEsError(.resourceNotFound_DBInfoNotFound)
     }
 
+    public static var resourceNotFound_DataNodeNotFound: TCEsError {
+        TCEsError(.resourceNotFound_DataNodeNotFound)
+    }
+
+    public static var resourceNotFound_DiagnoseNotFound: TCEsError {
+        TCEsError(.resourceNotFound_DiagnoseNotFound)
+    }
+
+    public static var resourceNotFound_DiskInfoNotFound: TCEsError {
+        TCEsError(.resourceNotFound_DiskInfoNotFound)
+    }
+
+    public static var resourceNotFound_OssInfoNotFound: TCEsError {
+        TCEsError(.resourceNotFound_OssInfoNotFound)
+    }
+
     public static var resourceNotFound_SecurityGroupNotFound: TCEsError {
         TCEsError(.resourceNotFound_SecurityGroupNotFound)
+    }
+
+    public static var resourceNotFound_TradeCgwNotFound: TCEsError {
+        TCEsError(.resourceNotFound_TradeCgwNotFound)
+    }
+
+    public static var resourceNotFound_VPCInfoNotFound: TCEsError {
+        TCEsError(.resourceNotFound_VPCInfoNotFound)
+    }
+
+    public static var resourceNotFound_WhiteListNotFound: TCEsError {
+        TCEsError(.resourceNotFound_WhiteListNotFound)
     }
 
     /// 资源不可用。
@@ -245,19 +642,8 @@ public struct TCEsError: TCEsErrorType {
         TCEsError(.resourceUnavailable)
     }
 
-    /// 资源售罄。
-    public static var resourcesSoldOut: TCEsError {
-        TCEsError(.resourcesSoldOut)
-    }
-
-    /// 未授权操作。
-    public static var unauthorizedOperation: TCEsError {
-        TCEsError(.unauthorizedOperation)
-    }
-
-    /// 未知参数错误。
-    public static var unknownParameter: TCEsError {
-        TCEsError(.unknownParameter)
+    public static var unauthorizedOperation_UinNotInWhiteList: TCEsError {
+        TCEsError(.unauthorizedOperation_UinNotInWhiteList)
     }
 
     /// 操作不支持。
@@ -265,8 +651,76 @@ public struct TCEsError: TCEsErrorType {
         TCEsError(.unsupportedOperation)
     }
 
+    public static var unsupportedOperation_BasicSecurityType: TCEsError {
+        TCEsError(.unsupportedOperation_BasicSecurityType)
+    }
+
+    public static var unsupportedOperation_ChangeNodeType: TCEsError {
+        TCEsError(.unsupportedOperation_ChangeNodeType)
+    }
+
+    public static var unsupportedOperation_ClusterStateClose: TCEsError {
+        TCEsError(.unsupportedOperation_ClusterStateClose)
+    }
+
+    public static var unsupportedOperation_ClusterStateNoReplication: TCEsError {
+        TCEsError(.unsupportedOperation_ClusterStateNoReplication)
+    }
+
+    public static var unsupportedOperation_ClusterStateUnHealth: TCEsError {
+        TCEsError(.unsupportedOperation_ClusterStateUnHealth)
+    }
+
+    public static var unsupportedOperation_CosBackUp: TCEsError {
+        TCEsError(.unsupportedOperation_CosBackUp)
+    }
+
+    public static var unsupportedOperation_DiagnoseJob: TCEsError {
+        TCEsError(.unsupportedOperation_DiagnoseJob)
+    }
+
+    public static var unsupportedOperation_DiagnoseNotOpen: TCEsError {
+        TCEsError(.unsupportedOperation_DiagnoseNotOpen)
+    }
+
+    public static var unsupportedOperation_InstanceTypeError: TCEsError {
+        TCEsError(.unsupportedOperation_InstanceTypeError)
+    }
+
+    public static var unsupportedOperation_LicenseError: TCEsError {
+        TCEsError(.unsupportedOperation_LicenseError)
+    }
+
+    public static var unsupportedOperation_LocalDisk: TCEsError {
+        TCEsError(.unsupportedOperation_LocalDisk)
+    }
+
+    public static var unsupportedOperation_MultiZonesUpgrade: TCEsError {
+        TCEsError(.unsupportedOperation_MultiZonesUpgrade)
+    }
+
+    public static var unsupportedOperation_Plugin: TCEsError {
+        TCEsError(.unsupportedOperation_Plugin)
+    }
+
+    public static var unsupportedOperation_RestartMode: TCEsError {
+        TCEsError(.unsupportedOperation_RestartMode)
+    }
+
+    public static var unsupportedOperation_StatusNotNormal: TCEsError {
+        TCEsError(.unsupportedOperation_StatusNotNormal)
+    }
+
     public static var unsupportedOperation_StatusNotSupport: TCEsError {
         TCEsError(.unsupportedOperation_StatusNotSupport)
+    }
+
+    public static var unsupportedOperation_VPCInfoNotFound: TCEsError {
+        TCEsError(.unsupportedOperation_VPCInfoNotFound)
+    }
+
+    public static var unsupportedOperation_WebServiceType: TCEsError {
+        TCEsError(.unsupportedOperation_WebServiceType)
     }
 
     public func asEsError() -> TCEsError {

@@ -17,9 +17,9 @@
 import NIOCore
 import TecoCore
 
-/// 云呼叫中心 (ccc)
+/// 云联络中心 (ccc)
 ///
-/// 对腾讯云呼叫中心进行操作，包括拉取会话记录、管理坐席信息和管理呼叫中心参数等。
+/// 对腾讯云联络中心进行操作，包括拉取会话记录、管理坐席信息和管理联络中心参数等。
 public struct Ccc: TCService {
     /// Client used to communicate with Tencent Cloud.
     public let client: TCClient

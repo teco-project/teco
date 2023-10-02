@@ -107,6 +107,12 @@ extension Ocr {
         /// 累积记分（仅电子驾驶证支持返回该字段）
         public let cumulativeScore: String
 
+        /// 当前时间（仅电子驾驶证支持返回该字段）
+        public let currentTime: String
+
+        /// 生成时间（仅电子驾驶证支持返回该字段）
+        public let generateTime: String
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -128,6 +134,8 @@ extension Ocr {
             case issuingAuthority = "IssuingAuthority"
             case state = "State"
             case cumulativeScore = "CumulativeScore"
+            case currentTime = "CurrentTime"
+            case generateTime = "GenerateTime"
             case requestId = "RequestId"
         }
     }

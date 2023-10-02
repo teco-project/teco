@@ -54,7 +54,7 @@ extension Mgobe {
     @available(*, unavailable, message: "此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func dismissRoom(_ input: DismissRoomRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DismissRoomResponse> {
-        fatalError("DismissRoom is no longer available.")
+        fatalError("'DismissRoom' is no longer available.")
     }
 
     /// 解散房间
@@ -63,7 +63,7 @@ extension Mgobe {
     @available(*, unavailable, message: "此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func dismissRoom(_ input: DismissRoomRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DismissRoomResponse {
-        fatalError("DismissRoom is no longer available.")
+        fatalError("'DismissRoom' is no longer available.")
     }
 
     /// 解散房间
@@ -72,7 +72,7 @@ extension Mgobe {
     @available(*, unavailable, message: "此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func dismissRoom(gameId: String, roomId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DismissRoomResponse> {
-        fatalError("DismissRoom is no longer available.")
+        fatalError("'DismissRoom' is no longer available.")
     }
 
     /// 解散房间
@@ -81,6 +81,6 @@ extension Mgobe {
     @available(*, unavailable, message: "此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func dismissRoom(gameId: String, roomId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DismissRoomResponse {
-        fatalError("DismissRoom is no longer available.")
+        fatalError("'DismissRoom' is no longer available.")
     }
 }

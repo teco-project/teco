@@ -1387,6 +1387,21 @@ extension Tcb {
         }
     }
 
+    /// 安全网关自定义头部
+    public struct CustomHeader: TCInputModel, TCOutputModel {
+        /// 请求添加头部配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let requestToAddList: [CustomRequestToAdd]?
+
+        public init(requestToAddList: [CustomRequestToAdd]? = nil) {
+            self.requestToAddList = requestToAddList
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case requestToAddList = "RequestToAddList"
+        }
+    }
+
     /// 安全网关自定义日志配置
     public struct CustomLogConfig: TCInputModel {
         /// 是否需要请求体
@@ -1423,6 +1438,33 @@ extension Tcb {
             case needRspHeaderLog = "NeedRspHeaderLog"
             case logSetId = "LogSetId"
             case logTopicId = "LogTopicId"
+        }
+    }
+
+    /// 安全网关请求自定义头部
+    public struct CustomRequestToAdd: TCInputModel, TCOutputModel {
+        /// Header名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let key: String?
+
+        /// Header值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let value: String?
+
+        /// Header类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let appendAction: String?
+
+        public init(key: String? = nil, value: String? = nil, appendAction: String? = nil) {
+            self.key = key
+            self.value = value
+            self.appendAction = appendAction
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case key = "Key"
+            case value = "Value"
+            case appendAction = "AppendAction"
         }
     }
 
@@ -2744,6 +2786,14 @@ extension Tcb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gatewayRouteEnvId: String?
 
+        /// 路径匹配类型，支持prefix(前缀匹配)，regex(正则匹配)， 默认prefix
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gatewayRoutePathMatchType: String?
+
+        /// 安全网关自定义头部
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let customHeader: CustomHeader?
+
         enum CodingKeys: String, CodingKey {
             case gatewayRouteName = "GatewayRouteName"
             case gatewayRouteProtocol = "GatewayRouteProtocol"
@@ -2760,6 +2810,8 @@ extension Tcb {
             case gatewayRouteMethod = "GatewayRouteMethod"
             case gatewayRoutePort = "GatewayRoutePort"
             case gatewayRouteEnvId = "GatewayRouteEnvId"
+            case gatewayRoutePathMatchType = "GatewayRoutePathMatchType"
+            case customHeader = "CustomHeader"
         }
     }
 }

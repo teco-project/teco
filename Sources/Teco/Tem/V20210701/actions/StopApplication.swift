@@ -27,7 +27,7 @@ extension Tem {
         /// 来源渠道
         public let sourceChannel: Int64?
 
-        /// 环境ID
+        /// 环境ID/命名空间ID
         public let environmentId: String?
 
         public init(applicationId: String, sourceChannel: Int64? = nil, environmentId: String? = nil) {

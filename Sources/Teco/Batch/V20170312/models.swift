@@ -136,11 +136,16 @@ extension Batch {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let docker: Docker?
 
-        public init(deliveryForm: String? = nil, command: String? = nil, packagePath: String? = nil, docker: Docker? = nil) {
+        /// 任务执行命令信息。与Command不能同时指定。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let commands: [CommandLine]?
+
+        public init(deliveryForm: String? = nil, command: String? = nil, packagePath: String? = nil, docker: Docker? = nil, commands: [CommandLine]? = nil) {
             self.deliveryForm = deliveryForm
             self.command = command
             self.packagePath = packagePath
             self.docker = docker
+            self.commands = commands
         }
 
         enum CodingKeys: String, CodingKey {
@@ -148,6 +153,7 @@ extension Batch {
             case command = "Command"
             case packagePath = "PackagePath"
             case docker = "Docker"
+            case commands = "Commands"
         }
     }
 
@@ -172,6 +178,21 @@ extension Batch {
             case scene = "Scene"
             case secretId = "SecretId"
             case secretKey = "SecretKey"
+        }
+    }
+
+    /// 任务执行信息描述。
+    public struct CommandLine: TCInputModel, TCOutputModel {
+        /// 任务执行命令。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let command: String?
+
+        public init(command: String? = nil) {
+            self.command = command
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case command = "Command"
         }
     }
 
@@ -1815,17 +1836,13 @@ extension Batch {
         /// 实例所属的专用宿主机ID列表，仅用于入参。如果您有购买专用宿主机并且指定了该参数，则您购买的实例就会随机的部署在这些专用宿主机上。
         public let hostIds: [String]?
 
-        /// 指定母机IP生产子机
-        public let hostIps: [String]?
-
         /// 实例所属的专用宿主机ID，仅用于出参。
         public let hostId: String?
 
-        public init(zone: String, projectId: Int64? = nil, hostIds: [String]? = nil, hostIps: [String]? = nil, hostId: String? = nil) {
+        public init(zone: String, projectId: Int64? = nil, hostIds: [String]? = nil, hostId: String? = nil) {
             self.zone = zone
             self.projectId = projectId
             self.hostIds = hostIds
-            self.hostIps = hostIps
             self.hostId = hostId
         }
 
@@ -1833,7 +1850,6 @@ extension Batch {
             case zone = "Zone"
             case projectId = "ProjectId"
             case hostIds = "HostIds"
-            case hostIps = "HostIps"
             case hostId = "HostId"
         }
     }
@@ -1961,7 +1977,7 @@ extension Batch {
         /// 竞价请求类型，当前仅支持类型：one-time
         public let spotInstanceType: String?
 
-        public init(maxPrice: String = "one-time", spotInstanceType: String? = nil) {
+        public init(maxPrice: String, spotInstanceType: String? = nil) {
             self.maxPrice = maxPrice
             self.spotInstanceType = spotInstanceType
         }

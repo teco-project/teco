@@ -33,6 +33,17 @@ extension Ssa {
         }
     }
 
+    /// 用户威胁告警信息
+    public struct AlarmInfoRsp: TCOutputModel {
+        /// 近7天威胁告警
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let attackEvent: [AttackEvent]?
+
+        enum CodingKeys: String, CodingKey {
+            case attackEvent = "AttackEvent"
+        }
+    }
+
     /// 告警详情
     public struct AlertDetail: TCOutputModel {
         /// 告警基础信息
@@ -696,6 +707,63 @@ extension Ssa {
         enum CodingKeys: String, CodingKey {
             case assetType = "AssetType"
             case assetCount = "AssetCount"
+        }
+    }
+
+    /// 攻击事件
+    public struct AttackEvent: TCInputModel, TCOutputModel {
+        /// 来源ip
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ssaSrcIp: String?
+
+        /// 目标ip
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ssaDstIp: String?
+
+        /// 目标省份
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ssaDstProvince: String?
+
+        /// 目标城市
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ssaDstCity: String?
+
+        /// 目标国家
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ssaDstCountry: String?
+
+        /// 来源省份
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ssaSrcProvince: String?
+
+        /// 来源国家
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ssaSrcCountry: String?
+
+        /// 来源城市
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ssaSrcCity: String?
+
+        public init(ssaSrcIp: String? = nil, ssaDstIp: String? = nil, ssaDstProvince: String? = nil, ssaDstCity: String? = nil, ssaDstCountry: String? = nil, ssaSrcProvince: String? = nil, ssaSrcCountry: String? = nil, ssaSrcCity: String? = nil) {
+            self.ssaSrcIp = ssaSrcIp
+            self.ssaDstIp = ssaDstIp
+            self.ssaDstProvince = ssaDstProvince
+            self.ssaDstCity = ssaDstCity
+            self.ssaDstCountry = ssaDstCountry
+            self.ssaSrcProvince = ssaSrcProvince
+            self.ssaSrcCountry = ssaSrcCountry
+            self.ssaSrcCity = ssaSrcCity
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case ssaSrcIp = "SsaSrcIp"
+            case ssaDstIp = "SsaDstIp"
+            case ssaDstProvince = "SsaDstProvince"
+            case ssaDstCity = "SsaDstCity"
+            case ssaDstCountry = "SsaDstCountry"
+            case ssaSrcProvince = "SsaSrcProvince"
+            case ssaSrcCountry = "SsaSrcCountry"
+            case ssaSrcCity = "SsaSrcCity"
         }
     }
 
@@ -2147,6 +2215,24 @@ extension Ssa {
         enum CodingKeys: String, CodingKey {
             case count = "Count"
             case list = "List"
+        }
+    }
+
+    /// 设置_泄露监测产品监测扫描规则策略
+    public struct SaDivulgeScanRuleSetList: TCOutputModel {
+        /// Value
+        public let value: String
+
+        /// Code
+        public let code: Int64
+
+        /// Message
+        public let message: String
+
+        enum CodingKeys: String, CodingKey {
+            case value = "Value"
+            case code = "Code"
+            case message = "Message"
         }
     }
 

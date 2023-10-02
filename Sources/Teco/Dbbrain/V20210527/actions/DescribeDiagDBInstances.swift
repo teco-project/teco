@@ -24,7 +24,7 @@ extension Dbbrain {
         /// 是否是DBbrain支持的实例，固定传 true。
         public let isSupported: Bool
 
-        /// 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
+        /// 服务产品类型，支持值包括："mysql" - 云数据库 MySQL，"cynosdb" - 云数据库 TDSQL-C for MySQL，"dbbrain-mysql" - 自建 MySQL，默认为"mysql"。
         public let product: String
 
         /// 分页参数，偏移量。

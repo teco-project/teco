@@ -295,6 +295,59 @@ extension Waf {
         }
     }
 
+    /// 多域名黑白名单describe返回
+    public struct BatchIpAccessControlData: TCOutputModel {
+        /// 总数
+        public let totalCount: UInt64
+
+        /// 黑白名单条目
+        public let res: [BatchIpAccessControlItem]
+
+        enum CodingKeys: String, CodingKey {
+            case totalCount = "TotalCount"
+            case res = "Res"
+        }
+    }
+
+    /// 多域名黑白名单列表Ip
+    public struct BatchIpAccessControlItem: TCOutputModel {
+        /// mongo表自增Id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: String?
+
+        /// 黑名单42或白名单40
+        public let actionType: Int64
+
+        /// 黑白名单的IP
+        public let ip: String
+
+        /// 备注
+        public let note: String
+
+        /// 添加路径
+        public let source: String
+
+        /// 修改时间
+        public let tsVersion: UInt64
+
+        /// 超时时间
+        public let validTs: Int64
+
+        /// 域名列表
+        public let hosts: [String]
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case actionType = "ActionType"
+            case ip = "Ip"
+            case note = "Note"
+            case source = "Source"
+            case tsVersion = "TsVersion"
+            case validTs = "ValidTs"
+            case hosts = "Hosts"
+        }
+    }
+
     /// Bot资源信息
     public struct BotPkg: TCInputModel, TCOutputModel {
         /// 资源id
@@ -333,7 +386,15 @@ extension Waf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let renewFlag: UInt64?
 
-        public init(resourceIds: String? = nil, status: Int64? = nil, region: Int64? = nil, beginTime: String? = nil, endTime: String? = nil, inquireNum: Int64? = nil, usedNum: Int64? = nil, type: String? = nil, renewFlag: UInt64? = nil) {
+        /// 购买页bot6折
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let botCPWaf: Int64?
+
+        /// 控制台买bot5折
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let botNPWaf: Int64?
+
+        public init(resourceIds: String? = nil, status: Int64? = nil, region: Int64? = nil, beginTime: String? = nil, endTime: String? = nil, inquireNum: Int64? = nil, usedNum: Int64? = nil, type: String? = nil, renewFlag: UInt64? = nil, botCPWaf: Int64? = nil, botNPWaf: Int64? = nil) {
             self.resourceIds = resourceIds
             self.status = status
             self.region = region
@@ -343,6 +404,8 @@ extension Waf {
             self.usedNum = usedNum
             self.type = type
             self.renewFlag = renewFlag
+            self.botCPWaf = botCPWaf
+            self.botNPWaf = botNPWaf
         }
 
         enum CodingKeys: String, CodingKey {
@@ -355,6 +418,8 @@ extension Waf {
             case usedNum = "UsedNum"
             case type = "Type"
             case renewFlag = "RenewFlag"
+            case botCPWaf = "BotCPWaf"
+            case botNPWaf = "BotNPWaf"
         }
     }
 
@@ -411,6 +476,135 @@ extension Waf {
         }
     }
 
+    /// 数据封装
+    public struct CCRuleData: TCOutputModel {
+        /// cc规则
+        public let res: [CCRuleItem]
+
+        /// 规则数目
+        public let totalCount: Int64
+
+        enum CodingKeys: String, CodingKey {
+            case res = "Res"
+            case totalCount = "TotalCount"
+        }
+    }
+
+    /// cc规则
+    public struct CCRuleItem: TCOutputModel {
+        /// 动作
+        public let actionType: UInt64
+
+        /// 高级模式
+        public let advance: UInt64
+
+        /// 时间周期
+        public let interval: UInt64
+
+        /// 限制次数
+        public let limit: UInt64
+
+        /// 匹配方法
+        public let matchFunc: UInt64
+
+        /// 名称
+        public let name: String
+
+        /// 优先级
+        public let priority: UInt64
+
+        /// 状态
+        public let status: Int64
+
+        /// 更新时间戳
+        public let tsVersion: UInt64
+
+        /// 匹配url
+        public let url: String
+
+        /// 策略动作有效时间
+        public let validTime: UInt64
+
+        /// 高级参数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let optionsArr: String?
+
+        enum CodingKeys: String, CodingKey {
+            case actionType = "ActionType"
+            case advance = "Advance"
+            case interval = "Interval"
+            case limit = "Limit"
+            case matchFunc = "MatchFunc"
+            case name = "Name"
+            case priority = "Priority"
+            case status = "Status"
+            case tsVersion = "TsVersion"
+            case url = "Url"
+            case validTime = "ValidTime"
+            case optionsArr = "OptionsArr"
+        }
+    }
+
+    /// 防篡改url元素
+    public struct CacheUrlItem: TCOutputModel {
+        /// Id
+        public let id: String
+
+        /// 名称
+        public let name: String
+
+        /// 域名
+        public let domain: String
+
+        /// uri
+        public let uri: String
+
+        /// 协议
+        public let `protocol`: String
+
+        /// 状态
+        public let status: String
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case name = "Name"
+            case domain = "Domain"
+            case uri = "Uri"
+            case `protocol` = "Protocol"
+            case status = "Status"
+        }
+    }
+
+    /// 防篡改url元素
+    public struct CacheUrlItems: TCOutputModel {
+        /// 标识
+        public let id: UInt64
+
+        /// 名字
+        public let name: String
+
+        /// 域名
+        public let domain: String
+
+        /// 网址
+        public let uri: String
+
+        /// 协议
+        public let `protocol`: String
+
+        /// 状态
+        public let status: UInt64
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case name = "Name"
+            case domain = "Domain"
+            case uri = "Uri"
+            case `protocol` = "Protocol"
+            case status = "Status"
+        }
+    }
+
     /// CDC场景下负载均衡WAF的集群信息
     public struct CdcCluster: TCInputModel, TCOutputModel {
         /// cdc的集群id
@@ -448,6 +642,217 @@ extension Waf {
         enum CodingKeys: String, CodingKey {
             case region = "Region"
             case clusters = "Clusters"
+        }
+    }
+
+    /// clb域名详情
+    public struct ClbDomainsInfo: TCOutputModel {
+        /// 域名
+        public let domain: String
+
+        /// 域名id
+        public let domainId: String
+
+        /// 实例id
+        public let instanceId: String
+
+        /// 实例名
+        public let instanceName: String
+
+        /// waf类型
+        public let edition: String
+
+        /// 是否是cdn
+        public let isCdn: UInt64
+
+        /// 负载均衡算法
+        public let loadBalancerSet: [LoadBalancerPackageNew]
+
+        /// 镜像模式
+        public let flowMode: UInt64
+
+        /// 绑定clb状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let state: Int64?
+
+        /// 负载均衡类型，clb或者apisix
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let albType: String?
+
+        /// IsCdn=3时，表示自定义header
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ipHeaders: [String]?
+
+        /// cdc类型会增加集群信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cdcClusters: String?
+
+        /// 云类型:public:公有云；private:私有云;hybrid:混合云
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cloudType: String?
+
+        enum CodingKeys: String, CodingKey {
+            case domain = "Domain"
+            case domainId = "DomainId"
+            case instanceId = "InstanceId"
+            case instanceName = "InstanceName"
+            case edition = "Edition"
+            case isCdn = "IsCdn"
+            case loadBalancerSet = "LoadBalancerSet"
+            case flowMode = "FlowMode"
+            case state = "State"
+            case albType = "AlbType"
+            case ipHeaders = "IpHeaders"
+            case cdcClusters = "CdcClusters"
+            case cloudType = "CloudType"
+        }
+    }
+
+    /// CLB查询对应绑定的WAF状态的结果参数
+    public struct ClbHostResult: TCOutputModel {
+        /// WAF绑定的监听器实例
+        public let loadBalancer: LoadBalancer
+
+        /// WAF绑定的域名
+        public let domain: String
+
+        /// WAF绑定的实例ID
+        public let domainId: String
+
+        /// 是否有绑定WAF，1：绑定了WAF，0：没有绑定WAF
+        public let status: UInt64
+
+        /// 绑定了WAF的情况下，WAF流量模式，1：清洗模式，0：镜像模式（默认）
+        public let flowMode: UInt64
+
+        enum CodingKeys: String, CodingKey {
+            case loadBalancer = "LoadBalancer"
+            case domain = "Domain"
+            case domainId = "DomainId"
+            case status = "Status"
+            case flowMode = "FlowMode"
+        }
+    }
+
+    /// CLB回调WAF接口（获取、删除）的参数
+    public struct ClbHostsParams: TCInputModel {
+        /// 负载均衡实例ID，如果不传次参数则默认认为操作的是整个AppId的监听器，如果此参数不为空则认为操作的是对应负载均衡实例。
+        public let loadBalancerId: String
+
+        /// 负载均衡监听器ID，，如果不传次参数则默认认为操作的是整个负载均衡实例，如果此参数不为空则认为操作的是对应负载均衡监听器。
+        public let listenerId: String?
+
+        /// WAF实例ID，，如果不传次参数则默认认为操作的是整个负载均衡监听器实例，如果此参数不为空则认为操作的是对应负载均衡监听器的某一个具体的域名。
+        public let domainId: String?
+
+        public init(loadBalancerId: String, listenerId: String? = nil, domainId: String? = nil) {
+            self.loadBalancerId = loadBalancerId
+            self.listenerId = listenerId
+            self.domainId = domainId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case loadBalancerId = "LoadBalancerId"
+            case listenerId = "ListenerId"
+            case domainId = "DomainId"
+        }
+    }
+
+    /// 计费下单响应实体
+    public struct DealData: TCOutputModel {
+        /// 订单号列表，元素个数与请求包的goods数组的元素个数一致，商品详情与订单按顺序对应
+        public let dealNames: [String]
+
+        /// 大订单号，一个大订单号下可以有多个子订单，说明是同一次下单[{},{}]
+        public let bigDealId: String
+
+        enum CodingKeys: String, CodingKey {
+            case dealNames = "DealNames"
+            case bigDealId = "BigDealId"
+        }
+    }
+
+    /// DescribeAntiInfoLeakRules返回的规则列表元素
+    public struct DescribeAntiInfoLeakRulesRuleItem: TCOutputModel {
+        /// 规则ID
+        public let ruleId: String
+
+        /// 规则名称
+        public let name: String
+
+        /// 规则状态
+        public let status: String
+
+        /// 规则动作类型
+        public let actionType: String
+
+        /// 规则创建时间
+        public let createTime: String
+
+        /// 详细的规则
+        public let strategies: [DescribeAntiInfoLeakRulesStrategyItem]
+
+        enum CodingKeys: String, CodingKey {
+            case ruleId = "RuleId"
+            case name = "Name"
+            case status = "Status"
+            case actionType = "ActionType"
+            case createTime = "CreateTime"
+            case strategies = "Strategies"
+        }
+    }
+
+    /// DescribeAntiInfoLeakRules返回的规则元素中的具体的规则元素
+    public struct DescribeAntiInfoLeakRulesStrategyItem: TCOutputModel {
+        /// 字段
+        public let field: String
+
+        /// 条件
+        public let compareFunc: String
+
+        /// 内容
+        public let content: String
+
+        enum CodingKeys: String, CodingKey {
+            case field = "Field"
+            case compareFunc = "CompareFunc"
+            case content = "Content"
+        }
+    }
+
+    /// 出参
+    public struct DescribeAntiLeakageItem: TCOutputModel {
+        /// 规则ID
+        public let ruleId: UInt64
+
+        /// 名称
+        public let name: String
+
+        /// 状态值
+        public let status: UInt64
+
+        /// 动作
+        public let action: String
+
+        /// 创建时间
+        public let createTime: String
+
+        /// 匹配条件
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let strategies: [DescribeAntiInfoLeakRulesStrategyItem]?
+
+        /// 匹配的URL
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let uri: String?
+
+        enum CodingKeys: String, CodingKey {
+            case ruleId = "RuleId"
+            case name = "Name"
+            case status = "Status"
+            case action = "Action"
+            case createTime = "CreateTime"
+            case strategies = "Strategies"
+            case uri = "Uri"
         }
     }
 
@@ -534,10 +939,10 @@ extension Waf {
         /// waf开关,0关闭 1开启
         public let status: UInt64
 
-        /// 规则防御模式,0观察模式 1拦截模式
+        /// 规则引擎防护模式,0观察模式 1拦截模式
         public let mode: UInt64
 
-        /// AI防御模式,10规则引擎观察&&AI引擎关闭模式 11规则引擎观察&&AI引擎观察模式 12规则引擎观察&&AI引擎拦截模式 20规则引擎拦截&&AI引擎关闭模式 21规则引擎拦截&&AI引擎观察模式 22规则引擎拦截&&AI引擎拦截模式
+        /// 规则引擎和AI引擎防护模式联合状态,10规则引擎观察&&AI引擎关闭模式 11规则引擎观察&&AI引擎观察模式 12规则引擎观察&&AI引擎拦截模式 20规则引擎拦截&&AI引擎关闭模式 21规则引擎拦截&&AI引擎观察模式 22规则引擎拦截&&AI引擎拦截模式
         public let engine: UInt64
 
         /// CC列表
@@ -596,7 +1001,11 @@ extension Waf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sgDetail: String?
 
-        public init(domain: String, domainId: String, instanceId: String, cname: String, edition: String, region: String, instanceName: String, clsStatus: UInt64, flowMode: UInt64, status: UInt64, mode: UInt64, engine: UInt64, ccList: [String], rsList: [String], ports: [PortInfo], loadBalancerSet: [LoadBalancerPackageNew], appId: UInt64, state: Int64, createTime: String? = nil, ipv6Status: Int64? = nil, botStatus: Int64? = nil, level: Int64? = nil, postCLSStatus: Int64? = nil, postCKafkaStatus: Int64? = nil, cdcClusters: String? = nil, apiStatus: Int64? = nil, albType: String? = nil, sgState: Int64? = nil, sgDetail: String? = nil) {
+        /// 域名类型:hybrid表示混合云域名，public表示公有云域名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cloudType: String?
+
+        public init(domain: String, domainId: String, instanceId: String, cname: String, edition: String, region: String, instanceName: String, clsStatus: UInt64, flowMode: UInt64, status: UInt64, mode: UInt64, engine: UInt64, ccList: [String], rsList: [String], ports: [PortInfo], loadBalancerSet: [LoadBalancerPackageNew], appId: UInt64, state: Int64, createTime: String? = nil, ipv6Status: Int64? = nil, botStatus: Int64? = nil, level: Int64? = nil, postCLSStatus: Int64? = nil, postCKafkaStatus: Int64? = nil, cdcClusters: String? = nil, apiStatus: Int64? = nil, albType: String? = nil, sgState: Int64? = nil, sgDetail: String? = nil, cloudType: String? = nil) {
             self.domain = domain
             self.domainId = domainId
             self.instanceId = instanceId
@@ -626,6 +1035,7 @@ extension Waf {
             self.albType = albType
             self.sgState = sgState
             self.sgDetail = sgDetail
+            self.cloudType = cloudType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -658,6 +1068,7 @@ extension Waf {
             case albType = "AlbType"
             case sgState = "SgState"
             case sgDetail = "SgDetail"
+            case cloudType = "CloudType"
         }
     }
 
@@ -700,8 +1111,51 @@ extension Waf {
         }
     }
 
+    /// 唯一定位Domain
+    public struct DomainURI: TCInputModel, TCOutputModel {
+        /// 域名
+        public let domain: String
+
+        /// 版本
+        public let edition: String
+
+        public init(domain: String, edition: String) {
+            self.domain = domain
+            self.edition = edition
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case domain = "Domain"
+            case edition = "Edition"
+        }
+    }
+
     /// saas域名详情
     public struct DomainsPartInfo: TCOutputModel {
+        /// 域名
+        public let domain: String
+
+        /// 域名id
+        public let domainId: String
+
+        /// 实例id
+        public let instanceId: String
+
+        /// 类型
+        public let edition: String
+
+        /// 实例名
+        public let instanceName: String
+
+        /// 证书
+        public let cert: String
+
+        /// 创建时间
+        public let createTime: String
+
+        /// AI防御模式
+        public let engine: UInt64
+
         /// 是否开启httpRewrite
         public let httpsRewrite: UInt64
 
@@ -771,7 +1225,7 @@ extension Waf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ciphers: [Int64]?
 
-        /// 模版
+        /// 模板
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cipherTemplate: Int64?
 
@@ -804,6 +1258,14 @@ extension Waf {
         public let xffReset: Int64?
 
         enum CodingKeys: String, CodingKey {
+            case domain = "Domain"
+            case domainId = "DomainId"
+            case instanceId = "InstanceId"
+            case edition = "Edition"
+            case instanceName = "InstanceName"
+            case cert = "Cert"
+            case createTime = "CreateTime"
+            case engine = "Engine"
             case httpsRewrite = "HttpsRewrite"
             case httpsUpstreamPort = "HttpsUpstreamPort"
             case isCdn = "IsCdn"
@@ -980,6 +1442,44 @@ extension Waf {
         }
     }
 
+    /// 域名列表
+    public struct FindAllDomainDetail: TCOutputModel {
+        /// 用户id
+        public let appid: UInt64
+
+        /// 域名
+        public let domain: String
+
+        /// 域名ip
+        public let ips: [String]
+
+        /// 发现时间
+        public let findTime: String
+
+        /// 实例id
+        public let instanceId: String
+
+        /// 域名id
+        public let domainId: String
+
+        /// waf类型
+        public let edition: String
+
+        /// 是否接入waf
+        public let isWafDomain: UInt64
+
+        enum CodingKeys: String, CodingKey {
+            case appid = "Appid"
+            case domain = "Domain"
+            case ips = "Ips"
+            case findTime = "FindTime"
+            case instanceId = "InstanceId"
+            case domainId = "DomainId"
+            case edition = "Edition"
+            case isWafDomain = "IsWafDomain"
+        }
+    }
+
     /// 业务安全资源信息
     public struct FraudPkg: TCInputModel, TCOutputModel {
         /// 资源id
@@ -1037,6 +1537,192 @@ extension Waf {
         }
     }
 
+    /// 计费下单接口出入参Goods
+    public struct GoodNews: TCInputModel, TCOutputModel {
+        /// 商品数量
+        public let goodsNum: Int64
+
+        /// 商品明细
+        public let goodsDetail: GoodsDetailNew
+
+        /// 订单类型ID，用来唯一标识一个业务的一种场景（总共三种场景：新购、配置变更、续费）
+        /// 高级版: 102375(新购),102376(续费),102377(变配)
+        /// 企业版 : 102378(新购),102379(续费),102380(变配)
+        /// 旗舰版 : 102369(新购),102370(续费),102371(变配)
+        /// 域名包 : 102372(新购),102373(续费),102374(变配)
+        /// 业务扩展包 : 101040(新购),101041(续费),101042(变配)
+        ///
+        /// 高级版-CLB: 新购 101198  续费 101199 变配 101200
+        /// 企业版-CLB 101204(新购),101205(续费),101206(变配)
+        /// 旗舰版-CLB : 101201(新购),101202(续费),101203(变配)
+        /// 域名包-CLB: 101207(新购),101208(续费),101209(变配)
+        /// 业务扩展包-CLB: 101210(新购),101211(续费),101212(变配)
+        ///
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let goodsCategoryId: Int64?
+
+        /// 购买waf实例区域ID
+        /// 1 表示购买大陆资源;
+        /// 9表示购买非中国大陆资源
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let regionId: Int64?
+
+        public init(goodsNum: Int64, goodsDetail: GoodsDetailNew, goodsCategoryId: Int64? = nil, regionId: Int64? = nil) {
+            self.goodsNum = goodsNum
+            self.goodsDetail = goodsDetail
+            self.goodsCategoryId = goodsCategoryId
+            self.regionId = regionId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case goodsNum = "GoodsNum"
+            case goodsDetail = "GoodsDetail"
+            case goodsCategoryId = "GoodsCategoryId"
+            case regionId = "RegionId"
+        }
+    }
+
+    /// 产品明细
+    public struct GoodsDetailNew: TCInputModel, TCOutputModel {
+        /// 时间间隔
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let timeSpan: Int64?
+
+        /// 单位，支持购买d、m、y 即（日、月、年）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let timeUnit: String?
+
+        /// 子产品标签,。新购，续费必传，变配时放在oldConfig newConfig里面
+        ///
+        /// Saas 高级版 ：sp_wsm_waf_premium
+        /// Saas企业版 ：sp_wsm_waf_enterprise
+        /// Saas旗舰版 ：sp_wsm_waf_ultimate
+        /// Saas 业务扩展包：sp_wsm_waf_qpsep
+        /// Saas 域名扩展包：sp_wsm_waf_domain
+        ///
+        /// 高级版-CLB:sp_wsm_waf_premium_clb
+        /// 企业版-CLB : sp_wsm_waf_enterprise_clb
+        /// 旗舰版-CLB:sp_wsm_waf_ultimate_clb
+        ///  业务扩展包-CLB：sp_wsm_waf_qpsep_clb
+        /// 域名扩展包-CLB：sp_wsm_waf_domain_clb
+        ///
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subProductCode: String?
+
+        /// 业务产品申请的pid（对应一个定价公式），通过pid计费查询到定价模型
+        /// 高级版 ：1000827
+        /// 企业版 ：1000830
+        /// 旗舰版 ：1000832
+        /// 域名包 : 1000834
+        /// 业务扩展包 : 1000481
+        /// 高级版-CLB:1001150
+        /// 企业版-CLB : 1001152
+        /// 旗舰版-CLB:1001154
+        /// 域名包-CLB: 1001156
+        /// 业务扩展包-CLB : 1001160
+        ///
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pid: Int64?
+
+        /// waf实例名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceName: String?
+
+        /// 1:自动续费，0:不自动续费
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let autoRenewFlag: Int64?
+
+        /// waf购买的实际地域信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let realRegion: Int64?
+
+        /// 计费细项标签数组
+        /// Saas 高级版  sv_wsm_waf_package_premium
+        /// Saas 企业版  sv_wsm_waf_package_enterprise
+        /// Saas 旗舰版  sv_wsm_waf_package_ultimate
+        /// Saas 非中国大陆高级版  sv_wsm_waf_package_premium_intl
+        /// Saas 非中国大陆企业版   sv_wsm_waf_package_enterprise_intl
+        /// Saas 非中国大陆旗舰版  sv_wsm_waf_package_ultimate _intl
+        /// Saas 业务扩展包  sv_wsm_waf_qps_ep
+        /// Saas 域名扩展包  sv_wsm_waf_domain
+        ///
+        /// 高级版CLB   sv_wsm_waf_package_premium_clb
+        /// 企业版CLB  sv_wsm_waf_package_enterprise_clb
+        /// 旗舰版CLB   sv_wsm_waf_package_ultimate_clb
+        /// 非中国大陆高级版 CLB sv_wsm_waf_package_premium_clb_intl
+        /// 非中国大陆企业版CLB   sv_wsm_waf_package_premium_clb_intl
+        /// 非中国大陆旗舰版CLB  sv_wsm_waf_package_ultimate_clb _intl
+        /// 业务扩展包CLB sv_wsm_waf_qps_ep_clb
+        /// 域名扩展包CLB  sv_wsm_waf_domain_clb
+        ///
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let labelTypes: [String]?
+
+        /// 计费细项标签数量，一般和SvLabelType一一对应
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let labelCounts: [Int64]?
+
+        /// 变配使用，实例到期时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let curDeadline: String?
+
+        /// 对存在的实例购买bot 或api 安全
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceId: String?
+
+        public init(timeSpan: Int64? = nil, timeUnit: String? = nil, subProductCode: String? = nil, pid: Int64? = nil, instanceName: String? = nil, autoRenewFlag: Int64? = nil, realRegion: Int64? = nil, labelTypes: [String]? = nil, labelCounts: [Int64]? = nil, curDeadline: String? = nil, instanceId: String? = nil) {
+            self.timeSpan = timeSpan
+            self.timeUnit = timeUnit
+            self.subProductCode = subProductCode
+            self.pid = pid
+            self.instanceName = instanceName
+            self.autoRenewFlag = autoRenewFlag
+            self.realRegion = realRegion
+            self.labelTypes = labelTypes
+            self.labelCounts = labelCounts
+            self.curDeadline = curDeadline
+            self.instanceId = instanceId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case timeSpan = "TimeSpan"
+            case timeUnit = "TimeUnit"
+            case subProductCode = "SubProductCode"
+            case pid = "Pid"
+            case instanceName = "InstanceName"
+            case autoRenewFlag = "AutoRenewFlag"
+            case realRegion = "RealRegion"
+            case labelTypes = "LabelTypes"
+            case labelCounts = "LabelCounts"
+            case curDeadline = "CurDeadline"
+            case instanceId = "InstanceId"
+        }
+    }
+
+    /// CLB-WAF删除域名参数
+    public struct HostDel: TCInputModel {
+        /// 域名
+        public let domain: String
+
+        /// 域名ID
+        public let domainId: String
+
+        /// 实例类型
+        public let instanceID: String?
+
+        public init(domain: String, domainId: String, instanceID: String? = nil) {
+            self.domain = domain
+            self.domainId = domainId
+            self.instanceID = instanceID
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case domain = "Domain"
+            case domainId = "DomainId"
+            case instanceID = "InstanceID"
+        }
+    }
+
     /// clb-waf防护域名
     public struct HostRecord: TCInputModel, TCOutputModel {
         /// 域名
@@ -1048,7 +1734,7 @@ extension Waf {
         /// 主域名，入参时为空
         public let mainDomain: String
 
-        /// waf模式，同saas waf保持一致
+        /// 规则引擎防护模式，0 观察模式，1拦截模式
         public let mode: UInt64
 
         /// waf和LD的绑定，0：没有绑定，1：绑定
@@ -1057,7 +1743,7 @@ extension Waf {
         /// 域名状态，0：正常，1：未检测到流量，2：即将过期，3：过期
         public let state: UInt64
 
-        /// 使用的规则，同saas waf保持一致
+        /// 规则引擎和AI引擎防护模式联合状态,10规则引擎观察&&AI引擎关闭模式 11规则引擎观察&&AI引擎观察模式 12规则引擎观察&&AI引擎拦截模式 20规则引擎拦截&&AI引擎关闭模式 21规则引擎拦截&&AI引擎观察模式 22规则引擎拦截&&AI引擎拦截模式
         public let engine: UInt64
 
         /// 是否开启代理，0：不开启，1：开启
@@ -1098,7 +1784,11 @@ extension Waf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let engineType: Int64?
 
-        public init(domain: String, domainId: String, mainDomain: String, mode: UInt64, status: UInt64, state: UInt64, engine: UInt64, isCdn: UInt64, loadBalancerSet: [LoadBalancer], region: String, edition: String, flowMode: UInt64, clsStatus: UInt64, level: UInt64? = nil, cdcClusters: [String]? = nil, albType: String? = nil, ipHeaders: [String]? = nil, engineType: Int64? = nil) {
+        /// 云类型:public:公有云；private:私有云;hybrid:混合云
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cloudType: String?
+
+        public init(domain: String, domainId: String, mainDomain: String, mode: UInt64, status: UInt64, state: UInt64, engine: UInt64, isCdn: UInt64, loadBalancerSet: [LoadBalancer], region: String, edition: String, flowMode: UInt64, clsStatus: UInt64, level: UInt64? = nil, cdcClusters: [String]? = nil, albType: String? = nil, ipHeaders: [String]? = nil, engineType: Int64? = nil, cloudType: String? = nil) {
             self.domain = domain
             self.domainId = domainId
             self.mainDomain = mainDomain
@@ -1117,6 +1807,7 @@ extension Waf {
             self.albType = albType
             self.ipHeaders = ipHeaders
             self.engineType = engineType
+            self.cloudType = cloudType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1138,6 +1829,93 @@ extension Waf {
             case albType = "AlbType"
             case ipHeaders = "IpHeaders"
             case engineType = "EngineType"
+            case cloudType = "CloudType"
+        }
+    }
+
+    /// 设置WAF状态的结构体
+    public struct HostStatus: TCInputModel {
+        /// 域名
+        public let domain: String
+
+        /// 域名ID
+        public let domainId: String
+
+        /// WAF的开关，1：开，0：关
+        public let status: UInt64
+
+        /// 实例ID
+        public let instanceID: String?
+
+        public init(domain: String, domainId: String, status: UInt64, instanceID: String? = nil) {
+            self.domain = domain
+            self.domainId = domainId
+            self.status = status
+            self.instanceID = instanceID
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case domain = "Domain"
+            case domainId = "DomainId"
+            case status = "Status"
+            case instanceID = "InstanceID"
+        }
+    }
+
+    /// 混合云节点资源信息
+    public struct HybridPkg: TCInputModel, TCOutputModel {
+        /// 资源id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resourceIds: String?
+
+        /// 状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: Int64?
+
+        /// 地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let region: Int64?
+
+        /// 开始时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let beginTime: String?
+
+        /// 结束时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let endTime: String?
+
+        /// 申请数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let inquireNum: Int64?
+
+        /// 使用数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let usedNum: Int64?
+
+        /// 续费标志
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let renewFlag: UInt64?
+
+        public init(resourceIds: String? = nil, status: Int64? = nil, region: Int64? = nil, beginTime: String? = nil, endTime: String? = nil, inquireNum: Int64? = nil, usedNum: Int64? = nil, renewFlag: UInt64? = nil) {
+            self.resourceIds = resourceIds
+            self.status = status
+            self.region = region
+            self.beginTime = beginTime
+            self.endTime = endTime
+            self.inquireNum = inquireNum
+            self.usedNum = usedNum
+            self.renewFlag = renewFlag
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case resourceIds = "ResourceIds"
+            case status = "Status"
+            case region = "Region"
+            case beginTime = "BeginTime"
+            case endTime = "EndTime"
+            case inquireNum = "InquireNum"
+            case usedNum = "UsedNum"
+            case renewFlag = "RenewFlag"
         }
     }
 
@@ -1247,7 +2025,15 @@ extension Waf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isAPISecurityTrial: UInt64?
 
-        public init(instanceId: String, instanceName: String, resourceIds: String, region: String, payMode: UInt64, renewFlag: UInt64, mode: UInt64, level: UInt64, validTime: String, beginTime: String, domainCount: UInt64, subDomainLimit: UInt64, mainDomainCount: UInt64, mainDomainLimit: UInt64, maxQPS: UInt64, qps: QPSPackageNew, domainPkg: DomainPackageNew, appId: UInt64, edition: String, fraudPkg: FraudPkg? = nil, botPkg: BotPkg? = nil, botQPS: BotQPS? = nil, elasticBilling: UInt64? = nil, attackLogPost: Int64? = nil, maxBandwidth: UInt64? = nil, apiSecurity: UInt64? = nil, qpsStandard: UInt64? = nil, bandwidthStandard: UInt64? = nil, status: UInt64? = nil, sandboxQps: UInt64? = nil, isAPISecurityTrial: UInt64? = nil) {
+        /// 重保包
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let majorEventsPkg: MajorEventsPkg?
+
+        /// 混合云子节点包
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hybridPkg: HybridPkg?
+
+        public init(instanceId: String, instanceName: String, resourceIds: String, region: String, payMode: UInt64, renewFlag: UInt64, mode: UInt64, level: UInt64, validTime: String, beginTime: String, domainCount: UInt64, subDomainLimit: UInt64, mainDomainCount: UInt64, mainDomainLimit: UInt64, maxQPS: UInt64, qps: QPSPackageNew, domainPkg: DomainPackageNew, appId: UInt64, edition: String, fraudPkg: FraudPkg? = nil, botPkg: BotPkg? = nil, botQPS: BotQPS? = nil, elasticBilling: UInt64? = nil, attackLogPost: Int64? = nil, maxBandwidth: UInt64? = nil, apiSecurity: UInt64? = nil, qpsStandard: UInt64? = nil, bandwidthStandard: UInt64? = nil, status: UInt64? = nil, sandboxQps: UInt64? = nil, isAPISecurityTrial: UInt64? = nil, majorEventsPkg: MajorEventsPkg? = nil, hybridPkg: HybridPkg? = nil) {
             self.instanceId = instanceId
             self.instanceName = instanceName
             self.resourceIds = resourceIds
@@ -1279,6 +2065,8 @@ extension Waf {
             self.status = status
             self.sandboxQps = sandboxQps
             self.isAPISecurityTrial = isAPISecurityTrial
+            self.majorEventsPkg = majorEventsPkg
+            self.hybridPkg = hybridPkg
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1313,6 +2101,8 @@ extension Waf {
             case status = "Status"
             case sandboxQps = "SandboxQps"
             case isAPISecurityTrial = "IsAPISecurityTrial"
+            case majorEventsPkg = "MajorEventsPkg"
+            case hybridPkg = "HybridPkg"
         }
     }
 
@@ -1333,6 +2123,10 @@ extension Waf {
 
     /// ip黑白名单
     public struct IpAccessControlItem: TCOutputModel {
+        /// mongo表自增Id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: String?
+
         /// 动作
         public let actionType: UInt64
 
@@ -1352,13 +2146,19 @@ extension Waf {
         /// 有效截止时间戳
         public let validTs: UInt64
 
+        /// 生效状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let validStatus: Int64?
+
         enum CodingKeys: String, CodingKey {
+            case id = "Id"
             case actionType = "ActionType"
             case ip = "Ip"
             case note = "Note"
             case source = "Source"
             case tsVersion = "TsVersion"
             case validTs = "ValidTs"
+            case validStatus = "ValidStatus"
         }
     }
 
@@ -1443,7 +2243,11 @@ extension Waf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let loadBalancerType: String?
 
-        public init(loadBalancerId: String, loadBalancerName: String, listenerId: String, listenerName: String, vip: String, vport: UInt64, region: String, protocol: String, zone: String, numericalVpcId: Int64? = nil, loadBalancerType: String? = nil) {
+        /// 负载均衡的域名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let loadBalancerDomain: String?
+
+        public init(loadBalancerId: String, loadBalancerName: String, listenerId: String, listenerName: String, vip: String, vport: UInt64, region: String, protocol: String, zone: String, numericalVpcId: Int64? = nil, loadBalancerType: String? = nil, loadBalancerDomain: String? = nil) {
             self.loadBalancerId = loadBalancerId
             self.loadBalancerName = loadBalancerName
             self.listenerId = listenerId
@@ -1455,6 +2259,7 @@ extension Waf {
             self.zone = zone
             self.numericalVpcId = numericalVpcId
             self.loadBalancerType = loadBalancerType
+            self.loadBalancerDomain = loadBalancerDomain
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1469,6 +2274,7 @@ extension Waf {
             case zone = "Zone"
             case numericalVpcId = "NumericalVpcId"
             case loadBalancerType = "LoadBalancerType"
+            case loadBalancerDomain = "LoadBalancerDomain"
         }
     }
 
@@ -1518,7 +2324,11 @@ extension Waf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let loadBalancerType: String?
 
-        public init(listenerId: String, listenerName: String, loadBalancerId: String, loadBalancerName: String, protocol: String, region: String, vip: String, vport: UInt64, zone: String, numericalVpcId: Int64, loadBalancerType: String) {
+        /// 负载均衡器的域名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let loadBalancerDomain: String?
+
+        public init(listenerId: String, listenerName: String, loadBalancerId: String, loadBalancerName: String, protocol: String, region: String, vip: String, vport: UInt64, zone: String, numericalVpcId: Int64, loadBalancerType: String, loadBalancerDomain: String? = nil) {
             self.listenerId = listenerId
             self.listenerName = listenerName
             self.loadBalancerId = loadBalancerId
@@ -1530,6 +2340,7 @@ extension Waf {
             self.zone = zone
             self.numericalVpcId = numericalVpcId
             self.loadBalancerType = loadBalancerType
+            self.loadBalancerDomain = loadBalancerDomain
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1544,6 +2355,7 @@ extension Waf {
             case zone = "Zone"
             case numericalVpcId = "NumericalVpcId"
             case loadBalancerType = "LoadBalancerType"
+            case loadBalancerDomain = "LoadBalancerDomain"
         }
     }
 
@@ -1558,6 +2370,94 @@ extension Waf {
         enum CodingKeys: String, CodingKey {
             case count = "Count"
             case timeStamp = "TimeStamp"
+        }
+    }
+
+    /// 重保防护资源信息
+    public struct MajorEventsPkg: TCInputModel, TCOutputModel {
+        /// 资源id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resourceIds: String?
+
+        /// 状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: Int64?
+
+        /// 地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let region: Int64?
+
+        /// 开始时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let beginTime: String?
+
+        /// 结束时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let endTime: String?
+
+        /// 申请数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let inquireNum: Int64?
+
+        /// 使用数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let usedNum: Int64?
+
+        /// 续费标志
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let renewFlag: UInt64?
+
+        /// 计费项
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let billingItem: String?
+
+        /// 护网包状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hwState: Int64?
+
+        public init(resourceIds: String? = nil, status: Int64? = nil, region: Int64? = nil, beginTime: String? = nil, endTime: String? = nil, inquireNum: Int64? = nil, usedNum: Int64? = nil, renewFlag: UInt64? = nil, billingItem: String? = nil, hwState: Int64? = nil) {
+            self.resourceIds = resourceIds
+            self.status = status
+            self.region = region
+            self.beginTime = beginTime
+            self.endTime = endTime
+            self.inquireNum = inquireNum
+            self.usedNum = usedNum
+            self.renewFlag = renewFlag
+            self.billingItem = billingItem
+            self.hwState = hwState
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case resourceIds = "ResourceIds"
+            case status = "Status"
+            case region = "Region"
+            case beginTime = "BeginTime"
+            case endTime = "EndTime"
+            case inquireNum = "InquireNum"
+            case usedNum = "UsedNum"
+            case renewFlag = "RenewFlag"
+            case billingItem = "BillingItem"
+            case hwState = "HWState"
+        }
+    }
+
+    /// 公共翻页参数
+    public struct PageInfo: TCInputModel {
+        /// 页码
+        public let pageNumber: String
+
+        /// 页条目数量
+        public let pageSize: String
+
+        public init(pageNumber: String, pageSize: String) {
+            self.pageNumber = pageNumber
+            self.pageSize = pageSize
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case pageNumber = "PageNumber"
+            case pageSize = "PageSize"
         }
     }
 
@@ -1584,33 +2484,49 @@ extension Waf {
         /// Bot qps
         public let botAccess: UInt64
 
-        /// WAF返回给客户端状态码次数
+        /// WAF返回给客户端状态码5xx次数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let statusServerError: UInt64?
 
-        /// WAF返回给客户端状态码次数
+        /// WAF返回给客户端状态码4xx次数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let statusClientError: UInt64?
 
-        /// WAF返回给客户端状态码次数
+        /// WAF返回给客户端状态码302次数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let statusRedirect: UInt64?
 
-        /// WAF返回给客户端状态码次数
+        /// WAF返回给客户端状态码202次数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let statusOk: UInt64?
 
-        /// 源站返回给WAF状态码次数
+        /// 源站返回给WAF状态码5xx次数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let upstreamServerError: UInt64?
 
-        /// 源站返回给WAF状态码次数
+        /// 源站返回给WAF状态码4xx次数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let upstreamClientError: UInt64?
 
-        /// 源站返回给WAF状态码次数
+        /// 源站返回给WAF状态码302次数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let upstreamRedirect: UInt64?
+
+        /// 黑名单次数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let blackIP: UInt64?
+
+        /// 防篡改次数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tamper: UInt64?
+
+        /// 信息防泄露次数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let leak: UInt64?
+
+        /// 访问控制
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let acl: UInt64?
 
         enum CodingKeys: String, CodingKey {
             case time = "Time"
@@ -1627,6 +2543,10 @@ extension Waf {
             case upstreamServerError = "UpstreamServerError"
             case upstreamClientError = "UpstreamClientError"
             case upstreamRedirect = "UpstreamRedirect"
+            case blackIP = "BlackIP"
+            case tamper = "Tamper"
+            case leak = "Leak"
+            case acl = "ACL"
         }
     }
 
@@ -1743,6 +2663,37 @@ extension Waf {
         }
     }
 
+    /// 获取弹性qps的默认相关值
+    public struct QpsData: TCOutputModel {
+        /// 弹性qps默认值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let elasticBillingDefault: UInt64?
+
+        /// 弹性qps最小值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let elasticBillingMin: UInt64?
+
+        /// 弹性qps最大值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let elasticBillingMax: UInt64?
+
+        /// 业务扩展包最大qps
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let qpsExtendMax: UInt64?
+
+        /// 海外业务扩展包最大qps
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let qpsExtendIntlMax: UInt64?
+
+        enum CodingKeys: String, CodingKey {
+            case elasticBillingDefault = "ElasticBillingDefault"
+            case elasticBillingMin = "ElasticBillingMin"
+            case elasticBillingMax = "ElasticBillingMax"
+            case qpsExtendMax = "QPSExtendMax"
+            case qpsExtendIntlMax = "QPSExtendIntlMax"
+        }
+    }
+
     /// 响应体的返回码
     public struct ResponseCode: TCOutputModel {
         /// 如果成功则返回Success，失败则返回云api定义的错误码
@@ -1787,6 +2738,74 @@ extension Waf {
         }
     }
 
+    /// 接入列表查询复杂条件
+    public struct SearchItem: TCInputModel {
+        /// 日志开关
+        public let clsStatus: String?
+
+        /// waf开关
+        public let status: String?
+
+        /// 流量模式
+        public let flowMode: String?
+
+        public init(clsStatus: String? = nil, status: String? = nil, flowMode: String? = nil) {
+            self.clsStatus = clsStatus
+            self.status = status
+            self.flowMode = flowMode
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case clsStatus = "ClsStatus"
+            case status = "Status"
+            case flowMode = "FlowMode"
+        }
+    }
+
+    /// 参数包装
+    public struct SessionData: TCOutputModel {
+        /// session定义
+        public let res: [SessionItem]
+
+        enum CodingKeys: String, CodingKey {
+            case res = "Res"
+        }
+    }
+
+    /// session定义
+    public struct SessionItem: TCOutputModel {
+        /// 匹配类型
+        public let category: String
+
+        /// 起始模式
+        public let keyOrStartMat: String
+
+        /// 结束模式
+        public let endMat: String
+
+        /// 起始偏移
+        public let startOffset: String
+
+        /// 结束偏移
+        public let endOffset: String
+
+        /// 数据源
+        public let source: String
+
+        /// 更新时间戳
+        public let tsVersion: String
+
+        enum CodingKeys: String, CodingKey {
+            case category = "Category"
+            case keyOrStartMat = "KeyOrStartMat"
+            case endMat = "EndMat"
+            case startOffset = "StartOffset"
+            case endOffset = "EndOffset"
+            case source = "Source"
+            case tsVersion = "TsVersion"
+        }
+    }
+
     /// waf斯巴达-编辑防护域名中的端口结构
     public struct SpartaProtectionPort: TCInputModel {
         /// nginx Id
@@ -1824,18 +2843,74 @@ extension Waf {
     /// 自定义规则的匹配条件结构体
     public struct Strategy: TCInputModel, TCOutputModel {
         /// 匹配字段
+        ///
+        ///     匹配字段不同，相应的匹配参数、逻辑符号、匹配内容有所不同
+        /// 具体如下所示：
+        ///
+        /// | 匹配字段 | 匹配参数 | 逻辑符号 | 匹配内容 |
+        /// |---|---|---|---|
+        /// | IP（来源IP） | 不支持参数 | ipmatch（匹配）<br>ipnmatch（不匹配） | 多个IP以英文逗号隔开,最多20个 |
+        /// | IPV6（来源IPv6） | 不支持参数 | ipmatch（匹配）<br>ipnmatch（不匹配） | 支持单个IPV6地址 |
+        /// | Referer（Referer） | 不支持参数 | empty（内容为空）<br>null（不存在）<br>eq（等于）<br>neq（不等于）<br>contains（包含）<br>ncontains（不包含）<br>len_eq（长度等于）<br>len_gt（长度大于）<br>len_lt（长度小于）<br>strprefix（前缀匹配）<br>strsuffix（后缀匹配）<br>rematch（正则匹配） | 请输入内容,512个字符以内 |
+        /// | URL（请求路径） | 不支持参数 | eq（等于）<br>neq（不等于）<br>contains（包含）<br>ncontains（不包含）<br>len_eq（长度等于）<br>len_gt（长度大于）<br>len_lt（长度小于）<br>strprefix（前缀匹配）<br>strsuffix（后缀匹配）<br>rematch（正则匹配） | 请以/开头,512个字符以内 |
+        /// | UserAgent（UserAgent） | 不支持参数 | 同匹配字段_Referer_逻辑符号 | 请输入内容,512个字符以内 |
+        /// | HTTP_METHOD（HTTP请求方法） | 不支持参数 | eq（等于）<br>neq（不等于） | 请输入方法名称,建议大写 |
+        /// | QUERY_STRING（请求字符串） | 不支持参数 | 同匹配字段_请求路径_逻辑符号 | 请输入内容,512个字符以内 |
+        /// | GET（GET参数值） | 支持参数录入 | contains（包含）<br>ncontains（不包含）<br>len_eq（长度等于）<br>len_gt（长度大于）<br>len_lt（长度小于）<br>strprefix（前缀匹配）<br>strsuffix（后缀匹配） | 请输入内容,512个字符以内 |
+        /// | GET_PARAMS_NAMES（GET参数名） | 不支持参数 | exsit（存在参数）<br>nexsit（不存在参数）<br>len_eq（长度等于）<br>len_gt（长度大于）<br>len_lt（长度小于）<br>strprefix（前缀匹配）<br>strsuffix（后缀匹配） | 请输入内容,512个字符以内 |
+        /// | POST（POST参数值） | 支持参数录入 | 同匹配字段_GET参数值_逻辑符号 | 请输入内容,512个字符以内 |
+        /// | GET_POST_NAMES（POST参数名） | 不支持参数 | 同匹配字段_GET参数名_逻辑符号 | 请输入内容,512个字符以内 |
+        /// | POST_BODY（完整BODY） | 不支持参数 | 同匹配字段_请求路径_逻辑符号 | 请输入BODY内容,512个字符以内 |
+        /// | COOKIE（Cookie） | 不支持参数 | empty（内容为空）<br>null（不存在）<br>rematch（正则匹配） | _暂不支持_ |
+        /// | GET_COOKIES_NAMES（Cookie参数名） | 不支持参数 | 同匹配字段_GET参数名_逻辑符号 | 请输入内容,512个字符以内 |
+        /// | ARGS_COOKIE（Cookie参数值） | 支持参数录入 | 同匹配字段_GET参数值_逻辑符号 | 请输入内容,512个字符以内 |
+        /// | GET_HEADERS_NAMES（Header参数名） | 不支持参数 | exsit（存在参数）<br>nexsit（不存在参数）<br>len_eq（长度等于）<br>len_gt（长度大于）<br>len_lt（长度小于）<br>strprefix（前缀匹配）<br>strsuffix（后缀匹配）<br>rematch（正则匹配） | 请输入内容,建议小写,512个字符以内 |
+        /// | ARGS_HEADER（Header参数值） | 支持参数录入 | contains（包含）<br>ncontains（不包含）<br>len_eq（长度等于）<br>len_gt（长度大于）<br>len_lt（长度小于）<br>strprefix（前缀匹配）<br>strsuffix（后缀匹配）<br>rematch（正则匹配） | 请输入内容,512个字符以内 |
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let field: String?
 
         /// 逻辑符号
+        ///
+        ///     逻辑符号一共分为以下几种类型：
+        ///         empty （ 内容为空）
+        ///         null （不存在）
+        ///         eq （ 等于）
+        ///         neq （ 不等于）
+        ///         contains （ 包含）
+        ///         ncontains （ 不包含）
+        ///         strprefix （ 前缀匹配）
+        ///         strsuffix （ 后缀匹配）
+        ///         len_eq （ 长度等于）
+        ///         len_gt （ 长度大于）
+        ///         len_lt （ 长度小于）
+        ///         ipmatch （ 属于）
+        ///         ipnmatch （ 不属于）
+        ///     各匹配字段对应的逻辑符号不同，详见上述匹配字段表格
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let compareFunc: String?
 
         /// 匹配内容
+        ///
+        ///     目前 当匹配字段为COOKIE（Cookie）时，不需要输入 匹配内容
+        /// 其他都需要
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: String?
 
         /// 匹配参数
+        ///
+        ///     配置参数一共分2种类型 不支持参数与支持参数
+        ///     当匹配字段为以下4个时，匹配参数才能录入，否则不支持该参数
+        ///         GET（GET参数值）
+        ///
+        ///         POST（POST参数值）
+        ///
+        ///         ARGS_COOKIE（Cookie参数值）
+        ///
+        ///         ARGS_HEADER（Header参数值）
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let arg: String?
 
@@ -1851,6 +2926,141 @@ extension Waf {
             case compareFunc = "CompareFunc"
             case content = "Content"
             case arg = "Arg"
+        }
+    }
+
+    /// 防信息泄露的匹配条件结构体
+    public struct StrategyForAntiInfoLeak: TCInputModel {
+        /// 匹配条件，returncode（响应码）、keywords（关键字）、information（敏感信息）
+        public let field: String
+
+        /// 逻辑符号，固定取值为contains
+        public let compareFunc: String
+
+        /// 匹配内容。
+        /// 以下三个对应Field为information时可取的匹配内容：
+        /// idcard（身份证）、phone（手机号）、bankcard（银行卡）。
+        /// 以下为对应Field为returncode时可取的匹配内容：
+        /// 400（状态码400）、403（状态码403）、404（状态码404）、4xx（其它4xx状态码）、500（状态码500）、501（状态码501）、502（状态码502）、504（状态码504）、5xx（其它5xx状态码）。
+        /// 当对应Field为keywords时由用户自己输入匹配内容。
+        public let content: String
+
+        public init(field: String, compareFunc: String, content: String) {
+            self.field = field
+            self.compareFunc = compareFunc
+            self.content = content
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case field = "Field"
+            case compareFunc = "CompareFunc"
+            case content = "Content"
+        }
+    }
+
+    /// TLS 加密套件
+    public struct TLSCiphers: TCOutputModel {
+        /// TLS版本ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let versionId: Int64?
+
+        /// 加密套件ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cipherId: Int64?
+
+        /// 加密套件
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cipherName: String?
+
+        enum CodingKeys: String, CodingKey {
+            case versionId = "VersionId"
+            case cipherId = "CipherId"
+            case cipherName = "CipherName"
+        }
+    }
+
+    /// TLS信息
+    public struct TLSVersion: TCOutputModel {
+        /// TLSVERSION的ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let versionId: Int64?
+
+        /// TLSVERSION的NAME
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let versionName: String?
+
+        enum CodingKeys: String, CodingKey {
+            case versionId = "VersionId"
+            case versionName = "VersionName"
+        }
+    }
+
+    /// 需要开启/关闭API安全的 实例+域名 组合实体
+    public struct TargetEntity: TCInputModel {
+        /// 实例ID
+        public let instanceId: String?
+
+        /// 域名
+        public let domain: String?
+
+        public init(instanceId: String? = nil, domain: String? = nil) {
+            self.instanceId = instanceId
+            self.domain = domain
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case instanceId = "InstanceId"
+            case domain = "Domain"
+        }
+    }
+
+    /// saas和clb信息
+    public struct UserDomainInfo: TCOutputModel {
+        /// 用户id
+        public let appid: UInt64
+
+        /// 域名
+        public let domain: String
+
+        /// 域名id
+        public let domainId: String
+
+        /// 实例id
+        public let instanceId: String
+
+        /// 实例名
+        public let instanceName: String
+
+        /// waf类型
+        public let edition: String
+
+        /// 版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let level: String?
+
+        /// 指定域名访问日志字段的开关
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let writeConfig: String?
+
+        /// 指定域名是否写cls的开关 1:写 0:不写
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cls: UInt64?
+
+        /// 标记是否是混合云接入。hybrid表示混合云接入域名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cloudType: String?
+
+        enum CodingKeys: String, CodingKey {
+            case appid = "Appid"
+            case domain = "Domain"
+            case domainId = "DomainId"
+            case instanceId = "InstanceId"
+            case instanceName = "InstanceName"
+            case edition = "Edition"
+            case level = "Level"
+            case writeConfig = "WriteConfig"
+            case cls = "Cls"
+            case cloudType = "CloudType"
         }
     }
 

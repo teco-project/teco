@@ -19,6 +19,7 @@ import TecoCore
 extension TCTatError {
     public struct UnauthorizedOperation: TCTatErrorType {
         enum Code: String {
+            case assumeRoleUnauthorized = "UnauthorizedOperation.AssumeRoleUnauthorized"
             case camAuthFailed = "UnauthorizedOperation.CamAuthFailed"
             case invalidToken = "UnauthorizedOperation.InvalidToken"
             case mfaExpired = "UnauthorizedOperation.MFAExpired"
@@ -47,6 +48,11 @@ extension TCTatError {
             self.context = context
         }
 
+        /// 角色扮演未授权。
+        public static var assumeRoleUnauthorized: UnauthorizedOperation {
+            UnauthorizedOperation(.assumeRoleUnauthorized)
+        }
+
         /// CAM鉴权失败。
         public static var camAuthFailed: UnauthorizedOperation {
             UnauthorizedOperation(.camAuthFailed)
@@ -70,6 +76,8 @@ extension TCTatError {
         public func asTatError() -> TCTatError {
             let code: TCTatError.Code
             switch self.error {
+            case .assumeRoleUnauthorized:
+                code = .unauthorizedOperation_AssumeRoleUnauthorized
             case .camAuthFailed:
                 code = .unauthorizedOperation_CamAuthFailed
             case .invalidToken:

@@ -365,6 +365,7 @@ public struct TCTsfError: TCTsfErrorType {
         case missingParameter_GroupShirkServeridNull = "MissingParameter.GroupShirkServeridNull"
         case missingParameter_InstanceImportModeNull = "MissingParameter.InstanceImportModeNull"
         case missingParameter_NamespaceIdRequired = "MissingParameter.NamespaceIdRequired"
+        case missingParameter_NamespaceNameRequired = "MissingParameter.NamespaceNameRequired"
         case missingParameter_RequiredParameterMissing = "MissingParameter.RequiredParameterMissing"
         case missingParameter_ServiceIdRequired = "MissingParameter.ServiceIdRequired"
         case missingParameter_SystemParameterRequired = "MissingParameter.SystemParameterRequired"
@@ -2148,6 +2149,11 @@ public struct TCTsfError: TCTsfErrorType {
     /// 命名空间ID不能为空。
     public static var missingParameter_NamespaceIdRequired: TCTsfError {
         TCTsfError(.missingParameter_NamespaceIdRequired)
+    }
+
+    /// 命名空间名称未填写。
+    public static var missingParameter_NamespaceNameRequired: TCTsfError {
+        TCTsfError(.missingParameter_NamespaceNameRequired)
     }
 
     /// %s缺失。

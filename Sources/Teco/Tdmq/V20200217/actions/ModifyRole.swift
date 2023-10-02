@@ -24,22 +24,32 @@ extension Tdmq {
         /// 角色名称，不支持中字以及除了短线和下划线外的特殊字符且长度必须大于0且小等于32。
         public let roleName: String
 
+        /// 必填字段，集群Id
+        public let clusterId: String
+
         /// 备注说明，长度必须大等于0且小等于128。
         public let remark: String?
 
-        /// 必填字段，集群Id
-        public let clusterId: String?
+        /// 批量绑定名字空间信息
+        public let environmentRoleSets: [EnvironmentRoleSet]?
 
-        public init(roleName: String, remark: String? = nil, clusterId: String? = nil) {
+        /// 全部解绑名字空间，设置为 true
+        public let unbindAllEnvironment: Bool?
+
+        public init(roleName: String, clusterId: String, remark: String? = nil, environmentRoleSets: [EnvironmentRoleSet]? = nil, unbindAllEnvironment: Bool? = nil) {
             self.roleName = roleName
-            self.remark = remark
             self.clusterId = clusterId
+            self.remark = remark
+            self.environmentRoleSets = environmentRoleSets
+            self.unbindAllEnvironment = unbindAllEnvironment
         }
 
         enum CodingKeys: String, CodingKey {
             case roleName = "RoleName"
-            case remark = "Remark"
             case clusterId = "ClusterId"
+            case remark = "Remark"
+            case environmentRoleSets = "EnvironmentRoleSets"
+            case unbindAllEnvironment = "UnbindAllEnvironment"
         }
     }
 
@@ -75,13 +85,13 @@ extension Tdmq {
 
     /// 角色修改
     @inlinable
-    public func modifyRole(roleName: String, remark: String? = nil, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRoleResponse> {
-        self.modifyRole(.init(roleName: roleName, remark: remark, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+    public func modifyRole(roleName: String, clusterId: String, remark: String? = nil, environmentRoleSets: [EnvironmentRoleSet]? = nil, unbindAllEnvironment: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRoleResponse> {
+        self.modifyRole(.init(roleName: roleName, clusterId: clusterId, remark: remark, environmentRoleSets: environmentRoleSets, unbindAllEnvironment: unbindAllEnvironment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 角色修改
     @inlinable
-    public func modifyRole(roleName: String, remark: String? = nil, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoleResponse {
-        try await self.modifyRole(.init(roleName: roleName, remark: remark, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+    public func modifyRole(roleName: String, clusterId: String, remark: String? = nil, environmentRoleSets: [EnvironmentRoleSet]? = nil, unbindAllEnvironment: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoleResponse {
+        try await self.modifyRole(.init(roleName: roleName, clusterId: clusterId, remark: remark, environmentRoleSets: environmentRoleSets, unbindAllEnvironment: unbindAllEnvironment), region: region, logger: logger, on: eventLoop)
     }
 }

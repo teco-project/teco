@@ -27,14 +27,19 @@ extension Ccc {
         /// 座席账号。
         public let seatUserId: String
 
-        public init(sdkAppId: Int64, seatUserId: String) {
+        /// 生成的token是否一次性校验
+        public let onlyOnce: Bool?
+
+        public init(sdkAppId: Int64, seatUserId: String, onlyOnce: Bool? = nil) {
             self.sdkAppId = sdkAppId
             self.seatUserId = seatUserId
+            self.onlyOnce = onlyOnce
         }
 
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case seatUserId = "SeatUserId"
+            case onlyOnce = "OnlyOnce"
         }
     }
 
@@ -80,15 +85,15 @@ extension Ccc {
     ///
     /// 创建 SDK 登录 Token。
     @inlinable
-    public func createSDKLoginToken(sdkAppId: Int64, seatUserId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSDKLoginTokenResponse> {
-        self.createSDKLoginToken(.init(sdkAppId: sdkAppId, seatUserId: seatUserId), region: region, logger: logger, on: eventLoop)
+    public func createSDKLoginToken(sdkAppId: Int64, seatUserId: String, onlyOnce: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSDKLoginTokenResponse> {
+        self.createSDKLoginToken(.init(sdkAppId: sdkAppId, seatUserId: seatUserId, onlyOnce: onlyOnce), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建 SDK 登录 Token
     ///
     /// 创建 SDK 登录 Token。
     @inlinable
-    public func createSDKLoginToken(sdkAppId: Int64, seatUserId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSDKLoginTokenResponse {
-        try await self.createSDKLoginToken(.init(sdkAppId: sdkAppId, seatUserId: seatUserId), region: region, logger: logger, on: eventLoop)
+    public func createSDKLoginToken(sdkAppId: Int64, seatUserId: String, onlyOnce: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSDKLoginTokenResponse {
+        try await self.createSDKLoginToken(.init(sdkAppId: sdkAppId, seatUserId: seatUserId, onlyOnce: onlyOnce), region: region, logger: logger, on: eventLoop)
     }
 }

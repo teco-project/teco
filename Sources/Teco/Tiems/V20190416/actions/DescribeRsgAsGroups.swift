@@ -93,42 +93,42 @@ extension Tiems {
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func describeRsgAsGroups(_ input: DescribeRsgAsGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRsgAsGroupsResponse> {
-        fatalError("DescribeRsgAsGroups is no longer available.")
+        fatalError("'DescribeRsgAsGroups' is no longer available.")
     }
 
     /// 查询资源组的伸缩组信息
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func describeRsgAsGroups(_ input: DescribeRsgAsGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRsgAsGroupsResponse {
-        fatalError("DescribeRsgAsGroups is no longer available.")
+        fatalError("'DescribeRsgAsGroups' is no longer available.")
     }
 
     /// 查询资源组的伸缩组信息
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func describeRsgAsGroups(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRsgAsGroupsResponse> {
-        fatalError("DescribeRsgAsGroups is no longer available.")
+        fatalError("'DescribeRsgAsGroups' is no longer available.")
     }
 
     /// 查询资源组的伸缩组信息
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func describeRsgAsGroups(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRsgAsGroupsResponse {
-        fatalError("DescribeRsgAsGroups is no longer available.")
+        fatalError("'DescribeRsgAsGroups' is no longer available.")
     }
 
     /// 查询资源组的伸缩组信息
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func describeRsgAsGroupsPaginated(_ input: DescribeRsgAsGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [RsgAsGroup])> {
-        fatalError("DescribeRsgAsGroups is no longer available.")
+        fatalError("'DescribeRsgAsGroups' is no longer available.")
     }
 
     /// 查询资源组的伸缩组信息
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable @discardableResult
     public func describeRsgAsGroupsPaginated(_ input: DescribeRsgAsGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRsgAsGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
-        fatalError("DescribeRsgAsGroups is no longer available.")
+        fatalError("'DescribeRsgAsGroups' is no longer available.")
     }
 
     /// 查询资源组的伸缩组信息
@@ -137,6 +137,6 @@ extension Tiems {
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func describeRsgAsGroupsPaginator(_ input: DescribeRsgAsGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRsgAsGroupsRequest> {
-        fatalError("DescribeRsgAsGroups is no longer available.")
+        fatalError("'DescribeRsgAsGroups' is no longer available.")
     }
 }

@@ -21,109 +21,151 @@ import TecoCore
 extension Waf {
     /// AddSpartaProtection请求参数结构体
     public struct AddSpartaProtectionRequest: TCRequest {
-        /// 需要防御的域名
+        /// 需要防护的域名
         public let domain: String
 
-        /// 证书类型，0表示没有证书，CertType=1表示自有证书,2 为托管证书
+        /// 证书类型。
+        /// 0：仅配置HTTP监听端口，没有证书
+        /// 1：证书来源为自有证书
+        /// 2：证书来源为托管证书
         public let certType: Int64
 
-        /// 表示是否开启了CDN代理，1：有部署CDN，0：未部署CDN
+        /// waf前是否部署有七层代理服务。
+        /// 0：没有部署代理服务
+        /// 1：有部署代理服务，waf将使用XFF获取客户端IP
+        /// 2：有部署代理服务，waf将使用remote_addr获取客户端IP
+        /// 3：有部署代理服务，waf将使用ip_headers中的自定义header获取客户端IP
         public let isCdn: Int64
 
-        /// 回源类型，0表示通过IP回源,1 表示通过域名回源
+        /// 回源类型。
+        /// 0：通过IP回源
+        /// 1：通过域名回源
         public let upstreamType: Int64
 
-        /// 是否开启WebSocket支持，1表示开启，0不开启
+        /// 是否开启WebSocket支持。
+        /// 0：关闭
+        /// 1：开启
         public let isWebsocket: Int64
 
-        /// 负载均衡策略，0表示轮询，1表示IP hash
+        /// 回源负载均衡策略。
+        /// 0：轮询
+        /// 1：IP hash
+        /// 2：加权轮询
         public let loadBalance: String
 
-        /// 值为1时，需要填次参数，表示证书内容
+        /// CertType为1时，需要填充此参数，表示自有证书的证书链
         public let cert: String?
 
-        /// CertType=1时，需要填次参数，表示证书的私钥
+        /// CertType为1时，需要填充此参数，表示自有证书的私钥
         public let privateKey: String?
 
-        /// CertType=2时，需要填次参数，表示证书的ID
+        /// CertType为2时，需要填充此参数，表示腾讯云SSL平台托管的证书id
         public let sslId: String?
 
-        /// Waf的资源ID
+        /// 待废弃，可不填。Waf的资源ID。
         public let resourceId: String?
 
-        /// HTTPS回源协议，填http或者https
+        /// IsCdn为3时，需要填此参数，表示自定义header
+        public let ipHeaders: [String]?
+
+        /// 服务配置有HTTPS端口时，HTTPS的回源协议。
+        /// http：使用http协议回源，和HttpsUpstreamPort配合使用
+        /// https：使用https协议回源
         public let upstreamScheme: String?
 
         /// HTTPS回源端口,仅UpstreamScheme为http时需要填当前字段
         public let httpsUpstreamPort: String?
 
-        /// 是否开启灰度，0表示不开启灰度
+        /// 待废弃，可不填。是否开启灰度，0表示不开启灰度。
         public let isGray: Int64?
 
-        /// 灰度的地区
+        /// 待废弃，可不填。灰度的地区
         public let grayAreas: [String]?
 
-        /// UpstreamType=1时，填次字段表示回源域名
-        public let upstreamDomain: String?
-
-        /// UpstreamType=0时，填次字段表示回源IP
-        public let srcList: [String]?
-
-        /// 是否开启HTTP2,开启HTTP2需要HTTPS支持
-        public let isHttp2: Int64?
-
-        /// 表示是否强制跳转到HTTPS，1强制跳转Https，0不强制跳转
+        /// 是否开启HTTP强制跳转到HTTPS。
+        /// 0：不强制跳转
+        /// 1：开启强制跳转
         public let httpsRewrite: Int64?
 
-        /// 服务有多端口需要设置此字段
+        /// 域名回源时的回源域名。UpstreamType为1时，需要填充此字段
+        public let upstreamDomain: String?
+
+        /// IP回源时的回源IP列表。UpstreamType为0时，需要填充此字段
+        public let srcList: [String]?
+
+        /// 是否开启HTTP2，需要开启HTTPS协议支持。
+        /// 0：关闭
+        /// 1：开启
+        public let isHttp2: Int64?
+
+        /// 服务端口列表配置。
+        /// NginxServerId：新增域名时填'0'
+        /// Port：监听端口号
+        /// Protocol：端口协议
+        /// UpstreamPort：与Port相同
+        /// UpstreamProtocol：与Protocol相同
         public let ports: [PortItem]?
 
-        /// WAF实例类型，sparta-waf表示SAAS型WAF，clb-waf表示负载均衡型WAF，cdn-waf表示CDN上的Web防护能力
+        /// 待废弃，可不填。WAF实例类型。
+        /// sparta-waf：SAAS型WAF
+        /// clb-waf：负载均衡型WAF
+        /// cdn-waf：CDN上的Web防护能力
         public let edition: String?
 
-        /// 是否开启长连接，仅IP回源时可以用填次参数，域名回源时这个参数无效
+        /// 是否开启长连接。
+        /// 0： 短连接
+        /// 1： 长连接
         public let isKeepAlive: String?
 
-        /// 实例id，上线之后带上此字段
+        /// 域名所属实例id
         public let instanceID: String?
 
-        /// anycast IP类型开关： 0 普通IP 1 Anycast IP
+        /// 待废弃，目前填0即可。anycast IP类型开关： 0 普通IP 1 Anycast IP
         public let anycast: Int64?
 
-        /// src权重
+        /// 回源IP列表各IP的权重，和SrcList一一对应。当且仅当UpstreamType为0，并且SrcList有多个IP，并且LoadBalance为2时需要填写，否则填 []
         public let weights: [Int64]?
 
-        /// 是否开启主动健康检测，1表示开启，0表示不开启
+        /// 是否开启主动健康检测。
+        /// 0：不开启
+        /// 1：开启
         public let activeCheck: Int64?
 
         /// TLS版本信息
         public let tlsVersion: Int64?
 
-        /// 加密套件信息
-        public let ciphers: [Int64]?
-
-        /// 0:不支持选择：默认模版  1:通用型模版 2:安全型模版 3:自定义模版
+        /// 加密套件模板。
+        /// 0：不支持选择，使用默认模版
+        /// 1：通用型模版
+        /// 2：安全型模版
+        /// 3：自定义模版
         public let cipherTemplate: Int64?
 
-        /// 300s
+        /// 自定义的加密套件列表。CipherTemplate为3时需要填此字段，表示自定义的加密套件，值通过DescribeCiphersDetail接口获取。
+        public let ciphers: [Int64]?
+
+        /// WAF与源站的读超时时间，默认300s。
         public let proxyReadTimeout: Int64?
 
-        /// 300s
+        /// WAF与源站的写超时时间，默认300s。
         public let proxySendTimeout: Int64?
 
-        /// 0:关闭SNI；1:开启SNI，SNI=源请求host；2:开启SNI，SNI=修改为源站host；3：开启SNI，自定义host，SNI=SniHost；
+        /// WAF回源时的SNI类型。
+        /// 0：关闭SNI，不配置client_hello中的server_name
+        /// 1：开启SNI，client_hello中的server_name为防护域名
+        /// 2：开启SNI，SNI为域名回源时的源站域名
+        /// 3：开启SNI，SNI为自定义域名
         public let sniType: Int64?
 
-        /// SniType=3时，需要填此参数，表示自定义的host；
+        /// SniType为3时，需要填此参数，表示自定义的SNI；
         public let sniHost: String?
 
-        /// is_cdn=3时，需要填此参数，表示自定义header
-        public let ipHeaders: [String]?
-
-        /// 0:关闭xff重置；1:开启xff重置
+        /// 是否开启XFF重置。
+        /// 0：关闭
+        /// 1：开启
         public let xffReset: Int64?
 
-        public init(domain: String, certType: Int64, isCdn: Int64, upstreamType: Int64, isWebsocket: Int64, loadBalance: String, cert: String? = nil, privateKey: String? = nil, sslId: String? = nil, resourceId: String? = nil, upstreamScheme: String? = nil, httpsUpstreamPort: String? = nil, isGray: Int64? = nil, grayAreas: [String]? = nil, upstreamDomain: String? = nil, srcList: [String]? = nil, isHttp2: Int64? = nil, httpsRewrite: Int64? = nil, ports: [PortItem]? = nil, edition: String? = nil, isKeepAlive: String? = nil, instanceID: String? = nil, anycast: Int64? = nil, weights: [Int64]? = nil, activeCheck: Int64? = nil, tlsVersion: Int64? = nil, ciphers: [Int64]? = nil, cipherTemplate: Int64? = nil, proxyReadTimeout: Int64? = nil, proxySendTimeout: Int64? = nil, sniType: Int64? = nil, sniHost: String? = nil, ipHeaders: [String]? = nil, xffReset: Int64? = nil) {
+        public init(domain: String, certType: Int64, isCdn: Int64, upstreamType: Int64, isWebsocket: Int64, loadBalance: String, cert: String? = nil, privateKey: String? = nil, sslId: String? = nil, resourceId: String? = nil, ipHeaders: [String]? = nil, upstreamScheme: String? = nil, httpsUpstreamPort: String? = nil, isGray: Int64? = nil, grayAreas: [String]? = nil, httpsRewrite: Int64? = nil, upstreamDomain: String? = nil, srcList: [String]? = nil, isHttp2: Int64? = nil, ports: [PortItem]? = nil, edition: String? = nil, isKeepAlive: String? = nil, instanceID: String? = nil, anycast: Int64? = nil, weights: [Int64]? = nil, activeCheck: Int64? = nil, tlsVersion: Int64? = nil, cipherTemplate: Int64? = nil, ciphers: [Int64]? = nil, proxyReadTimeout: Int64? = nil, proxySendTimeout: Int64? = nil, sniType: Int64? = nil, sniHost: String? = nil, xffReset: Int64? = nil) {
             self.domain = domain
             self.certType = certType
             self.isCdn = isCdn
@@ -134,14 +176,15 @@ extension Waf {
             self.privateKey = privateKey
             self.sslId = sslId
             self.resourceId = resourceId
+            self.ipHeaders = ipHeaders
             self.upstreamScheme = upstreamScheme
             self.httpsUpstreamPort = httpsUpstreamPort
             self.isGray = isGray
             self.grayAreas = grayAreas
+            self.httpsRewrite = httpsRewrite
             self.upstreamDomain = upstreamDomain
             self.srcList = srcList
             self.isHttp2 = isHttp2
-            self.httpsRewrite = httpsRewrite
             self.ports = ports
             self.edition = edition
             self.isKeepAlive = isKeepAlive
@@ -150,13 +193,12 @@ extension Waf {
             self.weights = weights
             self.activeCheck = activeCheck
             self.tlsVersion = tlsVersion
-            self.ciphers = ciphers
             self.cipherTemplate = cipherTemplate
+            self.ciphers = ciphers
             self.proxyReadTimeout = proxyReadTimeout
             self.proxySendTimeout = proxySendTimeout
             self.sniType = sniType
             self.sniHost = sniHost
-            self.ipHeaders = ipHeaders
             self.xffReset = xffReset
         }
 
@@ -171,14 +213,15 @@ extension Waf {
             case privateKey = "PrivateKey"
             case sslId = "SSLId"
             case resourceId = "ResourceId"
+            case ipHeaders = "IpHeaders"
             case upstreamScheme = "UpstreamScheme"
             case httpsUpstreamPort = "HttpsUpstreamPort"
             case isGray = "IsGray"
             case grayAreas = "GrayAreas"
+            case httpsRewrite = "HttpsRewrite"
             case upstreamDomain = "UpstreamDomain"
             case srcList = "SrcList"
             case isHttp2 = "IsHttp2"
-            case httpsRewrite = "HttpsRewrite"
             case ports = "Ports"
             case edition = "Edition"
             case isKeepAlive = "IsKeepAlive"
@@ -187,13 +230,12 @@ extension Waf {
             case weights = "Weights"
             case activeCheck = "ActiveCheck"
             case tlsVersion = "TLSVersion"
-            case ciphers = "Ciphers"
             case cipherTemplate = "CipherTemplate"
+            case ciphers = "Ciphers"
             case proxyReadTimeout = "ProxyReadTimeout"
             case proxySendTimeout = "ProxySendTimeout"
             case sniType = "SniType"
             case sniHost = "SniHost"
-            case ipHeaders = "IpHeaders"
             case xffReset = "XFFReset"
         }
     }
@@ -208,35 +250,27 @@ extension Waf {
         }
     }
 
-    /// 添加SAAS-WAF防护域名
-    ///
-    /// 添加Spart防护域名
+    /// 添加SaaS型WAF防护域名
     @inlinable @discardableResult
     public func addSpartaProtection(_ input: AddSpartaProtectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddSpartaProtectionResponse> {
         self.client.execute(action: "AddSpartaProtection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 添加SAAS-WAF防护域名
-    ///
-    /// 添加Spart防护域名
+    /// 添加SaaS型WAF防护域名
     @inlinable @discardableResult
     public func addSpartaProtection(_ input: AddSpartaProtectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddSpartaProtectionResponse {
         try await self.client.execute(action: "AddSpartaProtection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 添加SAAS-WAF防护域名
-    ///
-    /// 添加Spart防护域名
+    /// 添加SaaS型WAF防护域名
     @inlinable @discardableResult
-    public func addSpartaProtection(domain: String, certType: Int64, isCdn: Int64, upstreamType: Int64, isWebsocket: Int64, loadBalance: String, cert: String? = nil, privateKey: String? = nil, sslId: String? = nil, resourceId: String? = nil, upstreamScheme: String? = nil, httpsUpstreamPort: String? = nil, isGray: Int64? = nil, grayAreas: [String]? = nil, upstreamDomain: String? = nil, srcList: [String]? = nil, isHttp2: Int64? = nil, httpsRewrite: Int64? = nil, ports: [PortItem]? = nil, edition: String? = nil, isKeepAlive: String? = nil, instanceID: String? = nil, anycast: Int64? = nil, weights: [Int64]? = nil, activeCheck: Int64? = nil, tlsVersion: Int64? = nil, ciphers: [Int64]? = nil, cipherTemplate: Int64? = nil, proxyReadTimeout: Int64? = nil, proxySendTimeout: Int64? = nil, sniType: Int64? = nil, sniHost: String? = nil, ipHeaders: [String]? = nil, xffReset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddSpartaProtectionResponse> {
-        self.addSpartaProtection(.init(domain: domain, certType: certType, isCdn: isCdn, upstreamType: upstreamType, isWebsocket: isWebsocket, loadBalance: loadBalance, cert: cert, privateKey: privateKey, sslId: sslId, resourceId: resourceId, upstreamScheme: upstreamScheme, httpsUpstreamPort: httpsUpstreamPort, isGray: isGray, grayAreas: grayAreas, upstreamDomain: upstreamDomain, srcList: srcList, isHttp2: isHttp2, httpsRewrite: httpsRewrite, ports: ports, edition: edition, isKeepAlive: isKeepAlive, instanceID: instanceID, anycast: anycast, weights: weights, activeCheck: activeCheck, tlsVersion: tlsVersion, ciphers: ciphers, cipherTemplate: cipherTemplate, proxyReadTimeout: proxyReadTimeout, proxySendTimeout: proxySendTimeout, sniType: sniType, sniHost: sniHost, ipHeaders: ipHeaders, xffReset: xffReset), region: region, logger: logger, on: eventLoop)
+    public func addSpartaProtection(domain: String, certType: Int64, isCdn: Int64, upstreamType: Int64, isWebsocket: Int64, loadBalance: String, cert: String? = nil, privateKey: String? = nil, sslId: String? = nil, resourceId: String? = nil, ipHeaders: [String]? = nil, upstreamScheme: String? = nil, httpsUpstreamPort: String? = nil, isGray: Int64? = nil, grayAreas: [String]? = nil, httpsRewrite: Int64? = nil, upstreamDomain: String? = nil, srcList: [String]? = nil, isHttp2: Int64? = nil, ports: [PortItem]? = nil, edition: String? = nil, isKeepAlive: String? = nil, instanceID: String? = nil, anycast: Int64? = nil, weights: [Int64]? = nil, activeCheck: Int64? = nil, tlsVersion: Int64? = nil, cipherTemplate: Int64? = nil, ciphers: [Int64]? = nil, proxyReadTimeout: Int64? = nil, proxySendTimeout: Int64? = nil, sniType: Int64? = nil, sniHost: String? = nil, xffReset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddSpartaProtectionResponse> {
+        self.addSpartaProtection(.init(domain: domain, certType: certType, isCdn: isCdn, upstreamType: upstreamType, isWebsocket: isWebsocket, loadBalance: loadBalance, cert: cert, privateKey: privateKey, sslId: sslId, resourceId: resourceId, ipHeaders: ipHeaders, upstreamScheme: upstreamScheme, httpsUpstreamPort: httpsUpstreamPort, isGray: isGray, grayAreas: grayAreas, httpsRewrite: httpsRewrite, upstreamDomain: upstreamDomain, srcList: srcList, isHttp2: isHttp2, ports: ports, edition: edition, isKeepAlive: isKeepAlive, instanceID: instanceID, anycast: anycast, weights: weights, activeCheck: activeCheck, tlsVersion: tlsVersion, cipherTemplate: cipherTemplate, ciphers: ciphers, proxyReadTimeout: proxyReadTimeout, proxySendTimeout: proxySendTimeout, sniType: sniType, sniHost: sniHost, xffReset: xffReset), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 添加SAAS-WAF防护域名
-    ///
-    /// 添加Spart防护域名
+    /// 添加SaaS型WAF防护域名
     @inlinable @discardableResult
-    public func addSpartaProtection(domain: String, certType: Int64, isCdn: Int64, upstreamType: Int64, isWebsocket: Int64, loadBalance: String, cert: String? = nil, privateKey: String? = nil, sslId: String? = nil, resourceId: String? = nil, upstreamScheme: String? = nil, httpsUpstreamPort: String? = nil, isGray: Int64? = nil, grayAreas: [String]? = nil, upstreamDomain: String? = nil, srcList: [String]? = nil, isHttp2: Int64? = nil, httpsRewrite: Int64? = nil, ports: [PortItem]? = nil, edition: String? = nil, isKeepAlive: String? = nil, instanceID: String? = nil, anycast: Int64? = nil, weights: [Int64]? = nil, activeCheck: Int64? = nil, tlsVersion: Int64? = nil, ciphers: [Int64]? = nil, cipherTemplate: Int64? = nil, proxyReadTimeout: Int64? = nil, proxySendTimeout: Int64? = nil, sniType: Int64? = nil, sniHost: String? = nil, ipHeaders: [String]? = nil, xffReset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddSpartaProtectionResponse {
-        try await self.addSpartaProtection(.init(domain: domain, certType: certType, isCdn: isCdn, upstreamType: upstreamType, isWebsocket: isWebsocket, loadBalance: loadBalance, cert: cert, privateKey: privateKey, sslId: sslId, resourceId: resourceId, upstreamScheme: upstreamScheme, httpsUpstreamPort: httpsUpstreamPort, isGray: isGray, grayAreas: grayAreas, upstreamDomain: upstreamDomain, srcList: srcList, isHttp2: isHttp2, httpsRewrite: httpsRewrite, ports: ports, edition: edition, isKeepAlive: isKeepAlive, instanceID: instanceID, anycast: anycast, weights: weights, activeCheck: activeCheck, tlsVersion: tlsVersion, ciphers: ciphers, cipherTemplate: cipherTemplate, proxyReadTimeout: proxyReadTimeout, proxySendTimeout: proxySendTimeout, sniType: sniType, sniHost: sniHost, ipHeaders: ipHeaders, xffReset: xffReset), region: region, logger: logger, on: eventLoop)
+    public func addSpartaProtection(domain: String, certType: Int64, isCdn: Int64, upstreamType: Int64, isWebsocket: Int64, loadBalance: String, cert: String? = nil, privateKey: String? = nil, sslId: String? = nil, resourceId: String? = nil, ipHeaders: [String]? = nil, upstreamScheme: String? = nil, httpsUpstreamPort: String? = nil, isGray: Int64? = nil, grayAreas: [String]? = nil, httpsRewrite: Int64? = nil, upstreamDomain: String? = nil, srcList: [String]? = nil, isHttp2: Int64? = nil, ports: [PortItem]? = nil, edition: String? = nil, isKeepAlive: String? = nil, instanceID: String? = nil, anycast: Int64? = nil, weights: [Int64]? = nil, activeCheck: Int64? = nil, tlsVersion: Int64? = nil, cipherTemplate: Int64? = nil, ciphers: [Int64]? = nil, proxyReadTimeout: Int64? = nil, proxySendTimeout: Int64? = nil, sniType: Int64? = nil, sniHost: String? = nil, xffReset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddSpartaProtectionResponse {
+        try await self.addSpartaProtection(.init(domain: domain, certType: certType, isCdn: isCdn, upstreamType: upstreamType, isWebsocket: isWebsocket, loadBalance: loadBalance, cert: cert, privateKey: privateKey, sslId: sslId, resourceId: resourceId, ipHeaders: ipHeaders, upstreamScheme: upstreamScheme, httpsUpstreamPort: httpsUpstreamPort, isGray: isGray, grayAreas: grayAreas, httpsRewrite: httpsRewrite, upstreamDomain: upstreamDomain, srcList: srcList, isHttp2: isHttp2, ports: ports, edition: edition, isKeepAlive: isKeepAlive, instanceID: instanceID, anycast: anycast, weights: weights, activeCheck: activeCheck, tlsVersion: tlsVersion, cipherTemplate: cipherTemplate, ciphers: ciphers, proxyReadTimeout: proxyReadTimeout, proxySendTimeout: proxySendTimeout, sniType: sniType, sniHost: sniHost, xffReset: xffReset), region: region, logger: logger, on: eventLoop)
     }
 }

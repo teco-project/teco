@@ -53,6 +53,8 @@ public struct TCSslError: TCSslErrorType {
         case failedOperation_CertificateNotAvailable = "FailedOperation.CertificateNotAvailable"
         case failedOperation_CertificateNotDeployInstance = "FailedOperation.CertificateNotDeployInstance"
         case failedOperation_CertificateNotFound = "FailedOperation.CertificateNotFound"
+        case failedOperation_CertificateNotFoundOrCantCancel = "FailedOperation.CertificateNotFoundOrCantCancel"
+        case failedOperation_CertificateStatusNotAllowResubmit = "FailedOperation.CertificateStatusNotAllowResubmit"
         case failedOperation_ConfirmLetterTooLarge = "FailedOperation.ConfirmLetterTooLarge"
         case failedOperation_ConfirmLetterTooSmall = "FailedOperation.ConfirmLetterTooSmall"
         case failedOperation_DeleteResourceFailed = "FailedOperation.DeleteResourceFailed"
@@ -87,6 +89,7 @@ public struct TCSslError: TCSslErrorType {
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
         case invalidParameter_CertificateIdNumberLimit = "InvalidParameter.CertificateIdNumberLimit"
+        case invalidParameter_CertificateStatusNotAllowResubmit = "InvalidParameter.CertificateStatusNotAllowResubmit"
         case invalidParameter_CertificatesNumberExceeded = "InvalidParameter.CertificatesNumberExceeded"
         case invalidParameter_ContainsInvalidCertificateId = "InvalidParameter.ContainsInvalidCertificateId"
         case invalidParameter_DomainCountInvalid = "InvalidParameter.DomainCountInvalid"
@@ -290,6 +293,16 @@ public struct TCSslError: TCSslErrorType {
         TCSslError(.failedOperation_CertificateNotFound)
     }
 
+    /// 该证书不存在或不可取消。
+    public static var failedOperation_CertificateNotFoundOrCantCancel: TCSslError {
+        TCSslError(.failedOperation_CertificateNotFoundOrCantCancel)
+    }
+
+    /// 证书状态不允许重新申请。
+    public static var failedOperation_CertificateStatusNotAllowResubmit: TCSslError {
+        TCSslError(.failedOperation_CertificateStatusNotAllowResubmit)
+    }
+
     /// 证书确认函文件过大（需小于1.4M）。
     public static var failedOperation_ConfirmLetterTooLarge: TCSslError {
         TCSslError(.failedOperation_ConfirmLetterTooLarge)
@@ -464,6 +477,11 @@ public struct TCSslError: TCSslErrorType {
     /// 查询的证书ID不能超过50个。
     public static var invalidParameter_CertificateIdNumberLimit: TCSslError {
         TCSslError(.invalidParameter_CertificateIdNumberLimit)
+    }
+
+    /// 当前证书状态不允许重新提交申请。
+    public static var invalidParameter_CertificateStatusNotAllowResubmit: TCSslError {
+        TCSslError(.invalidParameter_CertificateStatusNotAllowResubmit)
     }
 
     /// 证书数量超出限制。

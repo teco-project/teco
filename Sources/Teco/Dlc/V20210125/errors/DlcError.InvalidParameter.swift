@@ -19,6 +19,7 @@ import TecoCore
 extension TCDlcError {
     public struct InvalidParameter: TCDlcErrorType {
         enum Code: String {
+            case datasourceTypeError = "InvalidParameter.DatasourceTypeError"
             case duplicateDataEngineName = "InvalidParameter.DuplicateDataEngineName"
             case duplicateGroupName = "InvalidParameter.DuplicateGroupName"
             case duplicateUserName = "InvalidParameter.DuplicateUserName"
@@ -73,6 +74,11 @@ extension TCDlcError {
         internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
+        }
+
+        /// 数据源类型错误。
+        public static var datasourceTypeError: InvalidParameter {
+            InvalidParameter(.datasourceTypeError)
         }
 
         /// 重复的引擎名称。
@@ -179,8 +185,6 @@ extension TCDlcError {
         }
 
         /// SQL数量不符合规范。
-        ///
-        /// 单次提交的SQL数量应该小于等于50，大于等于1。
         public static var invalidSQLNum: InvalidParameter {
             InvalidParameter(.invalidSQLNum)
         }
@@ -206,8 +210,6 @@ extension TCDlcError {
         }
 
         /// 无效的任务类型。
-        ///
-        /// 填写正确的任务类型SQLTask
         public static var invalidTaskType: InvalidParameter {
             InvalidParameter(.invalidTaskType)
         }
@@ -268,6 +270,8 @@ extension TCDlcError {
         public func asDlcError() -> TCDlcError {
             let code: TCDlcError.Code
             switch self.error {
+            case .datasourceTypeError:
+                code = .invalidParameter_DatasourceTypeError
             case .duplicateDataEngineName:
                 code = .invalidParameter_DuplicateDataEngineName
             case .duplicateGroupName:

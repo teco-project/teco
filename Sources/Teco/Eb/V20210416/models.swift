@@ -488,6 +488,52 @@ extension Eb {
         }
     }
 
+    /// 平台事件名称
+    public struct PlatformEventDetail: TCOutputModel {
+        /// 事件名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let eventName: String?
+
+        /// 事件类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let eventType: String?
+
+        enum CodingKeys: String, CodingKey {
+            case eventName = "EventName"
+            case eventType = "EventType"
+        }
+    }
+
+    /// 平台事件匹配规则
+    public struct PlatformEventSummary: TCOutputModel {
+        /// 平台事件名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let eventName: String?
+
+        /// 平台事件匹配规则
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let eventPattern: String?
+
+        enum CodingKeys: String, CodingKey {
+            case eventName = "EventName"
+            case eventPattern = "EventPattern"
+        }
+    }
+
+    /// 平台产品基础信息
+    public struct PlatformProduct: TCOutputModel {
+        /// 平台产品名称
+        public let productName: String
+
+        /// 平台产品类型
+        public let productType: String
+
+        enum CodingKeys: String, CodingKey {
+            case productName = "ProductName"
+            case productType = "ProductType"
+        }
+    }
+
     /// 用来描述一个ckafka投递目标的重试策略
     public struct RetryPolicy: TCInputModel, TCOutputModel {
         /// 重试间隔 单位:秒

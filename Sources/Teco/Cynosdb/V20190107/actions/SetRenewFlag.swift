@@ -21,7 +21,7 @@ import TecoCore
 extension Cynosdb {
     /// SetRenewFlag请求参数结构体
     public struct SetRenewFlagRequest: TCRequest {
-        /// 需操作的实例ID
+        /// 需操作的集群ID
         public let resourceIds: [String]
 
         /// 自动续费标志位，续费标记 0:正常续费  1:自动续费 2:到期不续

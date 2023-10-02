@@ -20,6 +20,10 @@ extension TCClsError {
     public struct FailedOperation: TCClsErrorType {
         enum Code: String {
             case bindedAlarm = "FailedOperation.BindedAlarm"
+            case bucketNoFile = "FailedOperation.BucketNoFile"
+            case decompressFile = "FailedOperation.DecompressFile"
+            case downLoadFile = "FailedOperation.DownLoadFile"
+            case getListFile = "FailedOperation.GetListFile"
             case getlogReachLimit = "FailedOperation.GetlogReachLimit"
             case inValidIndexRuleForSearchLow = "FailedOperation.InValidIndexRuleForSearchLow"
             case invalidAlarm = "FailedOperation.InvalidAlarm"
@@ -68,6 +72,30 @@ extension TCClsError {
         /// 告警策略通知模板已经绑定到了某个告警策略上。
         public static var bindedAlarm: FailedOperation {
             FailedOperation(.bindedAlarm)
+        }
+
+        /// 桶内无相应前缀文件，请使用正确的桶、文件前缀和压缩方式。
+        public static var bucketNoFile: FailedOperation {
+            FailedOperation(.bucketNoFile)
+        }
+
+        /// 文件解压缩失败，请选择正确的压缩方式。
+        public static var decompressFile: FailedOperation {
+            FailedOperation(.decompressFile)
+        }
+
+        /// 文件下载失败，请稍后再试。
+        ///
+        /// 若无法解决，请联系智能客服或提交工单
+        public static var downLoadFile: FailedOperation {
+            FailedOperation(.downLoadFile)
+        }
+
+        /// 获取文件列表失败，请稍后再试。
+        ///
+        /// 若无法解决，请联系智能客服或提交工单
+        public static var getListFile: FailedOperation {
+            FailedOperation(.getListFile)
         }
 
         /// 检索日志触发最大条数限制。
@@ -192,6 +220,14 @@ extension TCClsError {
             switch self.error {
             case .bindedAlarm:
                 code = .failedOperation_BindedAlarm
+            case .bucketNoFile:
+                code = .failedOperation_BucketNoFile
+            case .decompressFile:
+                code = .failedOperation_DecompressFile
+            case .downLoadFile:
+                code = .failedOperation_DownLoadFile
+            case .getListFile:
+                code = .failedOperation_GetListFile
             case .getlogReachLimit:
                 code = .failedOperation_GetlogReachLimit
             case .inValidIndexRuleForSearchLow:

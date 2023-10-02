@@ -19,7 +19,10 @@ import TecoCore
 extension TCTrocketError {
     public struct ResourceNotFound: TCTrocketErrorType {
         enum Code: String {
+            case group = "ResourceNotFound.Group"
             case instance = "ResourceNotFound.Instance"
+            case role = "ResourceNotFound.Role"
+            case topic = "ResourceNotFound.Topic"
         }
 
         private let error: Code
@@ -44,16 +47,37 @@ extension TCTrocketError {
             self.context = context
         }
 
+        /// 消费组不存在，请检查后重试。
+        public static var group: ResourceNotFound {
+            ResourceNotFound(.group)
+        }
+
         /// 实例不存在。
         public static var instance: ResourceNotFound {
             ResourceNotFound(.instance)
         }
 
+        /// 角色不存在，请检查后重试。
+        public static var role: ResourceNotFound {
+            ResourceNotFound(.role)
+        }
+
+        /// 主题不存在，请检查后重试。
+        public static var topic: ResourceNotFound {
+            ResourceNotFound(.topic)
+        }
+
         public func asTrocketError() -> TCTrocketError {
             let code: TCTrocketError.Code
             switch self.error {
+            case .group:
+                code = .resourceNotFound_Group
             case .instance:
                 code = .resourceNotFound_Instance
+            case .role:
+                code = .resourceNotFound_Role
+            case .topic:
+                code = .resourceNotFound_Topic
             }
             return TCTrocketError(code, context: self.context)
         }

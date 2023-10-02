@@ -76,6 +76,7 @@ public struct TCApigatewayError: TCApigatewayErrorType {
         case failedOperation_SetCustomPathMappingError = "FailedOperation.SetCustomPathMappingError"
         case failedOperation_SubDomainFormatError = "FailedOperation.SubDomainFormatError"
         case failedOperation_TagBindServiceError = "FailedOperation.TagBindServiceError"
+        case failedOperation_TaskAlreadyExist = "FailedOperation.TaskAlreadyExist"
         case failedOperation_UnknownProtocolTypeError = "FailedOperation.UnknownProtocolTypeError"
         case internalError = "InternalError"
         case internalError_ApigwException = "InternalError.ApigwException"
@@ -495,6 +496,10 @@ public struct TCApigatewayError: TCApigatewayErrorType {
     /// 标签绑定服务失败。
     public static var failedOperation_TagBindServiceError: TCApigatewayError {
         TCApigatewayError(.failedOperation_TagBindServiceError)
+    }
+
+    public static var failedOperation_TaskAlreadyExist: TCApigatewayError {
+        TCApigatewayError(.failedOperation_TaskAlreadyExist)
     }
 
     /// 协议类型错误。

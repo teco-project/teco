@@ -132,6 +132,9 @@ extension Lighthouse {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dockerVersion: String?
 
+        /// 镜像是否已共享。
+        public let blueprintShared: Bool
+
         enum CodingKeys: String, CodingKey {
             case blueprintId = "BlueprintId"
             case displayTitle = "DisplayTitle"
@@ -153,6 +156,7 @@ extension Lighthouse {
             case guideUrl = "GuideUrl"
             case sceneIdSet = "SceneIdSet"
             case dockerVersion = "DockerVersion"
+            case blueprintShared = "BlueprintShared"
         }
     }
 
@@ -1031,6 +1035,122 @@ extension Lighthouse {
         }
     }
 
+    /// 防火墙模板信息。
+    public struct FirewallTemplate: TCOutputModel {
+        /// 模板Id。
+        public let templateId: String
+
+        /// 模板名称。
+        public let templateName: String
+
+        /// 模板类型。
+        public let templateType: String
+
+        /// 模板状态。
+        public let templateState: String
+
+        /// 模板创建时间。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var createdTime: Date
+
+        enum CodingKeys: String, CodingKey {
+            case templateId = "TemplateId"
+            case templateName = "TemplateName"
+            case templateType = "TemplateType"
+            case templateState = "TemplateState"
+            case createdTime = "CreatedTime"
+        }
+    }
+
+    /// 防火墙模板应用记录。
+    public struct FirewallTemplateApplyRecord: TCOutputModel {
+        /// 任务ID。
+        public let taskId: String
+
+        /// 应用模板的时间。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var applyTime: Date
+
+        /// 模板规则列表。
+        public let templateRuleSet: [FirewallTemplateRule]
+
+        /// 应用模板的执行状态。
+        public let applyState: String
+
+        /// 应用成功的实例数量。
+        public let successCount: Int64
+
+        /// 应用失败的实例数量。
+        public let failedCount: Int64
+
+        /// 正在应用中的实例数量。
+        public let runningCount: Int64
+
+        /// 应用模板的执行细节。
+        public let applyDetailSet: [FirewallTemplateApplyRecordDetail]
+
+        enum CodingKeys: String, CodingKey {
+            case taskId = "TaskId"
+            case applyTime = "ApplyTime"
+            case templateRuleSet = "TemplateRuleSet"
+            case applyState = "ApplyState"
+            case successCount = "SuccessCount"
+            case failedCount = "FailedCount"
+            case runningCount = "RunningCount"
+            case applyDetailSet = "ApplyDetailSet"
+        }
+    }
+
+    /// 防火墙模板应用记录详情。
+    public struct FirewallTemplateApplyRecordDetail: TCOutputModel {
+        /// 实例标识信息。
+        public let instance: InstanceIdentifier
+
+        /// 防火墙模板应用状态。
+        public let applyState: String
+
+        /// 防火墙模板应用错误信息。
+        public let errorMessage: String
+
+        enum CodingKeys: String, CodingKey {
+            case instance = "Instance"
+            case applyState = "ApplyState"
+            case errorMessage = "ErrorMessage"
+        }
+    }
+
+    /// 防火墙模板规则信息
+    public struct FirewallTemplateRule: TCOutputModel {
+        /// 防火墙模板规则ID。
+        public let templateRuleId: String
+
+        /// 防火墙规则。
+        public let firewallRule: FirewallRule
+
+        enum CodingKeys: String, CodingKey {
+            case templateRuleId = "TemplateRuleId"
+            case firewallRule = "FirewallRule"
+        }
+    }
+
+    /// 防火墙模板规则信息
+    public struct FirewallTemplateRuleInfo: TCOutputModel {
+        /// 防火墙模板规则ID。
+        public let templateRuleId: String
+
+        /// 防火墙规则信息。
+        public let firewallRuleInfo: FirewallRuleInfo
+
+        enum CodingKeys: String, CodingKey {
+            case templateRuleId = "TemplateRuleId"
+            case firewallRuleInfo = "FirewallRuleInfo"
+        }
+    }
+
     /// 描述通用资源配额信息。
     public struct GeneralResourceQuota: TCOutputModel {
         /// 资源名称。
@@ -1241,6 +1361,25 @@ extension Lighthouse {
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case deniedActions = "DeniedActions"
+        }
+    }
+
+    /// 实例标识信息。
+    public struct InstanceIdentifier: TCInputModel, TCOutputModel {
+        /// 实例ID。
+        public let instanceId: String
+
+        /// 实例地域。
+        public let region: String
+
+        public init(instanceId: String, region: String) {
+            self.instanceId = instanceId
+            self.region = region
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case instanceId = "InstanceId"
+            case region = "Region"
         }
     }
 

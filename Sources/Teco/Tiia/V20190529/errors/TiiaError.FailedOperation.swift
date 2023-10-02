@@ -34,6 +34,7 @@ extension TCTiiaError {
             case imageNotSupported = "FailedOperation.ImageNotSupported"
             case imageNumExceed = "FailedOperation.ImageNumExceed"
             case imageResolutionExceed = "FailedOperation.ImageResolutionExceed"
+            case imageResolutionInsufficient = "FailedOperation.ImageResolutionInsufficient"
             case imageSearchInvalid = "FailedOperation.ImageSearchInvalid"
             case imageSizeExceed = "FailedOperation.ImageSizeExceed"
             case imageUnQualified = "FailedOperation.ImageUnQualified"
@@ -148,6 +149,11 @@ extension TCTiiaError {
         /// 图片分辨率过大。
         public static var imageResolutionExceed: FailedOperation {
             FailedOperation(.imageResolutionExceed)
+        }
+
+        /// 图片分辨率过小。
+        public static var imageResolutionInsufficient: FailedOperation {
+            FailedOperation(.imageResolutionInsufficient)
         }
 
         /// 未查询到结果。
@@ -273,6 +279,8 @@ extension TCTiiaError {
                 code = .failedOperation_ImageNumExceed
             case .imageResolutionExceed:
                 code = .failedOperation_ImageResolutionExceed
+            case .imageResolutionInsufficient:
+                code = .failedOperation_ImageResolutionInsufficient
             case .imageSearchInvalid:
                 code = .failedOperation_ImageSearchInvalid
             case .imageSizeExceed:

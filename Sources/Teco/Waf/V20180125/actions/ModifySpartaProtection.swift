@@ -117,7 +117,7 @@ extension Waf {
         /// IsCdn=3时，需要填此参数，表示自定义header
         public let ipHeaders: [String]?
 
-        /// 0:关闭xff重置；1:开启xff重置
+        /// 0:关闭xff重置；1:开启xff重置，只有在IsCdn=0时可以开启
         public let xffReset: Int64?
 
         public init(domain: String, domainId: String? = nil, certType: Int64? = nil, cert: String? = nil, privateKey: String? = nil, sslId: String? = nil, isCdn: Int64? = nil, upstreamScheme: String? = nil, httpsUpstreamPort: String? = nil, httpsRewrite: UInt64? = nil, upstreamType: Int64? = nil, upstreamDomain: String? = nil, srcList: [String]? = nil, isHttp2: Int64? = nil, isWebsocket: Int64? = nil, loadBalance: Int64? = nil, isGray: Int64? = nil, edition: String? = nil, ports: [SpartaProtectionPort]? = nil, isKeepAlive: String? = nil, instanceID: String? = nil, anycast: Int64? = nil, weights: [Int64]? = nil, activeCheck: Int64? = nil, tlsVersion: Int64? = nil, ciphers: [Int64]? = nil, cipherTemplate: Int64? = nil, proxyReadTimeout: Int64? = nil, proxySendTimeout: Int64? = nil, sniType: Int64? = nil, sniHost: String? = nil, ipHeaders: [String]? = nil, xffReset: Int64? = nil) {

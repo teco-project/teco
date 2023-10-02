@@ -24,12 +24,17 @@ extension Tione {
         /// 服务组id
         public let serviceGroupId: String
 
-        public init(serviceGroupId: String) {
+        /// 服务分类
+        public let serviceCategory: String?
+
+        public init(serviceGroupId: String, serviceCategory: String? = nil) {
             self.serviceGroupId = serviceGroupId
+            self.serviceCategory = serviceCategory
         }
 
         enum CodingKeys: String, CodingKey {
             case serviceGroupId = "ServiceGroupId"
+            case serviceCategory = "ServiceCategory"
         }
     }
 
@@ -47,6 +52,14 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let defaultNginxGatewayCallInfo: DefaultNginxGatewayCallInfo?
 
+        /// 太极服务的调用信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tjCallInfo: TJCallInfo?
+
+        /// 内网调用信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let intranetCallInfo: IntranetCallInfo?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -54,6 +67,8 @@ extension Tione {
             case serviceCallInfo = "ServiceCallInfo"
             case inferGatewayCallInfo = "InferGatewayCallInfo"
             case defaultNginxGatewayCallInfo = "DefaultNginxGatewayCallInfo"
+            case tjCallInfo = "TJCallInfo"
+            case intranetCallInfo = "IntranetCallInfo"
             case requestId = "RequestId"
         }
     }
@@ -72,13 +87,13 @@ extension Tione {
 
     /// 展示服务的调用信息
     @inlinable
-    public func describeModelServiceCallInfo(serviceGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelServiceCallInfoResponse> {
-        self.describeModelServiceCallInfo(.init(serviceGroupId: serviceGroupId), region: region, logger: logger, on: eventLoop)
+    public func describeModelServiceCallInfo(serviceGroupId: String, serviceCategory: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelServiceCallInfoResponse> {
+        self.describeModelServiceCallInfo(.init(serviceGroupId: serviceGroupId, serviceCategory: serviceCategory), region: region, logger: logger, on: eventLoop)
     }
 
     /// 展示服务的调用信息
     @inlinable
-    public func describeModelServiceCallInfo(serviceGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceCallInfoResponse {
-        try await self.describeModelServiceCallInfo(.init(serviceGroupId: serviceGroupId), region: region, logger: logger, on: eventLoop)
+    public func describeModelServiceCallInfo(serviceGroupId: String, serviceCategory: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceCallInfoResponse {
+        try await self.describeModelServiceCallInfo(.init(serviceGroupId: serviceGroupId, serviceCategory: serviceCategory), region: region, logger: logger, on: eventLoop)
     }
 }

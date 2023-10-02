@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DescribeVpcPeeringConnections请求参数结构体
-    public struct DescribeVpcPeeringConnectionsRequest: TCRequest {
+    public struct DescribeVpcPeeringConnectionsRequest: TCPaginatedRequest {
         /// 对等连接唯一ID数组。
         public let peeringConnectionIds: [String]?
 
@@ -59,22 +59,48 @@ extension Vpc {
             case orderField = "OrderField"
             case orderDirection = "OrderDirection"
         }
+
+        /// Compute the next request based on API response.
+        public func makeNextRequest(with response: DescribeVpcPeeringConnectionsResponse) -> DescribeVpcPeeringConnectionsRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return .init(peeringConnectionIds: self.peeringConnectionIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderField: self.orderField, orderDirection: self.orderDirection)
+        }
     }
 
     /// DescribeVpcPeeringConnections返回参数结构体
-    public struct DescribeVpcPeeringConnectionsResponse: TCResponse {
+    public struct DescribeVpcPeeringConnectionsResponse: TCPaginatedResponse {
+        /// 满足条件的对等连接实例个数。
+        public let totalCount: Int64
+
+        /// 对等连接实例列表。
+        public let peerConnectionSet: [PeerConnection]
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
+            case totalCount = "TotalCount"
+            case peerConnectionSet = "PeerConnectionSet"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned ``PeerConnection`` list from the paginated response.
+        public func getItems() -> [PeerConnection] {
+            self.peerConnectionSet
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> Int64? {
+            self.totalCount
         }
     }
 
     /// 查询私有网络对等连接
     ///
     /// 查询私有网络对等连接。
-    @inlinable @discardableResult
+    @inlinable
     public func describeVpcPeeringConnections(_ input: DescribeVpcPeeringConnectionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcPeeringConnectionsResponse> {
         self.client.execute(action: "DescribeVpcPeeringConnections", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -82,7 +108,7 @@ extension Vpc {
     /// 查询私有网络对等连接
     ///
     /// 查询私有网络对等连接。
-    @inlinable @discardableResult
+    @inlinable
     public func describeVpcPeeringConnections(_ input: DescribeVpcPeeringConnectionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcPeeringConnectionsResponse {
         try await self.client.execute(action: "DescribeVpcPeeringConnections", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -90,7 +116,7 @@ extension Vpc {
     /// 查询私有网络对等连接
     ///
     /// 查询私有网络对等连接。
-    @inlinable @discardableResult
+    @inlinable
     public func describeVpcPeeringConnections(peeringConnectionIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderField: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcPeeringConnectionsResponse> {
         self.describeVpcPeeringConnections(.init(peeringConnectionIds: peeringConnectionIds, filters: filters, offset: offset, limit: limit, orderField: orderField, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
     }
@@ -98,8 +124,34 @@ extension Vpc {
     /// 查询私有网络对等连接
     ///
     /// 查询私有网络对等连接。
-    @inlinable @discardableResult
+    @inlinable
     public func describeVpcPeeringConnections(peeringConnectionIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderField: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcPeeringConnectionsResponse {
         try await self.describeVpcPeeringConnections(.init(peeringConnectionIds: peeringConnectionIds, filters: filters, offset: offset, limit: limit, orderField: orderField, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 查询私有网络对等连接
+    ///
+    /// 查询私有网络对等连接。
+    @inlinable
+    public func describeVpcPeeringConnectionsPaginated(_ input: DescribeVpcPeeringConnectionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [PeerConnection])> {
+        self.client.paginate(input: input, region: region, command: self.describeVpcPeeringConnections, logger: logger, on: eventLoop)
+    }
+
+    /// 查询私有网络对等连接
+    ///
+    /// 查询私有网络对等连接。
+    @inlinable @discardableResult
+    public func describeVpcPeeringConnectionsPaginated(_ input: DescribeVpcPeeringConnectionsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVpcPeeringConnectionsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeVpcPeeringConnections, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询私有网络对等连接
+    ///
+    /// 查询私有网络对等连接。
+    ///
+    /// - Returns: `AsyncSequence`s of ``PeerConnection`` and ``DescribeVpcPeeringConnectionsResponse`` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeVpcPeeringConnectionsPaginator(_ input: DescribeVpcPeeringConnectionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpcPeeringConnectionsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpcPeeringConnections, logger: logger, on: eventLoop)
     }
 }

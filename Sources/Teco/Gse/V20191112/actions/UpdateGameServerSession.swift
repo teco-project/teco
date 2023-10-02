@@ -73,7 +73,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func updateGameServerSession(_ input: UpdateGameServerSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateGameServerSessionResponse> {
-        fatalError("UpdateGameServerSession is no longer available.")
+        fatalError("'UpdateGameServerSession' is no longer available.")
     }
 
     /// 更新游戏服务器会话
@@ -82,7 +82,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func updateGameServerSession(_ input: UpdateGameServerSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGameServerSessionResponse {
-        fatalError("UpdateGameServerSession is no longer available.")
+        fatalError("'UpdateGameServerSession' is no longer available.")
     }
 
     /// 更新游戏服务器会话
@@ -91,7 +91,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func updateGameServerSession(gameServerSessionId: String, maximumPlayerSessionCount: UInt64? = nil, name: String? = nil, playerSessionCreationPolicy: String? = nil, protectionPolicy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateGameServerSessionResponse> {
-        fatalError("UpdateGameServerSession is no longer available.")
+        fatalError("'UpdateGameServerSession' is no longer available.")
     }
 
     /// 更新游戏服务器会话
@@ -100,6 +100,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func updateGameServerSession(gameServerSessionId: String, maximumPlayerSessionCount: UInt64? = nil, name: String? = nil, playerSessionCreationPolicy: String? = nil, protectionPolicy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGameServerSessionResponse {
-        fatalError("UpdateGameServerSession is no longer available.")
+        fatalError("'UpdateGameServerSession' is no longer available.")
     }
 }

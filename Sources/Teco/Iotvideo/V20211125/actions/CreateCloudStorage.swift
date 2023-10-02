@@ -59,13 +59,17 @@ extension Iotvideo {
         /// 订单id
         public let orderId: String?
 
-        public init(productId: String, deviceName: String, packageId: String, override: UInt64? = nil, packageQueue: String? = nil, orderId: String? = nil) {
+        /// 通道ID
+        public let channelId: UInt64?
+
+        public init(productId: String, deviceName: String, packageId: String, override: UInt64? = nil, packageQueue: String? = nil, orderId: String? = nil, channelId: UInt64? = nil) {
             self.productId = productId
             self.deviceName = deviceName
             self.packageId = packageId
             self.override = override
             self.packageQueue = packageQueue
             self.orderId = orderId
+            self.channelId = channelId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -75,6 +79,7 @@ extension Iotvideo {
             case override = "Override"
             case packageQueue = "PackageQueue"
             case orderId = "OrderId"
+            case channelId = "ChannelId"
         }
     }
 
@@ -102,13 +107,13 @@ extension Iotvideo {
 
     /// 开通云存服务
     @inlinable @discardableResult
-    public func createCloudStorage(productId: String, deviceName: String, packageId: String, override: UInt64? = nil, packageQueue: String? = nil, orderId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudStorageResponse> {
-        self.createCloudStorage(.init(productId: productId, deviceName: deviceName, packageId: packageId, override: override, packageQueue: packageQueue, orderId: orderId), region: region, logger: logger, on: eventLoop)
+    public func createCloudStorage(productId: String, deviceName: String, packageId: String, override: UInt64? = nil, packageQueue: String? = nil, orderId: String? = nil, channelId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudStorageResponse> {
+        self.createCloudStorage(.init(productId: productId, deviceName: deviceName, packageId: packageId, override: override, packageQueue: packageQueue, orderId: orderId, channelId: channelId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开通云存服务
     @inlinable @discardableResult
-    public func createCloudStorage(productId: String, deviceName: String, packageId: String, override: UInt64? = nil, packageQueue: String? = nil, orderId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudStorageResponse {
-        try await self.createCloudStorage(.init(productId: productId, deviceName: deviceName, packageId: packageId, override: override, packageQueue: packageQueue, orderId: orderId), region: region, logger: logger, on: eventLoop)
+    public func createCloudStorage(productId: String, deviceName: String, packageId: String, override: UInt64? = nil, packageQueue: String? = nil, orderId: String? = nil, channelId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudStorageResponse {
+        try await self.createCloudStorage(.init(productId: productId, deviceName: deviceName, packageId: packageId, override: override, packageQueue: packageQueue, orderId: orderId, channelId: channelId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -1125,6 +1125,31 @@ extension Tdmq {
         }
     }
 
+    /// 公网访问安全规则
+    public struct PublicAccessRule: TCInputModel, TCOutputModel {
+        /// ip网段信息
+        public let ipRule: String
+
+        /// 允许或者拒绝
+        public let allow: Bool
+
+        /// 备注信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let remark: String?
+
+        public init(ipRule: String, allow: Bool, remark: String? = nil) {
+            self.ipRule = ipRule
+            self.allow = allow
+            self.remark = remark
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case ipRule = "IpRule"
+            case allow = "Allow"
+            case remark = "Remark"
+        }
+    }
+
     /// 生产者信息
     public struct Publisher: TCOutputModel {
         /// 生产者id
@@ -2165,6 +2190,48 @@ extension Tdmq {
         }
     }
 
+    /// rocketmq消息日志
+    public struct RocketMQMsgLog: TCOutputModel {
+        /// 消息id
+        public let msgId: String?
+
+        /// 消息tag
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let msgTag: String?
+
+        /// 消息key
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let msgKey: String?
+
+        /// 客户端地址
+        public let producerAddr: String?
+
+        /// 消息发送时间
+        public let produceTime: String?
+
+        /// pulsar消息id
+        public let pulsarMsgId: String?
+
+        /// 死信重发次数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let deadLetterResendTimes: Int64?
+
+        /// 死信重发成功次数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resendSuccessCount: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case msgId = "MsgId"
+            case msgTag = "MsgTag"
+            case msgKey = "MsgKey"
+            case producerAddr = "ProducerAddr"
+            case produceTime = "ProduceTime"
+            case pulsarMsgId = "PulsarMsgId"
+            case deadLetterResendTimes = "DeadLetterResendTimes"
+            case resendSuccessCount = "ResendSuccessCount"
+        }
+    }
+
     /// RocketMQ命名空间信息
     public struct RocketMQNamespace: TCOutputModel {
         /// 命名空间名称，3-64个字符，只能包含字母、数字、“-”及“_”
@@ -2640,6 +2707,11 @@ extension Tdmq {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pulsarTopicType: Int64?
 
+        /// 未消费消息过期时间，单位：秒
+        ///
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let msgTTL: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case averageMsgSize = "AverageMsgSize"
             case consumerCount = "ConsumerCount"
@@ -2663,6 +2735,7 @@ extension Tdmq {
             case producerLimit = "ProducerLimit"
             case consumerLimit = "ConsumerLimit"
             case pulsarTopicType = "PulsarTopicType"
+            case msgTTL = "MsgTTL"
         }
     }
 
@@ -2682,6 +2755,20 @@ extension Tdmq {
         enum CodingKeys: String, CodingKey {
             case environmentId = "EnvironmentId"
             case topicName = "TopicName"
+        }
+    }
+
+    /// 消息轨迹结果
+    public struct TraceResult: TCOutputModel {
+        /// 阶段
+        public let stage: String
+
+        /// 内容详情
+        public let data: String
+
+        enum CodingKeys: String, CodingKey {
+            case stage = "Stage"
+            case data = "Data"
         }
     }
 

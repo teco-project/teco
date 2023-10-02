@@ -36,12 +36,16 @@ extension Apigateway {
         /// 网络类型列表，用于指定支持的访问类型，INNER为内网访问，OUTER为外网访问。默认为OUTER。
         public let netTypes: [String]?
 
-        public init(serviceId: String, serviceName: String? = nil, serviceDesc: String? = nil, protocol: String? = nil, netTypes: [String]? = nil) {
+        /// vpc属性，选择VPC后不可修改。为服务选择VPC后，可对接该VPC下的后端资源
+        public let uniqVpcId: String?
+
+        public init(serviceId: String, serviceName: String? = nil, serviceDesc: String? = nil, protocol: String? = nil, netTypes: [String]? = nil, uniqVpcId: String? = nil) {
             self.serviceId = serviceId
             self.serviceName = serviceName
             self.serviceDesc = serviceDesc
             self.protocol = `protocol`
             self.netTypes = netTypes
+            self.uniqVpcId = uniqVpcId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -50,6 +54,7 @@ extension Apigateway {
             case serviceDesc = "ServiceDesc"
             case `protocol` = "Protocol"
             case netTypes = "NetTypes"
+            case uniqVpcId = "UniqVpcId"
         }
     }
 
@@ -83,15 +88,15 @@ extension Apigateway {
     ///
     /// 本接口（ModifyService）用于修改服务的相关信息。当服务创建后，服务的名称、描述和服务类型均可被修改。
     @inlinable @discardableResult
-    public func modifyService(serviceId: String, serviceName: String? = nil, serviceDesc: String? = nil, protocol: String? = nil, netTypes: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyServiceResponse> {
-        self.modifyService(.init(serviceId: serviceId, serviceName: serviceName, serviceDesc: serviceDesc, protocol: `protocol`, netTypes: netTypes), region: region, logger: logger, on: eventLoop)
+    public func modifyService(serviceId: String, serviceName: String? = nil, serviceDesc: String? = nil, protocol: String? = nil, netTypes: [String]? = nil, uniqVpcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyServiceResponse> {
+        self.modifyService(.init(serviceId: serviceId, serviceName: serviceName, serviceDesc: serviceDesc, protocol: `protocol`, netTypes: netTypes, uniqVpcId: uniqVpcId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改服务
     ///
     /// 本接口（ModifyService）用于修改服务的相关信息。当服务创建后，服务的名称、描述和服务类型均可被修改。
     @inlinable @discardableResult
-    public func modifyService(serviceId: String, serviceName: String? = nil, serviceDesc: String? = nil, protocol: String? = nil, netTypes: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceResponse {
-        try await self.modifyService(.init(serviceId: serviceId, serviceName: serviceName, serviceDesc: serviceDesc, protocol: `protocol`, netTypes: netTypes), region: region, logger: logger, on: eventLoop)
+    public func modifyService(serviceId: String, serviceName: String? = nil, serviceDesc: String? = nil, protocol: String? = nil, netTypes: [String]? = nil, uniqVpcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceResponse {
+        try await self.modifyService(.init(serviceId: serviceId, serviceName: serviceName, serviceDesc: serviceDesc, protocol: `protocol`, netTypes: netTypes, uniqVpcId: uniqVpcId), region: region, logger: logger, on: eventLoop)
     }
 }

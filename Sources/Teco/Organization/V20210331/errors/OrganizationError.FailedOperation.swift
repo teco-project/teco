@@ -53,17 +53,23 @@ extension TCOrganizationError {
             case operateBillingPermissionErr = "FailedOperation.OperateBillingPermissionErr"
             case operatePolicy = "FailedOperation.OperatePolicy"
             case organizationAuthManageNotAllowDelete = "FailedOperation.OrganizationAuthManageNotAllowDelete"
+            case organizationExistAlready = "FailedOperation.OrganizationExistAlready"
             case organizationIdentityPolicyError = "FailedOperation.OrganizationIdentityPolicyError"
             case organizationMemberNameUsed = "FailedOperation.OrganizationMemberNameUsed"
             case organizationNodeDeleteOverLimit = "FailedOperation.OrganizationNodeDeleteOverLimit"
             case organizationNodeNameUsed = "FailedOperation.OrganizationNodeNameUsed"
             case organizationNodeNotEmpty = "FailedOperation.OrganizationNodeNotEmpty"
             case organizationNodeNotExist = "FailedOperation.OrganizationNodeNotExist"
+            case organizationNotEmpty = "FailedOperation.OrganizationNotEmpty"
             case organizationPermissionIllegal = "FailedOperation.OrganizationPermissionIllegal"
             case organizationPolicyIllegal = "FailedOperation.OrganizationPolicyIllegal"
+            case organizationPolicyIsNotDisabled = "FailedOperation.OrganizationPolicyIsNotDisabled"
             case payUinIllegal = "FailedOperation.PayUinIllegal"
+            case quitShareUint = "FailedOperation.QuitShareUint"
             case quitShareUintError = "FailedOperation.QuitShareUintError"
+            case quiteShareUnit = "FailedOperation.QuiteShareUnit"
             case shareResourceMemberInUse = "FailedOperation.ShareResourceMemberInUse"
+            case shareUnitNotEmpty = "FailedOperation.ShareUnitNotEmpty"
             case someUinsNotInOrganization = "FailedOperation.SomeUinsNotInOrganization"
             case subAccountIdentityExist = "FailedOperation.SubAccountIdentityExist"
             case subAccountNotExist = "FailedOperation.SubAccountNotExist"
@@ -261,6 +267,11 @@ extension TCOrganizationError {
             FailedOperation(.organizationAuthManageNotAllowDelete)
         }
 
+        /// 企业组织已经存在。
+        public static var organizationExistAlready: FailedOperation {
+            FailedOperation(.organizationExistAlready)
+        }
+
         /// 组织身份策略不合法。
         public static var organizationIdentityPolicyError: FailedOperation {
             FailedOperation(.organizationIdentityPolicyError)
@@ -291,6 +302,11 @@ extension TCOrganizationError {
             FailedOperation(.organizationNodeNotExist)
         }
 
+        /// 企业组织成员不为空。
+        public static var organizationNotEmpty: FailedOperation {
+            FailedOperation(.organizationNotEmpty)
+        }
+
         /// 组织权限不合法。
         public static var organizationPermissionIllegal: FailedOperation {
             FailedOperation(.organizationPermissionIllegal)
@@ -301,9 +317,19 @@ extension TCOrganizationError {
             FailedOperation(.organizationPolicyIllegal)
         }
 
+        /// 集团策略不是禁用状态。
+        public static var organizationPolicyIsNotDisabled: FailedOperation {
+            FailedOperation(.organizationPolicyIsNotDisabled)
+        }
+
         /// 代付者不合法。
         public static var payUinIllegal: FailedOperation {
             FailedOperation(.payUinIllegal)
+        }
+
+        /// 退出共享单元失败。
+        public static var quitShareUint: FailedOperation {
+            FailedOperation(.quitShareUint)
         }
 
         /// 退出共享单元错误。
@@ -311,9 +337,19 @@ extension TCOrganizationError {
             FailedOperation(.quitShareUintError)
         }
 
+        /// 退出共享单元失败。
+        public static var quiteShareUnit: FailedOperation {
+            FailedOperation(.quiteShareUnit)
+        }
+
         /// 成员正在使用共享资源。
         public static var shareResourceMemberInUse: FailedOperation {
             FailedOperation(.shareResourceMemberInUse)
+        }
+
+        /// 共享单元不为空。
+        public static var shareUnitNotEmpty: FailedOperation {
+            FailedOperation(.shareUnitNotEmpty)
         }
 
         /// 存在不属于当前组织的uin。
@@ -402,6 +438,8 @@ extension TCOrganizationError {
                 code = .failedOperation_OperatePolicy
             case .organizationAuthManageNotAllowDelete:
                 code = .failedOperation_OrganizationAuthManageNotAllowDelete
+            case .organizationExistAlready:
+                code = .failedOperation_OrganizationExistAlready
             case .organizationIdentityPolicyError:
                 code = .failedOperation_OrganizationIdentityPolicyError
             case .organizationMemberNameUsed:
@@ -414,16 +452,26 @@ extension TCOrganizationError {
                 code = .failedOperation_OrganizationNodeNotEmpty
             case .organizationNodeNotExist:
                 code = .failedOperation_OrganizationNodeNotExist
+            case .organizationNotEmpty:
+                code = .failedOperation_OrganizationNotEmpty
             case .organizationPermissionIllegal:
                 code = .failedOperation_OrganizationPermissionIllegal
             case .organizationPolicyIllegal:
                 code = .failedOperation_OrganizationPolicyIllegal
+            case .organizationPolicyIsNotDisabled:
+                code = .failedOperation_OrganizationPolicyIsNotDisabled
             case .payUinIllegal:
                 code = .failedOperation_PayUinIllegal
+            case .quitShareUint:
+                code = .failedOperation_QuitShareUint
             case .quitShareUintError:
                 code = .failedOperation_QuitShareUintError
+            case .quiteShareUnit:
+                code = .failedOperation_QuiteShareUnit
             case .shareResourceMemberInUse:
                 code = .failedOperation_ShareResourceMemberInUse
+            case .shareUnitNotEmpty:
+                code = .failedOperation_ShareUnitNotEmpty
             case .someUinsNotInOrganization:
                 code = .failedOperation_SomeUinsNotInOrganization
             case .subAccountIdentityExist:

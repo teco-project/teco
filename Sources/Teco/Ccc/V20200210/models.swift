@@ -961,6 +961,25 @@ extension Ccc {
         }
     }
 
+    /// 座席绑定技能组列表
+    public struct StaffSkillGroupList: TCInputModel {
+        /// 技能组ID
+        public let skillGroupId: Int64
+
+        /// 座席在技能组中的优先级（1为最高，5最低，默认3）
+        public let priority: Int64?
+
+        public init(skillGroupId: Int64, priority: Int64? = nil) {
+            self.skillGroupId = skillGroupId
+            self.priority = priority
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case skillGroupId = "SkillGroupId"
+            case priority = "Priority"
+        }
+    }
+
     /// 坐席状态补充信息
     public struct StaffStatusExtra: TCOutputModel {
         /// im - 文本 | tel - 电话 | all - 全媒体

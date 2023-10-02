@@ -30,7 +30,7 @@ extension Cynosdb {
         /// 内存，单位为GB
         public let memory: Int64
 
-        /// 新增只读实例数，取值范围为[0,4]
+        /// 新增只读实例数，取值范围为(0,15]
         public let readOnlyCount: Int64
 
         /// 实例组ID，在已有RO组中新增实例时使用，不传则新增RO组。当前版本不建议传输该值。当前版本已废弃。
@@ -139,7 +139,7 @@ extension Cynosdb {
         }
     }
 
-    /// 集群添加实例
+    /// 购买实例
     ///
     /// 本接口（AddInstances）用于集群添加实例
     @inlinable
@@ -147,7 +147,7 @@ extension Cynosdb {
         self.client.execute(action: "AddInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 集群添加实例
+    /// 购买实例
     ///
     /// 本接口（AddInstances）用于集群添加实例
     @inlinable
@@ -155,7 +155,7 @@ extension Cynosdb {
         try await self.client.execute(action: "AddInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 集群添加实例
+    /// 购买实例
     ///
     /// 本接口（AddInstances）用于集群添加实例
     @inlinable
@@ -163,7 +163,7 @@ extension Cynosdb {
         self.addInstances(.init(clusterId: clusterId, cpu: cpu, memory: memory, readOnlyCount: readOnlyCount, instanceGrpId: instanceGrpId, vpcId: vpcId, subnetId: subnetId, port: port, instanceName: instanceName, autoVoucher: autoVoucher, dbType: dbType, orderSource: orderSource, dealMode: dealMode, paramTemplateId: paramTemplateId, instanceParams: instanceParams, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 集群添加实例
+    /// 购买实例
     ///
     /// 本接口（AddInstances）用于集群添加实例
     @inlinable

@@ -33,12 +33,14 @@ public struct TCBiError: TCBiErrorType {
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
         case invalidParameter_Embed = "InvalidParameter.Embed"
+        case limitExceeded = "LimitExceeded"
         case missingParameter = "MissingParameter"
         case missingParameter_MissingParam = "MissingParameter.MissingParam"
         case operationDenied = "OperationDenied"
         case requestLimitExceeded = "RequestLimitExceeded"
         case unauthorizedOperation = "UnauthorizedOperation"
         case unauthorizedOperation_Authorize = "UnauthorizedOperation.Authorize"
+        case unauthorizedOperation_Inactive = "UnauthorizedOperation.Inactive"
         case unauthorizedOperation_UserNotExist = "UnauthorizedOperation.UserNotExist"
         case unknownParameter = "UnknownParameter"
         case unsupportedOperation = "UnsupportedOperation"
@@ -107,6 +109,11 @@ public struct TCBiError: TCBiErrorType {
         TCBiError(.invalidParameter_Embed)
     }
 
+    /// 超过配额限制。
+    public static var limitExceeded: TCBiError {
+        TCBiError(.limitExceeded)
+    }
+
     /// 缺少参数错误。
     public static var missingParameter: TCBiError {
         TCBiError(.missingParameter)
@@ -135,6 +142,13 @@ public struct TCBiError: TCBiErrorType {
     /// 权限错误。
     public static var unauthorizedOperation_Authorize: TCBiError {
         TCBiError(.unauthorizedOperation_Authorize)
+    }
+
+    /// 用户未启用。
+    ///
+    /// 需要管理员启用该用户
+    public static var unauthorizedOperation_Inactive: TCBiError {
+        TCBiError(.unauthorizedOperation_Inactive)
     }
 
     /// 用户不存在。

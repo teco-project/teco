@@ -36,7 +36,7 @@ extension Live {
         /// 延播设置的过期时间。UTC 格式，例如：2018-11-29T19:00:00Z。
         /// 注意：
         /// 1. 默认7天后过期，且最长支持7天内生效。
-        /// 2. 北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        /// 2. 北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#I)。
         public let expireTime: String?
 
         public init(appName: String, domainName: String, streamName: String, delayTime: UInt64, expireTime: String? = nil) {

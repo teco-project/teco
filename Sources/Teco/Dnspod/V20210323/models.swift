@@ -730,6 +730,9 @@ extension Dnspod {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagList: [TagItem]?
 
+        /// 是否启用搜索引擎推送
+        public let searchEnginePush: String
+
         enum CodingKeys: String, CodingKey {
             case domainId = "DomainId"
             case status = "Status"
@@ -762,6 +765,7 @@ extension Dnspod {
             case vipResourceId = "VipResourceId"
             case isSubDomain = "IsSubDomain"
             case tagList = "TagList"
+            case searchEnginePush = "SearchEnginePush"
         }
     }
 
@@ -1726,7 +1730,7 @@ extension Dnspod {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isQcloud: Bool?
 
-        /// 是否当前操作帐号注册的域名
+        /// 是否当前操作账号注册的域名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isQcloudOwner: Bool?
 

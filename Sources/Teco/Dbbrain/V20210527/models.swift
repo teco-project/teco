@@ -19,6 +19,152 @@ import TecoCore
 import TecoDateHelpers
 
 extension Dbbrain {
+    /// mongodb慢查模板概览明细
+    public struct Aggregation: TCOutputModel {
+        /// 平均执行时间（ms）。
+        public let avgExecTime: Int64?
+
+        /// 平均扫描行数。
+        public let avgDocsExamined: Int64?
+
+        /// 产生慢查次数（/天）。
+        public let slowLogCount: Int64?
+
+        /// 内存排序次数。
+        public let sortCount: Int64?
+
+        /// 慢查模板概览。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let slowLogs: [String]?
+
+        enum CodingKeys: String, CodingKey {
+            case avgExecTime = "AvgExecTime"
+            case avgDocsExamined = "AvgDocsExamined"
+            case slowLogCount = "SlowLogCount"
+            case sortCount = "SortCount"
+            case slowLogs = "SlowLogs"
+        }
+    }
+
+    /// 通知模板
+    public struct AlarmProfileList: TCOutputModel {
+        /// 0-不是 1-是
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isWebHook: Int64?
+
+        /// 接收告警用户数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let receiveUinCount: Int64?
+
+        /// 语言
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lang: String?
+
+        /// 模板类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let templateType: String?
+
+        /// 备注
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let remark: String?
+
+        /// 接收组数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let receiveGroupCount: Int64?
+
+        /// 更新用户的uin
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updateUin: Int64?
+
+        /// 接收类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let receiveType: [Int64]?
+
+        /// 接收用户信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let receiveInfo: [ReceiveInfo]?
+
+        /// 更新时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updateTime: String?
+
+        /// 模板名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let templateName: String?
+
+        /// 发送渠道
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sendChannel: [Int64]?
+
+        /// 模板id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let templateId: Int64?
+
+        /// webhook数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let webHookCount: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case isWebHook = "IsWebHook"
+            case receiveUinCount = "ReceiveUinCount"
+            case lang = "Lang"
+            case templateType = "TemplateType"
+            case remark = "Remark"
+            case receiveGroupCount = "ReceiveGroupCount"
+            case updateUin = "UpdateUin"
+            case receiveType = "ReceiveType"
+            case receiveInfo = "ReceiveInfo"
+            case updateTime = "UpdateTime"
+            case templateName = "TemplateName"
+            case sendChannel = "SendChannel"
+            case templateId = "TemplateId"
+            case webHookCount = "WebHookCount"
+        }
+    }
+
+    /// 告警规则
+    public struct AlarmsRules: TCInputModel {
+        /// 间隔
+        public let interval: Int64
+
+        /// 告警名
+        public let name: String
+
+        /// 指标
+        public let metric: String
+
+        /// 操作符
+        public let `operator`: String
+
+        /// 等级
+        /// fatal-致命
+        /// critical-严重
+        /// warning-告警
+        /// information-通知
+        public let severity: String
+
+        /// 指标值
+        public let value: Float?
+
+        public init(interval: Int64, name: String, metric: String, operator: String, severity: String, value: Float? = nil) {
+            self.interval = interval
+            self.name = name
+            self.metric = metric
+            self.operator = `operator`
+            self.severity = severity
+            self.value = value
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case interval = "Interval"
+            case name = "Name"
+            case metric = "Metric"
+            case `operator` = "Operator"
+            case severity = "Severity"
+            case value = "Value"
+        }
+    }
+
     /// 实例详细信息
     public struct AuditInstance: TCOutputModel {
         /// 审计状态，已开通审计为：YES，未开通审计为：ON。
@@ -439,6 +585,66 @@ extension Dbbrain {
         }
     }
 
+    /// 推荐的索引
+    public struct IndexesToBuild: TCOutputModel {
+        /// 索引id，唯一标识一个索引。
+        public let id: Int64
+
+        /// 创建索引命令。
+        public let indexCommand: String
+
+        /// 索引字符串。
+        public let indexStr: String
+
+        /// 优化级别，1-4，优先级从高到低。
+        public let level: Int64
+
+        /// 索引得分。
+        public let score: Int64
+
+        /// 签名。
+        public let signs: [String]
+
+        /// 0-待创建；1-创建中。
+        public let status: Int64
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case indexCommand = "IndexCommand"
+            case indexStr = "IndexStr"
+            case level = "Level"
+            case score = "Score"
+            case signs = "Signs"
+            case status = "Status"
+        }
+    }
+
+    /// 无效索引
+    public struct IndexesToDrop: TCOutputModel {
+        /// 索引字符串。
+        public let indexStr: String
+
+        /// 索引得分。
+        public let score: Int64
+
+        /// 无效原因。
+        public let reason: String
+
+        /// 删除索引命令。
+        public let indexCommand: String
+
+        /// 索引名。
+        public let indexName: String
+
+        enum CodingKeys: String, CodingKey {
+            case indexStr = "IndexStr"
+            case score = "Score"
+            case reason = "Reason"
+            case indexCommand = "IndexCommand"
+            case indexName = "IndexName"
+        }
+    }
+
     /// 实例基础信息。
     public struct InstanceBasicInfo: TCOutputModel {
         /// 实例ID。
@@ -491,6 +697,20 @@ extension Dbbrain {
             case dailyInspection = "DailyInspection"
             case overviewDisplay = "OverviewDisplay"
             case keyDelimiters = "KeyDelimiters"
+        }
+    }
+
+    /// 实例id
+    public struct InstanceID: TCInputModel {
+        /// 实例id
+        public let instanceId: String?
+
+        public init(instanceId: String? = nil) {
+            self.instanceId = instanceId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case instanceId = "InstanceId"
         }
     }
 
@@ -592,7 +812,7 @@ extension Dbbrain {
         public let internalVport: Int64?
 
         /// 创建时间。
-        public let createTime: String?
+        public let createTime: String
 
         /// 所属集群ID（仅对集群数据库产品该字段非空，如TDSQL-C）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -601,6 +821,12 @@ extension Dbbrain {
         /// 所属集群名称（仅对集群数据库产品该字段非空，如TDSQL-C）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterName: String?
+
+        /// 自建MySQL的Agent状态，"not_deployed" - 未部署，"deploying" - 部署中，"connected" - 连接正常，"deploy_failed" - 连接失败，"monitoring" - 连接正常，"stopped" - 暂停连接，"connect_failed" - 连接失败，unknown - 未知。
+        public let agentStatus: String?
+
+        /// 自建MySQL的实例状态，"not_attached" - 未连接，"attached" - 连接正常，"failed" - 连接失败，"stopped" - 停止监控，unknown- 未知。
+        public let instanceStatus: String?
 
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
@@ -636,6 +862,8 @@ extension Dbbrain {
             case createTime = "CreateTime"
             case clusterId = "ClusterId"
             case clusterName = "ClusterName"
+            case agentStatus = "AgentStatus"
+            case instanceStatus = "InstanceStatus"
         }
     }
 
@@ -688,6 +916,42 @@ extension Dbbrain {
             case healthStatus = "HealthStatus"
             case contactPerson = "ContactPerson"
             case contactGroup = "ContactGroup"
+        }
+    }
+
+    /// Mongodb索引项
+    public struct MongoDBIndex: TCOutputModel {
+        /// 实例id。
+        public let clusterId: String
+
+        /// 表名。
+        public let collection: String
+
+        /// 库名。
+        public let db: String
+
+        /// 优化级别，1-4，优先级从高到低。
+        public let level: Int64?
+
+        /// 得分。
+        public let score: Int64
+
+        /// 推荐索引列表。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let indexesToBuild: [IndexesToBuild]?
+
+        /// 无效索引列表。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let indexesToDrop: [IndexesToDrop]?
+
+        enum CodingKeys: String, CodingKey {
+            case clusterId = "ClusterId"
+            case collection = "Collection"
+            case db = "Db"
+            case level = "Level"
+            case score = "Score"
+            case indexesToBuild = "IndexesToBuild"
+            case indexesToDrop = "IndexesToDrop"
         }
     }
 
@@ -795,6 +1059,44 @@ extension Dbbrain {
         }
     }
 
+    /// 实时会话详情。
+    public struct Process: TCOutputModel {
+        /// 会话 ID。
+        public let id: Int64
+
+        /// 访问来源，IP 地址和端口号。
+        public let address: String
+
+        /// 文件描述符。
+        public let fileDescriptor: Int64
+
+        /// 会话名称，使用 CLIENT SETNAME 命令设置。
+        public let name: String
+
+        /// 最后一次执行的命令。
+        public let lastCommand: String
+
+        /// 会话存活时间，单位：秒。
+        public let age: Int64
+
+        /// 最后一次执行命令后空闲的时间，单位：秒。
+        public let idle: Int64
+
+        /// 会话所属的 Proxy节点 ID。
+        public let proxyId: String
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case address = "Address"
+            case fileDescriptor = "FileDescriptor"
+            case name = "Name"
+            case lastCommand = "LastCommand"
+            case age = "Age"
+            case idle = "Idle"
+            case proxyId = "ProxyId"
+        }
+    }
+
     /// 实时会话统计详情。
     public struct ProcessStatistic: TCOutputModel {
         /// 会话详情数组。
@@ -829,6 +1131,58 @@ extension Dbbrain {
         enum CodingKeys: String, CodingKey {
             case language = "Language"
             case mailConfiguration = "MailConfiguration"
+        }
+    }
+
+    /// 接收组信息
+    public struct ReceiveInfo: TCOutputModel {
+        /// 接收组
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let receiveGroup: [Int64]?
+
+        /// 最后接收时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let endReceiveTime: String?
+
+        /// 接收名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let receiveName: String?
+
+        /// 推送渠道
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sendChannel: [Int64]?
+
+        /// 开始时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let startReceiveTime: String?
+
+        /// 接收用户列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let receiveUin: [ReceiveUin]?
+
+        enum CodingKeys: String, CodingKey {
+            case receiveGroup = "ReceiveGroup"
+            case endReceiveTime = "EndReceiveTime"
+            case receiveName = "ReceiveName"
+            case sendChannel = "SendChannel"
+            case startReceiveTime = "StartReceiveTime"
+            case receiveUin = "ReceiveUin"
+        }
+    }
+
+    /// 接收用户
+    public struct ReceiveUin: TCOutputModel {
+        /// 用户名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let uinName: String?
+
+        /// 用户id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let uin: String?
+
+        enum CodingKeys: String, CodingKey {
+            case uinName = "UinName"
+            case uin = "Uin"
         }
     }
 
@@ -1503,6 +1857,25 @@ extension Dbbrain {
             case endTime = "EndTime"
             case progress = "Progress"
             case instanceId = "InstanceId"
+        }
+    }
+
+    /// 通知模板
+    public struct TemplateInfo: TCInputModel {
+        /// 模板id
+        public let templateId: String
+
+        /// 模板名
+        public let templateName: String
+
+        public init(templateId: String, templateName: String) {
+            self.templateId = templateId
+            self.templateName = templateName
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case templateId = "TemplateId"
+            case templateName = "TemplateName"
         }
     }
 

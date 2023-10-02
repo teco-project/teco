@@ -208,56 +208,6 @@ extension Nlp {
         }
     }
 
-    /// TextGenerationChoices
-    public struct TextGenerationChoices: TCOutputModel {
-        /// 内容
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let message: TextGenerationMessage?
-
-        enum CodingKeys: String, CodingKey {
-            case message = "Message"
-        }
-    }
-
-    /// TextGenerationMessage
-    public struct TextGenerationMessage: TCInputModel, TCOutputModel {
-        /// 角色支持 system, user, assistant。默认为user。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let role: String?
-
-        /// 消息的内容。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let content: String?
-
-        public init(role: String? = nil, content: String? = nil) {
-            self.role = role
-            self.content = content
-        }
-
-        enum CodingKeys: String, CodingKey {
-            case role = "Role"
-            case content = "Content"
-        }
-    }
-
-    /// TextGenerationUsage
-    public struct TextGenerationUsage: TCOutputModel {
-        /// 输入tokens数量
-        public let promptTokens: Int64?
-
-        /// 输出tokens数量
-        public let completionTokens: Int64?
-
-        /// 总token数量
-        public let totalTokens: Int64?
-
-        enum CodingKeys: String, CodingKey {
-            case promptTokens = "PromptTokens"
-            case completionTokens = "CompletionTokens"
-            case totalTokens = "TotalTokens"
-        }
-    }
-
     /// 文本续写结果
     public struct Writing: TCOutputModel {
         /// 续写的文本。

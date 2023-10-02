@@ -21,7 +21,9 @@ extension TCOrganizationError {
         enum Code: String {
             case addDelegatePayerNotAllow = "UnsupportedOperation.AddDelegatePayerNotAllow"
             case addDiscountInheritNotAllow = "UnsupportedOperation.AddDiscountInheritNotAllow"
+            case createMemberNotAllowCreateOrganization = "UnsupportedOperation.CreateMemberNotAllowCreateOrganization"
             case createMemberNotAllowDelete = "UnsupportedOperation.CreateMemberNotAllowDelete"
+            case createMemberNotAllowQuit = "UnsupportedOperation.CreateMemberNotAllowQuit"
             case deleteDelegatePayerNotAllow = "UnsupportedOperation.DeleteDelegatePayerNotAllow"
             case existedAgent = "UnsupportedOperation.ExistedAgent"
             case existedClient = "UnsupportedOperation.ExistedClient"
@@ -74,9 +76,19 @@ extension TCOrganizationError {
             UnsupportedOperation(.addDiscountInheritNotAllow)
         }
 
+        /// 创建的成员不允许创建组织。
+        public static var createMemberNotAllowCreateOrganization: UnsupportedOperation {
+            UnsupportedOperation(.createMemberNotAllowCreateOrganization)
+        }
+
         /// 创建的成员不允许删除。
         public static var createMemberNotAllowDelete: UnsupportedOperation {
             UnsupportedOperation(.createMemberNotAllowDelete)
+        }
+
+        /// 创建的成员不允许退出。
+        public static var createMemberNotAllowQuit: UnsupportedOperation {
+            UnsupportedOperation(.createMemberNotAllowQuit)
         }
 
         /// 不允许删除代付关系。
@@ -176,8 +188,12 @@ extension TCOrganizationError {
                 code = .unsupportedOperation_AddDelegatePayerNotAllow
             case .addDiscountInheritNotAllow:
                 code = .unsupportedOperation_AddDiscountInheritNotAllow
+            case .createMemberNotAllowCreateOrganization:
+                code = .unsupportedOperation_CreateMemberNotAllowCreateOrganization
             case .createMemberNotAllowDelete:
                 code = .unsupportedOperation_CreateMemberNotAllowDelete
+            case .createMemberNotAllowQuit:
+                code = .unsupportedOperation_CreateMemberNotAllowQuit
             case .deleteDelegatePayerNotAllow:
                 code = .unsupportedOperation_DeleteDelegatePayerNotAllow
             case .existedAgent:

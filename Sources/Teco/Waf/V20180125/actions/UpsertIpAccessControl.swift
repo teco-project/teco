@@ -27,15 +27,19 @@ extension Waf {
         /// ip 参数列表，json数组由ip，source，note，action，valid_ts组成。ip对应配置的ip地址，source固定为custom值，note为注释，action值42为黑名单，40为白名单，valid_ts为有效日期，值为秒级时间戳（（如1680570420代表2023-04-04 09:07:00））
         public let items: [String]
 
+        /// 实例Id
+        public let instanceId: String?
+
         /// WAF实例类型，sparta-waf表示SAAS型WAF，clb-waf表示负载均衡型WAF
         public let edition: String?
 
         /// 是否为多域名黑白名单，当为多域名的黑白名单时，取值为batch，否则为空
         public let sourceType: String?
 
-        public init(domain: String, items: [String], edition: String? = nil, sourceType: String? = nil) {
+        public init(domain: String, items: [String], instanceId: String? = nil, edition: String? = nil, sourceType: String? = nil) {
             self.domain = domain
             self.items = items
+            self.instanceId = instanceId
             self.edition = edition
             self.sourceType = sourceType
         }
@@ -43,6 +47,7 @@ extension Waf {
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case items = "Items"
+            case instanceId = "InstanceId"
             case edition = "Edition"
             case sourceType = "SourceType"
         }
@@ -82,13 +87,13 @@ extension Waf {
 
     /// Waf IP黑白名单Upsert接口
     @inlinable
-    public func upsertIpAccessControl(domain: String, items: [String], edition: String? = nil, sourceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpsertIpAccessControlResponse> {
-        self.upsertIpAccessControl(.init(domain: domain, items: items, edition: edition, sourceType: sourceType), region: region, logger: logger, on: eventLoop)
+    public func upsertIpAccessControl(domain: String, items: [String], instanceId: String? = nil, edition: String? = nil, sourceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpsertIpAccessControlResponse> {
+        self.upsertIpAccessControl(.init(domain: domain, items: items, instanceId: instanceId, edition: edition, sourceType: sourceType), region: region, logger: logger, on: eventLoop)
     }
 
     /// Waf IP黑白名单Upsert接口
     @inlinable
-    public func upsertIpAccessControl(domain: String, items: [String], edition: String? = nil, sourceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpsertIpAccessControlResponse {
-        try await self.upsertIpAccessControl(.init(domain: domain, items: items, edition: edition, sourceType: sourceType), region: region, logger: logger, on: eventLoop)
+    public func upsertIpAccessControl(domain: String, items: [String], instanceId: String? = nil, edition: String? = nil, sourceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpsertIpAccessControlResponse {
+        try await self.upsertIpAccessControl(.init(domain: domain, items: items, instanceId: instanceId, edition: edition, sourceType: sourceType), region: region, logger: logger, on: eventLoop)
     }
 }

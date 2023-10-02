@@ -25,7 +25,7 @@ extension Tdmq {
         public let topicSets: [TopicRecord]
 
         /// pulsar集群Id。
-        public let clusterId: String?
+        public let clusterId: String
 
         /// 环境（命名空间）名称。
         public let environmentId: String?
@@ -33,7 +33,7 @@ extension Tdmq {
         /// 是否强制删除，默认为false
         public let force: Bool?
 
-        public init(topicSets: [TopicRecord], clusterId: String? = nil, environmentId: String? = nil, force: Bool? = nil) {
+        public init(topicSets: [TopicRecord], clusterId: String, environmentId: String? = nil, force: Bool? = nil) {
             self.topicSets = topicSets
             self.clusterId = clusterId
             self.environmentId = environmentId
@@ -82,7 +82,7 @@ extension Tdmq {
     ///
     /// 批量删除topics
     @inlinable
-    public func deleteTopics(topicSets: [TopicRecord], clusterId: String? = nil, environmentId: String? = nil, force: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTopicsResponse> {
+    public func deleteTopics(topicSets: [TopicRecord], clusterId: String, environmentId: String? = nil, force: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTopicsResponse> {
         self.deleteTopics(.init(topicSets: topicSets, clusterId: clusterId, environmentId: environmentId, force: force), region: region, logger: logger, on: eventLoop)
     }
 
@@ -90,7 +90,7 @@ extension Tdmq {
     ///
     /// 批量删除topics
     @inlinable
-    public func deleteTopics(topicSets: [TopicRecord], clusterId: String? = nil, environmentId: String? = nil, force: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicsResponse {
+    public func deleteTopics(topicSets: [TopicRecord], clusterId: String, environmentId: String? = nil, force: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicsResponse {
         try await self.deleteTopics(.init(topicSets: topicSets, clusterId: clusterId, environmentId: environmentId, force: force), region: region, logger: logger, on: eventLoop)
     }
 }

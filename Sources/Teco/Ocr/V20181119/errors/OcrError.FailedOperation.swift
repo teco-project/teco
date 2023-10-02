@@ -131,7 +131,7 @@ extension TCOcrError {
 
         /// 身份证信息不合法（身份证号、姓名字段校验非法等）。
         ///
-        /// 身份证信息不合法或缺失(身份证号、姓名、签发机关、有效期) ，如身份证号为空或不全、有效期不合法，即有效日期不符合5年、10年、20年、长期期限。
+        /// 第二代身份证信息不合法或缺失(身份证号、姓名、签发机关、有效期) ，如身份证号为空或不全、有效期不合法，即有效日期不符合5年、10年、20年、长期期限。
         public static var idCardInfoIllegal: FailedOperation {
             FailedOperation(.idCardInfoIllegal)
         }
@@ -171,6 +171,8 @@ extension TCOcrError {
         }
 
         /// 图片中未检测到身份证。
+        ///
+        /// None
         public static var imageNoIdCard: FailedOperation {
             FailedOperation(.imageNoIdCard)
         }
@@ -206,7 +208,7 @@ extension TCOcrError {
 
         /// 照片中存在多张卡。
         ///
-        /// 卡片中有多个卡证，请保持一张图片中只有一张卡证。
+        /// 图片中存在两张及以上同面卡证，请上传卡证单面图片或一正一反双面图片
         public static var multiCardError: FailedOperation {
             FailedOperation(.multiCardError)
         }

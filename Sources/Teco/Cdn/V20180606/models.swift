@@ -1676,16 +1676,18 @@ extension Cdn {
     }
 
     /// 启发式自定义时间缓存配置
-    public struct CacheConfig: TCInputModel {
+    public struct CacheConfig: TCInputModel, TCOutputModel {
         /// 启发式自定义时间缓存配置开关，取值有：
         /// on：开启
         /// off：关闭
-        public let heuristicCacheTimeSwitch: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let heuristicCacheTimeSwitch: String?
 
         /// 单位 秒.
-        public let heuristicCacheTime: Int64
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let heuristicCacheTime: Int64?
 
-        public init(heuristicCacheTimeSwitch: String, heuristicCacheTime: Int64) {
+        public init(heuristicCacheTimeSwitch: String? = nil, heuristicCacheTime: Int64? = nil) {
             self.heuristicCacheTimeSwitch = heuristicCacheTimeSwitch
             self.heuristicCacheTime = heuristicCacheTime
         }
@@ -3341,16 +3343,18 @@ extension Cdn {
     }
 
     /// 启发式缓存配置
-    public struct HeuristicCache: TCInputModel {
+    public struct HeuristicCache: TCInputModel, TCOutputModel {
         /// 启发式缓存配置开关，取值有：
         /// on：开启
         /// off：关闭
-        public let `switch`: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let `switch`: String?
 
         /// 自定义启发式缓存时间配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cacheConfig: CacheConfig?
 
-        public init(switch: String, cacheConfig: CacheConfig? = nil) {
+        public init(switch: String? = nil, cacheConfig: CacheConfig? = nil) {
             self.switch = `switch`
             self.cacheConfig = cacheConfig
         }

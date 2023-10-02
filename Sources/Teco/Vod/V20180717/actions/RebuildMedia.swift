@@ -135,7 +135,7 @@ extension Vod {
 
     /// RebuildMedia返回参数结构体
     public struct RebuildMediaResponse: TCResponse {
-        /// 视频重生的任务 ID，可以通过该 ID 查询视频重生任务的状态。
+        /// 音画质重生的任务 ID，可以通过该 ID 查询音画质重生任务的状态。
         public let taskId: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -147,25 +147,25 @@ extension Vod {
         }
     }
 
-    /// 发起视频重生
+    /// 发起音画质重生
     @inlinable
     public func rebuildMedia(_ input: RebuildMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RebuildMediaResponse> {
         self.client.execute(action: "RebuildMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 发起视频重生
+    /// 发起音画质重生
     @inlinable
     public func rebuildMedia(_ input: RebuildMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RebuildMediaResponse {
         try await self.client.execute(action: "RebuildMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 发起视频重生
+    /// 发起音画质重生
     @inlinable
     public func rebuildMedia(fileId: String, subAppId: UInt64? = nil, startTimeOffset: Float? = nil, endTimeOffset: Float? = nil, repairInfo: RepairInfo? = nil, videoFrameInterpolationInfo: VideoFrameInterpolationInfo? = nil, superResolutionInfo: SuperResolutionInfo? = nil, hdrInfo: HDRInfo? = nil, videoDenoiseInfo: VideoDenoiseInfo? = nil, audioDenoiseInfo: AudioDenoiseInfo? = nil, colorInfo: ColorEnhanceInfo? = nil, sharpInfo: SharpEnhanceInfo? = nil, faceInfo: FaceEnhanceInfo? = nil, lowLightInfo: LowLightEnhanceInfo? = nil, scratchRepairInfo: ScratchRepairInfo? = nil, artifactRepairInfo: ArtifactRepairInfo? = nil, targetInfo: RebuildMediaTargetInfo? = nil, sessionId: String? = nil, sessionContext: String? = nil, tasksPriority: Int64? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RebuildMediaResponse> {
         self.rebuildMedia(.init(fileId: fileId, subAppId: subAppId, startTimeOffset: startTimeOffset, endTimeOffset: endTimeOffset, repairInfo: repairInfo, videoFrameInterpolationInfo: videoFrameInterpolationInfo, superResolutionInfo: superResolutionInfo, hdrInfo: hdrInfo, videoDenoiseInfo: videoDenoiseInfo, audioDenoiseInfo: audioDenoiseInfo, colorInfo: colorInfo, sharpInfo: sharpInfo, faceInfo: faceInfo, lowLightInfo: lowLightInfo, scratchRepairInfo: scratchRepairInfo, artifactRepairInfo: artifactRepairInfo, targetInfo: targetInfo, sessionId: sessionId, sessionContext: sessionContext, tasksPriority: tasksPriority, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 发起视频重生
+    /// 发起音画质重生
     @inlinable
     public func rebuildMedia(fileId: String, subAppId: UInt64? = nil, startTimeOffset: Float? = nil, endTimeOffset: Float? = nil, repairInfo: RepairInfo? = nil, videoFrameInterpolationInfo: VideoFrameInterpolationInfo? = nil, superResolutionInfo: SuperResolutionInfo? = nil, hdrInfo: HDRInfo? = nil, videoDenoiseInfo: VideoDenoiseInfo? = nil, audioDenoiseInfo: AudioDenoiseInfo? = nil, colorInfo: ColorEnhanceInfo? = nil, sharpInfo: SharpEnhanceInfo? = nil, faceInfo: FaceEnhanceInfo? = nil, lowLightInfo: LowLightEnhanceInfo? = nil, scratchRepairInfo: ScratchRepairInfo? = nil, artifactRepairInfo: ArtifactRepairInfo? = nil, targetInfo: RebuildMediaTargetInfo? = nil, sessionId: String? = nil, sessionContext: String? = nil, tasksPriority: Int64? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RebuildMediaResponse {
         try await self.rebuildMedia(.init(fileId: fileId, subAppId: subAppId, startTimeOffset: startTimeOffset, endTimeOffset: endTimeOffset, repairInfo: repairInfo, videoFrameInterpolationInfo: videoFrameInterpolationInfo, superResolutionInfo: superResolutionInfo, hdrInfo: hdrInfo, videoDenoiseInfo: videoDenoiseInfo, audioDenoiseInfo: audioDenoiseInfo, colorInfo: colorInfo, sharpInfo: sharpInfo, faceInfo: faceInfo, lowLightInfo: lowLightInfo, scratchRepairInfo: scratchRepairInfo, artifactRepairInfo: artifactRepairInfo, targetInfo: targetInfo, sessionId: sessionId, sessionContext: sessionContext, tasksPriority: tasksPriority, extInfo: extInfo), region: region, logger: logger, on: eventLoop)

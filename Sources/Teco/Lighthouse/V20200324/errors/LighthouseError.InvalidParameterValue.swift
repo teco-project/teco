@@ -33,6 +33,7 @@ extension TCLighthouseError {
             case diskSizeNotMatch = "InvalidParameterValue.DiskSizeNotMatch"
             case duplicateParameterValue = "InvalidParameterValue.DuplicateParameterValue"
             case duplicated = "InvalidParameterValue.Duplicated"
+            case duplicatedFirewallTemplateRule = "InvalidParameterValue.DuplicatedFirewallTemplateRule"
             case fieldsCompare = "InvalidParameterValue.FieldsCompare"
             case firewallRuleDescriptionTooLong = "InvalidParameterValue.FirewallRuleDescriptionTooLong"
             case instanceIdMalformed = "InvalidParameterValue.InstanceIdMalformed"
@@ -168,6 +169,10 @@ extension TCLighthouseError {
         /// 参数值非法，不允许包含重复的值。
         public static var duplicated: InvalidParameterValue {
             InvalidParameterValue(.duplicated)
+        }
+
+        public static var duplicatedFirewallTemplateRule: InvalidParameterValue {
+            InvalidParameterValue(.duplicatedFirewallTemplateRule)
         }
 
         /// 列值不正确。
@@ -413,6 +418,8 @@ extension TCLighthouseError {
                 code = .invalidParameterValue_DuplicateParameterValue
             case .duplicated:
                 code = .invalidParameterValue_Duplicated
+            case .duplicatedFirewallTemplateRule:
+                code = .invalidParameterValue_DuplicatedFirewallTemplateRule
             case .fieldsCompare:
                 code = .invalidParameterValue_FieldsCompare
             case .firewallRuleDescriptionTooLong:

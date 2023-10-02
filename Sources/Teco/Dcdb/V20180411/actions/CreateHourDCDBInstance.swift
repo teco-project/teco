@@ -55,7 +55,7 @@ extension Dcdb {
         /// 数据库引擎版本，当前可选：8.0，5.7，10.1，10.0。
         public let dbVersionId: String?
 
-        /// 分片节点可用区分布，最多可填两个可用区。当分片规格为一主两从时，其中两个节点在第一个可用区。
+        /// 分片节点可用区分布，可填写多个可用区。
         public let zones: [String]?
 
         /// 安全组id
@@ -88,7 +88,10 @@ extension Dcdb {
         /// 安全组ids，安全组可以传数组形式，兼容之前SecurityGroupId参数
         public let securityGroupIds: [String]?
 
-        public init(shardMemory: Int64, shardStorage: Int64, shardNodeCount: Int64, shardCount: Int64, count: Int64? = nil, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, shardCpu: Int64? = nil, dbVersionId: String? = nil, zones: [String]? = nil, securityGroupId: String? = nil, instanceName: String? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, initParams: [DBParamValue]? = nil, rollbackInstanceId: String? = nil, rollbackTime: String? = nil, securityGroupIds: [String]? = nil) {
+        /// DCN同步模式，0：普通DCN同步，1：一致性同步
+        public let dcnSyncMode: Int64?
+
+        public init(shardMemory: Int64, shardStorage: Int64, shardNodeCount: Int64, shardCount: Int64, count: Int64? = nil, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, shardCpu: Int64? = nil, dbVersionId: String? = nil, zones: [String]? = nil, securityGroupId: String? = nil, instanceName: String? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, initParams: [DBParamValue]? = nil, rollbackInstanceId: String? = nil, rollbackTime: String? = nil, securityGroupIds: [String]? = nil, dcnSyncMode: Int64? = nil) {
             self.shardMemory = shardMemory
             self.shardStorage = shardStorage
             self.shardNodeCount = shardNodeCount
@@ -110,6 +113,7 @@ extension Dcdb {
             self.rollbackInstanceId = rollbackInstanceId
             self.rollbackTime = rollbackTime
             self.securityGroupIds = securityGroupIds
+            self.dcnSyncMode = dcnSyncMode
         }
 
         enum CodingKeys: String, CodingKey {
@@ -134,6 +138,7 @@ extension Dcdb {
             case rollbackInstanceId = "RollbackInstanceId"
             case rollbackTime = "RollbackTime"
             case securityGroupIds = "SecurityGroupIds"
+            case dcnSyncMode = "DcnSyncMode"
         }
     }
 
@@ -174,13 +179,13 @@ extension Dcdb {
 
     /// 创建TDSQL按量计费实例
     @inlinable
-    public func createHourDCDBInstance(shardMemory: Int64, shardStorage: Int64, shardNodeCount: Int64, shardCount: Int64, count: Int64? = nil, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, shardCpu: Int64? = nil, dbVersionId: String? = nil, zones: [String]? = nil, securityGroupId: String? = nil, instanceName: String? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, initParams: [DBParamValue]? = nil, rollbackInstanceId: String? = nil, rollbackTime: String? = nil, securityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHourDCDBInstanceResponse> {
-        self.createHourDCDBInstance(.init(shardMemory: shardMemory, shardStorage: shardStorage, shardNodeCount: shardNodeCount, shardCount: shardCount, count: count, projectId: projectId, vpcId: vpcId, subnetId: subnetId, shardCpu: shardCpu, dbVersionId: dbVersionId, zones: zones, securityGroupId: securityGroupId, instanceName: instanceName, ipv6Flag: ipv6Flag, resourceTags: resourceTags, dcnRegion: dcnRegion, dcnInstanceId: dcnInstanceId, initParams: initParams, rollbackInstanceId: rollbackInstanceId, rollbackTime: rollbackTime, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
+    public func createHourDCDBInstance(shardMemory: Int64, shardStorage: Int64, shardNodeCount: Int64, shardCount: Int64, count: Int64? = nil, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, shardCpu: Int64? = nil, dbVersionId: String? = nil, zones: [String]? = nil, securityGroupId: String? = nil, instanceName: String? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, initParams: [DBParamValue]? = nil, rollbackInstanceId: String? = nil, rollbackTime: String? = nil, securityGroupIds: [String]? = nil, dcnSyncMode: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHourDCDBInstanceResponse> {
+        self.createHourDCDBInstance(.init(shardMemory: shardMemory, shardStorage: shardStorage, shardNodeCount: shardNodeCount, shardCount: shardCount, count: count, projectId: projectId, vpcId: vpcId, subnetId: subnetId, shardCpu: shardCpu, dbVersionId: dbVersionId, zones: zones, securityGroupId: securityGroupId, instanceName: instanceName, ipv6Flag: ipv6Flag, resourceTags: resourceTags, dcnRegion: dcnRegion, dcnInstanceId: dcnInstanceId, initParams: initParams, rollbackInstanceId: rollbackInstanceId, rollbackTime: rollbackTime, securityGroupIds: securityGroupIds, dcnSyncMode: dcnSyncMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建TDSQL按量计费实例
     @inlinable
-    public func createHourDCDBInstance(shardMemory: Int64, shardStorage: Int64, shardNodeCount: Int64, shardCount: Int64, count: Int64? = nil, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, shardCpu: Int64? = nil, dbVersionId: String? = nil, zones: [String]? = nil, securityGroupId: String? = nil, instanceName: String? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, initParams: [DBParamValue]? = nil, rollbackInstanceId: String? = nil, rollbackTime: String? = nil, securityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHourDCDBInstanceResponse {
-        try await self.createHourDCDBInstance(.init(shardMemory: shardMemory, shardStorage: shardStorage, shardNodeCount: shardNodeCount, shardCount: shardCount, count: count, projectId: projectId, vpcId: vpcId, subnetId: subnetId, shardCpu: shardCpu, dbVersionId: dbVersionId, zones: zones, securityGroupId: securityGroupId, instanceName: instanceName, ipv6Flag: ipv6Flag, resourceTags: resourceTags, dcnRegion: dcnRegion, dcnInstanceId: dcnInstanceId, initParams: initParams, rollbackInstanceId: rollbackInstanceId, rollbackTime: rollbackTime, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
+    public func createHourDCDBInstance(shardMemory: Int64, shardStorage: Int64, shardNodeCount: Int64, shardCount: Int64, count: Int64? = nil, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, shardCpu: Int64? = nil, dbVersionId: String? = nil, zones: [String]? = nil, securityGroupId: String? = nil, instanceName: String? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, initParams: [DBParamValue]? = nil, rollbackInstanceId: String? = nil, rollbackTime: String? = nil, securityGroupIds: [String]? = nil, dcnSyncMode: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHourDCDBInstanceResponse {
+        try await self.createHourDCDBInstance(.init(shardMemory: shardMemory, shardStorage: shardStorage, shardNodeCount: shardNodeCount, shardCount: shardCount, count: count, projectId: projectId, vpcId: vpcId, subnetId: subnetId, shardCpu: shardCpu, dbVersionId: dbVersionId, zones: zones, securityGroupId: securityGroupId, instanceName: instanceName, ipv6Flag: ipv6Flag, resourceTags: resourceTags, dcnRegion: dcnRegion, dcnInstanceId: dcnInstanceId, initParams: initParams, rollbackInstanceId: rollbackInstanceId, rollbackTime: rollbackTime, securityGroupIds: securityGroupIds, dcnSyncMode: dcnSyncMode), region: region, logger: logger, on: eventLoop)
     }
 }

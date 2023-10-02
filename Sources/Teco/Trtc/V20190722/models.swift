@@ -143,7 +143,8 @@ extension Trtc {
     /// 第三方云存储的账号信息。
     public struct CloudStorage: TCInputModel {
         /// 第三方云储存的供应商:
-        /// 0：腾讯云存储 COS，暂不支持其他家。
+        /// 0：腾讯云存储 COS。
+        /// 【*注意】：目前第三方仅支持腾讯云存储COS，暂不支持AWS等其他第三方云存储。
         public let vendor: UInt64
 
         /// 第三方云存储的地域信息。
@@ -1249,7 +1250,9 @@ extension Trtc {
         /// 指定订阅流白名单或者黑名单。
         public let subscribeStreamUserIds: SubscribeStreamUserIds?
 
-        /// 输出文件的格式，上传到云点播时此参数无效，存储到云点播时请关注TencentVod内的MediaType参数。0：(默认)输出文件为hls格式。1：输出文件格式为hls+mp4。2：输出文件格式为hls+aac 。3：输出文件格式为mp4。4：输出文件格式为aac。
+        /// 输出文件的格式（存储至COS等第三方存储时有效）。0：(默认)输出文件为hls格式。1：输出文件格式为hls+mp4。2：输出文件格式为hls+aac 。3：输出文件格式为mp4。4：输出文件格式为aac。
+        ///
+        /// 存储到云点播VOD时此参数无效，存储到VOD时请通过TencentVod（https://cloud.tencent.com/document/api/647/44055#TencentVod）内的MediaType设置。
         public let outputFormat: UInt64?
 
         /// 单流录制模式下，用户的音视频是否合并，0：单流音视频不合并（默认）。1：单流音视频合并成一个ts。混流录制此参数无需设置，默认音视频合并。
@@ -1341,6 +1344,21 @@ extension Trtc {
         }
     }
 
+    /// SeriesInfo类型的二维数组
+    public struct RowValues: TCInputModel, TCOutputModel {
+        /// 数据值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rowValue: [Int64]?
+
+        public init(rowValue: [Int64]? = nil) {
+            self.rowValue = rowValue
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case rowValue = "RowValue"
+        }
+    }
+
     /// 历史规模信息
     public struct ScaleInfomation: TCOutputModel {
         /// 每天开始的时间
@@ -1420,6 +1438,22 @@ extension Trtc {
         /// 数据值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let values: [Int64]?
+
+        enum CodingKeys: String, CodingKey {
+            case columns = "Columns"
+            case values = "Values"
+        }
+    }
+
+    /// SeriesInfos类型
+    public struct SeriesInfos: TCOutputModel {
+        /// 数据列
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let columns: [String]?
+
+        /// 数据值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let values: [RowValues]?
 
         enum CodingKeys: String, CodingKey {
             case columns = "Columns"
@@ -1576,6 +1610,27 @@ extension Trtc {
         }
     }
 
+    /// TRTC数据大盘/实时监控 API接口数据出参
+    public struct TRTCDataResult: TCOutputModel {
+        /// StatementID值，监控仪表盘下固定为0。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let statementID: Int64?
+
+        /// 查询结果数据，以Columns-Values形式返回。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let series: [SeriesInfos]?
+
+        /// Total值，监控仪表盘功能下固定为1。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let total: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case statementID = "StatementID"
+            case series = "Series"
+            case total = "Total"
+        }
+    }
+
     /// 腾讯云点播相关参数。
     public struct TencentVod: TCInputModel {
         /// 媒体后续任务处理操作，即完成媒体上传后，可自动发起任务流操作。参数值为任务流模板名，云点播支持 创建任务流模板 并为模板命名。
@@ -1600,7 +1655,8 @@ extension Trtc {
         /// 上传上下文，上传完成回调时透传。
         public let sourceContext: String?
 
-        /// 上传到vod平台的录制文件格式类型，0：mp4(默认), 1: hls, 2:aac(StreamType=1纯音频录制时有效)。
+        /// 上传到vod平台的录制文件格式类型，0：mp4(默认), 1: hls, 2:aac(StreamType=1纯音频录制时有效),
+        /// 3: hls+mp4, 4: hls+aac(StreamType=1纯音频录制时有效)。
         public let mediaType: UInt64?
 
         /// 仅支持API录制上传vod，该参数表示用户可以自定义录制文件名前缀，【限制长度为64字节，只允许包含大小写英文字母（a-zA-Z）、数字（0-9）及下划线和连词符】。前缀与自动生成的录制文件名之间用__UserId_u_分开。

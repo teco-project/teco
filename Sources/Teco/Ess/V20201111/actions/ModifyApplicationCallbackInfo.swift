@@ -21,16 +21,20 @@ import TecoCore
 extension Ess {
     /// ModifyApplicationCallbackInfo请求参数结构体
     public struct ModifyApplicationCallbackInfoRequest: TCRequest {
-        /// 调用方用户信息，userId 必填
+        /// 执行本接口操作的员工信息。
+        /// 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         public let `operator`: UserInfo
 
-        /// 操作类型：1-新增，2-删除
+        /// 操作类型：
+        /// 1-新增
+        /// 2-删除
         public let operateType: Int64
 
-        /// 回调信息
+        /// 企业应用回调信息
         public let callbackInfo: CallbackInfo
 
-        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        /// 代理企业和员工的信息。
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         public let agent: Agent?
 
         public init(operator: UserInfo, operateType: Int64, callbackInfo: CallbackInfo, agent: Agent? = nil) {
@@ -60,9 +64,10 @@ extension Ess {
 
     /// 修改企业回调配置
     ///
-    /// 新增/删除应用callbackinfo
-    /// callbackinfo包含： 回调地址和签名key
-    /// 操作：新增/删除
+    /// 新增/删除企业应用集成中的回调配置。
+    /// 新增回调配置只会增加不存在的CallbackUrl；删除操作将针对找到的相同CallbackUrl的配置进行删除。
+    /// 请确保回调地址能够接收并处理 HTTP POST 请求，并返回状态码 200 以表示处理正常。
+    /// 更多回调相关的说明参考文档[回调通知能力](https://qian.tencent.com/developers/company/callback_types_v2)
     @inlinable @discardableResult
     public func modifyApplicationCallbackInfo(_ input: ModifyApplicationCallbackInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationCallbackInfoResponse> {
         self.client.execute(action: "ModifyApplicationCallbackInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -70,9 +75,10 @@ extension Ess {
 
     /// 修改企业回调配置
     ///
-    /// 新增/删除应用callbackinfo
-    /// callbackinfo包含： 回调地址和签名key
-    /// 操作：新增/删除
+    /// 新增/删除企业应用集成中的回调配置。
+    /// 新增回调配置只会增加不存在的CallbackUrl；删除操作将针对找到的相同CallbackUrl的配置进行删除。
+    /// 请确保回调地址能够接收并处理 HTTP POST 请求，并返回状态码 200 以表示处理正常。
+    /// 更多回调相关的说明参考文档[回调通知能力](https://qian.tencent.com/developers/company/callback_types_v2)
     @inlinable @discardableResult
     public func modifyApplicationCallbackInfo(_ input: ModifyApplicationCallbackInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationCallbackInfoResponse {
         try await self.client.execute(action: "ModifyApplicationCallbackInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -80,9 +86,10 @@ extension Ess {
 
     /// 修改企业回调配置
     ///
-    /// 新增/删除应用callbackinfo
-    /// callbackinfo包含： 回调地址和签名key
-    /// 操作：新增/删除
+    /// 新增/删除企业应用集成中的回调配置。
+    /// 新增回调配置只会增加不存在的CallbackUrl；删除操作将针对找到的相同CallbackUrl的配置进行删除。
+    /// 请确保回调地址能够接收并处理 HTTP POST 请求，并返回状态码 200 以表示处理正常。
+    /// 更多回调相关的说明参考文档[回调通知能力](https://qian.tencent.com/developers/company/callback_types_v2)
     @inlinable @discardableResult
     public func modifyApplicationCallbackInfo(operator: UserInfo, operateType: Int64, callbackInfo: CallbackInfo, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationCallbackInfoResponse> {
         self.modifyApplicationCallbackInfo(.init(operator: `operator`, operateType: operateType, callbackInfo: callbackInfo, agent: agent), region: region, logger: logger, on: eventLoop)
@@ -90,9 +97,10 @@ extension Ess {
 
     /// 修改企业回调配置
     ///
-    /// 新增/删除应用callbackinfo
-    /// callbackinfo包含： 回调地址和签名key
-    /// 操作：新增/删除
+    /// 新增/删除企业应用集成中的回调配置。
+    /// 新增回调配置只会增加不存在的CallbackUrl；删除操作将针对找到的相同CallbackUrl的配置进行删除。
+    /// 请确保回调地址能够接收并处理 HTTP POST 请求，并返回状态码 200 以表示处理正常。
+    /// 更多回调相关的说明参考文档[回调通知能力](https://qian.tencent.com/developers/company/callback_types_v2)
     @inlinable @discardableResult
     public func modifyApplicationCallbackInfo(operator: UserInfo, operateType: Int64, callbackInfo: CallbackInfo, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationCallbackInfoResponse {
         try await self.modifyApplicationCallbackInfo(.init(operator: `operator`, operateType: operateType, callbackInfo: callbackInfo, agent: agent), region: region, logger: logger, on: eventLoop)

@@ -24,13 +24,13 @@ extension Ccc {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         public let sdkAppId: Int64
 
-        /// 用户 ID
+        /// 用户 ID，该值必须与 ClientData 字段中 Uid 的值一致
         public let uid: String
 
         /// 有效期，单位秒，不超过 1 小时
         public let expiredTime: Int64
 
-        /// 用户签名数据
+        /// 用户签名数据，必填字段，为标准 JSON 格式
         public let clientData: String?
 
         public init(sdkAppId: Int64, uid: String, expiredTime: Int64, clientData: String? = nil) {

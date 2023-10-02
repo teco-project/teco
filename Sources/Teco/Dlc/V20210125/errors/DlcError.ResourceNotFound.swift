@@ -20,8 +20,8 @@ extension TCDlcError {
     public struct ResourceNotFound: TCDlcErrorType {
         enum Code: String {
             case datasourceNotFound = "ResourceNotFound.DatasourceNotFound"
-            case resourceNotFoundCode_SessionInsufficientResources = "ResourceNotFound.ResourceNotFoundCode_SessionInsufficientResources"
             case resultOutputPathNotFound = "ResourceNotFound.ResultOutputPathNotFound"
+            case sessionInsufficientResources = "ResourceNotFound.SessionInsufficientResources"
             case sessionNotFound = "ResourceNotFound.SessionNotFound"
             case sessionStateDead = "ResourceNotFound.SessionStateDead"
             case other = "ResourceNotFound"
@@ -54,14 +54,14 @@ extension TCDlcError {
             ResourceNotFound(.datasourceNotFound)
         }
 
-        /// 当前无资源创建session，请稍后重试或使用包年包月集群。
-        public static var resourceNotFoundCode_SessionInsufficientResources: ResourceNotFound {
-            ResourceNotFound(.resourceNotFoundCode_SessionInsufficientResources)
-        }
-
         /// 未找到结果路径。
         public static var resultOutputPathNotFound: ResourceNotFound {
             ResourceNotFound(.resultOutputPathNotFound)
+        }
+
+        /// 当前无资源创建session，请稍后重试或使用包年包月集群。
+        public static var sessionInsufficientResources: ResourceNotFound {
+            ResourceNotFound(.sessionInsufficientResources)
         }
 
         /// session不存在。
@@ -84,10 +84,10 @@ extension TCDlcError {
             switch self.error {
             case .datasourceNotFound:
                 code = .resourceNotFound_DatasourceNotFound
-            case .resourceNotFoundCode_SessionInsufficientResources:
-                code = .resourceNotFound_ResourceNotFoundCode_SessionInsufficientResources
             case .resultOutputPathNotFound:
                 code = .resourceNotFound_ResultOutputPathNotFound
+            case .sessionInsufficientResources:
+                code = .resourceNotFound_SessionInsufficientResources
             case .sessionNotFound:
                 code = .resourceNotFound_SessionNotFound
             case .sessionStateDead:

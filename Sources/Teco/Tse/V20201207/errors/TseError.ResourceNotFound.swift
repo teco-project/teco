@@ -19,6 +19,7 @@ import TecoCore
 extension TCTseError {
     public struct ResourceNotFound: TCTseErrorType {
         enum Code: String {
+            case forbidden = "ResourceNotFound.Forbidden"
             case instanceNotFound = "ResourceNotFound.InstanceNotFound"
             case resourceNotFound = "ResourceNotFound.ResourceNotFound"
             case other = "ResourceNotFound"
@@ -46,6 +47,11 @@ extension TCTseError {
             self.context = context
         }
 
+        /// 资源不存在不允许操作。
+        public static var forbidden: ResourceNotFound {
+            ResourceNotFound(.forbidden)
+        }
+
         /// 实例不存在。
         public static var instanceNotFound: ResourceNotFound {
             ResourceNotFound(.instanceNotFound)
@@ -64,6 +70,8 @@ extension TCTseError {
         public func asTseError() -> TCTseError {
             let code: TCTseError.Code
             switch self.error {
+            case .forbidden:
+                code = .resourceNotFound_Forbidden
             case .instanceNotFound:
                 code = .resourceNotFound_InstanceNotFound
             case .resourceNotFound:

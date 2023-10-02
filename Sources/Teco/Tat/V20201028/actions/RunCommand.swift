@@ -24,7 +24,7 @@ extension Tat {
         /// Base64编码后的命令内容，长度不可超过64KB。
         public let content: String
 
-        /// 待执行命令的实例ID列表，上限100。支持实例类型：
+        /// 待执行命令的实例ID列表，上限200。支持实例类型：
         /// - CVM
         /// - LIGHTHOUSE
         public let instanceIds: [String]
@@ -45,14 +45,18 @@ extension Tat {
         public let timeout: UInt64?
 
         /// 是否保存命令，取值范围：
-        /// - True：保存
-        /// - False：不保存
+        /// - true：保存
+        /// - false：不保存
         ///
-        /// 默认为 False。
+        /// 默认为 false。
         public let saveCommand: Bool?
 
         /// 是否启用自定义参数功能。
         /// 一旦创建，此值不提供修改。
+        /// 取值范围：
+        /// - true：启用
+        /// - false：不启用
+        ///
         /// 默认值：false。
         public let enableParameter: Bool?
 
@@ -62,6 +66,9 @@ extension Tat {
         /// 自定义参数最多20个。
         /// 自定义参数名称需符合以下规范：字符数目上限64，可选范围【a-zA-Z0-9-_】。
         public let defaultParameters: String?
+
+        /// 自定义参数数组。 如果 Parameters 未提供，将使用这里的默认值进行替换。 自定义参数最多20个。
+        public let defaultParameterConfs: [DefaultParameterConf]?
 
         /// Command 的自定义参数。字段类型为json encoded string。如：{\"varA\": \"222\"}。
         /// key为自定义参数名称，value为该参数的默认取值。kv均为字符串型。
@@ -86,7 +93,7 @@ extension Tat {
         /// 3. 不允许连续 / ；不允许以 / 开头；不允许以..作为文件夹名称。
         public let outputCOSKeyPrefix: String?
 
-        public init(content: String, instanceIds: [String], commandName: String? = nil, description: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, saveCommand: Bool? = nil, enableParameter: Bool? = nil, defaultParameters: String? = nil, parameters: String? = nil, tags: [Tag]? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil) {
+        public init(content: String, instanceIds: [String], commandName: String? = nil, description: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, saveCommand: Bool? = nil, enableParameter: Bool? = nil, defaultParameters: String? = nil, defaultParameterConfs: [DefaultParameterConf]? = nil, parameters: String? = nil, tags: [Tag]? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil) {
             self.content = content
             self.instanceIds = instanceIds
             self.commandName = commandName
@@ -97,6 +104,7 @@ extension Tat {
             self.saveCommand = saveCommand
             self.enableParameter = enableParameter
             self.defaultParameters = defaultParameters
+            self.defaultParameterConfs = defaultParameterConfs
             self.parameters = parameters
             self.tags = tags
             self.username = username
@@ -115,6 +123,7 @@ extension Tat {
             case saveCommand = "SaveCommand"
             case enableParameter = "EnableParameter"
             case defaultParameters = "DefaultParameters"
+            case defaultParameterConfs = "DefaultParameterConfs"
             case parameters = "Parameters"
             case tags = "Tags"
             case username = "Username"
@@ -179,8 +188,8 @@ extension Tat {
     /// * 指定的实例需要处于 `RUNNING` 状态
     /// * 不可同时指定 CVM 和 Lighthouse
     @inlinable
-    public func runCommand(content: String, instanceIds: [String], commandName: String? = nil, description: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, saveCommand: Bool? = nil, enableParameter: Bool? = nil, defaultParameters: String? = nil, parameters: String? = nil, tags: [Tag]? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunCommandResponse> {
-        self.runCommand(.init(content: content, instanceIds: instanceIds, commandName: commandName, description: description, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, saveCommand: saveCommand, enableParameter: enableParameter, defaultParameters: defaultParameters, parameters: parameters, tags: tags, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), region: region, logger: logger, on: eventLoop)
+    public func runCommand(content: String, instanceIds: [String], commandName: String? = nil, description: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, saveCommand: Bool? = nil, enableParameter: Bool? = nil, defaultParameters: String? = nil, defaultParameterConfs: [DefaultParameterConf]? = nil, parameters: String? = nil, tags: [Tag]? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunCommandResponse> {
+        self.runCommand(.init(content: content, instanceIds: instanceIds, commandName: commandName, description: description, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, saveCommand: saveCommand, enableParameter: enableParameter, defaultParameters: defaultParameters, defaultParameterConfs: defaultParameterConfs, parameters: parameters, tags: tags, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), region: region, logger: logger, on: eventLoop)
     }
 
     /// 执行命令
@@ -193,7 +202,7 @@ extension Tat {
     /// * 指定的实例需要处于 `RUNNING` 状态
     /// * 不可同时指定 CVM 和 Lighthouse
     @inlinable
-    public func runCommand(content: String, instanceIds: [String], commandName: String? = nil, description: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, saveCommand: Bool? = nil, enableParameter: Bool? = nil, defaultParameters: String? = nil, parameters: String? = nil, tags: [Tag]? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunCommandResponse {
-        try await self.runCommand(.init(content: content, instanceIds: instanceIds, commandName: commandName, description: description, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, saveCommand: saveCommand, enableParameter: enableParameter, defaultParameters: defaultParameters, parameters: parameters, tags: tags, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), region: region, logger: logger, on: eventLoop)
+    public func runCommand(content: String, instanceIds: [String], commandName: String? = nil, description: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, saveCommand: Bool? = nil, enableParameter: Bool? = nil, defaultParameters: String? = nil, defaultParameterConfs: [DefaultParameterConf]? = nil, parameters: String? = nil, tags: [Tag]? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunCommandResponse {
+        try await self.runCommand(.init(content: content, instanceIds: instanceIds, commandName: commandName, description: description, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, saveCommand: saveCommand, enableParameter: enableParameter, defaultParameters: defaultParameters, defaultParameterConfs: defaultParameterConfs, parameters: parameters, tags: tags, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), region: region, logger: logger, on: eventLoop)
     }
 }

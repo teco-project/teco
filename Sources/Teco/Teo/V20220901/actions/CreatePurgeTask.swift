@@ -33,7 +33,7 @@ extension Teo {
         /// 缓存清除类型详情请查看[清除缓存](https://cloud.tencent.com/document/product/1552/70759)。
         public let type: String
 
-        /// 节点缓存清除方法，仅对目录刷新类型有效，取值有：
+        /// 节点缓存清除方法，针对目录刷新、Hostname刷新以及刷新全部缓存 类型有效，取值有：
         /// - invalidate：仅刷新目录下产生了更新的资源；
         /// - delete：无论目录下资源是否更新都刷新节点资源。
         /// 注意：使用目录刷新时，默认值： invalidate。
@@ -98,7 +98,7 @@ extension Teo {
     /// - 直接删除：不做任何校验，直接删除节点缓存，用户请求时触发回源拉取；
     /// - 标记过期：将节点资源置为过期，用户请求时触发回源校验，即发送带有 If-None-Match 和 If-Modified-Since 头部的 HTTP 条件请求。若源站响应 200，则节点会回源拉取新的资源并更新缓存；若源站响应 304，则节点不会更新缓存；
     ///
-    /// 清除缓存任务详情请查看[清除缓存](https://cloud.tencent.com/document/product/1552/70759)。</li>
+    /// 清除缓存任务详情请查看[清除缓存](https://cloud.tencent.com/document/product/1552/70759)。
     @inlinable
     public func createPurgeTask(_ input: CreatePurgeTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePurgeTaskResponse> {
         self.client.execute(action: "CreatePurgeTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -110,7 +110,7 @@ extension Teo {
     /// - 直接删除：不做任何校验，直接删除节点缓存，用户请求时触发回源拉取；
     /// - 标记过期：将节点资源置为过期，用户请求时触发回源校验，即发送带有 If-None-Match 和 If-Modified-Since 头部的 HTTP 条件请求。若源站响应 200，则节点会回源拉取新的资源并更新缓存；若源站响应 304，则节点不会更新缓存；
     ///
-    /// 清除缓存任务详情请查看[清除缓存](https://cloud.tencent.com/document/product/1552/70759)。</li>
+    /// 清除缓存任务详情请查看[清除缓存](https://cloud.tencent.com/document/product/1552/70759)。
     @inlinable
     public func createPurgeTask(_ input: CreatePurgeTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePurgeTaskResponse {
         try await self.client.execute(action: "CreatePurgeTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -122,7 +122,7 @@ extension Teo {
     /// - 直接删除：不做任何校验，直接删除节点缓存，用户请求时触发回源拉取；
     /// - 标记过期：将节点资源置为过期，用户请求时触发回源校验，即发送带有 If-None-Match 和 If-Modified-Since 头部的 HTTP 条件请求。若源站响应 200，则节点会回源拉取新的资源并更新缓存；若源站响应 304，则节点不会更新缓存；
     ///
-    /// 清除缓存任务详情请查看[清除缓存](https://cloud.tencent.com/document/product/1552/70759)。</li>
+    /// 清除缓存任务详情请查看[清除缓存](https://cloud.tencent.com/document/product/1552/70759)。
     @inlinable
     public func createPurgeTask(zoneId: String, type: String, method: String? = nil, targets: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePurgeTaskResponse> {
         self.createPurgeTask(.init(zoneId: zoneId, type: type, method: method, targets: targets), region: region, logger: logger, on: eventLoop)
@@ -134,7 +134,7 @@ extension Teo {
     /// - 直接删除：不做任何校验，直接删除节点缓存，用户请求时触发回源拉取；
     /// - 标记过期：将节点资源置为过期，用户请求时触发回源校验，即发送带有 If-None-Match 和 If-Modified-Since 头部的 HTTP 条件请求。若源站响应 200，则节点会回源拉取新的资源并更新缓存；若源站响应 304，则节点不会更新缓存；
     ///
-    /// 清除缓存任务详情请查看[清除缓存](https://cloud.tencent.com/document/product/1552/70759)。</li>
+    /// 清除缓存任务详情请查看[清除缓存](https://cloud.tencent.com/document/product/1552/70759)。
     @available(*, deprecated, renamed: "createPurgeTask(zoneId:type:method:targets:region:logger:on:)", message: "'encodeUrl' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func createPurgeTask(zoneId: String, type: String, method: String? = nil, targets: [String]? = nil, encodeUrl: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePurgeTaskResponse> {
@@ -147,7 +147,7 @@ extension Teo {
     /// - 直接删除：不做任何校验，直接删除节点缓存，用户请求时触发回源拉取；
     /// - 标记过期：将节点资源置为过期，用户请求时触发回源校验，即发送带有 If-None-Match 和 If-Modified-Since 头部的 HTTP 条件请求。若源站响应 200，则节点会回源拉取新的资源并更新缓存；若源站响应 304，则节点不会更新缓存；
     ///
-    /// 清除缓存任务详情请查看[清除缓存](https://cloud.tencent.com/document/product/1552/70759)。</li>
+    /// 清除缓存任务详情请查看[清除缓存](https://cloud.tencent.com/document/product/1552/70759)。
     @inlinable
     public func createPurgeTask(zoneId: String, type: String, method: String? = nil, targets: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePurgeTaskResponse {
         try await self.createPurgeTask(.init(zoneId: zoneId, type: type, method: method, targets: targets), region: region, logger: logger, on: eventLoop)
@@ -159,7 +159,7 @@ extension Teo {
     /// - 直接删除：不做任何校验，直接删除节点缓存，用户请求时触发回源拉取；
     /// - 标记过期：将节点资源置为过期，用户请求时触发回源校验，即发送带有 If-None-Match 和 If-Modified-Since 头部的 HTTP 条件请求。若源站响应 200，则节点会回源拉取新的资源并更新缓存；若源站响应 304，则节点不会更新缓存；
     ///
-    /// 清除缓存任务详情请查看[清除缓存](https://cloud.tencent.com/document/product/1552/70759)。</li>
+    /// 清除缓存任务详情请查看[清除缓存](https://cloud.tencent.com/document/product/1552/70759)。
     @available(*, deprecated, renamed: "createPurgeTask(zoneId:type:method:targets:region:logger:on:)", message: "'encodeUrl' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func createPurgeTask(zoneId: String, type: String, method: String? = nil, targets: [String]? = nil, encodeUrl: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePurgeTaskResponse {

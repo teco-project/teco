@@ -55,11 +55,15 @@ extension Cfw {
         /// 创建结果,0成功
         public let status: Int64
 
+        /// 唯一Id
+        public let uuid: String?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case status = "Status"
+            case uuid = "Uuid"
             case requestId = "RequestId"
         }
     }

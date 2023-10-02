@@ -24,28 +24,46 @@ extension Teo {
         /// 站点 ID。
         public let zoneId: String
 
-        /// 本次变更的域名列表。
+        /// 需要修改证书配置的加速域名。
         public let hosts: [String]
 
-        /// 证书信息, 只需要传入 CertId 即可, 如果为空, 则使用默认证书。
+        /// 配置证书的模式，取值有：
+        /// - disable：不配置证书；
+        /// - eofreecert：配置 EdgeOne 免费证书；
+        /// - sslcert：配置 SSL 证书。
+        /// 不填时默认取值为 disable。
+        public let mode: String?
+
+        /// SSL 证书配置，本参数仅在 mode = sslcert 时生效，传入对应证书的 CertId 即可。您可以前往 [SSL 证书列表](https://console.cloud.tencent.com/certoverview) 查看 CertId。
         public let serverCertInfo: [ServerCertInfo]?
 
         /// 托管类型，取值有：
-        /// - apply：托管EO；
         /// - none：不托管EO；
+        /// - apply：托管EO
+        ///
         /// 不填，默认取值为none。
-        public let applyType: String?
+        @available(*, deprecated)
+        public let applyType: String? = nil
 
-        public init(zoneId: String, hosts: [String], serverCertInfo: [ServerCertInfo]? = nil, applyType: String? = nil) {
+        public init(zoneId: String, hosts: [String], mode: String? = nil, serverCertInfo: [ServerCertInfo]? = nil) {
             self.zoneId = zoneId
             self.hosts = hosts
+            self.mode = mode
             self.serverCertInfo = serverCertInfo
-            self.applyType = applyType
+        }
+
+        @available(*, deprecated, renamed: "init(zoneId:hosts:mode:serverCertInfo:)", message: "'applyType' is deprecated in 'ModifyHostsCertificateRequest'. Setting this parameter has no effect.")
+        public init(zoneId: String, hosts: [String], mode: String? = nil, serverCertInfo: [ServerCertInfo]? = nil, applyType: String? = nil) {
+            self.zoneId = zoneId
+            self.hosts = hosts
+            self.mode = mode
+            self.serverCertInfo = serverCertInfo
         }
 
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
             case hosts = "Hosts"
+            case mode = "Mode"
             case serverCertInfo = "ServerCertInfo"
             case applyType = "ApplyType"
         }
@@ -61,35 +79,65 @@ extension Teo {
         }
     }
 
-    /// 修改域名证书
+    /// 配置域名证书
     ///
-    /// 用于修改域名证书
+    /// 完成域名创建之后，您可以为域名配置自有证书，也可以使用 EdgeOne 为您提供的 [免费证书](https://cloud.tencent.com/document/product/1552/90437)。
+    /// 如果您需要配置自有证书，请先将证书上传至 [SSL证书控制台](https://console.cloud.tencent.com/certoverview)，然后在本接口中传入对应的证书 ID。详情参考 [部署自有证书至 EdgeOne 域名
+    /// ](https://cloud.tencent.com/document/product/1552/88874)。
     @inlinable @discardableResult
     public func modifyHostsCertificate(_ input: ModifyHostsCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHostsCertificateResponse> {
         self.client.execute(action: "ModifyHostsCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 修改域名证书
+    /// 配置域名证书
     ///
-    /// 用于修改域名证书
+    /// 完成域名创建之后，您可以为域名配置自有证书，也可以使用 EdgeOne 为您提供的 [免费证书](https://cloud.tencent.com/document/product/1552/90437)。
+    /// 如果您需要配置自有证书，请先将证书上传至 [SSL证书控制台](https://console.cloud.tencent.com/certoverview)，然后在本接口中传入对应的证书 ID。详情参考 [部署自有证书至 EdgeOne 域名
+    /// ](https://cloud.tencent.com/document/product/1552/88874)。
     @inlinable @discardableResult
     public func modifyHostsCertificate(_ input: ModifyHostsCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHostsCertificateResponse {
         try await self.client.execute(action: "ModifyHostsCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 修改域名证书
+    /// 配置域名证书
     ///
-    /// 用于修改域名证书
+    /// 完成域名创建之后，您可以为域名配置自有证书，也可以使用 EdgeOne 为您提供的 [免费证书](https://cloud.tencent.com/document/product/1552/90437)。
+    /// 如果您需要配置自有证书，请先将证书上传至 [SSL证书控制台](https://console.cloud.tencent.com/certoverview)，然后在本接口中传入对应的证书 ID。详情参考 [部署自有证书至 EdgeOne 域名
+    /// ](https://cloud.tencent.com/document/product/1552/88874)。
     @inlinable @discardableResult
-    public func modifyHostsCertificate(zoneId: String, hosts: [String], serverCertInfo: [ServerCertInfo]? = nil, applyType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHostsCertificateResponse> {
-        self.modifyHostsCertificate(.init(zoneId: zoneId, hosts: hosts, serverCertInfo: serverCertInfo, applyType: applyType), region: region, logger: logger, on: eventLoop)
+    public func modifyHostsCertificate(zoneId: String, hosts: [String], mode: String? = nil, serverCertInfo: [ServerCertInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHostsCertificateResponse> {
+        self.modifyHostsCertificate(.init(zoneId: zoneId, hosts: hosts, mode: mode, serverCertInfo: serverCertInfo), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 修改域名证书
+    /// 配置域名证书
     ///
-    /// 用于修改域名证书
+    /// 完成域名创建之后，您可以为域名配置自有证书，也可以使用 EdgeOne 为您提供的 [免费证书](https://cloud.tencent.com/document/product/1552/90437)。
+    /// 如果您需要配置自有证书，请先将证书上传至 [SSL证书控制台](https://console.cloud.tencent.com/certoverview)，然后在本接口中传入对应的证书 ID。详情参考 [部署自有证书至 EdgeOne 域名
+    /// ](https://cloud.tencent.com/document/product/1552/88874)。
+    @available(*, deprecated, renamed: "modifyHostsCertificate(zoneId:hosts:mode:serverCertInfo:region:logger:on:)", message: "'applyType' is deprecated. Setting this parameter has no effect.")
     @inlinable @discardableResult
-    public func modifyHostsCertificate(zoneId: String, hosts: [String], serverCertInfo: [ServerCertInfo]? = nil, applyType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHostsCertificateResponse {
-        try await self.modifyHostsCertificate(.init(zoneId: zoneId, hosts: hosts, serverCertInfo: serverCertInfo, applyType: applyType), region: region, logger: logger, on: eventLoop)
+    public func modifyHostsCertificate(zoneId: String, hosts: [String], mode: String? = nil, serverCertInfo: [ServerCertInfo]? = nil, applyType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHostsCertificateResponse> {
+        self.modifyHostsCertificate(.init(zoneId: zoneId, hosts: hosts, mode: mode, serverCertInfo: serverCertInfo, applyType: applyType), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 配置域名证书
+    ///
+    /// 完成域名创建之后，您可以为域名配置自有证书，也可以使用 EdgeOne 为您提供的 [免费证书](https://cloud.tencent.com/document/product/1552/90437)。
+    /// 如果您需要配置自有证书，请先将证书上传至 [SSL证书控制台](https://console.cloud.tencent.com/certoverview)，然后在本接口中传入对应的证书 ID。详情参考 [部署自有证书至 EdgeOne 域名
+    /// ](https://cloud.tencent.com/document/product/1552/88874)。
+    @inlinable @discardableResult
+    public func modifyHostsCertificate(zoneId: String, hosts: [String], mode: String? = nil, serverCertInfo: [ServerCertInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHostsCertificateResponse {
+        try await self.modifyHostsCertificate(.init(zoneId: zoneId, hosts: hosts, mode: mode, serverCertInfo: serverCertInfo), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 配置域名证书
+    ///
+    /// 完成域名创建之后，您可以为域名配置自有证书，也可以使用 EdgeOne 为您提供的 [免费证书](https://cloud.tencent.com/document/product/1552/90437)。
+    /// 如果您需要配置自有证书，请先将证书上传至 [SSL证书控制台](https://console.cloud.tencent.com/certoverview)，然后在本接口中传入对应的证书 ID。详情参考 [部署自有证书至 EdgeOne 域名
+    /// ](https://cloud.tencent.com/document/product/1552/88874)。
+    @available(*, deprecated, renamed: "modifyHostsCertificate(zoneId:hosts:mode:serverCertInfo:region:logger:on:)", message: "'applyType' is deprecated. Setting this parameter has no effect.")
+    @inlinable @discardableResult
+    public func modifyHostsCertificate(zoneId: String, hosts: [String], mode: String? = nil, serverCertInfo: [ServerCertInfo]? = nil, applyType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHostsCertificateResponse {
+        try await self.modifyHostsCertificate(.init(zoneId: zoneId, hosts: hosts, mode: mode, serverCertInfo: serverCertInfo, applyType: applyType), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -21,10 +21,10 @@ import TecoCore
 extension Cynosdb {
     /// CopyClusterPasswordComplexity请求参数结构体
     public struct CopyClusterPasswordComplexityRequest: TCRequest {
-        /// 复制集群ID数组
+        /// 复制集群ID数组，例如["cynosdbmysql-bzxxrmtq","cynosdbmysql-qwer"]
         public let clusterIds: [String]
 
-        /// 集群id
+        /// 集群id，例如"cynosdbmysql-bzxxrmtq"
         public let sourceClusterId: String
 
         public init(clusterIds: [String], sourceClusterId: String) {

@@ -21,28 +21,39 @@ import TecoCore
 extension Ess {
     /// CreatePersonAuthCertificateImage请求参数结构体
     public struct CreatePersonAuthCertificateImageRequest: TCRequest {
-        /// 操作人信息
+        /// 执行本接口操作的员工信息。
+        /// 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         public let `operator`: UserInfo
 
         /// 个人用户名称
         public let userName: String
 
-        /// 身份证件类型取值：
-        /// ID_CARD 身居民身份证
-        /// PASSPORT 护照
-        /// HONGKONG_AND_MACAO 港澳居民来往内地通行证
-        /// FOREIGN_ID_CARD 外国人永久居留身份证
-        /// HONGKONG_MACAO_AND_TAIWAN 港澳台居民居住证(格式同居民身份证)
+        /// 证件类型，支持以下类型
+        ///
+        /// - ID_CARD  : 居民身份证 (默认值)
+        /// - PASSPORT  : 护照
+        /// - FOREIGN_ID_CARD  : 外国人永久居留身份证
+        /// - HONGKONG_AND_MACAO  : 港澳居民来往内地通行证
+        /// - HONGKONG_MACAO_AND_TAIWAN  : 港澳台居民居住证(格式同居民身份证)
         public let idCardType: String
 
-        /// 身份证件号码
+        /// 证件号码，应符合以下规则
+        ///
+        /// - 居民身份证号码应为18位字符串，由数字和大写字母X组成（如存在X，请大写）。
+        /// - 港澳居民来往内地通行证号码应为9位字符串，第1位为“C”，第2位为英文字母（但“I”、“O”除外），后7位为阿拉伯数字。
+        /// - 港澳台居民居住证号码编码规则与中国大陆身份证相同，应为18位字符串。
         public let idCardNumber: String
 
-        public init(operator: UserInfo, userName: String, idCardType: String, idCardNumber: String) {
+        /// 代理企业和员工的信息。
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        public let agent: Agent?
+
+        public init(operator: UserInfo, userName: String, idCardType: String, idCardNumber: String, agent: Agent? = nil) {
             self.operator = `operator`
             self.userName = userName
             self.idCardType = idCardType
             self.idCardNumber = idCardNumber
+            self.agent = agent
         }
 
         enum CodingKeys: String, CodingKey {
@@ -50,52 +61,116 @@ extension Ess {
             case userName = "UserName"
             case idCardType = "IdCardType"
             case idCardNumber = "IdCardNumber"
+            case agent = "Agent"
         }
     }
 
     /// CreatePersonAuthCertificateImage返回参数结构体
     public struct CreatePersonAuthCertificateImageResponse: TCResponse {
-        /// 个人用户证明证书的下载链接
+        /// 个人用户认证证书图片下载URL，`有效期为5分钟`，超过有效期后将无法再下载。
         public let authCertUrl: String
+
+        /// 个人用户认证证书的编号, 为20位数字组成的字符串,  由腾讯电子签下发此编号 。
+        /// 该编号会合成到个人用户证书证明图片。
+        ///
+        /// 注: `个人用户认证证书的编号和证明图片绑定, 获取新的证明图片编号会变动`
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let imageCertId: String?
+
+        /// CA供应商下发给用户的证书编号，在证书到期后自动续期后此证书编号会发生变动，且不会合成到个人用户证书证明图片中。
+        ///
+        /// 注意：`腾讯电子签接入多家CA供应商以提供容灾能力，不同CA下发的证书编号区别较大，但基本都是由数字和字母组成，长度在200以下。`
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let serialNumber: String?
+
+        /// CA证书颁发时间，格式为Unix标准时间戳（秒）
+        /// 该时间格式化后会合成到个人用户证书证明图片
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let validFrom: UInt64?
+
+        /// CA证书有效截止时间，格式为Unix标准时间戳（秒）
+        /// 该时间格式化后会合成到个人用户证书证明图片
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let validTo: UInt64?
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case authCertUrl = "AuthCertUrl"
+            case imageCertId = "ImageCertId"
+            case serialNumber = "SerialNumber"
+            case validFrom = "ValidFrom"
+            case validTo = "ValidTo"
             case requestId = "RequestId"
         }
     }
 
-    /// 创建个人用户证书证明图片
+    /// 获取个人用户认证证书图片
     ///
-    /// 本接口（CreatePersonAuthCertificateImage）用于创建个人用户证书证明图片
+    /// 获取个人用户认证证书图片下载URL
+    ///
+    /// 个人用户认证证书图片样式如下图
+    ///
+    /// ![image](https://dyn.ess.tencent.cn/guide/capi/CreatePersonAuthCertificateImage.png)
+    ///
+    /// 注:
+    ///
+    /// - 只能获取个人用户证明图片, 企业员工的暂不支持
+    /// - 处方单等特殊场景专用，此接口为白名单功能，使用前请联系对接的客户经理沟通。
     @inlinable
     public func createPersonAuthCertificateImage(_ input: CreatePersonAuthCertificateImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePersonAuthCertificateImageResponse> {
         self.client.execute(action: "CreatePersonAuthCertificateImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 创建个人用户证书证明图片
+    /// 获取个人用户认证证书图片
     ///
-    /// 本接口（CreatePersonAuthCertificateImage）用于创建个人用户证书证明图片
+    /// 获取个人用户认证证书图片下载URL
+    ///
+    /// 个人用户认证证书图片样式如下图
+    ///
+    /// ![image](https://dyn.ess.tencent.cn/guide/capi/CreatePersonAuthCertificateImage.png)
+    ///
+    /// 注:
+    ///
+    /// - 只能获取个人用户证明图片, 企业员工的暂不支持
+    /// - 处方单等特殊场景专用，此接口为白名单功能，使用前请联系对接的客户经理沟通。
     @inlinable
     public func createPersonAuthCertificateImage(_ input: CreatePersonAuthCertificateImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonAuthCertificateImageResponse {
         try await self.client.execute(action: "CreatePersonAuthCertificateImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 创建个人用户证书证明图片
+    /// 获取个人用户认证证书图片
     ///
-    /// 本接口（CreatePersonAuthCertificateImage）用于创建个人用户证书证明图片
+    /// 获取个人用户认证证书图片下载URL
+    ///
+    /// 个人用户认证证书图片样式如下图
+    ///
+    /// ![image](https://dyn.ess.tencent.cn/guide/capi/CreatePersonAuthCertificateImage.png)
+    ///
+    /// 注:
+    ///
+    /// - 只能获取个人用户证明图片, 企业员工的暂不支持
+    /// - 处方单等特殊场景专用，此接口为白名单功能，使用前请联系对接的客户经理沟通。
     @inlinable
-    public func createPersonAuthCertificateImage(operator: UserInfo, userName: String, idCardType: String, idCardNumber: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePersonAuthCertificateImageResponse> {
-        self.createPersonAuthCertificateImage(.init(operator: `operator`, userName: userName, idCardType: idCardType, idCardNumber: idCardNumber), region: region, logger: logger, on: eventLoop)
+    public func createPersonAuthCertificateImage(operator: UserInfo, userName: String, idCardType: String, idCardNumber: String, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePersonAuthCertificateImageResponse> {
+        self.createPersonAuthCertificateImage(.init(operator: `operator`, userName: userName, idCardType: idCardType, idCardNumber: idCardNumber, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 创建个人用户证书证明图片
+    /// 获取个人用户认证证书图片
     ///
-    /// 本接口（CreatePersonAuthCertificateImage）用于创建个人用户证书证明图片
+    /// 获取个人用户认证证书图片下载URL
+    ///
+    /// 个人用户认证证书图片样式如下图
+    ///
+    /// ![image](https://dyn.ess.tencent.cn/guide/capi/CreatePersonAuthCertificateImage.png)
+    ///
+    /// 注:
+    ///
+    /// - 只能获取个人用户证明图片, 企业员工的暂不支持
+    /// - 处方单等特殊场景专用，此接口为白名单功能，使用前请联系对接的客户经理沟通。
     @inlinable
-    public func createPersonAuthCertificateImage(operator: UserInfo, userName: String, idCardType: String, idCardNumber: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonAuthCertificateImageResponse {
-        try await self.createPersonAuthCertificateImage(.init(operator: `operator`, userName: userName, idCardType: idCardType, idCardNumber: idCardNumber), region: region, logger: logger, on: eventLoop)
+    public func createPersonAuthCertificateImage(operator: UserInfo, userName: String, idCardType: String, idCardNumber: String, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonAuthCertificateImageResponse {
+        try await self.createPersonAuthCertificateImage(.init(operator: `operator`, userName: userName, idCardType: idCardType, idCardNumber: idCardNumber, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 }

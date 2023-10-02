@@ -59,7 +59,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func updateAsset(_ input: UpdateAssetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAssetResponse> {
-        fatalError("UpdateAsset is no longer available.")
+        fatalError("'UpdateAsset' is no longer available.")
     }
 
     /// 修改生成包信息
@@ -68,7 +68,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func updateAsset(_ input: UpdateAssetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAssetResponse {
-        fatalError("UpdateAsset is no longer available.")
+        fatalError("'UpdateAsset' is no longer available.")
     }
 
     /// 修改生成包信息
@@ -77,7 +77,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func updateAsset(assetId: String, assetName: String, assetVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAssetResponse> {
-        fatalError("UpdateAsset is no longer available.")
+        fatalError("'UpdateAsset' is no longer available.")
     }
 
     /// 修改生成包信息
@@ -86,6 +86,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func updateAsset(assetId: String, assetName: String, assetVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAssetResponse {
-        fatalError("UpdateAsset is no longer available.")
+        fatalError("'UpdateAsset' is no longer available.")
     }
 }

@@ -17,59 +17,8 @@
 import TecoCore
 
 extension Advisor {
-    /// 评估项信息
-    public struct DescribeStrategie: TCOutputModel {
-        /// 评估项ID
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let strategyId: UInt64?
-
-        /// 评估项名称
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let name: String?
-
-        /// 评估项描述
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let desc: String?
-
-        /// 评估项对应产品ID
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let product: String?
-
-        /// 评估项对应产品名称
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let productDesc: String?
-
-        /// 评估项优化建议
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let repair: String?
-
-        /// 评估项类别ID
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let groupId: UInt64?
-
-        /// 评估项类别名称
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let groupName: String?
-
-        /// 评估项风险列表
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let conditions: [DescribeStrategiesCondition]?
-
-        enum CodingKeys: String, CodingKey {
-            case strategyId = "StrategyId"
-            case name = "Name"
-            case desc = "Desc"
-            case product = "Product"
-            case productDesc = "ProductDesc"
-            case repair = "Repair"
-            case groupId = "GroupId"
-            case groupName = "GroupName"
-            case conditions = "Conditions"
-        }
-    }
-
     /// 评估项警告条件
-    public struct DescribeStrategiesCondition: TCOutputModel {
+    public struct Conditions: TCOutputModel {
         /// 警告条件ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let conditionId: UInt64?
@@ -136,6 +85,57 @@ extension Advisor {
             case fieldName = "FieldName"
             case fieldType = "FieldType"
             case fieldDict = "FieldDict"
+        }
+    }
+
+    /// 评估项信息
+    public struct Strategies: TCOutputModel {
+        /// 评估项ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let strategyId: UInt64?
+
+        /// 评估项名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 评估项描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let desc: String?
+
+        /// 评估项对应产品ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let product: String?
+
+        /// 评估项对应产品名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let productDesc: String?
+
+        /// 评估项优化建议
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let repair: String?
+
+        /// 评估项类别ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let groupId: UInt64?
+
+        /// 评估项类别名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let groupName: String?
+
+        /// 评估项风险列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let conditions: [Conditions]?
+
+        enum CodingKeys: String, CodingKey {
+            case strategyId = "StrategyId"
+            case name = "Name"
+            case desc = "Desc"
+            case product = "Product"
+            case productDesc = "ProductDesc"
+            case repair = "Repair"
+            case groupId = "GroupId"
+            case groupName = "GroupName"
+            case conditions = "Conditions"
         }
     }
 }

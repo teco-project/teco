@@ -30,16 +30,21 @@ extension Vpc {
         /// 网络ACL五元组规则集。NetworkAclEntrySet和NetworkAclQuintupleSet只能输入一个。
         public let networkAclQuintupleSet: NetworkAclQuintupleEntries?
 
-        public init(networkAclId: String, networkAclEntrySet: NetworkAclEntrySet? = nil, networkAclQuintupleSet: NetworkAclQuintupleEntries? = nil) {
+        /// 三元组的增量更新。该接口的默认语义为全量覆盖。当需要实现增量更新语义时，设置该参数为True。
+        public let enableUpdateAclEntries: Bool?
+
+        public init(networkAclId: String, networkAclEntrySet: NetworkAclEntrySet? = nil, networkAclQuintupleSet: NetworkAclQuintupleEntries? = nil, enableUpdateAclEntries: Bool? = nil) {
             self.networkAclId = networkAclId
             self.networkAclEntrySet = networkAclEntrySet
             self.networkAclQuintupleSet = networkAclQuintupleSet
+            self.enableUpdateAclEntries = enableUpdateAclEntries
         }
 
         enum CodingKeys: String, CodingKey {
             case networkAclId = "NetworkAclId"
             case networkAclEntrySet = "NetworkAclEntrySet"
             case networkAclQuintupleSet = "NetworkAclQuintupleSet"
+            case enableUpdateAclEntries = "EnableUpdateAclEntries"
         }
     }
 
@@ -79,8 +84,8 @@ extension Vpc {
     /// * 若同时传入入站规则和出站规则，则重置原有的入站规则和出站规则，并分别导入传入的规则。
     /// * 若仅传入入站规则，则仅重置原有的入站规则，并导入传入的规则，不影响原有的出站规则（若仅传入出站规则，处理方式类似入站方向）。
     @inlinable @discardableResult
-    public func modifyNetworkAclEntries(networkAclId: String, networkAclEntrySet: NetworkAclEntrySet? = nil, networkAclQuintupleSet: NetworkAclQuintupleEntries? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetworkAclEntriesResponse> {
-        self.modifyNetworkAclEntries(.init(networkAclId: networkAclId, networkAclEntrySet: networkAclEntrySet, networkAclQuintupleSet: networkAclQuintupleSet), region: region, logger: logger, on: eventLoop)
+    public func modifyNetworkAclEntries(networkAclId: String, networkAclEntrySet: NetworkAclEntrySet? = nil, networkAclQuintupleSet: NetworkAclQuintupleEntries? = nil, enableUpdateAclEntries: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetworkAclEntriesResponse> {
+        self.modifyNetworkAclEntries(.init(networkAclId: networkAclId, networkAclEntrySet: networkAclEntrySet, networkAclQuintupleSet: networkAclQuintupleSet, enableUpdateAclEntries: enableUpdateAclEntries), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改网络ACL规则
@@ -89,7 +94,7 @@ extension Vpc {
     /// * 若同时传入入站规则和出站规则，则重置原有的入站规则和出站规则，并分别导入传入的规则。
     /// * 若仅传入入站规则，则仅重置原有的入站规则，并导入传入的规则，不影响原有的出站规则（若仅传入出站规则，处理方式类似入站方向）。
     @inlinable @discardableResult
-    public func modifyNetworkAclEntries(networkAclId: String, networkAclEntrySet: NetworkAclEntrySet? = nil, networkAclQuintupleSet: NetworkAclQuintupleEntries? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkAclEntriesResponse {
-        try await self.modifyNetworkAclEntries(.init(networkAclId: networkAclId, networkAclEntrySet: networkAclEntrySet, networkAclQuintupleSet: networkAclQuintupleSet), region: region, logger: logger, on: eventLoop)
+    public func modifyNetworkAclEntries(networkAclId: String, networkAclEntrySet: NetworkAclEntrySet? = nil, networkAclQuintupleSet: NetworkAclQuintupleEntries? = nil, enableUpdateAclEntries: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkAclEntriesResponse {
+        try await self.modifyNetworkAclEntries(.init(networkAclId: networkAclId, networkAclEntrySet: networkAclEntrySet, networkAclQuintupleSet: networkAclQuintupleSet, enableUpdateAclEntries: enableUpdateAclEntries), region: region, logger: logger, on: eventLoop)
     }
 }

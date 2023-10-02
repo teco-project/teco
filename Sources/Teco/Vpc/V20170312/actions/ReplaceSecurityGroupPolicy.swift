@@ -21,7 +21,7 @@ import TecoCore
 extension Vpc {
     /// ReplaceSecurityGroupPolicy请求参数结构体
     public struct ReplaceSecurityGroupPolicyRequest: TCRequest {
-        /// 安全组实例ID，例如sg-33ocnj9n，可通过DescribeSecurityGroups获取。
+        /// 安全组实例ID，例如sg-33ocnj9n，可通过[DescribeSecurityGroups](https://cloud.tencent.com/document/product/215/15808)获取。
         public let securityGroupId: String
 
         /// 安全组规则集合对象。

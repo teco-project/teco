@@ -46,8 +46,8 @@ extension Lcic {
         /// 直播开始后不允许修改。
         public let resolution: UInt64?
 
-        /// 最大连麦人数（不包括老师）。取值范围[0, 17)
-        /// 直播开始后不允许修改。
+        /// 设置房间/课堂同时最大可与老师进行连麦互动的人数，该参数支持正式上课/开播前调用修改房间修改。
+        /// 取值范围[0,16]，当取值为0时表示当前课堂/直播，不支持连麦互动。
         public let maxMicNumber: UInt64?
 
         /// 进入房间时是否自动连麦。可以有以下取值：
@@ -94,10 +94,16 @@ extension Lcic {
         /// 开启课后评分。 0：不开启(默认)  1：开启
         public let isGradingRequiredPostClass: UInt64?
 
-        /// 房间类型: 0 小班课（默认值）; 1 大班课; 2 1V1 (后续扩展)
+        /// 房间类型: 0 小班课（默认值）; 1 大班课; 2 1V1 （预留参数、暂未开放)
         public let roomType: UInt64?
 
-        public init(roomId: UInt64, sdkAppId: UInt64, startTime: UInt64? = nil, endTime: UInt64? = nil, teacherId: String? = nil, name: String? = nil, resolution: UInt64? = nil, maxMicNumber: UInt64? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, subType: String? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, groupId: String? = nil, enableDirectControl: UInt64? = nil, interactionMode: UInt64? = nil, videoOrientation: UInt64? = nil, isGradingRequiredPostClass: UInt64? = nil, roomType: UInt64? = nil) {
+        /// 录制模板。仅可修改还未开始的房间。录制模板枚举值参考：https://cloud.tencent.com/document/product/1639/89744
+        public let recordLayout: UInt64?
+
+        /// 拖堂时间：单位分钟，0为不限制(默认值), -1为不能拖堂，大于0为拖堂的时间，最大值120分钟
+        public let endDelayTime: Int64?
+
+        public init(roomId: UInt64, sdkAppId: UInt64, startTime: UInt64? = nil, endTime: UInt64? = nil, teacherId: String? = nil, name: String? = nil, resolution: UInt64? = nil, maxMicNumber: UInt64? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, subType: String? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, groupId: String? = nil, enableDirectControl: UInt64? = nil, interactionMode: UInt64? = nil, videoOrientation: UInt64? = nil, isGradingRequiredPostClass: UInt64? = nil, roomType: UInt64? = nil, recordLayout: UInt64? = nil, endDelayTime: Int64? = nil) {
             self.roomId = roomId
             self.sdkAppId = sdkAppId
             self.startTime = startTime
@@ -117,6 +123,8 @@ extension Lcic {
             self.videoOrientation = videoOrientation
             self.isGradingRequiredPostClass = isGradingRequiredPostClass
             self.roomType = roomType
+            self.recordLayout = recordLayout
+            self.endDelayTime = endDelayTime
         }
 
         enum CodingKeys: String, CodingKey {
@@ -139,6 +147,8 @@ extension Lcic {
             case videoOrientation = "VideoOrientation"
             case isGradingRequiredPostClass = "IsGradingRequiredPostClass"
             case roomType = "RoomType"
+            case recordLayout = "RecordLayout"
+            case endDelayTime = "EndDelayTime"
         }
     }
 
@@ -166,13 +176,13 @@ extension Lcic {
 
     /// 修改房间
     @inlinable @discardableResult
-    public func modifyRoom(roomId: UInt64, sdkAppId: UInt64, startTime: UInt64? = nil, endTime: UInt64? = nil, teacherId: String? = nil, name: String? = nil, resolution: UInt64? = nil, maxMicNumber: UInt64? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, subType: String? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, groupId: String? = nil, enableDirectControl: UInt64? = nil, interactionMode: UInt64? = nil, videoOrientation: UInt64? = nil, isGradingRequiredPostClass: UInt64? = nil, roomType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRoomResponse> {
-        self.modifyRoom(.init(roomId: roomId, sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, teacherId: teacherId, name: name, resolution: resolution, maxMicNumber: maxMicNumber, autoMic: autoMic, audioQuality: audioQuality, subType: subType, disableRecord: disableRecord, assistants: assistants, groupId: groupId, enableDirectControl: enableDirectControl, interactionMode: interactionMode, videoOrientation: videoOrientation, isGradingRequiredPostClass: isGradingRequiredPostClass, roomType: roomType), region: region, logger: logger, on: eventLoop)
+    public func modifyRoom(roomId: UInt64, sdkAppId: UInt64, startTime: UInt64? = nil, endTime: UInt64? = nil, teacherId: String? = nil, name: String? = nil, resolution: UInt64? = nil, maxMicNumber: UInt64? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, subType: String? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, groupId: String? = nil, enableDirectControl: UInt64? = nil, interactionMode: UInt64? = nil, videoOrientation: UInt64? = nil, isGradingRequiredPostClass: UInt64? = nil, roomType: UInt64? = nil, recordLayout: UInt64? = nil, endDelayTime: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRoomResponse> {
+        self.modifyRoom(.init(roomId: roomId, sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, teacherId: teacherId, name: name, resolution: resolution, maxMicNumber: maxMicNumber, autoMic: autoMic, audioQuality: audioQuality, subType: subType, disableRecord: disableRecord, assistants: assistants, groupId: groupId, enableDirectControl: enableDirectControl, interactionMode: interactionMode, videoOrientation: videoOrientation, isGradingRequiredPostClass: isGradingRequiredPostClass, roomType: roomType, recordLayout: recordLayout, endDelayTime: endDelayTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改房间
     @inlinable @discardableResult
-    public func modifyRoom(roomId: UInt64, sdkAppId: UInt64, startTime: UInt64? = nil, endTime: UInt64? = nil, teacherId: String? = nil, name: String? = nil, resolution: UInt64? = nil, maxMicNumber: UInt64? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, subType: String? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, groupId: String? = nil, enableDirectControl: UInt64? = nil, interactionMode: UInt64? = nil, videoOrientation: UInt64? = nil, isGradingRequiredPostClass: UInt64? = nil, roomType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoomResponse {
-        try await self.modifyRoom(.init(roomId: roomId, sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, teacherId: teacherId, name: name, resolution: resolution, maxMicNumber: maxMicNumber, autoMic: autoMic, audioQuality: audioQuality, subType: subType, disableRecord: disableRecord, assistants: assistants, groupId: groupId, enableDirectControl: enableDirectControl, interactionMode: interactionMode, videoOrientation: videoOrientation, isGradingRequiredPostClass: isGradingRequiredPostClass, roomType: roomType), region: region, logger: logger, on: eventLoop)
+    public func modifyRoom(roomId: UInt64, sdkAppId: UInt64, startTime: UInt64? = nil, endTime: UInt64? = nil, teacherId: String? = nil, name: String? = nil, resolution: UInt64? = nil, maxMicNumber: UInt64? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, subType: String? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, groupId: String? = nil, enableDirectControl: UInt64? = nil, interactionMode: UInt64? = nil, videoOrientation: UInt64? = nil, isGradingRequiredPostClass: UInt64? = nil, roomType: UInt64? = nil, recordLayout: UInt64? = nil, endDelayTime: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoomResponse {
+        try await self.modifyRoom(.init(roomId: roomId, sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, teacherId: teacherId, name: name, resolution: resolution, maxMicNumber: maxMicNumber, autoMic: autoMic, audioQuality: audioQuality, subType: subType, disableRecord: disableRecord, assistants: assistants, groupId: groupId, enableDirectControl: enableDirectControl, interactionMode: interactionMode, videoOrientation: videoOrientation, isGradingRequiredPostClass: isGradingRequiredPostClass, roomType: roomType, recordLayout: recordLayout, endDelayTime: endDelayTime), region: region, logger: logger, on: eventLoop)
     }
 }

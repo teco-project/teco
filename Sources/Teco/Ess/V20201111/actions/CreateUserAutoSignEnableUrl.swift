@@ -21,34 +21,40 @@ import TecoCore
 extension Ess {
     /// CreateUserAutoSignEnableUrl请求参数结构体
     public struct CreateUserAutoSignEnableUrlRequest: TCRequest {
-        /// 操作人信息,UserId必填
+        /// 执行本接口操作的员工信息。
+        /// 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         public let `operator`: UserInfo
 
-        /// 自动签场景:
-        /// E_PRESCRIPTION_AUTO_SIGN 电子处方
+        /// 自动签使用的场景值, 可以选择的场景值如下:
+        ///
+        /// - **E_PRESCRIPTION_AUTO_SIGN** :  电子处方场景
+        ///
+        /// 注: `现在仅支持电子处方场景`
         public let sceneKey: String
 
-        /// 自动签开通，签署相关配置
+        /// 自动签开通配置信息, 包括开通的人员的信息等
         public let autoSignConfig: AutoSignConfig
 
-        /// 链接类型，
-        /// 空-默认小程序端链接
-        /// H5SIGN-h5端链接
+        /// 生成的链接类型：
+        ///
+        /// - 不传(即为空值) 则会生成小程序端开通链接(默认)
+        /// - **H5SIGN** : 生成H5端开通链接
         public let urlType: String?
 
-        /// 通知类型
+        /// 是否通知开通方，通知类型:
         ///
-        /// 默认不设置为不通知开通方，
-        /// SMS 为短信通知 , 此种方式需要NotifyAddress填写手机号。
+        /// - 默认不设置为不通知开通方
+        /// - **SMS** :  短信通知 ,如果需要短信通知则NotifyAddress填写对方的手机号
         public let notifyType: String?
 
         /// 如果通知类型NotifyType选择为SMS，则此处为手机号, 其他通知类型不需要设置此项
         public let notifyAddress: String?
 
-        /// 链接的过期时间，格式为Unix时间戳，不能早于当前时间，且最大为30天。如果不传，默认有效期为7天。
+        /// 链接的过期时间，格式为Unix时间戳，不能早于当前时间，且最大为当前时间往后30天。`如果不传，默认过期时间为当前时间往后7天。`
         public let expiredTime: Int64?
 
-        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        /// 代理企业和员工的信息。
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         public let agent: Agent?
 
         public init(operator: UserInfo, sceneKey: String, autoSignConfig: AutoSignConfig, urlType: String? = nil, notifyType: String? = nil, notifyAddress: String? = nil, expiredTime: Int64? = nil, agent: Agent? = nil) {
@@ -76,22 +82,33 @@ extension Ess {
 
     /// CreateUserAutoSignEnableUrl返回参数结构体
     public struct CreateUserAutoSignEnableUrlResponse: TCResponse {
-        /// 跳转短链
+        /// 个人用户自动签的开通链接, 短链形式。过期时间受 `ExpiredTime` 参数控制。
         public let url: String
 
-        /// 小程序AppId
+        /// 腾讯电子签小程序的 AppID，用于其他小程序/APP等应用跳转至腾讯电子签小程序使用
+        ///
+        /// 注: `如果获取的是H5链接, 则不会返回此值`
         public let appId: String
 
-        /// 小程序 原始 Id
+        /// 腾讯电子签小程序的原始 Id,  ，用于其他小程序/APP等应用跳转至腾讯电子签小程序使用
+        ///
+        /// 注: `如果获取的是H5链接, 则不会返回此值`
         public let appOriginalId: String
 
-        /// 跳转路径
+        /// 腾讯电子签小程序的跳转路径，用于其他小程序/APP等应用跳转至腾讯电子签小程序使用
+        ///
+        /// 注: `如果获取的是H5链接, 则不会返回此值`
         public let path: String
 
-        /// base64格式跳转二维码,可以通过微信扫描后跳转到业务界面
+        /// base64 格式的跳转二维码图片，可通过微信扫描后跳转到腾讯电子签小程序的开通界面。
+        ///
+        /// 注: `如果获取的是H5链接, 则不会返回此二维码图片`
         public let qrCode: String
 
-        /// 链接类型，空-默认小程序端链接，H5SIGN-h5端链接
+        /// 返回的链接类型
+        ///
+        /// - 空: 默认小程序端链接
+        /// - **H5SIGN** : h5端链接
         public let urlType: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -108,33 +125,41 @@ extension Ess {
         }
     }
 
-    /// 获取个人用户自动签开启链接
+    /// 获取个人用户自动签的开通链接
     ///
-    /// 企业方可以通过此接口获取个人用户开启自动签的跳转链接（处方单场景专用，使用此接口请与客户经理确认）
+    /// 获取个人用户自动签的开通链接。
+    ///
+    /// 注意: `处方单等特殊场景专用，此接口为白名单功能，使用前请联系对接的客户经理沟通。`
     @inlinable
     public func createUserAutoSignEnableUrl(_ input: CreateUserAutoSignEnableUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserAutoSignEnableUrlResponse> {
         self.client.execute(action: "CreateUserAutoSignEnableUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取个人用户自动签开启链接
+    /// 获取个人用户自动签的开通链接
     ///
-    /// 企业方可以通过此接口获取个人用户开启自动签的跳转链接（处方单场景专用，使用此接口请与客户经理确认）
+    /// 获取个人用户自动签的开通链接。
+    ///
+    /// 注意: `处方单等特殊场景专用，此接口为白名单功能，使用前请联系对接的客户经理沟通。`
     @inlinable
     public func createUserAutoSignEnableUrl(_ input: CreateUserAutoSignEnableUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserAutoSignEnableUrlResponse {
         try await self.client.execute(action: "CreateUserAutoSignEnableUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取个人用户自动签开启链接
+    /// 获取个人用户自动签的开通链接
     ///
-    /// 企业方可以通过此接口获取个人用户开启自动签的跳转链接（处方单场景专用，使用此接口请与客户经理确认）
+    /// 获取个人用户自动签的开通链接。
+    ///
+    /// 注意: `处方单等特殊场景专用，此接口为白名单功能，使用前请联系对接的客户经理沟通。`
     @inlinable
     public func createUserAutoSignEnableUrl(operator: UserInfo, sceneKey: String, autoSignConfig: AutoSignConfig, urlType: String? = nil, notifyType: String? = nil, notifyAddress: String? = nil, expiredTime: Int64? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserAutoSignEnableUrlResponse> {
         self.createUserAutoSignEnableUrl(.init(operator: `operator`, sceneKey: sceneKey, autoSignConfig: autoSignConfig, urlType: urlType, notifyType: notifyType, notifyAddress: notifyAddress, expiredTime: expiredTime, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取个人用户自动签开启链接
+    /// 获取个人用户自动签的开通链接
     ///
-    /// 企业方可以通过此接口获取个人用户开启自动签的跳转链接（处方单场景专用，使用此接口请与客户经理确认）
+    /// 获取个人用户自动签的开通链接。
+    ///
+    /// 注意: `处方单等特殊场景专用，此接口为白名单功能，使用前请联系对接的客户经理沟通。`
     @inlinable
     public func createUserAutoSignEnableUrl(operator: UserInfo, sceneKey: String, autoSignConfig: AutoSignConfig, urlType: String? = nil, notifyType: String? = nil, notifyAddress: String? = nil, expiredTime: Int64? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserAutoSignEnableUrlResponse {
         try await self.createUserAutoSignEnableUrl(.init(operator: `operator`, sceneKey: sceneKey, autoSignConfig: autoSignConfig, urlType: urlType, notifyType: notifyType, notifyAddress: notifyAddress, expiredTime: expiredTime, agent: agent), region: region, logger: logger, on: eventLoop)

@@ -48,25 +48,25 @@ extension Cynosdb {
         }
     }
 
-    /// 创建账号
+    /// 创建用户账号
     @inlinable @discardableResult
     public func createAccounts(_ input: CreateAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccountsResponse> {
         self.client.execute(action: "CreateAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 创建账号
+    /// 创建用户账号
     @inlinable @discardableResult
     public func createAccounts(_ input: CreateAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountsResponse {
         try await self.client.execute(action: "CreateAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 创建账号
+    /// 创建用户账号
     @inlinable @discardableResult
     public func createAccounts(clusterId: String, accounts: [NewAccount], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccountsResponse> {
         self.createAccounts(.init(clusterId: clusterId, accounts: accounts), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 创建账号
+    /// 创建用户账号
     @inlinable @discardableResult
     public func createAccounts(clusterId: String, accounts: [NewAccount], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountsResponse {
         try await self.createAccounts(.init(clusterId: clusterId, accounts: accounts), region: region, logger: logger, on: eventLoop)

@@ -52,25 +52,25 @@ extension Cynosdb {
         }
     }
 
-    /// 增加从可用区
+    /// 开启多可用区部署
     @inlinable
     public func addClusterSlaveZone(_ input: AddClusterSlaveZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddClusterSlaveZoneResponse> {
         self.client.execute(action: "AddClusterSlaveZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 增加从可用区
+    /// 开启多可用区部署
     @inlinable
     public func addClusterSlaveZone(_ input: AddClusterSlaveZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddClusterSlaveZoneResponse {
         try await self.client.execute(action: "AddClusterSlaveZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 增加从可用区
+    /// 开启多可用区部署
     @inlinable
     public func addClusterSlaveZone(clusterId: String, slaveZone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddClusterSlaveZoneResponse> {
         self.addClusterSlaveZone(.init(clusterId: clusterId, slaveZone: slaveZone), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 增加从可用区
+    /// 开启多可用区部署
     @inlinable
     public func addClusterSlaveZone(clusterId: String, slaveZone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddClusterSlaveZoneResponse {
         try await self.addClusterSlaveZone(.init(clusterId: clusterId, slaveZone: slaveZone), region: region, logger: logger, on: eventLoop)

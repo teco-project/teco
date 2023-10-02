@@ -153,7 +153,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func copyFleet(_ input: CopyFleetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyFleetResponse> {
-        fatalError("CopyFleet is no longer available.")
+        fatalError("'CopyFleet' is no longer available.")
     }
 
     /// 复制服务器舰队
@@ -162,7 +162,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func copyFleet(_ input: CopyFleetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyFleetResponse {
-        fatalError("CopyFleet is no longer available.")
+        fatalError("'CopyFleet' is no longer available.")
     }
 
     /// 复制服务器舰队
@@ -171,7 +171,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func copyFleet(fleetId: String, copyNumber: Int64, assetId: String? = nil, description: String? = nil, inboundPermissions: [InboundPermission]? = nil, instanceType: String? = nil, fleetType: String? = nil, name: String? = nil, newGameServerSessionProtectionPolicy: String? = nil, resourceCreationLimitPolicy: ResourceCreationLimitPolicy? = nil, runtimeConfiguration: RuntimeConfiguration? = nil, gameServerSessionProtectionTimeLimit: Int64? = nil, selectedScalingType: String? = nil, selectedCcnType: String? = nil, tags: [Tag]? = nil, systemDiskInfo: DiskInfo? = nil, dataDiskInfo: [DiskInfo]? = nil, selectedTimerType: String? = nil, ccnInfos: [CcnInfo]? = nil, internetMaxBandwidthOut: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyFleetResponse> {
-        fatalError("CopyFleet is no longer available.")
+        fatalError("'CopyFleet' is no longer available.")
     }
 
     /// 复制服务器舰队
@@ -180,6 +180,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func copyFleet(fleetId: String, copyNumber: Int64, assetId: String? = nil, description: String? = nil, inboundPermissions: [InboundPermission]? = nil, instanceType: String? = nil, fleetType: String? = nil, name: String? = nil, newGameServerSessionProtectionPolicy: String? = nil, resourceCreationLimitPolicy: ResourceCreationLimitPolicy? = nil, runtimeConfiguration: RuntimeConfiguration? = nil, gameServerSessionProtectionTimeLimit: Int64? = nil, selectedScalingType: String? = nil, selectedCcnType: String? = nil, tags: [Tag]? = nil, systemDiskInfo: DiskInfo? = nil, dataDiskInfo: [DiskInfo]? = nil, selectedTimerType: String? = nil, ccnInfos: [CcnInfo]? = nil, internetMaxBandwidthOut: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyFleetResponse {
-        fatalError("CopyFleet is no longer available.")
+        fatalError("'CopyFleet' is no longer available.")
     }
 }

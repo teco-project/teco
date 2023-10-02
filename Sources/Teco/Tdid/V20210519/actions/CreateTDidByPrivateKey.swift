@@ -61,27 +61,27 @@ extension Tdid {
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createTDidByPrivateKey(_ input: CreateTDidByPrivateKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTDidByPrivateKeyResponse> {
-        fatalError("CreateTDidByPrivateKey is no longer available.")
+        fatalError("'CreateTDidByPrivateKey' is no longer available.")
     }
 
     /// 新建DID根据私钥生成Tdid
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createTDidByPrivateKey(_ input: CreateTDidByPrivateKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidByPrivateKeyResponse {
-        fatalError("CreateTDidByPrivateKey is no longer available.")
+        fatalError("'CreateTDidByPrivateKey' is no longer available.")
     }
 
     /// 新建DID根据私钥生成Tdid
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createTDidByPrivateKey(clusterId: String, groupId: UInt64, privateKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTDidByPrivateKeyResponse> {
-        fatalError("CreateTDidByPrivateKey is no longer available.")
+        fatalError("'CreateTDidByPrivateKey' is no longer available.")
     }
 
     /// 新建DID根据私钥生成Tdid
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createTDidByPrivateKey(clusterId: String, groupId: UInt64, privateKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidByPrivateKeyResponse {
-        fatalError("CreateTDidByPrivateKey is no longer available.")
+        fatalError("'CreateTDidByPrivateKey' is no longer available.")
     }
 }

@@ -21,7 +21,7 @@ import TecoCore
 extension Vod {
     /// ModifyMediaStorageClass请求参数结构体
     public struct ModifyMediaStorageClassRequest: TCRequest {
-        /// 媒体文件唯一标识列表。
+        /// 媒体文件唯一标识列表，最大长度：100。
         public let fileIds: [String]
 
         /// 目标存储类型。可选值有：

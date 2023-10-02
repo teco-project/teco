@@ -30,16 +30,26 @@ extension Tsf {
         /// 搜索条数
         public let limit: Int64?
 
-        public init(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
+        /// 数据集idList
+        public let programIdList: [String]?
+
+        /// ConfigIdList
+        public let configIdList: [String]?
+
+        public init(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, programIdList: [String]? = nil, configIdList: [String]? = nil) {
             self.searchWord = searchWord
             self.offset = offset
             self.limit = limit
+            self.programIdList = programIdList
+            self.configIdList = configIdList
         }
 
         enum CodingKeys: String, CodingKey {
             case searchWord = "SearchWord"
             case offset = "Offset"
             case limit = "Limit"
+            case programIdList = "ProgramIdList"
+            case configIdList = "ConfigIdList"
         }
 
         /// Compute the next request based on API response.
@@ -47,7 +57,7 @@ extension Tsf {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return .init(searchWord: self.searchWord, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return .init(searchWord: self.searchWord, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, programIdList: self.programIdList, configIdList: self.configIdList)
         }
     }
 
@@ -90,14 +100,14 @@ extension Tsf {
 
     /// 获取多个投递项配置
     @inlinable
-    public func describeDeliveryConfigs(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeliveryConfigsResponse> {
-        self.describeDeliveryConfigs(.init(searchWord: searchWord, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+    public func describeDeliveryConfigs(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, programIdList: [String]? = nil, configIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeliveryConfigsResponse> {
+        self.describeDeliveryConfigs(.init(searchWord: searchWord, offset: offset, limit: limit, programIdList: programIdList, configIdList: configIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取多个投递项配置
     @inlinable
-    public func describeDeliveryConfigs(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeliveryConfigsResponse {
-        try await self.describeDeliveryConfigs(.init(searchWord: searchWord, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+    public func describeDeliveryConfigs(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, programIdList: [String]? = nil, configIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeliveryConfigsResponse {
+        try await self.describeDeliveryConfigs(.init(searchWord: searchWord, offset: offset, limit: limit, programIdList: programIdList, configIdList: configIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取多个投递项配置

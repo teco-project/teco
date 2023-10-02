@@ -37,6 +37,7 @@ extension TCFtError {
             case jobHasBeenCanceled = "FailedOperation.JobHasBeenCanceled"
             case jobNotExist = "FailedOperation.JobNotExist"
             case jobStopProcessing = "FailedOperation.JobStopProcessing"
+            case parameterValueError = "FailedOperation.ParameterValueError"
             case requestEntityTooLarge = "FailedOperation.RequestEntityTooLarge"
             case requestTimeout = "FailedOperation.RequestTimeout"
             case rpcFail = "FailedOperation.RpcFail"
@@ -157,6 +158,11 @@ extension TCFtError {
             FailedOperation(.jobStopProcessing)
         }
 
+        /// FailedOperation.ParameterValueError
+        public static var parameterValueError: FailedOperation {
+            FailedOperation(.parameterValueError)
+        }
+
         /// 整个请求体太大（通常主要是图片）。
         public static var requestEntityTooLarge: FailedOperation {
             FailedOperation(.requestEntityTooLarge)
@@ -226,6 +232,8 @@ extension TCFtError {
                 code = .failedOperation_JobNotExist
             case .jobStopProcessing:
                 code = .failedOperation_JobStopProcessing
+            case .parameterValueError:
+                code = .failedOperation_ParameterValueError
             case .requestEntityTooLarge:
                 code = .failedOperation_RequestEntityTooLarge
             case .requestTimeout:

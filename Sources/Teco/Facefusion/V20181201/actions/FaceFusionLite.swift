@@ -80,32 +80,36 @@ extension Facefusion {
     /// 人脸融合活动专用版
     ///
     /// 人脸融合活动专用版，不推荐使用。人脸融合接口建议使用[人脸融合](https://cloud.tencent.com/document/product/670/31061)或[选脸融合](https://cloud.tencent.com/document/product/670/37736)接口
+    @available(*, unavailable, message: "接口不再使用")
     @inlinable
     public func faceFusionLite(_ input: FaceFusionLiteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FaceFusionLiteResponse> {
-        self.client.execute(action: "FaceFusionLite", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("'FaceFusionLite' is no longer available.")
     }
 
     /// 人脸融合活动专用版
     ///
     /// 人脸融合活动专用版，不推荐使用。人脸融合接口建议使用[人脸融合](https://cloud.tencent.com/document/product/670/31061)或[选脸融合](https://cloud.tencent.com/document/product/670/37736)接口
+    @available(*, unavailable, message: "接口不再使用")
     @inlinable
     public func faceFusionLite(_ input: FaceFusionLiteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FaceFusionLiteResponse {
-        try await self.client.execute(action: "FaceFusionLite", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("'FaceFusionLite' is no longer available.")
     }
 
     /// 人脸融合活动专用版
     ///
     /// 人脸融合活动专用版，不推荐使用。人脸融合接口建议使用[人脸融合](https://cloud.tencent.com/document/product/670/31061)或[选脸融合](https://cloud.tencent.com/document/product/670/37736)接口
+    @available(*, unavailable, message: "接口不再使用")
     @inlinable
     public func faceFusionLite(projectId: String, modelId: String, mergeInfos: [MergeInfo], rspImgType: String? = nil, celebrityIdentify: Int64? = nil, engine: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FaceFusionLiteResponse> {
-        self.faceFusionLite(.init(projectId: projectId, modelId: modelId, mergeInfos: mergeInfos, rspImgType: rspImgType, celebrityIdentify: celebrityIdentify, engine: engine), region: region, logger: logger, on: eventLoop)
+        fatalError("'FaceFusionLite' is no longer available.")
     }
 
     /// 人脸融合活动专用版
     ///
     /// 人脸融合活动专用版，不推荐使用。人脸融合接口建议使用[人脸融合](https://cloud.tencent.com/document/product/670/31061)或[选脸融合](https://cloud.tencent.com/document/product/670/37736)接口
+    @available(*, unavailable, message: "接口不再使用")
     @inlinable
     public func faceFusionLite(projectId: String, modelId: String, mergeInfos: [MergeInfo], rspImgType: String? = nil, celebrityIdentify: Int64? = nil, engine: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FaceFusionLiteResponse {
-        try await self.faceFusionLite(.init(projectId: projectId, modelId: modelId, mergeInfos: mergeInfos, rspImgType: rspImgType, celebrityIdentify: celebrityIdentify, engine: engine), region: region, logger: logger, on: eventLoop)
+        fatalError("'FaceFusionLite' is no longer available.")
     }
 }

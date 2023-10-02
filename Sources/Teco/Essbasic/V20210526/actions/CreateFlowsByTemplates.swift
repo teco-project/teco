@@ -82,6 +82,9 @@ extension Essbasic {
         /// 如果文档需要异步合成，此字段会返回该异步任务的任务信息，后续可以通过ChannelGetTaskResultApi接口查询任务详情；
         public let taskInfos: [TaskInfo]
 
+        /// 签署方信息，如角色ID、角色名称等
+        public let flowApprovers: [FlowApproverItem]?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -91,6 +94,7 @@ extension Essbasic {
             case errorMessages = "ErrorMessages"
             case previewUrls = "PreviewUrls"
             case taskInfos = "TaskInfos"
+            case flowApprovers = "FlowApprovers"
             case requestId = "RequestId"
         }
     }

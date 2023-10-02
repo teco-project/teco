@@ -103,7 +103,7 @@ extension Vpc {
         /// EIP名称，用于申请EIP时用户自定义该EIP的个性化名称，默认值：未命名
         public let addressName: String?
 
-        /// 网络出口，默认是：center_egress1
+        /// 静态单线IP网络出口，默认值：center_egress1
         public let egress: String?
 
         /// 高防包ID， 申请高防IP时，该字段必传。

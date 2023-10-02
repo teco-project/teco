@@ -56,27 +56,27 @@ extension Tdid {
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createSelectiveCredential(_ input: CreateSelectiveCredentialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSelectiveCredentialResponse> {
-        fatalError("CreateSelectiveCredential is no longer available.")
+        fatalError("'CreateSelectiveCredential' is no longer available.")
     }
 
     /// 创建选择性批露凭证
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createSelectiveCredential(_ input: CreateSelectiveCredentialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSelectiveCredentialResponse {
-        fatalError("CreateSelectiveCredential is no longer available.")
+        fatalError("'CreateSelectiveCredential' is no longer available.")
     }
 
     /// 创建选择性批露凭证
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createSelectiveCredential(functionArg: VerifyFunctionArg, policyId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSelectiveCredentialResponse> {
-        fatalError("CreateSelectiveCredential is no longer available.")
+        fatalError("'CreateSelectiveCredential' is no longer available.")
     }
 
     /// 创建选择性批露凭证
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createSelectiveCredential(functionArg: VerifyFunctionArg, policyId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSelectiveCredentialResponse {
-        fatalError("CreateSelectiveCredential is no longer available.")
+        fatalError("'CreateSelectiveCredential' is no longer available.")
     }
 }

@@ -27,14 +27,20 @@ extension Tione {
         /// 问题描述
         public let question: String
 
-        /// 会话模型版本，不同的会话模型调用到不同的模型后台。
-        /// 注: 多行业多场景大模型填写 tj_llm_clm-v1
+        /// 会话模型版本。
+        /// 多行业多场景大模型：填写 tj_llm_clm-v1。
+        /// 多行业客服大模型：填写demo_big_model_version_id。
+        /// 默认为demo_big_model_version_id，即多行业客服大模型。
         public let modelVersion: String?
 
-        /// 使用模式(仅部分模型支持)。General 通用问答；WithSearchPlugin 搜索增强问答
+        /// 使用模式(仅多场景客服大模型支持)。
+        /// 通用问答：填写General。
+        /// 搜索增强问答：填写WithSearchPlugin。
+        /// 默认为General，即通用问答。
         public let mode: String?
 
-        /// 搜索来源。仅当Mode未WithSearchPlugin时生效。Preset 预置文稿库；Custom 自定义。
+        /// 搜索来源。仅当Mode为WithSearchPlugin时生效。
+        /// 预置文稿库：填写Preset。自定义：填写Custom。
         public let searchSource: String?
 
         public init(sessionId: String, question: String, modelVersion: String? = nil, mode: String? = nil, searchSource: String? = nil) {
@@ -72,33 +78,33 @@ extension Tione {
         }
     }
 
-    /// LLM模型对话请求
+    /// 大模型聊天体验
     ///
-    /// LLM模型的对话请求发送接口
+    /// 这是一个供您体验大模型聊天的接口。
     @inlinable
     public func sendChatMessage(_ input: SendChatMessageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendChatMessageResponse> {
         self.client.execute(action: "SendChatMessage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// LLM模型对话请求
+    /// 大模型聊天体验
     ///
-    /// LLM模型的对话请求发送接口
+    /// 这是一个供您体验大模型聊天的接口。
     @inlinable
     public func sendChatMessage(_ input: SendChatMessageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendChatMessageResponse {
         try await self.client.execute(action: "SendChatMessage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// LLM模型对话请求
+    /// 大模型聊天体验
     ///
-    /// LLM模型的对话请求发送接口
+    /// 这是一个供您体验大模型聊天的接口。
     @inlinable
     public func sendChatMessage(sessionId: String, question: String, modelVersion: String? = nil, mode: String? = nil, searchSource: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendChatMessageResponse> {
         self.sendChatMessage(.init(sessionId: sessionId, question: question, modelVersion: modelVersion, mode: mode, searchSource: searchSource), region: region, logger: logger, on: eventLoop)
     }
 
-    /// LLM模型对话请求
+    /// 大模型聊天体验
     ///
-    /// LLM模型的对话请求发送接口
+    /// 这是一个供您体验大模型聊天的接口。
     @inlinable
     public func sendChatMessage(sessionId: String, question: String, modelVersion: String? = nil, mode: String? = nil, searchSource: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendChatMessageResponse {
         try await self.sendChatMessage(.init(sessionId: sessionId, question: question, modelVersion: modelVersion, mode: mode, searchSource: searchSource), region: region, logger: logger, on: eventLoop)

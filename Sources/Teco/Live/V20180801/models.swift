@@ -24,7 +24,7 @@ extension Live {
         /// 返回格式：
         /// 使用UTC格式时间，
         /// 例如：2019-01-08T10:00:00Z。
-        /// 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        /// 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#:~:text=I-,ISO,-%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F)。
         /// 根据粒度会有不同程度的缩减。
         public let time: String
 
@@ -1925,6 +1925,10 @@ extension Live {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordTemplateId: String?
 
+        /// 新增的推流地址。用于单任务推两路场景。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let backupToUrl: String?
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case sourceType = "SourceType"
@@ -1954,6 +1958,7 @@ extension Live {
             case watermarkList = "WatermarkList"
             case vodLocalMode = "VodLocalMode"
             case recordTemplateId = "RecordTemplateId"
+            case backupToUrl = "BackupToUrl"
         }
     }
 
@@ -2056,6 +2061,30 @@ extension Live {
             case metaAudioSpeed = "MetaAudioSpeed"
             case metaVideoSpeed = "MetaVideoSpeed"
             case metaFps = "MetaFps"
+        }
+    }
+
+    /// 推流域名日志信息。
+    public struct PushLogInfo: TCOutputModel {
+        /// 日志名称。
+        public let logName: String
+
+        /// 日志下载地址。
+        public let logUrl: String
+
+        /// 日志时间。UTC 格式，例如：2018-11-29T19:00:00Z。
+        /// 注意：
+        /// 1. 北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let logTime: String
+
+        /// 文件大小，单位字节。
+        public let fileSize: Int64
+
+        enum CodingKeys: String, CodingKey {
+            case logName = "LogName"
+            case logUrl = "LogUrl"
+            case logTime = "LogTime"
+            case fileSize = "FileSize"
         }
     }
 

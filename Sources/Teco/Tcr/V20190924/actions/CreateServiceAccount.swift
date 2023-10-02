@@ -96,7 +96,7 @@ extension Tcr {
 
     /// 创建服务级账号
     ///
-    /// 创建自定义账户
+    /// 创建服务级账户
     @inlinable
     public func createServiceAccount(_ input: CreateServiceAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceAccountResponse> {
         self.client.execute(action: "CreateServiceAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -104,7 +104,7 @@ extension Tcr {
 
     /// 创建服务级账号
     ///
-    /// 创建自定义账户
+    /// 创建服务级账户
     @inlinable
     public func createServiceAccount(_ input: CreateServiceAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceAccountResponse {
         try await self.client.execute(action: "CreateServiceAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -112,7 +112,7 @@ extension Tcr {
 
     /// 创建服务级账号
     ///
-    /// 创建自定义账户
+    /// 创建服务级账户
     @inlinable
     public func createServiceAccount(registryId: String, name: String, permissions: [Permission], description: String? = nil, duration: Int64? = nil, expiresAt: Int64? = nil, disable: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceAccountResponse> {
         self.createServiceAccount(.init(registryId: registryId, name: name, permissions: permissions, description: description, duration: duration, expiresAt: expiresAt, disable: disable), region: region, logger: logger, on: eventLoop)
@@ -120,7 +120,7 @@ extension Tcr {
 
     /// 创建服务级账号
     ///
-    /// 创建自定义账户
+    /// 创建服务级账户
     @inlinable
     public func createServiceAccount(registryId: String, name: String, permissions: [Permission], description: String? = nil, duration: Int64? = nil, expiresAt: Int64? = nil, disable: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceAccountResponse {
         try await self.createServiceAccount(.init(registryId: registryId, name: name, permissions: permissions, description: description, duration: duration, expiresAt: expiresAt, disable: disable), region: region, logger: logger, on: eventLoop)

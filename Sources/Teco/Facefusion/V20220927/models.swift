@@ -150,14 +150,18 @@ extension Facefusion {
         /// 上传的图片人脸位置信息（人脸框）
         public let inputImageFaceRect: FaceRect?
 
-        /// 控制台上传的素材人脸ID，不填默认取最大人脸
+        /// 控制台上传的素材人脸ID，不填默认取最大人脸。此字段仅适用于控制台上传素材的有素材场景。
         public let templateFaceID: String?
 
-        public init(image: String? = nil, url: String? = nil, inputImageFaceRect: FaceRect? = nil, templateFaceID: String? = nil) {
+        /// 模版图片人脸位置信息(人脸框)，不填默认取最大人脸。此字段仅适用于自定义模版素材场景。
+        public let templateFaceRect: FaceRect?
+
+        public init(image: String? = nil, url: String? = nil, inputImageFaceRect: FaceRect? = nil, templateFaceID: String? = nil, templateFaceRect: FaceRect? = nil) {
             self.image = image
             self.url = url
             self.inputImageFaceRect = inputImageFaceRect
             self.templateFaceID = templateFaceID
+            self.templateFaceRect = templateFaceRect
         }
 
         enum CodingKeys: String, CodingKey {
@@ -165,6 +169,7 @@ extension Facefusion {
             case url = "Url"
             case inputImageFaceRect = "InputImageFaceRect"
             case templateFaceID = "TemplateFaceID"
+            case templateFaceRect = "TemplateFaceRect"
         }
     }
 

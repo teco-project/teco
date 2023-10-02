@@ -68,25 +68,25 @@ extension Cynosdb {
         }
     }
 
-    /// 账号所有权限
+    /// 查询账号所有可授予权限
     @inlinable
     public func describeAccountAllGrantPrivileges(_ input: DescribeAccountAllGrantPrivilegesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountAllGrantPrivilegesResponse> {
         self.client.execute(action: "DescribeAccountAllGrantPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 账号所有权限
+    /// 查询账号所有可授予权限
     @inlinable
     public func describeAccountAllGrantPrivileges(_ input: DescribeAccountAllGrantPrivilegesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountAllGrantPrivilegesResponse {
         try await self.client.execute(action: "DescribeAccountAllGrantPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 账号所有权限
+    /// 查询账号所有可授予权限
     @inlinable
     public func describeAccountAllGrantPrivileges(clusterId: String, account: InputAccount, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountAllGrantPrivilegesResponse> {
         self.describeAccountAllGrantPrivileges(.init(clusterId: clusterId, account: account), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 账号所有权限
+    /// 查询账号所有可授予权限
     @inlinable
     public func describeAccountAllGrantPrivileges(clusterId: String, account: InputAccount, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountAllGrantPrivilegesResponse {
         try await self.describeAccountAllGrantPrivileges(.init(clusterId: clusterId, account: account), region: region, logger: logger, on: eventLoop)

@@ -507,7 +507,7 @@ extension Tcr {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resource: String?
 
-        /// 动作，目前仅支持：tcr:PushRepository、tcr:PullRepository
+        /// 动作，目前仅支持：tcr:PushRepository、tcr:PullRepository、tcr:CreateRepository、tcr:CreateHelmChart、tcr:DescribeHelmCharts
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let actions: [String]?
 
@@ -620,6 +620,9 @@ extension Tcr {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let renewFlag: Int64?
 
+        /// 是否开启实例删除保护，false表示不开启
+        public let deletionProtection: Bool?
+
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
             case registryName = "RegistryName"
@@ -636,6 +639,7 @@ extension Tcr {
             case expiredAt = "ExpiredAt"
             case payMod = "PayMod"
             case renewFlag = "RenewFlag"
+            case deletionProtection = "DeletionProtection"
         }
     }
 
@@ -1188,14 +1192,16 @@ extension Tcr {
     }
 
     /// 云标签Tag
-    public struct Tag: TCInputModel {
+    public struct Tag: TCInputModel, TCOutputModel {
         /// 云标签的key
-        public let key: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let key: String?
 
         /// 云标签的值
-        public let value: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let value: String?
 
-        public init(key: String, value: String) {
+        public init(key: String? = nil, value: String? = nil) {
             self.key = key
             self.value = value
         }

@@ -34,16 +34,21 @@ extension Tag {
         /// 最大长度：20
         public let tagKeys: [String]?
 
-        public init(paginationToken: String? = nil, maxResults: UInt64? = nil, tagKeys: [String]? = nil) {
+        /// 标签类型。取值： Custom：自定义标签。 System：系统标签。 All：全部标签。 默认值：All。
+        public let category: String?
+
+        public init(paginationToken: String? = nil, maxResults: UInt64? = nil, tagKeys: [String]? = nil, category: String? = nil) {
             self.paginationToken = paginationToken
             self.maxResults = maxResults
             self.tagKeys = tagKeys
+            self.category = category
         }
 
         enum CodingKeys: String, CodingKey {
             case paginationToken = "PaginationToken"
             case maxResults = "MaxResults"
             case tagKeys = "TagKeys"
+            case category = "Category"
         }
 
         /// Compute the next request based on API response.
@@ -51,7 +56,7 @@ extension Tag {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return .init(paginationToken: response.paginationToken, maxResults: self.maxResults, tagKeys: self.tagKeys)
+            return .init(paginationToken: response.paginationToken, maxResults: self.maxResults, tagKeys: self.tagKeys, category: self.category)
         }
     }
 
@@ -98,16 +103,16 @@ extension Tag {
     ///
     /// 用于获取已建立的标签列表。
     @inlinable
-    public func getTags(paginationToken: String? = nil, maxResults: UInt64? = nil, tagKeys: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTagsResponse> {
-        self.getTags(.init(paginationToken: paginationToken, maxResults: maxResults, tagKeys: tagKeys), region: region, logger: logger, on: eventLoop)
+    public func getTags(paginationToken: String? = nil, maxResults: UInt64? = nil, tagKeys: [String]? = nil, category: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTagsResponse> {
+        self.getTags(.init(paginationToken: paginationToken, maxResults: maxResults, tagKeys: tagKeys, category: category), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取标签列表
     ///
     /// 用于获取已建立的标签列表。
     @inlinable
-    public func getTags(paginationToken: String? = nil, maxResults: UInt64? = nil, tagKeys: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTagsResponse {
-        try await self.getTags(.init(paginationToken: paginationToken, maxResults: maxResults, tagKeys: tagKeys), region: region, logger: logger, on: eventLoop)
+    public func getTags(paginationToken: String? = nil, maxResults: UInt64? = nil, tagKeys: [String]? = nil, category: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTagsResponse {
+        try await self.getTags(.init(paginationToken: paginationToken, maxResults: maxResults, tagKeys: tagKeys, category: category), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取标签列表

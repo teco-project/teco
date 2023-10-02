@@ -28,8 +28,10 @@ public struct TCTseError: TCTseErrorType {
     enum Code: String {
         case authFailure_UnauthorizedOperation = "AuthFailure.UnauthorizedOperation"
         case failedOperation = "FailedOperation"
+        case failedOperation_Cls = "FailedOperation.Cls"
         case failedOperation_FailedOperation = "FailedOperation.FailedOperation"
         case failedOperation_InternalError = "FailedOperation.InternalError"
+        case failedOperation_Resource = "FailedOperation.Resource"
         case failedOperation_Role = "FailedOperation.Role"
         case failedOperation_Vpc = "FailedOperation.Vpc"
         case internalError = "InternalError"
@@ -46,10 +48,14 @@ public struct TCTseError: TCTseErrorType {
         case internalError_UnknownError = "InternalError.UnknownError"
         case internalError_UpdateError = "InternalError.UpdateError"
         case internalError_VPCFailure = "InternalError.VPCFailure"
+        case invalidParameterValue = "InvalidParameterValue"
         case invalidParameterValue_Action = "InvalidParameterValue.Action"
         case invalidParameterValue_BadRequestFormat = "InvalidParameterValue.BadRequestFormat"
         case invalidParameterValue_CreateError = "InvalidParameterValue.CreateError"
+        case invalidParameterValue_Description = "InvalidParameterValue.Description"
+        case invalidParameterValue_GatewayId = "InvalidParameterValue.GatewayId"
         case invalidParameterValue_InvalidParameterValue = "InvalidParameterValue.InvalidParameterValue"
+        case invalidParameterValue_Name = "InvalidParameterValue.Name"
         case invalidParameterValue_OperationFailed = "InvalidParameterValue.OperationFailed"
         case invalidParameterValue_QueryError = "InvalidParameterValue.QueryError"
         case invalidParameterValue_Region = "InvalidParameterValue.Region"
@@ -58,17 +64,22 @@ public struct TCTseError: TCTseErrorType {
         case invalidParameterValue_Type = "InvalidParameterValue.Type"
         case invalidParameterValue_UpdateError = "InvalidParameterValue.UpdateError"
         case limitExceeded = "LimitExceeded"
+        case limitExceeded_LBDomains = "LimitExceeded.LBDomains"
+        case limitExceeded_LimitExceeded = "LimitExceeded.LimitExceeded"
         case missingParameter = "MissingParameter"
         case missingParameter_CreateError = "MissingParameter.CreateError"
         case missingParameter_MissParameter = "MissingParameter.MissParameter"
         case missingParameter_UpdateError = "MissingParameter.UpdateError"
         case operationDenied = "OperationDenied"
+        case operationDenied_OperationDenied = "OperationDenied.OperationDenied"
         case resourceNotFound = "ResourceNotFound"
+        case resourceNotFound_Forbidden = "ResourceNotFound.Forbidden"
         case resourceNotFound_InstanceNotFound = "ResourceNotFound.InstanceNotFound"
         case resourceNotFound_ResourceNotFound = "ResourceNotFound.ResourceNotFound"
         case unauthorizedOperation = "UnauthorizedOperation"
         case unauthorizedOperation_CamNoAuth = "UnauthorizedOperation.CamNoAuth"
         case unauthorizedOperation_CamPassRoleNotExist = "UnauthorizedOperation.CamPassRoleNotExist"
+        case unauthorizedOperation_ClsNotActivated = "UnauthorizedOperation.ClsNotActivated"
         case unauthorizedOperation_Uin = "UnauthorizedOperation.Uin"
         case unauthorizedOperation_UnauthorizedOperation = "UnauthorizedOperation.UnauthorizedOperation"
     }
@@ -80,7 +91,9 @@ public struct TCTseError: TCTseErrorType {
             FailedOperation.self,
             InternalError.self,
             InvalidParameterValue.self,
+            LimitExceeded.self,
             MissingParameter.self,
+            OperationDenied.self,
             ResourceNotFound.self,
             UnauthorizedOperation.self
         ]
@@ -118,6 +131,11 @@ public struct TCTseError: TCTseErrorType {
         TCTseError(.failedOperation)
     }
 
+    /// 调用CLS服务失败
+    public static var failedOperation_Cls: TCTseError {
+        TCTseError(.failedOperation_Cls)
+    }
+
     /// 操作失败。
     public static var failedOperation_FailedOperation: TCTseError {
         TCTseError(.failedOperation_FailedOperation)
@@ -126,6 +144,11 @@ public struct TCTseError: TCTseErrorType {
     /// 操作失败，内部错误。
     public static var failedOperation_InternalError: TCTseError {
         TCTseError(.failedOperation_InternalError)
+    }
+
+    /// 超过购买实例的最大数量。
+    public static var failedOperation_Resource: TCTseError {
+        TCTseError(.failedOperation_Resource)
     }
 
     /// 获取临时密钥失败
@@ -208,6 +231,11 @@ public struct TCTseError: TCTseErrorType {
         TCTseError(.internalError_VPCFailure)
     }
 
+    /// 参数取值错误。
+    public static var invalidParameterValue: TCTseError {
+        TCTseError(.invalidParameterValue)
+    }
+
     /// 旧实例不支持此操作。
     ///
     /// 迁移到新架构的云原生网关
@@ -225,9 +253,24 @@ public struct TCTseError: TCTseErrorType {
         TCTseError(.invalidParameterValue_CreateError)
     }
 
+    /// 无效的描述信息。
+    public static var invalidParameterValue_Description: TCTseError {
+        TCTseError(.invalidParameterValue_Description)
+    }
+
+    /// 网关ID无效
+    public static var invalidParameterValue_GatewayId: TCTseError {
+        TCTseError(.invalidParameterValue_GatewayId)
+    }
+
     /// 无效的参数值。
     public static var invalidParameterValue_InvalidParameterValue: TCTseError {
         TCTseError(.invalidParameterValue_InvalidParameterValue)
+    }
+
+    /// 无效的名称。
+    public static var invalidParameterValue_Name: TCTseError {
+        TCTseError(.invalidParameterValue_Name)
     }
 
     /// 无效请求参数导致操作失败。
@@ -270,6 +313,16 @@ public struct TCTseError: TCTseErrorType {
         TCTseError(.limitExceeded)
     }
 
+    /// 提工单申请开白，调整限制
+    public static var limitExceeded_LBDomains: TCTseError {
+        TCTseError(.limitExceeded_LBDomains)
+    }
+
+    /// 参数超过限制。
+    public static var limitExceeded_LimitExceeded: TCTseError {
+        TCTseError(.limitExceeded_LimitExceeded)
+    }
+
     /// 缺少参数错误。
     public static var missingParameter: TCTseError {
         TCTseError(.missingParameter)
@@ -295,9 +348,19 @@ public struct TCTseError: TCTseErrorType {
         TCTseError(.operationDenied)
     }
 
+    /// 不允许的操作。
+    public static var operationDenied_OperationDenied: TCTseError {
+        TCTseError(.operationDenied_OperationDenied)
+    }
+
     /// 资源不存在。
     public static var resourceNotFound: TCTseError {
         TCTseError(.resourceNotFound)
+    }
+
+    /// 资源不存在不允许操作。
+    public static var resourceNotFound_Forbidden: TCTseError {
+        TCTseError(.resourceNotFound_Forbidden)
     }
 
     /// 实例不存在。
@@ -323,6 +386,11 @@ public struct TCTseError: TCTseErrorType {
     /// 子账号缺少passRole权限。
     public static var unauthorizedOperation_CamPassRoleNotExist: TCTseError {
         TCTseError(.unauthorizedOperation_CamPassRoleNotExist)
+    }
+
+    /// 当前CLS产品未开通
+    public static var unauthorizedOperation_ClsNotActivated: TCTseError {
+        TCTseError(.unauthorizedOperation_ClsNotActivated)
     }
 
     /// Uin未授权

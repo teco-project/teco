@@ -33,15 +33,19 @@ extension Cynosdb {
         /// 审计规则。同RuleTemplateIds都不填是全审计。
         public let auditRuleFilters: [AuditRuleFilters]?
 
-        /// 规则模版ID。同AuditRuleFilters都不填是全审计。
+        /// 规则模板ID。同AuditRuleFilters都不填是全审计。
         public let ruleTemplateIds: [String]?
 
-        public init(instanceId: String, logExpireDay: UInt64, highLogExpireDay: UInt64? = nil, auditRuleFilters: [AuditRuleFilters]? = nil, ruleTemplateIds: [String]? = nil) {
+        /// 审计类型。true-全审计；默认false-规则审计。
+        public let auditAll: Bool?
+
+        public init(instanceId: String, logExpireDay: UInt64, highLogExpireDay: UInt64? = nil, auditRuleFilters: [AuditRuleFilters]? = nil, ruleTemplateIds: [String]? = nil, auditAll: Bool? = nil) {
             self.instanceId = instanceId
             self.logExpireDay = logExpireDay
             self.highLogExpireDay = highLogExpireDay
             self.auditRuleFilters = auditRuleFilters
             self.ruleTemplateIds = ruleTemplateIds
+            self.auditAll = auditAll
         }
 
         enum CodingKeys: String, CodingKey {
@@ -50,6 +54,7 @@ extension Cynosdb {
             case highLogExpireDay = "HighLogExpireDay"
             case auditRuleFilters = "AuditRuleFilters"
             case ruleTemplateIds = "RuleTemplateIds"
+            case auditAll = "AuditAll"
         }
     }
 
@@ -83,15 +88,15 @@ extension Cynosdb {
     ///
     /// TDSQL-C for MySQL实例开通审计服务
     @inlinable @discardableResult
-    public func openAuditService(instanceId: String, logExpireDay: UInt64, highLogExpireDay: UInt64? = nil, auditRuleFilters: [AuditRuleFilters]? = nil, ruleTemplateIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenAuditServiceResponse> {
-        self.openAuditService(.init(instanceId: instanceId, logExpireDay: logExpireDay, highLogExpireDay: highLogExpireDay, auditRuleFilters: auditRuleFilters, ruleTemplateIds: ruleTemplateIds), region: region, logger: logger, on: eventLoop)
+    public func openAuditService(instanceId: String, logExpireDay: UInt64, highLogExpireDay: UInt64? = nil, auditRuleFilters: [AuditRuleFilters]? = nil, ruleTemplateIds: [String]? = nil, auditAll: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenAuditServiceResponse> {
+        self.openAuditService(.init(instanceId: instanceId, logExpireDay: logExpireDay, highLogExpireDay: highLogExpireDay, auditRuleFilters: auditRuleFilters, ruleTemplateIds: ruleTemplateIds, auditAll: auditAll), region: region, logger: logger, on: eventLoop)
     }
 
     /// 实例开通审计服务
     ///
     /// TDSQL-C for MySQL实例开通审计服务
     @inlinable @discardableResult
-    public func openAuditService(instanceId: String, logExpireDay: UInt64, highLogExpireDay: UInt64? = nil, auditRuleFilters: [AuditRuleFilters]? = nil, ruleTemplateIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenAuditServiceResponse {
-        try await self.openAuditService(.init(instanceId: instanceId, logExpireDay: logExpireDay, highLogExpireDay: highLogExpireDay, auditRuleFilters: auditRuleFilters, ruleTemplateIds: ruleTemplateIds), region: region, logger: logger, on: eventLoop)
+    public func openAuditService(instanceId: String, logExpireDay: UInt64, highLogExpireDay: UInt64? = nil, auditRuleFilters: [AuditRuleFilters]? = nil, ruleTemplateIds: [String]? = nil, auditAll: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenAuditServiceResponse {
+        try await self.openAuditService(.init(instanceId: instanceId, logExpireDay: logExpireDay, highLogExpireDay: highLogExpireDay, auditRuleFilters: auditRuleFilters, ruleTemplateIds: ruleTemplateIds, auditAll: auditAll), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -23,6 +23,7 @@ extension TCCvmError {
             case cvmsVifsPerSecGroupLimitExceeded = "LimitExceeded.CvmsVifsPerSecGroupLimitExceeded"
             case disasterRecoverGroup = "LimitExceeded.DisasterRecoverGroup"
             case eipNumLimit = "LimitExceeded.EipNumLimit"
+            case eniLimitInstanceType = "LimitExceeded.EniLimitInstanceType"
             case eniNumLimit = "LimitExceeded.EniNumLimit"
             case exportImageTaskLimitExceeded = "LimitExceeded.ExportImageTaskLimitExceeded"
             case hpcClusterQuota = "LimitExceeded.HpcClusterQuota"
@@ -83,6 +84,11 @@ extension TCCvmError {
         /// 特定实例包含的某个ENI的EIP数量已超过目标实例类型的EIP允许的最大值，请删除部分EIP后重试。
         public static var eipNumLimit: LimitExceeded {
             LimitExceeded(.eipNumLimit)
+        }
+
+        /// 网卡数量超过实例上限。
+        public static var eniLimitInstanceType: LimitExceeded {
+            LimitExceeded(.eniLimitInstanceType)
         }
 
         /// 特定实例当前ENI数量已超过目标实例类型的ENI允许的最大值，需删除部分ENI后重试。
@@ -188,6 +194,8 @@ extension TCCvmError {
                 code = .limitExceeded_DisasterRecoverGroup
             case .eipNumLimit:
                 code = .limitExceeded_EipNumLimit
+            case .eniLimitInstanceType:
+                code = .limitExceeded_EniLimitInstanceType
             case .eniNumLimit:
                 code = .limitExceeded_EniNumLimit
             case .exportImageTaskLimitExceeded:

@@ -24,47 +24,32 @@ extension Teo {
         /// 分页查询偏移量。默认值：0。
         public let offset: Int64?
 
-        /// 分页查询限制数目。默认值：20，最大值：1000。
+        /// 分页查询限制数目。默认值：20，最大值：100。
         public let limit: Int64?
 
-        /// 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
-        /// - zone-name
-        ///   按照【**站点名称**】进行过滤。
-        ///   类型：String
-        ///   必选：否
-        /// - zone-id
-        ///   按照【**站点ID**】进行过滤。站点ID形如：zone-xxx。
-        ///   类型：String
-        ///   必选：否
-        /// - status
-        ///   按照【**站点状态**】进行过滤。
-        ///   类型：String
-        ///   必选：否
-        /// - tag-key
-        ///   按照【**标签键**】进行过滤。
-        ///   类型：String
-        ///   必选：否
-        /// - tag-value
-        ///   按照【**标签值**】进行过滤。
-        ///   类型：String
-        ///   必选：否
-        /// 模糊查询时仅支持过滤字段名为zone-name。
+        /// 过滤条件，Filters.Values 的上限为 20。该参数不填写时，返回当前 appid 下有权限的所有站点信息。详细的过滤条件如下：
+        /// - zone-name：按照站点名称进行过滤；
+        /// - zone-id：按照站点 ID进行过滤。站点 ID 形如：zone-2noz78a8ev6k；
+        /// - status：按照站点状态进行过滤；
+        /// - tag-key：按照标签键进行过滤；
+        /// - tag-value： 按照标签值进行过滤。
+        /// 模糊查询时仅支持过滤字段名为 zone-name。
         public let filters: [AdvancedFilter]?
 
-        /// 排序字段，取值有：
+        /// 可根据该字段对返回结果进行排序，取值有：
         /// - type：接入类型；
         /// - area：加速区域；
         /// - create-time：创建时间；
         /// - zone-name：站点名称；
         /// - use-time：最近使用时间；
         /// - active-status：生效状态。
-        /// 不填写使用默认值create-time。
+        /// 不填写时对返回结果默认按照 create-time 排序。
         public let order: String?
 
-        /// 排序方向，取值有：
+        /// 排序方向，如果是字段值为数字，则根据数字大小排序；如果字段值为文本，则根据 ascill 码的大小排序。取值有：
         /// - asc：从小到大排序；
         /// - desc：从大到小排序。
-        /// 不填写使用默认值desc。
+        /// 不填写使用默认值 desc。
         public let direction: String?
 
         public init(offset: Int64? = nil, limit: Int64? = nil, filters: [AdvancedFilter]? = nil, order: String? = nil, direction: String? = nil) {
@@ -97,7 +82,7 @@ extension Teo {
         /// 符合条件的站点个数。
         public let totalCount: Int64
 
-        /// 站点详细信息列表。
+        /// 站点详细信息。
         public let zones: [Zone]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -120,57 +105,57 @@ extension Teo {
         }
     }
 
-    /// 查询用户站点信息列表
+    /// 查询站点列表
     ///
-    /// 用户查询用户站点信息列表，支持分页。
+    /// 该接口用于查询您有权限的站点信息。可根据不同查询条件筛选站点。
     @inlinable
     public func describeZones(_ input: DescribeZonesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZonesResponse> {
         self.client.execute(action: "DescribeZones", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询用户站点信息列表
+    /// 查询站点列表
     ///
-    /// 用户查询用户站点信息列表，支持分页。
+    /// 该接口用于查询您有权限的站点信息。可根据不同查询条件筛选站点。
     @inlinable
     public func describeZones(_ input: DescribeZonesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZonesResponse {
         try await self.client.execute(action: "DescribeZones", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询用户站点信息列表
+    /// 查询站点列表
     ///
-    /// 用户查询用户站点信息列表，支持分页。
+    /// 该接口用于查询您有权限的站点信息。可根据不同查询条件筛选站点。
     @inlinable
     public func describeZones(offset: Int64? = nil, limit: Int64? = nil, filters: [AdvancedFilter]? = nil, order: String? = nil, direction: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZonesResponse> {
         self.describeZones(.init(offset: offset, limit: limit, filters: filters, order: order, direction: direction), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询用户站点信息列表
+    /// 查询站点列表
     ///
-    /// 用户查询用户站点信息列表，支持分页。
+    /// 该接口用于查询您有权限的站点信息。可根据不同查询条件筛选站点。
     @inlinable
     public func describeZones(offset: Int64? = nil, limit: Int64? = nil, filters: [AdvancedFilter]? = nil, order: String? = nil, direction: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZonesResponse {
         try await self.describeZones(.init(offset: offset, limit: limit, filters: filters, order: order, direction: direction), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询用户站点信息列表
+    /// 查询站点列表
     ///
-    /// 用户查询用户站点信息列表，支持分页。
+    /// 该接口用于查询您有权限的站点信息。可根据不同查询条件筛选站点。
     @inlinable
     public func describeZonesPaginated(_ input: DescribeZonesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Zone])> {
         self.client.paginate(input: input, region: region, command: self.describeZones, logger: logger, on: eventLoop)
     }
 
-    /// 查询用户站点信息列表
+    /// 查询站点列表
     ///
-    /// 用户查询用户站点信息列表，支持分页。
+    /// 该接口用于查询您有权限的站点信息。可根据不同查询条件筛选站点。
     @inlinable @discardableResult
     public func describeZonesPaginated(_ input: DescribeZonesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeZonesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeZones, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 查询用户站点信息列表
+    /// 查询站点列表
     ///
-    /// 用户查询用户站点信息列表，支持分页。
+    /// 该接口用于查询您有权限的站点信息。可根据不同查询条件筛选站点。
     ///
     /// - Returns: `AsyncSequence`s of ``Zone`` and ``DescribeZonesResponse`` that can be iterated over asynchronously on demand.
     @inlinable

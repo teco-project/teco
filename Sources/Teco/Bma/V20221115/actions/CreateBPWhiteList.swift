@@ -30,16 +30,21 @@ extension Bma {
         /// 白名单名称
         public let whiteLists: [String]
 
-        public init(companyId: Int64, whiteListType: Int64, whiteLists: [String]) {
+        /// 白名单备注
+        public let remark: String?
+
+        public init(companyId: Int64, whiteListType: Int64, whiteLists: [String], remark: String? = nil) {
             self.companyId = companyId
             self.whiteListType = whiteListType
             self.whiteLists = whiteLists
+            self.remark = remark
         }
 
         enum CodingKeys: String, CodingKey {
             case companyId = "CompanyId"
             case whiteListType = "WhiteListType"
             case whiteLists = "WhiteLists"
+            case remark = "Remark"
         }
     }
 
@@ -67,13 +72,13 @@ extension Bma {
 
     /// 添加白名单
     @inlinable @discardableResult
-    public func createBPWhiteList(companyId: Int64, whiteListType: Int64, whiteLists: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPWhiteListResponse> {
-        self.createBPWhiteList(.init(companyId: companyId, whiteListType: whiteListType, whiteLists: whiteLists), region: region, logger: logger, on: eventLoop)
+    public func createBPWhiteList(companyId: Int64, whiteListType: Int64, whiteLists: [String], remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPWhiteListResponse> {
+        self.createBPWhiteList(.init(companyId: companyId, whiteListType: whiteListType, whiteLists: whiteLists, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加白名单
     @inlinable @discardableResult
-    public func createBPWhiteList(companyId: Int64, whiteListType: Int64, whiteLists: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPWhiteListResponse {
-        try await self.createBPWhiteList(.init(companyId: companyId, whiteListType: whiteListType, whiteLists: whiteLists), region: region, logger: logger, on: eventLoop)
+    public func createBPWhiteList(companyId: Int64, whiteListType: Int64, whiteLists: [String], remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPWhiteListResponse {
+        try await self.createBPWhiteList(.init(companyId: companyId, whiteListType: whiteListType, whiteLists: whiteLists, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

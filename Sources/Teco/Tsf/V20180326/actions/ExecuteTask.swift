@@ -21,7 +21,7 @@ import TecoCore
 extension Tsf {
     /// ExecuteTask请求参数结构体
     public struct ExecuteTaskRequest: TCRequest {
-        /// 任务 ID。
+        /// 任务 ID
         public let taskId: String
 
         public init(taskId: String) {
@@ -47,25 +47,25 @@ extension Tsf {
         }
     }
 
-    /// 手动执行一次任务。
+    /// 手动执行一次任务
     @inlinable
     public func executeTask(_ input: ExecuteTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExecuteTaskResponse> {
         self.client.execute(action: "ExecuteTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 手动执行一次任务。
+    /// 手动执行一次任务
     @inlinable
     public func executeTask(_ input: ExecuteTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteTaskResponse {
         try await self.client.execute(action: "ExecuteTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 手动执行一次任务。
+    /// 手动执行一次任务
     @inlinable
     public func executeTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExecuteTaskResponse> {
         self.executeTask(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 手动执行一次任务。
+    /// 手动执行一次任务
     @inlinable
     public func executeTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteTaskResponse {
         try await self.executeTask(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)

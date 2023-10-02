@@ -42,7 +42,11 @@ extension Cls {
         /// 日志导出数据格式。json，csv，默认为json
         public let format: String?
 
-        public init(topicId: String, count: UInt64, query: String, from: Int64, to: Int64, order: String? = nil, format: String? = nil) {
+        /// 语法规则,  默认值为0。
+        /// 0：Lucene语法，1：CQL语法。
+        public let syntaxRule: UInt64?
+
+        public init(topicId: String, count: UInt64, query: String, from: Int64, to: Int64, order: String? = nil, format: String? = nil, syntaxRule: UInt64? = nil) {
             self.topicId = topicId
             self.count = count
             self.query = query
@@ -50,6 +54,7 @@ extension Cls {
             self.to = to
             self.order = order
             self.format = format
+            self.syntaxRule = syntaxRule
         }
 
         enum CodingKeys: String, CodingKey {
@@ -60,6 +65,7 @@ extension Cls {
             case to = "To"
             case order = "Order"
             case format = "Format"
+            case syntaxRule = "SyntaxRule"
         }
     }
 
@@ -97,15 +103,15 @@ extension Cls {
     ///
     /// 本接口仅创建下载任务，任务返回的下载地址，请用户调用DescribeExports查看任务列表。其中有下载地址CosPath参数。参考文档https://cloud.tencent.com/document/product/614/56449
     @inlinable
-    public func createExport(topicId: String, count: UInt64, query: String, from: Int64, to: Int64, order: String? = nil, format: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateExportResponse> {
-        self.createExport(.init(topicId: topicId, count: count, query: query, from: from, to: to, order: order, format: format), region: region, logger: logger, on: eventLoop)
+    public func createExport(topicId: String, count: UInt64, query: String, from: Int64, to: Int64, order: String? = nil, format: String? = nil, syntaxRule: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateExportResponse> {
+        self.createExport(.init(topicId: topicId, count: count, query: query, from: from, to: to, order: order, format: format, syntaxRule: syntaxRule), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建日志下载任务
     ///
     /// 本接口仅创建下载任务，任务返回的下载地址，请用户调用DescribeExports查看任务列表。其中有下载地址CosPath参数。参考文档https://cloud.tencent.com/document/product/614/56449
     @inlinable
-    public func createExport(topicId: String, count: UInt64, query: String, from: Int64, to: Int64, order: String? = nil, format: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExportResponse {
-        try await self.createExport(.init(topicId: topicId, count: count, query: query, from: from, to: to, order: order, format: format), region: region, logger: logger, on: eventLoop)
+    public func createExport(topicId: String, count: UInt64, query: String, from: Int64, to: Int64, order: String? = nil, format: String? = nil, syntaxRule: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExportResponse {
+        try await self.createExport(.init(topicId: topicId, count: count, query: query, from: from, to: to, order: order, format: format, syntaxRule: syntaxRule), region: region, logger: logger, on: eventLoop)
     }
 }

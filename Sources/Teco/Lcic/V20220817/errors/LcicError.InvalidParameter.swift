@@ -27,6 +27,7 @@ extension TCLcicError {
             case groupTeacherNotMember = "InvalidParameter.GroupTeacherNotMember"
             case groupTeachersNotExist = "InvalidParameter.GroupTeachersNotExist"
             case groupTypeInvalid = "InvalidParameter.GroupTypeInvalid"
+            case roomTypeInvalid = "InvalidParameter.RoomTypeInvalid"
             case sdkAppId = "InvalidParameter.SdkAppId"
             case startTime = "InvalidParameter.StartTime"
             case other = "InvalidParameter"
@@ -102,6 +103,10 @@ extension TCLcicError {
             InvalidParameter(.groupTypeInvalid)
         }
 
+        public static var roomTypeInvalid: InvalidParameter {
+            InvalidParameter(.roomTypeInvalid)
+        }
+
         /// SdkAppId参数错误。
         public static var sdkAppId: InvalidParameter {
             InvalidParameter(.sdkAppId)
@@ -136,6 +141,8 @@ extension TCLcicError {
                 code = .invalidParameter_GroupTeachersNotExist
             case .groupTypeInvalid:
                 code = .invalidParameter_GroupTypeInvalid
+            case .roomTypeInvalid:
+                code = .invalidParameter_RoomTypeInvalid
             case .sdkAppId:
                 code = .invalidParameter_SdkAppId
             case .startTime:

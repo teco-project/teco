@@ -27,7 +27,7 @@ extension Es {
         /// 0：开启智能运维；-1：关闭智能运维
         public let status: Int64?
 
-        /// 智能运维每天定时巡检时间
+        /// 智能运维每天定时巡检时间，时间格式为HH:00:00，例如15:00:00
         public let cronTime: String?
 
         public init(instanceId: String, status: Int64? = nil, cronTime: String? = nil) {

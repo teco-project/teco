@@ -30,16 +30,21 @@ extension Vpc {
         /// 网卡的挂载类型：0 标准型，1扩展型，默认值0。
         public let attachType: UInt64?
 
-        public init(networkInterfaceId: String, instanceId: String, attachType: UInt64? = nil) {
+        /// 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
+        public let clientToken: String?
+
+        public init(networkInterfaceId: String, instanceId: String, attachType: UInt64? = nil, clientToken: String? = nil) {
             self.networkInterfaceId = networkInterfaceId
             self.instanceId = instanceId
             self.attachType = attachType
+            self.clientToken = clientToken
         }
 
         enum CodingKeys: String, CodingKey {
             case networkInterfaceId = "NetworkInterfaceId"
             case instanceId = "InstanceId"
             case attachType = "AttachType"
+            case clientToken = "ClientToken"
         }
     }
 
@@ -94,8 +99,8 @@ extension Vpc {
     ///
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable @discardableResult
-    public func attachNetworkInterface(networkInterfaceId: String, instanceId: String, attachType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachNetworkInterfaceResponse> {
-        self.attachNetworkInterface(.init(networkInterfaceId: networkInterfaceId, instanceId: instanceId, attachType: attachType), region: region, logger: logger, on: eventLoop)
+    public func attachNetworkInterface(networkInterfaceId: String, instanceId: String, attachType: UInt64? = nil, clientToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachNetworkInterfaceResponse> {
+        self.attachNetworkInterface(.init(networkInterfaceId: networkInterfaceId, instanceId: instanceId, attachType: attachType, clientToken: clientToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 弹性网卡绑定云服务器
@@ -109,7 +114,7 @@ extension Vpc {
     ///
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable @discardableResult
-    public func attachNetworkInterface(networkInterfaceId: String, instanceId: String, attachType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachNetworkInterfaceResponse {
-        try await self.attachNetworkInterface(.init(networkInterfaceId: networkInterfaceId, instanceId: instanceId, attachType: attachType), region: region, logger: logger, on: eventLoop)
+    public func attachNetworkInterface(networkInterfaceId: String, instanceId: String, attachType: UInt64? = nil, clientToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachNetworkInterfaceResponse {
+        try await self.attachNetworkInterface(.init(networkInterfaceId: networkInterfaceId, instanceId: instanceId, attachType: attachType, clientToken: clientToken), region: region, logger: logger, on: eventLoop)
     }
 }

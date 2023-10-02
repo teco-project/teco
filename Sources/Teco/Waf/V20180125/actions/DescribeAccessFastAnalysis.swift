@@ -36,12 +36,20 @@ extension Waf {
         /// 需要分析统计的字段名
         public let fieldName: String
 
-        public init(topicId: String, from: Int64, to: Int64, query: String, fieldName: String) {
+        /// 排序字段,升序asc,降序desc，默认降序desc
+        public let sort: String?
+
+        /// 返回的top数，默认返回top5
+        public let count: Int64?
+
+        public init(topicId: String, from: Int64, to: Int64, query: String, fieldName: String, sort: String? = nil, count: Int64? = nil) {
             self.topicId = topicId
             self.from = from
             self.to = to
             self.query = query
             self.fieldName = fieldName
+            self.sort = sort
+            self.count = count
         }
 
         enum CodingKeys: String, CodingKey {
@@ -50,6 +58,8 @@ extension Waf {
             case to = "To"
             case query = "Query"
             case fieldName = "FieldName"
+            case sort = "Sort"
+            case count = "Count"
         }
     }
 
@@ -83,15 +93,15 @@ extension Waf {
     ///
     /// 本接口用于访问日志的快速分析
     @inlinable @discardableResult
-    public func describeAccessFastAnalysis(topicId: String, from: Int64, to: Int64, query: String, fieldName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessFastAnalysisResponse> {
-        self.describeAccessFastAnalysis(.init(topicId: topicId, from: from, to: to, query: query, fieldName: fieldName), region: region, logger: logger, on: eventLoop)
+    public func describeAccessFastAnalysis(topicId: String, from: Int64, to: Int64, query: String, fieldName: String, sort: String? = nil, count: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessFastAnalysisResponse> {
+        self.describeAccessFastAnalysis(.init(topicId: topicId, from: from, to: to, query: query, fieldName: fieldName, sort: sort, count: count), region: region, logger: logger, on: eventLoop)
     }
 
     /// 访问日志快速分析统计
     ///
     /// 本接口用于访问日志的快速分析
     @inlinable @discardableResult
-    public func describeAccessFastAnalysis(topicId: String, from: Int64, to: Int64, query: String, fieldName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessFastAnalysisResponse {
-        try await self.describeAccessFastAnalysis(.init(topicId: topicId, from: from, to: to, query: query, fieldName: fieldName), region: region, logger: logger, on: eventLoop)
+    public func describeAccessFastAnalysis(topicId: String, from: Int64, to: Int64, query: String, fieldName: String, sort: String? = nil, count: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessFastAnalysisResponse {
+        try await self.describeAccessFastAnalysis(.init(topicId: topicId, from: from, to: to, query: query, fieldName: fieldName, sort: sort, count: count), region: region, logger: logger, on: eventLoop)
     }
 }

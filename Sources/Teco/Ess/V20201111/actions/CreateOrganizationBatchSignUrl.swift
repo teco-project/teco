@@ -21,22 +21,34 @@ import TecoCore
 extension Ess {
     /// CreateOrganizationBatchSignUrl请求参数结构体
     public struct CreateOrganizationBatchSignUrlRequest: TCRequest {
-        /// 调用方用户信息，UserId 必填，支持填入集团子公司经办人UserId。
+        /// 执行本接口操作的员工信息。使用此接口时，必须填写userId。
+        /// 支持填入集团子公司经办人 userId 代发合同。
+        ///
+        /// 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         public let `operator`: UserInfo
 
-        /// 指定需要进行批量签署的流程id，数量1-100，填写后用户将通过链接对这些合同进行批量签署。
+        /// 请指定需执行批量签署的流程ID，数量范围为1-100。
+        /// 您可登录腾讯电子签控制台，浏览 "合同"->"合同中心" 以查阅某一合同的FlowId（在页面中显示为合同ID）。
+        /// 用户将利用链接对这些合同实施批量操作。
         public let flowIds: [String]
 
-        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填。
+        /// 代理企业和员工的信息。
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         public let agent: Agent?
 
-        /// 员工的UserId，该UserId对应的员工必须已经加入企业并实名，Name和Mobile为空时该字段不能为空。（优先使用UserId对应的员工）
+        /// 员工在腾讯电子签平台的独特身份标识，为32位字符串。
+        /// 您可登录腾讯电子签控制台，在 "更多能力"->"组织管理" 中查阅某位员工的UserId（在页面中显示为用户ID）。
+        /// UserId必须是传入合同（FlowId）中的签署人。
+        /// - 1. 若UserId为空，Name和Mobile 必须提供。
+        /// - 2. 若UserId 与 Name，Mobile均存在，将优先采用UserId对应的员工。
         public let userId: String?
 
-        /// 员工姓名，该字段需要与Mobile组合使用，UserId为空时该字段不能为空。（UserId为空时，使用Name和Mbile对应的员工）
+        /// 员工姓名，必须与手机号码一起使用。
+        /// 如果UserId为空，则此字段不能为空。同时，姓名和手机号码必须与传入合同（FlowId）中的签署人信息一致。
         public let name: String?
 
-        /// 员工手机号码，该字段需要与Name组合使用，UserId为空时该字段不能为空。（UserId为空时，使用Name和Mbile对应的员工）
+        /// 员工手机号，必须与姓名一起使用。
+        ///  如果UserId为空，则此字段不能为空。同时，姓名和手机号码必须与传入合同（FlowId）中的签署人信息一致。
         public let mobile: String?
 
         public init(operator: UserInfo, flowIds: [String], agent: Agent? = nil, userId: String? = nil, name: String? = nil, mobile: String? = nil) {
@@ -60,10 +72,10 @@ extension Ess {
 
     /// CreateOrganizationBatchSignUrl返回参数结构体
     public struct CreateOrganizationBatchSignUrlResponse: TCResponse {
-        /// 批量签署入口链接
+        /// 批量签署入口链接，用户可使用这个链接跳转到控制台页面对合同进行签署操作。
         public let signUrl: String
 
-        /// 链接过期时间戳
+        /// 链接过期截止时间，格式为Unix标准时间戳（秒），默认为7天后截止。
         public let expiredTime: Int64
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -78,8 +90,11 @@ extension Ess {
 
     /// 获取企业签署合同web页面
     ///
-    /// 通过此接口，创建企业批量签署链接，企业员工点击链接即可跳转控制台进行批量签署。
-    /// 如果没有UserId，Name和Mobile必填，对应的员工必须在企业下已经实名，且该员工为批量签署合同中的签署方。
+    /// 使用此接口，您可以创建企业批量签署链接，员工只需点击链接即可跳转至控制台进行批量签署。
+    ///
+    /// 附注：
+    /// - 员工必须在企业下完成实名认证，且需作为批量签署合同的签署方。
+    /// - 如有UserId，应以UserId为主要标识；如果没有UserId，则必须填写Name和Mobile信息。
     @inlinable
     public func createOrganizationBatchSignUrl(_ input: CreateOrganizationBatchSignUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOrganizationBatchSignUrlResponse> {
         self.client.execute(action: "CreateOrganizationBatchSignUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -87,8 +102,11 @@ extension Ess {
 
     /// 获取企业签署合同web页面
     ///
-    /// 通过此接口，创建企业批量签署链接，企业员工点击链接即可跳转控制台进行批量签署。
-    /// 如果没有UserId，Name和Mobile必填，对应的员工必须在企业下已经实名，且该员工为批量签署合同中的签署方。
+    /// 使用此接口，您可以创建企业批量签署链接，员工只需点击链接即可跳转至控制台进行批量签署。
+    ///
+    /// 附注：
+    /// - 员工必须在企业下完成实名认证，且需作为批量签署合同的签署方。
+    /// - 如有UserId，应以UserId为主要标识；如果没有UserId，则必须填写Name和Mobile信息。
     @inlinable
     public func createOrganizationBatchSignUrl(_ input: CreateOrganizationBatchSignUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrganizationBatchSignUrlResponse {
         try await self.client.execute(action: "CreateOrganizationBatchSignUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -96,8 +114,11 @@ extension Ess {
 
     /// 获取企业签署合同web页面
     ///
-    /// 通过此接口，创建企业批量签署链接，企业员工点击链接即可跳转控制台进行批量签署。
-    /// 如果没有UserId，Name和Mobile必填，对应的员工必须在企业下已经实名，且该员工为批量签署合同中的签署方。
+    /// 使用此接口，您可以创建企业批量签署链接，员工只需点击链接即可跳转至控制台进行批量签署。
+    ///
+    /// 附注：
+    /// - 员工必须在企业下完成实名认证，且需作为批量签署合同的签署方。
+    /// - 如有UserId，应以UserId为主要标识；如果没有UserId，则必须填写Name和Mobile信息。
     @inlinable
     public func createOrganizationBatchSignUrl(operator: UserInfo, flowIds: [String], agent: Agent? = nil, userId: String? = nil, name: String? = nil, mobile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOrganizationBatchSignUrlResponse> {
         self.createOrganizationBatchSignUrl(.init(operator: `operator`, flowIds: flowIds, agent: agent, userId: userId, name: name, mobile: mobile), region: region, logger: logger, on: eventLoop)
@@ -105,8 +126,11 @@ extension Ess {
 
     /// 获取企业签署合同web页面
     ///
-    /// 通过此接口，创建企业批量签署链接，企业员工点击链接即可跳转控制台进行批量签署。
-    /// 如果没有UserId，Name和Mobile必填，对应的员工必须在企业下已经实名，且该员工为批量签署合同中的签署方。
+    /// 使用此接口，您可以创建企业批量签署链接，员工只需点击链接即可跳转至控制台进行批量签署。
+    ///
+    /// 附注：
+    /// - 员工必须在企业下完成实名认证，且需作为批量签署合同的签署方。
+    /// - 如有UserId，应以UserId为主要标识；如果没有UserId，则必须填写Name和Mobile信息。
     @inlinable
     public func createOrganizationBatchSignUrl(operator: UserInfo, flowIds: [String], agent: Agent? = nil, userId: String? = nil, name: String? = nil, mobile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrganizationBatchSignUrlResponse {
         try await self.createOrganizationBatchSignUrl(.init(operator: `operator`, flowIds: flowIds, agent: agent, userId: userId, name: name, mobile: mobile), region: region, logger: logger, on: eventLoop)

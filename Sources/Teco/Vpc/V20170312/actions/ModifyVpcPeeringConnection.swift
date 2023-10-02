@@ -21,7 +21,30 @@ import TecoCore
 extension Vpc {
     /// ModifyVpcPeeringConnection请求参数结构体
     public struct ModifyVpcPeeringConnectionRequest: TCRequest {
-        public init() {
+        /// 对等连接ID。
+        public let peeringConnectionId: String
+
+        /// 对等连接名称。
+        public let peeringConnectionName: String?
+
+        /// 带宽上限，单位Mbps。
+        public let bandwidth: Int64?
+
+        /// 计费模式，日峰值POSTPAID_BY_DAY_MAX，月95 POSTPAID_BY_MONTH_95。
+        public let chargeType: String?
+
+        public init(peeringConnectionId: String, peeringConnectionName: String? = nil, bandwidth: Int64? = nil, chargeType: String? = nil) {
+            self.peeringConnectionId = peeringConnectionId
+            self.peeringConnectionName = peeringConnectionName
+            self.bandwidth = bandwidth
+            self.chargeType = chargeType
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case peeringConnectionId = "PeeringConnectionId"
+            case peeringConnectionName = "PeeringConnectionName"
+            case bandwidth = "Bandwidth"
+            case chargeType = "ChargeType"
         }
     }
 
@@ -55,15 +78,15 @@ extension Vpc {
     ///
     /// 本接口（ModifyVpcPeeringConnection）用于修改私有网络对等连接属性。
     @inlinable @discardableResult
-    public func modifyVpcPeeringConnection(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpcPeeringConnectionResponse> {
-        self.modifyVpcPeeringConnection(.init(), region: region, logger: logger, on: eventLoop)
+    public func modifyVpcPeeringConnection(peeringConnectionId: String, peeringConnectionName: String? = nil, bandwidth: Int64? = nil, chargeType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpcPeeringConnectionResponse> {
+        self.modifyVpcPeeringConnection(.init(peeringConnectionId: peeringConnectionId, peeringConnectionName: peeringConnectionName, bandwidth: bandwidth, chargeType: chargeType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改私有网络对等连接属性
     ///
     /// 本接口（ModifyVpcPeeringConnection）用于修改私有网络对等连接属性。
     @inlinable @discardableResult
-    public func modifyVpcPeeringConnection(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcPeeringConnectionResponse {
-        try await self.modifyVpcPeeringConnection(.init(), region: region, logger: logger, on: eventLoop)
+    public func modifyVpcPeeringConnection(peeringConnectionId: String, peeringConnectionName: String? = nil, bandwidth: Int64? = nil, chargeType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcPeeringConnectionResponse {
+        try await self.modifyVpcPeeringConnection(.init(peeringConnectionId: peeringConnectionId, peeringConnectionName: peeringConnectionName, bandwidth: bandwidth, chargeType: chargeType), region: region, logger: logger, on: eventLoop)
     }
 }

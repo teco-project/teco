@@ -63,7 +63,7 @@ extension Ecdn {
     @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable
     public func createVerifyRecord(_ input: CreateVerifyRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVerifyRecordResponse> {
-        fatalError("CreateVerifyRecord is no longer available.")
+        fatalError("'CreateVerifyRecord' is no longer available.")
     }
 
     /// 生成解析记录
@@ -74,7 +74,7 @@ extension Ecdn {
     @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable
     public func createVerifyRecord(_ input: CreateVerifyRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVerifyRecordResponse {
-        fatalError("CreateVerifyRecord is no longer available.")
+        fatalError("'CreateVerifyRecord' is no longer available.")
     }
 
     /// 生成解析记录
@@ -85,7 +85,7 @@ extension Ecdn {
     @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable
     public func createVerifyRecord(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVerifyRecordResponse> {
-        fatalError("CreateVerifyRecord is no longer available.")
+        fatalError("'CreateVerifyRecord' is no longer available.")
     }
 
     /// 生成解析记录
@@ -96,6 +96,6 @@ extension Ecdn {
     @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable
     public func createVerifyRecord(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVerifyRecordResponse {
-        fatalError("CreateVerifyRecord is no longer available.")
+        fatalError("'CreateVerifyRecord' is no longer available.")
     }
 }

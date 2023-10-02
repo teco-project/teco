@@ -56,27 +56,27 @@ extension Mgobe {
     @available(*, unavailable, message: "此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func removeRoomPlayer(_ input: RemoveRoomPlayerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveRoomPlayerResponse> {
-        fatalError("RemoveRoomPlayer is no longer available.")
+        fatalError("'RemoveRoomPlayer' is no longer available.")
     }
 
     /// 踢出房间玩家
     @available(*, unavailable, message: "此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func removeRoomPlayer(_ input: RemoveRoomPlayerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveRoomPlayerResponse {
-        fatalError("RemoveRoomPlayer is no longer available.")
+        fatalError("'RemoveRoomPlayer' is no longer available.")
     }
 
     /// 踢出房间玩家
     @available(*, unavailable, message: "此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func removeRoomPlayer(gameId: String, removePlayerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveRoomPlayerResponse> {
-        fatalError("RemoveRoomPlayer is no longer available.")
+        fatalError("'RemoveRoomPlayer' is no longer available.")
     }
 
     /// 踢出房间玩家
     @available(*, unavailable, message: "此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func removeRoomPlayer(gameId: String, removePlayerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveRoomPlayerResponse {
-        fatalError("RemoveRoomPlayer is no longer available.")
+        fatalError("'RemoveRoomPlayer' is no longer available.")
     }
 }

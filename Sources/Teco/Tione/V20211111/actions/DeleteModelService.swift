@@ -24,12 +24,17 @@ extension Tione {
         /// 服务id
         public let serviceId: String
 
-        public init(serviceId: String) {
+        /// 服务分类
+        public let serviceCategory: String?
+
+        public init(serviceId: String, serviceCategory: String? = nil) {
             self.serviceId = serviceId
+            self.serviceCategory = serviceCategory
         }
 
         enum CodingKeys: String, CodingKey {
             case serviceId = "ServiceId"
+            case serviceCategory = "ServiceCategory"
         }
     }
 
@@ -63,15 +68,15 @@ extension Tione {
     ///
     /// 根据服务id删除模型服务
     @inlinable @discardableResult
-    public func deleteModelService(serviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModelServiceResponse> {
-        self.deleteModelService(.init(serviceId: serviceId), region: region, logger: logger, on: eventLoop)
+    public func deleteModelService(serviceId: String, serviceCategory: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModelServiceResponse> {
+        self.deleteModelService(.init(serviceId: serviceId, serviceCategory: serviceCategory), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除模型服务
     ///
     /// 根据服务id删除模型服务
     @inlinable @discardableResult
-    public func deleteModelService(serviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelServiceResponse {
-        try await self.deleteModelService(.init(serviceId: serviceId), region: region, logger: logger, on: eventLoop)
+    public func deleteModelService(serviceId: String, serviceCategory: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelServiceResponse {
+        try await self.deleteModelService(.init(serviceId: serviceId, serviceCategory: serviceCategory), region: region, logger: logger, on: eventLoop)
     }
 }

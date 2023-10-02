@@ -39,13 +39,17 @@ extension Iotvideo {
         /// 用户ID
         public let userId: String?
 
-        public init(productId: String, deviceName: String, date: String, startTime: UInt64? = nil, endTime: UInt64? = nil, userId: String? = nil) {
+        /// 通道ID
+        public let channelId: UInt64?
+
+        public init(productId: String, deviceName: String, date: String, startTime: UInt64? = nil, endTime: UInt64? = nil, userId: String? = nil, channelId: UInt64? = nil) {
             self.productId = productId
             self.deviceName = deviceName
             self.date = date
             self.startTime = startTime
             self.endTime = endTime
             self.userId = userId
+            self.channelId = channelId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -55,6 +59,7 @@ extension Iotvideo {
             case startTime = "StartTime"
             case endTime = "EndTime"
             case userId = "UserId"
+            case channelId = "ChannelId"
         }
     }
 
@@ -86,13 +91,13 @@ extension Iotvideo {
 
     /// 获取某一天云存时间轴
     @inlinable
-    public func describeCloudStorageTime(productId: String, deviceName: String, date: String, startTime: UInt64? = nil, endTime: UInt64? = nil, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageTimeResponse> {
-        self.describeCloudStorageTime(.init(productId: productId, deviceName: deviceName, date: date, startTime: startTime, endTime: endTime, userId: userId), region: region, logger: logger, on: eventLoop)
+    public func describeCloudStorageTime(productId: String, deviceName: String, date: String, startTime: UInt64? = nil, endTime: UInt64? = nil, userId: String? = nil, channelId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageTimeResponse> {
+        self.describeCloudStorageTime(.init(productId: productId, deviceName: deviceName, date: date, startTime: startTime, endTime: endTime, userId: userId, channelId: channelId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取某一天云存时间轴
     @inlinable
-    public func describeCloudStorageTime(productId: String, deviceName: String, date: String, startTime: UInt64? = nil, endTime: UInt64? = nil, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageTimeResponse {
-        try await self.describeCloudStorageTime(.init(productId: productId, deviceName: deviceName, date: date, startTime: startTime, endTime: endTime, userId: userId), region: region, logger: logger, on: eventLoop)
+    public func describeCloudStorageTime(productId: String, deviceName: String, date: String, startTime: UInt64? = nil, endTime: UInt64? = nil, userId: String? = nil, channelId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageTimeResponse {
+        try await self.describeCloudStorageTime(.init(productId: productId, deviceName: deviceName, date: date, startTime: startTime, endTime: endTime, userId: userId, channelId: channelId), region: region, logger: logger, on: eventLoop)
     }
 }

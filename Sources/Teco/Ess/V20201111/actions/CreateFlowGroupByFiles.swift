@@ -21,19 +21,25 @@ import TecoCore
 extension Ess {
     /// CreateFlowGroupByFiles请求参数结构体
     public struct CreateFlowGroupByFilesRequest: TCRequest {
-        /// 调用方用户信息，userId 必填。支持填入集团子公司经办人 userId 代发合同
+        /// 执行本接口操作的员工信息。
+        /// 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。
         public let `operator`: UserInfo
 
-        /// 合同（流程）组名称,最大长度200个字符
+        /// 合同（流程）组名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。
         public let flowGroupName: String
 
         /// 合同（流程）组的子合同信息，支持2-50个子合同
         public let flowGroupInfos: [FlowGroupInfo]
 
-        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        /// 代理企业和员工的信息。
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         public let agent: Agent?
 
-        /// 合同（流程）组的配置项信息。包括是否通知本企业签署方，是否通知其他签署方
+        /// 合同（流程）组的配置项信息。
+        /// 其中包括：
+        ///
+        /// - 是否通知本企业签署方
+        /// - 是否通知其他签署方
         public let flowGroupOptions: FlowGroupOptions?
 
         public init(operator: UserInfo, flowGroupName: String, flowGroupInfos: [FlowGroupInfo], agent: Agent? = nil, flowGroupOptions: FlowGroupOptions? = nil) {
@@ -75,10 +81,11 @@ extension Ess {
 
     /// 通过多文件创建合同组签署流程
     ///
-    /// 此接口（CreateFlowGroupByFiles）通过多文件创建合同组签署流程。
+    /// 此接口（CreateFlowGroupByFiles）可用于通过多个文件创建合同组签署流程。
     ///
-    /// PDF资源Id 通过上传文件接口获取
-    /// 此接口合同组中的子合同必须都是文件发起的合同
+    /// 适用场景：该接口适用于需要一次性完成多份合同签署的情况，多份合同一般具有关联性，用户以目录的形式查看合同。
+    ///
+    /// 注意事项：使用该接口需要先依赖[多文件上传](https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles)接口返回的FileIds。
     @inlinable
     public func createFlowGroupByFiles(_ input: CreateFlowGroupByFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowGroupByFilesResponse> {
         self.client.execute(action: "CreateFlowGroupByFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -86,10 +93,11 @@ extension Ess {
 
     /// 通过多文件创建合同组签署流程
     ///
-    /// 此接口（CreateFlowGroupByFiles）通过多文件创建合同组签署流程。
+    /// 此接口（CreateFlowGroupByFiles）可用于通过多个文件创建合同组签署流程。
     ///
-    /// PDF资源Id 通过上传文件接口获取
-    /// 此接口合同组中的子合同必须都是文件发起的合同
+    /// 适用场景：该接口适用于需要一次性完成多份合同签署的情况，多份合同一般具有关联性，用户以目录的形式查看合同。
+    ///
+    /// 注意事项：使用该接口需要先依赖[多文件上传](https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles)接口返回的FileIds。
     @inlinable
     public func createFlowGroupByFiles(_ input: CreateFlowGroupByFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowGroupByFilesResponse {
         try await self.client.execute(action: "CreateFlowGroupByFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -97,10 +105,11 @@ extension Ess {
 
     /// 通过多文件创建合同组签署流程
     ///
-    /// 此接口（CreateFlowGroupByFiles）通过多文件创建合同组签署流程。
+    /// 此接口（CreateFlowGroupByFiles）可用于通过多个文件创建合同组签署流程。
     ///
-    /// PDF资源Id 通过上传文件接口获取
-    /// 此接口合同组中的子合同必须都是文件发起的合同
+    /// 适用场景：该接口适用于需要一次性完成多份合同签署的情况，多份合同一般具有关联性，用户以目录的形式查看合同。
+    ///
+    /// 注意事项：使用该接口需要先依赖[多文件上传](https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles)接口返回的FileIds。
     @inlinable
     public func createFlowGroupByFiles(operator: UserInfo, flowGroupName: String, flowGroupInfos: [FlowGroupInfo], agent: Agent? = nil, flowGroupOptions: FlowGroupOptions? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowGroupByFilesResponse> {
         self.createFlowGroupByFiles(.init(operator: `operator`, flowGroupName: flowGroupName, flowGroupInfos: flowGroupInfos, agent: agent, flowGroupOptions: flowGroupOptions), region: region, logger: logger, on: eventLoop)
@@ -108,10 +117,11 @@ extension Ess {
 
     /// 通过多文件创建合同组签署流程
     ///
-    /// 此接口（CreateFlowGroupByFiles）通过多文件创建合同组签署流程。
+    /// 此接口（CreateFlowGroupByFiles）可用于通过多个文件创建合同组签署流程。
     ///
-    /// PDF资源Id 通过上传文件接口获取
-    /// 此接口合同组中的子合同必须都是文件发起的合同
+    /// 适用场景：该接口适用于需要一次性完成多份合同签署的情况，多份合同一般具有关联性，用户以目录的形式查看合同。
+    ///
+    /// 注意事项：使用该接口需要先依赖[多文件上传](https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles)接口返回的FileIds。
     @inlinable
     public func createFlowGroupByFiles(operator: UserInfo, flowGroupName: String, flowGroupInfos: [FlowGroupInfo], agent: Agent? = nil, flowGroupOptions: FlowGroupOptions? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowGroupByFilesResponse {
         try await self.createFlowGroupByFiles(.init(operator: `operator`, flowGroupName: flowGroupName, flowGroupInfos: flowGroupInfos, agent: agent, flowGroupOptions: flowGroupOptions), region: region, logger: logger, on: eventLoop)

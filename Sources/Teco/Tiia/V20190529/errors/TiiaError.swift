@@ -42,6 +42,7 @@ public struct TCTiiaError: TCTiiaErrorType {
         case failedOperation_ImageNotSupported = "FailedOperation.ImageNotSupported"
         case failedOperation_ImageNumExceed = "FailedOperation.ImageNumExceed"
         case failedOperation_ImageResolutionExceed = "FailedOperation.ImageResolutionExceed"
+        case failedOperation_ImageResolutionInsufficient = "FailedOperation.ImageResolutionInsufficient"
         case failedOperation_ImageSearchInvalid = "FailedOperation.ImageSearchInvalid"
         case failedOperation_ImageSizeExceed = "FailedOperation.ImageSizeExceed"
         case failedOperation_ImageUnQualified = "FailedOperation.ImageUnQualified"
@@ -91,6 +92,7 @@ public struct TCTiiaError: TCTiiaErrorType {
         case resourceUnavailable_InArrears = "ResourceUnavailable.InArrears"
         case resourceUnavailable_IsOpening = "ResourceUnavailable.IsOpening"
         case resourceUnavailable_NotExist = "ResourceUnavailable.NotExist"
+        case resourceUnavailable_StopUsing = "ResourceUnavailable.StopUsing"
         case resourcesSoldOut_ChargeStatusException = "ResourcesSoldOut.ChargeStatusException"
     }
 
@@ -207,6 +209,11 @@ public struct TCTiiaError: TCTiiaErrorType {
     /// 图片分辨率过大。
     public static var failedOperation_ImageResolutionExceed: TCTiiaError {
         TCTiiaError(.failedOperation_ImageResolutionExceed)
+    }
+
+    /// 图片分辨率过小。
+    public static var failedOperation_ImageResolutionInsufficient: TCTiiaError {
+        TCTiiaError(.failedOperation_ImageResolutionInsufficient)
     }
 
     /// 未查询到结果。
@@ -451,6 +458,11 @@ public struct TCTiiaError: TCTiiaErrorType {
     /// 计费状态未知，请确认是否已在控制台开通服务。
     public static var resourceUnavailable_NotExist: TCTiiaError {
         TCTiiaError(.resourceUnavailable_NotExist)
+    }
+
+    /// 帐号已停服。
+    public static var resourceUnavailable_StopUsing: TCTiiaError {
+        TCTiiaError(.resourceUnavailable_StopUsing)
     }
 
     /// 计费状态异常。

@@ -43,13 +43,17 @@ extension Ocr {
         /// 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
         public let pdfPageNumber: UInt64?
 
-        public init(imageBase64: String? = nil, imageUrl: String? = nil, isWords: Bool? = nil, enableDetectSplit: Bool? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil) {
+        /// 文本检测开关，默认为true。设置为false可直接进行单行识别，适用于仅包含正向单行文本的图片场景。
+        public let enableDetectText: Bool?
+
+        public init(imageBase64: String? = nil, imageUrl: String? = nil, isWords: Bool? = nil, enableDetectSplit: Bool? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, enableDetectText: Bool? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
             self.isWords = isWords
             self.enableDetectSplit = enableDetectSplit
             self.isPdf = isPdf
             self.pdfPageNumber = pdfPageNumber
+            self.enableDetectText = enableDetectText
         }
 
         enum CodingKeys: String, CodingKey {
@@ -59,6 +63,7 @@ extension Ocr {
             case enableDetectSplit = "EnableDetectSplit"
             case isPdf = "IsPdf"
             case pdfPageNumber = "PdfPageNumber"
+            case enableDetectText = "EnableDetectText"
         }
     }
 
@@ -68,7 +73,11 @@ extension Ocr {
         public let textDetections: [TextDetection]
 
         /// 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负。点击查看[如何纠正倾斜文本](https://cloud.tencent.com/document/product/866/45139)
+        @available(*, deprecated)
         public let angel: Float
+
+        /// 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负。点击查看[如何纠正倾斜文本](https://cloud.tencent.com/document/product/866/45139)
+        public let angle: Float
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -76,6 +85,7 @@ extension Ocr {
         enum CodingKeys: String, CodingKey {
             case textDetections = "TextDetections"
             case angel = "Angel"
+            case angle = "Angle"
             case requestId = "RequestId"
         }
     }
@@ -154,8 +164,8 @@ extension Ocr {
     ///
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func generalAccurateOCR(imageBase64: String? = nil, imageUrl: String? = nil, isWords: Bool? = nil, enableDetectSplit: Bool? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GeneralAccurateOCRResponse> {
-        self.generalAccurateOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, isWords: isWords, enableDetectSplit: enableDetectSplit, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)
+    public func generalAccurateOCR(imageBase64: String? = nil, imageUrl: String? = nil, isWords: Bool? = nil, enableDetectSplit: Bool? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, enableDetectText: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GeneralAccurateOCRResponse> {
+        self.generalAccurateOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, isWords: isWords, enableDetectSplit: enableDetectSplit, isPdf: isPdf, pdfPageNumber: pdfPageNumber, enableDetectText: enableDetectText), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通用印刷体识别（高精度版）
@@ -180,7 +190,7 @@ extension Ocr {
     ///
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func generalAccurateOCR(imageBase64: String? = nil, imageUrl: String? = nil, isWords: Bool? = nil, enableDetectSplit: Bool? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralAccurateOCRResponse {
-        try await self.generalAccurateOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, isWords: isWords, enableDetectSplit: enableDetectSplit, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)
+    public func generalAccurateOCR(imageBase64: String? = nil, imageUrl: String? = nil, isWords: Bool? = nil, enableDetectSplit: Bool? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, enableDetectText: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralAccurateOCRResponse {
+        try await self.generalAccurateOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, isWords: isWords, enableDetectSplit: enableDetectSplit, isPdf: isPdf, pdfPageNumber: pdfPageNumber, enableDetectText: enableDetectText), region: region, logger: logger, on: eventLoop)
     }
 }

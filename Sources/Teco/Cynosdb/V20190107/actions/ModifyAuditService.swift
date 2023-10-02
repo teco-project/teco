@@ -36,7 +36,7 @@ extension Cynosdb {
         /// 规则审计。
         public let auditRuleFilters: [AuditRuleFilters]?
 
-        /// 规则模版ID。
+        /// 规则模板ID。
         public let ruleTemplateIds: [String]?
 
         public init(instanceId: String, logExpireDay: UInt64? = nil, highLogExpireDay: UInt64? = nil, auditAll: Bool? = nil, auditRuleFilters: [AuditRuleFilters]? = nil, ruleTemplateIds: [String]? = nil) {

@@ -46,6 +46,54 @@ extension Ssl {
         }
     }
 
+    /// apigateway实例详情 - 异步关联云资源数据结构
+    public struct ApiGatewayInstanceList: TCOutputModel {
+        /// 地域
+        public let region: String
+
+        /// apigateway实例详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceList: [ApiGatewayInstanceDetail]?
+
+        /// 该地域下apigateway实例总数
+        public let totalCount: UInt64
+
+        enum CodingKeys: String, CodingKey {
+            case region = "Region"
+            case instanceList = "InstanceList"
+            case totalCount = "TotalCount"
+        }
+    }
+
+    /// 绑定资源地域结果
+    public struct BindResourceRegionResult: TCOutputModel {
+        /// 地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let region: String?
+
+        /// 关联资源总数
+        public let totalCount: UInt64
+
+        enum CodingKeys: String, CodingKey {
+            case region = "Region"
+            case totalCount = "TotalCount"
+        }
+    }
+
+    /// 绑定资源结果
+    public struct BindResourceResult: TCOutputModel {
+        /// 资源类型：clb、cdn、waf、live、vod、ddos、tke、apigateway、tcb、teo（edgeOne）
+        public let resourceType: String
+
+        /// 绑定资源地域结果
+        public let bindResourceRegionResult: [BindResourceRegionResult]?
+
+        enum CodingKeys: String, CodingKey {
+            case resourceType = "ResourceType"
+            case bindResourceRegionResult = "BindResourceRegionResult"
+        }
+    }
+
     /// CDN实例详情
     public struct CdnInstanceDetail: TCOutputModel {
         /// 域名
@@ -57,10 +105,29 @@ extension Ssl {
         /// 域名状态
         public let status: String
 
+        /// 域名计费状态
+        public let httpsBillingSwitch: String
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case certId = "CertId"
             case status = "Status"
+            case httpsBillingSwitch = "HttpsBillingSwitch"
+        }
+    }
+
+    /// cdn实例详情 - 异步关联云资源数据结构
+    public struct CdnInstanceList: TCOutputModel {
+        /// 该地域下CDN域名总数
+        public let totalCount: UInt64
+
+        /// cdn域名详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceList: [CdnInstanceDetail]?
+
+        enum CodingKeys: String, CodingKey {
+            case totalCount = "TotalCount"
+            case instanceList = "InstanceList"
         }
     }
 
@@ -89,6 +156,25 @@ extension Ssl {
         }
     }
 
+    /// 证书异步任务ID
+    public struct CertTaskId: TCInputModel, TCOutputModel {
+        /// 证书ID
+        public let certId: String?
+
+        /// 异步任务ID
+        public let taskId: String?
+
+        public init(certId: String? = nil, taskId: String? = nil) {
+            self.certId = certId
+            self.taskId = taskId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case certId = "CertId"
+            case taskId = "TaskId"
+        }
+    }
+
     /// CLB证书详情
     public struct Certificate: TCOutputModel {
         /// 证书ID
@@ -97,9 +183,19 @@ extension Ssl {
         /// 证书绑定的域名
         public let dnsNames: [String]
 
+        /// 根证书ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let certCaId: String?
+
+        /// 证书认证模式：UNIDIRECTIONAL单向认证，MUTUAL双向认证
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sslMode: String?
+
         enum CodingKeys: String, CodingKey {
             case certId = "CertId"
             case dnsNames = "DnsNames"
+            case certCaId = "CertCaId"
+            case sslMode = "SSLMode"
         }
     }
 
@@ -295,6 +391,18 @@ extension Ssl {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoRenewFlag: Int64?
 
+        /// 托管状态，0，托管中，5，资源替换中， 10， 托管完成， -1未托管
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hostingStatus: Int64?
+
+        /// 托管完成时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hostingCompleteTime: String?
+
+        /// 托管新证书ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hostingRenewCertId: String?
+
         enum CodingKeys: String, CodingKey {
             case ownerUin = "OwnerUin"
             case projectId = "ProjectId"
@@ -334,6 +442,9 @@ extension Ssl {
             case caCommonNames = "CACommonNames"
             case preAuditInfo = "PreAuditInfo"
             case autoRenewFlag = "AutoRenewFlag"
+            case hostingStatus = "HostingStatus"
+            case hostingCompleteTime = "HostingCompleteTime"
+            case hostingRenewCertId = "HostingRenewCertId"
         }
     }
 
@@ -353,6 +464,25 @@ extension Ssl {
             case loadBalancerId = "LoadBalancerId"
             case loadBalancerName = "LoadBalancerName"
             case listeners = "Listeners"
+        }
+    }
+
+    /// clb实例详情 - 异步关联云资源数据结构
+    public struct ClbInstanceList: TCOutputModel {
+        /// 地域
+        public let region: String
+
+        /// clb实例详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceList: [ClbInstanceDetail]?
+
+        /// 该地域下Clb实例总数
+        public let totalCount: UInt64
+
+        enum CodingKeys: String, CodingKey {
+            case region = "Region"
+            case instanceList = "InstanceList"
+            case totalCount = "TotalCount"
         }
     }
 
@@ -519,6 +649,21 @@ extension Ssl {
             case `protocol` = "Protocol"
             case certId = "CertId"
             case virtualPort = "VirtualPort"
+        }
+    }
+
+    /// ddos实例详情 - 异步关联云资源数据结构
+    public struct DdosInstanceList: TCOutputModel {
+        /// 该地域下ddos域名总数
+        public let totalCount: UInt64
+
+        /// ddos实例详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceList: [DdosInstanceDetail]?
+
+        enum CodingKeys: String, CodingKey {
+            case totalCount = "TotalCount"
+            case instanceList = "InstanceList"
         }
     }
 
@@ -757,6 +902,22 @@ extension Ssl {
         }
     }
 
+    /// 错误异常
+    public struct Error: TCOutputModel {
+        /// 异常错误码
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let code: String?
+
+        /// 异常错误信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let message: String?
+
+        enum CodingKeys: String, CodingKey {
+            case code = "Code"
+            case message = "Message"
+        }
+    }
+
     /// 过滤参数列表
     public struct Filter: TCInputModel {
         /// 过滤参数key
@@ -816,6 +977,21 @@ extension Ssl {
             case domain = "Domain"
             case certId = "CertId"
             case status = "Status"
+        }
+    }
+
+    /// live实例详情 - 异步关联云资源数据结构
+    public struct LiveInstanceList: TCOutputModel {
+        /// 该地域下live实例总数
+        public let totalCount: UInt64
+
+        /// live实例详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceList: [LiveInstanceDetail]?
+
+        enum CodingKeys: String, CodingKey {
+            case totalCount = "TotalCount"
+            case instanceList = "InstanceList"
         }
     }
 
@@ -1294,6 +1470,193 @@ extension Ssl {
         }
     }
 
+    /// 异步任务证书关联云资源结果
+    public struct SyncTaskBindResourceResult: TCOutputModel {
+        /// 任务ID
+        public let taskId: String
+
+        /// 关联云资源结果
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bindResourceResult: [BindResourceResult]?
+
+        /// 关联云资源异步查询结果： 0表示查询中， 1表示查询成功。 2表示查询异常； 若状态为1，则查看BindResourceResult结果；若状态为2，则查看Error原因
+        public let status: UInt64
+
+        /// 关联云资源错误信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let error: Error?
+
+        /// 当前结果缓存时间
+        public let cacheTime: String
+
+        enum CodingKeys: String, CodingKey {
+            case taskId = "TaskId"
+            case bindResourceResult = "BindResourceResult"
+            case status = "Status"
+            case error = "Error"
+            case cacheTime = "CacheTime"
+        }
+    }
+
+    /// TCB访问服务实例
+    public struct TCBAccessInstance: TCOutputModel {
+        /// 域名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let domain: String?
+
+        /// 状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: Int64?
+
+        /// 统一域名状态
+        ///
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let unionStatus: Int64?
+
+        /// 是否被抢占, 被抢占表示域名被其他环境绑定了，需要解绑或者重新绑定。
+        ///
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isPreempted: Bool?
+
+        /// icp黑名单封禁状态，0-未封禁，1-封禁
+        ///
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let icpStatus: Int64?
+
+        /// 已绑定证书ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let oldCertificateId: String?
+
+        enum CodingKeys: String, CodingKey {
+            case domain = "Domain"
+            case status = "Status"
+            case unionStatus = "UnionStatus"
+            case isPreempted = "IsPreempted"
+            case icpStatus = "ICPStatus"
+            case oldCertificateId = "OldCertificateId"
+        }
+    }
+
+    /// TCB访问服务列表
+    public struct TCBAccessService: TCOutputModel {
+        /// 实例列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceList: [TCBAccessInstance]?
+
+        /// 数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalCount: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case instanceList = "InstanceList"
+            case totalCount = "TotalCount"
+        }
+    }
+
+    /// TCB环境
+    public struct TCBEnvironment: TCOutputModel {
+        /// 唯一ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: String?
+
+        /// 来源
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let source: String?
+
+        /// 名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: String?
+
+        enum CodingKeys: String, CodingKey {
+            case id = "ID"
+            case source = "Source"
+            case name = "Name"
+            case status = "Status"
+        }
+    }
+
+    /// tcb环境实例详情 - 异步关联云资源数据结构
+    public struct TCBEnvironments: TCOutputModel {
+        /// tcb环境
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let environment: TCBEnvironment?
+
+        /// 访问服务
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let accessService: TCBAccessService?
+
+        /// 静态托管
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hostService: TCBHostService?
+
+        enum CodingKeys: String, CodingKey {
+            case environment = "Environment"
+            case accessService = "AccessService"
+            case hostService = "HostService"
+        }
+    }
+
+    /// TCB静态托管服务实例
+    public struct TCBHostInstance: TCOutputModel {
+        /// 域名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let domain: String?
+
+        /// 状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: String?
+
+        /// 解析状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dnsStatus: String?
+
+        /// 已绑定证书ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let oldCertificateId: String?
+
+        enum CodingKeys: String, CodingKey {
+            case domain = "Domain"
+            case status = "Status"
+            case dnsStatus = "DNSStatus"
+            case oldCertificateId = "OldCertificateId"
+        }
+    }
+
+    /// TCB静态托管服务列表
+    public struct TCBHostService: TCOutputModel {
+        /// 实例列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceList: [TCBHostInstance]?
+
+        /// 数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalCount: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case instanceList = "InstanceList"
+            case totalCount = "TotalCount"
+        }
+    }
+
+    /// tcb地域实例详情 - 异步关联云资源数据结构
+    public struct TCBInstanceList: TCOutputModel {
+        /// 地域
+        public let region: String
+
+        /// tcb环境实例详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let environments: [TCBEnvironments]?
+
+        enum CodingKeys: String, CodingKey {
+            case region = "Region"
+            case environments = "Environments"
+        }
+    }
+
     /// 标签
     public struct Tags: TCInputModel, TCOutputModel {
         /// 标签键
@@ -1336,6 +1699,21 @@ extension Ssl {
         }
     }
 
+    /// edgeone实例详情 - 异步关联云资源数据结构
+    public struct TeoInstanceList: TCOutputModel {
+        /// edgeone实例详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceList: [TeoInstanceDetail]?
+
+        /// edgeone实例总数
+        public let totalCount: UInt64
+
+        enum CodingKeys: String, CodingKey {
+            case instanceList = "InstanceList"
+            case totalCount = "TotalCount"
+        }
+    }
+
     /// tke ingress实例详情
     public struct TkeIngressDetail: TCOutputModel {
         /// ingress名称
@@ -1365,10 +1743,37 @@ extension Ssl {
         /// 集群命名空间列表
         public let namespaceList: [TkeNameSpaceDetail]
 
+        /// 集群类型
+        public let clusterType: String
+
+        /// 集群版本
+        public let clusterVersion: String
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case clusterName = "ClusterName"
             case namespaceList = "NamespaceList"
+            case clusterType = "ClusterType"
+            case clusterVersion = "ClusterVersion"
+        }
+    }
+
+    /// tke实例详情 - 异步关联云资源数据结构
+    public struct TkeInstanceList: TCOutputModel {
+        /// 地域
+        public let region: String
+
+        /// tke实例详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceList: [TkeInstanceDetail]?
+
+        /// 该地域下tke实例总数
+        public let totalCount: UInt64
+
+        enum CodingKeys: String, CodingKey {
+            case region = "Region"
+            case instanceList = "InstanceList"
+            case totalCount = "TotalCount"
         }
     }
 
@@ -1575,6 +1980,21 @@ extension Ssl {
         }
     }
 
+    /// vod实例详情 - 异步关联云资源数据结构
+    public struct VODInstanceList: TCOutputModel {
+        /// vod实例详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceList: [VodInstanceDetail]?
+
+        /// 该地域下vod实例总数
+        public let totalCount: UInt64
+
+        enum CodingKeys: String, CodingKey {
+            case instanceList = "InstanceList"
+            case totalCount = "TotalCount"
+        }
+    }
+
     /// Vod实例
     public struct VodInstanceDetail: TCOutputModel {
         /// 域名
@@ -1586,6 +2006,45 @@ extension Ssl {
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case certId = "CertId"
+        }
+    }
+
+    /// waf实例详情
+    public struct WafInstanceDetail: TCOutputModel {
+        /// 域名
+        public let domain: String
+
+        /// 证书ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let certId: String?
+
+        /// 是否保持长连接，1是，0 否
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let keepalive: UInt64?
+
+        enum CodingKeys: String, CodingKey {
+            case domain = "Domain"
+            case certId = "CertId"
+            case keepalive = "Keepalive"
+        }
+    }
+
+    /// waf实例详情 - 异步关联云资源数据结构
+    public struct WafInstanceList: TCOutputModel {
+        /// 地域
+        public let region: String
+
+        /// waf实例详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceList: [WafInstanceDetail]?
+
+        /// 该地域下waf实例总数
+        public let totalCount: UInt64
+
+        enum CodingKeys: String, CodingKey {
+            case region = "Region"
+            case instanceList = "InstanceList"
+            case totalCount = "TotalCount"
         }
     }
 }

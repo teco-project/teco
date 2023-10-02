@@ -69,7 +69,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func updateAlias(_ input: UpdateAliasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAliasResponse> {
-        fatalError("UpdateAlias is no longer available.")
+        fatalError("'UpdateAlias' is no longer available.")
     }
 
     /// 更新别名的属性
@@ -78,7 +78,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func updateAlias(_ input: UpdateAliasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAliasResponse {
-        fatalError("UpdateAlias is no longer available.")
+        fatalError("'UpdateAlias' is no longer available.")
     }
 
     /// 更新别名的属性
@@ -87,7 +87,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func updateAlias(aliasId: String, name: String? = nil, description: String? = nil, routingStrategy: RoutingStrategy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAliasResponse> {
-        fatalError("UpdateAlias is no longer available.")
+        fatalError("'UpdateAlias' is no longer available.")
     }
 
     /// 更新别名的属性
@@ -96,6 +96,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func updateAlias(aliasId: String, name: String? = nil, description: String? = nil, routingStrategy: RoutingStrategy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAliasResponse {
-        fatalError("UpdateAlias is no longer available.")
+        fatalError("'UpdateAlias' is no longer available.")
     }
 }

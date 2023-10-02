@@ -29,6 +29,8 @@ extension TCCdnError {
             case cdnClsTooManyTopics = "LimitExceeded.CdnClsTooManyTopics"
             case cdnConfigTooManyCacheRules = "LimitExceeded.CdnConfigTooManyCacheRules"
             case cdnHostOpTooOften = "LimitExceeded.CdnHostOpTooOften"
+            case cdnPurgeExceedBatchLimit = "LimitExceeded.CdnPurgeExceedBatchLimit"
+            case cdnPurgeExceedDayLimit = "LimitExceeded.CdnPurgeExceedDayLimit"
             case cdnPurgePathExceedBatchLimit = "LimitExceeded.CdnPurgePathExceedBatchLimit"
             case cdnPurgePathExceedDayLimit = "LimitExceeded.CdnPurgePathExceedDayLimit"
             case cdnPurgeUrlExceedBatchLimit = "LimitExceeded.CdnPurgeUrlExceedBatchLimit"
@@ -114,6 +116,16 @@ extension TCCdnError {
         /// 域名操作过于频繁。
         public static var cdnHostOpTooOften: LimitExceeded {
             LimitExceeded(.cdnHostOpTooOften)
+        }
+
+        /// 请减少同一次API请求所提交的Url数量。
+        public static var cdnPurgeExceedBatchLimit: LimitExceeded {
+            LimitExceeded(.cdnPurgeExceedBatchLimit)
+        }
+
+        /// 请等待配额恢复后再提交刷新，或在CDN控制台-配额管理中申请临时配额。
+        public static var cdnPurgeExceedDayLimit: LimitExceeded {
+            LimitExceeded(.cdnPurgeExceedDayLimit)
         }
 
         /// 刷新的目录数量超过限制。
@@ -204,6 +216,10 @@ extension TCCdnError {
                 code = .limitExceeded_CdnConfigTooManyCacheRules
             case .cdnHostOpTooOften:
                 code = .limitExceeded_CdnHostOpTooOften
+            case .cdnPurgeExceedBatchLimit:
+                code = .limitExceeded_CdnPurgeExceedBatchLimit
+            case .cdnPurgeExceedDayLimit:
+                code = .limitExceeded_CdnPurgeExceedDayLimit
             case .cdnPurgePathExceedBatchLimit:
                 code = .limitExceeded_CdnPurgePathExceedBatchLimit
             case .cdnPurgePathExceedDayLimit:

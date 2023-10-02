@@ -107,7 +107,7 @@ extension Ocr {
     ///
     /// 本接口支持智能提取各类证照、票据、表单、合同等结构化场景的key:value字段信息，并支持提取表格信息的key:value组的结构化，灵活高效，适用于各类非标准材料的信息录入场景，点击[立即体验](https://cloud.tencent.com/product/smart-ocr)。
     ///
-    /// 默认接口请求频率限制：10次/秒。
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func smartStructuralOCRV2(_ input: SmartStructuralOCRV2Request, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SmartStructuralOCRV2Response> {
         self.client.execute(action: "SmartStructuralOCRV2", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -117,7 +117,7 @@ extension Ocr {
     ///
     /// 本接口支持智能提取各类证照、票据、表单、合同等结构化场景的key:value字段信息，并支持提取表格信息的key:value组的结构化，灵活高效，适用于各类非标准材料的信息录入场景，点击[立即体验](https://cloud.tencent.com/product/smart-ocr)。
     ///
-    /// 默认接口请求频率限制：10次/秒。
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func smartStructuralOCRV2(_ input: SmartStructuralOCRV2Request, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SmartStructuralOCRV2Response {
         try await self.client.execute(action: "SmartStructuralOCRV2", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -127,7 +127,7 @@ extension Ocr {
     ///
     /// 本接口支持智能提取各类证照、票据、表单、合同等结构化场景的key:value字段信息，并支持提取表格信息的key:value组的结构化，灵活高效，适用于各类非标准材料的信息录入场景，点击[立即体验](https://cloud.tencent.com/product/smart-ocr)。
     ///
-    /// 默认接口请求频率限制：10次/秒。
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func smartStructuralOCRV2(imageUrl: String? = nil, imageBase64: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, itemNames: [String]? = nil, returnFullText: Bool? = nil, configId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SmartStructuralOCRV2Response> {
         self.smartStructuralOCRV2(.init(imageUrl: imageUrl, imageBase64: imageBase64, isPdf: isPdf, pdfPageNumber: pdfPageNumber, itemNames: itemNames, returnFullText: returnFullText, configId: configId), region: region, logger: logger, on: eventLoop)
@@ -137,7 +137,7 @@ extension Ocr {
     ///
     /// 本接口支持智能提取各类证照、票据、表单、合同等结构化场景的key:value字段信息，并支持提取表格信息的key:value组的结构化，灵活高效，适用于各类非标准材料的信息录入场景，点击[立即体验](https://cloud.tencent.com/product/smart-ocr)。
     ///
-    /// 默认接口请求频率限制：10次/秒。
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func smartStructuralOCRV2(imageUrl: String? = nil, imageBase64: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, itemNames: [String]? = nil, returnFullText: Bool? = nil, configId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SmartStructuralOCRV2Response {
         try await self.smartStructuralOCRV2(.init(imageUrl: imageUrl, imageBase64: imageBase64, isPdf: isPdf, pdfPageNumber: pdfPageNumber, itemNames: itemNames, returnFullText: returnFullText, configId: configId), region: region, logger: logger, on: eventLoop)

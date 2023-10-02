@@ -33,10 +33,10 @@ extension Billing {
         /// 月份，格式为yyyy-mm，Month和BeginTime&EndTime必传一个，如果有传BeginTime&EndTime则Month字段无效。不能早于开通账单2.0的月份，最多可拉取18个月内的数据。
         public let month: String?
 
-        /// 周期开始时间，格式为yyyy-mm-dd hh:ii:ss，Month和BeginTime&EndTime必传一个，如果有该字段则Month字段无效。BeginTime和EndTime必须一起传。不能早于开通账单2.0的月份，最多可拉取18个月内的数据。(不支持跨月查询)
+        /// 周期开始时间，格式为yyyy-mm-dd hh:ii:ss，Month和BeginTime&EndTime必传一个，如果有该字段则Month字段无效。BeginTime和EndTime必须一起传，且为相同月份，不支持跨月查询，查询结果是整月数据。不能早于开通账单2.0的月份，最多可拉取18个月内的数据。
         public let beginTime: String?
 
-        /// 周期结束时间，格式为yyyy-mm-dd hh:ii:ss，Month和BeginTime&EndTime必传一个，如果有该字段则Month字段无效。BeginTime和EndTime必须一起传。不能早于开通账单2.0的月份，最多可拉取18个月内的数据。（不支持跨月查询）
+        /// 周期结束时间，格式为yyyy-mm-dd hh:ii:ss，Month和BeginTime&EndTime必传一个，如果有该字段则Month字段无效。BeginTime和EndTime必须一起传，且为相同月份，不支持跨月查询，查询结果是整月数据。不能早于开通账单2.0的月份，最多可拉取18个月内的数据。
         public let endTime: String?
 
         /// 是否需要访问列表的总记录数，用于前端分页
@@ -46,7 +46,7 @@ extension Billing {
         /// 已废弃参数，未开放
         public let productCode: String?
 
-        /// 付费模式 prePay/postPay
+        /// 付费模式 prePay(表示包年包月)/postPay(表示按时按量)
         public let payMode: String?
 
         /// 查询指定资源信息
@@ -175,9 +175,9 @@ extension Billing {
         }
     }
 
-    /// 查询账单明细数据
+    /// 获取账单明细数据
     ///
-    /// 查询账单明细数据。
+    /// 获取账单明细数据。
     /// 注意事项：
     /// 1.在请求接口时，由于网络不稳定或其它异常，可能会导致请求失败。如果您遇到这种情况，我们建议您在接口请求失败时，手动发起重试操作，这样可以更好地确保您的接口请求能够成功执行。
     /// 2.对于账单明细数据量级很大（例如每月账单明细量级超过20w）的客户，通过 API 调用账单数据效率较低，建议您开通账单数据存储功能，通过存储桶中获取账单文件进行分析。[账单存储至COS桶](https://cloud.tencent.com/document/product/555/61275)
@@ -186,9 +186,9 @@ extension Billing {
         self.client.execute(action: "DescribeBillDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询账单明细数据
+    /// 获取账单明细数据
     ///
-    /// 查询账单明细数据。
+    /// 获取账单明细数据。
     /// 注意事项：
     /// 1.在请求接口时，由于网络不稳定或其它异常，可能会导致请求失败。如果您遇到这种情况，我们建议您在接口请求失败时，手动发起重试操作，这样可以更好地确保您的接口请求能够成功执行。
     /// 2.对于账单明细数据量级很大（例如每月账单明细量级超过20w）的客户，通过 API 调用账单数据效率较低，建议您开通账单数据存储功能，通过存储桶中获取账单文件进行分析。[账单存储至COS桶](https://cloud.tencent.com/document/product/555/61275)
@@ -197,9 +197,9 @@ extension Billing {
         try await self.client.execute(action: "DescribeBillDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询账单明细数据
+    /// 获取账单明细数据
     ///
-    /// 查询账单明细数据。
+    /// 获取账单明细数据。
     /// 注意事项：
     /// 1.在请求接口时，由于网络不稳定或其它异常，可能会导致请求失败。如果您遇到这种情况，我们建议您在接口请求失败时，手动发起重试操作，这样可以更好地确保您的接口请求能够成功执行。
     /// 2.对于账单明细数据量级很大（例如每月账单明细量级超过20w）的客户，通过 API 调用账单数据效率较低，建议您开通账单数据存储功能，通过存储桶中获取账单文件进行分析。[账单存储至COS桶](https://cloud.tencent.com/document/product/555/61275)
@@ -208,9 +208,9 @@ extension Billing {
         self.describeBillDetail(.init(offset: offset, limit: limit, periodType: periodType, month: month, beginTime: beginTime, endTime: endTime, needRecordNum: needRecordNum, productCode: productCode, payMode: payMode, resourceId: resourceId, actionType: actionType, projectId: projectId, businessCode: businessCode, context: context, payerUin: payerUin), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询账单明细数据
+    /// 获取账单明细数据
     ///
-    /// 查询账单明细数据。
+    /// 获取账单明细数据。
     /// 注意事项：
     /// 1.在请求接口时，由于网络不稳定或其它异常，可能会导致请求失败。如果您遇到这种情况，我们建议您在接口请求失败时，手动发起重试操作，这样可以更好地确保您的接口请求能够成功执行。
     /// 2.对于账单明细数据量级很大（例如每月账单明细量级超过20w）的客户，通过 API 调用账单数据效率较低，建议您开通账单数据存储功能，通过存储桶中获取账单文件进行分析。[账单存储至COS桶](https://cloud.tencent.com/document/product/555/61275)
@@ -219,9 +219,9 @@ extension Billing {
         try await self.describeBillDetail(.init(offset: offset, limit: limit, periodType: periodType, month: month, beginTime: beginTime, endTime: endTime, needRecordNum: needRecordNum, productCode: productCode, payMode: payMode, resourceId: resourceId, actionType: actionType, projectId: projectId, businessCode: businessCode, context: context, payerUin: payerUin), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询账单明细数据
+    /// 获取账单明细数据
     ///
-    /// 查询账单明细数据。
+    /// 获取账单明细数据。
     /// 注意事项：
     /// 1.在请求接口时，由于网络不稳定或其它异常，可能会导致请求失败。如果您遇到这种情况，我们建议您在接口请求失败时，手动发起重试操作，这样可以更好地确保您的接口请求能够成功执行。
     /// 2.对于账单明细数据量级很大（例如每月账单明细量级超过20w）的客户，通过 API 调用账单数据效率较低，建议您开通账单数据存储功能，通过存储桶中获取账单文件进行分析。[账单存储至COS桶](https://cloud.tencent.com/document/product/555/61275)
@@ -230,9 +230,9 @@ extension Billing {
         self.client.paginate(input: input, region: region, command: self.describeBillDetail, logger: logger, on: eventLoop)
     }
 
-    /// 查询账单明细数据
+    /// 获取账单明细数据
     ///
-    /// 查询账单明细数据。
+    /// 获取账单明细数据。
     /// 注意事项：
     /// 1.在请求接口时，由于网络不稳定或其它异常，可能会导致请求失败。如果您遇到这种情况，我们建议您在接口请求失败时，手动发起重试操作，这样可以更好地确保您的接口请求能够成功执行。
     /// 2.对于账单明细数据量级很大（例如每月账单明细量级超过20w）的客户，通过 API 调用账单数据效率较低，建议您开通账单数据存储功能，通过存储桶中获取账单文件进行分析。[账单存储至COS桶](https://cloud.tencent.com/document/product/555/61275)
@@ -241,9 +241,9 @@ extension Billing {
         self.client.paginate(input: input, region: region, command: self.describeBillDetail, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 查询账单明细数据
+    /// 获取账单明细数据
     ///
-    /// 查询账单明细数据。
+    /// 获取账单明细数据。
     /// 注意事项：
     /// 1.在请求接口时，由于网络不稳定或其它异常，可能会导致请求失败。如果您遇到这种情况，我们建议您在接口请求失败时，手动发起重试操作，这样可以更好地确保您的接口请求能够成功执行。
     /// 2.对于账单明细数据量级很大（例如每月账单明细量级超过20w）的客户，通过 API 调用账单数据效率较低，建议您开通账单数据存储功能，通过存储桶中获取账单文件进行分析。[账单存储至COS桶](https://cloud.tencent.com/document/product/555/61275)

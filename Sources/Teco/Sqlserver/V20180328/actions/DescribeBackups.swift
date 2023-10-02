@@ -68,7 +68,10 @@ extension Sqlserver {
         /// 按照备份文件形式筛选，pkg-打包备份文件，single-单库备份文件
         public let backupFormat: String?
 
-        public init(startTime: Date, endTime: Date, instanceId: String, limit: Int64? = nil, offset: Int64? = nil, backupName: String? = nil, strategy: Int64? = nil, backupWay: Int64? = nil, backupId: UInt64? = nil, databaseName: String? = nil, group: Int64? = nil, type: Int64? = nil, backupFormat: String? = nil) {
+        /// 备份存储策略 0-跟随自定义备份保留策略 1-跟随实例生命周期直到实例下线，默认取值0
+        public let storageStrategy: Int64?
+
+        public init(startTime: Date, endTime: Date, instanceId: String, limit: Int64? = nil, offset: Int64? = nil, backupName: String? = nil, strategy: Int64? = nil, backupWay: Int64? = nil, backupId: UInt64? = nil, databaseName: String? = nil, group: Int64? = nil, type: Int64? = nil, backupFormat: String? = nil, storageStrategy: Int64? = nil) {
             self._startTime = .init(wrappedValue: startTime)
             self._endTime = .init(wrappedValue: endTime)
             self.instanceId = instanceId
@@ -82,6 +85,7 @@ extension Sqlserver {
             self.group = group
             self.type = type
             self.backupFormat = backupFormat
+            self.storageStrategy = storageStrategy
         }
 
         enum CodingKeys: String, CodingKey {
@@ -98,6 +102,7 @@ extension Sqlserver {
             case group = "Group"
             case type = "Type"
             case backupFormat = "BackupFormat"
+            case storageStrategy = "StorageStrategy"
         }
 
         /// Compute the next request based on API response.
@@ -105,7 +110,7 @@ extension Sqlserver {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return .init(startTime: self.startTime, endTime: self.endTime, instanceId: self.instanceId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), backupName: self.backupName, strategy: self.strategy, backupWay: self.backupWay, backupId: self.backupId, databaseName: self.databaseName, group: self.group, type: self.type, backupFormat: self.backupFormat)
+            return .init(startTime: self.startTime, endTime: self.endTime, instanceId: self.instanceId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), backupName: self.backupName, strategy: self.strategy, backupWay: self.backupWay, backupId: self.backupId, databaseName: self.databaseName, group: self.group, type: self.type, backupFormat: self.backupFormat, storageStrategy: self.storageStrategy)
         }
     }
 
@@ -157,16 +162,16 @@ extension Sqlserver {
     ///
     /// 本接口(DescribeBackups)用于查询备份列表。
     @inlinable
-    public func describeBackups(startTime: Date, endTime: Date, instanceId: String, limit: Int64? = nil, offset: Int64? = nil, backupName: String? = nil, strategy: Int64? = nil, backupWay: Int64? = nil, backupId: UInt64? = nil, databaseName: String? = nil, group: Int64? = nil, type: Int64? = nil, backupFormat: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupsResponse> {
-        self.describeBackups(.init(startTime: startTime, endTime: endTime, instanceId: instanceId, limit: limit, offset: offset, backupName: backupName, strategy: strategy, backupWay: backupWay, backupId: backupId, databaseName: databaseName, group: group, type: type, backupFormat: backupFormat), region: region, logger: logger, on: eventLoop)
+    public func describeBackups(startTime: Date, endTime: Date, instanceId: String, limit: Int64? = nil, offset: Int64? = nil, backupName: String? = nil, strategy: Int64? = nil, backupWay: Int64? = nil, backupId: UInt64? = nil, databaseName: String? = nil, group: Int64? = nil, type: Int64? = nil, backupFormat: String? = nil, storageStrategy: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupsResponse> {
+        self.describeBackups(.init(startTime: startTime, endTime: endTime, instanceId: instanceId, limit: limit, offset: offset, backupName: backupName, strategy: strategy, backupWay: backupWay, backupId: backupId, databaseName: databaseName, group: group, type: type, backupFormat: backupFormat, storageStrategy: storageStrategy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询备份列表
     ///
     /// 本接口(DescribeBackups)用于查询备份列表。
     @inlinable
-    public func describeBackups(startTime: Date, endTime: Date, instanceId: String, limit: Int64? = nil, offset: Int64? = nil, backupName: String? = nil, strategy: Int64? = nil, backupWay: Int64? = nil, backupId: UInt64? = nil, databaseName: String? = nil, group: Int64? = nil, type: Int64? = nil, backupFormat: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupsResponse {
-        try await self.describeBackups(.init(startTime: startTime, endTime: endTime, instanceId: instanceId, limit: limit, offset: offset, backupName: backupName, strategy: strategy, backupWay: backupWay, backupId: backupId, databaseName: databaseName, group: group, type: type, backupFormat: backupFormat), region: region, logger: logger, on: eventLoop)
+    public func describeBackups(startTime: Date, endTime: Date, instanceId: String, limit: Int64? = nil, offset: Int64? = nil, backupName: String? = nil, strategy: Int64? = nil, backupWay: Int64? = nil, backupId: UInt64? = nil, databaseName: String? = nil, group: Int64? = nil, type: Int64? = nil, backupFormat: String? = nil, storageStrategy: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupsResponse {
+        try await self.describeBackups(.init(startTime: startTime, endTime: endTime, instanceId: instanceId, limit: limit, offset: offset, backupName: backupName, strategy: strategy, backupWay: backupWay, backupId: backupId, databaseName: databaseName, group: group, type: type, backupFormat: backupFormat, storageStrategy: storageStrategy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询备份列表

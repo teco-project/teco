@@ -21,7 +21,7 @@ import TecoCore
 extension Tem {
     /// ModifyApplicationReplicas请求参数结构体
     public struct ModifyApplicationReplicasRequest: TCRequest {
-        /// 服务id
+        /// 应用id
         public let applicationId: String
 
         /// 环境ID

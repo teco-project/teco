@@ -70,27 +70,27 @@ extension Tdid {
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func registerCpt(_ input: RegisterCptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterCptResponse> {
-        fatalError("RegisterCpt is no longer available.")
+        fatalError("'RegisterCpt' is no longer available.")
     }
 
     /// 凭证模版新建
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func registerCpt(_ input: RegisterCptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterCptResponse {
-        fatalError("RegisterCpt is no longer available.")
+        fatalError("'RegisterCpt' is no longer available.")
     }
 
     /// 凭证模版新建
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func registerCpt(groupId: UInt64, clusterId: String, cptJson: String, cptId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterCptResponse> {
-        fatalError("RegisterCpt is no longer available.")
+        fatalError("'RegisterCpt' is no longer available.")
     }
 
     /// 凭证模版新建
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func registerCpt(groupId: UInt64, clusterId: String, cptJson: String, cptId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterCptResponse {
-        fatalError("RegisterCpt is no longer available.")
+        fatalError("'RegisterCpt' is no longer available.")
     }
 }

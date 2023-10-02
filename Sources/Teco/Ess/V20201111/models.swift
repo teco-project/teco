@@ -23,7 +23,9 @@ extension Ess {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
 
-        /// 超管手机号
+        /// 超管手机号，打码显示
+        /// 示例值：138****1569
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mobile: String?
 
@@ -67,7 +69,33 @@ extension Ess {
         }
     }
 
-    /// 参与者信息
+    /// 签署方在使用个人印章签署控件（SIGN_SIGNATURE） 时可使用的签署方式
+    public struct ApproverComponentLimitType: TCInputModel {
+        /// 签署方经办人在模板中配置的参与方ID，与控件绑定，是控件的归属方，ID为32位字符串。
+        public let recipientId: String
+
+        /// 签署方经办人控件类型是个人印章签署控件（SIGN_SIGNATURE） 时，可选的签名方式，可多选
+        ///
+        /// 签名方式：
+        ///
+        /// - HANDWRITE-手写签名
+        /// - ESIGN-个人印章类型
+        /// - OCR_ESIGN-AI智能识别手写签名
+        /// - SYSTEM_ESIGN-系统签名
+        public let values: [String]
+
+        public init(recipientId: String, values: [String]) {
+            self.recipientId = recipientId
+            self.values = values
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case recipientId = "RecipientId"
+            case values = "Values"
+        }
+    }
+
+    /// 参与者信息。
     public struct ApproverInfo: TCInputModel {
         /// 在指定签署方时，可选择企业B端或个人C端等不同的参与者类型，可选类型如下:
         /// **0**：企业
@@ -82,16 +110,14 @@ extension Ess {
         /// 经办人的姓名将用于身份认证和电子签名，请确保填写的姓名为签署方的真实姓名，而非昵称等代名。
         public let approverName: String
 
-        /// 本企业的签署方经办人的员工UserId
-        /// 可登录腾讯电子签控制台，在 "更多能力"->"组织管理" 中查看某位员工的UserId(在页面中展示为用户ID)。
-        ///
-        /// 注: `若传该字段，则签署方经办人的其他信息（如签署方经办人的姓名、证件号码、手机号码等）将被忽略。`
+        /// 签署方经办人手机号码， 支持国内手机号11位数字(无需加+86前缀或其他字符)。
+        /// 请确认手机号所有方为此合同签署方。
         public let approverMobile: String
 
         /// 组织机构名称。
-        /// 如果签署方是企业签署方(approverType = 1 或者 approverType = 3)， 则企业名称必填。
-        ///
-        /// 注: `请确认该名称与企业营业执照中注册的名称一致 ; 如果名称中包含英文括号()，请使用中文括号（）代替。`
+        /// 请确认该名称与企业营业执照中注册的名称一致。
+        /// 如果名称中包含英文括号()，请使用中文括号（）代替。
+        /// 如果签署方是企业签署方(approverType = 0 或者 approverType = 3)， 则企业名称必填。
         public let organizationName: String?
 
         /// 合同中的签署控件列表，列表中可支持下列多种签署控件,控件的详细定义参考开发者中心的Component结构体
@@ -132,6 +158,9 @@ extension Ess {
         /// 注: `收据场景为白名单功能，使用前请联系对接的客户经理沟通。`
         public let approverRole: Int64?
 
+        /// 自定义签署人角色名：收款人、开具人、见证人
+        public let approverRoleName: String?
+
         /// 签署意愿确认渠道，默认为WEIXINAPP:人脸识别
         ///
         /// 注: 将要废弃, 用ApproverSignTypes签署人签署合同时的认证方式代替, 新客户可请用ApproverSignTypes来设置
@@ -167,7 +196,7 @@ extension Ess {
         /// 指定个人签署方查看合同的校验方式,可以传值如下:
         ///
         /// - **1**   : （默认）人脸识别,人脸识别后才能合同内容
-        /// - **2**  : 手机号验证, 用户手机号和参与方手机号(ApproverMobile)相同即可查看合同内容
+        /// - **2**  : 手机号验证, 用户手机号和参与方手机号(ApproverMobile)相同即可查看合同内容（当手写签名方式为OCR_ESIGN时，该校验方式无效，因为这种签名方式依赖实名认证）
         /// 注:
         ///
         /// - 如果合同流程设置ApproverVerifyType查看合同的校验方式,    则忽略此签署人的查看合同的校验方式
@@ -197,7 +226,12 @@ extension Ess {
         /// 注：`此功能可用于与企业内部的审批流程进行关联，支持手动、静默签署合同`
         public let approverNeedSignReview: Bool?
 
-        public init(approverType: Int64, approverName: String, approverMobile: String, organizationName: String? = nil, signComponents: [Component]? = nil, approverIdCardType: String? = nil, approverIdCardNumber: String? = nil, notifyType: String? = nil, approverRole: Int64? = nil, verifyChannel: [String]? = nil, preReadTime: Int64? = nil, userId: String? = nil, approverSource: String? = nil, customApproverTag: String? = nil, approverOption: ApproverOption? = nil, approverVerifyTypes: [Int64]? = nil, approverSignTypes: [Int64]? = nil, approverNeedSignReview: Bool? = nil) {
+        /// [用PDF文件创建签署流程](https://qian.tencent.com/developers/companyApis/startFlows/CreateFlowByFiles)时,如果设置了外层参数SignBeanTag=1(允许签署过程中添加签署控件),则可通过此参数明确规定合同所使用的签署控件类型（骑缝章、普通章法人章等）和具体的印章（印章ID）或签名方式。
+        ///
+        /// 注：`限制印章控件或骑缝章控件情况下,仅本企业签署方可以指定具体印章（通过传递ComponentValue,支持多个），他方企业或个人只支持限制控件类型。`
+        public let addSignComponentsLimits: [ComponentLimit]?
+
+        public init(approverType: Int64, approverName: String, approverMobile: String, organizationName: String? = nil, signComponents: [Component]? = nil, approverIdCardType: String? = nil, approverIdCardNumber: String? = nil, notifyType: String? = nil, approverRole: Int64? = nil, approverRoleName: String? = nil, verifyChannel: [String]? = nil, preReadTime: Int64? = nil, userId: String? = nil, approverSource: String? = nil, customApproverTag: String? = nil, approverOption: ApproverOption? = nil, approverVerifyTypes: [Int64]? = nil, approverSignTypes: [Int64]? = nil, approverNeedSignReview: Bool? = nil, addSignComponentsLimits: [ComponentLimit]? = nil) {
             self.approverType = approverType
             self.approverName = approverName
             self.approverMobile = approverMobile
@@ -207,6 +241,7 @@ extension Ess {
             self.approverIdCardNumber = approverIdCardNumber
             self.notifyType = notifyType
             self.approverRole = approverRole
+            self.approverRoleName = approverRoleName
             self.verifyChannel = verifyChannel
             self.preReadTime = preReadTime
             self.userId = userId
@@ -216,6 +251,7 @@ extension Ess {
             self.approverVerifyTypes = approverVerifyTypes
             self.approverSignTypes = approverSignTypes
             self.approverNeedSignReview = approverNeedSignReview
+            self.addSignComponentsLimits = addSignComponentsLimits
         }
 
         enum CodingKeys: String, CodingKey {
@@ -228,6 +264,7 @@ extension Ess {
             case approverIdCardNumber = "ApproverIdCardNumber"
             case notifyType = "NotifyType"
             case approverRole = "ApproverRole"
+            case approverRoleName = "ApproverRoleName"
             case verifyChannel = "VerifyChannel"
             case preReadTime = "PreReadTime"
             case userId = "UserId"
@@ -237,6 +274,28 @@ extension Ess {
             case approverVerifyTypes = "ApproverVerifyTypes"
             case approverSignTypes = "ApproverSignTypes"
             case approverNeedSignReview = "ApproverNeedSignReview"
+            case addSignComponentsLimits = "AddSignComponentsLimits"
+        }
+    }
+
+    /// 签署方信息，发起合同后可获取到对应的签署方信息，如角色ID，角色名称
+    public struct ApproverItem: TCOutputModel {
+        /// 签署方唯一编号
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let signId: String?
+
+        /// 签署方角色编号
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let recipientId: String?
+
+        /// 签署方角色名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let approverRoleName: String?
+
+        enum CodingKeys: String, CodingKey {
+            case signId = "SignId"
+            case recipientId = "RecipientId"
+            case approverRoleName = "ApproverRoleName"
         }
     }
 
@@ -254,14 +313,21 @@ extension Ess {
         /// - **true** :不可以转他人处理
         public let noTransfer: Bool?
 
-        public init(noRefuse: Bool? = nil, noTransfer: Bool? = nil) {
+        /// 签署人信息补充类型，默认无需补充。
+        ///
+        /// - **1** : ( 动态签署人（可发起合同后再补充签署人信息）
+        public let fillType: Int64?
+
+        public init(noRefuse: Bool? = nil, noTransfer: Bool? = nil, fillType: Int64? = nil) {
             self.noRefuse = noRefuse
             self.noTransfer = noTransfer
+            self.fillType = fillType
         }
 
         enum CodingKeys: String, CodingKey {
             case noRefuse = "NoRefuse"
             case noTransfer = "NoTransfer"
+            case fillType = "FillType"
         }
     }
 
@@ -306,73 +372,92 @@ extension Ess {
 
     /// 自动签开启、签署相关配置
     public struct AutoSignConfig: TCInputModel {
-        /// 自动签开通个人用户的三要素
+        /// 自动签开通个人用户信息, 包括名字,身份证等
         public let userInfo: UserThreeFactor
 
-        /// 接受回调URL地址。支持http://或者https://协议
+        /// 是否回调证书信息:
         ///
-        /// Post数据到此地址后返回httpcode200表示接受回调成功, 返回其他httpcode表示接受回调失败
-        public let callbackUrl: String
-
-        /// 是否回调证书信息
-        /// false-不需要 (默认值)
-        /// true-需要
+        /// - **false**: 不需要(默认)
+        /// - **true**:需要
         public let certInfoCallback: Bool?
 
-        /// 是否支持用户自定义签名印章
-        /// false-不需要(默认)
-        /// true-需要
+        /// 是否支持用户自定义签名印章:
+        ///
+        /// - **false**: 不能自己定义(默认)
+        /// - **true**: 可以自己定义
         public let userDefineSeal: Bool?
 
-        /// 是否需要回调的时候返回印章(签名) 图片的 base64
+        /// 回调中是否需要自动签将要使用的印章(签名) 图片的 base64:
         ///
-        /// false-不需要(默认)
-        /// true-需要
+        /// - **false**: 不需要(默认)
+        /// - **true**: 需要
         public let sealImgCallback: Bool?
 
-        /// 开通时候的验证方式, 分布为
+        /// 执行结果的回调URL，该URL仅支持HTTP或HTTPS协议，建议采用HTTPS协议以保证数据传输的安全性。
+        /// 腾讯电子签服务器将通过POST方式，application/json格式通知执行结果，请确保外网可以正常访问该URL。
+        /// 回调的相关说明可参考开发者中心的[回调通知](https://qian.tencent.com/developers/company/callback_types_v2)模块。
+        @available(*, deprecated)
+        public let callbackUrl: String? = nil
+
+        /// 开通时候的身份验证方式, 取值为：
         ///
-        /// WEIXINAPP : 微信人脸识别
-        /// INSIGHT : 慧眼人脸认别
-        /// TELECOM : 运营商三要素验证
+        /// - **WEIXINAPP** : 微信人脸识别
+        /// - **INSIGHT** : 慧眼人脸认别
+        /// - **TELECOM** : 运营商三要素验证
+        /// 注：
         ///
-        /// 如果是小程序开通链接，支持传 WEIXINAPP / TELECOM。
-        ///
-        /// 如果是 H5 开通链接，支持传 INSIGHT / TELECOM。默认值 WEIXINAPP / INSIGHT。
+        /// - 如果是小程序开通链接，支持传 WEIXINAPP / TELECOM。为空默认 WEIXINAPP
+        /// - 如果是 H5 开通链接，支持传 INSIGHT / TELECOM。为空默认 INSIGHT
         public let verifyChannels: [String]?
 
-        public init(userInfo: UserThreeFactor, callbackUrl: String, certInfoCallback: Bool? = nil, userDefineSeal: Bool? = nil, sealImgCallback: Bool? = nil, verifyChannels: [String]? = nil) {
+        /// 设置用户开通自动签时是否绑定个人自动签账号许可。
+        ///
+        /// - **0**: (默认) 使用个人自动签账号许可进行开通，个人自动签账号许可有效期1年，注: `不可解绑释放更换他人`
+        public let licenseType: Int64?
+
+        public init(userInfo: UserThreeFactor, certInfoCallback: Bool? = nil, userDefineSeal: Bool? = nil, sealImgCallback: Bool? = nil, verifyChannels: [String]? = nil, licenseType: Int64? = nil) {
             self.userInfo = userInfo
-            self.callbackUrl = callbackUrl
             self.certInfoCallback = certInfoCallback
             self.userDefineSeal = userDefineSeal
             self.sealImgCallback = sealImgCallback
             self.verifyChannels = verifyChannels
+            self.licenseType = licenseType
+        }
+
+        @available(*, deprecated, renamed: "init(userInfo:certInfoCallback:userDefineSeal:sealImgCallback:verifyChannels:licenseType:)", message: "'callbackUrl' is deprecated in 'AutoSignConfig'. Setting this parameter has no effect.")
+        public init(userInfo: UserThreeFactor, certInfoCallback: Bool? = nil, userDefineSeal: Bool? = nil, sealImgCallback: Bool? = nil, callbackUrl: String? = nil, verifyChannels: [String]? = nil, licenseType: Int64? = nil) {
+            self.userInfo = userInfo
+            self.certInfoCallback = certInfoCallback
+            self.userDefineSeal = userDefineSeal
+            self.sealImgCallback = sealImgCallback
+            self.verifyChannels = verifyChannels
+            self.licenseType = licenseType
         }
 
         enum CodingKeys: String, CodingKey {
             case userInfo = "UserInfo"
-            case callbackUrl = "CallbackUrl"
             case certInfoCallback = "CertInfoCallback"
             case userDefineSeal = "UserDefineSeal"
             case sealImgCallback = "SealImgCallback"
+            case callbackUrl = "CallbackUrl"
             case verifyChannels = "VerifyChannels"
+            case licenseType = "LicenseType"
         }
     }
 
-    /// 应用回调信息
+    /// 企业应用回调信息
     public struct CallbackInfo: TCInputModel {
-        /// 回调url
+        /// 回调url,。请确保回调地址能够接收并处理 HTTP POST 请求，并返回状态码 200 以表示处理正常。
         public let callbackUrl: String
 
         /// 回调加密key，已废弃
         @available(*, deprecated)
         public let token: String? = nil
 
-        /// 回调加密key
+        /// 回调加密key，用于回调消息加解密。
         public let callbackKey: String?
 
-        /// 回调验签token
+        /// 回调验签token，用于回调通知校验。
         public let callbackToken: String?
 
         public init(callbackUrl: String, callbackKey: String? = nil, callbackToken: String? = nil) {
@@ -764,81 +849,100 @@ extension Ess {
         }
     }
 
+    /// 签署控件的类型和范围限制条件，用于控制文件发起后签署人拖拽签署区时可使用的控件类型和具体的印章或签名方式。
+    public struct ComponentLimit: TCInputModel {
+        /// 控件类型，支持以下类型
+        ///
+        /// - SIGN_SEAL : 印章控件
+        /// - SIGN_PAGING_SEAL : 骑缝章控件
+        /// - SIGN_LEGAL_PERSON_SEAL : 企业法定代表人控件
+        /// - SIGN_SIGNATURE : 用户签名控件
+        public let componentType: String
+
+        /// 签署控件类型的值(可选)，用与限制签署时印章或者签名的选择范围
+        ///
+        /// 1.当ComponentType 是 SIGN_SEAL 或者 SIGN_PAGING_SEAL 时可传入企业印章Id（支持多个）
+        ///
+        /// 2.当ComponentType 是 SIGN_SIGNATURE 时可传入以下类型（支持多个）
+        ///
+        /// - HANDWRITE : 手写签名
+        /// - OCR_ESIGN : OCR印章（智慧手写签名）
+        /// - ESIGN : 个人印章
+        /// - SYSTEM_ESIGN : 系统印章
+        ///
+        /// 3.当ComponentType 是 SIGN_LEGAL_PERSON_SEAL 时无需传递此参数。
+        public let componentValue: [String]?
+
+        public init(componentType: String, componentValue: [String]? = nil) {
+            self.componentType = componentType
+            self.componentValue = componentValue
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case componentType = "ComponentType"
+            case componentValue = "ComponentValue"
+        }
+    }
+
     /// 创建合同个性化参数
     public struct CreateFlowOption: TCInputModel {
         /// 是否允许修改发起合同时确认弹窗的合同信息（合同名称、合同类型、签署截止时间），若不允许编辑，则表单字段将被禁止输入。
         ///
-        /// true：允许编辑（默认），
+        /// true：允许编辑
         ///
-        /// false：不允许编辑
-        ///
-        /// 默认：false：不允许编辑
+        /// false：不允许编辑（默认值）
         public let canEditFlow: Bool?
 
         /// 是否允许编辑模板控件
         ///
         /// true:允许编辑模板控件信息
         ///
-        /// false:不允许编辑模板控件信息
-        ///
-        /// 默认false:不允许编辑模板控件信息
+        /// false:不允许编辑模板控件信息（默认值）
         public let canEditFormField: Bool?
 
         /// 发起页面隐藏合同名称展示
         ///
         /// true:发起页面隐藏合同名称展示
         ///
-        /// false:发起页面不隐藏合同名称展示
-        ///
-        /// 默认false:发起页面不隐藏合同名称展示
+        /// false:发起页面不隐藏合同名称展示（默认值）
         public let hideShowFlowName: Bool?
 
         /// 发起页面隐藏合同类型展示
         ///
         /// true:发起页面隐藏合同类型展示
         ///
-        /// false:发起页面不隐藏合同类型展示
-        ///
-        /// 默认false:发起页面不隐藏合同类型展示
+        /// false:发起页面不隐藏合同类型展示（默认值）
         public let hideShowFlowType: Bool?
 
         /// 发起页面隐藏合同截止日期展示
         ///
         /// true:发起页面隐藏合同截止日期展示
         ///
-        /// false:发起页面不隐藏合同截止日期展示
-        ///
-        /// 默认false:发起页面不隐藏合同截止日期展示
+        /// false:发起页面不隐藏合同截止日期展示（默认值）
         public let hideShowDeadline: Bool?
 
         /// 发起页面允许跳过添加签署人环节
         ///
         /// true:发起页面允许跳过添加签署人环节
         ///
-        /// false:发起页面不允许跳过添加签署人环节
-        ///
-        /// 默认false:发起页面不允许跳过添加签署人环节
+        /// false:发起页面不允许跳过添加签署人环节（默认值）
         public let canSkipAddApprover: Bool?
 
         /// 文件发起页面跳过文件上传步骤
         ///
         /// true:文件发起页面跳过文件上传步骤
         ///
-        /// false:文件发起页面不跳过文件上传步骤
-        ///
-        /// 默认false:文件发起页面不跳过文件上传步骤
+        /// false:文件发起页面不跳过文件上传步骤（默认值）
         public let skipUploadFile: Bool?
 
         /// 禁止编辑填写控件
         ///
         /// true:禁止编辑填写控件
         ///
-        /// false:允许编辑填写控件
-        ///
-        /// 默认false:允许编辑填写控件
+        /// false:允许编辑填写控件（默认值）
         public let forbidEditFillComponent: Bool?
 
-        /// 定制化发起合同弹窗的描述信息，描述信息最长500
+        /// 定制化发起合同弹窗的描述信息，描述信息最长500字符
         public let customCreateFlowDescription: String?
 
         public init(canEditFlow: Bool? = nil, canEditFormField: Bool? = nil, hideShowFlowName: Bool? = nil, hideShowFlowType: Bool? = nil, hideShowDeadline: Bool? = nil, canSkipAddApprover: Bool? = nil, skipUploadFile: Bool? = nil, forbidEditFillComponent: Bool? = nil, customCreateFlowDescription: String? = nil) {
@@ -898,12 +1002,12 @@ extension Ess {
         }
     }
 
-    /// 集成版员工部门信息
+    /// 集成版员工部门信息。
     public struct Department: TCInputModel, TCOutputModel {
-        /// 部门id
+        /// 部门ID。
         public let departmentId: String?
 
-        /// 部门名称
+        /// 部门名称。
         public let departmentName: String?
 
         public init(departmentId: String? = nil, departmentName: String? = nil) {
@@ -948,32 +1052,34 @@ extension Ess {
         }
     }
 
-    /// 授权服务信息
+    /// 扩展服务开通和授权的详细信息
     public struct ExtendAuthInfo: TCInputModel, TCOutputModel {
-        /// 授权服务类型
-        /// OPEN_SERVER_SIGN：开通企业静默签署
-        /// OVERSEA_SIGN：企业与港澳台居民签署合同
-        /// MOBILE_CHECK_APPROVER：使用手机号验证签署方身份
-        /// PAGING_SEAL：骑缝章
-        /// BATCH_SIGN：批量签署
+        /// 扩展服务的类型，可能是以下值：
+        ///
+        /// - OPEN_SERVER_SIGN：企业静默签署
+        /// - OVERSEA_SIGN：企业与港澳台居民签署合同
+        /// - MOBILE_CHECK_APPROVER：使用手机号验证签署方身份
+        /// - PAGING_SEAL：骑缝章
+        /// - BATCH_SIGN：批量签署
         public let type: String?
 
-        /// 授权服务名称
+        /// 扩展服务的名称
         public let name: String?
 
-        /// 授权服务状态，ENABLE：开通
+        /// 扩展服务的开通状态：
+        /// ENABLE：开通
         /// DISABLE：未开通
         public let status: String?
 
-        /// 授权人用户id
+        /// 操作扩展服务的操作人UserId，员工在腾讯电子签平台的唯一身份标识，为32位字符串。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operatorUserId: String?
 
-        /// 授权时间戳，单位秒
+        /// 扩展服务的操作时间，格式为Unix标准时间戳（秒）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operateOn: Int64?
 
-        /// 被授权用户列表
+        /// 该扩展服务若可以授权，此参数对应授权人员的列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hasAuthUserList: [HasAuthUser]?
 
@@ -1057,19 +1163,20 @@ extension Ess {
     /// 更新员工信息失败返回的数据信息
     public struct FailedUpdateStaffData: TCOutputModel {
         /// 用户传入的名称
-        public let displayName: String?
+        public let displayName: String
 
-        /// 用户传入的手机号
-        public let mobile: String?
+        /// 用户传入的手机号，明文展示
+        public let mobile: String
 
         /// 失败原因
-        public let reason: String?
+        public let reason: String
 
-        /// 用户Id
-        public let userId: String?
+        /// 员工在腾讯电子签平台的唯一身份标识，为32位字符串。
+        /// 可登录腾讯电子签控制台，在 "更多能力"->"组织管理" 中查看某位员工的UserId(在页面中展示为用户ID)。
+        public let userId: String
 
         /// 员工在第三方平台的openId
-        public let openId: String?
+        public let openId: String
 
         enum CodingKeys: String, CodingKey {
             case displayName = "DisplayName"
@@ -1126,10 +1233,13 @@ extension Ess {
 
     /// 补充签署人信息
     /// - RecipientId 必须指定
-    /// -  通过企业自定义账号ID补充签署人时，ApproverSource 和 CustomUserId 必填，ApproverSource取值：WEWORKAPP
+    /// -  通过企业微信自定义账号ID补充签署人时，ApproverSource 和 CustomUserId 必填，ApproverSource取值：WEWORKAPP
     /// - 通过二要素（姓名/手机号）补充签署人时，ApproverName 和 ApproverMobile 必填，ApproverSource设置为空
     public struct FillApproverInfo: TCInputModel {
-        /// 对应模板中的参与方ID
+        /// 签署方经办人在模板中配置的参与方ID，与控件绑定，是控件的归属方，ID为32位字符串。
+        /// 模板发起合同时，该参数为必填项。
+        /// 文件发起合同是，该参数无需传值。
+        /// 如果开发者后序用合同模板发起合同，建议保存此值，在用合同模板发起合同中需此值绑定对应的签署经办人 。
         public let recipientId: String
 
         /// 签署人来源
@@ -1138,23 +1248,27 @@ extension Ess {
         /// 仅【企微或签】时指定WEWORKAPP
         public let approverSource: String?
 
-        /// 企业自定义账号ID
+        /// 企业微信UserId
         ///
-        /// 当ApproverSource为WEWORKAPP的企微或签场景下，必须指企业自有应用获取企微明文的userid
+        /// 当ApproverSource为WEWORKAPP的企微或签场景下，必须指企业自有应用获取企业微信的UserId
         public let customUserId: String?
 
-        /// 补充签署人姓名
+        /// 补充企业签署人员工姓名
         public let approverName: String?
 
-        /// 补充签署人手机号
+        /// 补充企业签署人员工手机号
         public let approverMobile: String?
 
-        public init(recipientId: String, approverSource: String? = nil, customUserId: String? = nil, approverName: String? = nil, approverMobile: String? = nil) {
+        /// 补充企业动态签署人时，需要指定对应企业名称
+        public let organizationName: String?
+
+        public init(recipientId: String, approverSource: String? = nil, customUserId: String? = nil, approverName: String? = nil, approverMobile: String? = nil, organizationName: String? = nil) {
             self.recipientId = recipientId
             self.approverSource = approverSource
             self.customUserId = customUserId
             self.approverName = approverName
             self.approverMobile = approverMobile
+            self.organizationName = organizationName
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1163,6 +1277,7 @@ extension Ess {
             case customUserId = "CustomUserId"
             case approverName = "ApproverName"
             case approverMobile = "ApproverMobile"
+            case organizationName = "OrganizationName"
         }
     }
 
@@ -1282,6 +1397,14 @@ extension Ess {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let organizationName: String?
 
+        /// 签署参与人在本流程中的编号ID（每个流程不同），可用此ID来定位签署参与人在本流程的签署节点，也可用于后续创建签署链接等操作。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let signId: String?
+
+        /// 自定义签署人角色
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let approverRoleName: String?
+
         enum CodingKeys: String, CodingKey {
             case approveMessage = "ApproveMessage"
             case approveName = "ApproveName"
@@ -1296,16 +1419,23 @@ extension Ess {
             case customApproverTag = "CustomApproverTag"
             case organizationId = "OrganizationId"
             case organizationName = "OrganizationName"
+            case signId = "SignId"
+            case approverRoleName = "ApproverRoleName"
         }
     }
 
     /// 签署链接信息
     public struct FlowApproverUrlInfo: TCOutputModel {
-        /// 签署链接。注意该链接有效期为30分钟，同时需要注意保密，不要外泄给无关用户。
+        /// 签署链接(短链形式呈现)。请注意保密，不要将其外泄给无关用户。
+        /// 注: `注意该链接有效期为30分钟`
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let signUrl: String?
 
-        /// 签署人类型 1-个人
+        /// 签署参与人类型
+        ///
+        /// - **1** :个人参与方
+        ///
+        /// 注: `现在仅支持个人参与方`
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let approverType: Int64?
 
@@ -1317,7 +1447,8 @@ extension Ess {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let approverMobile: String?
 
-        /// 签署长链接。注意该链接有效期为30分钟，同时需要注意保密，不要外泄给无关用户。
+        /// 签署链接(长链形式呈现)。请注意保密，不要将其外泄给无关用户。
+        /// 注: `注意该链接有效期为30分钟`
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let longUrl: String?
 
@@ -1330,52 +1461,51 @@ extension Ess {
         }
     }
 
-    /// 流程信息摘要
+    /// 合同流程的基础信息
     public struct FlowBrief: TCOutputModel {
-        /// 流程的编号ID
+        /// 合同流程ID，为32位字符串。
         public let flowId: String
 
-        /// 流程的名称
+        /// 合同流程的名称。
         public let flowName: String
 
-        /// 流程的描述信息
+        /// 合同流程描述信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowDescription: String?
 
-        /// 流程的类型
+        /// 合同流程的类别分类（如销售合同/入职合同等）。
         public let flowType: String
 
-        /// 流程状态
-        /// - 0 还没有发起
-        /// - 1 待签署
-        /// - 2 部分签署
-        /// - 3 已拒签
-        /// - 4 已签署
-        /// - 5 已过期
-        /// - 6 已撤销
-        /// - 7 还没有预发起
-        /// - 8 等待填写
-        /// - 9 部分填写
-        /// - 10 拒填
-        /// - 21 已解除
+        /// 合同流程当前的签署状态, 会存在下列的状态值
+        ///
+        /// - **0** : 未开启流程(合同中不存在填写环节)
+        /// - **1** : 待签署
+        /// - **2** : 部分签署
+        /// - **3** : 已拒签
+        /// - **4** : 已签署
+        /// - **5** : 已过期
+        /// - **6** : 已撤销
+        /// - **7** : 未开启流程(合同中存在填写环节)
+        /// - **8** : 等待填写
+        /// - **9** : 部分填写
+        /// - **10** : 已拒填
+        /// - **21** : 已解除
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowStatus: Int64?
 
-        /// 流程创建的时间戳，单位秒
+        /// 合同流程创建时间，格式为Unix标准时间戳（秒）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createdOn: Int64?
 
-        /// 当合同被拒签或者取消后(当FlowStatus=3或者FlowStatus=6的时候)
-        /// 此字段展示拒签或者取消的原因描述
-        ///
+        /// 当合同流程状态为已拒签（即 FlowStatus=3）或已撤销（即 FlowStatus=6）时，此字段 FlowMessage 为拒签或撤销原因。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowMessage: String?
 
-        /// 合同发起人userId
+        /// 合同流程发起方的员工编号, 即员工在腾讯电子签平台的唯一身份标识。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let creator: String?
 
-        /// 合同过期时间，时间戳，单位秒
+        /// 合同流程的签署截止时间，格式为Unix标准时间戳（秒）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deadline: Int64?
 
@@ -1394,62 +1524,65 @@ extension Ess {
 
     /// 创建流程的签署方信息
     public struct FlowCreateApprover: TCInputModel {
-        /// 参与者类型：
+        /// 在指定签署方时，可选择企业B端或个人C端等不同的参与者类型，可选类型如下:
         /// 0：企业
         /// 1：个人
-        /// 3：企业自动签署
-        /// 注：类型为3（企业自动签署）时，会自动完成该签署方的签署。
-        /// 自动签署仅进行盖章操作，不能是手写签名。
-        /// 本方企业自动签署的签署人会默认是当前的发起人
-        /// 他方企业自动签署的签署人是自动签模板的他方企业授权人
+        /// 3：企业静默签署
+        /// 注：类型为3（企业静默签署）时，此接口会默认完成该签署方的签署。静默签署仅进行盖章操作，不能自动签名。
         /// 7: 个人自动签署，适用于个人自动签场景。
-        /// 注: 个人自动签场景为白名单功能, 使用前请联系对接的客户经理沟通。
+        /// 注: 个人自动签场景为白名单功能，使用前请联系对接的客户经理沟通。
         public let approverType: Int64
 
-        /// 签署人企业名称
+        /// 组织机构名称。
+        /// 请确认该名称与企业营业执照中注册的名称一致。
+        /// 如果名称中包含英文括号()，请使用中文括号（）代替。
         ///
-        /// 当approverType=1 或 approverType=3时，必须指定
+        /// 注: `当approverType=0(企业签署方) 或 approverType=3(企业静默签署)时，必须指定`
         public let organizationName: String?
 
-        /// 签署方经办人姓名
+        /// 签署方经办人的姓名。
+        /// 经办人的姓名将用于身份认证和电子签名，请确保填写的姓名为签署方的真实姓名，而非昵称等代名。
         ///
         /// 在未指定签署人电子签UserId情况下，为必填参数
         public let approverName: String?
 
-        /// 签署方经办人手机号码
+        /// 签署方经办人手机号码， 支持国内手机号11位数字(无需加+86前缀或其他字符)。
+        /// 请确认手机号所有方为此合同签署方。
         ///
         /// 在未指定签署人电子签UserId情况下，为必填参数
         public let approverMobile: String?
 
-        /// 签署人的证件类型
-        /// ID_CARD 身份证
-        /// HONGKONG_AND_MACAO 港澳居民来往内地通行证
-        /// HONGKONG_MACAO_AND_TAIWAN 港澳台居民居住证(格式同居民身份证)
-        /// OTHER_CARD_TYPE 其他（需要使用该类型请先联系运营经理）
+        /// 证件类型，支持以下类型
+        ///
+        /// - ID_CARD : 居民身份证 (默认值)
+        /// - HONGKONG_AND_MACAO : 港澳居民来往内地通行证
+        /// - HONGKONG_MACAO_AND_TAIWAN : 港澳台居民居住证(格式同居民身份证)
         public let approverIdCardType: String?
 
-        /// 签署人证件号（长度不超过18位）
+        /// 证件号码，应符合以下规则
+        ///
+        /// - 居民身份证号码应为18位字符串，由数字和大写字母X组成（如存在X，请大写）。
+        /// - 港澳居民来往内地通行证号码应为9位字符串，第1位为“C”，第2位为英文字母（但“I”、“O”除外），后7位为阿拉伯数字。
+        /// - 港澳台居民居住证号码编码规则与中国大陆身份证相同，应为18位字符串。
         public let approverIdCardNumber: String?
 
-        /// 签署方经办人在模板中的参与方ID
-        ///
-        /// 模板发起合同时，该参数为必填项
-        ///
-        /// 文件发起合同是，该参数无序传值
+        /// 签署方经办人在模板中配置的参与方ID，与控件绑定，是控件的归属方，ID为32位字符串。
+        /// 模板发起合同时，该参数为必填项。
+        /// 文件发起合同是，该参数无需传值。
+        /// 如果开发者后续用合同模板发起合同，建议保存此值，在用合同模板发起合同中需此值绑定对应的签署经办人 。
         public let recipientId: String?
 
-        /// 签署意愿确认渠道,WEIXINAPP:人脸识别
+        /// 签署意愿确认渠道，默认为WEIXINAPP:人脸识别
+        ///
+        /// 注: 将要废弃, 用ApproverSignTypes签署人签署合同时的认证方式代替, 新客户可请用ApproverSignTypes来设置
         public let verifyChannel: [String]?
 
-        /// 是否发送短信
+        /// 通知签署方经办人的方式,  有以下途径:
         ///
-        /// sms--短信通知
+        /// - **sms**  :  (默认)短信
+        /// - **none**   : 不通知
         ///
-        /// none--不通知
-        ///
-        /// 默认为sms
-        ///
-        /// 发起方=签署方时不发送短信
+        /// 注: `发起方也是签署方时不给此签署方发送短信`
         public let notifyType: String?
 
         /// 合同强制需要阅读全文，无需传此参数
@@ -1460,30 +1593,25 @@ extension Ess {
 
         /// 签署人userId，仅支持本企业的员工userid， 可在控制台组织管理处获得
         ///
-        /// 若传此字段 则以userid的信息为主，会覆盖传递过来的签署人基本信息， 包括姓名，手机号，证件类型等信息
+        /// 注: `若传此字段 则以userid的信息为主，会覆盖传递过来的签署人基本信息， 包括姓名，手机号，证件类型等信息`
         public let userId: String?
 
-        /// 当前只支持true，默认为true
+        /// 字段已经废弃，当前只支持true，默认为true
         public let required: Bool?
 
-        /// 签署人用户来源，此参数仅针对企微用户开放
-        ///
-        /// 企微侧用户请传入：WEWORKAPP
+        /// 在企微场景下使用，需设置参数为**WEWORKAPP**，以表明合同来源于企微。
         public let approverSource: String?
 
-        /// 企业签署方或签标识，客户自定义，64位长度
-        ///
-        /// 用于发起含有或签签署人的合同。或签参与人必须有此字段。
-        ///
-        /// 合同内不同或签参与人CustomApproverTag需要保证唯一。
-        ///
-        /// 如果或签签署人为本方企微参与人，ApproverSource参数需要指定WEWORKAPP
+        /// 在企业微信场景下，表明该合同流程为或签，其最大长度为64位字符串。
+        /// 所有参与或签的人员均需具备该标识。
+        /// 注意，在合同中，不同的或签参与人必须保证其CustomApproverTag唯一。
+        /// 如果或签签署人为本方企业微信参与人，则需要指定ApproverSource参数为WEWORKAPP。
         public let customApproverTag: String?
 
-        /// 快速注册相关信息，目前暂未开放！
+        /// 已经废弃, 快速注册相关信息
         public let registerInfo: RegisterInfo?
 
-        /// 签署人个性化能力值
+        /// 签署人个性化能力值，如是否可以转发他人处理、是否可以拒签等功能开关。
         public let approverOption: ApproverOption?
 
         /// 签署完前端跳转的url，暂未使用
@@ -1495,23 +1623,41 @@ extension Ess {
         /// - 创建签署链接时，可以通过查询详情接口获得签署人的SignId，然后可传入此值为该签署人创建签署链接，无需再传姓名、手机号、证件号等其他信息
         public let signId: String?
 
-        /// 当前签署方进行签署操作是否需要企业内部审批
+        /// 发起方企业的签署人进行签署操作前，是否需要企业内部走审批流程，取值如下：
         ///
-        /// true 则为需要
+        /// - **false**：（默认）不需要审批，直接签署。
+        /// - **true**：需要走审批流程。当到对应参与人签署时，会阻塞其签署操作，等待企业内部审批完成。
+        /// 企业可以通过CreateFlowSignReview审批接口通知腾讯电子签平台企业内部审批结果
         ///
-        /// false,无序企业内部审批（默认）
+        /// - 如果企业通知腾讯电子签平台审核通过，签署方可继续签署动作。
+        /// - 如果企业通知腾讯电子签平台审核未通过，平台将继续阻塞签署方的签署动作，直到企业通知平台审核通过。
         ///
-        /// 为个人签署方时则由发起方企业审核。
+        /// 注：`此功能可用于与企业内部的审批流程进行关联，支持手动、静默签署合同`
         public let approverNeedSignReview: Bool?
 
         /// 签署人签署控件， 此参数仅针对文件发起（CreateFlowByFiles）生效
         ///
-        /// 文件发起时，可通过该参数为签署人指定签署控件类型以及位置
+        /// 合同中的签署控件列表，列表中可支持下列多种签署控件,控件的详细定义参考开发者中心的Component结构体
+        ///
+        /// - 个人签名/印章
+        /// - 企业印章
+        /// - 骑缝章等签署控件
+        ///
+        /// `此参数仅针对文件发起设置生效,模板发起合同签署流程, 请以模板配置为主`
         public let signComponents: [Component]?
 
         /// 签署人填写控件 此参数仅针对文件发起（CreateFlowByFiles）生效
         ///
-        /// 文件发起时，可通过该参数为签署人指定填写控件类型以及位置
+        /// 合同中的填写控件列表，列表中可支持下列多种填写控件，控件的详细定义参考开发者中心的Component结构体
+        ///
+        /// - 单行文本控件
+        /// - 多行文本控件
+        /// - 勾选框控件
+        /// - 数字控件
+        /// - 图片控件
+        /// - 动态表格等填写控件
+        ///
+        /// `此参数仅针对文件发起设置生效,模板发起合同签署流程, 请以模板配置为主`
         public let components: [Component]?
 
         /// 签署方控件类型为 SIGN_SIGNATURE时，可以指定签署方签名方式
@@ -1521,20 +1667,32 @@ extension Ess {
         /// 	SYSTEM_ESIGN -- 系统签名（该类型可以在用户签署时根据用户姓名一键生成一个签名来进行签署）
         public let componentLimitType: [String]?
 
-        /// 合同查看方式
+        /// 指定个人签署方查看合同的校验方式,可以传值如下:
         ///
-        /// 默认1 -实名查看
+        /// - **1**   : （默认）人脸识别,人脸识别后才能合同内容
+        /// - **2**  : 手机号验证, 用户手机号和参与方手机号(ApproverMobile)相同即可查看合同内容（当手写签名方式为OCR_ESIGN时，该校验方式无效，因为这种签名方式依赖实名认证）
+        /// 注:
         ///
-        /// 2-短信验证码查看(企业签署方暂不支持该方式)
+        /// - 如果合同流程设置ApproverVerifyType查看合同的校验方式,    则忽略此签署人的查看合同的校验方式
+        /// - 此字段不可传多个校验方式
+        ///
+        /// `此参数仅针对文件发起设置生效,模板发起合同签署流程, 请以模板配置为主`
+        ///
+        /// .
         public let approverVerifyTypes: [Int64]?
 
-        /// 合同签署方式(默认1,2)
+        /// 您可以指定签署方签署合同的认证校验方式，可传递以下值：
         ///
-        /// 1-人脸认证
+        /// - **1**：人脸认证，需进行人脸识别成功后才能签署合同；
+        /// - **2**：签署密码，需输入与用户在腾讯电子签设置的密码一致才能校验成功进行合同签署；
+        /// - **3**：运营商三要素，需到运营商处比对手机号实名信息（名字、手机号、证件号）校验一致才能成功进行合同签署。
+        /// 注：
         ///
-        /// 2-签署密码
+        /// - 默认情况下，认证校验方式为人脸认证和签署密码两种形式；
+        /// - 您可以传递多种值，表示可用多种认证校验方式。
         ///
-        /// 3-运营商三要素
+        /// 注:
+        /// `此参数仅针对文件发起设置生效,模板发起合同签署流程, 请以模板配置为主`
         public let approverSignTypes: [UInt64]?
 
         public init(approverType: Int64, organizationName: String? = nil, approverName: String? = nil, approverMobile: String? = nil, approverIdCardType: String? = nil, approverIdCardNumber: String? = nil, recipientId: String? = nil, verifyChannel: [String]? = nil, notifyType: String? = nil, isFullText: Bool? = nil, preReadTime: UInt64? = nil, userId: String? = nil, required: Bool? = nil, approverSource: String? = nil, customApproverTag: String? = nil, registerInfo: RegisterInfo? = nil, approverOption: ApproverOption? = nil, signId: String? = nil, approverNeedSignReview: Bool? = nil, signComponents: [Component]? = nil, components: [Component]? = nil, componentLimitType: [String]? = nil, approverVerifyTypes: [Int64]? = nil, approverSignTypes: [UInt64]? = nil) {
@@ -1623,49 +1781,49 @@ extension Ess {
 
     /// 此结构体(FlowDetailInfo)描述的是合同(流程)的详细信息
     public struct FlowDetailInfo: TCOutputModel {
-        /// 合同(流程)的ID
+        /// 合同流程ID，为32位字符串。
         public let flowId: String
 
-        /// 合同(流程)的名字
+        /// 合同流程的名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。
         public let flowName: String
 
-        /// 合同(流程)的类型
+        /// 合同流程的类别分类（如销售合同/入职合同等）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowType: String?
 
-        /// 流程状态
-        /// - 0 还没有发起
-        /// - 1 待签署
-        /// - 2 部分签署
-        /// - 3 已拒签
-        /// - 4 已签署
-        /// - 5 已过期
-        /// - 6 已撤销
-        /// - 7 还没有预发起
-        /// - 8 等待填写
-        /// - 9 部分填写
-        /// - 10 拒填
-        /// - 21 已解除
+        /// 合同流程当前的签署状态, 会存在下列的状态值
+        /// - **0** : 未开启流程(合同中不存在填写环节)
+        /// - **1** : 待签署
+        /// - **2** : 部分签署
+        /// - **3** : 已拒签
+        /// - **4** : 已签署
+        /// - **5** : 已过期
+        /// - **6** : 已撤销
+        /// - **7** : 未开启流程(合同中存在填写环节)
+        /// - **8** : 等待填写
+        /// - **9** : 部分填写
+        /// - **10** : 已拒填
+        /// - **21** : 已解除
         public let flowStatus: Int64
 
-        /// 合同(流程)的信息
+        /// 当合同流程状态为已拒签（即 FlowStatus=3）或已撤销（即 FlowStatus=6）时，此字段 FlowMessage 为拒签或撤销原因。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowMessage: String?
 
-        /// 流程的描述
+        /// 合同流程描述信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowDescription: String?
 
-        /// 合同(流程)的创建时间戳，单位秒
+        /// 合同流程的创建时间戳，格式为Unix标准时间戳（秒）。
         public let createdOn: Int64
 
-        /// 合同(流程)的签署方数组
+        /// 合同流程的签署方数组
         public let flowApproverInfos: [FlowApproverDetail]
 
-        /// 合同(流程)的关注方信息列表
+        /// 合同流程的关注方信息数组
         public let ccInfos: [FlowApproverDetail]
 
-        /// 合同发起人UserId
+        /// 合同流程发起方的员工编号, 即员工在腾讯电子签平台的唯一身份标识。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let creator: String?
 
@@ -1685,45 +1843,89 @@ extension Ess {
 
     /// 此结构体(FlowGroupInfo)描述的是合同组(流程组)的单个合同(流程)信息
     public struct FlowGroupInfo: TCInputModel {
-        /// 合同（流程）的名称
+        /// 合同流程的名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。
+        /// 该名称还将用于合同签署完成后的下载文件名。
         public let flowName: String
 
-        /// 合同（流程）的签署方信息
+        /// 签署流程参与者信息，最大限制50方
+        /// 注意 approver中的顺序需要和模板中的顺序保持一致， 否则会导致模板中配置的信息无效。
         public let approvers: [ApproverInfo]
 
-        /// 发起合同（流程）的资源Id,此资源必须是PDF文件,来自UploadFiles,使用文件发起合同(流程)组时必传
+        /// 文件资源ID，通过多文件上传[UploadFiles](https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles)接口获得，为32位字符串。
+        /// 建议开发者保存此资源ID，后续创建合同或创建合同流程需此资源ID。
         public let fileIds: [String]?
 
-        /// 发起合同（流程）的模板Id,用模板发起合同（流程）组时必填
+        /// 合同模板ID，为32位字符串。
+        /// 建议开发者保存此模板ID，后续用此模板发起合同流程需要此参数。
+        /// 可登录腾讯电子签控制台，在 "模板"->"模板中心"->"列表展示设置"选中模板 ID 中查看某个模板的TemplateId(在页面中展示为模板ID)。
         public let templateId: String?
 
-        /// 合同（流程）的类型
+        /// 签署流程的类型(如销售合同/入职合同等)，最大长度200个字符
+        /// 示例值：劳务合同
         public let flowType: String?
 
-        /// 合同（流程）的描述
+        /// 签署流程描述,最大长度1000个字符
         public let flowDescription: String?
 
-        /// 合同（流程）的截止时间戳，单位秒。默认是一年
+        /// 签署流程的签署截止时间。
+        ///
+        /// 值为unix时间戳,精确到秒,不传默认为当前时间一年后
+        /// 示例值：1604912664
         public let deadline: Int64?
 
         /// 合同（流程）的回调地址
-        public let callbackUrl: String?
+        @available(*, deprecated)
+        public let callbackUrl: String? = nil
 
-        /// 第三方平台传递过来的信息, 限制1024字符 格式必须是base64的
+        /// 调用方自定义的个性化字段(可自定义此字段的值)，并以base64方式编码，支持的最大数据大小为 20480长度。
+        /// 在合同状态变更的回调信息等场景中，该字段的信息将原封不动地透传给贵方。
+        /// 回调的相关说明可参考开发者中心的[回调通知](https://qian.tencent.com/developers/company/callback_types_v2)模块。
         public let userData: String?
 
-        /// 合同（流程）的签署是否是无序签, true - 无序。 false - 有序, 默认
+        /// 发送类型：
+        /// true：无序签
+        /// false：有序签
+        /// 注：默认为false（有序签），请和模板中的配置保持一致
+        /// 示例值：true
         public let unordered: Bool?
 
-        /// 合同（流程）发起方的填写控件, 由发起方进行在发起时进行填充
+        /// 模板或者合同中的填写控件列表，列表中可支持下列多种填写控件，控件的详细定义参考开发者中心的Component结构体
+        ///
+        /// - 单行文本控件
+        /// - 多行文本控件
+        /// - 勾选框控件
+        /// - 数字控件
+        /// - 图片控件
+        /// - 动态表格等填写控件
         public let components: [Component]?
 
-        /// 本企业（发起方）是否需要签署审批，若需要审批则只允许查看不允许签署，需要您调用接口CreateFlowSignReview提交审批结果。
+        /// 发起方企业的签署人进行签署操作是否需要企业内部审批。使用此功能需要发起方企业有参与签署。
+        /// 若设置为true，审核结果需通过接口 [CreateFlowSignReview](https://qian.tencent.com/developers/companyApis/operateFlows/CreateFlowSignReview) 通知电子签，审核通过后，发起方企业签署人方可进行签署操作，否则会阻塞其签署操作。
+        ///
+        /// 注：企业可以通过此功能与企业内部的审批流程进行关联，支持手动、静默签署合同。
+        /// 示例值：true
         public let needSignReview: Bool?
 
-        /// 本企业（发起方）自动签署，需要您在发起合同时给印章控件指定自动签的印章。
+        /// 个人自动签场景。发起自动签署时，需设置对应自动签署场景，目前仅支持场景：处方单-E_PRESCRIPTION_AUTO_SIGN
+        /// 示例值：E_PRESCRIPTION_AUTO_SIGN
         public let autoSignScene: String?
 
+        public init(flowName: String, approvers: [ApproverInfo], fileIds: [String]? = nil, templateId: String? = nil, flowType: String? = nil, flowDescription: String? = nil, deadline: Int64? = nil, userData: String? = nil, unordered: Bool? = nil, components: [Component]? = nil, needSignReview: Bool? = nil, autoSignScene: String? = nil) {
+            self.flowName = flowName
+            self.approvers = approvers
+            self.fileIds = fileIds
+            self.templateId = templateId
+            self.flowType = flowType
+            self.flowDescription = flowDescription
+            self.deadline = deadline
+            self.userData = userData
+            self.unordered = unordered
+            self.components = components
+            self.needSignReview = needSignReview
+            self.autoSignScene = autoSignScene
+        }
+
+        @available(*, deprecated, renamed: "init(flowName:approvers:fileIds:templateId:flowType:flowDescription:deadline:userData:unordered:components:needSignReview:autoSignScene:)", message: "'callbackUrl' is deprecated in 'FlowGroupInfo'. Setting this parameter has no effect.")
         public init(flowName: String, approvers: [ApproverInfo], fileIds: [String]? = nil, templateId: String? = nil, flowType: String? = nil, flowDescription: String? = nil, deadline: Int64? = nil, callbackUrl: String? = nil, userData: String? = nil, unordered: Bool? = nil, components: [Component]? = nil, needSignReview: Bool? = nil, autoSignScene: String? = nil) {
             self.flowName = flowName
             self.approvers = approvers
@@ -1732,7 +1934,6 @@ extension Ess {
             self.flowType = flowType
             self.flowDescription = flowDescription
             self.deadline = deadline
-            self.callbackUrl = callbackUrl
             self.userData = userData
             self.unordered = unordered
             self.components = components
@@ -1759,18 +1960,25 @@ extension Ess {
 
     /// 此结构体(FlowGroupOptions)描述的是合同组的个性化配置，支持控制是否发送短信、未实名个人签署方查看合同组时是否需要实名认证（仅在合同组文件发起配置时生效）
     public struct FlowGroupOptions: TCInputModel {
-        /// 发起合同（流程）组的合同（流程）签署人校验方式
-        /// VerifyCheck: 人脸识别（默认）
-        /// MobileCheck：手机号验证
+        /// 签署人校验方式,支持以下类型
+        ///
+        /// - VerifyCheck : 人脸识别 (默认值)
+        /// - MobileCheck : 手机号验证
         /// 参数说明：此参数仅在合同组文件发起有效，可选人脸识别或手机号验证两种方式，若选择后者，未实名个人签署方在签署合同时，无需经过实名认证和意愿确认两次人脸识别，该能力仅适用于个人签署方。
         public let approverVerifyType: String?
 
         /// 发起合同（流程）组本方企业经办人通知方式
-        /// 签署通知类型：sms--短信，none--不通知
+        /// 签署通知类型，支持以下类型
+        ///
+        /// - sms : 短信 (默认值)
+        /// - none : 不通知
         public let selfOrganizationApproverNotifyType: String?
 
         /// 发起合同（流程）组他方经办人通知方式
-        /// 签署通知类型：sms--短信，none--不通知
+        /// 签署通知类型，支持以下类型
+        ///
+        /// - sms : 短信 (默认值)
+        /// - none : 不通知
         public let otherApproverNotifyType: String?
 
         public init(approverVerifyType: String? = nil, selfOrganizationApproverNotifyType: String? = nil, otherApproverNotifyType: String? = nil) {
@@ -2000,15 +2208,22 @@ extension Ess {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alias: String?
 
-        /// 成员企业id
+        /// 成员企业id，为 32 位字符串，可在电子签PC 控制台，企业设置->企业电子签账号 获取
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let organizationId: String?
 
-        /// 更新时间，时间戳，单位秒
+        /// 记录更新时间， unix时间戳，单位秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: UInt64?
 
-        /// 成员企业加入集团的当前状态:1-待授权;2-已授权待激活;3-拒绝授权;4-已解除;5-已加入
+        /// 成员企业加入集团的当前状态
+        ///
+        /// - **1**：待授权
+        /// - **2**：已授权待激活
+        /// - **3**：拒绝授权
+        /// - **4**：已解除
+        /// - **5**：已加入
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: UInt64?
 
@@ -2024,19 +2239,22 @@ extension Ess {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let adminInfo: Admin?
 
-        /// 企业许可证
+        /// 企业许可证Id，此字段暂时不需要关注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let license: String?
 
-        /// 企业许可证过期时间，时间戳，单位秒
+        /// 企业许可证过期时间，unix时间戳，单位秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let licenseExpireTime: UInt64?
 
-        /// 成员企业加入集团时间，时间戳，单位秒
+        /// 成员企业加入集团时间，unix时间戳，单位秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let joinTime: UInt64?
 
-        /// 是否使用自建审批流引擎（即不是企微审批流引擎），true-是，false-否
+        /// 是否使用自建审批流引擎（即不是企微审批流引擎）
+        ///
+        /// - **true**：是
+        /// - **false**：否
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowEngineEnable: Bool?
 
@@ -2056,15 +2274,15 @@ extension Ess {
         }
     }
 
-    /// 被授权用户信息
+    /// 被授权的用户信息
     public struct HasAuthUser: TCInputModel, TCOutputModel {
-        /// 用户id
+        /// 员工在腾讯电子签平台的唯一身份标识，为32位字符串。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userId: String?
 
-        /// 用户归属
-        /// MainOrg：主企业
-        /// CurrentOrg：当前企业
+        /// 当前员工的归属情况，可能值是：
+        /// MainOrg：在集团企业的场景下，返回此值代表是归属主企业
+        /// CurrentOrg：在普通企业场景下返回此值；或者在集团企业的场景下，返回此值代表归属子企业
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let belongTo: String?
 
@@ -2101,22 +2319,27 @@ extension Ess {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subOrgIdList: [String]?
 
+        /// 权限树
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let permissionGroups: [PermissionGroup]?
+
         enum CodingKeys: String, CodingKey {
             case roleId = "RoleId"
             case roleName = "RoleName"
             case roleStatus = "RoleStatus"
             case isGroupRole = "IsGroupRole"
             case subOrgIdList = "SubOrgIdList"
+            case permissionGroups = "PermissionGroups"
         }
     }
 
     /// 部门信息
     public struct IntegrationDepartment: TCOutputModel {
-        /// 部门ID
+        /// 部门ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deptId: String?
 
-        /// 部门名
+        /// 部门名。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deptName: String?
 
@@ -2128,7 +2351,7 @@ extension Ess {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deptOpenId: String?
 
-        /// 序列号
+        /// 序列号。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let orderNo: UInt64?
 
@@ -2138,27 +2361,6 @@ extension Ess {
             case parentDeptId = "ParentDeptId"
             case deptOpenId = "DeptOpenId"
             case orderNo = "OrderNo"
-        }
-    }
-
-    /// 主企业员工账号信息
-    public struct IntegrationMainOrganizationUser: TCOutputModel {
-        /// 主企业id
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let mainOrganizationId: String?
-
-        /// 主企业员工UserId
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let mainUserId: String?
-
-        /// 主企业员工名
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let userName: String?
-
-        enum CodingKeys: String, CodingKey {
-            case mainOrganizationId = "MainOrganizationId"
-            case mainUserId = "MainUserId"
-            case userName = "UserName"
         }
     }
 
@@ -2310,6 +2512,114 @@ extension Ess {
         }
     }
 
+    /// 权限树节点权限
+    public struct Permission: TCInputModel, TCOutputModel {
+        /// 权限名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 权限key
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let key: String?
+
+        /// 权限类型 1前端，2后端
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let type: Int64?
+
+        /// 是否隐藏
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hide: Int64?
+
+        /// 数据权限标签 1:表示根节点，2:表示叶子结点
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dataLabel: Int64?
+
+        /// 数据权限独有，1:关联其他模块鉴权，2:表示关联自己模块鉴权
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dataType: Int64?
+
+        /// 数据权限独有，表示数据范围，1：全公司，2:部门及下级部门，3:自己
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dataRange: Int64?
+
+        /// 关联权限, 表示这个功能权限要受哪个数据权限管控
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dataTo: String?
+
+        /// 父级权限key
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let parentKey: String?
+
+        /// 是否选中
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isChecked: Bool?
+
+        /// 子权限集合
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let children: [Permission]?
+
+        public init(name: String? = nil, key: String? = nil, type: Int64? = nil, hide: Int64? = nil, dataLabel: Int64? = nil, dataType: Int64? = nil, dataRange: Int64? = nil, dataTo: String? = nil, parentKey: String? = nil, isChecked: Bool? = nil, children: [Permission]? = nil) {
+            self.name = name
+            self.key = key
+            self.type = type
+            self.hide = hide
+            self.dataLabel = dataLabel
+            self.dataType = dataType
+            self.dataRange = dataRange
+            self.dataTo = dataTo
+            self.parentKey = parentKey
+            self.isChecked = isChecked
+            self.children = children
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case key = "Key"
+            case type = "Type"
+            case hide = "Hide"
+            case dataLabel = "DataLabel"
+            case dataType = "DataType"
+            case dataRange = "DataRange"
+            case dataTo = "DataTo"
+            case parentKey = "ParentKey"
+            case isChecked = "IsChecked"
+            case children = "Children"
+        }
+    }
+
+    /// 权限树中的权限组
+    public struct PermissionGroup: TCInputModel, TCOutputModel {
+        /// 权限组名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let groupName: String?
+
+        /// 权限组key
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let groupKey: String?
+
+        /// 是否隐藏分组，0否1是
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hide: Int64?
+
+        /// 权限集合
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let permissions: [Permission]?
+
+        public init(groupName: String? = nil, groupKey: String? = nil, hide: Int64? = nil, permissions: [Permission]? = nil) {
+            self.groupName = groupName
+            self.groupKey = groupKey
+            self.hide = hide
+            self.permissions = permissions
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case groupName = "GroupName"
+            case groupKey = "GroupKey"
+            case hide = "Hide"
+            case permissions = "Permissions"
+        }
+    }
+
     /// 流程中参与方的信息结构
     public struct Recipient: TCInputModel, TCOutputModel {
         /// 签署参与者ID，唯一标识
@@ -2401,12 +2711,16 @@ extension Ess {
         public let recipientId: String?
 
         /// 参与方填写状态
-        /// 0-未填写
-        /// 1-已填写
+        ///
+        /// - 0-未填写
+        /// - 1-已填写
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recipientFillStatus: String?
 
         /// 是否为发起方
+        ///
+        /// - true-发起方
+        /// - false-参与方
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isPromoter: Bool?
 
@@ -2452,31 +2766,38 @@ extension Ess {
         }
     }
 
-    /// 解除协议的签署人，如不指定，默认使用待解除流程（即原流程）中的签署人。
-    /// 注意：不支持更换C端（个人身份类型）签署人，如果原流程中含有C端签署人，默认使用原流程中的该C端签署人。
-    /// 注意：目前不支持替换C端（个人身份类型）签署人，但是可以指定C端签署人的签署方自定义控件别名，具体见参数ApproverSignRole描述。
-    /// 注意：当指定C端签署人的签署方自定义控件别名不空时，除RelievedApproverReceiptId参数外，可以只参数ApproverSignRole。
+    /// 解除协议的签署人，如不指定，默认使用原流程中的签署人。
+    ///
+    /// `注意：不支持更换C端（个人身份类型）签署人，如果原流程中含有C端签署人，默认使用原流程中的该C端签署人。`
+    ///
+    /// `注意：目前不支持替换C端（个人身份类型）签署人，但是可以指定C端签署人的签署方自定义控件别名，具体见参数ApproverSignRole描述。`
+    ///
+    /// `注意：当指定C端签署人的签署方自定义控件别名不空时，除RelievedApproverReceiptId参数外，可以只参数ApproverSignRole。`
     public struct ReleasedApprover: TCInputModel {
-        /// 签署人姓名，最大长度50个字符
+        /// 签署人姓名，最大长度50个字。
         public let name: String
 
-        /// 签署人手机号
+        /// 签署人手机号。
         public let mobile: String
 
-        /// 要替换的参与人在原合同参与人列表中的签署人编号,通过DescribeFlowInfo 接口获取（即FlowDetailInfos. FlowApproverInfos 结构中的ReceiptId ）
+        /// 要更换的原合同参与人RecipientId编号。(可通过接口[DescribeFlowInfo](https://qian.tencent.com/developers/companyApis/queryFlows/DescribeFlowInfo/)查询签署人的RecipientId编号)
         public let relievedApproverReceiptId: String
 
         /// 指定签署人类型，目前仅支持
-        /// ORGANIZATION-企业
-        /// ENTERPRISESERVER-企业静默签
+        ///
+        /// - **ORGANIZATION**：企业（默认值）
+        /// - **ENTERPRISESERVER**：企业静默签
         public let approverType: String?
 
-        /// 签署控件类型，支持自定义企业签署方的签署控件为“印章”或“签名”
-        /// - SIGN_SEAL-默认为印章控件类型
-        /// - SIGN_SIGNATURE-手写签名控件类型
+        /// 签署控件类型，支持自定义企业签署方的签署控件类型
+        ///
+        /// - **SIGN_SEAL**：默认为印章控件类型（默认值）
+        /// - **SIGN_SIGNATURE**：手写签名控件类型
         public let approverSignComponentType: String?
 
-        /// 参与方在合同中的角色是按照创建合同的时候来排序的; 解除协议会将第一个参与人叫甲方, 第二个叫乙方,第三个叫丙方，以此类推。  如果想改动参与人的角色名字, 可以设置此签署方自定义控件别名字段，最大20个字符
+        /// 参与方在合同中的角色是按照创建合同的时候来排序的，解除协议默认会将第一个参与人叫`甲方`,第二个叫`乙方`,  第三个叫`丙方`，以此类推。
+        ///
+        /// 如果需改动此参与人的角色名字，可用此字段指定，由汉字,英文字符,数字组成，最大20个字。
         public let approverSignRole: String?
 
         public init(name: String, mobile: String, relievedApproverReceiptId: String, approverType: String? = nil, approverSignComponentType: String? = nil, approverSignRole: String? = nil) {
@@ -2500,19 +2821,19 @@ extension Ess {
 
     /// 解除协议文档中内容信息，包括但不限于：解除理由、解除后仍然有效的条款-保留条款、原合同事项处理-费用结算、原合同事项处理-其他事项、其他约定等。
     public struct RelieveInfo: TCInputModel {
-        /// 解除理由，最大支持200个字
-        public let reason: String?
+        /// 解除理由，长度不能超过200，只能由中文、字母、数字、中文标点和英文标点组成(不支持表情)。
+        public let reason: String
 
-        /// 解除后仍然有效的条款，保留条款，最大支持200个字
+        /// 解除后仍然有效的条款，保留条款，长度不能超过200，只能由中文、字母、数字、中文标点和英文标点组成(不支持表情)。
         public let remainInForceItem: String?
 
-        /// 原合同事项处理-费用结算，最大支持200个字
+        /// 原合同事项处理-费用结算，长度不能超过200，只能由中文、字母、数字、中文标点和英文标点组成(不支持表情)。
         public let originalExpenseSettlement: String?
 
-        /// 原合同事项处理-其他事项，最大支持200个字
+        /// 原合同事项处理-其他事项，长度不能超过200，只能由中文、字母、数字、中文标点和英文标点组成(不支持表情)。
         public let originalOtherSettlement: String?
 
-        /// 其他约定，最大支持200个字
+        /// 其他约定，长度不能超过200，只能由中文、字母、数字、中文标点和英文标点组成(不支持表情)。
         public let otherDeals: String?
 
         public init(reason: String, remainInForceItem: String? = nil, originalExpenseSettlement: String? = nil, originalOtherSettlement: String? = nil, otherDeals: String? = nil) {
@@ -2532,15 +2853,17 @@ extension Ess {
         }
     }
 
-    /// 催办接口返回详细信息
+    /// 催办接口返回的详细信息。
     public struct RemindFlowRecords: TCOutputModel {
-        /// 是否能够催办，true-是，false-否
+        /// 合同流程是否可以催办：
+        /// true - 可以，false - 不可以。
+        /// 若无法催办，将返回RemindMessage以解释原因。
         public let canRemind: Bool
 
-        /// 合同id
+        /// 合同流程ID，为32位字符串。
         public let flowId: String
 
-        /// 催办详情信息
+        /// 在合同流程无法催办的情况下，系统将返回RemindMessage以阐述原因。
         public let remindMessage: String
 
         enum CodingKeys: String, CodingKey {
@@ -2593,15 +2916,16 @@ extension Ess {
         }
     }
 
-    /// 一码多扫签署二维码对象
+    /// 签署二维码的基本信息，用于创建二维码，用户可扫描该二维码进行签署操作。
     public struct SignQrCode: TCOutputModel {
-        /// 二维码id
+        /// 二维码ID，为32位字符串。
         public let qrCodeId: String
 
-        /// 二维码url
+        /// 二维码URL，可通过转换二维码的工具或代码组件将此URL转化为二维码，以便用户扫描进行流程签署。
         public let qrCodeUrl: String
 
-        /// 二维码过期时间戳，单位秒
+        /// 二维码的有截止时间，格式为Unix标准时间戳（秒）。
+        /// 一旦超过二维码的有效期限，该二维码将自动失效。
         public let expiredTime: Int64
 
         enum CodingKeys: String, CodingKey {
@@ -2611,15 +2935,18 @@ extension Ess {
         }
     }
 
-    /// 一码多扫签署二维码签署信息
+    /// 流程签署二维码的签署信息，适用于客户系统整合二维码功能。
+    /// 通过链接，用户可直接访问电子签名小程序并签署合同。
     public struct SignUrl: TCOutputModel {
-        /// 小程序签署链接
+        /// 跳转至电子签名小程序签署的链接地址。
+        /// 适用于客户端APP及小程序直接唤起电子签名小程序。
         public let appSignUrl: String
 
-        /// 签署链接有效时间
+        /// 签署链接有效时间，格式类似"2022-08-05 15:55:01"
         public let effectiveTime: String
 
-        /// 移动端签署链接
+        /// 跳转至电子签名小程序签署的链接地址，格式类似于https://essurl.cn/xxx。
+        /// 打开此链接将会展示H5中间页面，随后唤起电子签名小程序以进行合同签署。
         public let httpSignUrl: String
 
         enum CodingKeys: String, CodingKey {
@@ -2629,63 +2956,67 @@ extension Ess {
         }
     }
 
-    /// 企业员工信息
+    /// 企业员工信息。
     public struct Staff: TCInputModel, TCOutputModel {
-        /// 用户在电子签平台的id
-        /// 注：创建和更新场景无需填写
+        /// 员工在腾讯电子签平台的唯一身份标识，为32位字符串。
+        /// 注：`创建和更新场景无需填写。`
         public let userId: String?
 
-        /// 显示的用户名/昵称
+        /// 显示的用户名/昵称。
         public let displayName: String?
 
-        /// 用户手机号
+        /// 用户手机号码， 支持国内手机号11位数字(无需加+86前缀或其他字符)。
         public let mobile: String?
 
-        /// 用户邮箱
+        /// 用户邮箱。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let email: String?
 
-        /// 用户在第三方平台id，如需在此接口提醒员工实名，该参数不传
+        /// 用户在第三方平台ID。
+        /// 注：`如需在此接口提醒员工实名，该参数不传。`
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let openId: String?
 
-        /// 员工角色
-        /// 注：创建和更新场景无需填写
+        /// 员工角色信息。
+        /// 注：`创建和更新场景无需填写。`
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let roles: [StaffRole]?
 
-        /// 员工部门
+        /// 员工部门信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let department: Department?
 
-        /// 员工是否实名
-        /// 注：创建和更新场景无需填写
+        /// 员工是否实名。
+        /// 注：`创建和更新场景无需填写。`
         public let verified: Bool?
 
-        /// 员工创建时间戳，单位秒
-        /// 注：创建和更新场景无需填写
+        /// 员工创建时间戳，单位秒。
+        /// 注：`创建和更新场景无需填写。`
         public let createdOn: Int64?
 
-        /// 员工实名时间戳，单位秒
-        /// 注：创建和更新场景无需填写
+        /// 员工实名时间戳，单位秒。
+        /// 注：`创建和更新场景无需填写。`
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let verifiedOn: Int64?
 
-        /// 员工是否离职：0-未离职，1-离职
-        /// 注：创建和更新场景无需填写
+        /// 员工是否离职：
+        ///
+        /// - **0**：未离职
+        /// - **1**：离职
+        /// 注：`创建和更新场景无需填写。`
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let quiteJob: Int64?
 
-        /// 员工离职交接人用户id
-        /// 注：创建和更新场景无需填写
+        /// 员工离职交接人用户ID。
+        /// 注：`创建和更新场景无需填写。`
         public let receiveUserId: String?
 
-        /// 员工离职交接人用户OpenId
-        /// 注：创建和更新场景无需填写
+        /// 员工离职交接人用户OpenId。
+        /// 注：`创建和更新场景无需填写。`
         public let receiveOpenId: String?
 
-        /// 企业微信用户账号ID
-        /// 注：仅企微类型的企业创建员工接口支持该字段
+        /// 企业微信用户账号ID。
+        /// 注：`仅企微类型的企业创建员工接口支持该字段。`
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let weworkOpenId: String?
 
@@ -2724,13 +3055,13 @@ extension Ess {
         }
     }
 
-    /// 集成版企业角色信息
+    /// 集成版企业角色信息。
     public struct StaffRole: TCInputModel, TCOutputModel {
-        /// 角色id
+        /// 角色ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let roleId: String?
 
-        /// 角色名称
+        /// 角色名称。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let roleName: String?
 
@@ -2793,13 +3124,14 @@ extension Ess {
     /// 更新员工信息成功返回的数据信息
     public struct SuccessUpdateStaffData: TCOutputModel {
         /// 传入的用户名称
-        public let displayName: String?
+        public let displayName: String
 
-        /// 传入的手机号
-        public let mobile: String?
+        /// 传入的手机号，没有打码
+        public let mobile: String
 
-        /// 用户Id
-        public let userId: String?
+        /// 员工在腾讯电子签平台的唯一身份标识，为32位字符串。
+        /// 可登录腾讯电子签控制台，在 "更多能力"->"组织管理" 中查看某位员工的UserId(在页面中展示为用户ID)。
+        public let userId: String
 
         enum CodingKeys: String, CodingKey {
             case displayName = "DisplayName"
@@ -3037,17 +3369,23 @@ extension Ess {
 
     /// 用户的三要素：姓名，证件号，证件类型
     public struct UserThreeFactor: TCInputModel {
-        /// 姓名
-        public let name: String?
+        /// 签署方经办人的姓名。
+        /// 经办人的姓名将用于身份认证和电子签名，请确保填写的姓名为签署方的真实姓名，而非昵称等代名。
+        public let name: String
 
-        /// 证件类型:
-        /// ID_CARD 身份证
-        /// HONGKONG_AND_MACAO 港澳居民来往内地通行证
-        /// HONGKONG_MACAO_AND_TAIWAN 港澳台居民居住证(格式同居民身份证)
-        public let idCardType: String?
+        /// 证件类型，支持以下类型
+        ///
+        /// - ID_CARD : 居民身份证 (默认值)
+        /// - HONGKONG_AND_MACAO : 港澳居民来往内地通行证
+        /// - HONGKONG_MACAO_AND_TAIWAN : 港澳台居民居住证(格式同居民身份证)
+        public let idCardType: String
 
-        /// 证件号，如果有 X 请大写
-        public let idCardNumber: String?
+        /// 证件号码，应符合以下规则
+        ///
+        /// - 居民身份证号码应为18位字符串，由数字和大写字母X组成（如存在X，请大写）。
+        /// - 港澳居民来往内地通行证号码应为9位字符串，第1位为“C”，第2位为英文字母（但“I”、“O”除外），后7位为阿拉伯数字。
+        /// - 港澳台居民居住证号码编码规则与中国大陆身份证相同，应为18位字符串。
+        public let idCardNumber: String
 
         public init(name: String, idCardType: String, idCardNumber: String) {
             self.name = name
@@ -3064,17 +3402,13 @@ extension Ess {
 
     /// 页面主题配置
     public struct WebThemeConfig: TCInputModel {
-        /// 是否页面底部显示电子签logo
+        /// 是否显示页面底部电子签logo，取值如下：
         ///
-        /// true：允许在页面底部隐藏电子签logo
-        ///
-        /// false：不允许允许在页面底部隐藏电子签logo
-        ///
-        /// 默认false，不隐藏logo
+        /// - **true**：页面底部显示电子签logo
+        /// - **false**：页面底部不显示电子签logo（默认）
         public let displaySignBrandLogo: Bool?
 
-        /// 主题颜色
-        ///
+        /// 主题颜色：
         /// 支持十六进制颜色值以及RGB格式颜色值，例如：#D54941，rgb(213, 73, 65)
         public let webEmbedThemeColor: String?
 

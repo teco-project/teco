@@ -84,27 +84,27 @@ extension Iai {
     @available(*, unavailable, message: "避免官网歧义")
     @inlinable
     public func getUpgradeGroupFaceModelVersionResult(_ input: GetUpgradeGroupFaceModelVersionResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUpgradeGroupFaceModelVersionResultResponse> {
-        fatalError("GetUpgradeGroupFaceModelVersionResult is no longer available.")
+        fatalError("'GetUpgradeGroupFaceModelVersionResult' is no longer available.")
     }
 
     /// 人员库升级结果查询
     @available(*, unavailable, message: "避免官网歧义")
     @inlinable
     public func getUpgradeGroupFaceModelVersionResult(_ input: GetUpgradeGroupFaceModelVersionResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeGroupFaceModelVersionResultResponse {
-        fatalError("GetUpgradeGroupFaceModelVersionResult is no longer available.")
+        fatalError("'GetUpgradeGroupFaceModelVersionResult' is no longer available.")
     }
 
     /// 人员库升级结果查询
     @available(*, unavailable, message: "避免官网歧义")
     @inlinable
     public func getUpgradeGroupFaceModelVersionResult(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUpgradeGroupFaceModelVersionResultResponse> {
-        fatalError("GetUpgradeGroupFaceModelVersionResult is no longer available.")
+        fatalError("'GetUpgradeGroupFaceModelVersionResult' is no longer available.")
     }
 
     /// 人员库升级结果查询
     @available(*, unavailable, message: "避免官网歧义")
     @inlinable
     public func getUpgradeGroupFaceModelVersionResult(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeGroupFaceModelVersionResultResponse {
-        fatalError("GetUpgradeGroupFaceModelVersionResult is no longer available.")
+        fatalError("'GetUpgradeGroupFaceModelVersionResult' is no longer available.")
     }
 }

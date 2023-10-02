@@ -139,7 +139,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func searchGameServerSessions(_ input: SearchGameServerSessionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchGameServerSessionsResponse> {
-        fatalError("SearchGameServerSessions is no longer available.")
+        fatalError("'SearchGameServerSessions' is no longer available.")
     }
 
     /// 搜索游戏服务器会话列表
@@ -148,7 +148,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func searchGameServerSessions(_ input: SearchGameServerSessionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchGameServerSessionsResponse {
-        fatalError("SearchGameServerSessions is no longer available.")
+        fatalError("'SearchGameServerSessions' is no longer available.")
     }
 
     /// 搜索游戏服务器会话列表
@@ -157,7 +157,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func searchGameServerSessions(aliasId: String? = nil, fleetId: String? = nil, limit: UInt64? = nil, nextToken: String? = nil, filterExpression: String? = nil, sortExpression: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchGameServerSessionsResponse> {
-        fatalError("SearchGameServerSessions is no longer available.")
+        fatalError("'SearchGameServerSessions' is no longer available.")
     }
 
     /// 搜索游戏服务器会话列表
@@ -166,7 +166,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func searchGameServerSessions(aliasId: String? = nil, fleetId: String? = nil, limit: UInt64? = nil, nextToken: String? = nil, filterExpression: String? = nil, sortExpression: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchGameServerSessionsResponse {
-        fatalError("SearchGameServerSessions is no longer available.")
+        fatalError("'SearchGameServerSessions' is no longer available.")
     }
 
     /// 搜索游戏服务器会话列表
@@ -175,7 +175,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func searchGameServerSessionsPaginated(_ input: SearchGameServerSessionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [GameServerSession])> {
-        fatalError("SearchGameServerSessions is no longer available.")
+        fatalError("'SearchGameServerSessions' is no longer available.")
     }
 
     /// 搜索游戏服务器会话列表
@@ -184,7 +184,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func searchGameServerSessionsPaginated(_ input: SearchGameServerSessionsRequest, region: TCRegion? = nil, onResponse: @escaping (SearchGameServerSessionsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
-        fatalError("SearchGameServerSessions is no longer available.")
+        fatalError("'SearchGameServerSessions' is no longer available.")
     }
 
     /// 搜索游戏服务器会话列表
@@ -195,6 +195,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func searchGameServerSessionsPaginator(_ input: SearchGameServerSessionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<SearchGameServerSessionsRequest> {
-        fatalError("SearchGameServerSessions is no longer available.")
+        fatalError("'SearchGameServerSessions' is no longer available.")
     }
 }

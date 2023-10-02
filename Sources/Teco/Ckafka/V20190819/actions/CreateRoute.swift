@@ -33,7 +33,7 @@ extension Ckafka {
         /// vpc子网id
         public let subnetId: String?
 
-        /// 访问类型
+        /// 访问类型：0-plaintext；1-sasl_plaintext；2-ssl；3-sasl_ssl
         public let accessType: Int64?
 
         /// 是否需要权限管理

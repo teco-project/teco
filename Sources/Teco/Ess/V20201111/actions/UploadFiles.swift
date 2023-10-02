@@ -21,51 +21,76 @@ import TecoCore
 extension Ess {
     /// UploadFiles请求参数结构体
     public struct UploadFilesRequest: TCRequest {
-        /// 文件对应业务类型
-        /// 1. TEMPLATE - 模板； 文件类型：.pdf/.doc/.docx/.html
-        /// 2. DOCUMENT - 签署过程及签署后的合同文档/图片控件 文件类型：.pdf/.doc/.docx/.jpg/.png/.xls.xlsx/.html
-        /// 3. SEAL - 印章； 文件类型：.jpg/.jpeg/.png
+        /// 文件对应业务类型,可以选择的类型如下
+        ///
+        /// - **TEMPLATE** : 此上传的文件用户生成合同模板，文件类型支持.pdf/.doc/.docx/.html格式，如果非pdf文件需要通过[创建文件转换任务](https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi)转换后才能使用
+        /// - **DOCUMENT** : 此文件用来发起合同流程，文件类型支持.pdf/.doc/.docx/.jpg/.png/.xls.xlsx/.html，如果非pdf文件需要通过[创建文件转换任务](https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi)转换后才能使用
+        /// - **DOCUMENT** : 此文件用于合同图片控件的填充，文件类型支持.jpg/.png
+        /// - **SEAL** : 此文件用于印章的生成，文件类型支持.jpg/.jpeg/.png
         public let businessType: String
 
-        /// 调用方信息，其中OperatorId为必填字段，即用户的UserId
+        /// 执行本接口操作的员工信息。其中OperatorId为必填字段，即用户的UserId。
+        /// 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         public let caller: Caller?
 
-        /// 上传文件内容数组，最多支持20个文件
+        /// 上传文件内容数组，最多支持上传20个文件。
         public let fileInfos: [UploadFile]?
 
-        /// 文件类型， 默认通过文件内容解析得到文件类型，客户可以显示的说明上传文件的类型。
-        /// 如：PDF 表示上传的文件 xxx.pdf的文件类型是 PDF
+        /// 文件类型， 默认通过文件内容和文件后缀一起解析得到文件类型，调用接口时可以显示的指定上传文件的类型。
+        /// 可支持的指定类型如下:
+        ///
+        /// - pdf
+        /// - doc
+        /// - docx
+        /// - xls
+        /// - xlsx
+        /// - html
+        /// - jpg
+        /// - jpeg
+        /// - png
+        /// 如：pdf 表示上传的文件 张三入职合同.pdf的文件类型是 pdf
         public let fileType: String?
 
-        /// 此参数只对 PDF 文件有效。是否将pdf灰色矩阵置白
-        /// true--是，处理置白
-        /// 默认为false--否，不处理
+        /// 此参数仅对上传的PDF文件有效。其主要作用是确定是否将PDF中的灰色矩阵置为白色。
+        ///
+        /// - **true**：将灰色矩阵置为白色。
+        /// - **false**：无需处理，不会将灰色矩阵置为白色（默认）。
+        ///
+        /// 注: `该参数仅在关键字定位时，需要去除关键字所在的灰框场景下使用。`
         public let coverRect: Bool?
 
         /// 用户自定义ID数组，与上传文件一一对应
+        ///
+        /// 注: `历史遗留问题，已经废弃，调用接口时不用赋值`
         public let customIds: [String]?
 
         /// 不再使用，上传文件链接数组，最多支持20个URL
         @available(*, deprecated)
         public let fileUrls: String? = nil
 
-        public init(businessType: String, caller: Caller? = nil, fileInfos: [UploadFile]? = nil, fileType: String? = nil, coverRect: Bool? = nil, customIds: [String]? = nil) {
+        /// 代理企业和员工的信息。
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        public let agent: Agent?
+
+        public init(businessType: String, caller: Caller? = nil, fileInfos: [UploadFile]? = nil, fileType: String? = nil, coverRect: Bool? = nil, customIds: [String]? = nil, agent: Agent? = nil) {
             self.businessType = businessType
             self.caller = caller
             self.fileInfos = fileInfos
             self.fileType = fileType
             self.coverRect = coverRect
             self.customIds = customIds
+            self.agent = agent
         }
 
-        @available(*, deprecated, renamed: "init(businessType:caller:fileInfos:fileType:coverRect:customIds:)", message: "'fileUrls' is deprecated in 'UploadFilesRequest'. Setting this parameter has no effect.")
-        public init(businessType: String, caller: Caller? = nil, fileInfos: [UploadFile]? = nil, fileType: String? = nil, coverRect: Bool? = nil, customIds: [String]? = nil, fileUrls: String? = nil) {
+        @available(*, deprecated, renamed: "init(businessType:caller:fileInfos:fileType:coverRect:customIds:agent:)", message: "'fileUrls' is deprecated in 'UploadFilesRequest'. Setting this parameter has no effect.")
+        public init(businessType: String, caller: Caller? = nil, fileInfos: [UploadFile]? = nil, fileType: String? = nil, coverRect: Bool? = nil, customIds: [String]? = nil, fileUrls: String? = nil, agent: Agent? = nil) {
             self.businessType = businessType
             self.caller = caller
             self.fileInfos = fileInfos
             self.fileType = fileType
             self.coverRect = coverRect
             self.customIds = customIds
+            self.agent = agent
         }
 
         enum CodingKeys: String, CodingKey {
@@ -76,12 +101,14 @@ extension Ess {
             case coverRect = "CoverRect"
             case customIds = "CustomIds"
             case fileUrls = "FileUrls"
+            case agent = "Agent"
         }
     }
 
     /// UploadFiles返回参数结构体
     public struct UploadFilesResponse: TCResponse {
-        /// 文件id数组
+        /// 文件资源ID数组，每个文件资源ID为32位字符串。
+        /// 建议开发者保存此资源ID，后续创建合同或创建合同流程需此资源ID。
         public let fileIds: [String]
 
         /// 上传成功文件数量
@@ -97,113 +124,125 @@ extension Ess {
         }
     }
 
-    /// 多文件上传
+    /// 上传文件
     ///
-    /// 此接口（UploadFiles）用于文件上传。
+    /// 此接口（UploadFiles）文件上传。
     ///
-    /// 适用场景：用于生成pdf资源编号（FileIds）来配合“用PDF创建流程”接口使用，使用场景可详见“用PDF创建流程”接口说明。
+    /// 适用场景：用于合同，印章的文件上传。文件上传以后，
+    /// 如果是PDF格式文件可配合[用PDF文件创建签署流程](https://qian.tencent.com/developers/companyApis/startFlows/CreateFlowByFiles)接口进行合同流程的发起
+    /// 如果是其他类型可以配合[创建文件转换任务](https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi)接口转换成PDF文件
     ///
-    /// 其中上传的文件，图片类型(png/jpg/jpeg)大小限制为5M，其他大小限制为60M。
-    ///
-    /// 调用时需要设置Domain/接口请求域名为 file.ess.tencent.cn,代码示例：
-    ///
+    /// 注:
+    /// 1. `图片类型(png/jpg/jpeg)限制大小为5M以下, PDF/word/excel等其他格式限制大小为60M以下`
+    /// 2. `联调开发环境调用时需要设置Domain接口请求域名为 file.test.ess.tencent.cn，正式环境需要设置为file.ess.tencent.cn，代码示例`
+    /// ```
     /// HttpProfile httpProfile = new HttpProfile();
-    ///
     /// httpProfile.setEndpoint("file.test.ess.tencent.cn");
+    /// ```
     @inlinable
     public func uploadFiles(_ input: UploadFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFilesResponse> {
         self.client.execute(action: "UploadFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 多文件上传
+    /// 上传文件
     ///
-    /// 此接口（UploadFiles）用于文件上传。
+    /// 此接口（UploadFiles）文件上传。
     ///
-    /// 适用场景：用于生成pdf资源编号（FileIds）来配合“用PDF创建流程”接口使用，使用场景可详见“用PDF创建流程”接口说明。
+    /// 适用场景：用于合同，印章的文件上传。文件上传以后，
+    /// 如果是PDF格式文件可配合[用PDF文件创建签署流程](https://qian.tencent.com/developers/companyApis/startFlows/CreateFlowByFiles)接口进行合同流程的发起
+    /// 如果是其他类型可以配合[创建文件转换任务](https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi)接口转换成PDF文件
     ///
-    /// 其中上传的文件，图片类型(png/jpg/jpeg)大小限制为5M，其他大小限制为60M。
-    ///
-    /// 调用时需要设置Domain/接口请求域名为 file.ess.tencent.cn,代码示例：
-    ///
+    /// 注:
+    /// 1. `图片类型(png/jpg/jpeg)限制大小为5M以下, PDF/word/excel等其他格式限制大小为60M以下`
+    /// 2. `联调开发环境调用时需要设置Domain接口请求域名为 file.test.ess.tencent.cn，正式环境需要设置为file.ess.tencent.cn，代码示例`
+    /// ```
     /// HttpProfile httpProfile = new HttpProfile();
-    ///
     /// httpProfile.setEndpoint("file.test.ess.tencent.cn");
+    /// ```
     @inlinable
     public func uploadFiles(_ input: UploadFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFilesResponse {
         try await self.client.execute(action: "UploadFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 多文件上传
+    /// 上传文件
     ///
-    /// 此接口（UploadFiles）用于文件上传。
+    /// 此接口（UploadFiles）文件上传。
     ///
-    /// 适用场景：用于生成pdf资源编号（FileIds）来配合“用PDF创建流程”接口使用，使用场景可详见“用PDF创建流程”接口说明。
+    /// 适用场景：用于合同，印章的文件上传。文件上传以后，
+    /// 如果是PDF格式文件可配合[用PDF文件创建签署流程](https://qian.tencent.com/developers/companyApis/startFlows/CreateFlowByFiles)接口进行合同流程的发起
+    /// 如果是其他类型可以配合[创建文件转换任务](https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi)接口转换成PDF文件
     ///
-    /// 其中上传的文件，图片类型(png/jpg/jpeg)大小限制为5M，其他大小限制为60M。
-    ///
-    /// 调用时需要设置Domain/接口请求域名为 file.ess.tencent.cn,代码示例：
-    ///
+    /// 注:
+    /// 1. `图片类型(png/jpg/jpeg)限制大小为5M以下, PDF/word/excel等其他格式限制大小为60M以下`
+    /// 2. `联调开发环境调用时需要设置Domain接口请求域名为 file.test.ess.tencent.cn，正式环境需要设置为file.ess.tencent.cn，代码示例`
+    /// ```
     /// HttpProfile httpProfile = new HttpProfile();
-    ///
     /// httpProfile.setEndpoint("file.test.ess.tencent.cn");
+    /// ```
     @inlinable
-    public func uploadFiles(businessType: String, caller: Caller? = nil, fileInfos: [UploadFile]? = nil, fileType: String? = nil, coverRect: Bool? = nil, customIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFilesResponse> {
-        self.uploadFiles(.init(businessType: businessType, caller: caller, fileInfos: fileInfos, fileType: fileType, coverRect: coverRect, customIds: customIds), region: region, logger: logger, on: eventLoop)
+    public func uploadFiles(businessType: String, caller: Caller? = nil, fileInfos: [UploadFile]? = nil, fileType: String? = nil, coverRect: Bool? = nil, customIds: [String]? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFilesResponse> {
+        self.uploadFiles(.init(businessType: businessType, caller: caller, fileInfos: fileInfos, fileType: fileType, coverRect: coverRect, customIds: customIds, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 多文件上传
+    /// 上传文件
     ///
-    /// 此接口（UploadFiles）用于文件上传。
+    /// 此接口（UploadFiles）文件上传。
     ///
-    /// 适用场景：用于生成pdf资源编号（FileIds）来配合“用PDF创建流程”接口使用，使用场景可详见“用PDF创建流程”接口说明。
+    /// 适用场景：用于合同，印章的文件上传。文件上传以后，
+    /// 如果是PDF格式文件可配合[用PDF文件创建签署流程](https://qian.tencent.com/developers/companyApis/startFlows/CreateFlowByFiles)接口进行合同流程的发起
+    /// 如果是其他类型可以配合[创建文件转换任务](https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi)接口转换成PDF文件
     ///
-    /// 其中上传的文件，图片类型(png/jpg/jpeg)大小限制为5M，其他大小限制为60M。
-    ///
-    /// 调用时需要设置Domain/接口请求域名为 file.ess.tencent.cn,代码示例：
-    ///
+    /// 注:
+    /// 1. `图片类型(png/jpg/jpeg)限制大小为5M以下, PDF/word/excel等其他格式限制大小为60M以下`
+    /// 2. `联调开发环境调用时需要设置Domain接口请求域名为 file.test.ess.tencent.cn，正式环境需要设置为file.ess.tencent.cn，代码示例`
+    /// ```
     /// HttpProfile httpProfile = new HttpProfile();
-    ///
     /// httpProfile.setEndpoint("file.test.ess.tencent.cn");
-    @available(*, deprecated, renamed: "uploadFiles(businessType:caller:fileInfos:fileType:coverRect:customIds:region:logger:on:)", message: "'fileUrls' is deprecated. Setting this parameter has no effect.")
+    /// ```
+    @available(*, deprecated, renamed: "uploadFiles(businessType:caller:fileInfos:fileType:coverRect:customIds:agent:region:logger:on:)", message: "'fileUrls' is deprecated. Setting this parameter has no effect.")
     @inlinable
-    public func uploadFiles(businessType: String, caller: Caller? = nil, fileInfos: [UploadFile]? = nil, fileType: String? = nil, coverRect: Bool? = nil, customIds: [String]? = nil, fileUrls: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFilesResponse> {
-        self.uploadFiles(.init(businessType: businessType, caller: caller, fileInfos: fileInfos, fileType: fileType, coverRect: coverRect, customIds: customIds, fileUrls: fileUrls), region: region, logger: logger, on: eventLoop)
+    public func uploadFiles(businessType: String, caller: Caller? = nil, fileInfos: [UploadFile]? = nil, fileType: String? = nil, coverRect: Bool? = nil, customIds: [String]? = nil, fileUrls: String? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFilesResponse> {
+        self.uploadFiles(.init(businessType: businessType, caller: caller, fileInfos: fileInfos, fileType: fileType, coverRect: coverRect, customIds: customIds, fileUrls: fileUrls, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 多文件上传
+    /// 上传文件
     ///
-    /// 此接口（UploadFiles）用于文件上传。
+    /// 此接口（UploadFiles）文件上传。
     ///
-    /// 适用场景：用于生成pdf资源编号（FileIds）来配合“用PDF创建流程”接口使用，使用场景可详见“用PDF创建流程”接口说明。
+    /// 适用场景：用于合同，印章的文件上传。文件上传以后，
+    /// 如果是PDF格式文件可配合[用PDF文件创建签署流程](https://qian.tencent.com/developers/companyApis/startFlows/CreateFlowByFiles)接口进行合同流程的发起
+    /// 如果是其他类型可以配合[创建文件转换任务](https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi)接口转换成PDF文件
     ///
-    /// 其中上传的文件，图片类型(png/jpg/jpeg)大小限制为5M，其他大小限制为60M。
-    ///
-    /// 调用时需要设置Domain/接口请求域名为 file.ess.tencent.cn,代码示例：
-    ///
+    /// 注:
+    /// 1. `图片类型(png/jpg/jpeg)限制大小为5M以下, PDF/word/excel等其他格式限制大小为60M以下`
+    /// 2. `联调开发环境调用时需要设置Domain接口请求域名为 file.test.ess.tencent.cn，正式环境需要设置为file.ess.tencent.cn，代码示例`
+    /// ```
     /// HttpProfile httpProfile = new HttpProfile();
-    ///
     /// httpProfile.setEndpoint("file.test.ess.tencent.cn");
+    /// ```
     @inlinable
-    public func uploadFiles(businessType: String, caller: Caller? = nil, fileInfos: [UploadFile]? = nil, fileType: String? = nil, coverRect: Bool? = nil, customIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFilesResponse {
-        try await self.uploadFiles(.init(businessType: businessType, caller: caller, fileInfos: fileInfos, fileType: fileType, coverRect: coverRect, customIds: customIds), region: region, logger: logger, on: eventLoop)
+    public func uploadFiles(businessType: String, caller: Caller? = nil, fileInfos: [UploadFile]? = nil, fileType: String? = nil, coverRect: Bool? = nil, customIds: [String]? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFilesResponse {
+        try await self.uploadFiles(.init(businessType: businessType, caller: caller, fileInfos: fileInfos, fileType: fileType, coverRect: coverRect, customIds: customIds, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 多文件上传
+    /// 上传文件
     ///
-    /// 此接口（UploadFiles）用于文件上传。
+    /// 此接口（UploadFiles）文件上传。
     ///
-    /// 适用场景：用于生成pdf资源编号（FileIds）来配合“用PDF创建流程”接口使用，使用场景可详见“用PDF创建流程”接口说明。
+    /// 适用场景：用于合同，印章的文件上传。文件上传以后，
+    /// 如果是PDF格式文件可配合[用PDF文件创建签署流程](https://qian.tencent.com/developers/companyApis/startFlows/CreateFlowByFiles)接口进行合同流程的发起
+    /// 如果是其他类型可以配合[创建文件转换任务](https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi)接口转换成PDF文件
     ///
-    /// 其中上传的文件，图片类型(png/jpg/jpeg)大小限制为5M，其他大小限制为60M。
-    ///
-    /// 调用时需要设置Domain/接口请求域名为 file.ess.tencent.cn,代码示例：
-    ///
+    /// 注:
+    /// 1. `图片类型(png/jpg/jpeg)限制大小为5M以下, PDF/word/excel等其他格式限制大小为60M以下`
+    /// 2. `联调开发环境调用时需要设置Domain接口请求域名为 file.test.ess.tencent.cn，正式环境需要设置为file.ess.tencent.cn，代码示例`
+    /// ```
     /// HttpProfile httpProfile = new HttpProfile();
-    ///
     /// httpProfile.setEndpoint("file.test.ess.tencent.cn");
-    @available(*, deprecated, renamed: "uploadFiles(businessType:caller:fileInfos:fileType:coverRect:customIds:region:logger:on:)", message: "'fileUrls' is deprecated. Setting this parameter has no effect.")
+    /// ```
+    @available(*, deprecated, renamed: "uploadFiles(businessType:caller:fileInfos:fileType:coverRect:customIds:agent:region:logger:on:)", message: "'fileUrls' is deprecated. Setting this parameter has no effect.")
     @inlinable
-    public func uploadFiles(businessType: String, caller: Caller? = nil, fileInfos: [UploadFile]? = nil, fileType: String? = nil, coverRect: Bool? = nil, customIds: [String]? = nil, fileUrls: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFilesResponse {
-        try await self.uploadFiles(.init(businessType: businessType, caller: caller, fileInfos: fileInfos, fileType: fileType, coverRect: coverRect, customIds: customIds, fileUrls: fileUrls), region: region, logger: logger, on: eventLoop)
+    public func uploadFiles(businessType: String, caller: Caller? = nil, fileInfos: [UploadFile]? = nil, fileType: String? = nil, coverRect: Bool? = nil, customIds: [String]? = nil, fileUrls: String? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFilesResponse {
+        try await self.uploadFiles(.init(businessType: businessType, caller: caller, fileInfos: fileInfos, fileType: fileType, coverRect: coverRect, customIds: customIds, fileUrls: fileUrls, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 }

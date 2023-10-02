@@ -21,68 +21,102 @@ import TecoCore
 extension Teo {
     /// CreateZone请求参数结构体
     public struct CreateZoneRequest: TCRequest {
-        /// 站点名称。
-        public let zoneName: String?
-
-        /// 接入方式，取值有：
-        /// - full：NS接入；
-        /// - partial：CNAME接入，请先调用认证站点API（IdentifyZone）进行站点归属权校验，校验通过后继续调用本接口创建站点；
-        /// - noDomainAccess：无域名接入，取此值时仅Tags字段有效。
-        ///
-        /// </li>不填写使用默认值full。
+        /// 站点接入类型。该参数取值如下，不填写时默认为 partial：
+        /// - partial：CNAME 接入；
+        /// - full：NS 接入；
+        /// - noDomainAccess：无域名接入。
         public let type: String?
 
-        /// 是否跳过站点现有的DNS记录扫描。默认值：false。
-        public let jumpStart: Bool?
+        /// 站点名称。CNAME/NS 接入的时，请传入二级域名（example.com）作为站点名称；无域名接入时，该值请保留为空。
+        public let zoneName: String?
 
-        /// 资源标签。
+        /// Type 取值为 partial/full 时，七层域名的加速区域。以下为该参数取值，不填写时该值默认为 overseas。Type 取值为 noDomainAccess 时该值请保留为空：
+        /// - global: 全球可用区；
+        /// - mainland: 中国大陆可用区；
+        /// - overseas: 全球可用区（不含中国大陆）。
+        public let area: String?
+
+        /// 待绑定的目标套餐 ID。当您账号下已存在套餐时，可以填写此参数，直接将站点绑定至该套餐。若您当前没有可绑定的套餐时，请前往控制台购买套餐完成站点创建。
+        public let planId: String?
+
+        /// 同名站点标识。限制输入数字、英文、- 和 _ 组合，长度 20 个字符以内。详情参考 [同名站点标识](https://cloud.tencent.com/document/product/1552/70202)，无此使用场景时，该字段保留为空即可。
+        public let aliasZoneName: String?
+
+        /// 标签。该参数用于对站点进行分权限管控、分账。需要先前往 [标签控制台](https://console.cloud.tencent.com/tag/taglist) 创建对应的标签才可以在此处传入对应的标签键和标签值。
         public let tags: [Tag]?
 
         /// 是否允许重复接入。
         /// - true：允许重复接入；
         /// - false：不允许重复接入。
         /// 不填写使用默认值false。
-        public let allowDuplicates: Bool?
+        @available(*, deprecated)
+        public let allowDuplicates: Bool? = nil
 
-        /// 站点别名。数字、英文、-和_组合，限制20个字符。
-        public let aliasZoneName: String?
+        /// 是否跳过站点现有的DNS记录扫描。默认值：false。
+        @available(*, deprecated)
+        public let jumpStart: Bool? = nil
 
-        public init(zoneName: String? = nil, type: String? = nil, jumpStart: Bool? = nil, tags: [Tag]? = nil, allowDuplicates: Bool? = nil, aliasZoneName: String? = nil) {
-            self.zoneName = zoneName
+        public init(type: String? = nil, zoneName: String? = nil, area: String? = nil, planId: String? = nil, aliasZoneName: String? = nil, tags: [Tag]? = nil) {
             self.type = type
-            self.jumpStart = jumpStart
-            self.tags = tags
-            self.allowDuplicates = allowDuplicates
+            self.zoneName = zoneName
+            self.area = area
+            self.planId = planId
             self.aliasZoneName = aliasZoneName
+            self.tags = tags
+        }
+
+        @available(*, deprecated, renamed: "init(type:zoneName:area:planId:aliasZoneName:tags:)", message: "'allowDuplicates' and 'jumpStart' are deprecated in 'CreateZoneRequest'. Setting these parameters has no effect.")
+        public init(type: String? = nil, zoneName: String? = nil, area: String? = nil, planId: String? = nil, aliasZoneName: String? = nil, tags: [Tag]? = nil, allowDuplicates: Bool? = nil, jumpStart: Bool? = nil) {
+            self.type = type
+            self.zoneName = zoneName
+            self.area = area
+            self.planId = planId
+            self.aliasZoneName = aliasZoneName
+            self.tags = tags
         }
 
         enum CodingKeys: String, CodingKey {
-            case zoneName = "ZoneName"
             case type = "Type"
-            case jumpStart = "JumpStart"
+            case zoneName = "ZoneName"
+            case area = "Area"
+            case planId = "PlanId"
+            case aliasZoneName = "AliasZoneName"
             case tags = "Tags"
             case allowDuplicates = "AllowDuplicates"
-            case aliasZoneName = "AliasZoneName"
+            case jumpStart = "JumpStart"
         }
     }
 
     /// CreateZone返回参数结构体
     public struct CreateZoneResponse: TCResponse {
-        /// 站点ID。
+        /// 站点 ID。
         public let zoneId: String
+
+        /// 站点归属权验证信息。站点完成创建后，您还需要完成归属权校验，站点才能正常服务。
+        ///
+        /// Type = partial 时，您需要参考 [站点/域名归属权验证](https://cloud.tencent.com/document/product/1552/70789) 前往您的域名解析服务商添加 TXT 记录或者前往根域名服务器添加文件，再调用接口 [VerifyOwnership]() 完成验证；
+        ///
+        /// Type = full 时，您需要参考 [修改 DNS 服务器](https://cloud.tencent.com/document/product/1552/90452) 切换 DNS 服务器即可，可通过接口 [VerifyOwnership]() 查询 DNS 是否切换成功；
+        ///
+        /// Type = noDomainAccess 时，该值为空，不需要进行任何操作。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ownershipVerification: OwnershipVerification?
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
+            case ownershipVerification = "OwnershipVerification"
             case requestId = "RequestId"
         }
     }
 
     /// 创建站点
     ///
-    /// 用于用户接入新的站点。
+    /// EdgeOne 为您提供 CNAME、NS 和无域名接入三种接入方式，您需要先通过此接口完成站点创建。CNAME 和 NS 接入站点的场景可参考 [从零开始快速接入 EdgeOne](https://cloud.tencent.com/document/product/1552/87601); 无域名接入的场景可参考 [快速启用四层代理服务](https://cloud.tencent.com/document/product/1552/96051)。
+    ///
+    /// > 建议您在账号下已存在套餐时调用本接口创建站点，请在入参时传入 PlanId ，直接将站点绑定至该套餐；不传入 PlanId 时，创建出来的站点会处于未激活状态，无法正常服务，您需要通过 [BindZoneToPlan](https://cloud.tencent.com/document/product/1552/83042) 完成套餐绑定之后，站点才可正常提供服务 。若您当前没有可绑定的套餐时，请前往控制台购买套餐完成站点创建。
     @inlinable
     public func createZone(_ input: CreateZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateZoneResponse> {
         self.client.execute(action: "CreateZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -90,7 +124,9 @@ extension Teo {
 
     /// 创建站点
     ///
-    /// 用于用户接入新的站点。
+    /// EdgeOne 为您提供 CNAME、NS 和无域名接入三种接入方式，您需要先通过此接口完成站点创建。CNAME 和 NS 接入站点的场景可参考 [从零开始快速接入 EdgeOne](https://cloud.tencent.com/document/product/1552/87601); 无域名接入的场景可参考 [快速启用四层代理服务](https://cloud.tencent.com/document/product/1552/96051)。
+    ///
+    /// > 建议您在账号下已存在套餐时调用本接口创建站点，请在入参时传入 PlanId ，直接将站点绑定至该套餐；不传入 PlanId 时，创建出来的站点会处于未激活状态，无法正常服务，您需要通过 [BindZoneToPlan](https://cloud.tencent.com/document/product/1552/83042) 完成套餐绑定之后，站点才可正常提供服务 。若您当前没有可绑定的套餐时，请前往控制台购买套餐完成站点创建。
     @inlinable
     public func createZone(_ input: CreateZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateZoneResponse {
         try await self.client.execute(action: "CreateZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -98,17 +134,43 @@ extension Teo {
 
     /// 创建站点
     ///
-    /// 用于用户接入新的站点。
+    /// EdgeOne 为您提供 CNAME、NS 和无域名接入三种接入方式，您需要先通过此接口完成站点创建。CNAME 和 NS 接入站点的场景可参考 [从零开始快速接入 EdgeOne](https://cloud.tencent.com/document/product/1552/87601); 无域名接入的场景可参考 [快速启用四层代理服务](https://cloud.tencent.com/document/product/1552/96051)。
+    ///
+    /// > 建议您在账号下已存在套餐时调用本接口创建站点，请在入参时传入 PlanId ，直接将站点绑定至该套餐；不传入 PlanId 时，创建出来的站点会处于未激活状态，无法正常服务，您需要通过 [BindZoneToPlan](https://cloud.tencent.com/document/product/1552/83042) 完成套餐绑定之后，站点才可正常提供服务 。若您当前没有可绑定的套餐时，请前往控制台购买套餐完成站点创建。
     @inlinable
-    public func createZone(zoneName: String? = nil, type: String? = nil, jumpStart: Bool? = nil, tags: [Tag]? = nil, allowDuplicates: Bool? = nil, aliasZoneName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateZoneResponse> {
-        self.createZone(.init(zoneName: zoneName, type: type, jumpStart: jumpStart, tags: tags, allowDuplicates: allowDuplicates, aliasZoneName: aliasZoneName), region: region, logger: logger, on: eventLoop)
+    public func createZone(type: String? = nil, zoneName: String? = nil, area: String? = nil, planId: String? = nil, aliasZoneName: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateZoneResponse> {
+        self.createZone(.init(type: type, zoneName: zoneName, area: area, planId: planId, aliasZoneName: aliasZoneName, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建站点
     ///
-    /// 用于用户接入新的站点。
+    /// EdgeOne 为您提供 CNAME、NS 和无域名接入三种接入方式，您需要先通过此接口完成站点创建。CNAME 和 NS 接入站点的场景可参考 [从零开始快速接入 EdgeOne](https://cloud.tencent.com/document/product/1552/87601); 无域名接入的场景可参考 [快速启用四层代理服务](https://cloud.tencent.com/document/product/1552/96051)。
+    ///
+    /// > 建议您在账号下已存在套餐时调用本接口创建站点，请在入参时传入 PlanId ，直接将站点绑定至该套餐；不传入 PlanId 时，创建出来的站点会处于未激活状态，无法正常服务，您需要通过 [BindZoneToPlan](https://cloud.tencent.com/document/product/1552/83042) 完成套餐绑定之后，站点才可正常提供服务 。若您当前没有可绑定的套餐时，请前往控制台购买套餐完成站点创建。
+    @available(*, deprecated, renamed: "createZone(type:zoneName:area:planId:aliasZoneName:tags:region:logger:on:)", message: "'allowDuplicates' and 'jumpStart' are deprecated. Setting these parameters has no effect.")
     @inlinable
-    public func createZone(zoneName: String? = nil, type: String? = nil, jumpStart: Bool? = nil, tags: [Tag]? = nil, allowDuplicates: Bool? = nil, aliasZoneName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateZoneResponse {
-        try await self.createZone(.init(zoneName: zoneName, type: type, jumpStart: jumpStart, tags: tags, allowDuplicates: allowDuplicates, aliasZoneName: aliasZoneName), region: region, logger: logger, on: eventLoop)
+    public func createZone(type: String? = nil, zoneName: String? = nil, area: String? = nil, planId: String? = nil, aliasZoneName: String? = nil, tags: [Tag]? = nil, allowDuplicates: Bool? = nil, jumpStart: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateZoneResponse> {
+        self.createZone(.init(type: type, zoneName: zoneName, area: area, planId: planId, aliasZoneName: aliasZoneName, tags: tags, allowDuplicates: allowDuplicates, jumpStart: jumpStart), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 创建站点
+    ///
+    /// EdgeOne 为您提供 CNAME、NS 和无域名接入三种接入方式，您需要先通过此接口完成站点创建。CNAME 和 NS 接入站点的场景可参考 [从零开始快速接入 EdgeOne](https://cloud.tencent.com/document/product/1552/87601); 无域名接入的场景可参考 [快速启用四层代理服务](https://cloud.tencent.com/document/product/1552/96051)。
+    ///
+    /// > 建议您在账号下已存在套餐时调用本接口创建站点，请在入参时传入 PlanId ，直接将站点绑定至该套餐；不传入 PlanId 时，创建出来的站点会处于未激活状态，无法正常服务，您需要通过 [BindZoneToPlan](https://cloud.tencent.com/document/product/1552/83042) 完成套餐绑定之后，站点才可正常提供服务 。若您当前没有可绑定的套餐时，请前往控制台购买套餐完成站点创建。
+    @inlinable
+    public func createZone(type: String? = nil, zoneName: String? = nil, area: String? = nil, planId: String? = nil, aliasZoneName: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateZoneResponse {
+        try await self.createZone(.init(type: type, zoneName: zoneName, area: area, planId: planId, aliasZoneName: aliasZoneName, tags: tags), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 创建站点
+    ///
+    /// EdgeOne 为您提供 CNAME、NS 和无域名接入三种接入方式，您需要先通过此接口完成站点创建。CNAME 和 NS 接入站点的场景可参考 [从零开始快速接入 EdgeOne](https://cloud.tencent.com/document/product/1552/87601); 无域名接入的场景可参考 [快速启用四层代理服务](https://cloud.tencent.com/document/product/1552/96051)。
+    ///
+    /// > 建议您在账号下已存在套餐时调用本接口创建站点，请在入参时传入 PlanId ，直接将站点绑定至该套餐；不传入 PlanId 时，创建出来的站点会处于未激活状态，无法正常服务，您需要通过 [BindZoneToPlan](https://cloud.tencent.com/document/product/1552/83042) 完成套餐绑定之后，站点才可正常提供服务 。若您当前没有可绑定的套餐时，请前往控制台购买套餐完成站点创建。
+    @available(*, deprecated, renamed: "createZone(type:zoneName:area:planId:aliasZoneName:tags:region:logger:on:)", message: "'allowDuplicates' and 'jumpStart' are deprecated. Setting these parameters has no effect.")
+    @inlinable
+    public func createZone(type: String? = nil, zoneName: String? = nil, area: String? = nil, planId: String? = nil, aliasZoneName: String? = nil, tags: [Tag]? = nil, allowDuplicates: Bool? = nil, jumpStart: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateZoneResponse {
+        try await self.createZone(.init(type: type, zoneName: zoneName, area: area, planId: planId, aliasZoneName: aliasZoneName, tags: tags, allowDuplicates: allowDuplicates, jumpStart: jumpStart), region: region, logger: logger, on: eventLoop)
     }
 }

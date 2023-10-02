@@ -64,7 +64,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func updateFleetPortSettings(_ input: UpdateFleetPortSettingsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateFleetPortSettingsResponse> {
-        fatalError("UpdateFleetPortSettings is no longer available.")
+        fatalError("'UpdateFleetPortSettings' is no longer available.")
     }
 
     /// 更新服务器舰队安全组
@@ -73,7 +73,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func updateFleetPortSettings(_ input: UpdateFleetPortSettingsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFleetPortSettingsResponse {
-        fatalError("UpdateFleetPortSettings is no longer available.")
+        fatalError("'UpdateFleetPortSettings' is no longer available.")
     }
 
     /// 更新服务器舰队安全组
@@ -82,7 +82,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func updateFleetPortSettings(fleetId: String, inboundPermissionAuthorizations: [InboundPermissionAuthorization]? = nil, inboundPermissionRevocations: [InboundPermissionRevocations]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateFleetPortSettingsResponse> {
-        fatalError("UpdateFleetPortSettings is no longer available.")
+        fatalError("'UpdateFleetPortSettings' is no longer available.")
     }
 
     /// 更新服务器舰队安全组
@@ -91,6 +91,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func updateFleetPortSettings(fleetId: String, inboundPermissionAuthorizations: [InboundPermissionAuthorization]? = nil, inboundPermissionRevocations: [InboundPermissionRevocations]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFleetPortSettingsResponse {
-        fatalError("UpdateFleetPortSettings is no longer available.")
+        fatalError("'UpdateFleetPortSettings' is no longer available.")
     }
 }

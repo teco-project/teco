@@ -1949,6 +1949,22 @@ extension Apigateway {
         /// 资源ID同唯一id
         public let resourceId: String
 
+        /// 公网IP列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let outerIpList: [String]?
+
+        /// 内网IP列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let innerIpList: [String]?
+
+        /// 专享实例计费信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceChargePrepaid: InstanceChargePrepaid?
+
+        /// 所属vpc
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let uniqVpcId: String?
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case instanceName = "InstanceName"
@@ -1959,6 +1975,10 @@ extension Apigateway {
             case createdTime = "CreatedTime"
             case dealName = "DealName"
             case resourceId = "ResourceId"
+            case outerIpList = "OuterIpList"
+            case innerIpList = "InnerIpList"
+            case instanceChargePrepaid = "InstanceChargePrepaid"
+            case uniqVpcId = "UniqVpcId"
         }
     }
 

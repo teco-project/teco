@@ -33,11 +33,15 @@ extension Tag {
         /// 每页大小，默认为 15
         public let limit: UInt64?
 
-        public init(tagKeys: [String], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
+        /// 标签类型。取值： Custom：自定义标签。 System：系统标签。 All：全部标签。 默认值：All。
+        public let category: String?
+
+        public init(tagKeys: [String], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, category: String? = nil) {
             self.tagKeys = tagKeys
             self.createUin = createUin
             self.offset = offset
             self.limit = limit
+            self.category = category
         }
 
         enum CodingKeys: String, CodingKey {
@@ -45,6 +49,7 @@ extension Tag {
             case createUin = "CreateUin"
             case offset = "Offset"
             case limit = "Limit"
+            case category = "Category"
         }
 
         /// Compute the next request based on API response.
@@ -52,7 +57,7 @@ extension Tag {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return .init(tagKeys: self.tagKeys, createUin: self.createUin, offset: (self.offset ?? 0) + response.limit, limit: self.limit)
+            return .init(tagKeys: self.tagKeys, createUin: self.createUin, offset: (self.offset ?? 0) + response.limit, limit: self.limit, category: self.category)
         }
     }
 
@@ -112,16 +117,16 @@ extension Tag {
     ///
     /// 用于查询已建立的标签列表中的标签值。
     @inlinable
-    public func describeTagValues(tagKeys: [String], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagValuesResponse> {
-        self.describeTagValues(.init(tagKeys: tagKeys, createUin: createUin, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+    public func describeTagValues(tagKeys: [String], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, category: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagValuesResponse> {
+        self.describeTagValues(.init(tagKeys: tagKeys, createUin: createUin, offset: offset, limit: limit, category: category), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询标签值
     ///
     /// 用于查询已建立的标签列表中的标签值。
     @inlinable
-    public func describeTagValues(tagKeys: [String], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagValuesResponse {
-        try await self.describeTagValues(.init(tagKeys: tagKeys, createUin: createUin, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+    public func describeTagValues(tagKeys: [String], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, category: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagValuesResponse {
+        try await self.describeTagValues(.init(tagKeys: tagKeys, createUin: createUin, offset: offset, limit: limit, category: category), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询标签值

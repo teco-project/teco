@@ -21,13 +21,15 @@ import TecoCore
 extension Ess {
     /// CancelMultiFlowSignQRCode请求参数结构体
     public struct CancelMultiFlowSignQRCodeRequest: TCRequest {
-        /// 调用方用户信息，userId 必填
+        /// 执行本接口操作的员工信息。
+        /// 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。
         public let `operator`: UserInfo
 
-        /// 二维码id
+        /// 二维码ID，为32位字符串。
         public let qrCodeId: String
 
-        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        /// 代理企业和员工的信息。
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         public let agent: Agent?
 
         public init(operator: UserInfo, qrCodeId: String, agent: Agent? = nil) {
@@ -53,33 +55,41 @@ extension Ess {
         }
     }
 
-    /// 取消一码多扫二维码
+    /// 取消一码多扫流程签署二维码
     ///
-    /// 此接口（CancelMultiFlowSignQRCode）用于取消一码多扫二维码。该接口对传入的二维码ID，若还在有效期内，可以提前失效。
+    /// 此接口（CancelMultiFlowSignQRCode）用于废除一码多扫流程签署二维码。
+    /// 该接口所需的二维码ID，源自[创建一码多扫流程签署二维码](https://qian.tencent.com/developers/companyApis/startFlows/CreateMultiFlowSignQRCode)生成的。
+    /// 如果该二维码尚处于有效期内，可通过本接口将其设置为失效状态。
     @inlinable @discardableResult
     public func cancelMultiFlowSignQRCode(_ input: CancelMultiFlowSignQRCodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelMultiFlowSignQRCodeResponse> {
         self.client.execute(action: "CancelMultiFlowSignQRCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 取消一码多扫二维码
+    /// 取消一码多扫流程签署二维码
     ///
-    /// 此接口（CancelMultiFlowSignQRCode）用于取消一码多扫二维码。该接口对传入的二维码ID，若还在有效期内，可以提前失效。
+    /// 此接口（CancelMultiFlowSignQRCode）用于废除一码多扫流程签署二维码。
+    /// 该接口所需的二维码ID，源自[创建一码多扫流程签署二维码](https://qian.tencent.com/developers/companyApis/startFlows/CreateMultiFlowSignQRCode)生成的。
+    /// 如果该二维码尚处于有效期内，可通过本接口将其设置为失效状态。
     @inlinable @discardableResult
     public func cancelMultiFlowSignQRCode(_ input: CancelMultiFlowSignQRCodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelMultiFlowSignQRCodeResponse {
         try await self.client.execute(action: "CancelMultiFlowSignQRCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 取消一码多扫二维码
+    /// 取消一码多扫流程签署二维码
     ///
-    /// 此接口（CancelMultiFlowSignQRCode）用于取消一码多扫二维码。该接口对传入的二维码ID，若还在有效期内，可以提前失效。
+    /// 此接口（CancelMultiFlowSignQRCode）用于废除一码多扫流程签署二维码。
+    /// 该接口所需的二维码ID，源自[创建一码多扫流程签署二维码](https://qian.tencent.com/developers/companyApis/startFlows/CreateMultiFlowSignQRCode)生成的。
+    /// 如果该二维码尚处于有效期内，可通过本接口将其设置为失效状态。
     @inlinable @discardableResult
     public func cancelMultiFlowSignQRCode(operator: UserInfo, qrCodeId: String, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelMultiFlowSignQRCodeResponse> {
         self.cancelMultiFlowSignQRCode(.init(operator: `operator`, qrCodeId: qrCodeId, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 取消一码多扫二维码
+    /// 取消一码多扫流程签署二维码
     ///
-    /// 此接口（CancelMultiFlowSignQRCode）用于取消一码多扫二维码。该接口对传入的二维码ID，若还在有效期内，可以提前失效。
+    /// 此接口（CancelMultiFlowSignQRCode）用于废除一码多扫流程签署二维码。
+    /// 该接口所需的二维码ID，源自[创建一码多扫流程签署二维码](https://qian.tencent.com/developers/companyApis/startFlows/CreateMultiFlowSignQRCode)生成的。
+    /// 如果该二维码尚处于有效期内，可通过本接口将其设置为失效状态。
     @inlinable @discardableResult
     public func cancelMultiFlowSignQRCode(operator: UserInfo, qrCodeId: String, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelMultiFlowSignQRCodeResponse {
         try await self.cancelMultiFlowSignQRCode(.init(operator: `operator`, qrCodeId: qrCodeId, agent: agent), region: region, logger: logger, on: eventLoop)

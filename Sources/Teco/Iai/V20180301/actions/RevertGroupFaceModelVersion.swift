@@ -51,7 +51,7 @@ extension Iai {
     @available(*, unavailable, message: "此接口文档早已废弃，为了避免官网18版本存留歧义，需要下线")
     @inlinable @discardableResult
     public func revertGroupFaceModelVersion(_ input: RevertGroupFaceModelVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevertGroupFaceModelVersionResponse> {
-        fatalError("RevertGroupFaceModelVersion is no longer available.")
+        fatalError("'RevertGroupFaceModelVersion' is no longer available.")
     }
 
     /// 人员库版本回滚
@@ -62,7 +62,7 @@ extension Iai {
     @available(*, unavailable, message: "此接口文档早已废弃，为了避免官网18版本存留歧义，需要下线")
     @inlinable @discardableResult
     public func revertGroupFaceModelVersion(_ input: RevertGroupFaceModelVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevertGroupFaceModelVersionResponse {
-        fatalError("RevertGroupFaceModelVersion is no longer available.")
+        fatalError("'RevertGroupFaceModelVersion' is no longer available.")
     }
 
     /// 人员库版本回滚
@@ -73,7 +73,7 @@ extension Iai {
     @available(*, unavailable, message: "此接口文档早已废弃，为了避免官网18版本存留歧义，需要下线")
     @inlinable @discardableResult
     public func revertGroupFaceModelVersion(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevertGroupFaceModelVersionResponse> {
-        fatalError("RevertGroupFaceModelVersion is no longer available.")
+        fatalError("'RevertGroupFaceModelVersion' is no longer available.")
     }
 
     /// 人员库版本回滚
@@ -84,6 +84,6 @@ extension Iai {
     @available(*, unavailable, message: "此接口文档早已废弃，为了避免官网18版本存留歧义，需要下线")
     @inlinable @discardableResult
     public func revertGroupFaceModelVersion(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevertGroupFaceModelVersionResponse {
-        fatalError("RevertGroupFaceModelVersion is no longer available.")
+        fatalError("'RevertGroupFaceModelVersion' is no longer available.")
     }
 }

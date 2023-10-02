@@ -21,7 +21,7 @@ import TecoCore
 extension Waf {
     /// ModifyAreaBanStatus请求参数结构体
     public struct ModifyAreaBanStatusRequest: TCRequest {
-        /// 修要修改的域名
+        /// 需要修改的域名
         public let domain: String
 
         /// 状态值，0表示关闭，1表示开启

@@ -19,12 +19,22 @@ import TecoCore
 extension TCWafError {
     public struct InvalidParameter: TCWafErrorType {
         enum Code: String {
+            case certificationParameterErr = "InvalidParameter.CertificationParameterErr"
+            case domainExceedsLimitErr = "InvalidParameter.DomainExceedsLimitErr"
+            case domainNotRecord = "InvalidParameter.DomainNotRecord"
             case invalidCertificate = "InvalidParameter.InvalidCertificate"
             case logicErr = "InvalidParameter.LogicErr"
+            case portParameterErr = "InvalidParameter.PortParameterErr"
+            case protectionDomainParameterErr = "InvalidParameter.ProtectionDomainParameterErr"
             case queryCertBySSLIDFailed = "InvalidParameter.QueryCertBySSLIDFailed"
             case queryStringSyntaxErr = "InvalidParameter.QueryStringSyntaxErr"
             case sqlSyntaxErr = "InvalidParameter.SQLSyntaxErr"
+            case supportTLSConfFailed = "InvalidParameter.SupportTLSConfFailed"
+            case tlsParameterErr = "InvalidParameter.TLSParameterErr"
             case typeMismatch = "InvalidParameter.TypeMismatch"
+            case unauthorizedOperationParameterErr = "InvalidParameter.UnauthorizedOperationParameterErr"
+            case unknownAction = "InvalidParameter.UnknownAction"
+            case upstreamParameterErr = "InvalidParameter.UpstreamParameterErr"
             case other = "InvalidParameter"
         }
 
@@ -50,6 +60,21 @@ extension TCWafError {
             self.context = context
         }
 
+        /// 证书信息参数错误
+        public static var certificationParameterErr: InvalidParameter {
+            InvalidParameter(.certificationParameterErr)
+        }
+
+        /// 域名数量超出限制错误
+        public static var domainExceedsLimitErr: InvalidParameter {
+            InvalidParameter(.domainExceedsLimitErr)
+        }
+
+        /// 域名未备案
+        public static var domainNotRecord: InvalidParameter {
+            InvalidParameter(.domainNotRecord)
+        }
+
         /// 证书内容非法。
         public static var invalidCertificate: InvalidParameter {
             InvalidParameter(.invalidCertificate)
@@ -57,6 +82,16 @@ extension TCWafError {
 
         public static var logicErr: InvalidParameter {
             InvalidParameter(.logicErr)
+        }
+
+        /// 端口信息参数错误
+        public static var portParameterErr: InvalidParameter {
+            InvalidParameter(.portParameterErr)
+        }
+
+        /// 防护域名参数错误
+        public static var protectionDomainParameterErr: InvalidParameter {
+            InvalidParameter(.protectionDomainParameterErr)
         }
 
         /// 根据ID查询证书失败。
@@ -72,8 +107,33 @@ extension TCWafError {
             InvalidParameter(.sqlSyntaxErr)
         }
 
+        /// 当前实例版本不支持开启TLS自定义，请升级到高级版及以上
+        public static var supportTLSConfFailed: InvalidParameter {
+            InvalidParameter(.supportTLSConfFailed)
+        }
+
+        /// TLS或加密套件参数错误
+        public static var tlsParameterErr: InvalidParameter {
+            InvalidParameter(.tlsParameterErr)
+        }
+
         public static var typeMismatch: InvalidParameter {
             InvalidParameter(.typeMismatch)
+        }
+
+        /// 越权参数错误
+        public static var unauthorizedOperationParameterErr: InvalidParameter {
+            InvalidParameter(.unauthorizedOperationParameterErr)
+        }
+
+        /// UnknownAction
+        public static var unknownAction: InvalidParameter {
+            InvalidParameter(.unknownAction)
+        }
+
+        /// 回源信息参数错误
+        public static var upstreamParameterErr: InvalidParameter {
+            InvalidParameter(.upstreamParameterErr)
         }
 
         /// 参数错误。
@@ -84,18 +144,38 @@ extension TCWafError {
         public func asWafError() -> TCWafError {
             let code: TCWafError.Code
             switch self.error {
+            case .certificationParameterErr:
+                code = .invalidParameter_CertificationParameterErr
+            case .domainExceedsLimitErr:
+                code = .invalidParameter_DomainExceedsLimitErr
+            case .domainNotRecord:
+                code = .invalidParameter_DomainNotRecord
             case .invalidCertificate:
                 code = .invalidParameter_InvalidCertificate
             case .logicErr:
                 code = .invalidParameter_LogicErr
+            case .portParameterErr:
+                code = .invalidParameter_PortParameterErr
+            case .protectionDomainParameterErr:
+                code = .invalidParameter_ProtectionDomainParameterErr
             case .queryCertBySSLIDFailed:
                 code = .invalidParameter_QueryCertBySSLIDFailed
             case .queryStringSyntaxErr:
                 code = .invalidParameter_QueryStringSyntaxErr
             case .sqlSyntaxErr:
                 code = .invalidParameter_SQLSyntaxErr
+            case .supportTLSConfFailed:
+                code = .invalidParameter_SupportTLSConfFailed
+            case .tlsParameterErr:
+                code = .invalidParameter_TLSParameterErr
             case .typeMismatch:
                 code = .invalidParameter_TypeMismatch
+            case .unauthorizedOperationParameterErr:
+                code = .invalidParameter_UnauthorizedOperationParameterErr
+            case .unknownAction:
+                code = .invalidParameter_UnknownAction
+            case .upstreamParameterErr:
+                code = .invalidParameter_UpstreamParameterErr
             case .other:
                 code = .invalidParameter
             }

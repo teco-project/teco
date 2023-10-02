@@ -28,6 +28,7 @@ public struct TCTeoError: TCTeoErrorType {
     enum Code: String {
         case dryRunOperation = "DryRunOperation"
         case failedOperation = "FailedOperation"
+        case failedOperation_CertificateHasExpired = "FailedOperation.CertificateHasExpired"
         case failedOperation_CertificateNotFound = "FailedOperation.CertificateNotFound"
         case failedOperation_InsufficientAccountBalance = "FailedOperation.InsufficientAccountBalance"
         case failedOperation_InvalidZoneStatus = "FailedOperation.InvalidZoneStatus"
@@ -55,6 +56,10 @@ public struct TCTeoError: TCTeoErrorType {
         case invalidParameterValue_InvalidDNSName = "InvalidParameterValue.InvalidDNSName"
         case invalidParameterValue_InvalidDomainName = "InvalidParameterValue.InvalidDomainName"
         case invalidParameterValue_InvalidDomainStatus = "InvalidParameterValue.InvalidDomainStatus"
+        case invalidParameterValue_InvalidProxyOrigin = "InvalidParameterValue.InvalidProxyOrigin"
+        case invalidParameterValue_NotAllowedWildcardSharedCNAME = "InvalidParameterValue.NotAllowedWildcardSharedCNAME"
+        case invalidParameterValue_OriginGroupNotExists = "InvalidParameterValue.OriginGroupNotExists"
+        case invalidParameterValue_SharedCNAMEPrefixNotMatch = "InvalidParameterValue.SharedCNAMEPrefixNotMatch"
         case invalidParameterValue_ZoneSameAsName = "InvalidParameterValue.ZoneSameAsName"
         case invalidParameter_ActionInProgress = "InvalidParameter.ActionInProgress"
         case invalidParameter_AliasDomainNotSupportSMCert = "InvalidParameter.AliasDomainNotSupportSMCert"
@@ -76,7 +81,9 @@ public struct TCTeoError: TCTeoErrorType {
         case invalidParameter_ErrInvalidActionParamDuplicateName = "InvalidParameter.ErrInvalidActionParamDuplicateName"
         case invalidParameter_ErrInvalidActionParamName = "InvalidParameter.ErrInvalidActionParamName"
         case invalidParameter_ErrInvalidActionParamTooManyValues = "InvalidParameter.ErrInvalidActionParamTooManyValues"
+        case invalidParameter_ErrInvalidActionParamValue = "InvalidParameter.ErrInvalidActionParamValue"
         case invalidParameter_ErrInvalidActionType = "InvalidParameter.ErrInvalidActionType"
+        case invalidParameter_ErrInvalidCondition = "InvalidParameter.ErrInvalidCondition"
         case invalidParameter_ErrInvalidConditionIgnoreCase = "InvalidParameter.ErrInvalidConditionIgnoreCase"
         case invalidParameter_ErrInvalidConditionNameBadName = "InvalidParameter.ErrInvalidConditionNameBadName"
         case invalidParameter_ErrInvalidConditionNameTargetNotSupportName = "InvalidParameter.ErrInvalidConditionNameTargetNotSupportName"
@@ -104,6 +111,7 @@ public struct TCTeoError: TCTeoErrorType {
         case invalidParameter_InvalidCacheConfigCache = "InvalidParameter.InvalidCacheConfigCache"
         case invalidParameter_InvalidCacheConfigFollowOrigin = "InvalidParameter.InvalidCacheConfigFollowOrigin"
         case invalidParameter_InvalidCacheKey = "InvalidParameter.InvalidCacheKey"
+        case invalidParameter_InvalidCacheKeyCookie = "InvalidParameter.InvalidCacheKeyCookie"
         case invalidParameter_InvalidCacheKeyIgnoreCase = "InvalidParameter.InvalidCacheKeyIgnoreCase"
         case invalidParameter_InvalidCacheKeyQueryStringValue = "InvalidParameter.InvalidCacheKeyQueryStringValue"
         case invalidParameter_InvalidCacheKeyScheme = "InvalidParameter.InvalidCacheKeyScheme"
@@ -162,11 +170,13 @@ public struct TCTeoError: TCTeoErrorType {
         case invalidParameter_PostMaxSizeLimitExceeded = "InvalidParameter.PostMaxSizeLimitExceeded"
         case invalidParameter_Security = "InvalidParameter.Security"
         case invalidParameter_SettingInvalidParam = "InvalidParameter.SettingInvalidParam"
+        case invalidParameter_SpaceNotBindOrigin = "InvalidParameter.SpaceNotBindOrigin"
         case invalidParameter_Target = "InvalidParameter.Target"
         case invalidParameter_TaskNotGenerated = "InvalidParameter.TaskNotGenerated"
         case invalidParameter_TaskSystemError = "InvalidParameter.TaskSystemError"
         case invalidParameter_UploadUrl = "InvalidParameter.UploadUrl"
         case invalidParameter_ZoneHasBeenBound = "InvalidParameter.ZoneHasBeenBound"
+        case invalidParameter_ZoneIsGrayPublishing = "InvalidParameter.ZoneIsGrayPublishing"
         case invalidParameter_ZoneNotFound = "InvalidParameter.ZoneNotFound"
         case limitExceeded = "LimitExceeded"
         case limitExceeded_BatchQuota = "LimitExceeded.BatchQuota"
@@ -174,9 +184,11 @@ public struct TCTeoError: TCTeoErrorType {
         case limitExceeded_PackNotAllow = "LimitExceeded.PackNotAllow"
         case limitExceeded_QueryTimeLimitExceeded = "LimitExceeded.QueryTimeLimitExceeded"
         case limitExceeded_RateLimitExceeded = "LimitExceeded.RateLimitExceeded"
+        case limitExceeded_ZoneBindPlan = "LimitExceeded.ZoneBindPlan"
         case operationDenied = "OperationDenied"
         case operationDenied_AccelerateMainlandDisable = "OperationDenied.AccelerateMainlandDisable"
         case operationDenied_AccelerateMainlandIpv6Conflict = "OperationDenied.AccelerateMainlandIpv6Conflict"
+        case operationDenied_ConfigLocked = "OperationDenied.ConfigLocked"
         case operationDenied_DisableZoneNotCompleted = "OperationDenied.DisableZoneNotCompleted"
         case operationDenied_DomainInShareCnameGroup = "OperationDenied.DomainInShareCnameGroup"
         case operationDenied_DomainIsBlocked = "OperationDenied.DomainIsBlocked"
@@ -192,8 +204,12 @@ public struct TCTeoError: TCTeoErrorType {
         case operationDenied_L7HostInProcessStatus = "OperationDenied.L7HostInProcessStatus"
         case operationDenied_MultipleCnameZone = "OperationDenied.MultipleCnameZone"
         case operationDenied_NSNotAllowTrafficStrategy = "OperationDenied.NSNotAllowTrafficStrategy"
+        case operationDenied_PlanNotSupportModifyZoneArea = "OperationDenied.PlanNotSupportModifyZoneArea"
         case operationDenied_RecordIsForbidden = "OperationDenied.RecordIsForbidden"
         case operationDenied_ResourceLockedTemporary = "OperationDenied.ResourceLockedTemporary"
+        case operationDenied_SharedCNAMEUnsupportedAccelerateMainland = "OperationDenied.SharedCNAMEUnsupportedAccelerateMainland"
+        case operationDenied_SharedCNAMEUnsupportedIPv6 = "OperationDenied.SharedCNAMEUnsupportedIPv6"
+        case operationDenied_ZoneIsBindingSharedCNAME = "OperationDenied.ZoneIsBindingSharedCNAME"
         case resourceInUse = "ResourceInUse"
         case resourceInUse_AliasDomain = "ResourceInUse.AliasDomain"
         case resourceInUse_AliasName = "ResourceInUse.AliasName"
@@ -219,6 +235,7 @@ public struct TCTeoError: TCTeoErrorType {
         case resourceUnavailable_DomainAlreadyExists = "ResourceUnavailable.DomainAlreadyExists"
         case resourceUnavailable_DomainNotFound = "ResourceUnavailable.DomainNotFound"
         case resourceUnavailable_HostNotFound = "ResourceUnavailable.HostNotFound"
+        case resourceUnavailable_SharedCNAMEAlreadyExists = "ResourceUnavailable.SharedCNAMEAlreadyExists"
         case resourceUnavailable_ZoneNotFound = "ResourceUnavailable.ZoneNotFound"
         case resourcesSoldOut_L7LackOfResources = "ResourcesSoldOut.L7LackOfResources"
         case unauthorizedOperation = "UnauthorizedOperation"
@@ -278,6 +295,10 @@ public struct TCTeoError: TCTeoErrorType {
     /// 操作失败。
     public static var failedOperation: TCTeoError {
         TCTeoError(.failedOperation)
+    }
+
+    public static var failedOperation_CertificateHasExpired: TCTeoError {
+        TCTeoError(.failedOperation_CertificateHasExpired)
     }
 
     /// 证书不存在。
@@ -415,6 +436,25 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.invalidParameterValue_InvalidDomainStatus)
     }
 
+    /// DNS 代理域名源站错误。
+    public static var invalidParameterValue_InvalidProxyOrigin: TCTeoError {
+        TCTeoError(.invalidParameterValue_InvalidProxyOrigin)
+    }
+
+    /// 不支持接入泛域名 CNAME
+    public static var invalidParameterValue_NotAllowedWildcardSharedCNAME: TCTeoError {
+        TCTeoError(.invalidParameterValue_NotAllowedWildcardSharedCNAME)
+    }
+
+    /// 指定的源站组不存在。
+    public static var invalidParameterValue_OriginGroupNotExists: TCTeoError {
+        TCTeoError(.invalidParameterValue_OriginGroupNotExists)
+    }
+
+    public static var invalidParameterValue_SharedCNAMEPrefixNotMatch: TCTeoError {
+        TCTeoError(.invalidParameterValue_SharedCNAMEPrefixNotMatch)
+    }
+
     /// 该同名站点标识已被占用，请重新输入。
     ///
     /// 同名站点标识已被使用，用户需重新输入不一样的
@@ -521,9 +561,19 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.invalidParameter_ErrInvalidActionParamTooManyValues)
     }
 
+    /// 非法操作-非法参数-无效参数值。
+    public static var invalidParameter_ErrInvalidActionParamValue: TCTeoError {
+        TCTeoError(.invalidParameter_ErrInvalidActionParamValue)
+    }
+
     /// 非法操作-非法类型。
     public static var invalidParameter_ErrInvalidActionType: TCTeoError {
         TCTeoError(.invalidParameter_ErrInvalidActionType)
+    }
+
+    /// 非法条件。
+    public static var invalidParameter_ErrInvalidCondition: TCTeoError {
+        TCTeoError(.invalidParameter_ErrInvalidCondition)
     }
 
     /// 非法条件-非法忽略大小写。
@@ -659,6 +709,11 @@ public struct TCTeoError: TCTeoErrorType {
     /// 无效的缓存键。
     public static var invalidParameter_InvalidCacheKey: TCTeoError {
         TCTeoError(.invalidParameter_InvalidCacheKey)
+    }
+
+    /// 无效的自定义Cache Key Cookie无效。
+    public static var invalidParameter_InvalidCacheKeyCookie: TCTeoError {
+        TCTeoError(.invalidParameter_InvalidCacheKeyCookie)
     }
 
     /// 无效的缓存键忽略大小写。
@@ -949,6 +1004,10 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.invalidParameter_SettingInvalidParam)
     }
 
+    public static var invalidParameter_SpaceNotBindOrigin: TCTeoError {
+        TCTeoError(.invalidParameter_SpaceNotBindOrigin)
+    }
+
     /// 资源存在错误。
     public static var invalidParameter_Target: TCTeoError {
         TCTeoError(.invalidParameter_Target)
@@ -972,6 +1031,11 @@ public struct TCTeoError: TCTeoErrorType {
     /// 站点已被绑定。
     public static var invalidParameter_ZoneHasBeenBound: TCTeoError {
         TCTeoError(.invalidParameter_ZoneHasBeenBound)
+    }
+
+    /// 站点升级中，暂不支持进行变更操作，请稍后再试。
+    public static var invalidParameter_ZoneIsGrayPublishing: TCTeoError {
+        TCTeoError(.invalidParameter_ZoneIsGrayPublishing)
     }
 
     /// 站点不存在。
@@ -1011,6 +1075,10 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.limitExceeded_RateLimitExceeded)
     }
 
+    public static var limitExceeded_ZoneBindPlan: TCTeoError {
+        TCTeoError(.limitExceeded_ZoneBindPlan)
+    }
+
     /// 操作被拒绝。
     public static var operationDenied: TCTeoError {
         TCTeoError(.operationDenied)
@@ -1024,6 +1092,10 @@ public struct TCTeoError: TCTeoErrorType {
     /// 中国大陆加速与IPv6冲突，不能同时配置。
     public static var operationDenied_AccelerateMainlandIpv6Conflict: TCTeoError {
         TCTeoError(.operationDenied_AccelerateMainlandIpv6Conflict)
+    }
+
+    public static var operationDenied_ConfigLocked: TCTeoError {
+        TCTeoError(.operationDenied_ConfigLocked)
     }
 
     public static var operationDenied_DisableZoneNotCompleted: TCTeoError {
@@ -1096,6 +1168,10 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.operationDenied_NSNotAllowTrafficStrategy)
     }
 
+    public static var operationDenied_PlanNotSupportModifyZoneArea: TCTeoError {
+        TCTeoError(.operationDenied_PlanNotSupportModifyZoneArea)
+    }
+
     /// DNS 记录不允许添加。
     public static var operationDenied_RecordIsForbidden: TCTeoError {
         TCTeoError(.operationDenied_RecordIsForbidden)
@@ -1104,6 +1180,18 @@ public struct TCTeoError: TCTeoErrorType {
     /// 当前有互相排斥的请求操作并行发起，请稍后重试。
     public static var operationDenied_ResourceLockedTemporary: TCTeoError {
         TCTeoError(.operationDenied_ResourceLockedTemporary)
+    }
+
+    public static var operationDenied_SharedCNAMEUnsupportedAccelerateMainland: TCTeoError {
+        TCTeoError(.operationDenied_SharedCNAMEUnsupportedAccelerateMainland)
+    }
+
+    public static var operationDenied_SharedCNAMEUnsupportedIPv6: TCTeoError {
+        TCTeoError(.operationDenied_SharedCNAMEUnsupportedIPv6)
+    }
+
+    public static var operationDenied_ZoneIsBindingSharedCNAME: TCTeoError {
+        TCTeoError(.operationDenied_ZoneIsBindingSharedCNAME)
     }
 
     /// 资源被占用。
@@ -1229,6 +1317,11 @@ public struct TCTeoError: TCTeoErrorType {
     /// 域名不存在或未开启代理。
     public static var resourceUnavailable_HostNotFound: TCTeoError {
         TCTeoError(.resourceUnavailable_HostNotFound)
+    }
+
+    /// 该共享 CNAME 已被占用，请重新输入。
+    public static var resourceUnavailable_SharedCNAMEAlreadyExists: TCTeoError {
+        TCTeoError(.resourceUnavailable_SharedCNAMEAlreadyExists)
     }
 
     /// 站点不存在或不属于该账号。

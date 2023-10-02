@@ -24,6 +24,7 @@ extension TCLighthouseError {
             case diskBackupQuotaLimitExceeded = "LimitExceeded.DiskBackupQuotaLimitExceeded"
             case diskQuotaLimitExceeded = "LimitExceeded.DiskQuotaLimitExceeded"
             case firewallRulesLimitExceeded = "LimitExceeded.FirewallRulesLimitExceeded"
+            case firewallTemplateRuleQuotaLimitExceeded = "LimitExceeded.FirewallTemplateRuleQuotaLimitExceeded"
             case instanceQuotaLimitExceeded = "LimitExceeded.InstanceQuotaLimitExceeded"
             case isolateResourcesLimitExceeded = "LimitExceeded.IsolateResourcesLimitExceeded"
             case keyPairLimitExceeded = "LimitExceeded.KeyPairLimitExceeded"
@@ -78,6 +79,10 @@ extension TCLighthouseError {
             LimitExceeded(.firewallRulesLimitExceeded)
         }
 
+        public static var firewallTemplateRuleQuotaLimitExceeded: LimitExceeded {
+            LimitExceeded(.firewallTemplateRuleQuotaLimitExceeded)
+        }
+
         /// 超过实例配额。
         public static var instanceQuotaLimitExceeded: LimitExceeded {
             LimitExceeded(.instanceQuotaLimitExceeded)
@@ -116,6 +121,8 @@ extension TCLighthouseError {
                 code = .limitExceeded_DiskQuotaLimitExceeded
             case .firewallRulesLimitExceeded:
                 code = .limitExceeded_FirewallRulesLimitExceeded
+            case .firewallTemplateRuleQuotaLimitExceeded:
+                code = .limitExceeded_FirewallTemplateRuleQuotaLimitExceeded
             case .instanceQuotaLimitExceeded:
                 code = .limitExceeded_InstanceQuotaLimitExceeded
             case .isolateResourcesLimitExceeded:

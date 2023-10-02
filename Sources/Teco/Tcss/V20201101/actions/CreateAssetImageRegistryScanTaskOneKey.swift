@@ -21,8 +21,9 @@ import TecoCore
 extension Tcss {
     /// CreateAssetImageRegistryScanTaskOneKey请求参数结构体
     public struct CreateAssetImageRegistryScanTaskOneKeyRequest: TCRequest {
-        /// 是否扫描全部镜像
-        public let all: Bool?
+        /// 是否扫描全部镜像(废弃)
+        @available(*, deprecated)
+        public let all: Bool? = nil
 
         /// 扫描的镜像列表
         public let images: [ImageInfo]?
@@ -33,11 +34,47 @@ extension Tcss {
         /// 扫描的镜像列表Id
         public let id: [UInt64]?
 
-        public init(all: Bool? = nil, images: [ImageInfo]? = nil, scanType: [String]? = nil, id: [UInt64]? = nil) {
-            self.all = all
+        /// 是否最新镜像
+        public let isLatest: Bool?
+
+        /// 扫描范围 0全部镜像，1自选镜像，2推荐扫描镜像
+        public let scanScope: UInt64?
+
+        /// 仓库类型
+        public let registryType: [String]?
+
+        /// 命名空间
+        public let namespace: [String]?
+
+        /// 是否存在运行中的容器
+        public let containerRunning: Bool?
+
+        /// 任务超时时长单位s
+        public let timeout: UInt64?
+
+        public init(images: [ImageInfo]? = nil, scanType: [String]? = nil, id: [UInt64]? = nil, isLatest: Bool? = nil, scanScope: UInt64? = nil, registryType: [String]? = nil, namespace: [String]? = nil, containerRunning: Bool? = nil, timeout: UInt64? = nil) {
             self.images = images
             self.scanType = scanType
             self.id = id
+            self.isLatest = isLatest
+            self.scanScope = scanScope
+            self.registryType = registryType
+            self.namespace = namespace
+            self.containerRunning = containerRunning
+            self.timeout = timeout
+        }
+
+        @available(*, deprecated, renamed: "init(images:scanType:id:isLatest:scanScope:registryType:namespace:containerRunning:timeout:)", message: "'all' is deprecated in 'CreateAssetImageRegistryScanTaskOneKeyRequest'. Setting this parameter has no effect.")
+        public init(all: Bool? = nil, images: [ImageInfo]? = nil, scanType: [String]? = nil, id: [UInt64]? = nil, isLatest: Bool? = nil, scanScope: UInt64? = nil, registryType: [String]? = nil, namespace: [String]? = nil, containerRunning: Bool? = nil, timeout: UInt64? = nil) {
+            self.images = images
+            self.scanType = scanType
+            self.id = id
+            self.isLatest = isLatest
+            self.scanScope = scanScope
+            self.registryType = registryType
+            self.namespace = namespace
+            self.containerRunning = containerRunning
+            self.timeout = timeout
         }
 
         enum CodingKeys: String, CodingKey {
@@ -45,6 +82,12 @@ extension Tcss {
             case images = "Images"
             case scanType = "ScanType"
             case id = "Id"
+            case isLatest = "IsLatest"
+            case scanScope = "ScanScope"
+            case registryType = "RegistryType"
+            case namespace = "Namespace"
+            case containerRunning = "ContainerRunning"
+            case timeout = "Timeout"
         }
     }
 
@@ -76,13 +119,27 @@ extension Tcss {
 
     /// 镜像仓库创建镜像一键扫描任务
     @inlinable
-    public func createAssetImageRegistryScanTaskOneKey(all: Bool? = nil, images: [ImageInfo]? = nil, scanType: [String]? = nil, id: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetImageRegistryScanTaskOneKeyResponse> {
-        self.createAssetImageRegistryScanTaskOneKey(.init(all: all, images: images, scanType: scanType, id: id), region: region, logger: logger, on: eventLoop)
+    public func createAssetImageRegistryScanTaskOneKey(images: [ImageInfo]? = nil, scanType: [String]? = nil, id: [UInt64]? = nil, isLatest: Bool? = nil, scanScope: UInt64? = nil, registryType: [String]? = nil, namespace: [String]? = nil, containerRunning: Bool? = nil, timeout: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetImageRegistryScanTaskOneKeyResponse> {
+        self.createAssetImageRegistryScanTaskOneKey(.init(images: images, scanType: scanType, id: id, isLatest: isLatest, scanScope: scanScope, registryType: registryType, namespace: namespace, containerRunning: containerRunning, timeout: timeout), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 镜像仓库创建镜像一键扫描任务
+    @available(*, deprecated, renamed: "createAssetImageRegistryScanTaskOneKey(images:scanType:id:isLatest:scanScope:registryType:namespace:containerRunning:timeout:region:logger:on:)", message: "'all' is deprecated. Setting this parameter has no effect.")
+    @inlinable
+    public func createAssetImageRegistryScanTaskOneKey(all: Bool? = nil, images: [ImageInfo]? = nil, scanType: [String]? = nil, id: [UInt64]? = nil, isLatest: Bool? = nil, scanScope: UInt64? = nil, registryType: [String]? = nil, namespace: [String]? = nil, containerRunning: Bool? = nil, timeout: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetImageRegistryScanTaskOneKeyResponse> {
+        self.createAssetImageRegistryScanTaskOneKey(.init(all: all, images: images, scanType: scanType, id: id, isLatest: isLatest, scanScope: scanScope, registryType: registryType, namespace: namespace, containerRunning: containerRunning, timeout: timeout), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库创建镜像一键扫描任务
     @inlinable
-    public func createAssetImageRegistryScanTaskOneKey(all: Bool? = nil, images: [ImageInfo]? = nil, scanType: [String]? = nil, id: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageRegistryScanTaskOneKeyResponse {
-        try await self.createAssetImageRegistryScanTaskOneKey(.init(all: all, images: images, scanType: scanType, id: id), region: region, logger: logger, on: eventLoop)
+    public func createAssetImageRegistryScanTaskOneKey(images: [ImageInfo]? = nil, scanType: [String]? = nil, id: [UInt64]? = nil, isLatest: Bool? = nil, scanScope: UInt64? = nil, registryType: [String]? = nil, namespace: [String]? = nil, containerRunning: Bool? = nil, timeout: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageRegistryScanTaskOneKeyResponse {
+        try await self.createAssetImageRegistryScanTaskOneKey(.init(images: images, scanType: scanType, id: id, isLatest: isLatest, scanScope: scanScope, registryType: registryType, namespace: namespace, containerRunning: containerRunning, timeout: timeout), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 镜像仓库创建镜像一键扫描任务
+    @available(*, deprecated, renamed: "createAssetImageRegistryScanTaskOneKey(images:scanType:id:isLatest:scanScope:registryType:namespace:containerRunning:timeout:region:logger:on:)", message: "'all' is deprecated. Setting this parameter has no effect.")
+    @inlinable
+    public func createAssetImageRegistryScanTaskOneKey(all: Bool? = nil, images: [ImageInfo]? = nil, scanType: [String]? = nil, id: [UInt64]? = nil, isLatest: Bool? = nil, scanScope: UInt64? = nil, registryType: [String]? = nil, namespace: [String]? = nil, containerRunning: Bool? = nil, timeout: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageRegistryScanTaskOneKeyResponse {
+        try await self.createAssetImageRegistryScanTaskOneKey(.init(all: all, images: images, scanType: scanType, id: id, isLatest: isLatest, scanScope: scanScope, registryType: registryType, namespace: namespace, containerRunning: containerRunning, timeout: timeout), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -86,6 +86,22 @@ extension Waf {
         /// api资产总数
         public let apiAssetsCount: UInt64
 
+        /// api风险事件数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let apiRiskEventCount: UInt64?
+
+        /// 黑名单总数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ipBlackCount: UInt64?
+
+        /// 防篡改总数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tamperCount: UInt64?
+
+        /// 信息泄露总数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let leakCount: UInt64?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -96,6 +112,10 @@ extension Waf {
             case ccCount = "CCCount"
             case botCount = "BotCount"
             case apiAssetsCount = "ApiAssetsCount"
+            case apiRiskEventCount = "ApiRiskEventCount"
+            case ipBlackCount = "IPBlackCount"
+            case tamperCount = "TamperCount"
+            case leakCount = "LeakCount"
             case requestId = "RequestId"
         }
     }

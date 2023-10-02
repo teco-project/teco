@@ -21,6 +21,7 @@ extension TCThpcError {
         enum Code: String {
             case clusterId = "ResourceNotFound.ClusterId"
             case imageId = "ResourceNotFound.ImageId"
+            case localPath = "ResourceNotFound.LocalPath"
             case nodeId = "ResourceNotFound.NodeId"
             case queue = "ResourceNotFound.Queue"
             case other = "ResourceNotFound"
@@ -58,6 +59,11 @@ extension TCThpcError {
             ResourceNotFound(.imageId)
         }
 
+        /// 无法找到本地挂载路径。
+        public static var localPath: ResourceNotFound {
+            ResourceNotFound(.localPath)
+        }
+
         /// 无法找到ID对应节点。
         public static var nodeId: ResourceNotFound {
             ResourceNotFound(.nodeId)
@@ -80,6 +86,8 @@ extension TCThpcError {
                 code = .resourceNotFound_ClusterId
             case .imageId:
                 code = .resourceNotFound_ImageId
+            case .localPath:
+                code = .resourceNotFound_LocalPath
             case .nodeId:
                 code = .resourceNotFound_NodeId
             case .queue:

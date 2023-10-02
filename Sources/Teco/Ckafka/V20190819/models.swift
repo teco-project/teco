@@ -387,6 +387,33 @@ extension Ckafka {
         }
     }
 
+    /// broker维度topic 流量排行指标
+    public struct BrokerTopicFlowData: TCInputModel, TCOutputModel {
+        /// Topic 名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let topicName: String?
+
+        /// Topic Id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let topicId: String?
+
+        /// Topic 流量(MB)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let topicTraffic: String?
+
+        public init(topicName: String? = nil, topicId: String? = nil, topicTraffic: String? = nil) {
+            self.topicName = topicName
+            self.topicId = topicId
+            self.topicTraffic = topicTraffic
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case topicName = "TopicName"
+            case topicId = "TopicId"
+            case topicTraffic = "TopicTraffic"
+        }
+    }
+
     /// 创建CDC 标准版共享集群出参
     public struct CdcClusterResponse: TCOutputModel {
         /// 任务ID
@@ -3327,6 +3354,17 @@ extension Ckafka {
         }
     }
 
+    /// 删除实例返回任务
+    public struct InstanceDeleteResponse: TCOutputModel {
+        /// 删除实例返回的任务Id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let flowId: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case flowId = "FlowId"
+        }
+    }
+
     /// 实例详情
     public struct InstanceDetail: TCOutputModel {
         /// 实例id
@@ -4337,7 +4375,10 @@ extension Ckafka {
         /// 输入的table是否为正则表达式，如果该选项以及IsTablePrefix同时为true，该选项的判断优先级高于IsTablePrefix
         public let isTableRegular: Bool?
 
-        public init(database: String, table: String, resource: String, snapshotMode: String? = nil, ddlTopic: String? = nil, dataSourceMonitorMode: String? = nil, dataSourceMonitorResource: String? = nil, dataSourceIncrementMode: String? = nil, dataSourceIncrementColumn: String? = nil, dataSourceStartFrom: String? = nil, dataTargetInsertMode: String? = nil, dataTargetPrimaryKeyField: String? = nil, dataTargetRecordMapping: [RecordMapping]? = nil, topicRegex: String? = nil, topicReplacement: String? = nil, keyColumns: String? = nil, dropInvalidMessage: Bool? = nil, dropCls: DropCls? = nil, outputFormat: String? = nil, isTablePrefix: Bool? = nil, includeContentChanges: String? = nil, includeQuery: Bool? = nil, recordWithSchema: Bool? = nil, signalDatabase: String? = nil, isTableRegular: Bool? = nil) {
+        /// 信号表
+        public let signalTable: String?
+
+        public init(database: String, table: String, resource: String, snapshotMode: String? = nil, ddlTopic: String? = nil, dataSourceMonitorMode: String? = nil, dataSourceMonitorResource: String? = nil, dataSourceIncrementMode: String? = nil, dataSourceIncrementColumn: String? = nil, dataSourceStartFrom: String? = nil, dataTargetInsertMode: String? = nil, dataTargetPrimaryKeyField: String? = nil, dataTargetRecordMapping: [RecordMapping]? = nil, topicRegex: String? = nil, topicReplacement: String? = nil, keyColumns: String? = nil, dropInvalidMessage: Bool? = nil, dropCls: DropCls? = nil, outputFormat: String? = nil, isTablePrefix: Bool? = nil, includeContentChanges: String? = nil, includeQuery: Bool? = nil, recordWithSchema: Bool? = nil, signalDatabase: String? = nil, isTableRegular: Bool? = nil, signalTable: String? = nil) {
             self.database = database
             self.table = table
             self.resource = resource
@@ -4363,6 +4404,7 @@ extension Ckafka {
             self.recordWithSchema = recordWithSchema
             self.signalDatabase = signalDatabase
             self.isTableRegular = isTableRegular
+            self.signalTable = signalTable
         }
 
         enum CodingKeys: String, CodingKey {
@@ -4391,6 +4433,7 @@ extension Ckafka {
             case recordWithSchema = "RecordWithSchema"
             case signalDatabase = "SignalDatabase"
             case isTableRegular = "IsTableRegular"
+            case signalTable = "SignalTable"
         }
     }
 
@@ -5589,12 +5632,16 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let brokerTopicData: [BrokerTopicData]?
 
+        /// 单个Broker 节点Topic 流量的大小(单位MB)
+        public let brokerTopicFlowData: [BrokerTopicFlowData]?
+
         enum CodingKeys: String, CodingKey {
             case topicFlow = "TopicFlow"
             case consumeSpeed = "ConsumeSpeed"
             case topicMessageHeap = "TopicMessageHeap"
             case brokerIp = "BrokerIp"
             case brokerTopicData = "BrokerTopicData"
+            case brokerTopicFlowData = "BrokerTopicFlowData"
         }
     }
 
@@ -6124,6 +6171,7 @@ extension Ckafka {
         public let zoneStatus: Int64
 
         /// 额外标识
+        @available(*, deprecated)
         public let exflag: String
 
         /// json对象，key为机型，value true为售罄，false为未售罄
@@ -6132,6 +6180,9 @@ extension Ckafka {
         /// 标准版售罄信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let salesInfo: [SaleInfo]?
+
+        /// 额外标识
+        public let extraFlag: String
 
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
@@ -6143,6 +6194,7 @@ extension Ckafka {
             case exflag = "Exflag"
             case soldOut = "SoldOut"
             case salesInfo = "SalesInfo"
+            case extraFlag = "ExtraFlag"
         }
     }
 

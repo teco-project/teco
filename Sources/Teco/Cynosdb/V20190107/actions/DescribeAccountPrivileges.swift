@@ -60,7 +60,7 @@ extension Cynosdb {
 
     /// DescribeAccountPrivileges返回参数结构体
     public struct DescribeAccountPrivilegesResponse: TCResponse {
-        /// 权限列表，示例值为：["select","update","delete","create","drop","references","index","alter","show_db","create_tmp_table","lock_tables","execute","create_view","show_view","create_routine","alter_routine","event","trigger"]
+        /// 权限列表，示例值为：["","select","update","delete","create","drop","references","index","alter","show_db","create_tmp_table","lock_tables","execute","create_view","show_view","create_routine","alter_routine","event","trigger"]
         public let privileges: [String]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

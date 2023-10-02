@@ -3589,7 +3589,7 @@ extension Ecm {
         /// CTCC：中国电信
         /// CUCC：中国联通
         /// CMCC：中国移动
-        /// 多个运营商用英文分号连接";"，例如："CMCC;CUCC;CTCC"。多运营商需要开通白名单，请直接联系腾讯云客服。
+        /// CMCC;CUCC;CTCC：三网；三网需要开通白名单，请直接联系腾讯云客服。
         public let isp: String
 
         /// 指定私有网络编号，SubnetId与VpcId必须同时指定或不指定
@@ -3601,10 +3601,14 @@ extension Ecm {
         /// 指定主网卡内网IP。条件：SubnetId与VpcId必须同时指定，并且IP数量与InstanceCount相同，多IP主机副网卡内网IP在相同子网内通过DHCP获取。
         public let privateIpAddresses: [String]?
 
-        /// 为弹性网卡指定随机生成的IPv6地址数量，目前数量不能大于1。
+        /// 为弹性网卡指定随机生成的IPv6地址数量，单网情况下是1，单网需要ISP 只能为单网运营商，三网情况3
         public let ipv6AddressCount: Int64?
 
-        public init(zone: String, instanceCount: Int64, isp: String, vpcId: String? = nil, subnetId: String? = nil, privateIpAddresses: [String]? = nil, ipv6AddressCount: Int64? = nil) {
+        /// 指定创建三网ipv6地址，使用的subnet数组，只创建ipv4不创建ipv6和单网ipv6子网依然使用SubnetId字段；
+        /// 该数组必须且仅支持传入三个不同的子网，并且这三个子网各自分配了电信、联通、移动三个运营商的其中一个IPV6 CIDR网段
+        public let ipv6SubnetIds: [String]?
+
+        public init(zone: String, instanceCount: Int64, isp: String, vpcId: String? = nil, subnetId: String? = nil, privateIpAddresses: [String]? = nil, ipv6AddressCount: Int64? = nil, ipv6SubnetIds: [String]? = nil) {
             self.zone = zone
             self.instanceCount = instanceCount
             self.isp = isp
@@ -3612,6 +3616,7 @@ extension Ecm {
             self.subnetId = subnetId
             self.privateIpAddresses = privateIpAddresses
             self.ipv6AddressCount = ipv6AddressCount
+            self.ipv6SubnetIds = ipv6SubnetIds
         }
 
         enum CodingKeys: String, CodingKey {
@@ -3622,6 +3627,7 @@ extension Ecm {
             case subnetId = "SubnetId"
             case privateIpAddresses = "PrivateIpAddresses"
             case ipv6AddressCount = "Ipv6AddressCount"
+            case ipv6SubnetIds = "Ipv6SubnetIds"
         }
     }
 

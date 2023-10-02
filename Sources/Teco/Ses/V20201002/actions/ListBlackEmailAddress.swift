@@ -44,7 +44,7 @@ extension Ses {
         /// 可以指定邮箱进行查询
         public let emailAddress: String?
 
-        /// 可以指定任务ID进行查询
+        /// 已废弃
         public let taskID: String?
 
         public init(startDate: Date, endDate: Date, limit: UInt64, offset: UInt64, emailAddress: String? = nil, taskID: String? = nil) {

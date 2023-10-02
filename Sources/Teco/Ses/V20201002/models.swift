@@ -24,7 +24,7 @@ extension Ses {
         /// 附件名称，最大支持255个字符长度，不支持部分附件类型，详情请参考[附件类型](https://cloud.tencent.com/document/product/1288/51951)。
         public let fileName: String
 
-        /// Base64之后的附件内容，你可以发送的附件大小上限为4M。注意：腾讯云接口请求最大支持 8M 的请求包，附件内容经过 Base64 预期扩大1.5倍。应该控制所有附件的总大小最大在 4M 以内，整体请求超出 8M 接口会返回错误。
+        /// Base64之后的附件内容，您可以发送的附件大小上限为4M。注意：腾讯云接口请求最大支持 8M 的请求包，附件内容经过 Base64 预期扩大1.5倍。应该控制所有附件的总大小最大在 4M 以内，整体请求超出 8M 接口会返回错误。
         public let content: String
 
         public init(fileName: String, content: String) {
@@ -38,7 +38,7 @@ extension Ses {
         }
     }
 
-    /// 邮箱黑名单结构，包含被拉黑的邮箱地址和被拉黑时间
+    /// 邮箱黑名单结构，包含被拉黑的邮箱地址和被拉黑时间，以及被拉黑的理由
     public struct BlackEmailAddress: TCOutputModel {
         /// 邮箱被拉黑时间
         ///
@@ -49,9 +49,14 @@ extension Ses {
         /// 被拉黑的邮箱地址
         public let emailAddress: String
 
+        /// 被拉黑的理由
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ispDesc: String?
+
         enum CodingKeys: String, CodingKey {
             case bounceTime = "BounceTime"
             case emailAddress = "EmailAddress"
+            case ispDesc = "IspDesc"
         }
     }
 
@@ -180,6 +185,24 @@ extension Ses {
             case desc = "Desc"
             case receiversStatus = "ReceiversStatus"
             case createTime = "CreateTime"
+        }
+    }
+
+    /// 收件人列表详情
+    public struct ReceiverDetail: TCOutputModel {
+        /// 收件人地址
+        public let email: String
+
+        /// 创建时间
+        public let createTime: String
+
+        /// 模板参数
+        public let templateData: String
+
+        enum CodingKeys: String, CodingKey {
+            case email = "Email"
+            case createTime = "CreateTime"
+            case templateData = "TemplateData"
         }
     }
 

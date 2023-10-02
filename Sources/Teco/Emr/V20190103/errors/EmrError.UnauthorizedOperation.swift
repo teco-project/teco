@@ -19,6 +19,7 @@ import TecoCore
 extension TCEmrError {
     public struct UnauthorizedOperation: TCEmrErrorType {
         enum Code: String {
+            case appIdMismatched = "UnauthorizedOperation.AppIdMismatched"
             case checkCamAuth = "UnauthorizedOperation.CheckCamAuth"
         }
 
@@ -44,6 +45,11 @@ extension TCEmrError {
             self.context = context
         }
 
+        /// appid不一致。
+        public static var appIdMismatched: UnauthorizedOperation {
+            UnauthorizedOperation(.appIdMismatched)
+        }
+
         /// 校验账号操作无权限。
         public static var checkCamAuth: UnauthorizedOperation {
             UnauthorizedOperation(.checkCamAuth)
@@ -52,6 +58,8 @@ extension TCEmrError {
         public func asEmrError() -> TCEmrError {
             let code: TCEmrError.Code
             switch self.error {
+            case .appIdMismatched:
+                code = .unauthorizedOperation_AppIdMismatched
             case .checkCamAuth:
                 code = .unauthorizedOperation_CheckCamAuth
             }

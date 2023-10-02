@@ -66,27 +66,27 @@ extension Tdid {
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createCredential(_ input: CreateCredentialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCredentialResponse> {
-        fatalError("CreateCredential is no longer available.")
+        fatalError("'CreateCredential' is no longer available.")
     }
 
     /// 创建凭证
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createCredential(_ input: CreateCredentialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCredentialResponse {
-        fatalError("CreateCredential is no longer available.")
+        fatalError("'CreateCredential' is no longer available.")
     }
 
     /// 创建凭证
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createCredential(functionArg: FunctionArg, transactionArg: TransactionArg, versionCredential: String, unSigned: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCredentialResponse> {
-        fatalError("CreateCredential is no longer available.")
+        fatalError("'CreateCredential' is no longer available.")
     }
 
     /// 创建凭证
     @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createCredential(functionArg: FunctionArg, transactionArg: TransactionArg, versionCredential: String, unSigned: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCredentialResponse {
-        fatalError("CreateCredential is no longer available.")
+        fatalError("'CreateCredential' is no longer available.")
     }
 }

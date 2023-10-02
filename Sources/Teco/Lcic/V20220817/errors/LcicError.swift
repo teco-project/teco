@@ -49,6 +49,7 @@ public struct TCLcicError: TCLcicErrorType {
         case invalidParameter_GroupTeacherNotMember = "InvalidParameter.GroupTeacherNotMember"
         case invalidParameter_GroupTeachersNotExist = "InvalidParameter.GroupTeachersNotExist"
         case invalidParameter_GroupTypeInvalid = "InvalidParameter.GroupTypeInvalid"
+        case invalidParameter_RoomTypeInvalid = "InvalidParameter.RoomTypeInvalid"
         case invalidParameter_SdkAppId = "InvalidParameter.SdkAppId"
         case invalidParameter_StartTime = "InvalidParameter.StartTime"
         case limitExceeded = "LimitExceeded"
@@ -228,6 +229,10 @@ public struct TCLcicError: TCLcicErrorType {
     /// 请查看文档，输入正确的群组类型
     public static var invalidParameter_GroupTypeInvalid: TCLcicError {
         TCLcicError(.invalidParameter_GroupTypeInvalid)
+    }
+
+    public static var invalidParameter_RoomTypeInvalid: TCLcicError {
+        TCLcicError(.invalidParameter_RoomTypeInvalid)
     }
 
     /// SdkAppId参数错误。

@@ -43,6 +43,7 @@ extension TCCdbError {
             case executeSQLError = "InternalError.ExecuteSQLError"
             case ftpError = "InternalError.FtpError"
             case httpError = "InternalError.HttpError"
+            case httpRequestError = "InternalError.HttpRequestError"
             case importError = "InternalError.ImportError"
             case innerCommonError = "InternalError.InnerCommonError"
             case internalAssertError = "InternalError.InternalAssertError"
@@ -212,6 +213,11 @@ extension TCCdbError {
         /// Http请求异常。
         public static var httpError: InternalError {
             InternalError(.httpError)
+        }
+
+        /// 请求失败。
+        public static var httpRequestError: InternalError {
+            InternalError(.httpRequestError)
         }
 
         /// 导入失败。
@@ -400,6 +406,8 @@ extension TCCdbError {
                 code = .internalError_FtpError
             case .httpError:
                 code = .internalError_HttpError
+            case .httpRequestError:
+                code = .internalError_HttpRequestError
             case .importError:
                 code = .internalError_ImportError
             case .innerCommonError:

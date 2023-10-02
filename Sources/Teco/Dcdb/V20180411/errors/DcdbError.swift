@@ -43,7 +43,6 @@ public struct TCDcdbError: TCDcdbErrorType {
         case failedOperation_InstanceReturnFailed = "FailedOperation.InstanceReturnFailed"
         case failedOperation_ModifyRightFailed = "FailedOperation.ModifyRightFailed"
         case failedOperation_ModifyUserConfigFailed = "FailedOperation.ModifyUserConfigFailed"
-        case failedOperation_MsgQueueOperationFailed = "FailedOperation.MsgQueueOperationFailed"
         case failedOperation_OssIsolateInstanceFailed = "FailedOperation.OssIsolateInstanceFailed"
         case failedOperation_OssOperationFailed = "FailedOperation.OssOperationFailed"
         case failedOperation_PayFailed = "FailedOperation.PayFailed"
@@ -276,11 +275,6 @@ public struct TCDcdbError: TCDcdbErrorType {
     /// 修改账号配置失败。
     public static var failedOperation_ModifyUserConfigFailed: TCDcdbError {
         TCDcdbError(.failedOperation_ModifyUserConfigFailed)
-    }
-
-    /// 消息队列操作失败。
-    public static var failedOperation_MsgQueueOperationFailed: TCDcdbError {
-        TCDcdbError(.failedOperation_MsgQueueOperationFailed)
     }
 
     /// 隔离实例失败。

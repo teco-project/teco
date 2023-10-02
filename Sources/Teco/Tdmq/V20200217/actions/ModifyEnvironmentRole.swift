@@ -31,9 +31,9 @@ extension Tdmq {
         public let permissions: [String]
 
         /// 必填字段，集群的ID
-        public let clusterId: String?
+        public let clusterId: String
 
-        public init(environmentId: String, roleName: String, permissions: [String], clusterId: String? = nil) {
+        public init(environmentId: String, roleName: String, permissions: [String], clusterId: String) {
             self.environmentId = environmentId
             self.roleName = roleName
             self.permissions = permissions
@@ -78,7 +78,7 @@ extension Tdmq {
     ///
     /// 修改环境角色授权。
     @inlinable @discardableResult
-    public func modifyEnvironmentRole(environmentId: String, roleName: String, permissions: [String], clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEnvironmentRoleResponse> {
+    public func modifyEnvironmentRole(environmentId: String, roleName: String, permissions: [String], clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEnvironmentRoleResponse> {
         self.modifyEnvironmentRole(.init(environmentId: environmentId, roleName: roleName, permissions: permissions, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
@@ -86,7 +86,7 @@ extension Tdmq {
     ///
     /// 修改环境角色授权。
     @inlinable @discardableResult
-    public func modifyEnvironmentRole(environmentId: String, roleName: String, permissions: [String], clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvironmentRoleResponse {
+    public func modifyEnvironmentRole(environmentId: String, roleName: String, permissions: [String], clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvironmentRoleResponse {
         try await self.modifyEnvironmentRole(.init(environmentId: environmentId, roleName: roleName, permissions: permissions, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -107,7 +107,7 @@ extension Ecdn {
     @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable @discardableResult
     public func updateDomainConfig(_ input: UpdateDomainConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDomainConfigResponse> {
-        fatalError("UpdateDomainConfig is no longer available.")
+        fatalError("'UpdateDomainConfig' is no longer available.")
     }
 
     /// 更新域名配置
@@ -119,7 +119,7 @@ extension Ecdn {
     @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable @discardableResult
     public func updateDomainConfig(_ input: UpdateDomainConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDomainConfigResponse {
-        fatalError("UpdateDomainConfig is no longer available.")
+        fatalError("'UpdateDomainConfig' is no longer available.")
     }
 
     /// 更新域名配置
@@ -131,7 +131,7 @@ extension Ecdn {
     @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable @discardableResult
     public func updateDomainConfig(domain: String, origin: Origin? = nil, projectId: Int64? = nil, ipFilter: IpFilter? = nil, ipFreqLimit: IpFreqLimit? = nil, responseHeader: ResponseHeader? = nil, cacheKey: CacheKey? = nil, cache: Cache? = nil, https: Https? = nil, forceRedirect: ForceRedirect? = nil, area: String? = nil, webSocket: WebSocket? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDomainConfigResponse> {
-        fatalError("UpdateDomainConfig is no longer available.")
+        fatalError("'UpdateDomainConfig' is no longer available.")
     }
 
     /// 更新域名配置
@@ -143,6 +143,6 @@ extension Ecdn {
     @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable @discardableResult
     public func updateDomainConfig(domain: String, origin: Origin? = nil, projectId: Int64? = nil, ipFilter: IpFilter? = nil, ipFreqLimit: IpFreqLimit? = nil, responseHeader: ResponseHeader? = nil, cacheKey: CacheKey? = nil, cache: Cache? = nil, https: Https? = nil, forceRedirect: ForceRedirect? = nil, area: String? = nil, webSocket: WebSocket? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDomainConfigResponse {
-        fatalError("UpdateDomainConfig is no longer available.")
+        fatalError("'UpdateDomainConfig' is no longer available.")
     }
 }

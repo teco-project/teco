@@ -20,6 +20,7 @@ extension TCSslError {
     public struct InvalidParameter: TCSslErrorType {
         enum Code: String {
             case certificateIdNumberLimit = "InvalidParameter.CertificateIdNumberLimit"
+            case certificateStatusNotAllowResubmit = "InvalidParameter.CertificateStatusNotAllowResubmit"
             case certificatesNumberExceeded = "InvalidParameter.CertificatesNumberExceeded"
             case containsInvalidCertificateId = "InvalidParameter.ContainsInvalidCertificateId"
             case domainCountInvalid = "InvalidParameter.DomainCountInvalid"
@@ -59,6 +60,11 @@ extension TCSslError {
         /// 查询的证书ID不能超过50个。
         public static var certificateIdNumberLimit: InvalidParameter {
             InvalidParameter(.certificateIdNumberLimit)
+        }
+
+        /// 当前证书状态不允许重新提交申请。
+        public static var certificateStatusNotAllowResubmit: InvalidParameter {
+            InvalidParameter(.certificateStatusNotAllowResubmit)
         }
 
         /// 证书数量超出限制。
@@ -126,6 +132,8 @@ extension TCSslError {
             switch self.error {
             case .certificateIdNumberLimit:
                 code = .invalidParameter_CertificateIdNumberLimit
+            case .certificateStatusNotAllowResubmit:
+                code = .invalidParameter_CertificateStatusNotAllowResubmit
             case .certificatesNumberExceeded:
                 code = .invalidParameter_CertificatesNumberExceeded
             case .containsInvalidCertificateId:

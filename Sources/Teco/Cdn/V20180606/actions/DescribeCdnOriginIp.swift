@@ -43,33 +43,41 @@ extension Cdn {
         }
     }
 
-    /// 查询回源节点
+    /// 查询回源节点(已废弃)
     ///
-    /// 本接口（DescribeCdnOriginIp）用于查询 CDN 回源节点的IP信息。（注：此接口即将下线，不再进行维护，请通过DescribeIpStatus 接口进行查询）
+    /// ### _**该接口已废弃** _
+    ///
+    /// 本接口（DescribeCdnOriginIp）用于查询 CDN 回源节点的IP信息。（注：替换接口为DescribeIpStatus）
     @inlinable
     public func describeCdnOriginIp(_ input: DescribeCdnOriginIpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCdnOriginIpResponse> {
         self.client.execute(action: "DescribeCdnOriginIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询回源节点
+    /// 查询回源节点(已废弃)
     ///
-    /// 本接口（DescribeCdnOriginIp）用于查询 CDN 回源节点的IP信息。（注：此接口即将下线，不再进行维护，请通过DescribeIpStatus 接口进行查询）
+    /// ### _**该接口已废弃** _
+    ///
+    /// 本接口（DescribeCdnOriginIp）用于查询 CDN 回源节点的IP信息。（注：替换接口为DescribeIpStatus）
     @inlinable
     public func describeCdnOriginIp(_ input: DescribeCdnOriginIpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCdnOriginIpResponse {
         try await self.client.execute(action: "DescribeCdnOriginIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询回源节点
+    /// 查询回源节点(已废弃)
     ///
-    /// 本接口（DescribeCdnOriginIp）用于查询 CDN 回源节点的IP信息。（注：此接口即将下线，不再进行维护，请通过DescribeIpStatus 接口进行查询）
+    /// ### _**该接口已废弃** _
+    ///
+    /// 本接口（DescribeCdnOriginIp）用于查询 CDN 回源节点的IP信息。（注：替换接口为DescribeIpStatus）
     @inlinable
     public func describeCdnOriginIp(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCdnOriginIpResponse> {
         self.describeCdnOriginIp(.init(), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询回源节点
+    /// 查询回源节点(已废弃)
     ///
-    /// 本接口（DescribeCdnOriginIp）用于查询 CDN 回源节点的IP信息。（注：此接口即将下线，不再进行维护，请通过DescribeIpStatus 接口进行查询）
+    /// ### _**该接口已废弃** _
+    ///
+    /// 本接口（DescribeCdnOriginIp）用于查询 CDN 回源节点的IP信息。（注：替换接口为DescribeIpStatus）
     @inlinable
     public func describeCdnOriginIp(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCdnOriginIpResponse {
         try await self.describeCdnOriginIp(.init(), region: region, logger: logger, on: eventLoop)

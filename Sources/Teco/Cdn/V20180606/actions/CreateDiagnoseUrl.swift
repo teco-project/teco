@@ -52,33 +52,41 @@ extension Cdn {
         }
     }
 
-    /// 添加诊断URL(即将下线)
+    /// 添加诊断URL(已废弃)
     ///
-    /// CreateDiagnoseUrl 用于添加域名诊断任务URL， _将于 **2023年5月31日** 下线_
+    /// ### _**该接口已废弃** _
+    ///
+    /// CreateDiagnoseUrl 用于添加域名诊断任务URL。
     @inlinable
     public func createDiagnoseUrl(_ input: CreateDiagnoseUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDiagnoseUrlResponse> {
         self.client.execute(action: "CreateDiagnoseUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 添加诊断URL(即将下线)
+    /// 添加诊断URL(已废弃)
     ///
-    /// CreateDiagnoseUrl 用于添加域名诊断任务URL， _将于 **2023年5月31日** 下线_
+    /// ### _**该接口已废弃** _
+    ///
+    /// CreateDiagnoseUrl 用于添加域名诊断任务URL。
     @inlinable
     public func createDiagnoseUrl(_ input: CreateDiagnoseUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDiagnoseUrlResponse {
         try await self.client.execute(action: "CreateDiagnoseUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 添加诊断URL(即将下线)
+    /// 添加诊断URL(已废弃)
     ///
-    /// CreateDiagnoseUrl 用于添加域名诊断任务URL， _将于 **2023年5月31日** 下线_
+    /// ### _**该接口已废弃** _
+    ///
+    /// CreateDiagnoseUrl 用于添加域名诊断任务URL。
     @inlinable
     public func createDiagnoseUrl(url: String, origin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDiagnoseUrlResponse> {
         self.createDiagnoseUrl(.init(url: url, origin: origin), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 添加诊断URL(即将下线)
+    /// 添加诊断URL(已废弃)
     ///
-    /// CreateDiagnoseUrl 用于添加域名诊断任务URL， _将于 **2023年5月31日** 下线_
+    /// ### _**该接口已废弃** _
+    ///
+    /// CreateDiagnoseUrl 用于添加域名诊断任务URL。
     @inlinable
     public func createDiagnoseUrl(url: String, origin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDiagnoseUrlResponse {
         try await self.createDiagnoseUrl(.init(url: url, origin: origin), region: region, logger: logger, on: eventLoop)

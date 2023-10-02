@@ -21,7 +21,15 @@ import TecoCore
 extension Gaap {
     /// DescribeCustomHeader请求参数结构体
     public struct DescribeCustomHeaderRequest: TCRequest {
-        public init() {
+        /// 规则ID
+        public let ruleId: String
+
+        public init(ruleId: String) {
+            self.ruleId = ruleId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case ruleId = "RuleId"
         }
     }
 
@@ -65,15 +73,15 @@ extension Gaap {
     ///
     /// 本接口（DescribeCustomHeader）用于自定义header列表
     @inlinable
-    public func describeCustomHeader(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomHeaderResponse> {
-        self.describeCustomHeader(.init(), region: region, logger: logger, on: eventLoop)
+    public func describeCustomHeader(ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomHeaderResponse> {
+        self.describeCustomHeader(.init(ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询自定义header列表
     ///
     /// 本接口（DescribeCustomHeader）用于自定义header列表
     @inlinable
-    public func describeCustomHeader(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomHeaderResponse {
-        try await self.describeCustomHeader(.init(), region: region, logger: logger, on: eventLoop)
+    public func describeCustomHeader(ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomHeaderResponse {
+        try await self.describeCustomHeader(.init(ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 }

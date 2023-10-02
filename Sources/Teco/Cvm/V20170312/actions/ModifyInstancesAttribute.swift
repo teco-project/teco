@@ -21,26 +21,28 @@ import TecoCore
 extension Cvm {
     /// ModifyInstancesAttribute请求参数结构体
     public struct ModifyInstancesAttributeRequest: TCRequest {
-        /// 一个或多个待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728) API返回值中的`InstanceId`获取。每次请求允许操作的实例数量上限是100。
+        /// 一个或多个待操作的实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/213/15728) API返回值中的`InstanceId`获取。每次请求允许操作的实例数量上限是100。
         public let instanceIds: [String]
 
-        /// 实例名称。可任意命名，但不得超过60个字符。
+        /// 修改后实例名称。可任意命名，但不得超过60个字符。
         ///
         /// > Note: 必须指定InstanceName与SecurityGroups的其中一个，但不能同时设置
         public let instanceName: String?
 
-        /// 指定实例的安全组Id列表，子机将重新关联指定列表的安全组，原本关联的安全组会被解绑。
+        /// 指定实例的修改后的安全组Id列表，子机将重新关联指定列表的安全组，原本关联的安全组会被解绑。
         /// > Note: 必须指定SecurityGroups与InstanceName的其中一个，但不能同时设置
         public let securityGroups: [String]?
 
         /// 给实例绑定用户角色，传空值为解绑操作
         public let camRoleName: String?
 
-        /// 实例的主机名。
+        /// 修改后实例的主机名。
         ///
         /// - 点号（.）和短横线（-）不能作为 HostName 的首尾字符，不能连续使用。
         /// - Windows 实例：主机名字符长度为[2, 15]，允许字母（不限制大小写）、数字和短横线（-）组成，不支持点号（.），不能全是数字。
         /// - 其他类型（Linux 等）实例：主机名字符长度为[2, 60]，允许支持多个点号，点之间为一段，每段允许字母（不限制大小写）、数字和短横线（-）组成。
+        ///
+        /// 注意点：修改主机名后实例会立即重启，重启后新的主机名生效。
         public let hostName: String?
 
         /// 实例销毁保护标志，表示是否允许通过api接口删除实例。取值范围：
@@ -96,6 +98,7 @@ extension Cvm {
     /// * 支持批量操作。每次请求批量实例的上限为100。
     /// * 修改关联安全组时，子机原来关联的安全组会被解绑。
     /// * 实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
+    /// * 修改主机名后实例会立即重启，重启后新的主机名生效。
     @inlinable @discardableResult
     public func modifyInstancesAttribute(_ input: ModifyInstancesAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesAttributeResponse> {
         self.client.execute(action: "ModifyInstancesAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -110,6 +113,7 @@ extension Cvm {
     /// * 支持批量操作。每次请求批量实例的上限为100。
     /// * 修改关联安全组时，子机原来关联的安全组会被解绑。
     /// * 实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
+    /// * 修改主机名后实例会立即重启，重启后新的主机名生效。
     @inlinable @discardableResult
     public func modifyInstancesAttribute(_ input: ModifyInstancesAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesAttributeResponse {
         try await self.client.execute(action: "ModifyInstancesAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -124,6 +128,7 @@ extension Cvm {
     /// * 支持批量操作。每次请求批量实例的上限为100。
     /// * 修改关联安全组时，子机原来关联的安全组会被解绑。
     /// * 实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
+    /// * 修改主机名后实例会立即重启，重启后新的主机名生效。
     @inlinable @discardableResult
     public func modifyInstancesAttribute(instanceIds: [String], instanceName: String? = nil, securityGroups: [String]? = nil, camRoleName: String? = nil, hostName: String? = nil, disableApiTermination: Bool? = nil, camRoleType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesAttributeResponse> {
         self.modifyInstancesAttribute(.init(instanceIds: instanceIds, instanceName: instanceName, securityGroups: securityGroups, camRoleName: camRoleName, hostName: hostName, disableApiTermination: disableApiTermination, camRoleType: camRoleType), region: region, logger: logger, on: eventLoop)
@@ -138,6 +143,7 @@ extension Cvm {
     /// * 支持批量操作。每次请求批量实例的上限为100。
     /// * 修改关联安全组时，子机原来关联的安全组会被解绑。
     /// * 实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
+    /// * 修改主机名后实例会立即重启，重启后新的主机名生效。
     @inlinable @discardableResult
     public func modifyInstancesAttribute(instanceIds: [String], instanceName: String? = nil, securityGroups: [String]? = nil, camRoleName: String? = nil, hostName: String? = nil, disableApiTermination: Bool? = nil, camRoleType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesAttributeResponse {
         try await self.modifyInstancesAttribute(.init(instanceIds: instanceIds, instanceName: instanceName, securityGroups: securityGroups, camRoleName: camRoleName, hostName: hostName, disableApiTermination: disableApiTermination, camRoleType: camRoleType), region: region, logger: logger, on: eventLoop)

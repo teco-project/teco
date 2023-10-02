@@ -37,6 +37,7 @@ public struct TCAsrError: TCAsrErrorType {
         case failedOperation_NoSuchTask = "FailedOperation.NoSuchTask"
         case failedOperation_NotExistentVoicePrintId = "FailedOperation.NotExistentVoicePrintId"
         case failedOperation_ServiceIsolate = "FailedOperation.ServiceIsolate"
+        case failedOperation_UserHasNoAmount = "FailedOperation.UserHasNoAmount"
         case failedOperation_UserHasNoFreeAmount = "FailedOperation.UserHasNoFreeAmount"
         case failedOperation_UserNotRegistered = "FailedOperation.UserNotRegistered"
         case internalError = "InternalError"
@@ -185,6 +186,10 @@ public struct TCAsrError: TCAsrErrorType {
     /// 账号因为欠费停止服务，请在腾讯云账户充值。
     public static var failedOperation_ServiceIsolate: TCAsrError {
         TCAsrError(.failedOperation_ServiceIsolate)
+    }
+
+    public static var failedOperation_UserHasNoAmount: TCAsrError {
+        TCAsrError(.failedOperation_UserHasNoAmount)
     }
 
     /// 账号本月免费额度已用完。

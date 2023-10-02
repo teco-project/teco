@@ -93,7 +93,10 @@ extension Tione {
         /// 镜像类型
         public let imageType: String?
 
-        public init(name: String, chargeType: String, resourceConf: ResourceConf, logEnable: Bool, rootAccess: Bool, autoStopping: Bool, directInternetAccess: Bool, resourceGroupId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, volumeSourceType: String? = nil, volumeSizeInGB: UInt64? = nil, volumeSourceCFS: CFSConfig? = nil, logConfig: LogConfig? = nil, lifecycleScriptId: String? = nil, defaultCodeRepoId: String? = nil, additionalCodeRepoIds: [String]? = nil, automaticStopTime: UInt64? = nil, tags: [Tag]? = nil, dataConfigs: [DataConfig]? = nil, imageInfo: ImageInfo? = nil, imageType: String? = nil) {
+        /// SSH配置信息
+        public let sshConfig: SSHConfig?
+
+        public init(name: String, chargeType: String, resourceConf: ResourceConf, logEnable: Bool, rootAccess: Bool, autoStopping: Bool, directInternetAccess: Bool, resourceGroupId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, volumeSourceType: String? = nil, volumeSizeInGB: UInt64? = nil, volumeSourceCFS: CFSConfig? = nil, logConfig: LogConfig? = nil, lifecycleScriptId: String? = nil, defaultCodeRepoId: String? = nil, additionalCodeRepoIds: [String]? = nil, automaticStopTime: UInt64? = nil, tags: [Tag]? = nil, dataConfigs: [DataConfig]? = nil, imageInfo: ImageInfo? = nil, imageType: String? = nil, sshConfig: SSHConfig? = nil) {
             self.name = name
             self.chargeType = chargeType
             self.resourceConf = resourceConf
@@ -116,6 +119,7 @@ extension Tione {
             self.dataConfigs = dataConfigs
             self.imageInfo = imageInfo
             self.imageType = imageType
+            self.sshConfig = sshConfig
         }
 
         enum CodingKeys: String, CodingKey {
@@ -141,6 +145,7 @@ extension Tione {
             case dataConfigs = "DataConfigs"
             case imageInfo = "ImageInfo"
             case imageType = "ImageType"
+            case sshConfig = "SSHConfig"
         }
     }
 
@@ -172,13 +177,13 @@ extension Tione {
 
     /// 创建Notebook
     @inlinable
-    public func createNotebook(name: String, chargeType: String, resourceConf: ResourceConf, logEnable: Bool, rootAccess: Bool, autoStopping: Bool, directInternetAccess: Bool, resourceGroupId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, volumeSourceType: String? = nil, volumeSizeInGB: UInt64? = nil, volumeSourceCFS: CFSConfig? = nil, logConfig: LogConfig? = nil, lifecycleScriptId: String? = nil, defaultCodeRepoId: String? = nil, additionalCodeRepoIds: [String]? = nil, automaticStopTime: UInt64? = nil, tags: [Tag]? = nil, dataConfigs: [DataConfig]? = nil, imageInfo: ImageInfo? = nil, imageType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNotebookResponse> {
-        self.createNotebook(.init(name: name, chargeType: chargeType, resourceConf: resourceConf, logEnable: logEnable, rootAccess: rootAccess, autoStopping: autoStopping, directInternetAccess: directInternetAccess, resourceGroupId: resourceGroupId, vpcId: vpcId, subnetId: subnetId, volumeSourceType: volumeSourceType, volumeSizeInGB: volumeSizeInGB, volumeSourceCFS: volumeSourceCFS, logConfig: logConfig, lifecycleScriptId: lifecycleScriptId, defaultCodeRepoId: defaultCodeRepoId, additionalCodeRepoIds: additionalCodeRepoIds, automaticStopTime: automaticStopTime, tags: tags, dataConfigs: dataConfigs, imageInfo: imageInfo, imageType: imageType), region: region, logger: logger, on: eventLoop)
+    public func createNotebook(name: String, chargeType: String, resourceConf: ResourceConf, logEnable: Bool, rootAccess: Bool, autoStopping: Bool, directInternetAccess: Bool, resourceGroupId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, volumeSourceType: String? = nil, volumeSizeInGB: UInt64? = nil, volumeSourceCFS: CFSConfig? = nil, logConfig: LogConfig? = nil, lifecycleScriptId: String? = nil, defaultCodeRepoId: String? = nil, additionalCodeRepoIds: [String]? = nil, automaticStopTime: UInt64? = nil, tags: [Tag]? = nil, dataConfigs: [DataConfig]? = nil, imageInfo: ImageInfo? = nil, imageType: String? = nil, sshConfig: SSHConfig? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNotebookResponse> {
+        self.createNotebook(.init(name: name, chargeType: chargeType, resourceConf: resourceConf, logEnable: logEnable, rootAccess: rootAccess, autoStopping: autoStopping, directInternetAccess: directInternetAccess, resourceGroupId: resourceGroupId, vpcId: vpcId, subnetId: subnetId, volumeSourceType: volumeSourceType, volumeSizeInGB: volumeSizeInGB, volumeSourceCFS: volumeSourceCFS, logConfig: logConfig, lifecycleScriptId: lifecycleScriptId, defaultCodeRepoId: defaultCodeRepoId, additionalCodeRepoIds: additionalCodeRepoIds, automaticStopTime: automaticStopTime, tags: tags, dataConfigs: dataConfigs, imageInfo: imageInfo, imageType: imageType, sshConfig: sshConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建Notebook
     @inlinable
-    public func createNotebook(name: String, chargeType: String, resourceConf: ResourceConf, logEnable: Bool, rootAccess: Bool, autoStopping: Bool, directInternetAccess: Bool, resourceGroupId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, volumeSourceType: String? = nil, volumeSizeInGB: UInt64? = nil, volumeSourceCFS: CFSConfig? = nil, logConfig: LogConfig? = nil, lifecycleScriptId: String? = nil, defaultCodeRepoId: String? = nil, additionalCodeRepoIds: [String]? = nil, automaticStopTime: UInt64? = nil, tags: [Tag]? = nil, dataConfigs: [DataConfig]? = nil, imageInfo: ImageInfo? = nil, imageType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotebookResponse {
-        try await self.createNotebook(.init(name: name, chargeType: chargeType, resourceConf: resourceConf, logEnable: logEnable, rootAccess: rootAccess, autoStopping: autoStopping, directInternetAccess: directInternetAccess, resourceGroupId: resourceGroupId, vpcId: vpcId, subnetId: subnetId, volumeSourceType: volumeSourceType, volumeSizeInGB: volumeSizeInGB, volumeSourceCFS: volumeSourceCFS, logConfig: logConfig, lifecycleScriptId: lifecycleScriptId, defaultCodeRepoId: defaultCodeRepoId, additionalCodeRepoIds: additionalCodeRepoIds, automaticStopTime: automaticStopTime, tags: tags, dataConfigs: dataConfigs, imageInfo: imageInfo, imageType: imageType), region: region, logger: logger, on: eventLoop)
+    public func createNotebook(name: String, chargeType: String, resourceConf: ResourceConf, logEnable: Bool, rootAccess: Bool, autoStopping: Bool, directInternetAccess: Bool, resourceGroupId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, volumeSourceType: String? = nil, volumeSizeInGB: UInt64? = nil, volumeSourceCFS: CFSConfig? = nil, logConfig: LogConfig? = nil, lifecycleScriptId: String? = nil, defaultCodeRepoId: String? = nil, additionalCodeRepoIds: [String]? = nil, automaticStopTime: UInt64? = nil, tags: [Tag]? = nil, dataConfigs: [DataConfig]? = nil, imageInfo: ImageInfo? = nil, imageType: String? = nil, sshConfig: SSHConfig? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotebookResponse {
+        try await self.createNotebook(.init(name: name, chargeType: chargeType, resourceConf: resourceConf, logEnable: logEnable, rootAccess: rootAccess, autoStopping: autoStopping, directInternetAccess: directInternetAccess, resourceGroupId: resourceGroupId, vpcId: vpcId, subnetId: subnetId, volumeSourceType: volumeSourceType, volumeSizeInGB: volumeSizeInGB, volumeSourceCFS: volumeSourceCFS, logConfig: logConfig, lifecycleScriptId: lifecycleScriptId, defaultCodeRepoId: defaultCodeRepoId, additionalCodeRepoIds: additionalCodeRepoIds, automaticStopTime: automaticStopTime, tags: tags, dataConfigs: dataConfigs, imageInfo: imageInfo, imageType: imageType, sshConfig: sshConfig), region: region, logger: logger, on: eventLoop)
     }
 }

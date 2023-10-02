@@ -102,7 +102,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeTimerScalingPolicies(_ input: DescribeTimerScalingPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTimerScalingPoliciesResponse> {
-        fatalError("DescribeTimerScalingPolicies is no longer available.")
+        fatalError("'DescribeTimerScalingPolicies' is no longer available.")
     }
 
     /// 查询定时器列表
@@ -111,7 +111,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeTimerScalingPolicies(_ input: DescribeTimerScalingPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimerScalingPoliciesResponse {
-        fatalError("DescribeTimerScalingPolicies is no longer available.")
+        fatalError("'DescribeTimerScalingPolicies' is no longer available.")
     }
 
     /// 查询定时器列表
@@ -120,7 +120,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeTimerScalingPolicies(fleetId: String? = nil, timerName: String? = nil, beginTime: String? = nil, endTime: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTimerScalingPoliciesResponse> {
-        fatalError("DescribeTimerScalingPolicies is no longer available.")
+        fatalError("'DescribeTimerScalingPolicies' is no longer available.")
     }
 
     /// 查询定时器列表
@@ -129,7 +129,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeTimerScalingPolicies(fleetId: String? = nil, timerName: String? = nil, beginTime: String? = nil, endTime: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimerScalingPoliciesResponse {
-        fatalError("DescribeTimerScalingPolicies is no longer available.")
+        fatalError("'DescribeTimerScalingPolicies' is no longer available.")
     }
 
     /// 查询定时器列表
@@ -138,7 +138,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeTimerScalingPoliciesPaginated(_ input: DescribeTimerScalingPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [TimerScalingPolicy])> {
-        fatalError("DescribeTimerScalingPolicies is no longer available.")
+        fatalError("'DescribeTimerScalingPolicies' is no longer available.")
     }
 
     /// 查询定时器列表
@@ -147,7 +147,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func describeTimerScalingPoliciesPaginated(_ input: DescribeTimerScalingPoliciesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTimerScalingPoliciesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
-        fatalError("DescribeTimerScalingPolicies is no longer available.")
+        fatalError("'DescribeTimerScalingPolicies' is no longer available.")
     }
 
     /// 查询定时器列表
@@ -158,6 +158,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeTimerScalingPoliciesPaginator(_ input: DescribeTimerScalingPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTimerScalingPoliciesRequest> {
-        fatalError("DescribeTimerScalingPolicies is no longer available.")
+        fatalError("'DescribeTimerScalingPolicies' is no longer available.")
     }
 }

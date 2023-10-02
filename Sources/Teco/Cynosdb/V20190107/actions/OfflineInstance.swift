@@ -52,25 +52,25 @@ extension Cynosdb {
         }
     }
 
-    /// 下线实例
+    /// 销毁实例
     @inlinable
     public func offlineInstance(_ input: OfflineInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OfflineInstanceResponse> {
         self.client.execute(action: "OfflineInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 下线实例
+    /// 销毁实例
     @inlinable
     public func offlineInstance(_ input: OfflineInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineInstanceResponse {
         try await self.client.execute(action: "OfflineInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 下线实例
+    /// 销毁实例
     @inlinable
     public func offlineInstance(clusterId: String, instanceIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OfflineInstanceResponse> {
         self.offlineInstance(.init(clusterId: clusterId, instanceIdList: instanceIdList), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 下线实例
+    /// 销毁实例
     @inlinable
     public func offlineInstance(clusterId: String, instanceIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineInstanceResponse {
         try await self.offlineInstance(.init(clusterId: clusterId, instanceIdList: instanceIdList), region: region, logger: logger, on: eventLoop)

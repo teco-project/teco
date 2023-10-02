@@ -21,7 +21,7 @@ import TecoCore
 extension Waf {
     /// DescribeDomains请求参数结构体
     public struct DescribeDomainsRequest: TCPaginatedRequest {
-        /// 数据偏移量，从1开始。
+        /// 分页偏移量，取Limit整数倍。最小值为0，最大值= Total/Limit向上取整
         public let offset: UInt64
 
         /// 返回域名的数量

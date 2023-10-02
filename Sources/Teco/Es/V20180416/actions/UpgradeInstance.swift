@@ -24,7 +24,7 @@ extension Es {
         /// 实例ID
         public let instanceId: String
 
-        /// 目标ES版本，支持：”6.4.3“, "6.8.2"，"7.5.1"
+        /// 目标ES版本，支持：”6.4.3“, "6.8.2"，"7.5.1", "7.10.1", "7.14.2"
         public let esVersion: String
 
         /// 是否只做升级检查，默认值为false

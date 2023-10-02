@@ -19,6 +19,7 @@ import TecoCore
 extension TCCynosdbError {
     public struct OperationDenied: TCCynosdbErrorType {
         enum Code: String {
+            case auditPolicyNotExistError = "OperationDenied.AuditPolicyNotExistError"
             case camDeniedError = "OperationDenied.CamDeniedError"
             case clusterOpNotAllowedError = "OperationDenied.ClusterOpNotAllowedError"
             case clusterStatusDeniedError = "OperationDenied.ClusterStatusDeniedError"
@@ -54,6 +55,10 @@ extension TCCynosdbError {
         internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
+        }
+
+        public static var auditPolicyNotExistError: OperationDenied {
+            OperationDenied(.auditPolicyNotExistError)
         }
 
         /// 权限校验失败。
@@ -123,6 +128,8 @@ extension TCCynosdbError {
         public func asCynosdbError() -> TCCynosdbError {
             let code: TCCynosdbError.Code
             switch self.error {
+            case .auditPolicyNotExistError:
+                code = .operationDenied_AuditPolicyNotExistError
             case .camDeniedError:
                 code = .operationDenied_CamDeniedError
             case .clusterOpNotAllowedError:

@@ -24,7 +24,7 @@ extension Dlc {
         /// DLC Spark作业引擎名称
         public let dataEngineName: String
 
-        /// 运行sql
+        /// 运行sql，需要base64编码。
         public let executeSQL: String
 
         /// 指定的Driver规格，当前支持：small（默认，1cu）、medium（2cu）、large（4cu）、xlarge（8cu）
@@ -53,7 +53,7 @@ extension Dlc {
         /// 3.dlc.sql.set.config：用户配置的集群配置信息，可以用过该字段设置；
         public let arguments: [KVPair]?
 
-        /// 是否继承集群的资源类配置：0：自定义（默认），1：继承集群；
+        /// 是否继承集群的资源类配置：0：不继承（默认），1：继承集群；
         public let isInherit: Int64?
 
         public init(dataEngineName: String, executeSQL: String, driverSize: String? = nil, executorSize: String? = nil, executorNumbers: UInt64? = nil, executorMaxNumbers: UInt64? = nil, timeoutInSecond: Int64? = nil, sessionId: String? = nil, sessionName: String? = nil, arguments: [KVPair]? = nil, isInherit: Int64? = nil) {

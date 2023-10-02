@@ -25,9 +25,9 @@ extension Tdmq {
         public let roleNames: [String]
 
         /// 必填字段，集群Id
-        public let clusterId: String?
+        public let clusterId: String
 
-        public init(roleNames: [String], clusterId: String? = nil) {
+        public init(roleNames: [String], clusterId: String) {
             self.roleNames = roleNames
             self.clusterId = clusterId
         }
@@ -72,7 +72,7 @@ extension Tdmq {
     ///
     /// 删除角色，支持批量。
     @inlinable
-    public func deleteRoles(roleNames: [String], clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRolesResponse> {
+    public func deleteRoles(roleNames: [String], clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRolesResponse> {
         self.deleteRoles(.init(roleNames: roleNames, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
@@ -80,7 +80,7 @@ extension Tdmq {
     ///
     /// 删除角色，支持批量。
     @inlinable
-    public func deleteRoles(roleNames: [String], clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRolesResponse {
+    public func deleteRoles(roleNames: [String], clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRolesResponse {
         try await self.deleteRoles(.init(roleNames: roleNames, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

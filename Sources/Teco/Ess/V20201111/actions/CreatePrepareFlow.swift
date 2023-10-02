@@ -21,46 +21,57 @@ import TecoCore
 extension Ess {
     /// CreatePrepareFlow请求参数结构体
     public struct CreatePrepareFlowRequest: TCRequest {
-        /// 调用方用户信息，userId 必填
+        /// 执行本接口操作的员工信息。使用此接口时，必须填写userId。
+        /// 支持填入集团子公司经办人 userId 代发合同。
+        ///
+        /// 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         public let `operator`: UserInfo
 
-        /// 资源Id，通过多文件上传（UploadFiles）接口获得
+        /// 资源id，与ResourceType相对应，取值范围：
+        ///
+        /// - 文件Id（通过UploadFiles获取文件资源Id）
+        /// - 模板Id
         public let resourceId: String
 
-        /// 合同名称
+        /// 合同流程的名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。
         public let flowName: String
 
-        /// 是否顺序签署
-        /// true:无序签
-        /// false:顺序签
+        /// 合同流程的签署顺序类型：
+        ///
+        /// - **false**：(默认)有序签署, 本合同多个参与人需要依次签署
+        /// - **true**：无序签署, 本合同多个参与人没有先后签署限制
         public let unordered: Bool?
 
-        /// 签署流程的签署截止时间。
-        /// 值为unix时间戳,精确到秒
-        /// 不传默认为当前时间一年后
+        /// 合同流程的签署截止时间，格式为Unix标准时间戳（秒），如果未设置签署截止时间，则默认为合同流程创建后的365天时截止。
         public let deadline: Int64?
 
         /// 用户自定义合同类型Id
-        /// 该id为电子签企业内的合同类型id
+        ///
+        /// 该id为电子签企业内的合同类型id， 可以在控制台-合同-自定义合同类型处获取
+        /// 注: `该参数如果和FlowType同时传，以该参数优先生效`
         public let userFlowTypeId: String?
 
-        /// 签署流程参与者信息，最大限制50方
+        /// 合同流程的类别分类（可自定义名称，如销售合同/入职合同等），最大长度为200个字符，仅限中文、字母、数字和下划线组成。
+        public let flowType: String?
+
+        /// 合同流程的参与方列表，最多可支持50个参与方，可在列表中指定企业B端签署方和个人C端签署方的联系和认证方式等信息，具体定义可以参考开发者中心的ApproverInfo结构体。
+        ///
+        /// 如果合同流程是有序签署，Approvers列表中参与人的顺序就是默认的签署顺序，请确保列表中参与人的顺序符合实际签署顺序。
         public let approvers: [FlowCreateApprover]?
 
-        /// 打开智能添加填写区
-        /// (默认开启，打开:"OPEN"
-        ///  关闭："CLOSE"
+        /// 开启或者关闭智能添加填写区：
+        ///
+        /// - **OPEN**：开启（默认值）
+        /// - **CLOSE**：关闭
         public let intelligentStatus: String?
 
-        /// 资源类型，
-        /// 1：文件，
-        /// 2：模板
-        /// 不传默认为1：文件
-        /// 目前仅支持文件
+        /// 资源类型，取值有：
+        ///
+        /// - **1**：模板
+        /// - **2**：文件（默认值）
         public let resourceType: Int64?
 
-        /// 发起方填写控件
-        /// 该类型控件由发起方完成填写
+        /// 该字段已废弃，请使用InitiatorComponents
         public let components: Component?
 
         /// 发起合同个性化参数
@@ -68,39 +79,46 @@ extension Ess {
         /// 具体定制化内容详见数据接口说明
         public let flowOption: CreateFlowOption?
 
-        /// 是否开启发起方签署审核
-        /// true:开启发起方签署审核
-        /// false:不开启发起方签署审核
-        /// 默认false:不开启发起方签署审核
+        /// 发起方企业的签署人进行签署操作前，是否需要企业内部走审批流程，取值如下：
+        ///
+        /// - **false**：（默认）不需要审批，直接签署。
+        /// - **true**：需要走审批流程。当到对应参与人签署时，会阻塞其签署操作，等待企业内部审批完成。
+        /// 企业可以通过CreateFlowSignReview审批接口通知腾讯电子签平台企业内部审批结果
+        ///
+        /// - 如果企业通知腾讯电子签平台审核通过，签署方可继续签署动作。
+        /// - 如果企业通知腾讯电子签平台审核未通过，平台将继续阻塞签署方的签署动作，直到企业通知平台审核通过。
+        /// 注：`此功能可用于与企业内部的审批流程进行关联，支持手动、静默签署合同`
         public let needSignReview: Bool?
 
-        /// 开启发起方发起合同审核
-        /// true:开启发起方发起合同审核
-        /// false:不开启发起方发起合同审核
-        /// 默认false:不开启发起方发起合同审核
+        /// 发起方企业的签署人进行发起操作是否需要企业内部审批。使用此功能需要发起方企业有参与签署。
+        ///
+        /// 若设置为true，发起审核结果需通过接口 CreateFlowSignReview 通知电子签，审核通过后，发起方企业签署人方可进行发起操作，否则会阻塞其发起操作。
         public let needCreateReview: Bool?
 
-        /// 用户自定义参数
+        /// 调用方自定义的个性化字段(可自定义此名称)，并以base64方式编码，支持的最大数据大小为 20480长度。
+        ///
+        /// 在合同状态变更的回调信息等场景中，该字段的信息将原封不动地透传给贵方。回调的相关说明可参考开发者中心的[回调通知](https://qian.tencent.com/developers/company/callback_types_v2)模块。
         public let userData: String?
 
-        /// 合同id,用于通过已web页面发起的合同id快速生成一个web发起合同链接
+        /// 合同Id：用于通过一个已发起的合同快速生成一个发起流程web链接
+        /// 注: `该参数必须是一个待发起审核的合同id，并且还未审核通过`
         public let flowId: String?
 
-        /// 合同类型名称
-        /// 该字段用于客户自定义合同类型
-        /// 建议使用时指定合同类型，便于之后合同分类以及查看
-        public let flowType: String?
-
-        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        /// 代理企业和员工的信息。
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         public let agent: Agent?
 
-        public init(operator: UserInfo, resourceId: String, flowName: String, unordered: Bool? = nil, deadline: Int64? = nil, userFlowTypeId: String? = nil, approvers: [FlowCreateApprover]? = nil, intelligentStatus: String? = nil, resourceType: Int64? = nil, components: Component? = nil, flowOption: CreateFlowOption? = nil, needSignReview: Bool? = nil, needCreateReview: Bool? = nil, userData: String? = nil, flowId: String? = nil, flowType: String? = nil, agent: Agent? = nil) {
+        /// 模板或者合同中的填写控件列表，列表中可支持下列多种填写控件，控件的详细定义参考开发者中心的Component结构体
+        public let initiatorComponents: [Component]?
+
+        public init(operator: UserInfo, resourceId: String, flowName: String, unordered: Bool? = nil, deadline: Int64? = nil, userFlowTypeId: String? = nil, flowType: String? = nil, approvers: [FlowCreateApprover]? = nil, intelligentStatus: String? = nil, resourceType: Int64? = nil, components: Component? = nil, flowOption: CreateFlowOption? = nil, needSignReview: Bool? = nil, needCreateReview: Bool? = nil, userData: String? = nil, flowId: String? = nil, agent: Agent? = nil, initiatorComponents: [Component]? = nil) {
             self.operator = `operator`
             self.resourceId = resourceId
             self.flowName = flowName
             self.unordered = unordered
             self.deadline = deadline
             self.userFlowTypeId = userFlowTypeId
+            self.flowType = flowType
             self.approvers = approvers
             self.intelligentStatus = intelligentStatus
             self.resourceType = resourceType
@@ -110,8 +128,8 @@ extension Ess {
             self.needCreateReview = needCreateReview
             self.userData = userData
             self.flowId = flowId
-            self.flowType = flowType
             self.agent = agent
+            self.initiatorComponents = initiatorComponents
         }
 
         enum CodingKeys: String, CodingKey {
@@ -121,6 +139,7 @@ extension Ess {
             case unordered = "Unordered"
             case deadline = "Deadline"
             case userFlowTypeId = "UserFlowTypeId"
+            case flowType = "FlowType"
             case approvers = "Approvers"
             case intelligentStatus = "IntelligentStatus"
             case resourceType = "ResourceType"
@@ -130,14 +149,14 @@ extension Ess {
             case needCreateReview = "NeedCreateReview"
             case userData = "UserData"
             case flowId = "FlowId"
-            case flowType = "FlowType"
             case agent = "Agent"
+            case initiatorComponents = "InitiatorComponents"
         }
     }
 
     /// CreatePrepareFlow返回参数结构体
     public struct CreatePrepareFlowResponse: TCResponse {
-        /// 快速发起预览链接，有效期5分钟
+        /// 发起流程的web页面链接，有效期5分钟
         public let url: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -149,51 +168,51 @@ extension Ess {
         }
     }
 
-    /// 获取发起合同web页面
+    /// 创建发起流程web页面
     ///
-    /// 创建快速发起流程
+    /// 创建发起流程web页面
     ///
-    /// 适用场景：用户通过API 合同文件及签署信息，并可通过我们返回的URL在页面完成签署控件等信息的编辑与确认，快速发起合同.
+    /// 适用场景：通过该接口（CreatePrepareFlow）传入合同文件/模板编号及签署人信息，可获得发起流程的可嵌入页面，在页面完成签署控件等信息的编辑与确认后，快速发起流程。
     ///
-    /// 注：该接口文件的resourceId 是通过上传文件之后获取的。
+    /// 注：该接口包含模板/文件发起流程的全部功能，调用接口后不会立即发起，需在可嵌入页面点击按钮进行发起流程。
     @inlinable
     public func createPrepareFlow(_ input: CreatePrepareFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrepareFlowResponse> {
         self.client.execute(action: "CreatePrepareFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取发起合同web页面
+    /// 创建发起流程web页面
     ///
-    /// 创建快速发起流程
+    /// 创建发起流程web页面
     ///
-    /// 适用场景：用户通过API 合同文件及签署信息，并可通过我们返回的URL在页面完成签署控件等信息的编辑与确认，快速发起合同.
+    /// 适用场景：通过该接口（CreatePrepareFlow）传入合同文件/模板编号及签署人信息，可获得发起流程的可嵌入页面，在页面完成签署控件等信息的编辑与确认后，快速发起流程。
     ///
-    /// 注：该接口文件的resourceId 是通过上传文件之后获取的。
+    /// 注：该接口包含模板/文件发起流程的全部功能，调用接口后不会立即发起，需在可嵌入页面点击按钮进行发起流程。
     @inlinable
     public func createPrepareFlow(_ input: CreatePrepareFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrepareFlowResponse {
         try await self.client.execute(action: "CreatePrepareFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取发起合同web页面
+    /// 创建发起流程web页面
     ///
-    /// 创建快速发起流程
+    /// 创建发起流程web页面
     ///
-    /// 适用场景：用户通过API 合同文件及签署信息，并可通过我们返回的URL在页面完成签署控件等信息的编辑与确认，快速发起合同.
+    /// 适用场景：通过该接口（CreatePrepareFlow）传入合同文件/模板编号及签署人信息，可获得发起流程的可嵌入页面，在页面完成签署控件等信息的编辑与确认后，快速发起流程。
     ///
-    /// 注：该接口文件的resourceId 是通过上传文件之后获取的。
+    /// 注：该接口包含模板/文件发起流程的全部功能，调用接口后不会立即发起，需在可嵌入页面点击按钮进行发起流程。
     @inlinable
-    public func createPrepareFlow(operator: UserInfo, resourceId: String, flowName: String, unordered: Bool? = nil, deadline: Int64? = nil, userFlowTypeId: String? = nil, approvers: [FlowCreateApprover]? = nil, intelligentStatus: String? = nil, resourceType: Int64? = nil, components: Component? = nil, flowOption: CreateFlowOption? = nil, needSignReview: Bool? = nil, needCreateReview: Bool? = nil, userData: String? = nil, flowId: String? = nil, flowType: String? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrepareFlowResponse> {
-        self.createPrepareFlow(.init(operator: `operator`, resourceId: resourceId, flowName: flowName, unordered: unordered, deadline: deadline, userFlowTypeId: userFlowTypeId, approvers: approvers, intelligentStatus: intelligentStatus, resourceType: resourceType, components: components, flowOption: flowOption, needSignReview: needSignReview, needCreateReview: needCreateReview, userData: userData, flowId: flowId, flowType: flowType, agent: agent), region: region, logger: logger, on: eventLoop)
+    public func createPrepareFlow(operator: UserInfo, resourceId: String, flowName: String, unordered: Bool? = nil, deadline: Int64? = nil, userFlowTypeId: String? = nil, flowType: String? = nil, approvers: [FlowCreateApprover]? = nil, intelligentStatus: String? = nil, resourceType: Int64? = nil, components: Component? = nil, flowOption: CreateFlowOption? = nil, needSignReview: Bool? = nil, needCreateReview: Bool? = nil, userData: String? = nil, flowId: String? = nil, agent: Agent? = nil, initiatorComponents: [Component]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrepareFlowResponse> {
+        self.createPrepareFlow(.init(operator: `operator`, resourceId: resourceId, flowName: flowName, unordered: unordered, deadline: deadline, userFlowTypeId: userFlowTypeId, flowType: flowType, approvers: approvers, intelligentStatus: intelligentStatus, resourceType: resourceType, components: components, flowOption: flowOption, needSignReview: needSignReview, needCreateReview: needCreateReview, userData: userData, flowId: flowId, agent: agent, initiatorComponents: initiatorComponents), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取发起合同web页面
+    /// 创建发起流程web页面
     ///
-    /// 创建快速发起流程
+    /// 创建发起流程web页面
     ///
-    /// 适用场景：用户通过API 合同文件及签署信息，并可通过我们返回的URL在页面完成签署控件等信息的编辑与确认，快速发起合同.
+    /// 适用场景：通过该接口（CreatePrepareFlow）传入合同文件/模板编号及签署人信息，可获得发起流程的可嵌入页面，在页面完成签署控件等信息的编辑与确认后，快速发起流程。
     ///
-    /// 注：该接口文件的resourceId 是通过上传文件之后获取的。
+    /// 注：该接口包含模板/文件发起流程的全部功能，调用接口后不会立即发起，需在可嵌入页面点击按钮进行发起流程。
     @inlinable
-    public func createPrepareFlow(operator: UserInfo, resourceId: String, flowName: String, unordered: Bool? = nil, deadline: Int64? = nil, userFlowTypeId: String? = nil, approvers: [FlowCreateApprover]? = nil, intelligentStatus: String? = nil, resourceType: Int64? = nil, components: Component? = nil, flowOption: CreateFlowOption? = nil, needSignReview: Bool? = nil, needCreateReview: Bool? = nil, userData: String? = nil, flowId: String? = nil, flowType: String? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrepareFlowResponse {
-        try await self.createPrepareFlow(.init(operator: `operator`, resourceId: resourceId, flowName: flowName, unordered: unordered, deadline: deadline, userFlowTypeId: userFlowTypeId, approvers: approvers, intelligentStatus: intelligentStatus, resourceType: resourceType, components: components, flowOption: flowOption, needSignReview: needSignReview, needCreateReview: needCreateReview, userData: userData, flowId: flowId, flowType: flowType, agent: agent), region: region, logger: logger, on: eventLoop)
+    public func createPrepareFlow(operator: UserInfo, resourceId: String, flowName: String, unordered: Bool? = nil, deadline: Int64? = nil, userFlowTypeId: String? = nil, flowType: String? = nil, approvers: [FlowCreateApprover]? = nil, intelligentStatus: String? = nil, resourceType: Int64? = nil, components: Component? = nil, flowOption: CreateFlowOption? = nil, needSignReview: Bool? = nil, needCreateReview: Bool? = nil, userData: String? = nil, flowId: String? = nil, agent: Agent? = nil, initiatorComponents: [Component]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrepareFlowResponse {
+        try await self.createPrepareFlow(.init(operator: `operator`, resourceId: resourceId, flowName: flowName, unordered: unordered, deadline: deadline, userFlowTypeId: userFlowTypeId, flowType: flowType, approvers: approvers, intelligentStatus: intelligentStatus, resourceType: resourceType, components: components, flowOption: flowOption, needSignReview: needSignReview, needCreateReview: needCreateReview, userData: userData, flowId: flowId, agent: agent, initiatorComponents: initiatorComponents), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -19,6 +19,7 @@ import TecoCore
 extension TCWafError {
     public struct InternalError: TCWafErrorType {
         enum Code: String {
+            case asynchronousCallFailed = "InternalError.AsynchronousCallFailed"
             case dbErr = "InternalError.DBErr"
             case unknownErr = "InternalError.UnknownErr"
             case other = "InternalError"
@@ -46,6 +47,11 @@ extension TCWafError {
             self.context = context
         }
 
+        /// 异步调用失败
+        public static var asynchronousCallFailed: InternalError {
+            InternalError(.asynchronousCallFailed)
+        }
+
         /// DBErr
         public static var dbErr: InternalError {
             InternalError(.dbErr)
@@ -63,6 +69,8 @@ extension TCWafError {
         public func asWafError() -> TCWafError {
             let code: TCWafError.Code
             switch self.error {
+            case .asynchronousCallFailed:
+                code = .internalError_AsynchronousCallFailed
             case .dbErr:
                 code = .internalError_DBErr
             case .unknownErr:

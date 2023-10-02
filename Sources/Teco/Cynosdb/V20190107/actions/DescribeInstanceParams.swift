@@ -57,33 +57,33 @@ extension Cynosdb {
         }
     }
 
-    /// 查询实例参数列表
+    /// 查询实例参数
     ///
-    /// 该接口(DescribeInstanceParams)查询实例参数列表
+    /// 该接口(DescribeInstanceParams)查询实例参数
     @inlinable
     public func describeInstanceParams(_ input: DescribeInstanceParamsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceParamsResponse> {
         self.client.execute(action: "DescribeInstanceParams", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询实例参数列表
+    /// 查询实例参数
     ///
-    /// 该接口(DescribeInstanceParams)查询实例参数列表
+    /// 该接口(DescribeInstanceParams)查询实例参数
     @inlinable
     public func describeInstanceParams(_ input: DescribeInstanceParamsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceParamsResponse {
         try await self.client.execute(action: "DescribeInstanceParams", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询实例参数列表
+    /// 查询实例参数
     ///
-    /// 该接口(DescribeInstanceParams)查询实例参数列表
+    /// 该接口(DescribeInstanceParams)查询实例参数
     @inlinable
     public func describeInstanceParams(clusterId: String, instanceIds: [String], paramKeyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceParamsResponse> {
         self.describeInstanceParams(.init(clusterId: clusterId, instanceIds: instanceIds, paramKeyword: paramKeyword), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询实例参数列表
+    /// 查询实例参数
     ///
-    /// 该接口(DescribeInstanceParams)查询实例参数列表
+    /// 该接口(DescribeInstanceParams)查询实例参数
     @inlinable
     public func describeInstanceParams(clusterId: String, instanceIds: [String], paramKeyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceParamsResponse {
         try await self.describeInstanceParams(.init(clusterId: clusterId, instanceIds: instanceIds, paramKeyword: paramKeyword), region: region, logger: logger, on: eventLoop)

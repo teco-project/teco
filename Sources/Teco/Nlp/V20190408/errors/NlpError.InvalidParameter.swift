@@ -21,7 +21,6 @@ extension TCNlpError {
         enum Code: String {
             case serviceError = "InvalidParameter.ServiceError"
             case textTooLongCode = "InvalidParameter.TextTooLongCode"
-            case other = "InvalidParameter"
         }
 
         private let error: Code
@@ -56,11 +55,6 @@ extension TCNlpError {
             InvalidParameter(.textTooLongCode)
         }
 
-        /// 参数错误
-        public static var other: InvalidParameter {
-            InvalidParameter(.other)
-        }
-
         public func asNlpError() -> TCNlpError {
             let code: TCNlpError.Code
             switch self.error {
@@ -68,8 +62,6 @@ extension TCNlpError {
                 code = .invalidParameter_ServiceError
             case .textTooLongCode:
                 code = .invalidParameter_TextTooLongCode
-            case .other:
-                code = .invalidParameter
             }
             return TCNlpError(code, context: self.context)
         }

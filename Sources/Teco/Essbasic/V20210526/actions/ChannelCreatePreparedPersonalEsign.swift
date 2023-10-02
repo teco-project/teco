@@ -51,7 +51,10 @@ extension Essbasic {
         /// 是否开通自动签，该功能需联系运营工作人员开通后使用
         public let enableAutoSign: Bool?
 
-        public init(agent: Agent, userName: String, idCardNumber: String, sealName: String, sealImage: String, operator: UserInfo? = nil, idCardType: String? = nil, sealImageCompress: Bool? = nil, mobile: String? = nil, enableAutoSign: Bool? = nil) {
+        /// 设置用户开通自动签时是否绑定个人自动签账号许可。一旦绑定后，将扣减购买的个人自动签账号许可一次（1年有效期），不可解绑释放。不传默认为绑定自动签账号许可。 0-绑定个人自动签账号许可，开通后将扣减购买的个人自动签账号许可一次 1-不绑定，发起合同时将按标准合同套餐进行扣减
+        public let licenseType: Int64?
+
+        public init(agent: Agent, userName: String, idCardNumber: String, sealName: String, sealImage: String, operator: UserInfo? = nil, idCardType: String? = nil, sealImageCompress: Bool? = nil, mobile: String? = nil, enableAutoSign: Bool? = nil, licenseType: Int64? = nil) {
             self.agent = agent
             self.userName = userName
             self.idCardNumber = idCardNumber
@@ -62,6 +65,7 @@ extension Essbasic {
             self.sealImageCompress = sealImageCompress
             self.mobile = mobile
             self.enableAutoSign = enableAutoSign
+            self.licenseType = licenseType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -75,6 +79,7 @@ extension Essbasic {
             case sealImageCompress = "SealImageCompress"
             case mobile = "Mobile"
             case enableAutoSign = "EnableAutoSign"
+            case licenseType = "LicenseType"
         }
     }
 
@@ -112,15 +117,15 @@ extension Essbasic {
     ///
     /// 本接口（ChannelCreatePreparedPersonalEsign）用于创建导入个人印章（处方单场景专用，使用此接口请与客户经理确认）。
     @inlinable
-    public func channelCreatePreparedPersonalEsign(agent: Agent, userName: String, idCardNumber: String, sealName: String, sealImage: String, operator: UserInfo? = nil, idCardType: String? = nil, sealImageCompress: Bool? = nil, mobile: String? = nil, enableAutoSign: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreatePreparedPersonalEsignResponse> {
-        self.channelCreatePreparedPersonalEsign(.init(agent: agent, userName: userName, idCardNumber: idCardNumber, sealName: sealName, sealImage: sealImage, operator: `operator`, idCardType: idCardType, sealImageCompress: sealImageCompress, mobile: mobile, enableAutoSign: enableAutoSign), region: region, logger: logger, on: eventLoop)
+    public func channelCreatePreparedPersonalEsign(agent: Agent, userName: String, idCardNumber: String, sealName: String, sealImage: String, operator: UserInfo? = nil, idCardType: String? = nil, sealImageCompress: Bool? = nil, mobile: String? = nil, enableAutoSign: Bool? = nil, licenseType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreatePreparedPersonalEsignResponse> {
+        self.channelCreatePreparedPersonalEsign(.init(agent: agent, userName: userName, idCardNumber: idCardNumber, sealName: sealName, sealImage: sealImage, operator: `operator`, idCardType: idCardType, sealImageCompress: sealImageCompress, mobile: mobile, enableAutoSign: enableAutoSign, licenseType: licenseType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建导入处方单个人印章
     ///
     /// 本接口（ChannelCreatePreparedPersonalEsign）用于创建导入个人印章（处方单场景专用，使用此接口请与客户经理确认）。
     @inlinable
-    public func channelCreatePreparedPersonalEsign(agent: Agent, userName: String, idCardNumber: String, sealName: String, sealImage: String, operator: UserInfo? = nil, idCardType: String? = nil, sealImageCompress: Bool? = nil, mobile: String? = nil, enableAutoSign: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreatePreparedPersonalEsignResponse {
-        try await self.channelCreatePreparedPersonalEsign(.init(agent: agent, userName: userName, idCardNumber: idCardNumber, sealName: sealName, sealImage: sealImage, operator: `operator`, idCardType: idCardType, sealImageCompress: sealImageCompress, mobile: mobile, enableAutoSign: enableAutoSign), region: region, logger: logger, on: eventLoop)
+    public func channelCreatePreparedPersonalEsign(agent: Agent, userName: String, idCardNumber: String, sealName: String, sealImage: String, operator: UserInfo? = nil, idCardType: String? = nil, sealImageCompress: Bool? = nil, mobile: String? = nil, enableAutoSign: Bool? = nil, licenseType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreatePreparedPersonalEsignResponse {
+        try await self.channelCreatePreparedPersonalEsign(.init(agent: agent, userName: userName, idCardNumber: idCardNumber, sealName: sealName, sealImage: sealImage, operator: `operator`, idCardType: idCardType, sealImageCompress: sealImageCompress, mobile: mobile, enableAutoSign: enableAutoSign, licenseType: licenseType), region: region, logger: logger, on: eventLoop)
     }
 }

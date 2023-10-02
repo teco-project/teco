@@ -48,6 +48,7 @@ public struct TCCdbError: TCCdbErrorType {
         case failedOperation_FailedOperationError = "FailedOperation.FailedOperationError"
         case failedOperation_GetPrivilegeError = "FailedOperation.GetPrivilegeError"
         case failedOperation_InstanceQueryError = "FailedOperation.InstanceQueryError"
+        case failedOperation_InstanceTaskConflictError = "FailedOperation.InstanceTaskConflictError"
         case failedOperation_JsonMarshalError = "FailedOperation.JsonMarshalError"
         case failedOperation_JsonUnmarshalError = "FailedOperation.JsonUnmarshalError"
         case failedOperation_NotChangeStrategy = "FailedOperation.NotChangeStrategy"
@@ -60,6 +61,7 @@ public struct TCCdbError: TCCdbErrorType {
         case failedOperation_RemoteCallUnmarshalError = "FailedOperation.RemoteCallUnmarshalError"
         case failedOperation_RepeatCreateProxyError = "FailedOperation.RepeatCreateProxyError"
         case failedOperation_ResponseValueError = "FailedOperation.ResponseValueError"
+        case failedOperation_ResultSetOverLimit = "FailedOperation.ResultSetOverLimit"
         case failedOperation_StartFlowError = "FailedOperation.StartFlowError"
         case failedOperation_StatusConflict = "FailedOperation.StatusConflict"
         case failedOperation_SubmitAsyncTaskError = "FailedOperation.SubmitAsyncTaskError"
@@ -92,6 +94,7 @@ public struct TCCdbError: TCCdbErrorType {
         case internalError_ExecuteSQLError = "InternalError.ExecuteSQLError"
         case internalError_FtpError = "InternalError.FtpError"
         case internalError_HttpError = "InternalError.HttpError"
+        case internalError_HttpRequestError = "InternalError.HttpRequestError"
         case internalError_ImportError = "InternalError.ImportError"
         case internalError_InnerCommonError = "InternalError.InnerCommonError"
         case internalError_InternalAssertError = "InternalError.InternalAssertError"
@@ -365,6 +368,11 @@ public struct TCCdbError: TCCdbErrorType {
         TCCdbError(.failedOperation_InstanceQueryError)
     }
 
+    /// 实例任务冲突错误。
+    public static var failedOperation_InstanceTaskConflictError: TCCdbError {
+        TCCdbError(.failedOperation_InstanceTaskConflictError)
+    }
+
     /// json序列化失败。
     public static var failedOperation_JsonMarshalError: TCCdbError {
         TCCdbError(.failedOperation_JsonMarshalError)
@@ -423,6 +431,10 @@ public struct TCCdbError: TCCdbErrorType {
     /// 后台请求服务异常，请您联系客服解决。
     public static var failedOperation_ResponseValueError: TCCdbError {
         TCCdbError(.failedOperation_ResponseValueError)
+    }
+
+    public static var failedOperation_ResultSetOverLimit: TCCdbError {
+        TCCdbError(.failedOperation_ResultSetOverLimit)
     }
 
     /// 操作发起失败，请稍后重试。如果操作持续不成功，请您联系客服进行处理。
@@ -585,6 +597,11 @@ public struct TCCdbError: TCCdbErrorType {
     /// Http请求异常。
     public static var internalError_HttpError: TCCdbError {
         TCCdbError(.internalError_HttpError)
+    }
+
+    /// 请求失败。
+    public static var internalError_HttpRequestError: TCCdbError {
+        TCCdbError(.internalError_HttpRequestError)
     }
 
     /// 导入失败。

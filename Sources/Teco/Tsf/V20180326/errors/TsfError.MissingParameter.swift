@@ -43,6 +43,7 @@ extension TCTsfError {
             case groupShirkServeridNull = "MissingParameter.GroupShirkServeridNull"
             case instanceImportModeNull = "MissingParameter.InstanceImportModeNull"
             case namespaceIdRequired = "MissingParameter.NamespaceIdRequired"
+            case namespaceNameRequired = "MissingParameter.NamespaceNameRequired"
             case requiredParameterMissing = "MissingParameter.RequiredParameterMissing"
             case serviceIdRequired = "MissingParameter.ServiceIdRequired"
             case systemParameterRequired = "MissingParameter.SystemParameterRequired"
@@ -191,6 +192,11 @@ extension TCTsfError {
             MissingParameter(.namespaceIdRequired)
         }
 
+        /// 命名空间名称未填写。
+        public static var namespaceNameRequired: MissingParameter {
+            MissingParameter(.namespaceNameRequired)
+        }
+
         /// %s缺失。
         public static var requiredParameterMissing: MissingParameter {
             MissingParameter(.requiredParameterMissing)
@@ -262,6 +268,8 @@ extension TCTsfError {
                 code = .missingParameter_InstanceImportModeNull
             case .namespaceIdRequired:
                 code = .missingParameter_NamespaceIdRequired
+            case .namespaceNameRequired:
+                code = .missingParameter_NamespaceNameRequired
             case .requiredParameterMissing:
                 code = .missingParameter_RequiredParameterMissing
             case .serviceIdRequired:

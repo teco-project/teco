@@ -21,29 +21,33 @@ import TecoCore
 extension Ess {
     /// GetTaskResultApi请求参数结构体
     public struct GetTaskResultApiRequest: TCRequest {
-        /// 任务Id，通过接口CreateConvertTaskApi或CreateMergeFileTask得到的返回任务id
+        /// 转换任务Id，通过接口[创建文件转换任务接口](https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi)或[创建多文件转换任务接口](https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateMergeFileTask)
+        /// 得到的转换任务id
         public let taskId: String
 
-        /// 操作人信息,UserId必填
+        /// 执行本接口操作的员工信息。
+        /// 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。
         public let `operator`: UserInfo?
 
-        /// 应用号信息
-        @available(*, deprecated)
-        public let agent: Agent? = nil
+        /// 代理企业和员工的信息。
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        public let agent: Agent?
 
         /// 暂未开放
         @available(*, deprecated)
         public let organization: OrganizationInfo? = nil
 
-        public init(taskId: String, operator: UserInfo? = nil) {
+        public init(taskId: String, operator: UserInfo? = nil, agent: Agent? = nil) {
             self.taskId = taskId
             self.operator = `operator`
+            self.agent = agent
         }
 
-        @available(*, deprecated, renamed: "init(taskId:operator:)", message: "'agent' and 'organization' are deprecated in 'GetTaskResultApiRequest'. Setting these parameters has no effect.")
+        @available(*, deprecated, renamed: "init(taskId:operator:agent:)", message: "'organization' is deprecated in 'GetTaskResultApiRequest'. Setting this parameter has no effect.")
         public init(taskId: String, operator: UserInfo? = nil, agent: Agent? = nil, organization: OrganizationInfo? = nil) {
             self.taskId = taskId
             self.operator = `operator`
+            self.agent = agent
         }
 
         enum CodingKeys: String, CodingKey {
@@ -60,21 +64,23 @@ extension Ess {
         public let taskId: String
 
         /// 任务状态，需要关注的状态
-        /// 0  :NeedTranform   - 任务已提交
-        /// 4  :Processing     - 文档转换中
-        /// 8  :TaskEnd        - 任务处理完成
-        /// -2 :DownloadFailed - 下载失败
-        /// -6 :ProcessFailed  - 转换失败
-        /// -13:ProcessTimeout - 转换文件超时
+        ///
+        /// - **0**  :NeedTranform   - 任务已提交
+        /// - **4**  :Processing     - 文档转换中
+        /// - **8**  :TaskEnd        - 任务处理完成
+        /// - **-2** :DownloadFailed - 下载失败
+        /// - **-6** :ProcessFailed  - 转换失败
+        /// - **-13**:ProcessTimeout - 转换文件超时
         public let taskStatus: Int64
 
         /// 状态描述，需要关注的状态
-        /// NeedTranform   - 任务已提交
-        /// Processing     - 文档转换中
-        /// TaskEnd        - 任务处理完成
-        /// DownloadFailed - 下载失败
-        /// ProcessFailed  - 转换失败
-        /// ProcessTimeout - 转换文件超时
+        ///
+        /// - **NeedTranform** : 任务已提交
+        /// - **Processing** : 文档转换中
+        /// - **TaskEnd** : 任务处理完成
+        /// - **DownloadFailed** : 下载失败
+        /// - **ProcessFailed** : 转换失败
+        /// - **ProcessTimeout** : 转换文件超时
         public let taskMessage: String
 
         /// 资源Id，也是FileId，用于文件发起时使用
@@ -94,8 +100,14 @@ extension Ess {
 
     /// 查询转换任务状态
     ///
-    /// 查询转换任务的状态。转换任务Id通过发起转换任务接口（CreateConvertTaskApi）获取。
-    /// 注意：大文件转换所需的时间可能会比较长。
+    /// 此接口（GetTaskResultApi）用来查询转换任务的状态。如需发起转换任务，请使用[创建文件转换任务接口](https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi)进行资源文件的转换操作
+    ///
+    /// 前提条件：已调用 [创建文件转换任务接口](https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi)进行文件转换，并得到了返回的转换任务Id。
+    ///
+    /// 适用场景：已创建一个文件转换任务，想查询该文件转换任务的状态，或获取转换后的文件资源Id。
+    ///
+    /// 注：
+    /// 1. `大文件转换所需的时间可能会比较长`
     @inlinable
     public func getTaskResultApi(_ input: GetTaskResultApiRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTaskResultApiResponse> {
         self.client.execute(action: "GetTaskResultApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -103,8 +115,14 @@ extension Ess {
 
     /// 查询转换任务状态
     ///
-    /// 查询转换任务的状态。转换任务Id通过发起转换任务接口（CreateConvertTaskApi）获取。
-    /// 注意：大文件转换所需的时间可能会比较长。
+    /// 此接口（GetTaskResultApi）用来查询转换任务的状态。如需发起转换任务，请使用[创建文件转换任务接口](https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi)进行资源文件的转换操作
+    ///
+    /// 前提条件：已调用 [创建文件转换任务接口](https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi)进行文件转换，并得到了返回的转换任务Id。
+    ///
+    /// 适用场景：已创建一个文件转换任务，想查询该文件转换任务的状态，或获取转换后的文件资源Id。
+    ///
+    /// 注：
+    /// 1. `大文件转换所需的时间可能会比较长`
     @inlinable
     public func getTaskResultApi(_ input: GetTaskResultApiRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTaskResultApiResponse {
         try await self.client.execute(action: "GetTaskResultApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -112,18 +130,30 @@ extension Ess {
 
     /// 查询转换任务状态
     ///
-    /// 查询转换任务的状态。转换任务Id通过发起转换任务接口（CreateConvertTaskApi）获取。
-    /// 注意：大文件转换所需的时间可能会比较长。
+    /// 此接口（GetTaskResultApi）用来查询转换任务的状态。如需发起转换任务，请使用[创建文件转换任务接口](https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi)进行资源文件的转换操作
+    ///
+    /// 前提条件：已调用 [创建文件转换任务接口](https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi)进行文件转换，并得到了返回的转换任务Id。
+    ///
+    /// 适用场景：已创建一个文件转换任务，想查询该文件转换任务的状态，或获取转换后的文件资源Id。
+    ///
+    /// 注：
+    /// 1. `大文件转换所需的时间可能会比较长`
     @inlinable
-    public func getTaskResultApi(taskId: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTaskResultApiResponse> {
-        self.getTaskResultApi(.init(taskId: taskId, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func getTaskResultApi(taskId: String, operator: UserInfo? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTaskResultApiResponse> {
+        self.getTaskResultApi(.init(taskId: taskId, operator: `operator`, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询转换任务状态
     ///
-    /// 查询转换任务的状态。转换任务Id通过发起转换任务接口（CreateConvertTaskApi）获取。
-    /// 注意：大文件转换所需的时间可能会比较长。
-    @available(*, deprecated, renamed: "getTaskResultApi(taskId:operator:region:logger:on:)", message: "'agent' and 'organization' are deprecated. Setting these parameters has no effect.")
+    /// 此接口（GetTaskResultApi）用来查询转换任务的状态。如需发起转换任务，请使用[创建文件转换任务接口](https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi)进行资源文件的转换操作
+    ///
+    /// 前提条件：已调用 [创建文件转换任务接口](https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi)进行文件转换，并得到了返回的转换任务Id。
+    ///
+    /// 适用场景：已创建一个文件转换任务，想查询该文件转换任务的状态，或获取转换后的文件资源Id。
+    ///
+    /// 注：
+    /// 1. `大文件转换所需的时间可能会比较长`
+    @available(*, deprecated, renamed: "getTaskResultApi(taskId:operator:agent:region:logger:on:)", message: "'organization' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func getTaskResultApi(taskId: String, operator: UserInfo? = nil, agent: Agent? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTaskResultApiResponse> {
         self.getTaskResultApi(.init(taskId: taskId, operator: `operator`, agent: agent, organization: organization), region: region, logger: logger, on: eventLoop)
@@ -131,18 +161,30 @@ extension Ess {
 
     /// 查询转换任务状态
     ///
-    /// 查询转换任务的状态。转换任务Id通过发起转换任务接口（CreateConvertTaskApi）获取。
-    /// 注意：大文件转换所需的时间可能会比较长。
+    /// 此接口（GetTaskResultApi）用来查询转换任务的状态。如需发起转换任务，请使用[创建文件转换任务接口](https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi)进行资源文件的转换操作
+    ///
+    /// 前提条件：已调用 [创建文件转换任务接口](https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi)进行文件转换，并得到了返回的转换任务Id。
+    ///
+    /// 适用场景：已创建一个文件转换任务，想查询该文件转换任务的状态，或获取转换后的文件资源Id。
+    ///
+    /// 注：
+    /// 1. `大文件转换所需的时间可能会比较长`
     @inlinable
-    public func getTaskResultApi(taskId: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTaskResultApiResponse {
-        try await self.getTaskResultApi(.init(taskId: taskId, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func getTaskResultApi(taskId: String, operator: UserInfo? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTaskResultApiResponse {
+        try await self.getTaskResultApi(.init(taskId: taskId, operator: `operator`, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询转换任务状态
     ///
-    /// 查询转换任务的状态。转换任务Id通过发起转换任务接口（CreateConvertTaskApi）获取。
-    /// 注意：大文件转换所需的时间可能会比较长。
-    @available(*, deprecated, renamed: "getTaskResultApi(taskId:operator:region:logger:on:)", message: "'agent' and 'organization' are deprecated. Setting these parameters has no effect.")
+    /// 此接口（GetTaskResultApi）用来查询转换任务的状态。如需发起转换任务，请使用[创建文件转换任务接口](https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi)进行资源文件的转换操作
+    ///
+    /// 前提条件：已调用 [创建文件转换任务接口](https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi)进行文件转换，并得到了返回的转换任务Id。
+    ///
+    /// 适用场景：已创建一个文件转换任务，想查询该文件转换任务的状态，或获取转换后的文件资源Id。
+    ///
+    /// 注：
+    /// 1. `大文件转换所需的时间可能会比较长`
+    @available(*, deprecated, renamed: "getTaskResultApi(taskId:operator:agent:region:logger:on:)", message: "'organization' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func getTaskResultApi(taskId: String, operator: UserInfo? = nil, agent: Agent? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTaskResultApiResponse {
         try await self.getTaskResultApi(.init(taskId: taskId, operator: `operator`, agent: agent, organization: organization), region: region, logger: logger, on: eventLoop)

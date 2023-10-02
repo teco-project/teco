@@ -40,20 +40,32 @@ extension Organization {
 
     /// 组织身份策略
     public struct IdentityPolicy: TCInputModel, TCOutputModel {
-        /// 策略ID
-        public let policyId: UInt64
+        /// CAM预设策略ID。PolicyType 为预设策略时有效且必选
+        public let policyId: UInt64?
 
-        /// 策略名称
-        public let policyName: String
+        /// CAM预设策略名称。PolicyType 为预设策略时有效且必选
+        public let policyName: String?
 
-        public init(policyId: UInt64, policyName: String) {
+        /// 策略类型。取值 1-自定义策略  2-预设策略；默认值2
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let policyType: UInt64?
+
+        /// 自定义策略内容，遵循CAM策略语法。PolicyType 为自定义策略时有效且必选
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let policyDocument: String?
+
+        public init(policyId: UInt64? = nil, policyName: String? = nil, policyType: UInt64? = nil, policyDocument: String? = nil) {
             self.policyId = policyId
             self.policyName = policyName
+            self.policyType = policyType
+            self.policyDocument = policyDocument
         }
 
         enum CodingKeys: String, CodingKey {
             case policyId = "PolicyId"
             case policyName = "PolicyName"
+            case policyType = "PolicyType"
+            case policyDocument = "PolicyDocument"
         }
     }
 
@@ -307,21 +319,33 @@ extension Organization {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let identityRoleAliasName: String?
 
-        /// 描述。
+        /// 身份描述。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
 
-        /// 创建时间。
+        /// 首次配置成功的时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
 
-        /// 更新时间。
+        /// 最后一次配置成功的时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
 
-        /// 身份类型。取值： 1-预设  2-自定义
+        /// 身份类型。取值： 1-预设身份  2-自定义身份
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let identityType: UInt64?
+
+        /// 配置状态。取值：1-配置完成 2-需重新配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: UInt64?
+
+        /// 成员Uin。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let memberUin: Int64?
+
+        /// 成员名称。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let memberName: String?
 
         enum CodingKeys: String, CodingKey {
             case identityId = "IdentityId"
@@ -331,6 +355,9 @@ extension Organization {
             case createTime = "CreateTime"
             case updateTime = "UpdateTime"
             case identityType = "IdentityType"
+            case status = "Status"
+            case memberUin = "MemberUin"
+            case memberName = "MemberName"
         }
     }
 

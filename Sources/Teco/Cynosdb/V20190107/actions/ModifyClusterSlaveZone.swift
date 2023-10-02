@@ -57,25 +57,25 @@ extension Cynosdb {
         }
     }
 
-    /// 修改从可用区
+    /// 变更备可用区
     @inlinable
     public func modifyClusterSlaveZone(_ input: ModifyClusterSlaveZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterSlaveZoneResponse> {
         self.client.execute(action: "ModifyClusterSlaveZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 修改从可用区
+    /// 变更备可用区
     @inlinable
     public func modifyClusterSlaveZone(_ input: ModifyClusterSlaveZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterSlaveZoneResponse {
         try await self.client.execute(action: "ModifyClusterSlaveZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 修改从可用区
+    /// 变更备可用区
     @inlinable
     public func modifyClusterSlaveZone(clusterId: String, oldSlaveZone: String, newSlaveZone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterSlaveZoneResponse> {
         self.modifyClusterSlaveZone(.init(clusterId: clusterId, oldSlaveZone: oldSlaveZone, newSlaveZone: newSlaveZone), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 修改从可用区
+    /// 变更备可用区
     @inlinable
     public func modifyClusterSlaveZone(clusterId: String, oldSlaveZone: String, newSlaveZone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterSlaveZoneResponse {
         try await self.modifyClusterSlaveZone(.init(clusterId: clusterId, oldSlaveZone: oldSlaveZone, newSlaveZone: newSlaveZone), region: region, logger: logger, on: eventLoop)

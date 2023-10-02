@@ -24,12 +24,17 @@ extension Vpc {
         /// 带宽包类型, 默认值: BGP, 可选值:
         /// - BGP: 普通BGP共享带宽包
         /// - HIGH_QUALITY_BGP: 精品BGP共享带宽包
+        /// - SINGLEISP_CMCC: 中国移动共享带宽包
+        /// - SINGLEISP_CTCC: 中国电信共享带宽包
+        /// - SINGLEISP_CUCC: 中国联通共享带宽包
         public let networkType: String?
 
         /// 带宽包计费类型, 默认为: TOP5_POSTPAID_BY_MONTH, 可选值:
         /// - TOP5_POSTPAID_BY_MONTH: 按月后付费TOP5计费
         /// - PERCENT95_POSTPAID_BY_MONTH: 按月后付费月95计费
         /// - FIXED_PREPAID_BY_MONTH: 包月预付费计费
+        /// - ENHANCED95_POSTPAID_BY_MONTH: 按月后付费增强型95计费
+        /// - PEAK_BANDWIDTH_POSTPAID_BY_DAY: 后付费日结按带宽计费
         public let chargeType: String?
 
         /// 带宽包名称。
@@ -50,7 +55,10 @@ extension Vpc {
         /// 预付费包月带宽包的购买时长，单位: 月，取值范围: 1~60。
         public let timeSpan: UInt64?
 
-        public init(networkType: String? = nil, chargeType: String? = nil, bandwidthPackageName: String? = nil, bandwidthPackageCount: UInt64? = nil, internetMaxBandwidth: Int64? = nil, tags: [Tag]? = nil, protocol: String? = nil, timeSpan: UInt64? = nil) {
+        /// 网络出口，默认值：center_egress1
+        public let egress: String?
+
+        public init(networkType: String? = nil, chargeType: String? = nil, bandwidthPackageName: String? = nil, bandwidthPackageCount: UInt64? = nil, internetMaxBandwidth: Int64? = nil, tags: [Tag]? = nil, protocol: String? = nil, timeSpan: UInt64? = nil, egress: String? = nil) {
             self.networkType = networkType
             self.chargeType = chargeType
             self.bandwidthPackageName = bandwidthPackageName
@@ -59,6 +67,7 @@ extension Vpc {
             self.tags = tags
             self.protocol = `protocol`
             self.timeSpan = timeSpan
+            self.egress = egress
         }
 
         enum CodingKeys: String, CodingKey {
@@ -70,6 +79,7 @@ extension Vpc {
             case tags = "Tags"
             case `protocol` = "Protocol"
             case timeSpan = "TimeSpan"
+            case egress = "Egress"
         }
     }
 
@@ -111,15 +121,15 @@ extension Vpc {
     ///
     /// 本接口 (CreateBandwidthPackage) 支持创建[设备带宽包](https://cloud.tencent.com/document/product/684/15245#bwptype)和[IP带宽包](https://cloud.tencent.com/document/product/684/15245#bwptype)。
     @inlinable
-    public func createBandwidthPackage(networkType: String? = nil, chargeType: String? = nil, bandwidthPackageName: String? = nil, bandwidthPackageCount: UInt64? = nil, internetMaxBandwidth: Int64? = nil, tags: [Tag]? = nil, protocol: String? = nil, timeSpan: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBandwidthPackageResponse> {
-        self.createBandwidthPackage(.init(networkType: networkType, chargeType: chargeType, bandwidthPackageName: bandwidthPackageName, bandwidthPackageCount: bandwidthPackageCount, internetMaxBandwidth: internetMaxBandwidth, tags: tags, protocol: `protocol`, timeSpan: timeSpan), region: region, logger: logger, on: eventLoop)
+    public func createBandwidthPackage(networkType: String? = nil, chargeType: String? = nil, bandwidthPackageName: String? = nil, bandwidthPackageCount: UInt64? = nil, internetMaxBandwidth: Int64? = nil, tags: [Tag]? = nil, protocol: String? = nil, timeSpan: UInt64? = nil, egress: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBandwidthPackageResponse> {
+        self.createBandwidthPackage(.init(networkType: networkType, chargeType: chargeType, bandwidthPackageName: bandwidthPackageName, bandwidthPackageCount: bandwidthPackageCount, internetMaxBandwidth: internetMaxBandwidth, tags: tags, protocol: `protocol`, timeSpan: timeSpan, egress: egress), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建共享带宽包
     ///
     /// 本接口 (CreateBandwidthPackage) 支持创建[设备带宽包](https://cloud.tencent.com/document/product/684/15245#bwptype)和[IP带宽包](https://cloud.tencent.com/document/product/684/15245#bwptype)。
     @inlinable
-    public func createBandwidthPackage(networkType: String? = nil, chargeType: String? = nil, bandwidthPackageName: String? = nil, bandwidthPackageCount: UInt64? = nil, internetMaxBandwidth: Int64? = nil, tags: [Tag]? = nil, protocol: String? = nil, timeSpan: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBandwidthPackageResponse {
-        try await self.createBandwidthPackage(.init(networkType: networkType, chargeType: chargeType, bandwidthPackageName: bandwidthPackageName, bandwidthPackageCount: bandwidthPackageCount, internetMaxBandwidth: internetMaxBandwidth, tags: tags, protocol: `protocol`, timeSpan: timeSpan), region: region, logger: logger, on: eventLoop)
+    public func createBandwidthPackage(networkType: String? = nil, chargeType: String? = nil, bandwidthPackageName: String? = nil, bandwidthPackageCount: UInt64? = nil, internetMaxBandwidth: Int64? = nil, tags: [Tag]? = nil, protocol: String? = nil, timeSpan: UInt64? = nil, egress: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBandwidthPackageResponse {
+        try await self.createBandwidthPackage(.init(networkType: networkType, chargeType: chargeType, bandwidthPackageName: bandwidthPackageName, bandwidthPackageCount: bandwidthPackageCount, internetMaxBandwidth: internetMaxBandwidth, tags: tags, protocol: `protocol`, timeSpan: timeSpan, egress: egress), region: region, logger: logger, on: eventLoop)
     }
 }

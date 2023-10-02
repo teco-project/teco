@@ -49,7 +49,7 @@ public struct Eis: TCService {
             region: region,
             language: language,
             endpoint: endpoint,
-            errorType: nil,
+            errorType: TCEisError.self,
             timeout: timeout,
             byteBufferAllocator: byteBufferAllocator
         )

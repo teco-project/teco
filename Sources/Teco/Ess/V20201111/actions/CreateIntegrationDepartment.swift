@@ -21,27 +21,34 @@ import TecoCore
 extension Ess {
     /// CreateIntegrationDepartment请求参数结构体
     public struct CreateIntegrationDepartmentRequest: TCRequest {
-        /// 操作人信息，UserId必填且需拥有组织架构管理权限
+        /// 执行本接口操作的员工信息。
+        /// 注: `在调用此接口时，请确保指定的员工已获得组织架构管理权限，并具备接口传入的相应资源的数据权限。`
         public let `operator`: UserInfo
 
-        /// 部门名称，不超过50个字符
+        /// 部门名称，最大长度为50个字符。
         public let deptName: String
 
-        /// 电子签父部门ID，与ParentDeptOpenId二选一,优先ParentDeptId,都为空时自动填充至根节点下
+        /// 代理企业和员工的信息。 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        public let agent: Agent?
+
+        /// 电子签父部门ID。
+        /// 注：`如果同时指定了ParentDeptId与ParentDeptOpenId参数，系统将优先使用ParentDeptId。当二者都未指定时，创建的新部门将自动填充至根节点部门下。`
         public let parentDeptId: String?
 
-        /// 第三方平台中父部门ID,与ParentDeptId二选一,优先ParentDeptId,都为空时自动填充至根节点下
+        /// 第三方平台中父部门ID。
+        /// 注：`如果同时指定了ParentDeptId与ParentDeptOpenId参数，系统将优先使用ParentDeptId。当二者都未指定时，创建的新部门将自动填充至根节点部门下。`
         public let parentDeptOpenId: String?
 
-        /// 客户系统部门ID，不超过64个字符
+        /// 客户系统部门ID，最大长度为64个字符。
         public let deptOpenId: String?
 
-        /// 排序号,1~30000范围内
+        /// 排序号，支持设置的数值范围为1~30000。同一父部门下，排序号越大，部门顺序越靠前。
         public let orderNo: UInt64?
 
-        public init(operator: UserInfo, deptName: String, parentDeptId: String? = nil, parentDeptOpenId: String? = nil, deptOpenId: String? = nil, orderNo: UInt64? = nil) {
+        public init(operator: UserInfo, deptName: String, agent: Agent? = nil, parentDeptId: String? = nil, parentDeptOpenId: String? = nil, deptOpenId: String? = nil, orderNo: UInt64? = nil) {
             self.operator = `operator`
             self.deptName = deptName
+            self.agent = agent
             self.parentDeptId = parentDeptId
             self.parentDeptOpenId = parentDeptOpenId
             self.deptOpenId = deptOpenId
@@ -51,6 +58,7 @@ extension Ess {
         enum CodingKeys: String, CodingKey {
             case `operator` = "Operator"
             case deptName = "DeptName"
+            case agent = "Agent"
             case parentDeptId = "ParentDeptId"
             case parentDeptOpenId = "ParentDeptOpenId"
             case deptOpenId = "DeptOpenId"
@@ -60,7 +68,7 @@ extension Ess {
 
     /// CreateIntegrationDepartment返回参数结构体
     public struct CreateIntegrationDepartmentResponse: TCResponse {
-        /// 电子签部门ID
+        /// 电子签部门ID。建议开发者保存此部门ID，方便后续查询或修改部门信息。
         public let deptId: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -74,7 +82,7 @@ extension Ess {
 
     /// 创建企业部门
     ///
-    /// 通过此接口，创建企业的部门，支持绑定客户系统部门ID。
+    /// 此接口（CreateIntegrationDepartment）用于创建企业的部门信息，支持绑定客户系统部门ID。
     @inlinable
     public func createIntegrationDepartment(_ input: CreateIntegrationDepartmentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIntegrationDepartmentResponse> {
         self.client.execute(action: "CreateIntegrationDepartment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -82,7 +90,7 @@ extension Ess {
 
     /// 创建企业部门
     ///
-    /// 通过此接口，创建企业的部门，支持绑定客户系统部门ID。
+    /// 此接口（CreateIntegrationDepartment）用于创建企业的部门信息，支持绑定客户系统部门ID。
     @inlinable
     public func createIntegrationDepartment(_ input: CreateIntegrationDepartmentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIntegrationDepartmentResponse {
         try await self.client.execute(action: "CreateIntegrationDepartment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -90,17 +98,17 @@ extension Ess {
 
     /// 创建企业部门
     ///
-    /// 通过此接口，创建企业的部门，支持绑定客户系统部门ID。
+    /// 此接口（CreateIntegrationDepartment）用于创建企业的部门信息，支持绑定客户系统部门ID。
     @inlinable
-    public func createIntegrationDepartment(operator: UserInfo, deptName: String, parentDeptId: String? = nil, parentDeptOpenId: String? = nil, deptOpenId: String? = nil, orderNo: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIntegrationDepartmentResponse> {
-        self.createIntegrationDepartment(.init(operator: `operator`, deptName: deptName, parentDeptId: parentDeptId, parentDeptOpenId: parentDeptOpenId, deptOpenId: deptOpenId, orderNo: orderNo), region: region, logger: logger, on: eventLoop)
+    public func createIntegrationDepartment(operator: UserInfo, deptName: String, agent: Agent? = nil, parentDeptId: String? = nil, parentDeptOpenId: String? = nil, deptOpenId: String? = nil, orderNo: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIntegrationDepartmentResponse> {
+        self.createIntegrationDepartment(.init(operator: `operator`, deptName: deptName, agent: agent, parentDeptId: parentDeptId, parentDeptOpenId: parentDeptOpenId, deptOpenId: deptOpenId, orderNo: orderNo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建企业部门
     ///
-    /// 通过此接口，创建企业的部门，支持绑定客户系统部门ID。
+    /// 此接口（CreateIntegrationDepartment）用于创建企业的部门信息，支持绑定客户系统部门ID。
     @inlinable
-    public func createIntegrationDepartment(operator: UserInfo, deptName: String, parentDeptId: String? = nil, parentDeptOpenId: String? = nil, deptOpenId: String? = nil, orderNo: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIntegrationDepartmentResponse {
-        try await self.createIntegrationDepartment(.init(operator: `operator`, deptName: deptName, parentDeptId: parentDeptId, parentDeptOpenId: parentDeptOpenId, deptOpenId: deptOpenId, orderNo: orderNo), region: region, logger: logger, on: eventLoop)
+    public func createIntegrationDepartment(operator: UserInfo, deptName: String, agent: Agent? = nil, parentDeptId: String? = nil, parentDeptOpenId: String? = nil, deptOpenId: String? = nil, orderNo: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIntegrationDepartmentResponse {
+        try await self.createIntegrationDepartment(.init(operator: `operator`, deptName: deptName, agent: agent, parentDeptId: parentDeptId, parentDeptOpenId: parentDeptOpenId, deptOpenId: deptOpenId, orderNo: orderNo), region: region, logger: logger, on: eventLoop)
     }
 }

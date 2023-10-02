@@ -27,7 +27,7 @@ extension Tcr {
         /// 列出所有服务级账号
         public let all: Bool?
 
-        /// 是否填充策略
+        /// 是否填充权限信息
         public let embedPermission: Bool?
 
         /// 过滤条件
@@ -72,7 +72,7 @@ extension Tcr {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceAccounts: [ServiceAccount]?
 
-        /// 自定义账户数量
+        /// 服务级账户数量
         public let totalCount: Int64
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

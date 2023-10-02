@@ -24,12 +24,17 @@ extension Tione {
         /// 服务id
         public let serviceId: String
 
-        public init(serviceId: String) {
+        /// 服务分类
+        public let serviceCategory: String?
+
+        public init(serviceId: String, serviceCategory: String? = nil) {
             self.serviceId = serviceId
+            self.serviceCategory = serviceCategory
         }
 
         enum CodingKeys: String, CodingKey {
             case serviceId = "ServiceId"
+            case serviceCategory = "ServiceCategory"
         }
     }
 
@@ -61,13 +66,13 @@ extension Tione {
 
     /// 查询单个服务
     @inlinable
-    public func describeModelService(serviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelServiceResponse> {
-        self.describeModelService(.init(serviceId: serviceId), region: region, logger: logger, on: eventLoop)
+    public func describeModelService(serviceId: String, serviceCategory: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelServiceResponse> {
+        self.describeModelService(.init(serviceId: serviceId, serviceCategory: serviceCategory), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询单个服务
     @inlinable
-    public func describeModelService(serviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceResponse {
-        try await self.describeModelService(.init(serviceId: serviceId), region: region, logger: logger, on: eventLoop)
+    public func describeModelService(serviceId: String, serviceCategory: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceResponse {
+        try await self.describeModelService(.init(serviceId: serviceId, serviceCategory: serviceCategory), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -25,6 +25,7 @@ extension TCApmError {
             case instanceIdIsEmpty = "FailedOperation.InstanceIdIsEmpty"
             case instanceNotFound = "FailedOperation.InstanceNotFound"
             case invalidInstanceID = "FailedOperation.InvalidInstanceID"
+            case invalidRequest = "FailedOperation.InvalidRequest"
             case metricFiltersLackParams = "FailedOperation.MetricFiltersLackParams"
             case notInnerVPC = "FailedOperation.NotInnerVPC"
             case queryTimeIntervalIsNotSupported = "FailedOperation.QueryTimeIntervalIsNotSupported"
@@ -86,6 +87,11 @@ extension TCApmError {
             FailedOperation(.invalidInstanceID)
         }
 
+        /// 修改为合法请求
+        public static var invalidRequest: FailedOperation {
+            FailedOperation(.invalidRequest)
+        }
+
         /// 查询指标类数据查询条件缺少过滤参数。
         public static var metricFiltersLackParams: FailedOperation {
             FailedOperation(.metricFiltersLackParams)
@@ -136,6 +142,8 @@ extension TCApmError {
                 code = .failedOperation_InstanceNotFound
             case .invalidInstanceID:
                 code = .failedOperation_InvalidInstanceID
+            case .invalidRequest:
+                code = .failedOperation_InvalidRequest
             case .metricFiltersLackParams:
                 code = .failedOperation_MetricFiltersLackParams
             case .notInnerVPC:

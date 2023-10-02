@@ -58,7 +58,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func getDepositFile(_ input: GetDepositFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositFileResponse> {
-        fatalError("GetDepositFile is no longer available.")
+        fatalError("'GetDepositFile' is no longer available.")
     }
 
     /// 存证文件查询
@@ -68,7 +68,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func getDepositFile(_ input: GetDepositFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositFileResponse {
-        fatalError("GetDepositFile is no longer available.")
+        fatalError("'GetDepositFile' is no longer available.")
     }
 
     /// 存证文件查询
@@ -78,7 +78,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func getDepositFile(evidenceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositFileResponse> {
-        fatalError("GetDepositFile is no longer available.")
+        fatalError("'GetDepositFile' is no longer available.")
     }
 
     /// 存证文件查询
@@ -88,6 +88,6 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func getDepositFile(evidenceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositFileResponse {
-        fatalError("GetDepositFile is no longer available.")
+        fatalError("'GetDepositFile' is no longer available.")
     }
 }

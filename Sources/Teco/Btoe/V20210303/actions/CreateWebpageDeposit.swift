@@ -78,7 +78,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createWebpageDeposit(_ input: CreateWebpageDepositRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWebpageDepositResponse> {
-        fatalError("CreateWebpageDeposit is no longer available.")
+        fatalError("'CreateWebpageDeposit' is no longer available.")
     }
 
     /// 网页快照存证
@@ -87,7 +87,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createWebpageDeposit(_ input: CreateWebpageDepositRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWebpageDepositResponse {
-        fatalError("CreateWebpageDeposit is no longer available.")
+        fatalError("'CreateWebpageDeposit' is no longer available.")
     }
 
     /// 网页快照存证
@@ -96,7 +96,7 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createWebpageDeposit(evidenceName: String, evidenceUrl: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWebpageDepositResponse> {
-        fatalError("CreateWebpageDeposit is no longer available.")
+        fatalError("'CreateWebpageDeposit' is no longer available.")
     }
 
     /// 网页快照存证
@@ -105,6 +105,6 @@ extension Btoe {
     @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createWebpageDeposit(evidenceName: String, evidenceUrl: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWebpageDepositResponse {
-        fatalError("CreateWebpageDeposit is no longer available.")
+        fatalError("'CreateWebpageDeposit' is no longer available.")
     }
 }

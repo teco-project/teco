@@ -21,97 +21,60 @@ import TecoCore
 extension Teo {
     /// DescribeAccelerationDomains请求参数结构体
     public struct DescribeAccelerationDomainsRequest: TCPaginatedRequest {
-        /// 加速域名所属站点ID。
+        /// 加速域名所属站点 ID。
         public let zoneId: String
 
-        /// 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
-        /// - domain-name
-        ///
-        /// 按照【**加速域名名称**】进行过滤。
-        ///
-        /// 类型：String
-        ///
-        /// 必选：否
-        /// - origin-type
-        ///
-        /// 按照【**源站类型**】进行过滤。
-        ///
-        /// 类型：String
-        ///
-        /// 必选：否
-        /// - origin
-        ///
-        /// 按照【**主源站地址**】进行过滤。
-        ///
-        /// 类型：String
-        ///
-        /// 必选：否
-        /// - backup-origin
-        ///
-        /// 按照【**备用源站地址**】进行过滤。
-        ///
-        /// 类型：String
-        ///
-        /// 必选：否
-        /// - domain-cname
-        ///
-        /// 按照【**加速CNAME名**】进行过滤。
-        ///
-        /// 类型：String
-        ///
-        /// 必选：否
-        /// - share-cname
-        ///
-        /// 按照【**共享CNAME名**】进行过滤。
-        ///
-        /// 类型：String
-        ///
-        /// 必选：否
+        /// 分页查询偏移量，默认为 0。
+        public let offset: Int64?
+
+        /// 分页查询限制数目，默认值：20，上限：200。
+        public let limit: Int64?
+
+        /// 过滤条件，Filters.Values 的上限为 20。该参数不填写时，返回当前 zone-id 下所有域名信息。详细的过滤条件如下：
+        /// - domain-name：按照加速域名进行过滤；
+        /// - origin-type：按照源站类型进行过滤；
+        /// - origin：按照主源站地址进行过滤；
+        /// - backup-origin： 按照备用源站地址进行过滤；
+        /// - domain-cname：按照 CNAME 进行过滤；
+        /// - share-cname：按照共享 CNAME 进行过滤；
         public let filters: [AdvancedFilter]?
 
-        /// 列表排序方式，取值有：
+        /// 可根据该字段对返回结果进行排序，取值有：
+        /// - created_on：加速域名创建时间；
+        /// - domain-name：加速域名。
+        /// 不填写时，默认对返回结果按照 domain-name 排序。
+        public let order: String?
+
+        /// 排序方向，如果是字段值为数字，则根据数字大小排序；如果字段值为文本，则根据 ascill 码的大小排序。取值有：
         /// - asc：升序排列；
         /// - desc：降序排列。
-        /// 默认值为asc。
+        /// 不填写使用默认值 asc。
         public let direction: String?
 
         /// 匹配方式，取值有：
         /// - all：返回匹配所有查询条件的加速域名；
         /// - any：返回匹配任意一个查询条件的加速域名。
-        /// 默认值为all。
+        /// 不填写时默认值为 all。
         public let match: String?
 
-        /// 分页查询限制数目，默认值：20，上限：200。
-        public let limit: Int64?
-
-        /// 分页查询偏移量，默认为 0。
-        public let offset: Int64?
-
-        /// 排序依据，取值有：
-        /// - created_on：加速域名创建时间；
-        /// - domain-name：加速域名名称；
-        ///
-        /// </li>默认根据domain-name属性排序。
-        public let order: String?
-
-        public init(zoneId: String, filters: [AdvancedFilter]? = nil, direction: String? = nil, match: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil) {
+        public init(zoneId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [AdvancedFilter]? = nil, order: String? = nil, direction: String? = nil, match: String? = nil) {
             self.zoneId = zoneId
+            self.offset = offset
+            self.limit = limit
             self.filters = filters
+            self.order = order
             self.direction = direction
             self.match = match
-            self.limit = limit
-            self.offset = offset
-            self.order = order
         }
 
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
+            case offset = "Offset"
+            case limit = "Limit"
             case filters = "Filters"
+            case order = "Order"
             case direction = "Direction"
             case match = "Match"
-            case limit = "Limit"
-            case offset = "Offset"
-            case order = "Order"
         }
 
         /// Compute the next request based on API response.
@@ -119,16 +82,16 @@ extension Teo {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return .init(zoneId: self.zoneId, filters: self.filters, direction: self.direction, match: self.match, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), order: self.order)
+            return .init(zoneId: self.zoneId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters, order: self.order, direction: self.direction, match: self.match)
         }
     }
 
     /// DescribeAccelerationDomains返回参数结构体
     public struct DescribeAccelerationDomainsResponse: TCPaginatedResponse {
-        /// 加速域名总数。
+        /// 符合查询条件的加速域名个数。
         public let totalCount: Int64
 
-        /// 加速域名列表。
+        /// 符合查询条件的所有加速域名的信息。
         public let accelerationDomains: [AccelerationDomain]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -153,7 +116,7 @@ extension Teo {
 
     /// 查询加速域名列表
     ///
-    /// 查询加速域名列表，支持搜索、分页、排序、过滤。
+    /// 您可以通过本接口查看站点下的域名信息，包括加速域名、源站以及域名状态等信息。您可以查看站点下全部域名的信息，也可以指定过滤条件查询对应的域名信息。
     @inlinable
     public func describeAccelerationDomains(_ input: DescribeAccelerationDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccelerationDomainsResponse> {
         self.client.execute(action: "DescribeAccelerationDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -161,7 +124,7 @@ extension Teo {
 
     /// 查询加速域名列表
     ///
-    /// 查询加速域名列表，支持搜索、分页、排序、过滤。
+    /// 您可以通过本接口查看站点下的域名信息，包括加速域名、源站以及域名状态等信息。您可以查看站点下全部域名的信息，也可以指定过滤条件查询对应的域名信息。
     @inlinable
     public func describeAccelerationDomains(_ input: DescribeAccelerationDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccelerationDomainsResponse {
         try await self.client.execute(action: "DescribeAccelerationDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -169,23 +132,23 @@ extension Teo {
 
     /// 查询加速域名列表
     ///
-    /// 查询加速域名列表，支持搜索、分页、排序、过滤。
+    /// 您可以通过本接口查看站点下的域名信息，包括加速域名、源站以及域名状态等信息。您可以查看站点下全部域名的信息，也可以指定过滤条件查询对应的域名信息。
     @inlinable
-    public func describeAccelerationDomains(zoneId: String, filters: [AdvancedFilter]? = nil, direction: String? = nil, match: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccelerationDomainsResponse> {
-        self.describeAccelerationDomains(.init(zoneId: zoneId, filters: filters, direction: direction, match: match, limit: limit, offset: offset, order: order), region: region, logger: logger, on: eventLoop)
+    public func describeAccelerationDomains(zoneId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [AdvancedFilter]? = nil, order: String? = nil, direction: String? = nil, match: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccelerationDomainsResponse> {
+        self.describeAccelerationDomains(.init(zoneId: zoneId, offset: offset, limit: limit, filters: filters, order: order, direction: direction, match: match), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询加速域名列表
     ///
-    /// 查询加速域名列表，支持搜索、分页、排序、过滤。
+    /// 您可以通过本接口查看站点下的域名信息，包括加速域名、源站以及域名状态等信息。您可以查看站点下全部域名的信息，也可以指定过滤条件查询对应的域名信息。
     @inlinable
-    public func describeAccelerationDomains(zoneId: String, filters: [AdvancedFilter]? = nil, direction: String? = nil, match: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccelerationDomainsResponse {
-        try await self.describeAccelerationDomains(.init(zoneId: zoneId, filters: filters, direction: direction, match: match, limit: limit, offset: offset, order: order), region: region, logger: logger, on: eventLoop)
+    public func describeAccelerationDomains(zoneId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [AdvancedFilter]? = nil, order: String? = nil, direction: String? = nil, match: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccelerationDomainsResponse {
+        try await self.describeAccelerationDomains(.init(zoneId: zoneId, offset: offset, limit: limit, filters: filters, order: order, direction: direction, match: match), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询加速域名列表
     ///
-    /// 查询加速域名列表，支持搜索、分页、排序、过滤。
+    /// 您可以通过本接口查看站点下的域名信息，包括加速域名、源站以及域名状态等信息。您可以查看站点下全部域名的信息，也可以指定过滤条件查询对应的域名信息。
     @inlinable
     public func describeAccelerationDomainsPaginated(_ input: DescribeAccelerationDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [AccelerationDomain])> {
         self.client.paginate(input: input, region: region, command: self.describeAccelerationDomains, logger: logger, on: eventLoop)
@@ -193,7 +156,7 @@ extension Teo {
 
     /// 查询加速域名列表
     ///
-    /// 查询加速域名列表，支持搜索、分页、排序、过滤。
+    /// 您可以通过本接口查看站点下的域名信息，包括加速域名、源站以及域名状态等信息。您可以查看站点下全部域名的信息，也可以指定过滤条件查询对应的域名信息。
     @inlinable @discardableResult
     public func describeAccelerationDomainsPaginated(_ input: DescribeAccelerationDomainsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAccelerationDomainsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAccelerationDomains, callback: onResponse, logger: logger, on: eventLoop)
@@ -201,7 +164,7 @@ extension Teo {
 
     /// 查询加速域名列表
     ///
-    /// 查询加速域名列表，支持搜索、分页、排序、过滤。
+    /// 您可以通过本接口查看站点下的域名信息，包括加速域名、源站以及域名状态等信息。您可以查看站点下全部域名的信息，也可以指定过滤条件查询对应的域名信息。
     ///
     /// - Returns: `AsyncSequence`s of ``AccelerationDomain`` and ``DescribeAccelerationDomainsResponse`` that can be iterated over asynchronously on demand.
     @inlinable

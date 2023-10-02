@@ -39,7 +39,9 @@ extension TCTeoError {
             case errInvalidActionParamDuplicateName = "InvalidParameter.ErrInvalidActionParamDuplicateName"
             case errInvalidActionParamName = "InvalidParameter.ErrInvalidActionParamName"
             case errInvalidActionParamTooManyValues = "InvalidParameter.ErrInvalidActionParamTooManyValues"
+            case errInvalidActionParamValue = "InvalidParameter.ErrInvalidActionParamValue"
             case errInvalidActionType = "InvalidParameter.ErrInvalidActionType"
+            case errInvalidCondition = "InvalidParameter.ErrInvalidCondition"
             case errInvalidConditionIgnoreCase = "InvalidParameter.ErrInvalidConditionIgnoreCase"
             case errInvalidConditionNameBadName = "InvalidParameter.ErrInvalidConditionNameBadName"
             case errInvalidConditionNameTargetNotSupportName = "InvalidParameter.ErrInvalidConditionNameTargetNotSupportName"
@@ -67,6 +69,7 @@ extension TCTeoError {
             case invalidCacheConfigCache = "InvalidParameter.InvalidCacheConfigCache"
             case invalidCacheConfigFollowOrigin = "InvalidParameter.InvalidCacheConfigFollowOrigin"
             case invalidCacheKey = "InvalidParameter.InvalidCacheKey"
+            case invalidCacheKeyCookie = "InvalidParameter.InvalidCacheKeyCookie"
             case invalidCacheKeyIgnoreCase = "InvalidParameter.InvalidCacheKeyIgnoreCase"
             case invalidCacheKeyQueryStringValue = "InvalidParameter.InvalidCacheKeyQueryStringValue"
             case invalidCacheKeyScheme = "InvalidParameter.InvalidCacheKeyScheme"
@@ -125,11 +128,13 @@ extension TCTeoError {
             case postMaxSizeLimitExceeded = "InvalidParameter.PostMaxSizeLimitExceeded"
             case security = "InvalidParameter.Security"
             case settingInvalidParam = "InvalidParameter.SettingInvalidParam"
+            case spaceNotBindOrigin = "InvalidParameter.SpaceNotBindOrigin"
             case target = "InvalidParameter.Target"
             case taskNotGenerated = "InvalidParameter.TaskNotGenerated"
             case taskSystemError = "InvalidParameter.TaskSystemError"
             case uploadUrl = "InvalidParameter.UploadUrl"
             case zoneHasBeenBound = "InvalidParameter.ZoneHasBeenBound"
+            case zoneIsGrayPublishing = "InvalidParameter.ZoneIsGrayPublishing"
             case zoneNotFound = "InvalidParameter.ZoneNotFound"
             case other = "InvalidParameter"
         }
@@ -255,9 +260,19 @@ extension TCTeoError {
             InvalidParameter(.errInvalidActionParamTooManyValues)
         }
 
+        /// 非法操作-非法参数-无效参数值。
+        public static var errInvalidActionParamValue: InvalidParameter {
+            InvalidParameter(.errInvalidActionParamValue)
+        }
+
         /// 非法操作-非法类型。
         public static var errInvalidActionType: InvalidParameter {
             InvalidParameter(.errInvalidActionType)
+        }
+
+        /// 非法条件。
+        public static var errInvalidCondition: InvalidParameter {
+            InvalidParameter(.errInvalidCondition)
         }
 
         /// 非法条件-非法忽略大小写。
@@ -393,6 +408,11 @@ extension TCTeoError {
         /// 无效的缓存键。
         public static var invalidCacheKey: InvalidParameter {
             InvalidParameter(.invalidCacheKey)
+        }
+
+        /// 无效的自定义Cache Key Cookie无效。
+        public static var invalidCacheKeyCookie: InvalidParameter {
+            InvalidParameter(.invalidCacheKeyCookie)
         }
 
         /// 无效的缓存键忽略大小写。
@@ -683,6 +703,10 @@ extension TCTeoError {
             InvalidParameter(.settingInvalidParam)
         }
 
+        public static var spaceNotBindOrigin: InvalidParameter {
+            InvalidParameter(.spaceNotBindOrigin)
+        }
+
         /// 资源存在错误。
         public static var target: InvalidParameter {
             InvalidParameter(.target)
@@ -706,6 +730,11 @@ extension TCTeoError {
         /// 站点已被绑定。
         public static var zoneHasBeenBound: InvalidParameter {
             InvalidParameter(.zoneHasBeenBound)
+        }
+
+        /// 站点升级中，暂不支持进行变更操作，请稍后再试。
+        public static var zoneIsGrayPublishing: InvalidParameter {
+            InvalidParameter(.zoneIsGrayPublishing)
         }
 
         /// 站点不存在。
@@ -761,8 +790,12 @@ extension TCTeoError {
                 code = .invalidParameter_ErrInvalidActionParamName
             case .errInvalidActionParamTooManyValues:
                 code = .invalidParameter_ErrInvalidActionParamTooManyValues
+            case .errInvalidActionParamValue:
+                code = .invalidParameter_ErrInvalidActionParamValue
             case .errInvalidActionType:
                 code = .invalidParameter_ErrInvalidActionType
+            case .errInvalidCondition:
+                code = .invalidParameter_ErrInvalidCondition
             case .errInvalidConditionIgnoreCase:
                 code = .invalidParameter_ErrInvalidConditionIgnoreCase
             case .errInvalidConditionNameBadName:
@@ -817,6 +850,8 @@ extension TCTeoError {
                 code = .invalidParameter_InvalidCacheConfigFollowOrigin
             case .invalidCacheKey:
                 code = .invalidParameter_InvalidCacheKey
+            case .invalidCacheKeyCookie:
+                code = .invalidParameter_InvalidCacheKeyCookie
             case .invalidCacheKeyIgnoreCase:
                 code = .invalidParameter_InvalidCacheKeyIgnoreCase
             case .invalidCacheKeyQueryStringValue:
@@ -933,6 +968,8 @@ extension TCTeoError {
                 code = .invalidParameter_Security
             case .settingInvalidParam:
                 code = .invalidParameter_SettingInvalidParam
+            case .spaceNotBindOrigin:
+                code = .invalidParameter_SpaceNotBindOrigin
             case .target:
                 code = .invalidParameter_Target
             case .taskNotGenerated:
@@ -943,6 +980,8 @@ extension TCTeoError {
                 code = .invalidParameter_UploadUrl
             case .zoneHasBeenBound:
                 code = .invalidParameter_ZoneHasBeenBound
+            case .zoneIsGrayPublishing:
+                code = .invalidParameter_ZoneIsGrayPublishing
             case .zoneNotFound:
                 code = .invalidParameter_ZoneNotFound
             case .other:

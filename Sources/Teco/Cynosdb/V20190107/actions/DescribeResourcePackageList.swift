@@ -93,7 +93,7 @@ extension Cynosdb {
 
     /// DescribeResourcePackageList返回参数结构体
     public struct DescribeResourcePackageListResponse: TCPaginatedResponse {
-        /// 总配置数
+        /// 资源包总数
         public let total: Int64
 
         /// 资源包明细

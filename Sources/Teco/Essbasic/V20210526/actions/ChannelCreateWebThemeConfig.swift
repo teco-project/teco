@@ -57,25 +57,37 @@ extension Essbasic {
         }
     }
 
-    /// 生成页面主题配置
+    /// 创建页面主题配置
+    ///
+    /// 用来创建嵌入式页面个性化主题配置（例如是否展示电子签logo、定义主题色等），该接口配合其他所有可嵌入页面接口使用
+    /// 创建配置对当前第三方应用全局生效，如果多次调用，会以最后一次的配置为准
     @inlinable @discardableResult
     public func channelCreateWebThemeConfig(_ input: ChannelCreateWebThemeConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateWebThemeConfigResponse> {
         self.client.execute(action: "ChannelCreateWebThemeConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 生成页面主题配置
+    /// 创建页面主题配置
+    ///
+    /// 用来创建嵌入式页面个性化主题配置（例如是否展示电子签logo、定义主题色等），该接口配合其他所有可嵌入页面接口使用
+    /// 创建配置对当前第三方应用全局生效，如果多次调用，会以最后一次的配置为准
     @inlinable @discardableResult
     public func channelCreateWebThemeConfig(_ input: ChannelCreateWebThemeConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateWebThemeConfigResponse {
         try await self.client.execute(action: "ChannelCreateWebThemeConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 生成页面主题配置
+    /// 创建页面主题配置
+    ///
+    /// 用来创建嵌入式页面个性化主题配置（例如是否展示电子签logo、定义主题色等），该接口配合其他所有可嵌入页面接口使用
+    /// 创建配置对当前第三方应用全局生效，如果多次调用，会以最后一次的配置为准
     @inlinable @discardableResult
     public func channelCreateWebThemeConfig(agent: Agent, themeType: String, webThemeConfig: WebThemeConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateWebThemeConfigResponse> {
         self.channelCreateWebThemeConfig(.init(agent: agent, themeType: themeType, webThemeConfig: webThemeConfig), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 生成页面主题配置
+    /// 创建页面主题配置
+    ///
+    /// 用来创建嵌入式页面个性化主题配置（例如是否展示电子签logo、定义主题色等），该接口配合其他所有可嵌入页面接口使用
+    /// 创建配置对当前第三方应用全局生效，如果多次调用，会以最后一次的配置为准
     @inlinable @discardableResult
     public func channelCreateWebThemeConfig(agent: Agent, themeType: String, webThemeConfig: WebThemeConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateWebThemeConfigResponse {
         try await self.channelCreateWebThemeConfig(.init(agent: agent, themeType: themeType, webThemeConfig: webThemeConfig), region: region, logger: logger, on: eventLoop)

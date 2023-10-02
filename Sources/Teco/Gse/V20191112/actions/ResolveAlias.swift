@@ -54,7 +54,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func resolveAlias(_ input: ResolveAliasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResolveAliasResponse> {
-        fatalError("ResolveAlias is no longer available.")
+        fatalError("'ResolveAlias' is no longer available.")
     }
 
     /// 获取别名当前指向的fleetId
@@ -63,7 +63,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func resolveAlias(_ input: ResolveAliasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResolveAliasResponse {
-        fatalError("ResolveAlias is no longer available.")
+        fatalError("'ResolveAlias' is no longer available.")
     }
 
     /// 获取别名当前指向的fleetId
@@ -72,7 +72,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func resolveAlias(aliasId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResolveAliasResponse> {
-        fatalError("ResolveAlias is no longer available.")
+        fatalError("'ResolveAlias' is no longer available.")
     }
 
     /// 获取别名当前指向的fleetId
@@ -81,6 +81,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func resolveAlias(aliasId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResolveAliasResponse {
-        fatalError("ResolveAlias is no longer available.")
+        fatalError("'ResolveAlias' is no longer available.")
     }
 }

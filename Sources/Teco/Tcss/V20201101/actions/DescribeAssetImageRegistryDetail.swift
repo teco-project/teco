@@ -84,6 +84,7 @@ extension Tcss {
 
         /// 敏感信息数
         /// 注意：此字段可能返回 null，表示取不到有效值。
+        @available(*, deprecated)
         public let sentiveInfoCnt: UInt64?
 
         /// 镜像系统
@@ -173,6 +174,10 @@ extension Tcss {
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var imageCreateTime: Date?
 
+        /// 敏感信息数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sensitiveInfoCnt: UInt64?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -209,6 +214,7 @@ extension Tcss {
             case imageId = "ImageId"
             case registryRegion = "RegistryRegion"
             case imageCreateTime = "ImageCreateTime"
+            case sensitiveInfoCnt = "SensitiveInfoCnt"
             case requestId = "RequestId"
         }
     }

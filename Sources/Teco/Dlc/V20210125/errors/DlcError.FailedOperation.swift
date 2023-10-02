@@ -164,8 +164,6 @@ extension TCDlcError {
         }
 
         /// 获取用户信息失败。
-        ///
-        /// 请重试，如重试也失败，请联系我们。
         public static var getUserInfoFailed: FailedOperation {
             FailedOperation(.getUserInfoFailed)
         }

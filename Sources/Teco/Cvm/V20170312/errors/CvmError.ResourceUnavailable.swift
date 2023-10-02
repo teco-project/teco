@@ -21,6 +21,7 @@ extension TCCvmError {
         enum Code: String {
             case instanceType = "ResourceUnavailable.InstanceType"
             case snapshotCreating = "ResourceUnavailable.SnapshotCreating"
+            case other = "ResourceUnavailable"
         }
 
         private let error: Code
@@ -55,6 +56,11 @@ extension TCCvmError {
             ResourceUnavailable(.snapshotCreating)
         }
 
+        /// 资源不可用。
+        public static var other: ResourceUnavailable {
+            ResourceUnavailable(.other)
+        }
+
         public func asCvmError() -> TCCvmError {
             let code: TCCvmError.Code
             switch self.error {
@@ -62,6 +68,8 @@ extension TCCvmError {
                 code = .resourceUnavailable_InstanceType
             case .snapshotCreating:
                 code = .resourceUnavailable_SnapshotCreating
+            case .other:
+                code = .resourceUnavailable
             }
             return TCCvmError(code, context: self.context)
         }

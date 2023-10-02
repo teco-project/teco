@@ -50,6 +50,7 @@ public struct TCAsError: TCAsErrorType {
         case invalidParameterValue = "InvalidParameterValue"
         case invalidParameterValue_AccountNotSupportBandwidthPackageId = "InvalidParameterValue.AccountNotSupportBandwidthPackageId"
         case invalidParameterValue_BaseCapacityTooLarge = "InvalidParameterValue.BaseCapacityTooLarge"
+        case invalidParameterValue_BatchNumberTooLarge = "InvalidParameterValue.BatchNumberTooLarge"
         case invalidParameterValue_ClassicLb = "InvalidParameterValue.ClassicLb"
         case invalidParameterValue_ConflictNotificationTarget = "InvalidParameterValue.ConflictNotificationTarget"
         case invalidParameterValue_CronExpressionIllegal = "InvalidParameterValue.CronExpressionIllegal"
@@ -145,6 +146,7 @@ public struct TCAsError: TCAsErrorType {
         case resourceInsufficient_AutoScalingGroupBelowMinSize = "ResourceInsufficient.AutoScalingGroupBelowMinSize"
         case resourceInsufficient_InServiceInstanceAboveMaxSize = "ResourceInsufficient.InServiceInstanceAboveMaxSize"
         case resourceInsufficient_InServiceInstanceBelowMinSize = "ResourceInsufficient.InServiceInstanceBelowMinSize"
+        case resourceNotFound_AutoScalingGroupIdNotFound = "ResourceNotFound.AutoScalingGroupIdNotFound"
         case resourceNotFound_AutoScalingGroupNotFound = "ResourceNotFound.AutoScalingGroupNotFound"
         case resourceNotFound_AutoScalingNotificationNotFound = "ResourceNotFound.AutoScalingNotificationNotFound"
         case resourceNotFound_BandwidthPackageIdNotFound = "ResourceNotFound.BandwidthPackageIdNotFound"
@@ -161,6 +163,7 @@ public struct TCAsError: TCAsErrorType {
         case resourceNotFound_LoadBalancerNotFound = "ResourceNotFound.LoadBalancerNotFound"
         case resourceNotFound_LoadBalancerNotInAutoScalingGroup = "ResourceNotFound.LoadBalancerNotInAutoScalingGroup"
         case resourceNotFound_LocationNotFound = "ResourceNotFound.LocationNotFound"
+        case resourceNotFound_RefreshActivityNotFound = "ResourceNotFound.RefreshActivityNotFound"
         case resourceNotFound_ScalingPolicyNotFound = "ResourceNotFound.ScalingPolicyNotFound"
         case resourceNotFound_ScheduledActionNotFound = "ResourceNotFound.ScheduledActionNotFound"
         case resourceNotFound_TDMQCMQQueueNotFound = "ResourceNotFound.TDMQCMQQueueNotFound"
@@ -168,9 +171,11 @@ public struct TCAsError: TCAsErrorType {
         case resourceUnavailable_AutoScalingGroupAbnormalStatus = "ResourceUnavailable.AutoScalingGroupAbnormalStatus"
         case resourceUnavailable_AutoScalingGroupDisabled = "ResourceUnavailable.AutoScalingGroupDisabled"
         case resourceUnavailable_AutoScalingGroupInActivity = "ResourceUnavailable.AutoScalingGroupInActivity"
+        case resourceUnavailable_AutoScalingGroupInRefreshActivity = "ResourceUnavailable.AutoScalingGroupInRefreshActivity"
         case resourceUnavailable_CmqTopicHasNoSubscriber = "ResourceUnavailable.CmqTopicHasNoSubscriber"
         case resourceUnavailable_CvmVpcInconsistent = "ResourceUnavailable.CvmVpcInconsistent"
         case resourceUnavailable_ForbiddenModifyVpc = "ResourceUnavailable.ForbiddenModifyVpc"
+        case resourceUnavailable_InquiryPriceResetInstanceFailed = "ResourceUnavailable.InquiryPriceResetInstanceFailed"
         case resourceUnavailable_InstanceCannotAttach = "ResourceUnavailable.InstanceCannotAttach"
         case resourceUnavailable_InstanceInOperation = "ResourceUnavailable.InstanceInOperation"
         case resourceUnavailable_InstanceNotSupportStopCharging = "ResourceUnavailable.InstanceNotSupportStopCharging"
@@ -181,7 +186,12 @@ public struct TCAsError: TCAsErrorType {
         case resourceUnavailable_LbVpcInconsistent = "ResourceUnavailable.LbVpcInconsistent"
         case resourceUnavailable_LifecycleActionResultHasSet = "ResourceUnavailable.LifecycleActionResultHasSet"
         case resourceUnavailable_LoadBalancerInOperation = "ResourceUnavailable.LoadBalancerInOperation"
+        case resourceUnavailable_NoInstanceCanRefresh = "ResourceUnavailable.NoInstanceCanRefresh"
+        case resourceUnavailable_NoInstanceCanRollback = "ResourceUnavailable.NoInstanceCanRollback"
         case resourceUnavailable_ProjectInconsistent = "ResourceUnavailable.ProjectInconsistent"
+        case resourceUnavailable_RefreshActivityCanNotRollback = "ResourceUnavailable.RefreshActivityCanNotRollback"
+        case resourceUnavailable_RefreshActivityStatusConflictWithOperation = "ResourceUnavailable.RefreshActivityStatusConflictWithOperation"
+        case resourceUnavailable_RollbackTypeActivityCanNotRollbackAgain = "ResourceUnavailable.RollbackTypeActivityCanNotRollbackAgain"
         case resourceUnavailable_StoppedInstanceNotAllowAttach = "ResourceUnavailable.StoppedInstanceNotAllowAttach"
         case resourceUnavailable_TDMQCMQTopicHasNoSubscriber = "ResourceUnavailable.TDMQCMQTopicHasNoSubscriber"
         case resourceUnavailable_ZoneUnavailable = "ResourceUnavailable.ZoneUnavailable"
@@ -347,6 +357,11 @@ public struct TCAsError: TCAsErrorType {
     /// 指定的基础容量过大，需小于等于最大实例数。
     public static var invalidParameterValue_BaseCapacityTooLarge: TCAsError {
         TCAsError(.invalidParameterValue_BaseCapacityTooLarge)
+    }
+
+    /// 减小批次数，使得批次数小于待刷新实例总数。
+    public static var invalidParameterValue_BatchNumberTooLarge: TCAsError {
+        TCAsError(.invalidParameterValue_BatchNumberTooLarge)
     }
 
     /// 在应当指定传统型负载均衡器的参数中，错误地指定了一个非传统型的负载均衡器。
@@ -837,6 +852,11 @@ public struct TCAsError: TCAsErrorType {
     }
 
     /// 伸缩组不存在。
+    public static var resourceNotFound_AutoScalingGroupIdNotFound: TCAsError {
+        TCAsError(.resourceNotFound_AutoScalingGroupIdNotFound)
+    }
+
+    /// 伸缩组不存在。
     public static var resourceNotFound_AutoScalingGroupNotFound: TCAsError {
         TCAsError(.resourceNotFound_AutoScalingGroupNotFound)
     }
@@ -922,6 +942,11 @@ public struct TCAsError: TCAsErrorType {
         TCAsError(.resourceNotFound_LocationNotFound)
     }
 
+    /// 检查输入的实例刷新活动 ID 是否正确。
+    public static var resourceNotFound_RefreshActivityNotFound: TCAsError {
+        TCAsError(.resourceNotFound_RefreshActivityNotFound)
+    }
+
     /// 告警策略不存在。
     public static var resourceNotFound_ScalingPolicyNotFound: TCAsError {
         TCAsError(.resourceNotFound_ScalingPolicyNotFound)
@@ -957,6 +982,11 @@ public struct TCAsError: TCAsErrorType {
         TCAsError(.resourceUnavailable_AutoScalingGroupInActivity)
     }
 
+    /// 请确认上一个实例刷新活动已结束。
+    public static var resourceUnavailable_AutoScalingGroupInRefreshActivity: TCAsError {
+        TCAsError(.resourceUnavailable_AutoScalingGroupInRefreshActivity)
+    }
+
     /// 指定的 CMQ Topic 无订阅者。
     ///
     /// 请核实您的 Topic。
@@ -974,6 +1004,11 @@ public struct TCAsError: TCAsErrorType {
     /// 先解绑负载均衡器，再修改伸缩组的Vpc。
     public static var resourceUnavailable_ForbiddenModifyVpc: TCAsError {
         TCAsError(.resourceUnavailable_ForbiddenModifyVpc)
+    }
+
+    /// 检查新镜像与原有实例的其他参数是否存在冲突，新镜像是否存在。
+    public static var resourceUnavailable_InquiryPriceResetInstanceFailed: TCAsError {
+        TCAsError(.resourceUnavailable_InquiryPriceResetInstanceFailed)
     }
 
     /// 实例无法添加至伸缩组。
@@ -1026,9 +1061,34 @@ public struct TCAsError: TCAsErrorType {
         TCAsError(.resourceUnavailable_LoadBalancerInOperation)
     }
 
+    /// 检查伸缩组内是否存在运行中状态的实例。
+    public static var resourceUnavailable_NoInstanceCanRefresh: TCAsError {
+        TCAsError(.resourceUnavailable_NoInstanceCanRefresh)
+    }
+
+    /// 检查前置刷新活动中已刷新的实例是否存在于现有伸缩组中。
+    public static var resourceUnavailable_NoInstanceCanRollback: TCAsError {
+        TCAsError(.resourceUnavailable_NoInstanceCanRollback)
+    }
+
     /// 项目不一致。
     public static var resourceUnavailable_ProjectInconsistent: TCAsError {
         TCAsError(.resourceUnavailable_ProjectInconsistent)
+    }
+
+    /// 仅支持回滚最近一次已成功实例刷新活动。
+    public static var resourceUnavailable_RefreshActivityCanNotRollback: TCAsError {
+        TCAsError(.resourceUnavailable_RefreshActivityCanNotRollback)
+    }
+
+    /// 请检查当前活动状态与操作是否存在冲突。例如，已结束的活动无法暂停，已取消的活动无法回滚。
+    public static var resourceUnavailable_RefreshActivityStatusConflictWithOperation: TCAsError {
+        TCAsError(.resourceUnavailable_RefreshActivityStatusConflictWithOperation)
+    }
+
+    /// 不支持对回滚的活动再回滚，可尝试使用StartRefreshInstance将实例刷新到指定的镜像版本。
+    public static var resourceUnavailable_RollbackTypeActivityCanNotRollbackAgain: TCAsError {
+        TCAsError(.resourceUnavailable_RollbackTypeActivityCanNotRollbackAgain)
     }
 
     /// 关机实例不允许添加到伸缩组。

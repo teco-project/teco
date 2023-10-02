@@ -19,7 +19,6 @@ import TecoCore
 extension TCOmicsError {
     public struct InvalidParameterValue: TCOmicsErrorType {
         enum Code: String {
-            case duplicateHeader = "InvalidParameterValue.DuplicateHeader"
             case duplicateName = "InvalidParameterValue.DuplicateName"
             case entrypointNotSet = "InvalidParameterValue.EntrypointNotSet"
             case environmentNotAvailable = "InvalidParameterValue.EnvironmentNotAvailable"
@@ -27,14 +26,12 @@ extension TCOmicsError {
             case invalidCosKey = "InvalidParameterValue.InvalidCosKey"
             case invalidCsvFormat = "InvalidParameterValue.InvalidCsvFormat"
             case invalidDescription = "InvalidParameterValue.InvalidDescription"
-            case invalidHeader = "InvalidParameterValue.InvalidHeader"
             case invalidInputJsonFormat = "InvalidParameterValue.InvalidInputJsonFormat"
             case invalidInputPlaceholder = "InvalidParameterValue.InvalidInputPlaceholder"
             case invalidName = "InvalidParameterValue.InvalidName"
             case invalidRunOption = "InvalidParameterValue.InvalidRunOption"
-            case invalidTableRow = "InvalidParameterValue.InvalidTableRow"
-            case lengthLimitExceeded = "InvalidParameterValue.LengthLimitExceeded"
-            case unsupportedDataType = "InvalidParameterValue.UnsupportedDataType"
+            case tableDataTypeLengthMismatch = "InvalidParameterValue.TableDataTypeLengthMismatch"
+            case unsupportedTableDataType = "InvalidParameterValue.UnsupportedTableDataType"
             case other = "InvalidParameterValue"
         }
 
@@ -58,10 +55,6 @@ extension TCOmicsError {
         internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
-        }
-
-        public static var duplicateHeader: InvalidParameterValue {
-            InvalidParameterValue(.duplicateHeader)
         }
 
         public static var duplicateName: InvalidParameterValue {
@@ -92,10 +85,6 @@ extension TCOmicsError {
             InvalidParameterValue(.invalidDescription)
         }
 
-        public static var invalidHeader: InvalidParameterValue {
-            InvalidParameterValue(.invalidHeader)
-        }
-
         public static var invalidInputJsonFormat: InvalidParameterValue {
             InvalidParameterValue(.invalidInputJsonFormat)
         }
@@ -112,16 +101,12 @@ extension TCOmicsError {
             InvalidParameterValue(.invalidRunOption)
         }
 
-        public static var invalidTableRow: InvalidParameterValue {
-            InvalidParameterValue(.invalidTableRow)
+        public static var tableDataTypeLengthMismatch: InvalidParameterValue {
+            InvalidParameterValue(.tableDataTypeLengthMismatch)
         }
 
-        public static var lengthLimitExceeded: InvalidParameterValue {
-            InvalidParameterValue(.lengthLimitExceeded)
-        }
-
-        public static var unsupportedDataType: InvalidParameterValue {
-            InvalidParameterValue(.unsupportedDataType)
+        public static var unsupportedTableDataType: InvalidParameterValue {
+            InvalidParameterValue(.unsupportedTableDataType)
         }
 
         /// 参数取值错误。
@@ -132,8 +117,6 @@ extension TCOmicsError {
         public func asOmicsError() -> TCOmicsError {
             let code: TCOmicsError.Code
             switch self.error {
-            case .duplicateHeader:
-                code = .invalidParameterValue_DuplicateHeader
             case .duplicateName:
                 code = .invalidParameterValue_DuplicateName
             case .entrypointNotSet:
@@ -148,8 +131,6 @@ extension TCOmicsError {
                 code = .invalidParameterValue_InvalidCsvFormat
             case .invalidDescription:
                 code = .invalidParameterValue_InvalidDescription
-            case .invalidHeader:
-                code = .invalidParameterValue_InvalidHeader
             case .invalidInputJsonFormat:
                 code = .invalidParameterValue_InvalidInputJsonFormat
             case .invalidInputPlaceholder:
@@ -158,12 +139,10 @@ extension TCOmicsError {
                 code = .invalidParameterValue_InvalidName
             case .invalidRunOption:
                 code = .invalidParameterValue_InvalidRunOption
-            case .invalidTableRow:
-                code = .invalidParameterValue_InvalidTableRow
-            case .lengthLimitExceeded:
-                code = .invalidParameterValue_LengthLimitExceeded
-            case .unsupportedDataType:
-                code = .invalidParameterValue_UnsupportedDataType
+            case .tableDataTypeLengthMismatch:
+                code = .invalidParameterValue_TableDataTypeLengthMismatch
+            case .unsupportedTableDataType:
+                code = .invalidParameterValue_UnsupportedTableDataType
             case .other:
                 code = .invalidParameterValue
             }

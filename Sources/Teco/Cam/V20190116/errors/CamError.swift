@@ -29,6 +29,7 @@ public struct TCCamError: TCCamErrorType {
         case authFailure_UnauthorizedOperation = "AuthFailure.UnauthorizedOperation"
         case failedOperation = "FailedOperation"
         case failedOperation_Accesskey = "FailedOperation.Accesskey"
+        case failedOperation_OrganizationPolicyOperateError = "FailedOperation.OrganizationPolicyOperateError"
         case failedOperation_PolicyFull = "FailedOperation.PolicyFull"
         case failedOperation_PolicyNameInUse = "FailedOperation.PolicyNameInUse"
         case failedOperation_PolicyVersionAlreadyDefault = "FailedOperation.PolicyVersionAlreadyDefault"
@@ -67,6 +68,7 @@ public struct TCCamError: TCCamErrorType {
         case invalidParameter_InterfaceNotExist = "InvalidParameter.InterfaceNotExist"
         case invalidParameter_KeywordError = "InvalidParameter.KeywordError"
         case invalidParameter_MFATokenError = "InvalidParameter.MFATokenError"
+        case invalidParameter_NameOrIdCardError = "InvalidParameter.NameOrIdCardError"
         case invalidParameter_NotSupportProduct = "InvalidParameter.NotSupportProduct"
         case invalidParameter_OperateEntitiesOverLimit = "InvalidParameter.OperateEntitiesOverLimit"
         case invalidParameter_OrganizationRoleOperateError = "InvalidParameter.OrganizationRoleOperateError"
@@ -181,6 +183,10 @@ public struct TCCamError: TCCamErrorType {
     /// 操作访问密钥错误。
     public static var failedOperation_Accesskey: TCCamError {
         TCCamError(.failedOperation_Accesskey)
+    }
+
+    public static var failedOperation_OrganizationPolicyOperateError: TCCamError {
+        TCCamError(.failedOperation_OrganizationPolicyOperateError)
     }
 
     /// 用户策略数超过上限。
@@ -373,6 +379,11 @@ public struct TCCamError: TCCamErrorType {
         TCCamError(.invalidParameter_MFATokenError)
     }
 
+    /// 名字或者id号错误。
+    public static var invalidParameter_NameOrIdCardError: TCCamError {
+        TCCamError(.invalidParameter_NameOrIdCardError)
+    }
+
     /// CAM不支持策略文档中所指定的资源类型。
     public static var invalidParameter_NotSupportProduct: TCCamError {
         TCCamError(.invalidParameter_NotSupportProduct)
@@ -543,6 +554,8 @@ public struct TCCamError: TCCamErrorType {
     }
 
     /// 子帐号数量达到上限。
+    ///
+    /// None
     public static var invalidParameter_SubUserFull: TCCamError {
         TCCamError(.invalidParameter_SubUserFull)
     }

@@ -151,6 +151,8 @@ public struct TCDomainError: TCDomainErrorType {
     }
 
     /// 删除模版操作失败，请稍后重试。
+    ///
+    /// None
     public static var failedOperation_DeleteTemplateFailed: TCDomainError {
         TCDomainError(.failedOperation_DeleteTemplateFailed)
     }

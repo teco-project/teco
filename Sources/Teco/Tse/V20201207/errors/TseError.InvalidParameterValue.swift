@@ -22,7 +22,10 @@ extension TCTseError {
             case action = "InvalidParameterValue.Action"
             case badRequestFormat = "InvalidParameterValue.BadRequestFormat"
             case createError = "InvalidParameterValue.CreateError"
+            case description = "InvalidParameterValue.Description"
+            case gatewayId = "InvalidParameterValue.GatewayId"
             case invalidParameterValue = "InvalidParameterValue.InvalidParameterValue"
+            case name = "InvalidParameterValue.Name"
             case operationFailed = "InvalidParameterValue.OperationFailed"
             case queryError = "InvalidParameterValue.QueryError"
             case region = "InvalidParameterValue.Region"
@@ -30,6 +33,7 @@ extension TCTseError {
             case specification = "InvalidParameterValue.Specification"
             case type = "InvalidParameterValue.Type"
             case updateError = "InvalidParameterValue.UpdateError"
+            case other = "InvalidParameterValue"
         }
 
         private let error: Code
@@ -71,9 +75,24 @@ extension TCTseError {
             InvalidParameterValue(.createError)
         }
 
+        /// 无效的描述信息。
+        public static var description: InvalidParameterValue {
+            InvalidParameterValue(.description)
+        }
+
+        /// 网关ID无效
+        public static var gatewayId: InvalidParameterValue {
+            InvalidParameterValue(.gatewayId)
+        }
+
         /// 无效的参数值。
         public static var invalidParameterValue: InvalidParameterValue {
             InvalidParameterValue(.invalidParameterValue)
+        }
+
+        /// 无效的名称。
+        public static var name: InvalidParameterValue {
+            InvalidParameterValue(.name)
         }
 
         /// 无效请求参数导致操作失败。
@@ -111,6 +130,11 @@ extension TCTseError {
             InvalidParameterValue(.updateError)
         }
 
+        /// 参数取值错误。
+        public static var other: InvalidParameterValue {
+            InvalidParameterValue(.other)
+        }
+
         public func asTseError() -> TCTseError {
             let code: TCTseError.Code
             switch self.error {
@@ -120,8 +144,14 @@ extension TCTseError {
                 code = .invalidParameterValue_BadRequestFormat
             case .createError:
                 code = .invalidParameterValue_CreateError
+            case .description:
+                code = .invalidParameterValue_Description
+            case .gatewayId:
+                code = .invalidParameterValue_GatewayId
             case .invalidParameterValue:
                 code = .invalidParameterValue_InvalidParameterValue
+            case .name:
+                code = .invalidParameterValue_Name
             case .operationFailed:
                 code = .invalidParameterValue_OperationFailed
             case .queryError:
@@ -136,6 +166,8 @@ extension TCTseError {
                 code = .invalidParameterValue_Type
             case .updateError:
                 code = .invalidParameterValue_UpdateError
+            case .other:
+                code = .invalidParameterValue
             }
             return TCTseError(code, context: self.context)
         }

@@ -21,7 +21,20 @@ import TecoCore
 extension Eb {
     /// CheckRule请求参数结构体
     public struct CheckRuleRequest: TCRequest {
-        public init() {
+        /// Event信息
+        public let event: String
+
+        /// EventPattern信息
+        public let eventPattern: String
+
+        public init(event: String, eventPattern: String) {
+            self.event = event
+            self.eventPattern = eventPattern
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case event = "Event"
+            case eventPattern = "EventPattern"
         }
     }
 
@@ -49,13 +62,13 @@ extension Eb {
 
     /// 检验规则
     @inlinable @discardableResult
-    public func checkRule(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckRuleResponse> {
-        self.checkRule(.init(), region: region, logger: logger, on: eventLoop)
+    public func checkRule(event: String, eventPattern: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckRuleResponse> {
+        self.checkRule(.init(event: event, eventPattern: eventPattern), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检验规则
     @inlinable @discardableResult
-    public func checkRule(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckRuleResponse {
-        try await self.checkRule(.init(), region: region, logger: logger, on: eventLoop)
+    public func checkRule(event: String, eventPattern: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckRuleResponse {
+        try await self.checkRule(.init(event: event, eventPattern: eventPattern), region: region, logger: logger, on: eventLoop)
     }
 }

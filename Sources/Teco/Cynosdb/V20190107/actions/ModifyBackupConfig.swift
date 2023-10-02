@@ -24,14 +24,14 @@ extension Cynosdb {
         /// 集群ID
         public let clusterId: String
 
-        /// 表示保留备份时长, 单位秒，超过该时间将被清理, 七天表示为3600*24*7=604800，最大为158112000
-        public let reserveDuration: UInt64
-
         /// 表示全备开始时间，[0-24*3600]， 如0:00, 1:00, 2:00 分别为 0，3600， 7200
         public let backupTimeBeg: UInt64?
 
         /// 表示全备结束时间，[0-24*3600]， 如0:00, 1:00, 2:00 分别为 0，3600， 7200
         public let backupTimeEnd: UInt64?
+
+        /// 表示保留备份时长, 单位秒，超过该时间将被清理, 七天表示为3600*24*7=604800，最大为158112000
+        public let reserveDuration: UInt64?
 
         /// 该参数目前不支持修改，无需填写。备份频率，长度为7的数组，分别对应周一到周日的备份方式，full-全量备份，increment-增量备份
         public let backupFreq: [String]?
@@ -39,22 +39,32 @@ extension Cynosdb {
         /// 该参数目前不支持修改，无需填写。备份方式，logic-逻辑备份，snapshot-快照备份
         public let backupType: String?
 
-        public init(clusterId: String, reserveDuration: UInt64, backupTimeBeg: UInt64? = nil, backupTimeEnd: UInt64? = nil, backupFreq: [String]? = nil, backupType: String? = nil) {
+        /// 逻辑备份配置
+        public let logicBackupConfig: LogicBackupConfigInfo?
+
+        /// 是否删除自动逻辑备份
+        public let deleteAutoLogicBackup: Bool?
+
+        public init(clusterId: String, backupTimeBeg: UInt64? = nil, backupTimeEnd: UInt64? = nil, reserveDuration: UInt64? = nil, backupFreq: [String]? = nil, backupType: String? = nil, logicBackupConfig: LogicBackupConfigInfo? = nil, deleteAutoLogicBackup: Bool? = nil) {
             self.clusterId = clusterId
-            self.reserveDuration = reserveDuration
             self.backupTimeBeg = backupTimeBeg
             self.backupTimeEnd = backupTimeEnd
+            self.reserveDuration = reserveDuration
             self.backupFreq = backupFreq
             self.backupType = backupType
+            self.logicBackupConfig = logicBackupConfig
+            self.deleteAutoLogicBackup = deleteAutoLogicBackup
         }
 
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
-            case reserveDuration = "ReserveDuration"
             case backupTimeBeg = "BackupTimeBeg"
             case backupTimeEnd = "BackupTimeEnd"
+            case reserveDuration = "ReserveDuration"
             case backupFreq = "BackupFreq"
             case backupType = "BackupType"
+            case logicBackupConfig = "LogicBackupConfig"
+            case deleteAutoLogicBackup = "DeleteAutoLogicBackup"
         }
     }
 
@@ -88,15 +98,15 @@ extension Cynosdb {
     ///
     /// 修改指定集群的备份配置
     @inlinable @discardableResult
-    public func modifyBackupConfig(clusterId: String, reserveDuration: UInt64, backupTimeBeg: UInt64? = nil, backupTimeEnd: UInt64? = nil, backupFreq: [String]? = nil, backupType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupConfigResponse> {
-        self.modifyBackupConfig(.init(clusterId: clusterId, reserveDuration: reserveDuration, backupTimeBeg: backupTimeBeg, backupTimeEnd: backupTimeEnd, backupFreq: backupFreq, backupType: backupType), region: region, logger: logger, on: eventLoop)
+    public func modifyBackupConfig(clusterId: String, backupTimeBeg: UInt64? = nil, backupTimeEnd: UInt64? = nil, reserveDuration: UInt64? = nil, backupFreq: [String]? = nil, backupType: String? = nil, logicBackupConfig: LogicBackupConfigInfo? = nil, deleteAutoLogicBackup: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupConfigResponse> {
+        self.modifyBackupConfig(.init(clusterId: clusterId, backupTimeBeg: backupTimeBeg, backupTimeEnd: backupTimeEnd, reserveDuration: reserveDuration, backupFreq: backupFreq, backupType: backupType, logicBackupConfig: logicBackupConfig, deleteAutoLogicBackup: deleteAutoLogicBackup), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改备份配置
     ///
     /// 修改指定集群的备份配置
     @inlinable @discardableResult
-    public func modifyBackupConfig(clusterId: String, reserveDuration: UInt64, backupTimeBeg: UInt64? = nil, backupTimeEnd: UInt64? = nil, backupFreq: [String]? = nil, backupType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupConfigResponse {
-        try await self.modifyBackupConfig(.init(clusterId: clusterId, reserveDuration: reserveDuration, backupTimeBeg: backupTimeBeg, backupTimeEnd: backupTimeEnd, backupFreq: backupFreq, backupType: backupType), region: region, logger: logger, on: eventLoop)
+    public func modifyBackupConfig(clusterId: String, backupTimeBeg: UInt64? = nil, backupTimeEnd: UInt64? = nil, reserveDuration: UInt64? = nil, backupFreq: [String]? = nil, backupType: String? = nil, logicBackupConfig: LogicBackupConfigInfo? = nil, deleteAutoLogicBackup: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupConfigResponse {
+        try await self.modifyBackupConfig(.init(clusterId: clusterId, backupTimeBeg: backupTimeBeg, backupTimeEnd: backupTimeEnd, reserveDuration: reserveDuration, backupFreq: backupFreq, backupType: backupType, logicBackupConfig: logicBackupConfig, deleteAutoLogicBackup: deleteAutoLogicBackup), region: region, logger: logger, on: eventLoop)
     }
 }

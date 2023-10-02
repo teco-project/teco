@@ -1364,6 +1364,184 @@ extension As {
         }
     }
 
+    /// 实例刷新活动。
+    public struct RefreshActivity: TCOutputModel {
+        /// 伸缩组 ID。
+        public let autoScalingGroupId: String
+
+        /// 刷新活动 ID。
+        public let refreshActivityId: String
+
+        /// 原始刷新活动ID，仅在回滚刷新活动中存在。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let originRefreshActivityId: String?
+
+        /// 刷新批次信息列表。
+        public let refreshBatchSet: [RefreshBatch]
+
+        /// 刷新模式。
+        public let refreshMode: String
+
+        /// 实例更新设置参数。
+        public let refreshSettings: RefreshSettings
+
+        /// 刷新活动类型。取值如下：
+        ///
+        /// - NORMAL：正常刷新活动
+        /// - ROLLBACK：回滚刷新活动
+        public let activityType: String
+
+        /// 刷新活动状态。取值如下：
+        ///
+        /// - INIT：初始化中
+        /// - RUNNING：运行中
+        /// - SUCCESSFUL：活动成功
+        /// - FAILED_PAUSE：因刷新批次失败暂停
+        /// - AUTO_PAUSE：因暂停策略自动暂停
+        /// - MANUAL_PAUSE：手动暂停
+        /// - CANCELLED：活动取消
+        /// - FAILED：活动失败
+        public let status: String
+
+        /// 当前刷新批次序号。例如，2 表示当前活动正在刷新第二批次的实例。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let currentRefreshBatchNum: UInt64?
+
+        /// 刷新活动开始时间。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var startTime: Date?
+
+        /// 刷新活动结束时间。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var endTime: Date?
+
+        /// 刷新活动创建时间。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var createdTime: Date?
+
+        enum CodingKeys: String, CodingKey {
+            case autoScalingGroupId = "AutoScalingGroupId"
+            case refreshActivityId = "RefreshActivityId"
+            case originRefreshActivityId = "OriginRefreshActivityId"
+            case refreshBatchSet = "RefreshBatchSet"
+            case refreshMode = "RefreshMode"
+            case refreshSettings = "RefreshSettings"
+            case activityType = "ActivityType"
+            case status = "Status"
+            case currentRefreshBatchNum = "CurrentRefreshBatchNum"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+            case createdTime = "CreatedTime"
+        }
+    }
+
+    /// 实例刷新批次信息，包含该批次的刷新状态、实例、起止时间等信息。
+    public struct RefreshBatch: TCOutputModel {
+        /// 刷新批次序号。例如，2 表示当前批次实例会在第二批次进行实例刷新。
+        public let refreshBatchNum: UInt64
+
+        /// 刷新批次状态。取值如下：
+        ///
+        /// - WAITING：待刷新
+        /// - INIT：初始化中
+        /// - RUNNING：刷新中
+        /// - FAILED:  刷新失败
+        /// - PARTIALLY_SUCCESSFUL：批次部分成功
+        /// - CANCELLED：已取消
+        /// - SUCCESSFUL：刷新成功
+        public let refreshBatchStatus: String
+
+        /// 刷新批次关联实例列表。
+        public let refreshBatchRelatedInstanceSet: [RefreshBatchRelatedInstance]
+
+        /// 刷新批次开始时间。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var startTime: Date?
+
+        /// 刷新批次结束时间。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var endTime: Date?
+
+        enum CodingKeys: String, CodingKey {
+            case refreshBatchNum = "RefreshBatchNum"
+            case refreshBatchStatus = "RefreshBatchStatus"
+            case refreshBatchRelatedInstanceSet = "RefreshBatchRelatedInstanceSet"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+        }
+    }
+
+    /// 刷新批次关联实例，包含单个实例的刷新活动状态、对应伸缩活动等信息。
+    public struct RefreshBatchRelatedInstance: TCOutputModel {
+        /// 实例 ID。
+        public let instanceId: String
+
+        /// 刷新实例状态。如果在刷新时实例被移出或销毁，状态会更新为 NOT_FOUND。取值如下：
+        ///
+        /// - WAITING：待刷新
+        /// - INIT：初始化中
+        /// - RUNNING：刷新中
+        /// - FAILED：刷新失败
+        /// - CANCELLED：已取消
+        /// - SUCCESSFUL：刷新成功
+        /// - NOT_FOUND：实例不存在
+        public let instanceStatus: String
+
+        /// 实例刷新中最近一次伸缩活动 ID，可通过 DescribeAutoScalingActivities 接口查询。
+        /// 需注意伸缩活动与实例刷新活动不同，一次实例刷新活动可能包括多次伸缩活动。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lastActivityId: String?
+
+        /// 实例刷新状态信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceStatusMessage: String?
+
+        enum CodingKeys: String, CodingKey {
+            case instanceId = "InstanceId"
+            case instanceStatus = "InstanceStatus"
+            case lastActivityId = "LastActivityId"
+            case instanceStatusMessage = "InstanceStatusMessage"
+        }
+    }
+
+    /// 实例刷新设置。
+    public struct RefreshSettings: TCInputModel, TCOutputModel {
+        /// 滚动更新设置参数。RefreshMode 为滚动更新该参数必须填写。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rollingUpdateSettings: RollingUpdateSettings?
+
+        /// 实例后端服务健康状态检查，默认为 FALSE。仅针对绑定应用型负载均衡器的伸缩组生效，开启该检查后，如刷新后实例未通过检查，负载均衡器端口权重始终为 0，且标记为刷新失败。取值范围如下：
+        ///
+        /// - TRUE：开启检查
+        /// - FALSE：不开启检查
+        public let checkInstanceTargetHealth: Bool?
+
+        public init(rollingUpdateSettings: RollingUpdateSettings? = nil, checkInstanceTargetHealth: Bool? = nil) {
+            self.rollingUpdateSettings = rollingUpdateSettings
+            self.checkInstanceTargetHealth = checkInstanceTargetHealth
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case rollingUpdateSettings = "RollingUpdateSettings"
+            case checkInstanceTargetHealth = "CheckInstanceTargetHealth"
+        }
+    }
+
     /// 与本次伸缩活动相关的实例信息。
     public struct RelatedInstance: TCOutputModel {
         /// 实例ID。
@@ -1379,6 +1557,29 @@ extension As {
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case instanceStatus = "InstanceStatus"
+        }
+    }
+
+    /// 滚动更新设置。
+    public struct RollingUpdateSettings: TCInputModel, TCOutputModel {
+        /// 批次数量。批次数量为大于 0 的正整数，但不能大于待刷新实例数量。
+        public let batchNumber: UInt64
+
+        /// 批次间暂停策略。默认值为 Automatic，取值范围如下：
+        ///
+        /// - FIRST_BATCH_PAUSE：第一批次更新完成后暂停
+        /// - BATCH_INTERVAL_PAUSE：批次间暂停
+        /// - AUTOMATIC：不暂停
+        public let batchPause: String?
+
+        public init(batchNumber: UInt64, batchPause: String? = nil) {
+            self.batchNumber = batchNumber
+            self.batchPause = batchPause
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case batchNumber = "BatchNumber"
+            case batchPause = "BatchPause"
         }
     }
 

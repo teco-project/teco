@@ -21,11 +21,15 @@ extension TCIssError {
         enum Code: String {
             case downloadUrlError = "InvalidParameter.DownloadUrlError"
             case downloadUrlHasExpired = "InvalidParameter.DownloadUrlHasExpired"
+            case invalidAction = "InvalidParameter.InvalidAction"
             case invalidBodyFormat = "InvalidParameter.InvalidBodyFormat"
             case invalidChannels = "InvalidParameter.InvalidChannels"
             case invalidLifeRuleParam = "InvalidParameter.InvalidLifeRuleParam"
             case invalidOrganizationParam = "InvalidParameter.InvalidOrganizationParam"
+            case invalidParameterFormat = "InvalidParameter.InvalidParameterFormat"
             case invalidTimeSection = "InvalidParameter.InvalidTimeSection"
+            case requiredHeaderParameterEmpty = "InvalidParameter.RequiredHeaderParameterEmpty"
+            case taskIdNotExist = "InvalidParameter.TaskIdNotExist"
             case other = "InvalidParameter"
         }
 
@@ -59,6 +63,10 @@ extension TCIssError {
             InvalidParameter(.downloadUrlHasExpired)
         }
 
+        public static var invalidAction: InvalidParameter {
+            InvalidParameter(.invalidAction)
+        }
+
         public static var invalidBodyFormat: InvalidParameter {
             InvalidParameter(.invalidBodyFormat)
         }
@@ -75,8 +83,20 @@ extension TCIssError {
             InvalidParameter(.invalidOrganizationParam)
         }
 
+        public static var invalidParameterFormat: InvalidParameter {
+            InvalidParameter(.invalidParameterFormat)
+        }
+
         public static var invalidTimeSection: InvalidParameter {
             InvalidParameter(.invalidTimeSection)
+        }
+
+        public static var requiredHeaderParameterEmpty: InvalidParameter {
+            InvalidParameter(.requiredHeaderParameterEmpty)
+        }
+
+        public static var taskIdNotExist: InvalidParameter {
+            InvalidParameter(.taskIdNotExist)
         }
 
         public static var other: InvalidParameter {
@@ -90,6 +110,8 @@ extension TCIssError {
                 code = .invalidParameter_DownloadUrlError
             case .downloadUrlHasExpired:
                 code = .invalidParameter_DownloadUrlHasExpired
+            case .invalidAction:
+                code = .invalidParameter_InvalidAction
             case .invalidBodyFormat:
                 code = .invalidParameter_InvalidBodyFormat
             case .invalidChannels:
@@ -98,8 +120,14 @@ extension TCIssError {
                 code = .invalidParameter_InvalidLifeRuleParam
             case .invalidOrganizationParam:
                 code = .invalidParameter_InvalidOrganizationParam
+            case .invalidParameterFormat:
+                code = .invalidParameter_InvalidParameterFormat
             case .invalidTimeSection:
                 code = .invalidParameter_InvalidTimeSection
+            case .requiredHeaderParameterEmpty:
+                code = .invalidParameter_RequiredHeaderParameterEmpty
+            case .taskIdNotExist:
+                code = .invalidParameter_TaskIdNotExist
             case .other:
                 code = .invalidParameter
             }

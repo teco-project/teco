@@ -25,16 +25,23 @@ extension Gme {
         public let bizId: UInt64
 
         /// 需要删除送检的用户号。示例：1234
+        /// (若UserId不填，则UserIdString必填；两者选其一；两者都填以UserIdString为准)
         public let userId: UInt64?
 
-        public init(bizId: UInt64, userId: UInt64? = nil) {
+        /// 需要删除送检的用户号。示例："1234"
+        /// (若UserIdString不填，则UserId必填；两者选其一；两者都填以UserIdString为准)
+        public let userIdString: String?
+
+        public init(bizId: UInt64, userId: UInt64? = nil, userIdString: String? = nil) {
             self.bizId = bizId
             self.userId = userId
+            self.userIdString = userIdString
         }
 
         enum CodingKeys: String, CodingKey {
             case bizId = "BizId"
             case userId = "UserId"
+            case userIdString = "UserIdString"
         }
     }
 
@@ -72,15 +79,15 @@ extension Gme {
     ///
     /// 删除自定义送检用户。**接口使用前提**：目前 DeleteScanUser 接口通过白名单开放，如需使用，需要 [提交工单申请](https://console.cloud.tencent.com/workorder/category?level1_id=438&level2_id=445&source=0&data_title=%E6%B8%B8%E6%88%8F%E5%A4%9A%E5%AA%92%E4%BD%93%E5%BC%95%E6%93%8EGME&step=1)。
     @inlinable
-    public func deleteScanUser(bizId: UInt64, userId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScanUserResponse> {
-        self.deleteScanUser(.init(bizId: bizId, userId: userId), region: region, logger: logger, on: eventLoop)
+    public func deleteScanUser(bizId: UInt64, userId: UInt64? = nil, userIdString: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScanUserResponse> {
+        self.deleteScanUser(.init(bizId: bizId, userId: userId, userIdString: userIdString), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除自定义送检用户
     ///
     /// 删除自定义送检用户。**接口使用前提**：目前 DeleteScanUser 接口通过白名单开放，如需使用，需要 [提交工单申请](https://console.cloud.tencent.com/workorder/category?level1_id=438&level2_id=445&source=0&data_title=%E6%B8%B8%E6%88%8F%E5%A4%9A%E5%AA%92%E4%BD%93%E5%BC%95%E6%93%8EGME&step=1)。
     @inlinable
-    public func deleteScanUser(bizId: UInt64, userId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScanUserResponse {
-        try await self.deleteScanUser(.init(bizId: bizId, userId: userId), region: region, logger: logger, on: eventLoop)
+    public func deleteScanUser(bizId: UInt64, userId: UInt64? = nil, userIdString: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScanUserResponse {
+        try await self.deleteScanUser(.init(bizId: bizId, userId: userId, userIdString: userIdString), region: region, logger: logger, on: eventLoop)
     }
 }

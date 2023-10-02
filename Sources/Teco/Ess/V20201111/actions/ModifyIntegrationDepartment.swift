@@ -21,27 +21,33 @@ import TecoCore
 extension Ess {
     /// ModifyIntegrationDepartment请求参数结构体
     public struct ModifyIntegrationDepartmentRequest: TCRequest {
-        /// 操作人信息，UserId必填且需拥有组织架构管理权限
+        /// 执行本接口操作的员工信息。
+        /// 注: `在调用此接口时，请确保指定的员工已获得组织架构管理权限，并具备接口传入的相应资源的数据权限。`
         public let `operator`: UserInfo
 
-        /// 电子签部门ID,通过DescribeIntegrationDepartments接口可以获取
+        /// 电子签部门ID，通过[DescribeIntegrationDepartments](https://qian.tencent.com/developers/companyApis/organizations/DescribeIntegrationDepartments)接口获得。
         public let deptId: String
 
-        /// 电子签父部门ID，通过DescribeIntegrationDepartments接口可以获取
+        /// 代理企业和员工的信息。
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        public let agent: Agent?
+
+        /// 电子签父部门ID，通过[DescribeIntegrationDepartments](https://qian.tencent.com/developers/companyApis/organizations/DescribeIntegrationDepartments)接口获得。
         public let parentDeptId: String?
 
-        /// 部门名称，不超过50个字符
+        /// 部门名称，最大长度为50个字符。
         public let deptName: String?
 
-        /// 客户系统部门ID，不超过64个字符
+        /// 客户系统部门ID，最大长度为64个字符。
         public let deptOpenId: String?
 
-        /// 排序号,1~30000范围内
+        /// 排序号，支持设置的数值范围为1~30000。同一父部门下，排序号越大，部门顺序越靠前。
         public let orderNo: UInt64?
 
-        public init(operator: UserInfo, deptId: String, parentDeptId: String? = nil, deptName: String? = nil, deptOpenId: String? = nil, orderNo: UInt64? = nil) {
+        public init(operator: UserInfo, deptId: String, agent: Agent? = nil, parentDeptId: String? = nil, deptName: String? = nil, deptOpenId: String? = nil, orderNo: UInt64? = nil) {
             self.operator = `operator`
             self.deptId = deptId
+            self.agent = agent
             self.parentDeptId = parentDeptId
             self.deptName = deptName
             self.deptOpenId = deptOpenId
@@ -51,6 +57,7 @@ extension Ess {
         enum CodingKeys: String, CodingKey {
             case `operator` = "Operator"
             case deptId = "DeptId"
+            case agent = "Agent"
             case parentDeptId = "ParentDeptId"
             case deptName = "DeptName"
             case deptOpenId = "DeptOpenId"
@@ -68,35 +75,35 @@ extension Ess {
         }
     }
 
-    /// 更新企业部门
+    /// 更新企业部门信息
     ///
-    /// 通过此接口，更新企业的部门信息，支持更新部门名、客户系统部门ID、部门序列号。
+    /// 此接口（ModifyIntegrationDepartment）用于更新企业的部门信息，支持更新部门名称、客户系统部门ID和部门序号等信息。
     @inlinable @discardableResult
     public func modifyIntegrationDepartment(_ input: ModifyIntegrationDepartmentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIntegrationDepartmentResponse> {
         self.client.execute(action: "ModifyIntegrationDepartment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 更新企业部门
+    /// 更新企业部门信息
     ///
-    /// 通过此接口，更新企业的部门信息，支持更新部门名、客户系统部门ID、部门序列号。
+    /// 此接口（ModifyIntegrationDepartment）用于更新企业的部门信息，支持更新部门名称、客户系统部门ID和部门序号等信息。
     @inlinable @discardableResult
     public func modifyIntegrationDepartment(_ input: ModifyIntegrationDepartmentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIntegrationDepartmentResponse {
         try await self.client.execute(action: "ModifyIntegrationDepartment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 更新企业部门
+    /// 更新企业部门信息
     ///
-    /// 通过此接口，更新企业的部门信息，支持更新部门名、客户系统部门ID、部门序列号。
+    /// 此接口（ModifyIntegrationDepartment）用于更新企业的部门信息，支持更新部门名称、客户系统部门ID和部门序号等信息。
     @inlinable @discardableResult
-    public func modifyIntegrationDepartment(operator: UserInfo, deptId: String, parentDeptId: String? = nil, deptName: String? = nil, deptOpenId: String? = nil, orderNo: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIntegrationDepartmentResponse> {
-        self.modifyIntegrationDepartment(.init(operator: `operator`, deptId: deptId, parentDeptId: parentDeptId, deptName: deptName, deptOpenId: deptOpenId, orderNo: orderNo), region: region, logger: logger, on: eventLoop)
+    public func modifyIntegrationDepartment(operator: UserInfo, deptId: String, agent: Agent? = nil, parentDeptId: String? = nil, deptName: String? = nil, deptOpenId: String? = nil, orderNo: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIntegrationDepartmentResponse> {
+        self.modifyIntegrationDepartment(.init(operator: `operator`, deptId: deptId, agent: agent, parentDeptId: parentDeptId, deptName: deptName, deptOpenId: deptOpenId, orderNo: orderNo), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 更新企业部门
+    /// 更新企业部门信息
     ///
-    /// 通过此接口，更新企业的部门信息，支持更新部门名、客户系统部门ID、部门序列号。
+    /// 此接口（ModifyIntegrationDepartment）用于更新企业的部门信息，支持更新部门名称、客户系统部门ID和部门序号等信息。
     @inlinable @discardableResult
-    public func modifyIntegrationDepartment(operator: UserInfo, deptId: String, parentDeptId: String? = nil, deptName: String? = nil, deptOpenId: String? = nil, orderNo: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIntegrationDepartmentResponse {
-        try await self.modifyIntegrationDepartment(.init(operator: `operator`, deptId: deptId, parentDeptId: parentDeptId, deptName: deptName, deptOpenId: deptOpenId, orderNo: orderNo), region: region, logger: logger, on: eventLoop)
+    public func modifyIntegrationDepartment(operator: UserInfo, deptId: String, agent: Agent? = nil, parentDeptId: String? = nil, deptName: String? = nil, deptOpenId: String? = nil, orderNo: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIntegrationDepartmentResponse {
+        try await self.modifyIntegrationDepartment(.init(operator: `operator`, deptId: deptId, agent: agent, parentDeptId: parentDeptId, deptName: deptName, deptOpenId: deptOpenId, orderNo: orderNo), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -24,7 +24,7 @@ extension Cynosdb {
         /// 集群ID
         public let clusterId: String
 
-        /// 实例ID数组
+        /// 实例ID数组，例如["cynosdbbmysql-ins-asd","cynosdbmysql-ins-zxc"]
         public let instanceIdList: [String]
 
         /// 该参数已废弃

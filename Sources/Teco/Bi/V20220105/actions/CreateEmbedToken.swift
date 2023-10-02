@@ -36,12 +36,20 @@ extension Bi {
         /// 备用字段
         public let extraParam: String?
 
-        public init(projectId: UInt64? = nil, pageId: UInt64? = nil, scope: String? = nil, expireTime: String? = nil, extraParam: String? = nil) {
+        /// 使用者企业Id(仅用于多用户)
+        public let userCorpId: String?
+
+        /// 使用者Id(仅用于多用户)
+        public let userId: String?
+
+        public init(projectId: UInt64? = nil, pageId: UInt64? = nil, scope: String? = nil, expireTime: String? = nil, extraParam: String? = nil, userCorpId: String? = nil, userId: String? = nil) {
             self.projectId = projectId
             self.pageId = pageId
             self.scope = scope
             self.expireTime = expireTime
             self.extraParam = extraParam
+            self.userCorpId = userCorpId
+            self.userId = userId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -50,6 +58,8 @@ extension Bi {
             case scope = "Scope"
             case expireTime = "ExpireTime"
             case extraParam = "ExtraParam"
+            case userCorpId = "UserCorpId"
+            case userId = "UserId"
         }
     }
 
@@ -98,15 +108,15 @@ extension Bi {
     ///
     /// 创建嵌出报表-强鉴权
     @inlinable
-    public func createEmbedToken(projectId: UInt64? = nil, pageId: UInt64? = nil, scope: String? = nil, expireTime: String? = nil, extraParam: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEmbedTokenResponse> {
-        self.createEmbedToken(.init(projectId: projectId, pageId: pageId, scope: scope, expireTime: expireTime, extraParam: extraParam), region: region, logger: logger, on: eventLoop)
+    public func createEmbedToken(projectId: UInt64? = nil, pageId: UInt64? = nil, scope: String? = nil, expireTime: String? = nil, extraParam: String? = nil, userCorpId: String? = nil, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEmbedTokenResponse> {
+        self.createEmbedToken(.init(projectId: projectId, pageId: pageId, scope: scope, expireTime: expireTime, extraParam: extraParam, userCorpId: userCorpId, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建嵌出报表Token
     ///
     /// 创建嵌出报表-强鉴权
     @inlinable
-    public func createEmbedToken(projectId: UInt64? = nil, pageId: UInt64? = nil, scope: String? = nil, expireTime: String? = nil, extraParam: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEmbedTokenResponse {
-        try await self.createEmbedToken(.init(projectId: projectId, pageId: pageId, scope: scope, expireTime: expireTime, extraParam: extraParam), region: region, logger: logger, on: eventLoop)
+    public func createEmbedToken(projectId: UInt64? = nil, pageId: UInt64? = nil, scope: String? = nil, expireTime: String? = nil, extraParam: String? = nil, userCorpId: String? = nil, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEmbedTokenResponse {
+        try await self.createEmbedToken(.init(projectId: projectId, pageId: pageId, scope: scope, expireTime: expireTime, extraParam: extraParam, userCorpId: userCorpId, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 }

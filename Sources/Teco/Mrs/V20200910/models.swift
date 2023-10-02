@@ -294,6 +294,137 @@ extension Mrs {
         }
     }
 
+    /// 结构化信息
+    public struct Block: TCOutputModel {
+        /// 诊断信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let check: [Check]?
+
+        /// 病理报告
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pathology: [PathologyReport]?
+
+        /// 医学资料
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let medDoc: [MedDoc]?
+
+        /// 诊断证明
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let diagCert: [DiagCert]?
+
+        /// 病案首页
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let firstPage: [FirstPage]?
+
+        /// 检验报告
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let indicator: [Indicator]?
+
+        /// 门诊病历信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let medicalRecordInfo: [MedicalRecordInfo]?
+
+        /// 出入院信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hospitalization: [Hospitalization]?
+
+        /// 手术记录
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let surgery: [Surgery]?
+
+        /// 处方单
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let prescription: [Prescription]?
+
+        /// 免疫接种证明
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vaccineCertificate: [VaccineCertificate]?
+
+        /// 心电图
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let electrocardiogram: [Electrocardiogram]?
+
+        /// 病理报告v2
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pathologyV2: [PathologyV2]?
+
+        /// 内窥镜报告
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let endoscopy: [Endoscopy]?
+
+        /// C14检验报告
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let c14: [Indicator]?
+
+        /// 体检结论
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let exame: [Exame]?
+
+        /// 出入院结构体
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let medDocV2: [DischargeInfoBlock]?
+
+        /// 检验报告v3
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let indicatorV3: [IndicatorV3]?
+
+        /// 孕产报告
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let maternity: [Maternity]?
+
+        /// 时间轴
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let timeline: [TimelineInformation]?
+
+        /// 核酸报告结论
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let covid: [CovidItemsInfo]?
+
+        /// 眼科报告结构体
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let eye: [EyeItemsInfo]?
+
+        /// 出生证明结构化信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let birthCert: [BirthCert]?
+
+        /// 文本类型列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let textTypeListBlocks: [TextTypeListBlock]?
+
+        /// 体检报告信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let physicalExamination: PhysicalExaminationV1?
+
+        enum CodingKeys: String, CodingKey {
+            case check = "Check"
+            case pathology = "Pathology"
+            case medDoc = "MedDoc"
+            case diagCert = "DiagCert"
+            case firstPage = "FirstPage"
+            case indicator = "Indicator"
+            case medicalRecordInfo = "MedicalRecordInfo"
+            case hospitalization = "Hospitalization"
+            case surgery = "Surgery"
+            case prescription = "Prescription"
+            case vaccineCertificate = "VaccineCertificate"
+            case electrocardiogram = "Electrocardiogram"
+            case pathologyV2 = "PathologyV2"
+            case endoscopy = "Endoscopy"
+            case c14 = "C14"
+            case exame = "Exame"
+            case medDocV2 = "MedDocV2"
+            case indicatorV3 = "IndicatorV3"
+            case maternity = "Maternity"
+            case timeline = "Timeline"
+            case covid = "Covid"
+            case eye = "Eye"
+            case birthCert = "BirthCert"
+            case textTypeListBlocks = "TextTypeListBlocks"
+            case physicalExamination = "PhysicalExamination"
+        }
+    }
+
     /// 块信息
     public struct BlockInfo: TCOutputModel {
         /// 原文位置
@@ -407,6 +538,42 @@ extension Mrs {
         }
     }
 
+    /// 体检报告血压检测信息
+    public struct BloodPressureItem: TCOutputModel {
+        /// 类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 项目原文
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let item: PhysicalBaseItem?
+
+        /// 数值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let result: PhysicalBaseItem?
+
+        /// 单位
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let unit: PhysicalBaseItem?
+
+        /// 第几次
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let times: PhysicalBaseItem?
+
+        /// 左右手臂
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let location: PhysicalBaseItem?
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case item = "Item"
+            case result = "Result"
+            case unit = "Unit"
+            case times = "Times"
+            case location = "Location"
+        }
+    }
+
     /// 查体
     public struct BodyExaminationBlock: TCOutputModel {
         /// 体温
@@ -477,6 +644,37 @@ extension Mrs {
         enum CodingKeys: String, CodingKey {
             case desc = "Desc"
             case summary = "Summary"
+        }
+    }
+
+    /// 体检报告-胸围信息
+    public struct ChestCircumferenceItem: TCOutputModel {
+        /// 类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 项目原文
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let item: PhysicalBaseItem?
+
+        /// 数值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let result: PhysicalBaseItem?
+
+        /// 单位
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let unit: PhysicalBaseItem?
+
+        /// 呼吸状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let state: PhysicalBaseItem?
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case item = "Item"
+            case result = "Result"
+            case unit = "Unit"
+            case state = "State"
         }
     }
 
@@ -1792,6 +1990,176 @@ extension Mrs {
         }
     }
 
+    /// 体检报告-一般检测信息
+    public struct GeneralExaminationBaseItem: TCOutputModel {
+        /// 生命体征
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vitalSign: GeneralExaminationVitalSign?
+
+        /// 其他
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let others: GeneralExaminationOthers?
+
+        /// 小结
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let briefSummary: GeneralExaminationBriefSummary?
+
+        enum CodingKeys: String, CodingKey {
+            case vitalSign = "VitalSign"
+            case others = "Others"
+            case briefSummary = "BriefSummary"
+        }
+    }
+
+    /// 体检报告-小结
+    public struct GeneralExaminationBriefSummary: TCOutputModel {
+        /// 一般检查小结
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+        }
+    }
+
+    /// 体检报告-其他项
+    public struct GeneralExaminationOthers: TCOutputModel {
+        /// 面容与表情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let countenance: KeyValueItem?
+
+        /// 精神状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let mentalStatus: KeyValueItem?
+
+        /// 发育及营养状况
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let developmentCondition: KeyValueItem?
+
+        /// 记忆力
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let memory: KeyValueItem?
+
+        /// 臀围
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hipline: ValueUnitItem?
+
+        /// 腰臀比
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let waistHipRatio: ValueUnitItem?
+
+        /// 生活嗜好
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let addiction: KeyValueItem?
+
+        /// 生活能力评定
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let abilityOfLifeADL: KeyValueItem?
+
+        /// 一般检查其他
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let others: [KeyValueItem]?
+
+        /// 胸围
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let chestCircumference: ChestCircumferenceItem?
+
+        enum CodingKeys: String, CodingKey {
+            case countenance = "Countenance"
+            case mentalStatus = "MentalStatus"
+            case developmentCondition = "DevelopmentCondition"
+            case memory = "Memory"
+            case hipline = "Hipline"
+            case waistHipRatio = "WaistHipRatio"
+            case addiction = "Addiction"
+            case abilityOfLifeADL = "AbilityOfLifeADL"
+            case others = "Others"
+            case chestCircumference = "ChestCircumference"
+        }
+    }
+
+    /// 生命体征
+    public struct GeneralExaminationVitalSign: TCOutputModel {
+        /// 生命体征总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: ValueUnitItem?
+
+        /// 体温
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bodyTemperature: ValueUnitItem?
+
+        /// 脉率
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pulse: ValueUnitItem?
+
+        /// 心率
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let heartRate: ValueUnitItem?
+
+        /// 呼吸频率
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let breathingRate: ValueUnitItem?
+
+        /// 身高
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bodyHeight: ValueUnitItem?
+
+        /// 体重
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bodyWeight: ValueUnitItem?
+
+        /// 体质指数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bodyMassIndex: ValueUnitItem?
+
+        /// 腰围
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let waistline: ValueUnitItem?
+
+        /// 血压
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bloodPressure: GeneralExaminationVitalSignBloodPressure?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+            case bodyTemperature = "BodyTemperature"
+            case pulse = "Pulse"
+            case heartRate = "HeartRate"
+            case breathingRate = "BreathingRate"
+            case bodyHeight = "BodyHeight"
+            case bodyWeight = "BodyWeight"
+            case bodyMassIndex = "BodyMassIndex"
+            case waistline = "Waistline"
+            case bloodPressure = "BloodPressure"
+        }
+    }
+
+    /// 血压
+    public struct GeneralExaminationVitalSignBloodPressure: TCOutputModel {
+        /// 血压
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: BloodPressureItem?
+
+        /// 收缩压/舒张压
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let systolicDiastolicPressure: [BloodPressureItem]?
+
+        /// 收缩压
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let systolicPressure: [BloodPressureItem]?
+
+        /// 舒张压
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let diastolicPressure: [BloodPressureItem]?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+            case systolicDiastolicPressure = "SystolicDiastolicPressure"
+            case systolicPressure = "SystolicPressure"
+            case diastolicPressure = "DiastolicPressure"
+        }
+    }
+
     /// 家族遗传史
     public struct GeneticHistoryBlock: TCOutputModel {
         /// 名称
@@ -1815,6 +2183,145 @@ extension Mrs {
             case src = "Src"
             case geneticList = "GeneticList"
             case value = "Value"
+        }
+    }
+
+    /// 体检报告-妇科-子宫附件
+    public struct GynaecologyAdnexal: TCOutputModel {
+        /// 子宫附件总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+        }
+    }
+
+    /// 体检报告-妇科
+    public struct GynaecologyBaseItem: TCOutputModel {
+        /// 外阴
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vulva: GynaecologyVulva?
+
+        /// 阴道
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vagina: GynaecologyVagina?
+
+        /// 子宫颈
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cervix: GynaecologyCervix?
+
+        /// 子宫
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let uterus: GynaecologyUterus?
+
+        /// 子宫附件
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let adnexal: GynaecologyAdnexal?
+
+        /// 盆腔
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pelvicCavity: GynaecologyPelvicCavity?
+
+        /// 妇科其他
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let others: [KeyValueItem]?
+
+        /// 月经史
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let menstrualHistory: GynaecologyMenstrualHistory?
+
+        /// 小结
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let briefSummary: GynaecologyBriefSummary?
+
+        enum CodingKeys: String, CodingKey {
+            case vulva = "Vulva"
+            case vagina = "Vagina"
+            case cervix = "Cervix"
+            case uterus = "Uterus"
+            case adnexal = "Adnexal"
+            case pelvicCavity = "PelvicCavity"
+            case others = "Others"
+            case menstrualHistory = "MenstrualHistory"
+            case briefSummary = "BriefSummary"
+        }
+    }
+
+    /// 体检报告-妇科-小结
+    public struct GynaecologyBriefSummary: TCOutputModel {
+        /// 小结
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+        }
+    }
+
+    /// 体检报告-妇科-子宫颈
+    public struct GynaecologyCervix: TCOutputModel {
+        /// 子宫颈总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+        }
+    }
+
+    /// 体检报告-妇科-月经史
+    public struct GynaecologyMenstrualHistory: TCOutputModel {
+        /// 妇科月经史总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+        }
+    }
+
+    /// 体检报告-妇科-盆腔
+    public struct GynaecologyPelvicCavity: TCOutputModel {
+        /// 盆腔总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+        }
+    }
+
+    /// 体检报告-妇科-子宫
+    public struct GynaecologyUterus: TCOutputModel {
+        /// 子宫总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+        }
+    }
+
+    /// 体检报告-妇科-阴道
+    public struct GynaecologyVagina: TCOutputModel {
+        /// 阴道总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+        }
+    }
+
+    /// 体检报告-妇科-外阴
+    public struct GynaecologyVulva: TCOutputModel {
+        /// 外阴总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
         }
     }
 
@@ -1864,6 +2371,32 @@ extension Mrs {
             case isScale = "IsScale"
             case imageOriginalSize = "ImageOriginalSize"
             case scaleTargetSize = "ScaleTargetSize"
+        }
+    }
+
+    /// 听力信息
+    public struct HearingItem: TCOutputModel {
+        /// 类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 项目原文
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let item: PhysicalBaseItem?
+
+        /// 方位
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let location: PhysicalBaseItem?
+
+        /// 描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let result: PhysicalBaseItem?
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case item = "Item"
+            case location = "Location"
+            case result = "Result"
         }
     }
 
@@ -2318,6 +2851,352 @@ extension Mrs {
         }
     }
 
+    /// 体检报告-内科-腹部
+    public struct InternalMedicineAbdomen: TCOutputModel {
+        /// 内科腹部小结
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        /// 肝脏
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let liver: InternalMedicineAbdomenLiver?
+
+        /// 胆囊
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gallBladder: InternalMedicineAbdomenGallBladder?
+
+        /// 胰腺
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pancreas: InternalMedicineAbdomenPancreas?
+
+        /// 脾脏
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let spleen: InternalMedicineAbdomenSpleen?
+
+        /// 肾脏
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let kidney: InternalMedicineAbdomenKidney?
+
+        /// 腹部其他
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let others: [KeyValueItem]?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+            case liver = "Liver"
+            case gallBladder = "GallBladder"
+            case pancreas = "Pancreas"
+            case spleen = "Spleen"
+            case kidney = "Kidney"
+            case others = "Others"
+        }
+    }
+
+    /// 体检报告-内科-腹部-胆囊
+    public struct InternalMedicineAbdomenGallBladder: TCOutputModel {
+        /// 胆囊总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let src: KeyValueItem?
+
+        /// 胆囊大小
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let size: KeyValueItem?
+
+        /// 胆囊触诊
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let palpation: KeyValueItem?
+
+        /// 胆囊叩诊
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let percussion: KeyValueItem?
+
+        /// 胆囊压痛
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tenderness: KeyValueItem?
+
+        /// 胆囊质地
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let consistency: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case src = "Src"
+            case size = "Size"
+            case palpation = "Palpation"
+            case percussion = "Percussion"
+            case tenderness = "Tenderness"
+            case consistency = "Consistency"
+        }
+    }
+
+    /// 体检报告-内科-腹部-肾脏
+    public struct InternalMedicineAbdomenKidney: TCOutputModel {
+        /// 肾脏总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let src: KeyValueItem?
+
+        /// 肾脏大小
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let size: KeyValueItem?
+
+        /// 肾脏触诊
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let palpation: KeyValueItem?
+
+        /// 肾脏叩诊
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let percussion: KeyValueItem?
+
+        /// 肾脏压痛
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tenderness: KeyValueItem?
+
+        /// 肾脏质地
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let consistency: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case src = "Src"
+            case size = "Size"
+            case palpation = "Palpation"
+            case percussion = "Percussion"
+            case tenderness = "Tenderness"
+            case consistency = "Consistency"
+        }
+    }
+
+    /// 体检报告-内科-腹部-肝脏
+    public struct InternalMedicineAbdomenLiver: TCOutputModel {
+        /// 肝脏总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let src: KeyValueItem?
+
+        /// 肝脏大小
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let size: KeyValueItem?
+
+        /// 肝脏触诊
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let palpation: KeyValueItem?
+
+        /// 肝脏叩诊
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let percussion: KeyValueItem?
+
+        /// 肝脏压痛
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tenderness: KeyValueItem?
+
+        /// 肝脏质地
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let consistency: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case src = "Src"
+            case size = "Size"
+            case palpation = "Palpation"
+            case percussion = "Percussion"
+            case tenderness = "Tenderness"
+            case consistency = "Consistency"
+        }
+    }
+
+    /// 体检报告-内科-腹部-胰腺
+    public struct InternalMedicineAbdomenPancreas: TCOutputModel {
+        /// 胰腺总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let src: KeyValueItem?
+
+        /// 胰腺大小
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let size: KeyValueItem?
+
+        /// 胰腺触诊
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let palpation: KeyValueItem?
+
+        /// 胰腺叩诊
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let percussion: KeyValueItem?
+
+        /// 肝脏压痛
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tenderness: KeyValueItem?
+
+        /// 胰腺质地
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let consistency: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case src = "Src"
+            case size = "Size"
+            case palpation = "Palpation"
+            case percussion = "Percussion"
+            case tenderness = "Tenderness"
+            case consistency = "Consistency"
+        }
+    }
+
+    /// 体检报告-内科-腹部-脾脏
+    public struct InternalMedicineAbdomenSpleen: TCOutputModel {
+        /// 脾脏总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let src: KeyValueItem?
+
+        /// 脾脏大小
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let size: KeyValueItem?
+
+        /// 脾脏触诊
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let palpation: KeyValueItem?
+
+        /// 脾脏叩诊
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let percussion: KeyValueItem?
+
+        /// 脾脏压痛
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tenderness: KeyValueItem?
+
+        /// 脾脏质地
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let consistency: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case src = "Src"
+            case size = "Size"
+            case palpation = "Palpation"
+            case percussion = "Percussion"
+            case tenderness = "Tenderness"
+            case consistency = "Consistency"
+        }
+    }
+
+    /// 体检报告-内科
+    public struct InternalMedicineBaseItem: TCOutputModel {
+        /// 体检报告-内科-腹部
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let abdomen: InternalMedicineAbdomen?
+
+        /// 体检报告-内科-心脏
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let heart: InternalMedicineHeart?
+
+        /// 体检报告-内科-血管
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vessel: InternalMedicineVessel?
+
+        /// 体检报告-内科-呼吸系统
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let respiratorySystem: InternalMedicineRespiratorySystem?
+
+        /// 体检报告-内科-内科其他
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let others: [KeyValueItem]?
+
+        /// 体检报告-内科-小结
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let briefSummary: InternalMedicineBriefSummary?
+
+        enum CodingKeys: String, CodingKey {
+            case abdomen = "Abdomen"
+            case heart = "Heart"
+            case vessel = "Vessel"
+            case respiratorySystem = "RespiratorySystem"
+            case others = "Others"
+            case briefSummary = "BriefSummary"
+        }
+    }
+
+    /// 体检报告-内科-内科小结
+    public struct InternalMedicineBriefSummary: TCOutputModel {
+        /// 内科小结
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+        }
+    }
+
+    /// 体检报告-内科-心脏
+    public struct InternalMedicineHeart: TCOutputModel {
+        /// 心脏总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        /// 心律
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let heartRhythm: KeyValueItem?
+
+        /// 心率
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let heartRate: ValueUnitItem?
+
+        /// 心脏听诊
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let heartAuscultation: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+            case heartRhythm = "HeartRhythm"
+            case heartRate = "HeartRate"
+            case heartAuscultation = "HeartAuscultation"
+        }
+    }
+
+    /// 体检报告-内科-呼吸系统
+    public struct InternalMedicineRespiratorySystem: TCOutputModel {
+        /// 呼吸系统总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        /// 胸廓
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let thoracic: KeyValueItem?
+
+        /// 痰量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sputum: KeyValueItem?
+
+        /// 肺部叩诊
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lungPercussion: KeyValueItem?
+
+        /// 肺部听诊其他
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lungAuscultation: [KeyValueItem]?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+            case thoracic = "Thoracic"
+            case sputum = "Sputum"
+            case lungPercussion = "LungPercussion"
+            case lungAuscultation = "LungAuscultation"
+        }
+    }
+
+    /// 体检报告-内科-血管
+    public struct InternalMedicineVessel: TCOutputModel {
+        /// 血管总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        /// 血管杂音
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vascularMurmur: KeyValueItem?
+
+        /// 外周血管
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let peripheralVessel: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+            case vascularMurmur = "VascularMurmur"
+            case peripheralVessel = "PeripheralVessel"
+        }
+    }
+
     /// 侵犯扩散
     public struct Invas: TCOutputModel {
         /// 原文位置
@@ -2393,6 +3272,27 @@ extension Mrs {
             case certNumber = "CertNumber"
             case issuedAuthority = "IssuedAuthority"
             case issuedDate = "IssuedDate"
+        }
+    }
+
+    /// 体检报告信息
+    public struct KeyValueItem: TCOutputModel {
+        /// 类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 项目原文
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let item: PhysicalBaseItem?
+
+        /// 结果
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let result: PhysicalBaseItem?
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case item = "Item"
+            case result = "Result"
         }
     }
 
@@ -3278,6 +4178,117 @@ extension Mrs {
         }
     }
 
+    /// 体检报告-眼科-裸眼视力
+    public struct OphthalmologyBareEyeSight: TCOutputModel {
+        /// 左眼视力
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let leftEyeVisual: KeyValueItem?
+
+        /// 裸眼视力
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        /// 右眼视力
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rightEyeVisual: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case leftEyeVisual = "LeftEyeVisual"
+            case text = "Text"
+            case rightEyeVisual = "RightEyeVisual"
+        }
+    }
+
+    /// 体检报告-眼科
+    public struct OphthalmologyBaseItem: TCOutputModel {
+        /// 裸眼视力
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bareEyeSight: OphthalmologyBareEyeSight?
+
+        /// 矫正视力
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let correctedVisualAcuity: OphthalmologyCorrectedVisualAcuity?
+
+        /// 色觉
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let colourVision: OphthalmologyColourVision?
+
+        /// 眼底
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fundoscopy: OphthalmologyFundoscopy?
+
+        /// 眼科其他
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let others: [KeyValueItem]?
+
+        /// 眼科小结
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let briefSummary: OphthalmologyBriefSummary?
+
+        enum CodingKeys: String, CodingKey {
+            case bareEyeSight = "BareEyeSight"
+            case correctedVisualAcuity = "CorrectedVisualAcuity"
+            case colourVision = "ColourVision"
+            case fundoscopy = "Fundoscopy"
+            case others = "Others"
+            case briefSummary = "BriefSummary"
+        }
+    }
+
+    /// 体检报告-眼科-小结
+    public struct OphthalmologyBriefSummary: TCOutputModel {
+        /// 眼科小结
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+        }
+    }
+
+    /// 体检报告-眼科-色觉
+    public struct OphthalmologyColourVision: TCOutputModel {
+        /// 色觉总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+        }
+    }
+
+    /// 体检报告-眼科-矫正视力
+    public struct OphthalmologyCorrectedVisualAcuity: TCOutputModel {
+        /// 左眼矫正视力
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let leftEyeVisual: KeyValueItem?
+
+        /// 矫正视力
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        /// 右眼矫正视力
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rightEyeVisual: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case leftEyeVisual = "LeftEyeVisual"
+            case text = "Text"
+            case rightEyeVisual = "RightEyeVisual"
+        }
+    }
+
+    /// 体检报告-眼科-眼底
+    public struct OphthalmologyFundoscopy: TCOutputModel {
+        /// 眼底检查总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+        }
+    }
+
     /// 器官
     public struct Organ: TCOutputModel {
         /// 部位
@@ -3354,6 +4365,7 @@ extension Mrs {
 
         /// 峡部厚度
         /// 注意：此字段可能返回 null，表示取不到有效值。
+        @available(*, deprecated)
         public let isthmusThicknese: Size?
 
         /// 内部回声分布
@@ -3428,6 +4440,10 @@ extension Mrs {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let coords: [Coord]?
 
+        /// 峡部厚度
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isthmusThickness: Size?
+
         enum CodingKeys: String, CodingKey {
             case part = "Part"
             case size = "Size"
@@ -3466,6 +4482,7 @@ extension Mrs {
             case trend = "Trend"
             case operation = "Operation"
             case coords = "Coords"
+            case isthmusThickness = "IsthmusThickness"
         }
     }
 
@@ -3502,6 +4519,86 @@ extension Mrs {
             case duration = "Duration"
             case endTime = "EndTime"
             case startTime = "StartTime"
+        }
+    }
+
+    /// 体检报告-耳鼻喉科
+    public struct OtolaryngologyBaseItem: TCOutputModel {
+        /// 耳朵
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ear: OtolaryngologyEar?
+
+        /// 鼻
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nose: OtolaryngologyNose?
+
+        /// 喉
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let larynx: OtolaryngologyLarynx?
+
+        /// 耳鼻喉其他
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let others: [KeyValueItem]?
+
+        /// 小结
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let briefSummary: OtolaryngologyBriefSummary?
+
+        enum CodingKeys: String, CodingKey {
+            case ear = "Ear"
+            case nose = "Nose"
+            case larynx = "Larynx"
+            case others = "Others"
+            case briefSummary = "BriefSummary"
+        }
+    }
+
+    /// 体检报告-耳鼻喉科-小结
+    public struct OtolaryngologyBriefSummary: TCOutputModel {
+        /// 耳鼻喉小结
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+        }
+    }
+
+    /// 体检报告-耳鼻喉科-耳朵
+    public struct OtolaryngologyEar: TCOutputModel {
+        /// 耳总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        /// 听力
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hearing: HearingItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+            case hearing = "Hearing"
+        }
+    }
+
+    /// 体检报告-耳鼻喉科-喉
+    public struct OtolaryngologyLarynx: TCOutputModel {
+        /// 喉总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+        }
+    }
+
+    /// 体检报告-耳鼻喉科-鼻
+    public struct OtolaryngologyNose: TCOutputModel {
+        /// 鼻总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
         }
     }
 
@@ -3659,6 +4756,7 @@ extension Mrs {
 
         /// 月经史
         /// 注意：此字段可能返回 null，表示取不到有效值。
+        @available(*, deprecated)
         public let menstruallHistoryText: String?
 
         /// 婚育史
@@ -3693,6 +4791,10 @@ extension Mrs {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let treatmentResultText: String?
 
+        /// 月经史
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let menstrualHistoryText: String?
+
         enum CodingKeys: String, CodingKey {
             case incisionHealingText = "IncisionHealingText"
             case auxiliaryExaminationText = "AuxiliaryExaminationText"
@@ -3721,6 +4823,7 @@ extension Mrs {
             case bodyExaminationText = "BodyExaminationText"
             case specialistExaminationText = "SpecialistExaminationText"
             case treatmentResultText = "TreatmentResultText"
+            case menstrualHistoryText = "MenstrualHistoryText"
         }
     }
 
@@ -4144,6 +5247,25 @@ extension Mrs {
         }
     }
 
+    /// 体检报告PDF信息
+    public struct PdfInfo: TCInputModel {
+        /// pdf文件url链接(暂不支持)
+        public let url: String?
+
+        /// pdf文件base64编码字符串
+        public let base64: String?
+
+        public init(url: String? = nil, base64: String? = nil) {
+            self.url = url
+            self.base64 = base64
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case url = "Url"
+            case base64 = "Base64"
+        }
+    }
+
     /// 个人史
     public struct PersonalHistoryBlock: TCOutputModel {
         /// 出生地
@@ -4218,6 +5340,94 @@ extension Mrs {
             case job = "Job"
             case smokeHistory = "SmokeHistory"
             case alcoholicHistory = "AlcoholicHistory"
+        }
+    }
+
+    /// 体检报告基础信息
+    public struct PhysicalBaseItem: TCOutputModel {
+        /// 类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 原始文本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let src: String?
+
+        /// 归一化后值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let value: String?
+
+        /// 四点坐标
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let coords: [Coord]?
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case src = "Src"
+            case value = "Value"
+            case coords = "Coords"
+        }
+    }
+
+    /// 体检报告综合信息
+    public struct PhysicalExamination: TCOutputModel {
+        /// 一般检查
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let generalExamination: GeneralExaminationBaseItem?
+
+        /// 内科
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let internalMedicine: InternalMedicineBaseItem?
+
+        /// 外科
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let surgery: SurgeryBaseItem?
+
+        /// 口腔科
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let stomatology: StomatologyBaseItem?
+
+        /// 眼科
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ophthalmology: OphthalmologyBaseItem?
+
+        /// 耳鼻喉科
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let otolaryngology: OtolaryngologyBaseItem?
+
+        /// 妇科
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gynaecology: GynaecologyBaseItem?
+
+        /// 未标准化
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let unclassified: [KeyValueItem]?
+
+        enum CodingKeys: String, CodingKey {
+            case generalExamination = "GeneralExamination"
+            case internalMedicine = "InternalMedicine"
+            case surgery = "Surgery"
+            case stomatology = "Stomatology"
+            case ophthalmology = "Ophthalmology"
+            case otolaryngology = "Otolaryngology"
+            case gynaecology = "Gynaecology"
+            case unclassified = "Unclassified"
+        }
+    }
+
+    /// 体检报告V1版本
+    public struct PhysicalExaminationV1: TCOutputModel {
+        /// 体检报告信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let physicalExaminationMulti: PhysicalExamination?
+
+        /// 版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let version: String?
+
+        enum CodingKeys: String, CodingKey {
+            case physicalExaminationMulti = "PhysicalExaminationMulti"
+            case version = "Version"
         }
     }
 
@@ -4552,6 +5762,10 @@ extension Mrs {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let times: [Time]?
 
+        /// 床号
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bedNo: String?
+
         enum CodingKeys: String, CodingKey {
             case hospital = "Hospital"
             case departmentName = "DepartmentName"
@@ -4578,6 +5792,7 @@ extension Mrs {
             case otherTime = "OtherTime"
             case printTime = "PrintTime"
             case times = "Times"
+            case bedNo = "BedNo"
         }
     }
 
@@ -4693,6 +5908,81 @@ extension Mrs {
         }
     }
 
+    /// 体检报告-口腔科
+    public struct StomatologyBaseItem: TCOutputModel {
+        /// 龋齿
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let toothDecay: StomatologyToothDecay?
+
+        /// 牙龈
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gingiva: StomatologyGingiva?
+
+        /// 牙周
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let periodontics: StomatologyPeriodontics?
+
+        /// 口腔其他
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let others: [KeyValueItem]?
+
+        /// 小结
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let briefSummary: StomatologyBriefSummary?
+
+        enum CodingKeys: String, CodingKey {
+            case toothDecay = "ToothDecay"
+            case gingiva = "Gingiva"
+            case periodontics = "Periodontics"
+            case others = "Others"
+            case briefSummary = "BriefSummary"
+        }
+    }
+
+    /// 体检报告-口腔科-小结
+    public struct StomatologyBriefSummary: TCOutputModel {
+        /// 口腔小结
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+        }
+    }
+
+    /// 体检报告-口腔科-牙龈
+    public struct StomatologyGingiva: TCOutputModel {
+        /// 牙龈总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+        }
+    }
+
+    /// 体检报告-口腔科-牙周
+    public struct StomatologyPeriodontics: TCOutputModel {
+        /// 牙周总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+        }
+    }
+
+    /// 体检报告-口腔科-龋齿
+    public struct StomatologyToothDecay: TCOutputModel {
+        /// 龋齿总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+        }
+    }
+
     /// 结论
     public struct Summary: TCOutputModel {
         /// 症状
@@ -4746,6 +6036,27 @@ extension Mrs {
         }
     }
 
+    /// 体检报告-外科-肛门直肠
+    public struct SurgeryAnorectal: TCOutputModel {
+        /// 肛门直肠总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        /// 直肠指检
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let digitalRectalExamination: KeyValueItem?
+
+        /// 痔疮
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hemorrhoid: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+            case digitalRectalExamination = "DigitalRectalExamination"
+            case hemorrhoid = "Hemorrhoid"
+        }
+    }
+
     /// 手术记录属性
     public struct SurgeryAttr: TCOutputModel {
         /// 名称
@@ -4759,6 +6070,84 @@ extension Mrs {
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case value = "Value"
+        }
+    }
+
+    /// 体检报告-外科
+    public struct SurgeryBaseItem: TCOutputModel {
+        /// 体检报告-外科-头颈部
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let headNeck: SurgeryHeadNeck?
+
+        /// 体检报告-外科-甲状腺
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let thyroid: SurgeryThyroid?
+
+        /// 体检报告-外科-乳房
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let breast: SurgeryBreast?
+
+        /// 体检报告-外科-浅表淋巴结
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lymphNode: SurgeryLymphNode?
+
+        /// 体检报告-外科-脊柱
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let spinalExtremities: SurgerySpinalExtremities?
+
+        /// 体检报告-外科-皮肤
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let skin: SurgerySkin?
+
+        /// 体检报告-外科-肛门直肠
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let anorectal: SurgeryAnorectal?
+
+        /// 体检报告-外科-泌尿生殖系统
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let urogenitalSystem: SurgeryUrogenitalSystem?
+
+        /// 体检报告-外科-外科其他
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let others: [KeyValueItem]?
+
+        /// 体检报告-外科-小结
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let briefSummary: SurgeryBriefSummary?
+
+        enum CodingKeys: String, CodingKey {
+            case headNeck = "HeadNeck"
+            case thyroid = "Thyroid"
+            case breast = "Breast"
+            case lymphNode = "LymphNode"
+            case spinalExtremities = "SpinalExtremities"
+            case skin = "Skin"
+            case anorectal = "Anorectal"
+            case urogenitalSystem = "UrogenitalSystem"
+            case others = "Others"
+            case briefSummary = "BriefSummary"
+        }
+    }
+
+    /// 体检报告-外科-乳房
+    public struct SurgeryBreast: TCOutputModel {
+        /// 乳房总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+        }
+    }
+
+    /// 体检报告-外科-小结
+    public struct SurgeryBriefSummary: TCOutputModel {
+        /// 外科小结
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
         }
     }
 
@@ -4786,6 +6175,17 @@ extension Mrs {
             case src = "Src"
             case surgeryList = "SurgeryList"
             case value = "Value"
+        }
+    }
+
+    /// 体检报告-外科-头颈部
+    public struct SurgeryHeadNeck: TCOutputModel {
+        /// 头颈部总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
         }
     }
 
@@ -4874,6 +6274,101 @@ extension Mrs {
             case timeType = "TimeType"
             case name = "Name"
             case part = "Part"
+        }
+    }
+
+    /// 体检报告-外科-浅表淋巴结
+    public struct SurgeryLymphNode: TCOutputModel {
+        /// 浅表淋巴结总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+        }
+    }
+
+    /// 体检报告-外科-皮肤
+    public struct SurgerySkin: TCOutputModel {
+        /// 皮肤总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+        }
+    }
+
+    /// 体检报告-外科-脊柱
+    public struct SurgerySpinalExtremities: TCOutputModel {
+        /// 脊柱四肢总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        /// 脊柱
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let spinalColumn: KeyValueItem?
+
+        /// 四肢和关节
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let limbJoint: KeyValueItem?
+
+        /// 平跛足
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let foot: KeyValueItem?
+
+        /// 骨骼
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bone: KeyValueItem?
+
+        /// 步态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gait: KeyValueItem?
+
+        /// 残疾或畸形
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let deformity: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+            case spinalColumn = "SpinalColumn"
+            case limbJoint = "LimbJoint"
+            case foot = "Foot"
+            case bone = "Bone"
+            case gait = "Gait"
+            case deformity = "Deformity"
+        }
+    }
+
+    /// 体检报告-外科-甲状腺
+    public struct SurgeryThyroid: TCOutputModel {
+        /// 甲状腺总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+        }
+    }
+
+    /// 体检报告-外科-泌尿生殖系统
+    public struct SurgeryUrogenitalSystem: TCOutputModel {
+        /// 泌尿生殖系统总体描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: KeyValueItem?
+
+        /// 前列腺
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let prostate: KeyValueItem?
+
+        /// 外生殖器（男性）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let externalReproductiveOrgans: KeyValueItem?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+            case prostate = "Prostate"
+            case externalReproductiveOrgans = "ExternalReproductiveOrgans"
         }
     }
 
@@ -5103,6 +6598,17 @@ extension Mrs {
             case id = "Id"
             case level = "Level"
             case name = "Name"
+        }
+    }
+
+    /// 文本类型列表块
+    public struct TextTypeListBlock: TCOutputModel {
+        /// 文本类型列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let textTypeList: [TextType]?
+
+        enum CodingKeys: String, CodingKey {
+            case textTypeList = "TextTypeList"
         }
     }
 
@@ -5735,6 +7241,7 @@ extension Mrs {
 
         /// 峡部厚度
         /// 注意：此字段可能返回 null，表示取不到有效值。
+        @available(*, deprecated)
         public let isthmusThicknese: Size?
 
         /// 原文
@@ -5789,6 +7296,10 @@ extension Mrs {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let coords: [Coord]?
 
+        /// 峡部厚度
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isthmusThickness: Size?
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case part = "Part"
@@ -5835,6 +7346,7 @@ extension Mrs {
             case symDesc = "SymDesc"
             case imageFeature = "ImageFeature"
             case coords = "Coords"
+            case isthmusThickness = "IsthmusThickness"
         }
     }
 
@@ -5944,6 +7456,32 @@ extension Mrs {
             case grade = "Grade"
             case percent = "Percent"
             case positive = "Positive"
+        }
+    }
+
+    /// 体检报告信息-包含单位
+    public struct ValueUnitItem: TCOutputModel {
+        /// 类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 项目原文
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let item: PhysicalBaseItem?
+
+        /// 数值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let result: PhysicalBaseItem?
+
+        /// 单位
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let unit: PhysicalBaseItem?
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case item = "Item"
+            case result = "Result"
+            case unit = "Unit"
         }
     }
 }

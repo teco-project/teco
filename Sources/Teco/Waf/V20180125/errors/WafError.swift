@@ -31,28 +31,45 @@ public struct TCWafError: TCWafErrorType {
         case failedOperation = "FailedOperation"
         case failedOperation_CLSDBOperationFailed = "FailedOperation.CLSDBOperationFailed"
         case failedOperation_CLSInternalError = "FailedOperation.CLSInternalError"
+        case failedOperation_ClickHouseOperationFailed = "FailedOperation.ClickHouseOperationFailed"
         case failedOperation_MysqlDBOperationFailed = "FailedOperation.MysqlDBOperationFailed"
         case failedOperation_RedisOperationFailed = "FailedOperation.RedisOperationFailed"
+        case failedOperation_SessionInUsed = "FailedOperation.SessionInUsed"
+        case failedOperation_TheNumberOfAddedBlackAndWhiteListExceedsTheUpperLimit = "FailedOperation.TheNumberOfAddedBlackAndWhiteListExceedsTheUpperLimit"
+        case failedOperation_TheNumberOfOneTimeDeletionsReachedTheUpperLimit = "FailedOperation.TheNumberOfOneTimeDeletionsReachedTheUpperLimit"
         case internalError = "InternalError"
+        case internalError_AsynchronousCallFailed = "InternalError.AsynchronousCallFailed"
         case internalError_DBErr = "InternalError.DBErr"
         case internalError_UnknownErr = "InternalError.UnknownErr"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
+        case invalidParameter_CertificationParameterErr = "InvalidParameter.CertificationParameterErr"
+        case invalidParameter_DomainExceedsLimitErr = "InvalidParameter.DomainExceedsLimitErr"
+        case invalidParameter_DomainNotRecord = "InvalidParameter.DomainNotRecord"
         case invalidParameter_InvalidCertificate = "InvalidParameter.InvalidCertificate"
         case invalidParameter_LogicErr = "InvalidParameter.LogicErr"
+        case invalidParameter_PortParameterErr = "InvalidParameter.PortParameterErr"
+        case invalidParameter_ProtectionDomainParameterErr = "InvalidParameter.ProtectionDomainParameterErr"
         case invalidParameter_QueryCertBySSLIDFailed = "InvalidParameter.QueryCertBySSLIDFailed"
         case invalidParameter_QueryStringSyntaxErr = "InvalidParameter.QueryStringSyntaxErr"
         case invalidParameter_SQLSyntaxErr = "InvalidParameter.SQLSyntaxErr"
+        case invalidParameter_SupportTLSConfFailed = "InvalidParameter.SupportTLSConfFailed"
+        case invalidParameter_TLSParameterErr = "InvalidParameter.TLSParameterErr"
         case invalidParameter_TypeMismatch = "InvalidParameter.TypeMismatch"
+        case invalidParameter_UnauthorizedOperationParameterErr = "InvalidParameter.UnauthorizedOperationParameterErr"
+        case invalidParameter_UnknownAction = "InvalidParameter.UnknownAction"
+        case invalidParameter_UpstreamParameterErr = "InvalidParameter.UpstreamParameterErr"
         case limitExceeded = "LimitExceeded"
         case limitExceeded_SpecificationErr = "LimitExceeded.SpecificationErr"
         case missingParameter = "MissingParameter"
         case operationDenied = "OperationDenied"
         case requestLimitExceeded = "RequestLimitExceeded"
         case resourceInUse = "ResourceInUse"
+        case resourceInUse_EmptyErr = "ResourceInUse.EmptyErr"
         case resourceInsufficient = "ResourceInsufficient"
         case resourceNotFound = "ResourceNotFound"
         case resourceUnavailable = "ResourceUnavailable"
+        case resourceUnavailable_DomainIpv6InConfigErr = "ResourceUnavailable.DomainIpv6InConfigErr"
         case resourcesSoldOut = "ResourcesSoldOut"
         case unauthorizedOperation = "UnauthorizedOperation"
         case unknownParameter = "UnknownParameter"
@@ -62,7 +79,15 @@ public struct TCWafError: TCWafErrorType {
 
     /// Error domains affliated to ``TCWafError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InternalError.self, InvalidParameter.self, LimitExceeded.self, UnsupportedOperation.self]
+        [
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            LimitExceeded.self,
+            ResourceInUse.self,
+            ResourceUnavailable.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code
@@ -114,6 +139,11 @@ public struct TCWafError: TCWafErrorType {
         TCWafError(.failedOperation_CLSInternalError)
     }
 
+    /// 操作CH数据库失败
+    public static var failedOperation_ClickHouseOperationFailed: TCWafError {
+        TCWafError(.failedOperation_ClickHouseOperationFailed)
+    }
+
     /// 操作Mysql数据库失败
     public static var failedOperation_MysqlDBOperationFailed: TCWafError {
         TCWafError(.failedOperation_MysqlDBOperationFailed)
@@ -124,9 +154,26 @@ public struct TCWafError: TCWafErrorType {
         TCWafError(.failedOperation_RedisOperationFailed)
     }
 
+    public static var failedOperation_SessionInUsed: TCWafError {
+        TCWafError(.failedOperation_SessionInUsed)
+    }
+
+    public static var failedOperation_TheNumberOfAddedBlackAndWhiteListExceedsTheUpperLimit: TCWafError {
+        TCWafError(.failedOperation_TheNumberOfAddedBlackAndWhiteListExceedsTheUpperLimit)
+    }
+
+    public static var failedOperation_TheNumberOfOneTimeDeletionsReachedTheUpperLimit: TCWafError {
+        TCWafError(.failedOperation_TheNumberOfOneTimeDeletionsReachedTheUpperLimit)
+    }
+
     /// 内部错误。
     public static var internalError: TCWafError {
         TCWafError(.internalError)
+    }
+
+    /// 异步调用失败
+    public static var internalError_AsynchronousCallFailed: TCWafError {
+        TCWafError(.internalError_AsynchronousCallFailed)
     }
 
     /// DBErr
@@ -148,6 +195,21 @@ public struct TCWafError: TCWafErrorType {
         TCWafError(.invalidParameterValue)
     }
 
+    /// 证书信息参数错误
+    public static var invalidParameter_CertificationParameterErr: TCWafError {
+        TCWafError(.invalidParameter_CertificationParameterErr)
+    }
+
+    /// 域名数量超出限制错误
+    public static var invalidParameter_DomainExceedsLimitErr: TCWafError {
+        TCWafError(.invalidParameter_DomainExceedsLimitErr)
+    }
+
+    /// 域名未备案
+    public static var invalidParameter_DomainNotRecord: TCWafError {
+        TCWafError(.invalidParameter_DomainNotRecord)
+    }
+
     /// 证书内容非法。
     public static var invalidParameter_InvalidCertificate: TCWafError {
         TCWafError(.invalidParameter_InvalidCertificate)
@@ -155,6 +217,16 @@ public struct TCWafError: TCWafErrorType {
 
     public static var invalidParameter_LogicErr: TCWafError {
         TCWafError(.invalidParameter_LogicErr)
+    }
+
+    /// 端口信息参数错误
+    public static var invalidParameter_PortParameterErr: TCWafError {
+        TCWafError(.invalidParameter_PortParameterErr)
+    }
+
+    /// 防护域名参数错误
+    public static var invalidParameter_ProtectionDomainParameterErr: TCWafError {
+        TCWafError(.invalidParameter_ProtectionDomainParameterErr)
     }
 
     /// 根据ID查询证书失败。
@@ -170,8 +242,33 @@ public struct TCWafError: TCWafErrorType {
         TCWafError(.invalidParameter_SQLSyntaxErr)
     }
 
+    /// 当前实例版本不支持开启TLS自定义，请升级到高级版及以上
+    public static var invalidParameter_SupportTLSConfFailed: TCWafError {
+        TCWafError(.invalidParameter_SupportTLSConfFailed)
+    }
+
+    /// TLS或加密套件参数错误
+    public static var invalidParameter_TLSParameterErr: TCWafError {
+        TCWafError(.invalidParameter_TLSParameterErr)
+    }
+
     public static var invalidParameter_TypeMismatch: TCWafError {
         TCWafError(.invalidParameter_TypeMismatch)
+    }
+
+    /// 越权参数错误
+    public static var invalidParameter_UnauthorizedOperationParameterErr: TCWafError {
+        TCWafError(.invalidParameter_UnauthorizedOperationParameterErr)
+    }
+
+    /// UnknownAction
+    public static var invalidParameter_UnknownAction: TCWafError {
+        TCWafError(.invalidParameter_UnknownAction)
+    }
+
+    /// 回源信息参数错误
+    public static var invalidParameter_UpstreamParameterErr: TCWafError {
+        TCWafError(.invalidParameter_UpstreamParameterErr)
     }
 
     /// 超过配额限制。
@@ -204,6 +301,11 @@ public struct TCWafError: TCWafErrorType {
         TCWafError(.resourceInUse)
     }
 
+    /// EmptyErr
+    public static var resourceInUse_EmptyErr: TCWafError {
+        TCWafError(.resourceInUse_EmptyErr)
+    }
+
     /// 资源不足。
     public static var resourceInsufficient: TCWafError {
         TCWafError(.resourceInsufficient)
@@ -217,6 +319,11 @@ public struct TCWafError: TCWafErrorType {
     /// 资源不可用。
     public static var resourceUnavailable: TCWafError {
         TCWafError(.resourceUnavailable)
+    }
+
+    /// IPV6网络正在分配，请耐心等待
+    public static var resourceUnavailable_DomainIpv6InConfigErr: TCWafError {
+        TCWafError(.resourceUnavailable_DomainIpv6InConfigErr)
     }
 
     /// 资源售罄。

@@ -19,8 +19,8 @@ import TecoCore
 extension TCEsError {
     public struct AuthFailure: TCEsErrorType {
         enum Code: String {
+            case unAuthDescribeInstances = "AuthFailure.UnAuthDescribeInstances"
             case unAuthorizedOperation = "AuthFailure.UnAuthorizedOperation"
-            case other = "AuthFailure"
         }
 
         private let error: Code
@@ -45,23 +45,22 @@ extension TCEsError {
             self.context = context
         }
 
+        public static var unAuthDescribeInstances: AuthFailure {
+            AuthFailure(.unAuthDescribeInstances)
+        }
+
         /// 操作未授权。
         public static var unAuthorizedOperation: AuthFailure {
             AuthFailure(.unAuthorizedOperation)
         }
 
-        /// CAM签名/鉴权错误。
-        public static var other: AuthFailure {
-            AuthFailure(.other)
-        }
-
         public func asEsError() -> TCEsError {
             let code: TCEsError.Code
             switch self.error {
+            case .unAuthDescribeInstances:
+                code = .authFailure_UnAuthDescribeInstances
             case .unAuthorizedOperation:
                 code = .authFailure_UnAuthorizedOperation
-            case .other:
-                code = .authFailure
             }
             return TCEsError(code, context: self.context)
         }

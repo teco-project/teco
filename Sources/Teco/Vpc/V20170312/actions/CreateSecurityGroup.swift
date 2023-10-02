@@ -27,7 +27,7 @@ extension Vpc {
         /// 安全组备注，最多100个字符。
         public let groupDescription: String
 
-        /// 项目ID，默认0。可在qcloud控制台项目管理页面查询到。
+        /// 项目ID，默认0。可在[控制台项目管理页面](https://console.cloud.tencent.com/project)查询到。
         public let projectId: String?
 
         /// 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。

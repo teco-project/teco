@@ -21,29 +21,33 @@ import TecoCore
 extension Ess {
     /// CreateWebThemeConfig请求参数结构体
     public struct CreateWebThemeConfigRequest: TCRequest {
-        /// 操作人信息
+        /// 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         public let `operator`: UserInfo
 
-        /// 主题类型
+        /// 主题类型，取值如下：
         ///
-        /// EMBED_WEB_THEME：嵌入式主题
-        ///
-        /// 目前只支持EMBED_WEB_THEME，web页面嵌入的主题风格配置
+        /// - **EMBED_WEB_THEME**：嵌入式主题（默认），web页面嵌入的主题风格配置
         public let themeType: String
 
-        /// 主题配置
+        /// 电子签logo是否展示，主体颜色等配置项
         public let webThemeConfig: WebThemeConfig
 
-        public init(operator: UserInfo, themeType: String, webThemeConfig: WebThemeConfig) {
+        /// 代理企业和员工的信息。
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        public let agent: Agent?
+
+        public init(operator: UserInfo, themeType: String, webThemeConfig: WebThemeConfig, agent: Agent? = nil) {
             self.operator = `operator`
             self.themeType = themeType
             self.webThemeConfig = webThemeConfig
+            self.agent = agent
         }
 
         enum CodingKeys: String, CodingKey {
             case `operator` = "Operator"
             case themeType = "ThemeType"
             case webThemeConfig = "WebThemeConfig"
+            case agent = "Agent"
         }
     }
 
@@ -57,35 +61,43 @@ extension Ess {
         }
     }
 
-    /// 创建页面主题配置
+    /// 设置本企业嵌入式页面主题配置
     ///
-    /// 用来创建页面主题配置
+    /// 用来设置本企业嵌入式页面个性化主题配置（例如是否展示电子签logo、定义主题色等），设置后获取的web签署界面都会使用此配置进行展示。
+    ///
+    /// 如果多次调用，会以最后一次的配置为准
     @inlinable @discardableResult
     public func createWebThemeConfig(_ input: CreateWebThemeConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWebThemeConfigResponse> {
         self.client.execute(action: "CreateWebThemeConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 创建页面主题配置
+    /// 设置本企业嵌入式页面主题配置
     ///
-    /// 用来创建页面主题配置
+    /// 用来设置本企业嵌入式页面个性化主题配置（例如是否展示电子签logo、定义主题色等），设置后获取的web签署界面都会使用此配置进行展示。
+    ///
+    /// 如果多次调用，会以最后一次的配置为准
     @inlinable @discardableResult
     public func createWebThemeConfig(_ input: CreateWebThemeConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWebThemeConfigResponse {
         try await self.client.execute(action: "CreateWebThemeConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 创建页面主题配置
+    /// 设置本企业嵌入式页面主题配置
     ///
-    /// 用来创建页面主题配置
+    /// 用来设置本企业嵌入式页面个性化主题配置（例如是否展示电子签logo、定义主题色等），设置后获取的web签署界面都会使用此配置进行展示。
+    ///
+    /// 如果多次调用，会以最后一次的配置为准
     @inlinable @discardableResult
-    public func createWebThemeConfig(operator: UserInfo, themeType: String, webThemeConfig: WebThemeConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWebThemeConfigResponse> {
-        self.createWebThemeConfig(.init(operator: `operator`, themeType: themeType, webThemeConfig: webThemeConfig), region: region, logger: logger, on: eventLoop)
+    public func createWebThemeConfig(operator: UserInfo, themeType: String, webThemeConfig: WebThemeConfig, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWebThemeConfigResponse> {
+        self.createWebThemeConfig(.init(operator: `operator`, themeType: themeType, webThemeConfig: webThemeConfig, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 创建页面主题配置
+    /// 设置本企业嵌入式页面主题配置
     ///
-    /// 用来创建页面主题配置
+    /// 用来设置本企业嵌入式页面个性化主题配置（例如是否展示电子签logo、定义主题色等），设置后获取的web签署界面都会使用此配置进行展示。
+    ///
+    /// 如果多次调用，会以最后一次的配置为准
     @inlinable @discardableResult
-    public func createWebThemeConfig(operator: UserInfo, themeType: String, webThemeConfig: WebThemeConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWebThemeConfigResponse {
-        try await self.createWebThemeConfig(.init(operator: `operator`, themeType: themeType, webThemeConfig: webThemeConfig), region: region, logger: logger, on: eventLoop)
+    public func createWebThemeConfig(operator: UserInfo, themeType: String, webThemeConfig: WebThemeConfig, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWebThemeConfigResponse {
+        try await self.createWebThemeConfig(.init(operator: `operator`, themeType: themeType, webThemeConfig: webThemeConfig, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 }

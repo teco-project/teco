@@ -48,6 +48,8 @@ public struct TCTatError: TCTatErrorType {
         case invalidParameterValue_InvalidInvokerId = "InvalidParameterValue.InvalidInvokerId"
         case invalidParameterValue_InvalidOutputCOSBucketUrl = "InvalidParameterValue.InvalidOutputCOSBucketUrl"
         case invalidParameterValue_InvalidOutputCOSKeyPrefix = "InvalidParameterValue.InvalidOutputCOSKeyPrefix"
+        case invalidParameterValue_InvalidRegisterCodeId = "InvalidParameterValue.InvalidRegisterCodeId"
+        case invalidParameterValue_InvalidRegisterInstanceId = "InvalidParameterValue.InvalidRegisterInstanceId"
         case invalidParameterValue_InvalidTimeFormat = "InvalidParameterValue.InvalidTimeFormat"
         case invalidParameterValue_InvalidUsername = "InvalidParameterValue.InvalidUsername"
         case invalidParameterValue_InvalidWorkingDirectory = "InvalidParameterValue.InvalidWorkingDirectory"
@@ -75,6 +77,8 @@ public struct TCTatError: TCTatErrorType {
         case resourceNotFound_CommandNotFound = "ResourceNotFound.CommandNotFound"
         case resourceNotFound_InstanceNotFound = "ResourceNotFound.InstanceNotFound"
         case resourceNotFound_InvocationNotFound = "ResourceNotFound.InvocationNotFound"
+        case resourceNotFound_RegisterCodesNotFoundCode = "ResourceNotFound.RegisterCodesNotFoundCode"
+        case resourceNotFound_RegisterInstanceNotFoundCode = "ResourceNotFound.RegisterInstanceNotFoundCode"
         case resourceNotFound_RoleNotFound = "ResourceNotFound.RoleNotFound"
         case resourceUnavailable = "ResourceUnavailable"
         case resourceUnavailable_AgentNotInstalled = "ResourceUnavailable.AgentNotInstalled"
@@ -83,6 +87,7 @@ public struct TCTatError: TCTatErrorType {
         case resourceUnavailable_CommandInInvoker = "ResourceUnavailable.CommandInInvoker"
         case resourceUnavailable_InstanceStateNotRunning = "ResourceUnavailable.InstanceStateNotRunning"
         case resourceUnavailable_LighthouseUnsupportedRegion = "ResourceUnavailable.LighthouseUnsupportedRegion"
+        case unauthorizedOperation_AssumeRoleUnauthorized = "UnauthorizedOperation.AssumeRoleUnauthorized"
         case unauthorizedOperation_CamAuthFailed = "UnauthorizedOperation.CamAuthFailed"
         case unauthorizedOperation_InvalidToken = "UnauthorizedOperation.InvalidToken"
         case unauthorizedOperation_MFAExpired = "UnauthorizedOperation.MFAExpired"
@@ -242,6 +247,16 @@ public struct TCTatError: TCTatErrorType {
         TCTatError(.invalidParameterValue_InvalidOutputCOSKeyPrefix)
     }
 
+    /// 无效的注册码ID。
+    public static var invalidParameterValue_InvalidRegisterCodeId: TCTatError {
+        TCTatError(.invalidParameterValue_InvalidRegisterCodeId)
+    }
+
+    /// 无效的托管实例ID。
+    public static var invalidParameterValue_InvalidRegisterInstanceId: TCTatError {
+        TCTatError(.invalidParameterValue_InvalidRegisterInstanceId)
+    }
+
     /// 无效的时间格式。
     public static var invalidParameterValue_InvalidTimeFormat: TCTatError {
         TCTatError(.invalidParameterValue_InvalidTimeFormat)
@@ -379,6 +394,14 @@ public struct TCTatError: TCTatErrorType {
         TCTatError(.resourceNotFound_InvocationNotFound)
     }
 
+    public static var resourceNotFound_RegisterCodesNotFoundCode: TCTatError {
+        TCTatError(.resourceNotFound_RegisterCodesNotFoundCode)
+    }
+
+    public static var resourceNotFound_RegisterInstanceNotFoundCode: TCTatError {
+        TCTatError(.resourceNotFound_RegisterInstanceNotFoundCode)
+    }
+
     /// 角色不存在。
     public static var resourceNotFound_RoleNotFound: TCTatError {
         TCTatError(.resourceNotFound_RoleNotFound)
@@ -419,6 +442,11 @@ public struct TCTatError: TCTatErrorType {
     /// 请确认所填实例是否为所请求的地域的资源。
     public static var resourceUnavailable_LighthouseUnsupportedRegion: TCTatError {
         TCTatError(.resourceUnavailable_LighthouseUnsupportedRegion)
+    }
+
+    /// 角色扮演未授权。
+    public static var unauthorizedOperation_AssumeRoleUnauthorized: TCTatError {
+        TCTatError(.unauthorizedOperation_AssumeRoleUnauthorized)
     }
 
     /// CAM鉴权失败。

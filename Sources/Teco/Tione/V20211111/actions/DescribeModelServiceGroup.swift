@@ -24,12 +24,17 @@ extension Tione {
         /// 服务组ID
         public let serviceGroupId: String
 
-        public init(serviceGroupId: String) {
+        /// 服务分类
+        public let serviceCategory: String?
+
+        public init(serviceGroupId: String, serviceCategory: String? = nil) {
             self.serviceGroupId = serviceGroupId
+            self.serviceCategory = serviceCategory
         }
 
         enum CodingKeys: String, CodingKey {
             case serviceGroupId = "ServiceGroupId"
+            case serviceCategory = "ServiceCategory"
         }
     }
 
@@ -62,13 +67,13 @@ extension Tione {
 
     /// 查询单个服务组
     @inlinable
-    public func describeModelServiceGroup(serviceGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelServiceGroupResponse> {
-        self.describeModelServiceGroup(.init(serviceGroupId: serviceGroupId), region: region, logger: logger, on: eventLoop)
+    public func describeModelServiceGroup(serviceGroupId: String, serviceCategory: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelServiceGroupResponse> {
+        self.describeModelServiceGroup(.init(serviceGroupId: serviceGroupId, serviceCategory: serviceCategory), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询单个服务组
     @inlinable
-    public func describeModelServiceGroup(serviceGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceGroupResponse {
-        try await self.describeModelServiceGroup(.init(serviceGroupId: serviceGroupId), region: region, logger: logger, on: eventLoop)
+    public func describeModelServiceGroup(serviceGroupId: String, serviceCategory: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceGroupResponse {
+        try await self.describeModelServiceGroup(.init(serviceGroupId: serviceGroupId, serviceCategory: serviceCategory), region: region, logger: logger, on: eventLoop)
     }
 }

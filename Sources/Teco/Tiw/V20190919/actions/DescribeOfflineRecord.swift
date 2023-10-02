@@ -51,32 +51,36 @@ extension Tiw {
     /// 查询课后录制任务
     ///
     /// 查询课后录制任务的进度与录制结果等相关信息
+    @available(*, unavailable, message: "课后录制服务已下线")
     @inlinable @discardableResult
     public func describeOfflineRecord(_ input: DescribeOfflineRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOfflineRecordResponse> {
-        self.client.execute(action: "DescribeOfflineRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("'DescribeOfflineRecord' is no longer available.")
     }
 
     /// 查询课后录制任务
     ///
     /// 查询课后录制任务的进度与录制结果等相关信息
+    @available(*, unavailable, message: "课后录制服务已下线")
     @inlinable @discardableResult
     public func describeOfflineRecord(_ input: DescribeOfflineRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfflineRecordResponse {
-        try await self.client.execute(action: "DescribeOfflineRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("'DescribeOfflineRecord' is no longer available.")
     }
 
     /// 查询课后录制任务
     ///
     /// 查询课后录制任务的进度与录制结果等相关信息
+    @available(*, unavailable, message: "课后录制服务已下线")
     @inlinable @discardableResult
     public func describeOfflineRecord(sdkAppId: Int64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOfflineRecordResponse> {
-        self.describeOfflineRecord(.init(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
+        fatalError("'DescribeOfflineRecord' is no longer available.")
     }
 
     /// 查询课后录制任务
     ///
     /// 查询课后录制任务的进度与录制结果等相关信息
+    @available(*, unavailable, message: "课后录制服务已下线")
     @inlinable @discardableResult
     public func describeOfflineRecord(sdkAppId: Int64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfflineRecordResponse {
-        try await self.describeOfflineRecord(.init(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
+        fatalError("'DescribeOfflineRecord' is no longer available.")
     }
 }

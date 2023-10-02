@@ -81,7 +81,7 @@ extension Cdb {
 
     /// 查询慢查询日志
     ///
-    /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。
+    /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。说明：若单次查询数据量过大，则有可能响应超时，建议缩短单次查询时间范围，如一小时，避免导致超时。
     @inlinable
     public func describeSlowLogs(_ input: DescribeSlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSlowLogsResponse> {
         self.client.execute(action: "DescribeSlowLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -89,7 +89,7 @@ extension Cdb {
 
     /// 查询慢查询日志
     ///
-    /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。
+    /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。说明：若单次查询数据量过大，则有可能响应超时，建议缩短单次查询时间范围，如一小时，避免导致超时。
     @inlinable
     public func describeSlowLogs(_ input: DescribeSlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogsResponse {
         try await self.client.execute(action: "DescribeSlowLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -97,7 +97,7 @@ extension Cdb {
 
     /// 查询慢查询日志
     ///
-    /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。
+    /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。说明：若单次查询数据量过大，则有可能响应超时，建议缩短单次查询时间范围，如一小时，避免导致超时。
     @inlinable
     public func describeSlowLogs(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSlowLogsResponse> {
         self.describeSlowLogs(.init(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
@@ -105,7 +105,7 @@ extension Cdb {
 
     /// 查询慢查询日志
     ///
-    /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。
+    /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。说明：若单次查询数据量过大，则有可能响应超时，建议缩短单次查询时间范围，如一小时，避免导致超时。
     @inlinable
     public func describeSlowLogs(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogsResponse {
         try await self.describeSlowLogs(.init(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
@@ -113,7 +113,7 @@ extension Cdb {
 
     /// 查询慢查询日志
     ///
-    /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。
+    /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。说明：若单次查询数据量过大，则有可能响应超时，建议缩短单次查询时间范围，如一小时，避免导致超时。
     @inlinable
     public func describeSlowLogsPaginated(_ input: DescribeSlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [SlowLogInfo])> {
         self.client.paginate(input: input, region: region, command: self.describeSlowLogs, logger: logger, on: eventLoop)
@@ -121,7 +121,7 @@ extension Cdb {
 
     /// 查询慢查询日志
     ///
-    /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。
+    /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。说明：若单次查询数据量过大，则有可能响应超时，建议缩短单次查询时间范围，如一小时，避免导致超时。
     @inlinable @discardableResult
     public func describeSlowLogsPaginated(_ input: DescribeSlowLogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSlowLogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSlowLogs, callback: onResponse, logger: logger, on: eventLoop)
@@ -129,7 +129,7 @@ extension Cdb {
 
     /// 查询慢查询日志
     ///
-    /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。
+    /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。说明：若单次查询数据量过大，则有可能响应超时，建议缩短单次查询时间范围，如一小时，避免导致超时。
     ///
     /// - Returns: `AsyncSequence`s of ``SlowLogInfo`` and ``DescribeSlowLogsResponse`` that can be iterated over asynchronously on demand.
     @inlinable

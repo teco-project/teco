@@ -48,13 +48,14 @@ extension Rce {
 
     /// 全栈式风控引擎入参
     public struct InputCryptoManageMarketingRisk: TCInputModel {
-        /// 是否授权
+        /// 是否授权：1已授权，否则未授权。
+        ///  调用全栈式风控引擎接口服务时，客户需先明确授权
         public let isAuthorized: String?
 
-        /// 加密类型
+        /// 加密类型：1AES加密
         public let cryptoType: String?
 
-        /// 加密内容
+        /// 加密内容，非空时接口采用加密模式。
         public let cryptoContent: String?
 
         public init(isAuthorized: String? = nil, cryptoType: String? = nil, cryptoContent: String? = nil) {
@@ -130,7 +131,15 @@ extension Rce {
 
     /// 全栈式风控引擎入参
     public struct InputManageMarketingRisk: TCInputModel {
-        /// 账号信息。
+        /// 用户账号类型（默认开通 QQ 开放账号、手机号，手机 MD5 账号类型查询。如需使用微
+        /// 信开放账号，则需要 提交工单 由腾讯云进行资格审核，审核通过后方可正常使用微信
+        /// 开放账号）：
+        /// 1：QQ 开放账号。
+        /// 2：微信开放账号。
+        /// 4：手机号（暂仅支持国内手机号）。
+        /// 8：设备号（imei/imeiMD5/idfa/idfaMd5）。
+        /// 0： 其他。
+        /// 10004：手机号 MD5。
         public let account: AccountInfo
 
         /// 场景类型：场景SceneCode, 控制台上新建对应的场景并获取对应的值；
@@ -185,9 +194,12 @@ extension Rce {
         /// 手机制造商ID，如果手机注册，请带上此信息。
         public let vendorId: String?
 
-        /// 设备类型：
-        /// 1：Android
-        /// 2：IOS
+        /// 设备类型，账号类型为8时必填：
+        /// 0:未知
+        /// 1:Imei;国际移动设备识别号（15-17位数字）
+        /// 2:ImeiMd5；国际移动设备识别号，通过MD5加密后32位的小写字符串
+        /// 3:Idfa;
+        /// 4:IdfaMD5;
         public let deviceType: Int64?
 
         /// 详细信息
@@ -199,7 +211,10 @@ extension Rce {
         /// 可选填写。详情请跳转至OnlineScamInfo查看。
         public let onlineScam: OnlineScamInfo?
 
-        /// 平台: 1android
+        /// 1：安卓
+        /// 2：iOS
+        /// 3：H5
+        /// 4：小程序
         public let platform: String?
 
         public init(account: AccountInfo, sceneCode: String, userIp: String, postTime: UInt64, userId: String? = nil, deviceToken: String? = nil, deviceBusinessId: Int64? = nil, businessId: UInt64? = nil, nickname: String? = nil, emailAddress: String? = nil, checkDevice: Int64? = nil, cookieHash: String? = nil, referer: String? = nil, userAgent: String? = nil, xForwardedFor: String? = nil, macAddress: String? = nil, vendorId: String? = nil, deviceType: Int64? = nil, details: [InputDetails]? = nil, sponsor: SponsorInfo? = nil, onlineScam: OnlineScamInfo? = nil, platform: String? = nil) {
@@ -293,13 +308,22 @@ extension Rce {
 
     /// 其它账号信息。
     public struct OtherAccountInfo: TCInputModel {
-        /// id
+        /// 其它账号信息：
+        /// AccountType 是 4 时，填入真实的手机号（如 13123456789）。
+        /// AccountType 是 8 时，支持 imei、idfa、imeiMD5、idfaMD5入参。
+        /// AccountType 是 0 时，填入账号信息。
+        /// AccountType 是 10004 时，填入手机号的 MD5 值。
+        /// 注：imeiMd5 加密方式为：
+        /// imei 明文小写后，进行 MD5 加密，加密后取小写值。
+        /// IdfaMd5 加密方式为：idfa 明文大写后，进行 MD5 加密，加密后取小写值。
         public let accountId: String
 
-        /// 手机号
+        /// 手机号，若 AccountType 是 4（手机号）、或 10004（手机号 MD5），则无需重复填写
+        /// 否则填入对应的手机号（如 13123456789）。
         public let mobilePhone: String?
 
-        /// id
+        /// 用户设备号。若 AccountType 是 8（设备号），则无需重复填写，否则填入对应的设备
+        /// 号。
         public let deviceId: String?
 
         public init(accountId: String, mobilePhone: String? = nil, deviceId: String? = nil) {

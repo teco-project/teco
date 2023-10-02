@@ -22,6 +22,7 @@ extension TCTiiaError {
             case inArrears = "ResourceUnavailable.InArrears"
             case isOpening = "ResourceUnavailable.IsOpening"
             case notExist = "ResourceUnavailable.NotExist"
+            case stopUsing = "ResourceUnavailable.StopUsing"
         }
 
         private let error: Code
@@ -61,6 +62,11 @@ extension TCTiiaError {
             ResourceUnavailable(.notExist)
         }
 
+        /// 帐号已停服。
+        public static var stopUsing: ResourceUnavailable {
+            ResourceUnavailable(.stopUsing)
+        }
+
         public func asTiiaError() -> TCTiiaError {
             let code: TCTiiaError.Code
             switch self.error {
@@ -70,6 +76,8 @@ extension TCTiiaError {
                 code = .resourceUnavailable_IsOpening
             case .notExist:
                 code = .resourceUnavailable_NotExist
+            case .stopUsing:
+                code = .resourceUnavailable_StopUsing
             }
             return TCTiiaError(code, context: self.context)
         }

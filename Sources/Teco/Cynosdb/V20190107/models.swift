@@ -180,6 +180,10 @@ extension Cynosdb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nsTime: Int64?
 
+        /// 日志命中规则模板的基本信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let templateInfo: [LogRuleTemplateInfo]?
+
         enum CodingKeys: String, CodingKey {
             case affectRows = "AffectRows"
             case errCode = "ErrCode"
@@ -201,6 +205,7 @@ extension Cynosdb {
             case lockWaitTime = "LockWaitTime"
             case trxLivingTime = "TrxLivingTime"
             case nsTime = "NsTime"
+            case templateInfo = "TemplateInfo"
         }
     }
 
@@ -315,11 +320,12 @@ extension Cynosdb {
     }
 
     /// 规则审计的过滤条件
-    public struct AuditRuleFilters: TCInputModel {
+    public struct AuditRuleFilters: TCInputModel, TCOutputModel {
         /// 单条审计规则。
-        public let ruleFilters: [RuleFilters]
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ruleFilters: [RuleFilters]?
 
-        public init(ruleFilters: [RuleFilters]) {
+        public init(ruleFilters: [RuleFilters]? = nil) {
             self.ruleFilters = ruleFilters
         }
 
@@ -328,23 +334,43 @@ extension Cynosdb {
         }
     }
 
-    /// 审计规则模版的详情
+    /// 审计规则模板的详情
     public struct AuditRuleTemplateInfo: TCOutputModel {
-        /// 规则模版ID。
+        /// 规则模板ID。
         public let ruleTemplateId: String
 
-        /// 规则模版名称。
+        /// 规则模板名称。
         public let ruleTemplateName: String
 
-        /// 规则模版的过滤条件
+        /// 规则模板的过滤条件
         public let ruleFilters: [RuleFilters]
 
-        /// 规则模版描述。
+        /// 规则模板描述。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
 
-        /// 规则模版创建时间。
+        /// 规则模板创建时间。
         public let createAt: String
+
+        /// 规则模板修改时间。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updateAt: String?
+
+        /// 告警等级。1-低风险，2-中风险，3-高风险。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let alarmLevel: UInt64?
+
+        /// 告警策略。0-不告警，1-告警。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let alarmPolicy: UInt64?
+
+        /// 模版状态。0-无任务 ，1-修改中。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: UInt64?
+
+        /// 规则模板应用在哪些在实例。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let affectedInstances: [String]?
 
         enum CodingKeys: String, CodingKey {
             case ruleTemplateId = "RuleTemplateId"
@@ -352,6 +378,11 @@ extension Cynosdb {
             case ruleFilters = "RuleFilters"
             case description = "Description"
             case createAt = "CreateAt"
+            case updateAt = "UpdateAt"
+            case alarmLevel = "AlarmLevel"
+            case alarmPolicy = "AlarmPolicy"
+            case status = "Status"
+            case affectedInstances = "AffectedInstances"
         }
     }
 
@@ -1032,6 +1063,10 @@ extension Cynosdb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let renewFlag: Int64?
 
+        /// 节点网络类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let networkType: String?
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case clusterName = "ClusterName"
@@ -1081,6 +1116,7 @@ extension Cynosdb {
             case networkStatus = "NetworkStatus"
             case resourcePackages = "ResourcePackages"
             case renewFlag = "RenewFlag"
+            case networkType = "NetworkType"
         }
     }
 
@@ -1598,14 +1634,16 @@ extension Cynosdb {
     }
 
     /// 数据库权限列表
-    public struct DatabasePrivileges: TCInputModel {
+    public struct DatabasePrivileges: TCInputModel, TCOutputModel {
         /// 数据库
-        public let db: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let db: String?
 
         /// 权限列表
-        public let privileges: [String]
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let privileges: [String]?
 
-        public init(db: String, privileges: [String]) {
+        public init(db: String? = nil, privileges: [String]? = nil) {
             self.db = db
             self.privileges = privileges
         }
@@ -1774,28 +1812,13 @@ extension Cynosdb {
     public struct InstanceAuditLogFilter: TCInputModel {
         /// 过滤项。目前支持以下搜索条件：
         ///
-        /// 包含、不包含、包含（分词维度）、不包含（分词维度）:
-        /// sql - SQL详情
+        /// 包含、不包含、包含（分词维度）、不包含（分词维度）: sql - SQL详情；alarmLevel - 告警等级；ruleTemplateId - 规则模板Id
         ///
-        /// 等于、不等于、包含、不包含：
-        /// host - 客户端地址；
-        /// user - 用户名；
-        /// dbName - 数据库名称；
+        /// 等于、不等于、包含、不包含： host - 客户端地址； user - 用户名； dbName - 数据库名称；
         ///
-        /// 等于、不等于：
-        /// sqlType - SQL类型；
-        /// errCode - 错误码；
-        /// threadId - 线程ID；
+        /// 等于、不等于： sqlType - SQL类型； errCode - 错误码； threadId - 线程ID；
         ///
-        /// 范围搜索（时间类型统一为微妙）：
-        /// execTime - 执行时间；
-        /// lockWaitTime - 锁等待时间；
-        /// ioWaitTime - IO等待时间；
-        /// trxLivingTime - 事物持续时间；
-        /// cpuTime - cpu时间；
-        /// checkRows - 扫描行数；
-        /// affectRows - 影响行数；
-        /// sentRows - 返回行数。
+        /// 范围搜索（时间类型统一为微秒）： execTime - 执行时间； lockWaitTime - 执行时间； ioWaitTime - IO等待时间； trxLivingTime - 事物持续时间； cpuTime - cpu时间； checkRows - 扫描行数； affectRows - 影响行数； sentRows - 返回行数。
         public let type: String
 
         /// 过滤条件。支持以下条件：
@@ -1824,7 +1847,7 @@ extension Cynosdb {
         }
     }
 
-    /// 实例的审计规则详情，DescribeAuditRuleWithInstanceIds接口的出参。
+    /// 实例的审计规则详情。
     public struct InstanceAuditRule: TCOutputModel {
         /// 实例ID。
         public let instanceId: String
@@ -1837,10 +1860,20 @@ extension Cynosdb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let auditRuleFilters: [AuditRuleFilters]?
 
+        /// 是否是审计策略
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let oldRule: Bool?
+
+        /// 实例应用的规则模板详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ruleTemplates: [RuleTemplateInfo]?
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case auditRule = "AuditRule"
             case auditRuleFilters = "AuditRuleFilters"
+            case oldRule = "OldRule"
+            case ruleTemplates = "RuleTemplates"
         }
     }
 
@@ -2016,6 +2049,77 @@ extension Cynosdb {
         }
     }
 
+    /// 审计日志命中规则模板的基本信息
+    public struct LogRuleTemplateInfo: TCOutputModel {
+        /// 模板ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ruleTemplateId: String?
+
+        /// 规则模板名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ruleTemplateName: String?
+
+        /// 告警等级。1-低风险，2-中风险，3-高风险。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let alarmLevel: String?
+
+        /// 规则模板变更状态：0-未变更；1-已变更；2-已删除
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ruleTemplateStatus: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case ruleTemplateId = "RuleTemplateId"
+            case ruleTemplateName = "RuleTemplateName"
+            case alarmLevel = "AlarmLevel"
+            case ruleTemplateStatus = "RuleTemplateStatus"
+        }
+    }
+
+    /// 逻辑备份配置信息
+    public struct LogicBackupConfigInfo: TCInputModel, TCOutputModel {
+        /// 是否开启自动逻辑备份
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let logicBackupEnable: String?
+
+        /// 自动逻辑备份开始时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let logicBackupTimeBeg: UInt64?
+
+        /// 自动逻辑备份结束时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let logicBackupTimeEnd: UInt64?
+
+        /// 自动逻辑备份保留时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let logicReserveDuration: UInt64?
+
+        /// 是否开启跨地域逻辑备份
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let logicCrossRegionsEnable: String?
+
+        /// 逻辑备份所跨地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let logicCrossRegions: [String]?
+
+        public init(logicBackupEnable: String? = nil, logicBackupTimeBeg: UInt64? = nil, logicBackupTimeEnd: UInt64? = nil, logicReserveDuration: UInt64? = nil, logicCrossRegionsEnable: String? = nil, logicCrossRegions: [String]? = nil) {
+            self.logicBackupEnable = logicBackupEnable
+            self.logicBackupTimeBeg = logicBackupTimeBeg
+            self.logicBackupTimeEnd = logicBackupTimeEnd
+            self.logicReserveDuration = logicReserveDuration
+            self.logicCrossRegionsEnable = logicCrossRegionsEnable
+            self.logicCrossRegions = logicCrossRegions
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case logicBackupEnable = "LogicBackupEnable"
+            case logicBackupTimeBeg = "LogicBackupTimeBeg"
+            case logicBackupTimeEnd = "LogicBackupTimeEnd"
+            case logicReserveDuration = "LogicReserveDuration"
+            case logicCrossRegionsEnable = "LogicCrossRegionsEnable"
+            case logicCrossRegions = "LogicCrossRegions"
+        }
+    }
+
     /// 参数是否可修改的详细信息
     public struct ModifiableInfo: TCOutputModel {
     }
@@ -2122,13 +2226,13 @@ extension Cynosdb {
 
     /// x08新创建的账号
     public struct NewAccount: TCInputModel {
-        /// 账户名，包含字母数字_,以字母开头，字母或数字结尾，长度1-16
+        /// 账户名，包含字母数字_,以字母开头，字母或数字结尾，长度1-30
         public let accountName: String
 
         /// 密码，密码长度范围为8到64个字符
         public let accountPassword: String
 
-        /// 主机
+        /// 主机(%或ipv4地址)
         public let host: String
 
         /// 描述
@@ -2256,7 +2360,7 @@ extension Cynosdb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let packageUsedSpec: Float?
 
-        /// 资源包已使用量
+        /// 是否还有库存余量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hasQuota: Bool?
 
@@ -2847,6 +2951,9 @@ extension Cynosdb {
         /// 可用区
         public let zone: String
 
+        /// 数据库代理节点名字
+        public let ossProxyNodeName: String
+
         enum CodingKeys: String, CodingKey {
             case proxyNodeId = "ProxyNodeId"
             case proxyNodeConnections = "ProxyNodeConnections"
@@ -2858,6 +2965,7 @@ extension Cynosdb {
             case appId = "AppId"
             case region = "Region"
             case zone = "Zone"
+            case ossProxyNodeName = "OssProxyNodeName"
         }
     }
 
@@ -3071,6 +3179,42 @@ extension Cynosdb {
         }
     }
 
+    /// 规则模板内容
+    public struct RuleTemplateInfo: TCOutputModel {
+        /// 规则模板ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ruleTemplateId: String?
+
+        /// 规则模板名称。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ruleTemplateName: String?
+
+        /// 规则内容。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ruleFilters: [RuleFilters]?
+
+        /// 告警等级。1-低风险，2-中风险，3-高风险。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let alarmLevel: Int64?
+
+        /// 告警策略。0-不告警，1-告警。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let alarmPolicy: Int64?
+
+        /// 规则描述。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let description: String?
+
+        enum CodingKeys: String, CodingKey {
+            case ruleTemplateId = "RuleTemplateId"
+            case ruleTemplateName = "RuleTemplateName"
+            case ruleFilters = "RuleFilters"
+            case alarmLevel = "AlarmLevel"
+            case alarmPolicy = "AlarmPolicy"
+            case description = "Description"
+        }
+    }
+
     /// 资源包明细说明
     public struct SalePackageSpec: TCOutputModel {
         /// 资源包使用地域
@@ -3272,17 +3416,20 @@ extension Cynosdb {
     }
 
     /// mysql表权限
-    public struct TablePrivileges: TCInputModel {
+    public struct TablePrivileges: TCInputModel, TCOutputModel {
         /// 数据库名
-        public let db: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let db: String?
 
         /// 表名
-        public let tableName: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tableName: String?
 
         /// 权限列表
-        public let privileges: [String]
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let privileges: [String]?
 
-        public init(db: String, tableName: String, privileges: [String]) {
+        public init(db: String? = nil, tableName: String? = nil, privileges: [String]? = nil) {
             self.db = db
             self.tableName = tableName
             self.privileges = privileges

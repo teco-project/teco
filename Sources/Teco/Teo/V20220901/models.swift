@@ -53,27 +53,11 @@ extension Teo {
 
     /// 加速域名
     public struct AccelerationDomain: TCOutputModel {
-        /// 源站信息。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let originDetail: OriginDetail?
-
-        /// 创建时间。
-        ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
-        @TCTimestampISO8601Encoding public var createdOn: Date?
+        /// 站点 ID。
+        public let zoneId: String
 
         /// 加速域名名称。
-        public let domainName: String?
-
-        /// 修改时间。
-        ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
-        @TCTimestampISO8601Encoding public var modifiedOn: Date?
-
-        /// 站点 ID。
-        public let zoneId: String?
+        public let domainName: String
 
         /// 加速域名状态，取值有：
         /// - online：已生效；
@@ -81,10 +65,14 @@ extension Teo {
         /// - offline：已停用；
         /// - forbidden：已封禁；
         /// - init：未生效，待激活站点；
-        public let domainStatus: String?
+        public let domainStatus: String
+
+        /// 源站信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let originDetail: OriginDetail?
 
         /// CNAME 地址。
-        public let cname: String?
+        public let cname: String
 
         /// 加速域名归属权验证状态，取值有：
         /// - pending：待验证；
@@ -93,15 +81,60 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let identificationStatus: String?
 
+        /// 创建时间。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var createdOn: Date
+
+        /// 修改时间。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var modifiedOn: Date
+
+        /// 当域名需要进行归属权验证才能继续提供服务时，该对象会携带对应验证方式所需要的信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ownershipVerification: OwnershipVerification?
+
+        /// 域名证书信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let certificate: AccelerationDomainCertificate?
+
         enum CodingKeys: String, CodingKey {
-            case originDetail = "OriginDetail"
-            case createdOn = "CreatedOn"
-            case domainName = "DomainName"
-            case modifiedOn = "ModifiedOn"
             case zoneId = "ZoneId"
+            case domainName = "DomainName"
             case domainStatus = "DomainStatus"
+            case originDetail = "OriginDetail"
             case cname = "Cname"
             case identificationStatus = "IdentificationStatus"
+            case createdOn = "CreatedOn"
+            case modifiedOn = "ModifiedOn"
+            case ownershipVerification = "OwnershipVerification"
+            case certificate = "Certificate"
+        }
+    }
+
+    /// 加速域名所对应的证书信息。
+    public struct AccelerationDomainCertificate: TCInputModel, TCOutputModel {
+        /// 配置证书的模式，取值有：
+        /// - disable：不配置证书；
+        /// - eofreecert：配置 EdgeOne 免费证书；
+        /// - sslcert：配置 SSL 证书。
+        public let mode: String?
+
+        /// 证书列表。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let list: [CertificateInfo]?
+
+        public init(mode: String? = nil, list: [CertificateInfo]? = nil) {
+            self.mode = mode
+            self.list = list
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case mode = "Mode"
+            case list = "List"
         }
     }
 
@@ -1214,6 +1247,54 @@ extension Teo {
         }
     }
 
+    /// https 服务端证书配置
+    public struct CertificateInfo: TCOutputModel {
+        /// 服务器证书 ID。
+        public let certId: String?
+
+        /// 证书备注名。
+        public let alias: String?
+
+        /// 证书类型，取值有：
+        /// - default：默认证书；
+        /// - upload：用户上传；
+        /// - managed：腾讯云托管。
+        public let type: String?
+
+        /// 证书过期时间。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var expireTime: Date?
+
+        /// 证书部署时间。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var deployTime: Date?
+
+        /// 签名算法。
+        public let signAlgo: String?
+
+        /// 证书状态，取值有：
+        /// - deployed：已部署；
+        /// - processing：部署中；
+        /// - applying：申请中；
+        /// - failed：申请失败；
+        /// - issued：绑定失败。
+        public let status: String?
+
+        enum CodingKeys: String, CodingKey {
+            case certId = "CertId"
+            case alias = "Alias"
+            case type = "Type"
+            case expireTime = "ExpireTime"
+            case deployTime = "DeployTime"
+            case signAlgo = "SignAlgo"
+            case status = "Status"
+        }
+    }
+
     /// 回源时携带客户端IP所属地域信息，值的格式为ISO-3166-1两位字母代码。
     public struct ClientIpCountry: TCInputModel, TCOutputModel {
         /// 配置开关，取值有：
@@ -1639,6 +1720,24 @@ extension Teo {
         }
     }
 
+    /// CNAME 接入，使用 DNS 解析验证时所需的信息。
+    public struct DnsVerification: TCOutputModel {
+        /// 主机记录。
+        public let subdomain: String
+
+        /// 记录类型。
+        public let recordType: String
+
+        /// 记录值。
+        public let recordValue: String
+
+        enum CodingKeys: String, CodingKey {
+            case subdomain = "Subdomain"
+            case recordType = "RecordType"
+            case recordValue = "RecordValue"
+        }
+    }
+
     /// 拦截页面的总体配置，用于配置各个模块的拦截后行为。
     public struct DropPageConfig: TCInputModel, TCOutputModel {
         /// 配置开关，取值有：
@@ -1899,6 +1998,20 @@ extension Teo {
         enum CodingKeys: String, CodingKey {
             case identifyPath = "IdentifyPath"
             case identifyContent = "IdentifyContent"
+        }
+    }
+
+    /// CNAME 接入，使用文件验证时所需的信息。
+    public struct FileVerification: TCOutputModel {
+        /// EdgeOne 后台服务器将通过 Scheme + Host + URL Path 的格式（例如 https://www.example.com/.well-known/teo-verification/z12h416twn.txt）获取文件验证信息。该字段为您需要创建的 URL Path 部分。
+        public let path: String
+
+        /// 验证文件的内容。该字段的内容需要您填写至 Path 字段返回的 txt 文件中。
+        public let content: String
+
+        enum CodingKeys: String, CodingKey {
+            case path = "Path"
+            case content = "Content"
         }
     }
 
@@ -2550,6 +2663,16 @@ extension Teo {
         }
     }
 
+    /// NS 接入，切换 DNS 服务器所需的信息。
+    public struct NsVerification: TCOutputModel {
+        /// NS 接入时，分配给用户的 DNS 服务器地址，需要将域名的 NameServer 切换至该地址。
+        public let nameServers: [String]
+
+        enum CodingKeys: String, CodingKey {
+            case nameServers = "NameServers"
+        }
+    }
+
     /// 离线缓存是否开启
     public struct OfflineCache: TCInputModel, TCOutputModel {
         /// 离线缓存是否开启，取值有：
@@ -2613,26 +2736,26 @@ extension Teo {
         /// - COS：COS源。
         /// - ORIGIN_GROUP：源站组类型源站。
         /// - AWS_S3：AWS S3对象存储源站。
-        public let originType: String?
+        public let originType: String
 
         /// 源站地址，当OriginType参数指定为ORIGIN_GROUP时，该参数填写源站组ID，其他情况下填写源站地址。
-        public let origin: String?
+        public let origin: String
 
         /// 备用源站组ID，该参数在OriginType参数指定为ORIGIN_GROUP时生效，为空表示不使用备用源站。
-        public let backupOrigin: String?
+        public let backupOrigin: String
 
         /// 主源源站组名称，当OriginType参数指定为ORIGIN_GROUP时该参数生效。
-        public let originGroupName: String?
+        public let originGroupName: String
 
         /// 备用源站源站组名称，当OriginType参数指定为ORIGIN_GROUP，且用户指定了被用源站时该参数生效。
-        public let backOriginGroupName: String?
+        public let backOriginGroupName: String
 
         /// 指定是否允许访问私有对象存储源站。当源站类型OriginType=COS或AWS_S3时有效 取值有：
         /// - on：使用私有鉴权；
         /// - off：不使用私有鉴权。
         ///
         /// 不填写，默认值为off。
-        public let privateAccess: String?
+        public let privateAccess: String
 
         /// 私有鉴权使用参数，当源站类型PrivateAccess=on时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2705,26 +2828,27 @@ extension Teo {
     /// 加速域名源站信息。
     public struct OriginInfo: TCInputModel {
         /// 源站类型，取值有：
-        /// - IP_DOMAIN：IPV4、IPV6或域名类型源站；
-        /// - COS：COS源。
-        /// - ORIGIN_GROUP：源站组类型源站。
-        /// - AWS_S3：AWS S3对象存储源站。
-        /// - SPACE：Edgeone源站Space存储，Space存储不允许配置该类型源站。
+        /// - IP_DOMAIN：IPV4、IPV6 或域名类型源站；
+        /// - COS：COS 源；
+        /// - ORIGIN_GROUP：源站组类型源站；
+        /// - AWS_S3：S3兼容对象存储源站；
+        /// - LB: 负载均衡类型源站；
+        /// - SPACE：EdgeOne Shield Space 存储。
         public let originType: String
 
-        /// 源站地址，当OriginType参数指定为ORIGIN_GROUP时，该参数填写源站组ID，其他情况下填写源站地址。
+        /// 源站地址，当 OriginType 参数指定为 ORIGIN_GROUP 时，该参数填写源站组 ID，其他情况下填写源站地址。
         public let origin: String
 
-        /// 备用源站组ID，该参数在OriginType参数指定为ORIGIN_GROUP时生效，为空表示不使用备用源站。
+        /// 备用源站组 ID，该参数在 OriginType 参数指定为 ORIGIN_GROUP 时生效，为空表示不使用备用源站。
         public let backupOrigin: String?
 
-        /// 指定是否允许访问私有对象存储源站，当源站类型OriginType=COS或AWS_S3时有效，取值有：
+        /// 指定是否允许访问私有对象存储源站，当源站类型 OriginType=COS 或 AWS_S3 时有效，取值有：
         /// - on：使用私有鉴权；
         /// - off：不使用私有鉴权。
-        /// 不填写，默认值为：off。
+        /// 默认值：off。
         public let privateAccess: String?
 
-        /// 私有鉴权使用参数，当源站类型PrivateAccess=on时有效。
+        /// 私有鉴权使用参数，当源站类型 PrivateAccess=on 时有效。
         public let privateParameters: [PrivateParameter]?
 
         public init(originType: String, origin: String, backupOrigin: String? = nil, privateAccess: String? = nil, privateParameters: [PrivateParameter]? = nil) {
@@ -2854,6 +2978,29 @@ extension Teo {
             case area = "Area"
             case `private` = "Private"
             case privateParameters = "PrivateParameters"
+        }
+    }
+
+    /// 该结构体表示各种场景、模式下，用于验证用户对站点域名的归属权内容。
+    public struct OwnershipVerification: TCOutputModel {
+        /// CNAME 接入，使用 DNS 解析验证时所需的信息。详情参考 [站点/域名归属权验证
+        /// ](https://cloud.tencent.com/document/product/1552/70789#7af6ecf8-afca-4e35-8811-b5797ed1bde5)。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dnsVerification: DnsVerification?
+
+        /// CNAME 接入，使用文件验证时所需的信息。详情参考 [站点/域名归属权验证
+        /// ](https://cloud.tencent.com/document/product/1552/70789#7af6ecf8-afca-4e35-8811-b5797ed1bde5)。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fileVerification: FileVerification?
+
+        /// NS 接入，切换 DNS 服务器所需的信息。详情参考 [修改 DNS 服务器](https://cloud.tencent.com/document/product/1552/90452)。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nsVerification: NsVerification?
+
+        enum CodingKeys: String, CodingKey {
+            case dnsVerification = "DnsVerification"
+            case fileVerification = "FileVerification"
+            case nsVerification = "NsVerification"
         }
     }
 
@@ -3572,15 +3719,24 @@ extension Teo {
 
         /// 是否忽略参数名称的大小写，默认值为 false。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ignoreNameCase: Bool?
+        @available(*, deprecated)
+        public let ignoreNameCase: Bool? = nil
 
+        public init(operator: String, target: String, values: [String]? = nil, ignoreCase: Bool? = nil, name: String? = nil) {
+            self.operator = `operator`
+            self.target = target
+            self.values = values
+            self.ignoreCase = ignoreCase
+            self.name = name
+        }
+
+        @available(*, deprecated, renamed: "init(operator:target:values:ignoreCase:name:)", message: "'ignoreNameCase' is deprecated in 'RuleCondition'. Setting this parameter has no effect.")
         public init(operator: String, target: String, values: [String]? = nil, ignoreCase: Bool? = nil, name: String? = nil, ignoreNameCase: Bool? = nil) {
             self.operator = `operator`
             self.target = target
             self.values = values
             self.ignoreCase = ignoreCase
             self.name = name
-            self.ignoreNameCase = ignoreNameCase
         }
 
         enum CodingKeys: String, CodingKey {
@@ -3925,7 +4081,7 @@ extension Teo {
         public let alias: String?
 
         /// 证书类型，取值有：
-        /// - default：默认证书；</lil>
+        /// - default：默认证书；
         /// - upload：用户上传；
         /// - managed：腾讯云托管。
         ///
@@ -4611,7 +4767,7 @@ extension Teo {
 
     /// 站点信息
     public struct Zone: TCOutputModel {
-        /// 站点ID。
+        /// 站点 ID。
         public let zoneId: String
 
         /// 站点名称。
@@ -4628,12 +4784,14 @@ extension Teo {
         /// - pending：NS 未切换；
         /// - moved：NS 已切走；
         /// - deactivated：被封禁。
+        /// - initializing：待绑定套餐。
         public let status: String
 
-        /// 站点接入方式，取值有
+        /// 站点接入方式，取值有：
         /// - full：NS 接入；
         /// - partial：CNAME 接入；
-        /// - noDomainAccess：无域名接入。
+        /// - noDomainAccess：无域名接入；
+        /// - vodeo：vodeo默认站点。
         public let type: String
 
         /// 站点是否关闭。
@@ -4698,8 +4856,13 @@ extension Teo {
 
         /// 锁定状态，取值有：
         /// - enable：正常，允许进行修改操作；
-        /// - disable：锁定中，不允许进行修改操作。
-        public let lockStatus: String?
+        /// - disable：锁定中，不允许进行修改操作；
+        /// - plan_migrate：套餐迁移中，不允许进行修改操作。
+        public let lockStatus: String
+
+        /// 归属权验证信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ownershipVerification: OwnershipVerification?
 
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
@@ -4722,6 +4885,7 @@ extension Teo {
             case aliasZoneName = "AliasZoneName"
             case isFake = "IsFake"
             case lockStatus = "LockStatus"
+            case ownershipVerification = "OwnershipVerification"
         }
     }
 

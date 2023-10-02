@@ -68,7 +68,7 @@ extension Cdb {
     @available(*, unavailable, message: "该接口不再维护，参考CreateDBInstance+API文档，在发货时即可完成初始化。")
     @inlinable
     public func initDBInstances(_ input: InitDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitDBInstancesResponse> {
-        fatalError("InitDBInstances is no longer available.")
+        fatalError("'InitDBInstances' is no longer available.")
     }
 
     /// 初始化新实例（该接口已经不再维护，不建议使用）
@@ -77,7 +77,7 @@ extension Cdb {
     @available(*, unavailable, message: "该接口不再维护，参考CreateDBInstance+API文档，在发货时即可完成初始化。")
     @inlinable
     public func initDBInstances(_ input: InitDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitDBInstancesResponse {
-        fatalError("InitDBInstances is no longer available.")
+        fatalError("'InitDBInstances' is no longer available.")
     }
 
     /// 初始化新实例（该接口已经不再维护，不建议使用）
@@ -86,7 +86,7 @@ extension Cdb {
     @available(*, unavailable, message: "该接口不再维护，参考CreateDBInstance+API文档，在发货时即可完成初始化。")
     @inlinable
     public func initDBInstances(instanceIds: [String], newPassword: String, parameters: [ParamInfo], vport: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitDBInstancesResponse> {
-        fatalError("InitDBInstances is no longer available.")
+        fatalError("'InitDBInstances' is no longer available.")
     }
 
     /// 初始化新实例（该接口已经不再维护，不建议使用）
@@ -95,6 +95,6 @@ extension Cdb {
     @available(*, unavailable, message: "该接口不再维护，参考CreateDBInstance+API文档，在发货时即可完成初始化。")
     @inlinable
     public func initDBInstances(instanceIds: [String], newPassword: String, parameters: [ParamInfo], vport: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitDBInstancesResponse {
-        fatalError("InitDBInstances is no longer available.")
+        fatalError("'InitDBInstances' is no longer available.")
     }
 }

@@ -50,7 +50,7 @@ extension Iai {
         /// 人脸识别所用的算法模型版本。
         public let faceModelVersion: String
 
-        /// Group的创建时间和日期 CreationTimestamp。CreationTimestamp 的值是自 Unix 纪元时间到Group创建时间的毫秒数。
+        /// Group的创建时间和日期。CreationTimestamp 的值是自 Unix 纪元时间到Group创建时间的毫秒数。
         public let creationTimestamp: UInt64
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

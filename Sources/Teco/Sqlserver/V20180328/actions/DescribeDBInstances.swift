@@ -81,7 +81,10 @@ extension Sqlserver {
         /// 实例类型 HA-高可用 RO-只读实例 SI-基础版 BI-商业智能服务
         public let instanceType: String?
 
-        public init(projectId: UInt64? = nil, status: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, instanceIdSet: [String]? = nil, payMode: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, vipSet: [String]? = nil, instanceNameSet: [String]? = nil, versionSet: [String]? = nil, zone: String? = nil, tagKeys: [String]? = nil, searchKey: String? = nil, uidSet: [String]? = nil, instanceType: String? = nil) {
+        /// 分页查询方式 offset-按照偏移量分页查询，pageNumber-按照页数分页查询，默认取值pageNumber
+        public let paginationType: String?
+
+        public init(projectId: UInt64? = nil, status: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, instanceIdSet: [String]? = nil, payMode: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, vipSet: [String]? = nil, instanceNameSet: [String]? = nil, versionSet: [String]? = nil, zone: String? = nil, tagKeys: [String]? = nil, searchKey: String? = nil, uidSet: [String]? = nil, instanceType: String? = nil, paginationType: String? = nil) {
             self.projectId = projectId
             self.status = status
             self.offset = offset
@@ -98,6 +101,7 @@ extension Sqlserver {
             self.searchKey = searchKey
             self.uidSet = uidSet
             self.instanceType = instanceType
+            self.paginationType = paginationType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -117,6 +121,7 @@ extension Sqlserver {
             case searchKey = "SearchKey"
             case uidSet = "UidSet"
             case instanceType = "InstanceType"
+            case paginationType = "PaginationType"
         }
 
         /// Compute the next request based on API response.
@@ -124,7 +129,7 @@ extension Sqlserver {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return .init(projectId: self.projectId, status: self.status, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, instanceIdSet: self.instanceIdSet, payMode: self.payMode, vpcId: self.vpcId, subnetId: self.subnetId, vipSet: self.vipSet, instanceNameSet: self.instanceNameSet, versionSet: self.versionSet, zone: self.zone, tagKeys: self.tagKeys, searchKey: self.searchKey, uidSet: self.uidSet, instanceType: self.instanceType)
+            return .init(projectId: self.projectId, status: self.status, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, instanceIdSet: self.instanceIdSet, payMode: self.payMode, vpcId: self.vpcId, subnetId: self.subnetId, vipSet: self.vipSet, instanceNameSet: self.instanceNameSet, versionSet: self.versionSet, zone: self.zone, tagKeys: self.tagKeys, searchKey: self.searchKey, uidSet: self.uidSet, instanceType: self.instanceType, paginationType: self.paginationType)
         }
     }
 
@@ -176,16 +181,16 @@ extension Sqlserver {
     ///
     /// 本接口(DescribeDBInstances)用于查询实例列表。
     @inlinable
-    public func describeDBInstances(projectId: UInt64? = nil, status: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, instanceIdSet: [String]? = nil, payMode: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, vipSet: [String]? = nil, instanceNameSet: [String]? = nil, versionSet: [String]? = nil, zone: String? = nil, tagKeys: [String]? = nil, searchKey: String? = nil, uidSet: [String]? = nil, instanceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstancesResponse> {
-        self.describeDBInstances(.init(projectId: projectId, status: status, offset: offset, limit: limit, instanceIdSet: instanceIdSet, payMode: payMode, vpcId: vpcId, subnetId: subnetId, vipSet: vipSet, instanceNameSet: instanceNameSet, versionSet: versionSet, zone: zone, tagKeys: tagKeys, searchKey: searchKey, uidSet: uidSet, instanceType: instanceType), region: region, logger: logger, on: eventLoop)
+    public func describeDBInstances(projectId: UInt64? = nil, status: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, instanceIdSet: [String]? = nil, payMode: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, vipSet: [String]? = nil, instanceNameSet: [String]? = nil, versionSet: [String]? = nil, zone: String? = nil, tagKeys: [String]? = nil, searchKey: String? = nil, uidSet: [String]? = nil, instanceType: String? = nil, paginationType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstancesResponse> {
+        self.describeDBInstances(.init(projectId: projectId, status: status, offset: offset, limit: limit, instanceIdSet: instanceIdSet, payMode: payMode, vpcId: vpcId, subnetId: subnetId, vipSet: vipSet, instanceNameSet: instanceNameSet, versionSet: versionSet, zone: zone, tagKeys: tagKeys, searchKey: searchKey, uidSet: uidSet, instanceType: instanceType, paginationType: paginationType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例列表
     ///
     /// 本接口(DescribeDBInstances)用于查询实例列表。
     @inlinable
-    public func describeDBInstances(projectId: UInt64? = nil, status: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, instanceIdSet: [String]? = nil, payMode: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, vipSet: [String]? = nil, instanceNameSet: [String]? = nil, versionSet: [String]? = nil, zone: String? = nil, tagKeys: [String]? = nil, searchKey: String? = nil, uidSet: [String]? = nil, instanceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstancesResponse {
-        try await self.describeDBInstances(.init(projectId: projectId, status: status, offset: offset, limit: limit, instanceIdSet: instanceIdSet, payMode: payMode, vpcId: vpcId, subnetId: subnetId, vipSet: vipSet, instanceNameSet: instanceNameSet, versionSet: versionSet, zone: zone, tagKeys: tagKeys, searchKey: searchKey, uidSet: uidSet, instanceType: instanceType), region: region, logger: logger, on: eventLoop)
+    public func describeDBInstances(projectId: UInt64? = nil, status: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, instanceIdSet: [String]? = nil, payMode: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, vipSet: [String]? = nil, instanceNameSet: [String]? = nil, versionSet: [String]? = nil, zone: String? = nil, tagKeys: [String]? = nil, searchKey: String? = nil, uidSet: [String]? = nil, instanceType: String? = nil, paginationType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstancesResponse {
+        try await self.describeDBInstances(.init(projectId: projectId, status: status, offset: offset, limit: limit, instanceIdSet: instanceIdSet, payMode: payMode, vpcId: vpcId, subnetId: subnetId, vipSet: vipSet, instanceNameSet: instanceNameSet, versionSet: versionSet, zone: zone, tagKeys: tagKeys, searchKey: searchKey, uidSet: uidSet, instanceType: instanceType, paginationType: paginationType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例列表

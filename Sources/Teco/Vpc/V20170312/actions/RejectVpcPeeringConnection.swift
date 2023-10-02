@@ -21,7 +21,15 @@ import TecoCore
 extension Vpc {
     /// RejectVpcPeeringConnection请求参数结构体
     public struct RejectVpcPeeringConnectionRequest: TCRequest {
-        public init() {
+        /// 对等连接唯一ID。
+        public let peeringConnectionId: String
+
+        public init(peeringConnectionId: String) {
+            self.peeringConnectionId = peeringConnectionId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case peeringConnectionId = "PeeringConnectionId"
         }
     }
 
@@ -55,15 +63,15 @@ extension Vpc {
     ///
     /// 本接口（RejectVpcPeeringConnection）用于驳回对等连接请求。
     @inlinable @discardableResult
-    public func rejectVpcPeeringConnection(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RejectVpcPeeringConnectionResponse> {
-        self.rejectVpcPeeringConnection(.init(), region: region, logger: logger, on: eventLoop)
+    public func rejectVpcPeeringConnection(peeringConnectionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RejectVpcPeeringConnectionResponse> {
+        self.rejectVpcPeeringConnection(.init(peeringConnectionId: peeringConnectionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 驳回对等连接
     ///
     /// 本接口（RejectVpcPeeringConnection）用于驳回对等连接请求。
     @inlinable @discardableResult
-    public func rejectVpcPeeringConnection(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RejectVpcPeeringConnectionResponse {
-        try await self.rejectVpcPeeringConnection(.init(), region: region, logger: logger, on: eventLoop)
+    public func rejectVpcPeeringConnection(peeringConnectionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RejectVpcPeeringConnectionResponse {
+        try await self.rejectVpcPeeringConnection(.init(peeringConnectionId: peeringConnectionId), region: region, logger: logger, on: eventLoop)
     }
 }

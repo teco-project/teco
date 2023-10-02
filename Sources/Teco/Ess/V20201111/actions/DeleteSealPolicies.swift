@@ -21,19 +21,25 @@ import TecoCore
 extension Ess {
     /// DeleteSealPolicies请求参数结构体
     public struct DeleteSealPoliciesRequest: TCRequest {
-        /// 调用方用户信息，userId 必填
+        /// 执行本接口操作的员工信息。
+        /// 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         public let `operator`: UserInfo
 
         /// 印章授权编码数组。这个参数跟下面的SealId其中一个必填，另外一个可选填
         public let policyIds: [String]?
 
-        /// 印章ID。这个参数跟上面的PolicyIds其中一个必填，另外一个可选填
+        /// 电子印章ID，为32位字符串。
+        /// 建议开发者保留此印章ID，后续指定签署区印章或者操作印章需此印章ID。
+        /// 可登录腾讯电子签控制台，在 "印章"->"印章中心"选择查看的印章，在"印章详情" 中查看某个印章的SealId(在页面中展示为印章ID)。
+        /// 注：印章ID。这个参数跟上面的PolicyIds其中一个必填，另外一个可选填。
         public let sealId: String?
 
-        /// 待授权的员工ID
+        /// 待授权的员工ID，员工在腾讯电子签平台的唯一身份标识，为32位字符串。
+        /// 可登录腾讯电子签控制台，在 "更多能力"->"组织管理" 中查看某位员工的UserId(在页面中展示为用户ID)。
         public let userIds: [String]?
 
-        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        /// 代理企业和员工的信息。
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         public let agent: Agent?
 
         public init(operator: UserInfo, policyIds: [String]? = nil, sealId: String? = nil, userIds: [String]? = nil, agent: Agent? = nil) {
@@ -63,33 +69,33 @@ extension Ess {
         }
     }
 
-    /// 撤销印章授权
+    /// 撤销企业员工的印章授权
     ///
-    /// 撤销员工持有的印章权限
+    /// 本接口（DeleteSealPolicies）用于撤销企业员工持有的印章权限
     @inlinable @discardableResult
     public func deleteSealPolicies(_ input: DeleteSealPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSealPoliciesResponse> {
         self.client.execute(action: "DeleteSealPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 撤销印章授权
+    /// 撤销企业员工的印章授权
     ///
-    /// 撤销员工持有的印章权限
+    /// 本接口（DeleteSealPolicies）用于撤销企业员工持有的印章权限
     @inlinable @discardableResult
     public func deleteSealPolicies(_ input: DeleteSealPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSealPoliciesResponse {
         try await self.client.execute(action: "DeleteSealPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 撤销印章授权
+    /// 撤销企业员工的印章授权
     ///
-    /// 撤销员工持有的印章权限
+    /// 本接口（DeleteSealPolicies）用于撤销企业员工持有的印章权限
     @inlinable @discardableResult
     public func deleteSealPolicies(operator: UserInfo, policyIds: [String]? = nil, sealId: String? = nil, userIds: [String]? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSealPoliciesResponse> {
         self.deleteSealPolicies(.init(operator: `operator`, policyIds: policyIds, sealId: sealId, userIds: userIds, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 撤销印章授权
+    /// 撤销企业员工的印章授权
     ///
-    /// 撤销员工持有的印章权限
+    /// 本接口（DeleteSealPolicies）用于撤销企业员工持有的印章权限
     @inlinable @discardableResult
     public func deleteSealPolicies(operator: UserInfo, policyIds: [String]? = nil, sealId: String? = nil, userIds: [String]? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSealPoliciesResponse {
         try await self.deleteSealPolicies(.init(operator: `operator`, policyIds: policyIds, sealId: sealId, userIds: userIds, agent: agent), region: region, logger: logger, on: eventLoop)

@@ -52,33 +52,33 @@ extension Waf {
         }
     }
 
-    /// 添加防护域名
+    /// 添加负载均衡型WAF防护域名
     ///
-    /// clb-waf中添加防护的域名
+    /// clb-waf中添加防护域名
     @inlinable
     public func createHost(_ input: CreateHostRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHostResponse> {
         self.client.execute(action: "CreateHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 添加防护域名
+    /// 添加负载均衡型WAF防护域名
     ///
-    /// clb-waf中添加防护的域名
+    /// clb-waf中添加防护域名
     @inlinable
     public func createHost(_ input: CreateHostRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHostResponse {
         try await self.client.execute(action: "CreateHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 添加防护域名
+    /// 添加负载均衡型WAF防护域名
     ///
-    /// clb-waf中添加防护的域名
+    /// clb-waf中添加防护域名
     @inlinable
     public func createHost(host: HostRecord, instanceID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHostResponse> {
         self.createHost(.init(host: host, instanceID: instanceID), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 添加防护域名
+    /// 添加负载均衡型WAF防护域名
     ///
-    /// clb-waf中添加防护的域名
+    /// clb-waf中添加防护域名
     @inlinable
     public func createHost(host: HostRecord, instanceID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHostResponse {
         try await self.createHost(.init(host: host, instanceID: instanceID), region: region, logger: logger, on: eventLoop)

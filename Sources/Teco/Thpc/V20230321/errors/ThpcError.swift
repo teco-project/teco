@@ -30,6 +30,7 @@ public struct TCThpcError: TCThpcErrorType {
         case dryRunOperation = "DryRunOperation"
         case failedOperation = "FailedOperation"
         case internalError = "InternalError"
+        case internalError_CallCAM = "InternalError.CallCAM"
         case internalError_CallCvm = "InternalError.CallCvm"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
@@ -53,6 +54,7 @@ public struct TCThpcError: TCThpcErrorType {
         case resourceNotFound = "ResourceNotFound"
         case resourceNotFound_ClusterId = "ResourceNotFound.ClusterId"
         case resourceNotFound_ImageId = "ResourceNotFound.ImageId"
+        case resourceNotFound_LocalPath = "ResourceNotFound.LocalPath"
         case resourceNotFound_NodeId = "ResourceNotFound.NodeId"
         case resourceNotFound_Queue = "ResourceNotFound.Queue"
         case unauthorizedOperation = "UnauthorizedOperation"
@@ -121,6 +123,11 @@ public struct TCThpcError: TCThpcErrorType {
     /// 内部错误。
     public static var internalError: TCThpcError {
         TCThpcError(.internalError)
+    }
+
+    /// CAM服务调用失败。
+    public static var internalError_CallCAM: TCThpcError {
+        TCThpcError(.internalError_CallCAM)
     }
 
     /// cvm调用失败。
@@ -236,6 +243,11 @@ public struct TCThpcError: TCThpcErrorType {
     /// 无法找到镜像ID。
     public static var resourceNotFound_ImageId: TCThpcError {
         TCThpcError(.resourceNotFound_ImageId)
+    }
+
+    /// 无法找到本地挂载路径。
+    public static var resourceNotFound_LocalPath: TCThpcError {
+        TCThpcError(.resourceNotFound_LocalPath)
     }
 
     /// 无法找到ID对应节点。

@@ -21,25 +21,36 @@ import TecoCore
 extension Ess {
     /// CancelUserAutoSignEnableUrl请求参数结构体
     public struct CancelUserAutoSignEnableUrlRequest: TCRequest {
-        /// 操作人信息，UseId必填
+        /// 执行本接口操作的员工信息。
+        /// 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         public let `operator`: UserInfo
 
-        /// 自动签场景: E_PRESCRIPTION_AUTO_SIGN 电子处方
+        /// 自动签使用的场景值, 可以选择的场景值如下:
+        ///
+        /// - **E_PRESCRIPTION_AUTO_SIGN** :  电子处方场景
+        ///
+        /// 注: `现在仅支持电子处方场景`
         public let sceneKey: String
 
-        /// 指定撤销链接的用户指定撤销链接的用户信息，包含姓名、证件类型、证件号码。
+        /// 预撤销链接的用户信息，包含姓名、证件类型、证件号码等信息。
         public let userInfo: UserThreeFactor
 
-        public init(operator: UserInfo, sceneKey: String, userInfo: UserThreeFactor) {
+        /// 代理企业和员工的信息。
+        /// 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        public let agent: Agent?
+
+        public init(operator: UserInfo, sceneKey: String, userInfo: UserThreeFactor, agent: Agent? = nil) {
             self.operator = `operator`
             self.sceneKey = sceneKey
             self.userInfo = userInfo
+            self.agent = agent
         }
 
         enum CodingKeys: String, CodingKey {
             case `operator` = "Operator"
             case sceneKey = "SceneKey"
             case userInfo = "UserInfo"
+            case agent = "Agent"
         }
     }
 
@@ -53,35 +64,55 @@ extension Ess {
         }
     }
 
-    /// 撤销自动签开通链接
+    /// 撤销个人用户自动签的开通链接
     ///
-    /// 此接口（CancelUserAutoSignEnableUrl）用来撤销发送给个人用户的自动签开通链接，撤销后对应的个人用户开通链接失效。若个人用户已经完成开通，将无法撤销。（处方单场景专用，使用此接口请与客户经理确认）
+    /// 用来撤销[获取个人用户自动签的开通状态](https://qian.tencent.com/developers/companyApis/users/CreateUserAutoSignEnableUrl)生成的开通链接，撤销生成的链接失效。
+    ///
+    /// 注:
+    ///
+    /// - 若个人用户已经用生成的完成自动签署的开通，撤销链接无效不会对开通结果产生影响(此情况接口会报错)。
+    /// - 处方单等特殊场景专用，此接口为白名单功能，使用前请联系对接的客户经理沟通。
     @inlinable @discardableResult
     public func cancelUserAutoSignEnableUrl(_ input: CancelUserAutoSignEnableUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelUserAutoSignEnableUrlResponse> {
         self.client.execute(action: "CancelUserAutoSignEnableUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 撤销自动签开通链接
+    /// 撤销个人用户自动签的开通链接
     ///
-    /// 此接口（CancelUserAutoSignEnableUrl）用来撤销发送给个人用户的自动签开通链接，撤销后对应的个人用户开通链接失效。若个人用户已经完成开通，将无法撤销。（处方单场景专用，使用此接口请与客户经理确认）
+    /// 用来撤销[获取个人用户自动签的开通状态](https://qian.tencent.com/developers/companyApis/users/CreateUserAutoSignEnableUrl)生成的开通链接，撤销生成的链接失效。
+    ///
+    /// 注:
+    ///
+    /// - 若个人用户已经用生成的完成自动签署的开通，撤销链接无效不会对开通结果产生影响(此情况接口会报错)。
+    /// - 处方单等特殊场景专用，此接口为白名单功能，使用前请联系对接的客户经理沟通。
     @inlinable @discardableResult
     public func cancelUserAutoSignEnableUrl(_ input: CancelUserAutoSignEnableUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelUserAutoSignEnableUrlResponse {
         try await self.client.execute(action: "CancelUserAutoSignEnableUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 撤销自动签开通链接
+    /// 撤销个人用户自动签的开通链接
     ///
-    /// 此接口（CancelUserAutoSignEnableUrl）用来撤销发送给个人用户的自动签开通链接，撤销后对应的个人用户开通链接失效。若个人用户已经完成开通，将无法撤销。（处方单场景专用，使用此接口请与客户经理确认）
+    /// 用来撤销[获取个人用户自动签的开通状态](https://qian.tencent.com/developers/companyApis/users/CreateUserAutoSignEnableUrl)生成的开通链接，撤销生成的链接失效。
+    ///
+    /// 注:
+    ///
+    /// - 若个人用户已经用生成的完成自动签署的开通，撤销链接无效不会对开通结果产生影响(此情况接口会报错)。
+    /// - 处方单等特殊场景专用，此接口为白名单功能，使用前请联系对接的客户经理沟通。
     @inlinable @discardableResult
-    public func cancelUserAutoSignEnableUrl(operator: UserInfo, sceneKey: String, userInfo: UserThreeFactor, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelUserAutoSignEnableUrlResponse> {
-        self.cancelUserAutoSignEnableUrl(.init(operator: `operator`, sceneKey: sceneKey, userInfo: userInfo), region: region, logger: logger, on: eventLoop)
+    public func cancelUserAutoSignEnableUrl(operator: UserInfo, sceneKey: String, userInfo: UserThreeFactor, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelUserAutoSignEnableUrlResponse> {
+        self.cancelUserAutoSignEnableUrl(.init(operator: `operator`, sceneKey: sceneKey, userInfo: userInfo, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 撤销自动签开通链接
+    /// 撤销个人用户自动签的开通链接
     ///
-    /// 此接口（CancelUserAutoSignEnableUrl）用来撤销发送给个人用户的自动签开通链接，撤销后对应的个人用户开通链接失效。若个人用户已经完成开通，将无法撤销。（处方单场景专用，使用此接口请与客户经理确认）
+    /// 用来撤销[获取个人用户自动签的开通状态](https://qian.tencent.com/developers/companyApis/users/CreateUserAutoSignEnableUrl)生成的开通链接，撤销生成的链接失效。
+    ///
+    /// 注:
+    ///
+    /// - 若个人用户已经用生成的完成自动签署的开通，撤销链接无效不会对开通结果产生影响(此情况接口会报错)。
+    /// - 处方单等特殊场景专用，此接口为白名单功能，使用前请联系对接的客户经理沟通。
     @inlinable @discardableResult
-    public func cancelUserAutoSignEnableUrl(operator: UserInfo, sceneKey: String, userInfo: UserThreeFactor, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelUserAutoSignEnableUrlResponse {
-        try await self.cancelUserAutoSignEnableUrl(.init(operator: `operator`, sceneKey: sceneKey, userInfo: userInfo), region: region, logger: logger, on: eventLoop)
+    public func cancelUserAutoSignEnableUrl(operator: UserInfo, sceneKey: String, userInfo: UserThreeFactor, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelUserAutoSignEnableUrlResponse {
+        try await self.cancelUserAutoSignEnableUrl(.init(operator: `operator`, sceneKey: sceneKey, userInfo: userInfo, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 }

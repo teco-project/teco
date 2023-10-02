@@ -24,7 +24,7 @@ extension Tsf {
         /// 部署组ID
         public let groupId: String
 
-        /// 是否能使健康检查
+        /// 是否开启健康检查
         public let enableHealthCheck: Bool?
 
         /// 健康检查配置

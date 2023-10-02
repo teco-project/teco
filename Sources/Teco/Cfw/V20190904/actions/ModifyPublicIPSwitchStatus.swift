@@ -58,26 +58,30 @@ extension Cfw {
     }
 
     /// 单个修改互联网边界防火墙开关
+    @available(*, unavailable, message: "已上新接口，支持串行")
     @inlinable
     public func modifyPublicIPSwitchStatus(_ input: ModifyPublicIPSwitchStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPublicIPSwitchStatusResponse> {
-        self.client.execute(action: "ModifyPublicIPSwitchStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("'ModifyPublicIPSwitchStatus' is no longer available.")
     }
 
     /// 单个修改互联网边界防火墙开关
+    @available(*, unavailable, message: "已上新接口，支持串行")
     @inlinable
     public func modifyPublicIPSwitchStatus(_ input: ModifyPublicIPSwitchStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPublicIPSwitchStatusResponse {
-        try await self.client.execute(action: "ModifyPublicIPSwitchStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("'ModifyPublicIPSwitchStatus' is no longer available.")
     }
 
     /// 单个修改互联网边界防火墙开关
+    @available(*, unavailable, message: "已上新接口，支持串行")
     @inlinable
     public func modifyPublicIPSwitchStatus(fireWallPublicIP: String, status: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPublicIPSwitchStatusResponse> {
-        self.modifyPublicIPSwitchStatus(.init(fireWallPublicIP: fireWallPublicIP, status: status), region: region, logger: logger, on: eventLoop)
+        fatalError("'ModifyPublicIPSwitchStatus' is no longer available.")
     }
 
     /// 单个修改互联网边界防火墙开关
+    @available(*, unavailable, message: "已上新接口，支持串行")
     @inlinable
     public func modifyPublicIPSwitchStatus(fireWallPublicIP: String, status: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPublicIPSwitchStatusResponse {
-        try await self.modifyPublicIPSwitchStatus(.init(fireWallPublicIP: fireWallPublicIP, status: status), region: region, logger: logger, on: eventLoop)
+        fatalError("'ModifyPublicIPSwitchStatus' is no longer available.")
     }
 }

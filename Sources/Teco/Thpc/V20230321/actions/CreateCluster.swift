@@ -92,7 +92,10 @@ extension Thpc {
         /// 节点初始化脚本信息列表。
         public let initNodeScripts: [NodeScript]?
 
-        public init(placement: Placement, managerNode: ManagerNode? = nil, managerNodeCount: Int64? = nil, computeNode: ComputeNode? = nil, computeNodeCount: Int64? = nil, schedulerType: String? = nil, imageId: String? = nil, virtualPrivateCloud: VirtualPrivateCloud? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, clientToken: String? = nil, dryRun: Bool? = nil, accountType: String? = nil, clusterName: String? = nil, storageOption: StorageOption? = nil, loginNode: LoginNode? = nil, loginNodeCount: Int64? = nil, tags: [Tag]? = nil, autoScalingType: String? = nil, initNodeScripts: [NodeScript]? = nil) {
+        /// 高性能计算集群ID。若创建的实例为高性能计算实例，需指定实例放置的集群，否则不可指定。
+        public let hpcClusterId: String?
+
+        public init(placement: Placement, managerNode: ManagerNode? = nil, managerNodeCount: Int64? = nil, computeNode: ComputeNode? = nil, computeNodeCount: Int64? = nil, schedulerType: String? = nil, imageId: String? = nil, virtualPrivateCloud: VirtualPrivateCloud? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, clientToken: String? = nil, dryRun: Bool? = nil, accountType: String? = nil, clusterName: String? = nil, storageOption: StorageOption? = nil, loginNode: LoginNode? = nil, loginNodeCount: Int64? = nil, tags: [Tag]? = nil, autoScalingType: String? = nil, initNodeScripts: [NodeScript]? = nil, hpcClusterId: String? = nil) {
             self.placement = placement
             self.managerNode = managerNode
             self.managerNodeCount = managerNodeCount
@@ -113,6 +116,7 @@ extension Thpc {
             self.tags = tags
             self.autoScalingType = autoScalingType
             self.initNodeScripts = initNodeScripts
+            self.hpcClusterId = hpcClusterId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -136,6 +140,7 @@ extension Thpc {
             case tags = "Tags"
             case autoScalingType = "AutoScalingType"
             case initNodeScripts = "InitNodeScripts"
+            case hpcClusterId = "HpcClusterId"
         }
     }
 
@@ -180,8 +185,8 @@ extension Thpc {
     ///
     /// * 本接口为异步接口， 当创建集群请求下发成功后会返回一个集群`ID`和一个`RequestId`，此时创建集群操作并未立即完成。在此期间集群的状态将会处于“PENDING”或者“INITING”，集群创建结果可以通过调用 [DescribeClusters](https://cloud.tencent.com/document/product/1527/72100)  接口查询，如果集群状态(ClusterStatus)变为“RUNNING(运行中)”，则代表集群创建成功，“ INIT_FAILED”代表集群创建失败。
     @inlinable
-    public func createCluster(placement: Placement, managerNode: ManagerNode? = nil, managerNodeCount: Int64? = nil, computeNode: ComputeNode? = nil, computeNodeCount: Int64? = nil, schedulerType: String? = nil, imageId: String? = nil, virtualPrivateCloud: VirtualPrivateCloud? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, clientToken: String? = nil, dryRun: Bool? = nil, accountType: String? = nil, clusterName: String? = nil, storageOption: StorageOption? = nil, loginNode: LoginNode? = nil, loginNodeCount: Int64? = nil, tags: [Tag]? = nil, autoScalingType: String? = nil, initNodeScripts: [NodeScript]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterResponse> {
-        self.createCluster(.init(placement: placement, managerNode: managerNode, managerNodeCount: managerNodeCount, computeNode: computeNode, computeNodeCount: computeNodeCount, schedulerType: schedulerType, imageId: imageId, virtualPrivateCloud: virtualPrivateCloud, loginSettings: loginSettings, securityGroupIds: securityGroupIds, clientToken: clientToken, dryRun: dryRun, accountType: accountType, clusterName: clusterName, storageOption: storageOption, loginNode: loginNode, loginNodeCount: loginNodeCount, tags: tags, autoScalingType: autoScalingType, initNodeScripts: initNodeScripts), region: region, logger: logger, on: eventLoop)
+    public func createCluster(placement: Placement, managerNode: ManagerNode? = nil, managerNodeCount: Int64? = nil, computeNode: ComputeNode? = nil, computeNodeCount: Int64? = nil, schedulerType: String? = nil, imageId: String? = nil, virtualPrivateCloud: VirtualPrivateCloud? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, clientToken: String? = nil, dryRun: Bool? = nil, accountType: String? = nil, clusterName: String? = nil, storageOption: StorageOption? = nil, loginNode: LoginNode? = nil, loginNodeCount: Int64? = nil, tags: [Tag]? = nil, autoScalingType: String? = nil, initNodeScripts: [NodeScript]? = nil, hpcClusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterResponse> {
+        self.createCluster(.init(placement: placement, managerNode: managerNode, managerNodeCount: managerNodeCount, computeNode: computeNode, computeNodeCount: computeNodeCount, schedulerType: schedulerType, imageId: imageId, virtualPrivateCloud: virtualPrivateCloud, loginSettings: loginSettings, securityGroupIds: securityGroupIds, clientToken: clientToken, dryRun: dryRun, accountType: accountType, clusterName: clusterName, storageOption: storageOption, loginNode: loginNode, loginNodeCount: loginNodeCount, tags: tags, autoScalingType: autoScalingType, initNodeScripts: initNodeScripts, hpcClusterId: hpcClusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建集群
@@ -190,7 +195,7 @@ extension Thpc {
     ///
     /// * 本接口为异步接口， 当创建集群请求下发成功后会返回一个集群`ID`和一个`RequestId`，此时创建集群操作并未立即完成。在此期间集群的状态将会处于“PENDING”或者“INITING”，集群创建结果可以通过调用 [DescribeClusters](https://cloud.tencent.com/document/product/1527/72100)  接口查询，如果集群状态(ClusterStatus)变为“RUNNING(运行中)”，则代表集群创建成功，“ INIT_FAILED”代表集群创建失败。
     @inlinable
-    public func createCluster(placement: Placement, managerNode: ManagerNode? = nil, managerNodeCount: Int64? = nil, computeNode: ComputeNode? = nil, computeNodeCount: Int64? = nil, schedulerType: String? = nil, imageId: String? = nil, virtualPrivateCloud: VirtualPrivateCloud? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, clientToken: String? = nil, dryRun: Bool? = nil, accountType: String? = nil, clusterName: String? = nil, storageOption: StorageOption? = nil, loginNode: LoginNode? = nil, loginNodeCount: Int64? = nil, tags: [Tag]? = nil, autoScalingType: String? = nil, initNodeScripts: [NodeScript]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
-        try await self.createCluster(.init(placement: placement, managerNode: managerNode, managerNodeCount: managerNodeCount, computeNode: computeNode, computeNodeCount: computeNodeCount, schedulerType: schedulerType, imageId: imageId, virtualPrivateCloud: virtualPrivateCloud, loginSettings: loginSettings, securityGroupIds: securityGroupIds, clientToken: clientToken, dryRun: dryRun, accountType: accountType, clusterName: clusterName, storageOption: storageOption, loginNode: loginNode, loginNodeCount: loginNodeCount, tags: tags, autoScalingType: autoScalingType, initNodeScripts: initNodeScripts), region: region, logger: logger, on: eventLoop)
+    public func createCluster(placement: Placement, managerNode: ManagerNode? = nil, managerNodeCount: Int64? = nil, computeNode: ComputeNode? = nil, computeNodeCount: Int64? = nil, schedulerType: String? = nil, imageId: String? = nil, virtualPrivateCloud: VirtualPrivateCloud? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, clientToken: String? = nil, dryRun: Bool? = nil, accountType: String? = nil, clusterName: String? = nil, storageOption: StorageOption? = nil, loginNode: LoginNode? = nil, loginNodeCount: Int64? = nil, tags: [Tag]? = nil, autoScalingType: String? = nil, initNodeScripts: [NodeScript]? = nil, hpcClusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
+        try await self.createCluster(.init(placement: placement, managerNode: managerNode, managerNodeCount: managerNodeCount, computeNode: computeNode, computeNodeCount: computeNodeCount, schedulerType: schedulerType, imageId: imageId, virtualPrivateCloud: virtualPrivateCloud, loginSettings: loginSettings, securityGroupIds: securityGroupIds, clientToken: clientToken, dryRun: dryRun, accountType: accountType, clusterName: clusterName, storageOption: storageOption, loginNode: loginNode, loginNodeCount: loginNodeCount, tags: tags, autoScalingType: autoScalingType, initNodeScripts: initNodeScripts, hpcClusterId: hpcClusterId), region: region, logger: logger, on: eventLoop)
     }
 }

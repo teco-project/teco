@@ -25,6 +25,7 @@ extension TCAsrError {
             case noSuchTask = "FailedOperation.NoSuchTask"
             case notExistentVoicePrintId = "FailedOperation.NotExistentVoicePrintId"
             case serviceIsolate = "FailedOperation.ServiceIsolate"
+            case userHasNoAmount = "FailedOperation.UserHasNoAmount"
             case userHasNoFreeAmount = "FailedOperation.UserHasNoFreeAmount"
             case userNotRegistered = "FailedOperation.UserNotRegistered"
             case other = "FailedOperation"
@@ -82,6 +83,10 @@ extension TCAsrError {
             FailedOperation(.serviceIsolate)
         }
 
+        public static var userHasNoAmount: FailedOperation {
+            FailedOperation(.userHasNoAmount)
+        }
+
         /// 账号本月免费额度已用完。
         ///
         /// None
@@ -114,6 +119,8 @@ extension TCAsrError {
                 code = .failedOperation_NotExistentVoicePrintId
             case .serviceIsolate:
                 code = .failedOperation_ServiceIsolate
+            case .userHasNoAmount:
+                code = .failedOperation_UserHasNoAmount
             case .userHasNoFreeAmount:
                 code = .failedOperation_UserHasNoFreeAmount
             case .userNotRegistered:

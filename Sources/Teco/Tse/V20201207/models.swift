@@ -64,6 +64,81 @@ extension Tse {
         }
     }
 
+    /// 指标伸缩行为
+    public struct AutoScalerBehavior: TCInputModel, TCOutputModel {
+        /// 扩容行为配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scaleUp: AutoScalerRules?
+
+        /// 缩容行为配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scaleDown: AutoScalerRules?
+
+        public init(scaleUp: AutoScalerRules? = nil, scaleDown: AutoScalerRules? = nil) {
+            self.scaleUp = scaleUp
+            self.scaleDown = scaleDown
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case scaleUp = "ScaleUp"
+            case scaleDown = "ScaleDown"
+        }
+    }
+
+    /// 扩容策略
+    public struct AutoScalerPolicy: TCInputModel, TCOutputModel {
+        /// 类型，Pods或Percent
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let type: String?
+
+        /// 数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let value: Int64?
+
+        /// 扩容周期
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let periodSeconds: Int64?
+
+        public init(type: String? = nil, value: Int64? = nil, periodSeconds: Int64? = nil) {
+            self.type = type
+            self.value = value
+            self.periodSeconds = periodSeconds
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case value = "Value"
+            case periodSeconds = "PeriodSeconds"
+        }
+    }
+
+    /// 指标伸缩的规则
+    public struct AutoScalerRules: TCInputModel, TCOutputModel {
+        /// 稳定窗口时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let stabilizationWindowSeconds: Int64?
+
+        /// 选择策略依据
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let selectPolicy: String?
+
+        /// 扩容策略
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let policies: [AutoScalerPolicy]?
+
+        public init(stabilizationWindowSeconds: Int64? = nil, selectPolicy: String? = nil, policies: [AutoScalerPolicy]? = nil) {
+            self.stabilizationWindowSeconds = stabilizationWindowSeconds
+            self.selectPolicy = selectPolicy
+            self.policies = policies
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case stabilizationWindowSeconds = "StabilizationWindowSeconds"
+            case selectPolicy = "SelectPolicy"
+            case policies = "Policies"
+        }
+    }
+
     /// 服务治理引擎绑定的kubernetes信息
     public struct BoundK8SInfo: TCInputModel, TCOutputModel {
         /// 绑定的kubernetes集群ID
@@ -87,6 +162,17 @@ extension Tse {
             case boundClusterId = "BoundClusterId"
             case boundClusterType = "BoundClusterType"
             case syncMode = "SyncMode"
+        }
+    }
+
+    /// 证书信息
+    public struct CertificateInfo: TCOutputModel {
+        /// 唯一id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: String?
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
         }
     }
 
@@ -235,6 +321,109 @@ extension Tse {
         }
     }
 
+    /// 云原生API网关配置信息。
+    public struct CloudNativeAPIGatewayConfig: TCOutputModel {
+        /// 控制台类型。
+        public let consoleType: String
+
+        /// HTTP链接地址。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let httpUrl: String?
+
+        /// HTTPS链接地址。
+        public let httpsUrl: String
+
+        /// 网络类型, Open|Internal。
+        public let netType: String
+
+        /// 管理员用户名。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let adminUser: String?
+
+        /// 管理员密码。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let adminPassword: String?
+
+        /// 网络状态, Open|Closed|Updating
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: String?
+
+        /// 网络访问策略
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let accessControl: NetworkAccessControl?
+
+        /// 内网子网 ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subnetId: String?
+
+        /// 内网VPC ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpcId: String?
+
+        /// 负载均衡的描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let description: String?
+
+        /// 负载均衡的规格类型，传 "SLA" 表示性能容量型，返回空为共享型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let slaType: String?
+
+        /// clb vip
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vip: String?
+
+        /// 带宽
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let internetMaxBandwidthOut: UInt64?
+
+        /// 是否多可用区
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let multiZoneFlag: Bool?
+
+        /// 主可用区
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let masterZoneId: String?
+
+        /// 备可用区
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let slaveZoneId: String?
+
+        /// 主可用区名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let masterZoneName: String?
+
+        /// 备可用区名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let slaveZoneName: String?
+
+        /// 网络 id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let networkId: String?
+
+        enum CodingKeys: String, CodingKey {
+            case consoleType = "ConsoleType"
+            case httpUrl = "HttpUrl"
+            case httpsUrl = "HttpsUrl"
+            case netType = "NetType"
+            case adminUser = "AdminUser"
+            case adminPassword = "AdminPassword"
+            case status = "Status"
+            case accessControl = "AccessControl"
+            case subnetId = "SubnetId"
+            case vpcId = "VpcId"
+            case description = "Description"
+            case slaType = "SlaType"
+            case vip = "Vip"
+            case internetMaxBandwidthOut = "InternetMaxBandwidthOut"
+            case multiZoneFlag = "MultiZoneFlag"
+            case masterZoneId = "MasterZoneId"
+            case slaveZoneId = "SlaveZoneId"
+            case masterZoneName = "MasterZoneName"
+            case slaveZoneName = "SlaveZoneName"
+            case networkId = "NetworkId"
+        }
+    }
+
     /// 云原生API网关节点信息。
     public struct CloudNativeAPIGatewayNode: TCOutputModel {
         /// 云原生网关节点 id
@@ -271,6 +460,27 @@ extension Tse {
             case groupId = "GroupId"
             case groupName = "GroupName"
             case status = "Status"
+        }
+    }
+
+    /// 云原生API网关节点配置。
+    public struct CloudNativeAPIGatewayNodeConfig: TCInputModel, TCOutputModel {
+        /// 节点配置, 1c2g|2c4g|4c8g|8c16g。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let specification: String?
+
+        /// 节点数量，2-9。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let number: Int64?
+
+        public init(specification: String? = nil, number: Int64? = nil) {
+            self.specification = specification
+            self.number = number
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case specification = "Specification"
+            case number = "Number"
         }
     }
 
@@ -363,6 +573,363 @@ extension Tse {
         }
     }
 
+    /// 网关实例策略
+    public struct CloudNativeAPIGatewayStrategy: TCOutputModel {
+        /// 策略ID
+        public let strategyId: String
+
+        /// 策略名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let strategyName: String?
+
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createTime: String?
+
+        /// 更新时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let modifyTime: String?
+
+        /// 策略描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let description: String?
+
+        /// 弹性伸缩配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let config: CloudNativeAPIGatewayStrategyAutoScalerConfig?
+
+        /// 网关实例ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gatewayId: String?
+
+        /// 定时伸缩配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cronConfig: CloudNativeAPIGatewayStrategyCronScalerConfig?
+
+        /// 最大节点数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        @available(*, deprecated)
+        public let maxReplicas: UInt64?
+
+        enum CodingKeys: String, CodingKey {
+            case strategyId = "StrategyId"
+            case strategyName = "StrategyName"
+            case createTime = "CreateTime"
+            case modifyTime = "ModifyTime"
+            case description = "Description"
+            case config = "Config"
+            case gatewayId = "GatewayId"
+            case cronConfig = "CronConfig"
+            case maxReplicas = "MaxReplicas"
+        }
+    }
+
+    /// 弹性伸缩策略
+    public struct CloudNativeAPIGatewayStrategyAutoScalerConfig: TCInputModel, TCOutputModel {
+        /// 最大副本数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let maxReplicas: Int64?
+
+        /// 指标列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let metrics: [CloudNativeAPIGatewayStrategyAutoScalerConfigMetric]?
+
+        /// 是否开启指标伸缩
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let enabled: Bool?
+
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        @available(*, deprecated)
+        public let createTime: String? = nil
+
+        /// 修改时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        @available(*, deprecated)
+        public let modifyTime: String? = nil
+
+        /// 弹性策略ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        @available(*, deprecated)
+        public let strategyId: String? = nil
+
+        /// 指标配置ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        @available(*, deprecated)
+        public let autoScalerId: String? = nil
+
+        /// 指标伸缩行为配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let behavior: AutoScalerBehavior?
+
+        public init(maxReplicas: Int64? = nil, metrics: [CloudNativeAPIGatewayStrategyAutoScalerConfigMetric]? = nil, enabled: Bool? = nil, behavior: AutoScalerBehavior? = nil) {
+            self.maxReplicas = maxReplicas
+            self.metrics = metrics
+            self.enabled = enabled
+            self.behavior = behavior
+        }
+
+        @available(*, deprecated, renamed: "init(maxReplicas:metrics:enabled:behavior:)", message: "'createTime', 'modifyTime', 'strategyId' and 'autoScalerId' are deprecated in 'CloudNativeAPIGatewayStrategyAutoScalerConfig'. Setting these parameters has no effect.")
+        public init(maxReplicas: Int64? = nil, metrics: [CloudNativeAPIGatewayStrategyAutoScalerConfigMetric]? = nil, enabled: Bool? = nil, createTime: String? = nil, modifyTime: String? = nil, strategyId: String? = nil, autoScalerId: String? = nil, behavior: AutoScalerBehavior? = nil) {
+            self.maxReplicas = maxReplicas
+            self.metrics = metrics
+            self.enabled = enabled
+            self.behavior = behavior
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case maxReplicas = "MaxReplicas"
+            case metrics = "Metrics"
+            case enabled = "Enabled"
+            case createTime = "CreateTime"
+            case modifyTime = "ModifyTime"
+            case strategyId = "StrategyId"
+            case autoScalerId = "AutoScalerId"
+            case behavior = "Behavior"
+        }
+    }
+
+    /// 弹性伸缩配置指标
+    public struct CloudNativeAPIGatewayStrategyAutoScalerConfigMetric: TCInputModel, TCOutputModel {
+        /// 指标类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let type: String?
+
+        /// 指标资源名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resourceName: String?
+
+        /// 指标目标类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let targetType: String?
+
+        /// 指标目标值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let targetValue: Int64?
+
+        public init(type: String? = nil, resourceName: String? = nil, targetType: String? = nil, targetValue: Int64? = nil) {
+            self.type = type
+            self.resourceName = resourceName
+            self.targetType = targetType
+            self.targetValue = targetValue
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case resourceName = "ResourceName"
+            case targetType = "TargetType"
+            case targetValue = "TargetValue"
+        }
+    }
+
+    /// 定时伸缩策略配置
+    public struct CloudNativeAPIGatewayStrategyCronScalerConfig: TCInputModel, TCOutputModel {
+        /// 是否开启定时伸缩
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let enabled: Bool?
+
+        /// 定时伸缩配置参数列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let params: [CloudNativeAPIGatewayStrategyCronScalerConfigParam]?
+
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        @available(*, deprecated)
+        public let createTime: String? = nil
+
+        /// 修改时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        @available(*, deprecated)
+        public let modifyTime: String? = nil
+
+        /// 弹性策略ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        @available(*, deprecated)
+        public let strategyId: String? = nil
+
+        public init(enabled: Bool? = nil, params: [CloudNativeAPIGatewayStrategyCronScalerConfigParam]? = nil) {
+            self.enabled = enabled
+            self.params = params
+        }
+
+        @available(*, deprecated, renamed: "init(enabled:params:)", message: "'createTime', 'modifyTime' and 'strategyId' are deprecated in 'CloudNativeAPIGatewayStrategyCronScalerConfig'. Setting these parameters has no effect.")
+        public init(enabled: Bool? = nil, params: [CloudNativeAPIGatewayStrategyCronScalerConfigParam]? = nil, createTime: String? = nil, modifyTime: String? = nil, strategyId: String? = nil) {
+            self.enabled = enabled
+            self.params = params
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case enabled = "Enabled"
+            case params = "Params"
+            case createTime = "CreateTime"
+            case modifyTime = "ModifyTime"
+            case strategyId = "StrategyId"
+        }
+    }
+
+    /// 定时伸缩配置参数
+    public struct CloudNativeAPIGatewayStrategyCronScalerConfigParam: TCInputModel, TCOutputModel {
+        /// 定时伸缩周期
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let period: String?
+
+        /// 定时伸缩开始时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let startAt: String?
+
+        /// 定时伸缩目标节点数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let targetReplicas: Int64?
+
+        /// 定时伸缩cron表达式
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let crontab: String?
+
+        public init(period: String? = nil, startAt: String? = nil, targetReplicas: Int64? = nil, crontab: String? = nil) {
+            self.period = period
+            self.startAt = startAt
+            self.targetReplicas = targetReplicas
+            self.crontab = crontab
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case period = "Period"
+            case startAt = "StartAt"
+            case targetReplicas = "TargetReplicas"
+            case crontab = "Crontab"
+        }
+    }
+
+    /// 云原生API网关vpc配置。
+    public struct CloudNativeAPIGatewayVpcConfig: TCInputModel, TCOutputModel {
+        /// 私有网络ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpcId: String?
+
+        /// 子网ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subnetId: String?
+
+        public init(vpcId: String? = nil, subnetId: String? = nil) {
+            self.vpcId = vpcId
+            self.subnetId = subnetId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case vpcId = "VpcId"
+            case subnetId = "SubnetId"
+        }
+    }
+
+    /// 创建云原生API网关响应结果。
+    public struct CreateCloudNativeAPIGatewayResult: TCOutputModel {
+        /// 云原生API网关ID。
+        public let gatewayId: String
+
+        /// 云原生网关状态。
+        public let status: String
+
+        /// 任务ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskId: String?
+
+        enum CodingKeys: String, CodingKey {
+            case gatewayId = "GatewayId"
+            case status = "Status"
+            case taskId = "TaskId"
+        }
+    }
+
+    /// 创建网关分组信息
+    public struct CreateCloudNativeAPIGatewayServerGroupResult: TCOutputModel {
+        /// 网关实例id
+        public let gatewayId: String
+
+        /// 分组id
+        public let groupId: String
+
+        /// 状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: String?
+
+        /// 任务ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskId: String?
+
+        enum CodingKeys: String, CodingKey {
+            case gatewayId = "GatewayId"
+            case groupId = "GroupId"
+            case status = "Status"
+            case taskId = "TaskId"
+        }
+    }
+
+    /// 删除云原生API网关响应结果。
+    public struct DeleteCloudNativeAPIGatewayResult: TCOutputModel {
+        /// 云原生网关ID。
+        public let gatewayId: String
+
+        /// 云原生网关状态。
+        public let status: String
+
+        enum CodingKeys: String, CodingKey {
+            case gatewayId = "GatewayId"
+            case status = "Status"
+        }
+    }
+
+    /// 删除网关实例结果
+    public struct DeleteNativeGatewayServerGroupResult: TCOutputModel {
+        /// 网关实例id
+        public let gatewayId: String
+
+        /// 网关分组id
+        public let groupId: String
+
+        /// 删除状态
+        public let status: String
+
+        /// 任务ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskId: String?
+
+        enum CodingKeys: String, CodingKey {
+            case gatewayId = "GatewayId"
+            case groupId = "GroupId"
+            case status = "Status"
+            case taskId = "TaskId"
+        }
+    }
+
+    /// 获取云原生API网关实例网络配置结果。
+    public struct DescribeCloudNativeAPIGatewayConfigResult: TCOutputModel {
+        /// 网关实例ID。
+        public let gatewayId: String
+
+        /// 分组网络配置列表。
+        public let configList: [CloudNativeAPIGatewayConfig]
+
+        /// 分组子网信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let groupSubnetId: String?
+
+        /// 分组VPC信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let groupVpcId: String?
+
+        /// 分组ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let groupId: String?
+
+        enum CodingKeys: String, CodingKey {
+            case gatewayId = "GatewayId"
+            case configList = "ConfigList"
+            case groupSubnetId = "GroupSubnetId"
+            case groupVpcId = "GroupVpcId"
+            case groupId = "GroupId"
+        }
+    }
+
     /// 获取网关节点信息
     public struct DescribeCloudNativeAPIGatewayNodesResult: TCOutputModel {
         /// 获取云原生API网关节点列表响应结果。
@@ -374,6 +941,131 @@ extension Tse {
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case nodeList = "NodeList"
+        }
+    }
+
+    /// 获取云原生API网关基础信息响应结果。
+    public struct DescribeCloudNativeAPIGatewayResult: TCOutputModel {
+        /// 云原生API网关ID。
+        public let gatewayId: String
+
+        /// 云原生API网关状态。
+        public let status: String
+
+        /// 云原生API网关名。
+        public let name: String
+
+        /// 云原生API网关类型。
+        public let type: String
+
+        /// 实例版本：
+        /// - 2.4.1
+        /// - 2.5.1
+        public let gatewayVersion: String
+
+        /// 云原生API网关节点信息。
+        public let nodeConfig: CloudNativeAPIGatewayNodeConfig
+
+        /// 云原生API网关vpc配置。
+        public let vpcConfig: CloudNativeAPIGatewayVpcConfig
+
+        /// 云原生API网关描述。
+        public let description: String
+
+        /// 云原生API网关创建时间。
+        public let createTime: String
+
+        /// 实例的标签信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tags: [InstanceTagInfo]?
+
+        /// 是否开启 cls 日志
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let enableCls: Bool?
+
+        /// 付费模式，0表示后付费，1预付费
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tradeType: Int64?
+
+        /// 实例版本，当前支持开发版、标准版、专业版【TRIAL、STANDARD、PROFESSIONAL】
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let featureVersion: String?
+
+        /// 公网出流量带宽，[1,2048]Mbps
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let internetMaxBandwidthOut: UInt64?
+
+        /// 自动续费标记，0表示默认状态(用户未设置，即初始状态)；
+        /// 1表示自动续费，2表示明确不自动续费(用户设置)，若业务无续费概念或无需自动续费，需要设置为0
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let autoRenewFlag: Int64?
+
+        /// 到期时间，预付费时使用
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let curDeadline: String?
+
+        /// 隔离时间，实例隔离时使用
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isolateTime: String?
+
+        /// 是否开启客户端公网。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let enableInternet: Bool?
+
+        /// 实例实际的地域信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let engineRegion: String?
+
+        /// Ingress class名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ingressClassName: String?
+
+        /// 公网计费方式。可选取值 BANDWIDTH | TRAFFIC ，表示按带宽和按流量计费。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let internetPayMode: String?
+
+        /// 云原生API网关小版本号
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gatewayMinorVersion: String?
+
+        /// 实例监听的端口信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instancePort: InstancePort?
+
+        /// 公网CLB默认类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let loadBalancerType: String?
+
+        /// 公网IP地址列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let publicIpAddresses: [String]?
+
+        enum CodingKeys: String, CodingKey {
+            case gatewayId = "GatewayId"
+            case status = "Status"
+            case name = "Name"
+            case type = "Type"
+            case gatewayVersion = "GatewayVersion"
+            case nodeConfig = "NodeConfig"
+            case vpcConfig = "VpcConfig"
+            case description = "Description"
+            case createTime = "CreateTime"
+            case tags = "Tags"
+            case enableCls = "EnableCls"
+            case tradeType = "TradeType"
+            case featureVersion = "FeatureVersion"
+            case internetMaxBandwidthOut = "InternetMaxBandwidthOut"
+            case autoRenewFlag = "AutoRenewFlag"
+            case curDeadline = "CurDeadline"
+            case isolateTime = "IsolateTime"
+            case enableInternet = "EnableInternet"
+            case engineRegion = "EngineRegion"
+            case ingressClassName = "IngressClassName"
+            case internetPayMode = "InternetPayMode"
+            case gatewayMinorVersion = "GatewayMinorVersion"
+            case instancePort = "InstancePort"
+            case loadBalancerType = "LoadBalancerType"
+            case publicIpAddresses = "PublicIpAddresses"
         }
     }
 
@@ -658,6 +1350,22 @@ extension Tse {
         }
     }
 
+    /// 实例监听端口信息
+    public struct InstancePort: TCOutputModel {
+        /// 监听的 http 端口范围。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let httpPort: String?
+
+        /// 监听的 https 端口范围。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let httpsPort: String?
+
+        enum CodingKeys: String, CodingKey {
+            case httpPort = "HttpPort"
+            case httpsPort = "HttpsPort"
+        }
+    }
+
     /// 引擎实例的标签信息
     public struct InstanceTagInfo: TCInputModel, TCOutputModel {
         /// 标签键
@@ -674,6 +1382,55 @@ extension Tse {
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"
             case tagValue = "TagValue"
+        }
+    }
+
+    /// 公网负载均衡配置
+    public struct InternetConfig: TCInputModel {
+        /// 公网地址版本，可选："IPV4" | "IPV6" 。不填默认 IPV4 。
+        public let internetAddressVersion: String?
+
+        /// 公网付费类型，当前仅可选："BANDWIDTH"。不填默认为 "BANDWIDTH"
+        public let internetPayMode: String?
+
+        /// 公网带宽。
+        public let internetMaxBandwidthOut: UInt64?
+
+        /// 负载均衡描述
+        public let description: String?
+
+        /// 负载均衡的规格类型，传 "SLA" 表示性能容量型，不传为共享型。
+        public let slaType: String?
+
+        /// 负载均衡是否多可用区
+        public let multiZoneFlag: Bool?
+
+        /// 主可用区
+        public let masterZoneId: String?
+
+        /// 备可用区
+        public let slaveZoneId: String?
+
+        public init(internetAddressVersion: String? = nil, internetPayMode: String? = nil, internetMaxBandwidthOut: UInt64? = nil, description: String? = nil, slaType: String? = nil, multiZoneFlag: Bool? = nil, masterZoneId: String? = nil, slaveZoneId: String? = nil) {
+            self.internetAddressVersion = internetAddressVersion
+            self.internetPayMode = internetPayMode
+            self.internetMaxBandwidthOut = internetMaxBandwidthOut
+            self.description = description
+            self.slaType = slaType
+            self.multiZoneFlag = multiZoneFlag
+            self.masterZoneId = masterZoneId
+            self.slaveZoneId = slaveZoneId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case internetAddressVersion = "InternetAddressVersion"
+            case internetPayMode = "InternetPayMode"
+            case internetMaxBandwidthOut = "InternetMaxBandwidthOut"
+            case description = "Description"
+            case slaType = "SlaType"
+            case multiZoneFlag = "MultiZoneFlag"
+            case masterZoneId = "MasterZoneId"
+            case slaveZoneId = "SlaveZoneId"
         }
     }
 
@@ -709,6 +1466,102 @@ extension Tse {
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
+        }
+    }
+
+    /// 云原生网关证书
+    public struct KongCertificate: TCOutputModel {
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cert: KongCertificatesPreview?
+
+        enum CodingKeys: String, CodingKey {
+            case cert = "Cert"
+        }
+    }
+
+    /// kong证书列表
+    public struct KongCertificatesList: TCOutputModel {
+        /// 证书列表总数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let total: Int64?
+
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let certificatesList: [KongCertificatesPreview]?
+
+        /// 证书列表总页数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        @available(*, deprecated)
+        public let pages: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case total = "Total"
+            case certificatesList = "CertificatesList"
+            case pages = "Pages"
+        }
+    }
+
+    /// 云原生网关证书预览信息
+    public struct KongCertificatesPreview: TCOutputModel {
+        /// 证书名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// Id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: String?
+
+        /// 绑定的域名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bindDomains: [String]?
+
+        /// 证书状态：expired(已过期)
+        ///                    active(生效中)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: String?
+
+        /// 证书pem格式
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let crt: String?
+
+        /// 证书私钥
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let key: String?
+
+        /// 证书过期时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let expireTime: String?
+
+        /// 证书上传时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createTime: String?
+
+        /// 证书签发时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let issueTime: String?
+
+        /// 证书来源：native(kong自定义证书)
+        ///                     ssl(ssl平台证书)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let certSource: String?
+
+        /// ssl平台证书Id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let certId: String?
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case id = "Id"
+            case bindDomains = "BindDomains"
+            case status = "Status"
+            case crt = "Crt"
+            case key = "Key"
+            case expireTime = "ExpireTime"
+            case createTime = "CreateTime"
+            case issueTime = "IssueTime"
+            case certSource = "CertSource"
+            case certId = "CertId"
         }
     }
 
@@ -934,7 +1787,11 @@ extension Tse {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let editable: Bool?
 
-        public init(id: String, name: String? = nil, tags: [String]? = nil, upstreamInfo: KongUpstreamInfo? = nil, upstreamType: String? = nil, createdTime: String? = nil, editable: Bool? = nil) {
+        /// 请求路径
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let path: String?
+
+        public init(id: String, name: String? = nil, tags: [String]? = nil, upstreamInfo: KongUpstreamInfo? = nil, upstreamType: String? = nil, createdTime: String? = nil, editable: Bool? = nil, path: String? = nil) {
             self.id = id
             self.name = name
             self.tags = tags
@@ -942,6 +1799,7 @@ extension Tse {
             self.upstreamType = upstreamType
             self.createdTime = createdTime
             self.editable = editable
+            self.path = path
         }
 
         enum CodingKeys: String, CodingKey {
@@ -952,6 +1810,7 @@ extension Tse {
             case upstreamType = "UpstreamType"
             case createdTime = "CreatedTime"
             case editable = "Editable"
+            case path = "Path"
         }
     }
 
@@ -998,26 +1857,32 @@ extension Tse {
     }
 
     /// Kong Upstream中的Target
-    public struct KongTarget: TCInputModel {
+    public struct KongTarget: TCInputModel, TCOutputModel {
         /// Host
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let host: String?
 
         /// 端口
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let port: Int64?
 
         /// 权重
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let weight: Int64?
 
         /// 健康状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let health: String?
 
         /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createdTime: String?
 
         /// Target的来源
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let source: String?
 
-        public init(host: String, port: Int64, weight: Int64, health: String? = nil, createdTime: String? = nil, source: String? = nil) {
+        public init(host: String? = nil, port: Int64? = nil, weight: Int64? = nil, health: String? = nil, createdTime: String? = nil, source: String? = nil) {
             self.host = host
             self.port = port
             self.weight = weight
@@ -1037,65 +1902,88 @@ extension Tse {
     }
 
     /// 服务的后端配置
-    public struct KongUpstreamInfo: TCInputModel {
+    public struct KongUpstreamInfo: TCInputModel, TCOutputModel {
         /// IP或域名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let host: String?
 
         /// 端口
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let port: Int64?
 
         /// 服务来源ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sourceID: String?
 
         /// 命名空间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespace: String?
 
         /// 服务（注册中心或Kubernetes中的服务）名字
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceName: String?
 
         /// 服务后端类型是IPList时提供
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targets: [KongTarget]?
 
         /// 服务来源类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sourceType: String?
 
         /// SCF函数类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scfType: String?
 
         /// SCF函数命名空间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scfNamespace: String?
 
         /// SCF函数名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scfLambdaName: String?
 
         /// SCF函数版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scfLambdaQualifier: String?
 
         /// 冷启动时间，单位秒
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let slowStart: Int64?
 
         /// 负载均衡算法，默认为 round-robin，还支持 least-connections，consisten_hashing
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let algorithm: String?
 
         /// CVM弹性伸缩组ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoScalingGroupID: String?
 
         /// CVM弹性伸缩组端口
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoScalingCvmPort: UInt64?
 
         /// CVM弹性伸缩组使用的CVM TAT命令状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoScalingTatCmdStatus: String?
 
         /// CVM弹性伸缩组生命周期挂钩状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoScalingHookStatus: String?
 
         /// 服务来源的名字
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sourceName: String?
 
         /// 精确的服务来源类型，新建服务来源时候传入的类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let realSourceType: String?
 
-        public init(host: String? = nil, port: Int64? = nil, sourceID: String? = nil, namespace: String? = nil, serviceName: String? = nil, targets: [KongTarget]? = nil, sourceType: String? = nil, scfType: String? = nil, scfNamespace: String? = nil, scfLambdaName: String? = nil, scfLambdaQualifier: String? = nil, slowStart: Int64? = nil, algorithm: String? = nil, autoScalingGroupID: String? = nil, autoScalingCvmPort: UInt64? = nil, autoScalingTatCmdStatus: String? = nil, autoScalingHookStatus: String? = nil, sourceName: String? = nil, realSourceType: String? = nil) {
+        /// upstream健康状态HEALTHY（健康）, UNHEALTHY（异常）, HEALTHCHECKS_OFF（未开启）和NONE（不支持健康检查）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let healthStatus: String?
+
+        public init(host: String? = nil, port: Int64? = nil, sourceID: String? = nil, namespace: String? = nil, serviceName: String? = nil, targets: [KongTarget]? = nil, sourceType: String? = nil, scfType: String? = nil, scfNamespace: String? = nil, scfLambdaName: String? = nil, scfLambdaQualifier: String? = nil, slowStart: Int64? = nil, algorithm: String? = nil, autoScalingGroupID: String? = nil, autoScalingCvmPort: UInt64? = nil, autoScalingTatCmdStatus: String? = nil, autoScalingHookStatus: String? = nil, sourceName: String? = nil, realSourceType: String? = nil, healthStatus: String? = nil) {
             self.host = host
             self.port = port
             self.sourceID = sourceID
@@ -1115,6 +2003,7 @@ extension Tse {
             self.autoScalingHookStatus = autoScalingHookStatus
             self.sourceName = sourceName
             self.realSourceType = realSourceType
+            self.healthStatus = healthStatus
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1137,6 +2026,21 @@ extension Tse {
             case autoScalingHookStatus = "AutoScalingHookStatus"
             case sourceName = "SourceName"
             case realSourceType = "RealSourceType"
+            case healthStatus = "HealthStatus"
+        }
+    }
+
+    /// 获取云原生API网关实例列表响应结果。
+    public struct ListCloudNativeAPIGatewayResult: TCOutputModel {
+        /// 总数。
+        public let totalCount: Int64
+
+        /// 云原生API网关实例列表。
+        public let gatewayList: [DescribeCloudNativeAPIGatewayResult]
+
+        enum CodingKeys: String, CodingKey {
+            case totalCount = "TotalCount"
+            case gatewayList = "GatewayList"
         }
     }
 
@@ -1208,6 +2112,105 @@ extension Tse {
         }
     }
 
+    /// 云原生网关分组信息
+    public struct NativeGatewayServerGroup: TCOutputModel {
+        /// 云原生网关分组唯一id
+        public let groupId: String
+
+        /// 分组名
+        public let name: String
+
+        /// 描述信息
+        public let description: String
+
+        /// 节点规格、节点数信息
+        public let nodeConfig: CloudNativeAPIGatewayNodeConfig
+
+        /// 网关分组状态。
+        public let status: String
+
+        /// 创建时间
+        public let createTime: String
+
+        /// 是否是默认分组。
+        /// 0：否。
+        /// 1：是。
+        public let isFirstGroup: Int64
+
+        /// 关联策略信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bindingStrategy: CloudNativeAPIGatewayStrategy?
+
+        /// 网关实例 id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gatewayId: String?
+
+        /// 带宽
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let internetMaxBandwidthOut: Int64?
+
+        /// 修改时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let modifyTime: String?
+
+        /// 子网id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subnetIds: String?
+
+        enum CodingKeys: String, CodingKey {
+            case groupId = "GroupId"
+            case name = "Name"
+            case description = "Description"
+            case nodeConfig = "NodeConfig"
+            case status = "Status"
+            case createTime = "CreateTime"
+            case isFirstGroup = "IsFirstGroup"
+            case bindingStrategy = "BindingStrategy"
+            case gatewayId = "GatewayId"
+            case internetMaxBandwidthOut = "InternetMaxBandwidthOut"
+            case modifyTime = "ModifyTime"
+            case subnetIds = "SubnetIds"
+        }
+    }
+
+    /// 网关分组列表
+    public struct NativeGatewayServerGroups: TCOutputModel {
+        /// 总数
+        public let totalCount: UInt64
+
+        /// 分组信息数组。
+        public let gatewayGroupList: [NativeGatewayServerGroup]
+
+        enum CodingKeys: String, CodingKey {
+            case totalCount = "TotalCount"
+            case gatewayGroupList = "GatewayGroupList"
+        }
+    }
+
+    /// 网络访问策略
+    public struct NetworkAccessControl: TCInputModel, TCOutputModel {
+        /// 访问模式：Whitelist|Blacklist
+        public let mode: String
+
+        /// 白名单列表
+        public let cidrWhiteList: [String]?
+
+        /// 黑名单列表
+        public let cidrBlackList: [String]?
+
+        public init(mode: String, cidrWhiteList: [String]? = nil, cidrBlackList: [String]? = nil) {
+            self.mode = mode
+            self.cidrWhiteList = cidrWhiteList
+            self.cidrBlackList = cidrBlackList
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case mode = "Mode"
+            case cidrWhiteList = "CidrWhiteList"
+            case cidrBlackList = "CidrBlackList"
+        }
+    }
+
     /// 查询Limiter的接入地址
     public struct PolarisLimiterAddress: TCOutputModel {
         /// VPC接入IP列表
@@ -1244,7 +2247,7 @@ extension Tse {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let body: String?
 
-        /// headrs
+        /// Headers
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headers: [KVMapping]?
 
@@ -1474,6 +2477,25 @@ extension Tse {
             case mainPassword = "MainPassword"
             case pgwVpcInfos = "PgwVpcInfos"
             case limiterVpcInfos = "LimiterVpcInfos"
+        }
+    }
+
+    /// 更新云原生API网关响应结果。
+    public struct UpdateCloudNativeAPIGatewayResult: TCOutputModel {
+        /// 云原生API网关ID。
+        public let gatewayId: String
+
+        /// 云原生网关状态。
+        public let status: String
+
+        /// 任务ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskId: String?
+
+        enum CodingKeys: String, CodingKey {
+            case gatewayId = "GatewayId"
+            case status = "Status"
+            case taskId = "TaskId"
         }
     }
 

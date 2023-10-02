@@ -615,6 +615,10 @@ extension Clb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let disasterRecoveryType: String?
 
+        /// 网络出口
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let egress: String?
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case clusterName = "ClusterName"
@@ -639,6 +643,7 @@ extension Clb {
             case clustersZone = "ClustersZone"
             case clustersVersion = "ClustersVersion"
             case disasterRecoveryType = "DisasterRecoveryType"
+            case egress = "Egress"
         }
     }
 
@@ -1090,6 +1095,44 @@ extension Clb {
         }
     }
 
+    /// 描述了单项的价格信息
+    public struct ItemPrice: TCOutputModel {
+        /// 后付费单价，单位：元。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let unitPrice: Float?
+
+        /// 后续计价单元，可取值范围：
+        /// HOUR：表示计价单元是按每小时来计算。当前涉及该计价单元的场景有：实例按小时后付费（POSTPAID_BY_HOUR）、带宽按小时后付费（BANDWIDTH_POSTPAID_BY_HOUR）；
+        /// GB：表示计价单元是按每GB来计算。当前涉及该计价单元的场景有：流量按小时后付费（TRAFFIC_POSTPAID_BY_HOUR）。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let chargeUnit: String?
+
+        /// 预支费用的原价，单位：元。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let originalPrice: Float?
+
+        /// 预支费用的折扣价，单位：元。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let discountPrice: Float?
+
+        /// 后付费的折扣单价，单位:元
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let unitPriceDiscount: Float?
+
+        /// 折扣，如20.0代表2折。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let discount: Float?
+
+        enum CodingKeys: String, CodingKey {
+            case unitPrice = "UnitPrice"
+            case chargeUnit = "ChargeUnit"
+            case originalPrice = "OriginalPrice"
+            case discountPrice = "DiscountPrice"
+            case unitPriceDiscount = "UnitPriceDiscount"
+            case discount = "Discount"
+        }
+    }
+
     /// lb实例包年包月相关配置属性
     public struct LBChargePrepaid: TCInputModel, TCOutputModel {
         /// 续费类型：AUTO_RENEW 自动续费，  MANUAL_RENEW 手动续费
@@ -1207,7 +1250,7 @@ extension Clb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sessionExpireTime: Int64?
 
-        /// 是否开启SNI特性（本参数仅对于HTTPS监听器有意义）
+        /// 是否开启SNI特性，1：表示开启，0：表示不开启（本参数仅对于HTTPS监听器有意义）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sniSwitch: Int64?
 
@@ -1607,7 +1650,11 @@ extension Clb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let loadBalancerDomain: String?
 
-        public init(loadBalancerId: String? = nil, loadBalancerName: String? = nil, loadBalancerType: String? = nil, forward: UInt64? = nil, domain: String? = nil, loadBalancerVips: [String]? = nil, status: UInt64? = nil, createTime: String? = nil, statusTime: String? = nil, projectId: UInt64? = nil, vpcId: String? = nil, openBgp: UInt64? = nil, snat: Bool? = nil, isolation: UInt64? = nil, log: String? = nil, subnetId: String? = nil, tags: [TagInfo]? = nil, secureGroups: [String]? = nil, targetRegionInfo: TargetRegionInfo? = nil, anycastZone: String? = nil, addressIPVersion: String? = nil, numericalVpcId: UInt64? = nil, vipIsp: String? = nil, masterZone: ZoneInfo? = nil, backupZoneSet: [ZoneInfo]? = nil, isolatedTime: String? = nil, expireTime: String? = nil, chargeType: String? = nil, networkAttributes: InternetAccessible? = nil, prepaidAttributes: LBChargePrepaid? = nil, logSetId: String? = nil, logTopicId: String? = nil, addressIPv6: String? = nil, extraInfo: ExtraInfo? = nil, isDDos: Bool? = nil, configId: String? = nil, loadBalancerPassToTarget: Bool? = nil, exclusiveCluster: ExclusiveCluster? = nil, iPv6Mode: String? = nil, snatPro: Bool? = nil, snatIps: [SnatIp]? = nil, slaType: String? = nil, isBlock: Bool? = nil, isBlockTime: String? = nil, localBgp: Bool? = nil, clusterTag: String? = nil, mixIpTarget: Bool? = nil, zones: [String]? = nil, nfvInfo: String? = nil, healthLogSetId: String? = nil, healthLogTopicId: String? = nil, clusterIds: [String]? = nil, attributeFlags: [String]? = nil, loadBalancerDomain: String? = nil) {
+        /// 网络出口
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let egress: String?
+
+        public init(loadBalancerId: String? = nil, loadBalancerName: String? = nil, loadBalancerType: String? = nil, forward: UInt64? = nil, domain: String? = nil, loadBalancerVips: [String]? = nil, status: UInt64? = nil, createTime: String? = nil, statusTime: String? = nil, projectId: UInt64? = nil, vpcId: String? = nil, openBgp: UInt64? = nil, snat: Bool? = nil, isolation: UInt64? = nil, log: String? = nil, subnetId: String? = nil, tags: [TagInfo]? = nil, secureGroups: [String]? = nil, targetRegionInfo: TargetRegionInfo? = nil, anycastZone: String? = nil, addressIPVersion: String? = nil, numericalVpcId: UInt64? = nil, vipIsp: String? = nil, masterZone: ZoneInfo? = nil, backupZoneSet: [ZoneInfo]? = nil, isolatedTime: String? = nil, expireTime: String? = nil, chargeType: String? = nil, networkAttributes: InternetAccessible? = nil, prepaidAttributes: LBChargePrepaid? = nil, logSetId: String? = nil, logTopicId: String? = nil, addressIPv6: String? = nil, extraInfo: ExtraInfo? = nil, isDDos: Bool? = nil, configId: String? = nil, loadBalancerPassToTarget: Bool? = nil, exclusiveCluster: ExclusiveCluster? = nil, iPv6Mode: String? = nil, snatPro: Bool? = nil, snatIps: [SnatIp]? = nil, slaType: String? = nil, isBlock: Bool? = nil, isBlockTime: String? = nil, localBgp: Bool? = nil, clusterTag: String? = nil, mixIpTarget: Bool? = nil, zones: [String]? = nil, nfvInfo: String? = nil, healthLogSetId: String? = nil, healthLogTopicId: String? = nil, clusterIds: [String]? = nil, attributeFlags: [String]? = nil, loadBalancerDomain: String? = nil, egress: String? = nil) {
             self.loadBalancerId = loadBalancerId
             self.loadBalancerName = loadBalancerName
             self.loadBalancerType = loadBalancerType
@@ -1662,6 +1709,7 @@ extension Clb {
             self.clusterIds = clusterIds
             self.attributeFlags = attributeFlags
             self.loadBalancerDomain = loadBalancerDomain
+            self.egress = egress
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1719,6 +1767,7 @@ extension Clb {
             case clusterIds = "ClusterIds"
             case attributeFlags = "AttributeFlags"
             case loadBalancerDomain = "LoadBalancerDomain"
+            case egress = "Egress"
         }
     }
 
@@ -1868,13 +1917,17 @@ extension Clb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let zones: [String]?
 
-        /// 是否开启SNI特性（本参数仅对于HTTPS监听器有意义）。
+        /// 是否开启SNI特性，1：表示开启，0：表示不开启（本参数仅对于HTTPS监听器有意义）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sniSwitch: Int64?
 
         /// 负载均衡实例的域名。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let loadBalancerDomain: String?
+
+        /// 网络出口
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let egress: String?
 
         enum CodingKeys: String, CodingKey {
             case loadBalancerId = "LoadBalancerId"
@@ -1915,6 +1968,7 @@ extension Clb {
             case zones = "Zones"
             case sniSwitch = "SniSwitch"
             case loadBalancerDomain = "LoadBalancerDomain"
+            case egress = "Egress"
         }
     }
 
@@ -1985,6 +2039,27 @@ extension Clb {
         enum CodingKeys: String, CodingKey {
             case sslMode = "SSLMode"
             case certList = "CertList"
+        }
+    }
+
+    /// 表示负载均衡的价格
+    public struct Price: TCOutputModel {
+        /// 描述了实例价格。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instancePrice: ItemPrice?
+
+        /// 描述了网络价格。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bandwidthPrice: ItemPrice?
+
+        /// 描述了lcu价格。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lcuPrice: ItemPrice?
+
+        enum CodingKeys: String, CodingKey {
+            case instancePrice = "InstancePrice"
+            case bandwidthPrice = "BandwidthPrice"
+            case lcuPrice = "LcuPrice"
         }
     }
 
@@ -2433,8 +2508,16 @@ extension Clb {
         /// lb的字符串ID
         public let loadBalancerId: String
 
-        /// 升级为性能容量型，固定取值为SLA。SLA表示超强型1规格。
-        /// 当您开通了超大型规格的性能容量型时，SLA对应超强型4规格。如需超大型规格的性能容量型，请提交[工单申请](https://console.cloud.tencent.com/workorder/category)。
+        /// 性能容量型规格，取值范围：
+        /// - SLA：超强型1规格。当您开通了超大型规格的性能容量型时，SLA对应超强型4规格
+        /// - clb.c2.medium：标准型规格
+        /// - clb.c3.small：高阶型1规格
+        /// - clb.c3.medium：高阶型2规格
+        /// - clb.c4.small：超强型1规格
+        /// - clb.c4.medium：超强型2规格
+        /// - clb.c4.large：超强型3规格
+        /// - clb.c4.xlarge：超强型4规格
+        /// 如需超大型规格（超强型2及以上），请提交[工单申请](https://console.cloud.tencent.com/workorder/category)。如需了解规格详情，请参见[实例规格对比](https://cloud.tencent.com/document/product/214/84689)
         public let slaType: String
 
         public init(loadBalancerId: String, slaType: String) {
@@ -2832,6 +2915,10 @@ extension Clb {
         /// 可用区是否是EdgeZone可用区，如：false
         public let edgeZone: Bool
 
+        /// 网络出口
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let egress: String?
+
         enum CodingKeys: String, CodingKey {
             case masterZone = "MasterZone"
             case resourceSet = "ResourceSet"
@@ -2841,6 +2928,7 @@ extension Clb {
             case localZone = "LocalZone"
             case zoneResourceType = "ZoneResourceType"
             case edgeZone = "EdgeZone"
+            case egress = "Egress"
         }
     }
 }

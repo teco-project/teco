@@ -21,25 +21,35 @@ import TecoCore
 extension Ess {
     /// DescribeOrganizationGroupOrganizations请求参数结构体
     public struct DescribeOrganizationGroupOrganizationsRequest: TCPaginatedRequest {
-        /// 操作人信息，userId必填
+        /// 执行本接口操作的员工信息,userId必填。
+        /// 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。
         public let `operator`: UserInfo
 
-        /// 指定每页多少条数据，单页最大1000
+        /// 指定分页每页返回的数据条数，单页最大1000
         public let limit: UInt64
 
-        /// 查询结果分页返回，此处指定第几页，如果不传默认从第一页返回。页码从 0 开始，即首页为 0
+        /// 指定分页返回第几页的数据，如果不传默认返回第一页，页码从 0 开始，即首页为 0
         public let offset: UInt64
 
         /// 查询成员企业的企业名，模糊匹配
         public let name: String?
 
-        /// 成员企业加入集团的当前状态:1-待授权;2-已授权待激活;3-拒绝授权;4-已解除;5-已加入
+        /// 成员企业加入集团的当前状态
+        ///
+        /// - **1**：待授权
+        /// - **2**：已授权待激活
+        /// - **3**：拒绝授权
+        /// - **4**：已解除
+        /// - **5**：已加入
         public let status: UInt64?
 
         /// 是否导出当前成员企业数据
+        ///
+        /// - **false**：不导出（默认值）
+        /// - **true**：导出
         public let export: Bool?
 
-        /// 成员企业机构 ID，在PC控制台 集团管理可获取
+        /// 成员企业机构 ID，32 位字符串，在PC控制台 集团管理可获取
         public let id: String?
 
         public init(operator: UserInfo, limit: UInt64, offset: UInt64, name: String? = nil, status: UInt64? = nil, export: Bool? = nil, id: String? = nil) {
@@ -73,11 +83,11 @@ extension Ess {
 
     /// DescribeOrganizationGroupOrganizations返回参数结构体
     public struct DescribeOrganizationGroupOrganizationsResponse: TCPaginatedResponse {
-        /// 查询到的符合条件的成员企业总数量
+        /// 符合查询条件的资源实例总数量。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let total: UInt64?
 
-        /// 已授权待激活的企业数量
+        /// 已授权待激活的子企业总数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let joinedTotal: UInt64?
 
@@ -94,7 +104,7 @@ extension Ess {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let list: [GroupOrganization]?
 
-        /// 已加入的企业数量
+        /// 已加入的子企业总数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let activatedTotal: UInt64?
 
@@ -124,7 +134,8 @@ extension Ess {
 
     /// 查询集团企业列表
     ///
-    /// 此API接口用户查询加入集团的成员企业
+    /// 此API接口用来查询加入集团的成员企业信息
+    /// 适用场景：子企业在加入集团后，主企业可能通过此接口获取到所有的子企业列表，方便进行展示和统计
     @inlinable
     public func describeOrganizationGroupOrganizations(_ input: DescribeOrganizationGroupOrganizationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationGroupOrganizationsResponse> {
         self.client.execute(action: "DescribeOrganizationGroupOrganizations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -132,7 +143,8 @@ extension Ess {
 
     /// 查询集团企业列表
     ///
-    /// 此API接口用户查询加入集团的成员企业
+    /// 此API接口用来查询加入集团的成员企业信息
+    /// 适用场景：子企业在加入集团后，主企业可能通过此接口获取到所有的子企业列表，方便进行展示和统计
     @inlinable
     public func describeOrganizationGroupOrganizations(_ input: DescribeOrganizationGroupOrganizationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationGroupOrganizationsResponse {
         try await self.client.execute(action: "DescribeOrganizationGroupOrganizations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -140,7 +152,8 @@ extension Ess {
 
     /// 查询集团企业列表
     ///
-    /// 此API接口用户查询加入集团的成员企业
+    /// 此API接口用来查询加入集团的成员企业信息
+    /// 适用场景：子企业在加入集团后，主企业可能通过此接口获取到所有的子企业列表，方便进行展示和统计
     @inlinable
     public func describeOrganizationGroupOrganizations(operator: UserInfo, limit: UInt64, offset: UInt64, name: String? = nil, status: UInt64? = nil, export: Bool? = nil, id: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationGroupOrganizationsResponse> {
         self.describeOrganizationGroupOrganizations(.init(operator: `operator`, limit: limit, offset: offset, name: name, status: status, export: export, id: id), region: region, logger: logger, on: eventLoop)
@@ -148,7 +161,8 @@ extension Ess {
 
     /// 查询集团企业列表
     ///
-    /// 此API接口用户查询加入集团的成员企业
+    /// 此API接口用来查询加入集团的成员企业信息
+    /// 适用场景：子企业在加入集团后，主企业可能通过此接口获取到所有的子企业列表，方便进行展示和统计
     @inlinable
     public func describeOrganizationGroupOrganizations(operator: UserInfo, limit: UInt64, offset: UInt64, name: String? = nil, status: UInt64? = nil, export: Bool? = nil, id: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationGroupOrganizationsResponse {
         try await self.describeOrganizationGroupOrganizations(.init(operator: `operator`, limit: limit, offset: offset, name: name, status: status, export: export, id: id), region: region, logger: logger, on: eventLoop)
@@ -156,7 +170,8 @@ extension Ess {
 
     /// 查询集团企业列表
     ///
-    /// 此API接口用户查询加入集团的成员企业
+    /// 此API接口用来查询加入集团的成员企业信息
+    /// 适用场景：子企业在加入集团后，主企业可能通过此接口获取到所有的子企业列表，方便进行展示和统计
     @inlinable
     public func describeOrganizationGroupOrganizationsPaginated(_ input: DescribeOrganizationGroupOrganizationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [GroupOrganization])> {
         self.client.paginate(input: input, region: region, command: self.describeOrganizationGroupOrganizations, logger: logger, on: eventLoop)
@@ -164,7 +179,8 @@ extension Ess {
 
     /// 查询集团企业列表
     ///
-    /// 此API接口用户查询加入集团的成员企业
+    /// 此API接口用来查询加入集团的成员企业信息
+    /// 适用场景：子企业在加入集团后，主企业可能通过此接口获取到所有的子企业列表，方便进行展示和统计
     @inlinable @discardableResult
     public func describeOrganizationGroupOrganizationsPaginated(_ input: DescribeOrganizationGroupOrganizationsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeOrganizationGroupOrganizationsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeOrganizationGroupOrganizations, callback: onResponse, logger: logger, on: eventLoop)
@@ -172,7 +188,8 @@ extension Ess {
 
     /// 查询集团企业列表
     ///
-    /// 此API接口用户查询加入集团的成员企业
+    /// 此API接口用来查询加入集团的成员企业信息
+    /// 适用场景：子企业在加入集团后，主企业可能通过此接口获取到所有的子企业列表，方便进行展示和统计
     ///
     /// - Returns: `AsyncSequence`s of ``GroupOrganization`` and ``DescribeOrganizationGroupOrganizationsResponse`` that can be iterated over asynchronously on demand.
     @inlinable

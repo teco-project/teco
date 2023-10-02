@@ -97,7 +97,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createAssetWithImage(_ input: CreateAssetWithImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetWithImageResponse> {
-        fatalError("CreateAssetWithImage is no longer available.")
+        fatalError("'CreateAssetWithImage' is no longer available.")
     }
 
     /// 创建生成包镜像信息
@@ -106,7 +106,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createAssetWithImage(_ input: CreateAssetWithImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetWithImageResponse {
-        fatalError("CreateAssetWithImage is no longer available.")
+        fatalError("'CreateAssetWithImage' is no longer available.")
     }
 
     /// 创建生成包镜像信息
@@ -115,7 +115,7 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createAssetWithImage(assetName: String, assetVersion: String, assetRegion: String, imageId: String, imageSize: String, imageOs: String, osType: String, imageType: String, osBit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetWithImageResponse> {
-        fatalError("CreateAssetWithImage is no longer available.")
+        fatalError("'CreateAssetWithImage' is no longer available.")
     }
 
     /// 创建生成包镜像信息
@@ -124,6 +124,6 @@ extension Gse {
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createAssetWithImage(assetName: String, assetVersion: String, assetRegion: String, imageId: String, imageSize: String, imageOs: String, osType: String, imageType: String, osBit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetWithImageResponse {
-        fatalError("CreateAssetWithImage is no longer available.")
+        fatalError("'CreateAssetWithImage' is no longer available.")
     }
 }

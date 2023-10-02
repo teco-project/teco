@@ -27,7 +27,7 @@ extension Tem {
         /// 环境ID
         public let environmentId: String
 
-        /// 来源渠道
+        /// 来源渠道(用户不需要关心此参数)
         public let sourceChannel: Int64?
 
         /// 当服务没有任何运行版本时，是否删除此服务
