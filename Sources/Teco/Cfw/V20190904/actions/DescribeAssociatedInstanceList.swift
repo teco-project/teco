@@ -69,7 +69,7 @@ extension Cfw {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeAssociatedInstanceListResponse) -> DescribeAssociatedInstanceListRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, area: self.area, searchValue: self.searchValue, by: self.by, order: self.order, securityGroupId: self.securityGroupId, type: self.type)

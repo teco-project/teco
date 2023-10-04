@@ -89,7 +89,7 @@ extension Scf {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: ListAsyncEventsResponse) -> ListAsyncEventsRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(functionName: self.functionName, namespace: self.namespace, qualifier: self.qualifier, invokeType: self.invokeType, status: self.status, startTimeInterval: self.startTimeInterval, endTimeInterval: self.endTimeInterval, order: self.order, orderby: self.orderby, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, invokeRequestId: self.invokeRequestId)

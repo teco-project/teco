@@ -74,7 +74,7 @@ extension Sqlserver {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeIncrementalMigrationResponse) -> DescribeIncrementalMigrationRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(backupMigrationId: self.backupMigrationId, instanceId: self.instanceId, backupFileName: self.backupFileName, statusSet: self.statusSet, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), orderBy: self.orderBy, orderByType: self.orderByType, incrementalMigrationId: self.incrementalMigrationId)

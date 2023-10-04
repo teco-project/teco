@@ -74,7 +74,7 @@ extension Antiddos {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeCcBlackWhiteIpListResponse) -> DescribeCcBlackWhiteIpListRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(business: self.business, instanceId: self.instanceId, offset: self.offset + .init(response.getItems().count), limit: self.limit, ip: self.ip, domain: self.domain, protocol: self.protocol, filterIp: self.filterIp, filterType: self.filterType)

@@ -59,7 +59,7 @@ extension Cynosdb {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeAuditRuleTemplatesResponse) -> DescribeAuditRuleTemplatesRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(ruleTemplateIds: self.ruleTemplateIds, ruleTemplateNames: self.ruleTemplateNames, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), alarmLevel: self.alarmLevel, alarmPolicy: self.alarmPolicy)

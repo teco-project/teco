@@ -124,7 +124,7 @@ extension Billing {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeBillDetailForOrganizationResponse) -> DescribeBillDetailForOrganizationRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, periodType: self.periodType, month: self.month, beginTime: self.beginTime, endTime: self.endTime, needRecordNum: self.needRecordNum, payMode: self.payMode, resourceId: self.resourceId, actionType: self.actionType, projectId: self.projectId, businessCode: self.businessCode, context: self.context)

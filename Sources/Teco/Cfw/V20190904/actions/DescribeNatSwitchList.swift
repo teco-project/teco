@@ -69,7 +69,7 @@ extension Cfw {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeNatSwitchListResponse) -> DescribeNatSwitchListRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, searchValue: self.searchValue, status: self.status, vpcId: self.vpcId, natId: self.natId, natInsId: self.natInsId, area: self.area)

@@ -49,7 +49,7 @@ extension Yunjing {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeWeeklyReportBruteAttacksResponse) -> DescribeWeeklyReportBruteAttacksRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(beginDate: self.beginDate, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))

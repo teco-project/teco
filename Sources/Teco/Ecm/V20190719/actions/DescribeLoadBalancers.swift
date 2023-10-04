@@ -86,7 +86,7 @@ extension Ecm {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeLoadBalancersResponse) -> DescribeLoadBalancersRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(ecmRegion: self.ecmRegion, loadBalancerIds: self.loadBalancerIds, loadBalancerName: self.loadBalancerName, loadBalancerVips: self.loadBalancerVips, backendPrivateIps: self.backendPrivateIps, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, withBackend: self.withBackend, vpcId: self.vpcId, filters: self.filters, securityGroup: self.securityGroup)

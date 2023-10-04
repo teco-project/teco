@@ -119,7 +119,7 @@ extension Vpc {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeCrossBorderComplianceResponse) -> DescribeCrossBorderComplianceRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(serviceProvider: self.serviceProvider, complianceId: self.complianceId, company: self.company, uniformSocialCreditCode: self.uniformSocialCreditCode, legalPerson: self.legalPerson, issuingAuthority: self.issuingAuthority, businessAddress: self.businessAddress, postCode: self.postCode, manager: self.manager, managerId: self.managerId, managerAddress: self.managerAddress, managerTelephone: self.managerTelephone, email: self.email, serviceStartDate: self.serviceStartDate, serviceEndDate: self.serviceEndDate, state: self.state, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)

@@ -83,7 +83,7 @@ extension Tsf {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeSimpleNamespacesResponse) -> DescribeSimpleNamespacesRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(namespaceIdList: self.namespaceIdList, clusterId: self.clusterId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), namespaceId: self.namespaceId, namespaceResourceTypeList: self.namespaceResourceTypeList, searchWord: self.searchWord, namespaceTypeList: self.namespaceTypeList, namespaceName: self.namespaceName, isDefault: self.isDefault, disableProgramAuthCheck: self.disableProgramAuthCheck)

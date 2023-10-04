@@ -82,7 +82,7 @@ extension Dasb {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeLoginEventResponse) -> DescribeLoginEventRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(userName: self.userName, realName: self.realName, startTime: self.startTime, endTime: self.endTime, sourceIp: self.sourceIp, entry: self.entry, result: self.result, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)

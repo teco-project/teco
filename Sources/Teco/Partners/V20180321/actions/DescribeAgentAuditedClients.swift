@@ -94,7 +94,7 @@ extension Partners {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeAgentAuditedClientsResponse) -> DescribeAgentAuditedClientsRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(clientUin: self.clientUin, clientName: self.clientName, clientFlag: self.clientFlag, orderDirection: self.orderDirection, clientUins: self.clientUins, hasOverdueBill: self.hasOverdueBill, clientRemark: self.clientRemark, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, clientType: self.clientType, projectType: self.projectType, salesUin: self.salesUin, salesName: self.salesName)

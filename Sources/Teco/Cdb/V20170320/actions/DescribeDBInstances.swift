@@ -248,7 +248,7 @@ extension Cdb {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeDBInstancesResponse) -> DescribeDBInstancesRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(projectId: self.projectId, instanceTypes: self.instanceTypes, vips: self.vips, status: self.status, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, securityGroupId: self.securityGroupId, payTypes: self.payTypes, instanceNames: self.instanceNames, taskStatus: self.taskStatus, engineVersions: self.engineVersions, vpcIds: self.vpcIds, zoneIds: self.zoneIds, subnetIds: self.subnetIds, cdbErrors: self.cdbErrors, orderBy: self.orderBy, orderDirection: self.orderDirection, withSecurityGroup: self.withSecurityGroup, withExCluster: self.withExCluster, exClusterId: self.exClusterId, instanceIds: self.instanceIds, initFlag: self.initFlag, withDr: self.withDr, withRo: self.withRo, withMaster: self.withMaster, deployGroupIds: self.deployGroupIds, tagKeysForSearch: self.tagKeysForSearch, cageIds: self.cageIds, tagValues: self.tagValues, uniqueVpcIds: self.uniqueVpcIds, uniqSubnetIds: self.uniqSubnetIds, tags: self.tags, proxyVips: self.proxyVips, proxyIds: self.proxyIds, engineTypes: self.engineTypes)

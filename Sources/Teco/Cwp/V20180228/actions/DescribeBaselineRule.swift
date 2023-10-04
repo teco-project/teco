@@ -64,7 +64,7 @@ extension Cwp {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeBaselineRuleResponse) -> DescribeBaselineRuleRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(baselineId: self.baselineId, limit: self.limit, offset: self.offset + .init(response.getItems().count), level: self.level, status: self.status, quuid: self.quuid, uuid: self.uuid)

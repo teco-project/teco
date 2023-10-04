@@ -64,7 +64,7 @@ extension Ckafka {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeDatahubTasksResponse) -> DescribeDatahubTasksRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), searchWord: self.searchWord, targetType: self.targetType, taskType: self.taskType, sourceType: self.sourceType, resource: self.resource)

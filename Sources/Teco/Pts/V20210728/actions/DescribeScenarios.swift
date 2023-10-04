@@ -74,7 +74,7 @@ extension Pts {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeScenariosResponse) -> DescribeScenariosRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(scenarioIds: self.scenarioIds, scenarioName: self.scenarioName, scenarioStatus: self.scenarioStatus, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderBy: self.orderBy, ascend: self.ascend, projectIds: self.projectIds, scenarioType: self.scenarioType)

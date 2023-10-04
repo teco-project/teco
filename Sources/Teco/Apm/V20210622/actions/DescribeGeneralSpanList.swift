@@ -69,7 +69,7 @@ extension Apm {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeGeneralSpanListResponse) -> DescribeGeneralSpanListRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, orderBy: self.orderBy, startTime: self.startTime, instanceId: self.instanceId, filters: self.filters, businessName: self.businessName, endTime: self.endTime)

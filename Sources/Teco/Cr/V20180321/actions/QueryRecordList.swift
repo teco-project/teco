@@ -82,7 +82,7 @@ extension Cr {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: QueryRecordListResponse) -> QueryRecordListRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(module: self.module, operation: self.operation, offset: self.offset + .init(response.getItems().count), limit: self.limit, botId: self.botId, botName: self.botName, calledPhone: self.calledPhone, startBizDate: self.startBizDate, endBizDate: self.endBizDate)

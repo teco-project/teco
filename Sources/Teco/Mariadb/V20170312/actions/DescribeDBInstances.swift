@@ -124,7 +124,7 @@ extension Mariadb {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeDBInstancesResponse) -> DescribeDBInstancesRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(instanceIds: self.instanceIds, searchName: self.searchName, searchKey: self.searchKey, projectIds: self.projectIds, isFilterVpc: self.isFilterVpc, vpcId: self.vpcId, subnetId: self.subnetId, orderBy: self.orderBy, orderByType: self.orderByType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, originSerialIds: self.originSerialIds, isFilterExcluster: self.isFilterExcluster, exclusterType: self.exclusterType, exclusterIds: self.exclusterIds, tagKeys: self.tagKeys, filterInstanceType: self.filterInstanceType, status: self.status, excludeStatus: self.excludeStatus)

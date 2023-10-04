@@ -101,7 +101,7 @@ extension Tsf {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: SearchStdoutLogResponse) -> SearchStdoutLogRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(instanceId: self.instanceId, limit: self.limit, searchWords: self.searchWords, startTime: self.startTime, groupId: self.groupId, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), orderBy: self.orderBy, orderType: self.orderType, searchWordType: self.searchWordType, batchType: self.batchType, scrollId: self.scrollId)

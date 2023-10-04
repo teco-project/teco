@@ -54,7 +54,7 @@ extension Gse {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeInstancesResponse) -> DescribeInstancesRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(fleetId: self.fleetId, instanceId: self.instanceId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, ipAddress: self.ipAddress)

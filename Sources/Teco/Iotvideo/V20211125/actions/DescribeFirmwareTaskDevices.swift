@@ -54,7 +54,7 @@ extension Iotvideo {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeFirmwareTaskDevicesResponse) -> DescribeFirmwareTaskDevicesRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(productID: self.productID, firmwareVersion: self.firmwareVersion, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)

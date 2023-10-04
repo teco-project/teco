@@ -109,7 +109,7 @@ extension Dts {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeMigrationJobsResponse) -> DescribeMigrationJobsRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(jobId: self.jobId, jobName: self.jobName, status: self.status, srcInstanceId: self.srcInstanceId, srcRegion: self.srcRegion, srcDatabaseType: self.srcDatabaseType, srcAccessType: self.srcAccessType, dstInstanceId: self.dstInstanceId, dstRegion: self.dstRegion, dstDatabaseType: self.dstDatabaseType, dstAccessType: self.dstAccessType, runMode: self.runMode, orderSeq: self.orderSeq, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), tagFilters: self.tagFilters)

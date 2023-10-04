@@ -49,7 +49,7 @@ extension Iotexplorer {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeDevicePositionListResponse) -> DescribeDevicePositionListRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(productIdList: self.productIdList, coordinateType: self.coordinateType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)

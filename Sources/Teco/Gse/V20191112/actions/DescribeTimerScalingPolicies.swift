@@ -59,7 +59,7 @@ extension Gse {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeTimerScalingPoliciesResponse) -> DescribeTimerScalingPoliciesRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(fleetId: self.fleetId, timerName: self.timerName, beginTime: self.beginTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)

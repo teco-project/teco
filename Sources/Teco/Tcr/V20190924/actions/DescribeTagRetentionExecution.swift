@@ -49,7 +49,7 @@ extension Tcr {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeTagRetentionExecutionResponse) -> DescribeTagRetentionExecutionRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(registryId: self.registryId, retentionId: self.retentionId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))

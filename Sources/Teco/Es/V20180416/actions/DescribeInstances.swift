@@ -97,7 +97,7 @@ extension Es {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeInstancesResponse) -> DescribeInstancesRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(zone: self.zone, instanceIds: self.instanceIds, instanceNames: self.instanceNames, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderByKey: self.orderByKey, orderByType: self.orderByType, tagList: self.tagList, ipList: self.ipList, zoneList: self.zoneList, healthStatus: self.healthStatus, vpcIds: self.vpcIds)

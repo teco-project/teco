@@ -64,7 +64,7 @@ extension Dbbrain {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeDiagDBInstancesResponse) -> DescribeDiagDBInstancesRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(isSupported: self.isSupported, product: self.product, offset: self.offset + .init(response.getItems().count), limit: self.limit, instanceNames: self.instanceNames, instanceIds: self.instanceIds, regions: self.regions)

@@ -112,7 +112,7 @@ extension Tsf {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeStatisticsResponse) -> DescribeStatisticsRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(type: self.type, timeStep: self.timeStep, offset: self.offset + .init(response.getItems().count), limit: self.limit, namespaceId: self.namespaceId, orderBy: self.orderBy, orderType: self.orderType, endTime: self.endTime, startTime: self.startTime, serviceName: self.serviceName, searchWord: self.searchWord, metricDimensionValues: self.metricDimensionValues, bucketKey: self.bucketKey, dbName: self.dbName, namespaceIdList: self.namespaceIdList)

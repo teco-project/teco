@@ -84,7 +84,7 @@ extension Eis {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: ListRuntimeDeployedInstancesMCResponse) -> ListRuntimeDeployedInstancesMCRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(runtimeId: self.runtimeId, limit: self.limit, offset: self.offset + .init(response.getItems().count), sortType: self.sortType, sort: self.sort, zone: self.zone, apiVersion: self.apiVersion, groupId: self.groupId, status: self.status, runtimeClass: self.runtimeClass)

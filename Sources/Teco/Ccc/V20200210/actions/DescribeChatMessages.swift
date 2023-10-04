@@ -64,7 +64,7 @@ extension Ccc {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeChatMessagesResponse) -> DescribeChatMessagesRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(instanceId: self.instanceId, sdkAppId: self.sdkAppId, cdrId: self.cdrId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), order: self.order, sessionId: self.sessionId)

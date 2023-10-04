@@ -64,7 +64,7 @@ extension Iecp {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeSecretsResponse) -> DescribeSecretsRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(edgeUnitID: self.edgeUnitID, offset: self.offset + .init(response.getItems().count), limit: self.limit, secretNamespace: self.secretNamespace, namePattern: self.namePattern, sort: self.sort, secretType: self.secretType)

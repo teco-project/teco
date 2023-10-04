@@ -64,7 +64,7 @@ extension Oceanus {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeResourceConfigsResponse) -> DescribeResourceConfigsRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(resourceId: self.resourceId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, resourceConfigVersions: self.resourceConfigVersions, jobConfigVersion: self.jobConfigVersion, jobId: self.jobId, workSpaceId: self.workSpaceId)

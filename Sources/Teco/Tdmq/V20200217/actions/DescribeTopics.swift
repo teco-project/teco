@@ -78,7 +78,7 @@ extension Tdmq {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeTopicsResponse) -> DescribeTopicsRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(environmentId: self.environmentId, clusterId: self.clusterId, topicName: self.topicName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, topicType: self.topicType, filters: self.filters, topicCreator: self.topicCreator)

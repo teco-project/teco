@@ -62,7 +62,7 @@ extension Mps {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeSchedulesResponse) -> DescribeSchedulesRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(scheduleIds: self.scheduleIds, triggerType: self.triggerType, status: self.status, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)

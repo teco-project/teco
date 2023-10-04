@@ -54,7 +54,7 @@ extension Cvm {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeHpcClustersResponse) -> DescribeHpcClustersRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(hpcClusterIds: self.hpcClusterIds, name: self.name, zone: self.zone, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)

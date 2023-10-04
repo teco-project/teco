@@ -74,7 +74,7 @@ extension Yinsuda {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeLiveVipTradeInfosResponse) -> DescribeLiveVipTradeInfosRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(appName: self.appName, startTime: self.startTime, endTime: self.endTime, tradeSerialNos: self.tradeSerialNos, userIds: self.userIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)

@@ -69,7 +69,7 @@ extension Tag {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeResourcesByTagsResponse) -> DescribeResourcesByTagsRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(tagFilters: self.tagFilters, createUin: self.createUin, offset: (self.offset ?? 0) + (response.limit ?? 0), limit: self.limit, resourcePrefix: self.resourcePrefix, resourceId: self.resourceId, resourceRegion: self.resourceRegion, serviceType: self.serviceType)

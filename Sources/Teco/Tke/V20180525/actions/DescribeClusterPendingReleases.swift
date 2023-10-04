@@ -49,7 +49,7 @@ extension Tke {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeClusterPendingReleasesResponse) -> DescribeClusterPendingReleasesRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(clusterId: self.clusterId, limit: self.limit, offset: (self.offset ?? 0) + (response.limit ?? 0), clusterType: self.clusterType)

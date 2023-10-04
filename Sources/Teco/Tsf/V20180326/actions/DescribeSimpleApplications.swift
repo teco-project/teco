@@ -68,7 +68,7 @@ extension Tsf {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeSimpleApplicationsResponse) -> DescribeSimpleApplicationsRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(applicationIdList: self.applicationIdList, applicationType: self.applicationType, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), microserviceType: self.microserviceType, applicationResourceTypeList: self.applicationResourceTypeList, searchWord: self.searchWord, disableProgramAuthCheck: self.disableProgramAuthCheck)

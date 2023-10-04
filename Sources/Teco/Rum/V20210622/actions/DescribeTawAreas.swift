@@ -54,7 +54,7 @@ extension Rum {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeTawAreasResponse) -> DescribeTawAreasRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(areaIds: self.areaIds, areaKeys: self.areaKeys, limit: self.limit, areaStatuses: self.areaStatuses, offset: (self.offset ?? 0) + .init(response.getItems().count))

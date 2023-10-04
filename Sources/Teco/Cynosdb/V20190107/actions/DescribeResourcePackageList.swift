@@ -84,7 +84,7 @@ extension Cynosdb {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeResourcePackageListResponse) -> DescribeResourcePackageListRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(packageId: self.packageId, packageName: self.packageName, packageType: self.packageType, packageRegion: self.packageRegion, status: self.status, orderBy: self.orderBy, orderDirection: self.orderDirection, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)

@@ -84,7 +84,7 @@ extension Hasim {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeLinksResponse) -> DescribeLinksRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(linkID: self.linkID, iccid: self.iccid, imei: self.imei, status: self.status, teleOperator: self.teleOperator, tagID: self.tagID, tacticID: self.tacticID, linkedState: self.linkedState, tagIDs: self.tagIDs, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))

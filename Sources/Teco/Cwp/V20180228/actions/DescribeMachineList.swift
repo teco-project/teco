@@ -64,7 +64,7 @@ extension Cwp {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeMachineListResponse) -> DescribeMachineListRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(machineType: self.machineType, machineRegion: self.machineRegion, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters)

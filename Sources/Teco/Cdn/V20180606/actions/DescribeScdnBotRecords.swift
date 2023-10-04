@@ -160,7 +160,7 @@ extension Cdn {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeScdnBotRecordsResponse) -> DescribeScdnBotRecordsRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(botType: self.botType, domain: self.domain, startTime: self.startTime, endTime: self.endTime, offset: self.offset + .init(response.getItems().count), limit: self.limit, area: self.area, sortBy: self.sortBy, filterName: self.filterName, filterAction: self.filterAction, filterIp: self.filterIp, domains: self.domains)

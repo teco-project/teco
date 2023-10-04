@@ -115,7 +115,7 @@ extension Tiia {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: SearchImageResponse) -> SearchImageRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(groupId: self.groupId, imageUrl: self.imageUrl, imageBase64: self.imageBase64, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), matchThreshold: self.matchThreshold, filter: self.filter, imageRect: self.imageRect, enableDetect: self.enableDetect, categoryId: self.categoryId)

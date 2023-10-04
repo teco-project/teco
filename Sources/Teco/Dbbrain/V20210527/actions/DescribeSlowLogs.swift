@@ -97,7 +97,7 @@ extension Dbbrain {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeSlowLogsResponse) -> DescribeSlowLogsRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(product: self.product, instanceId: self.instanceId, md5: self.md5, startTime: self.startTime, endTime: self.endTime, offset: self.offset + .init(response.getItems().count), limit: self.limit, db: self.db, key: self.key, user: self.user, ip: self.ip, time: self.time)

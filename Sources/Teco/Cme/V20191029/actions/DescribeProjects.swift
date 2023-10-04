@@ -96,7 +96,7 @@ extension Cme {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeProjectsResponse) -> DescribeProjectsRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(platform: self.platform, projectIds: self.projectIds, aspectRatioSet: self.aspectRatioSet, categorySet: self.categorySet, modes: self.modes, sort: self.sort, owner: self.owner, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, operator: self.operator)

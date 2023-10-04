@@ -84,7 +84,7 @@ extension Cynosdb {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeParamTemplatesResponse) -> DescribeParamTemplatesRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(engineVersions: self.engineVersions, templateNames: self.templateNames, templateIds: self.templateIds, dbModes: self.dbModes, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, products: self.products, templateTypes: self.templateTypes, engineTypes: self.engineTypes, orderBy: self.orderBy, orderDirection: self.orderDirection)

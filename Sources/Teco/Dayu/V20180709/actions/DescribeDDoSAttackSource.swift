@@ -72,7 +72,7 @@ extension Dayu {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeDDoSAttackSourceResponse) -> DescribeDDoSAttackSourceRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(business: self.business, id: self.id, startTime: self.startTime, endTime: self.endTime, limit: self.limit, offset: self.offset + .init(response.getItems().count), ipList: self.ipList)

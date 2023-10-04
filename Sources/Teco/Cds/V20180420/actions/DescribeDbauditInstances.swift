@@ -44,7 +44,7 @@ extension Cds {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeDbauditInstancesResponse) -> DescribeDbauditInstancesRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(searchRegion: self.searchRegion, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))

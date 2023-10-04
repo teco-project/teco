@@ -74,7 +74,7 @@ extension Cfg {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeTaskListResponse) -> DescribeTaskListRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(limit: self.limit, offset: self.offset + .init(response.getItems().count), taskTitle: self.taskTitle, taskTag: self.taskTag, taskStatus: self.taskStatus, taskStartTime: self.taskStartTime, taskEndTime: self.taskEndTime, tags: self.tags, filters: self.filters)
