@@ -79,7 +79,7 @@ extension Tbaas {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: GetLatestTransactionListResponse) -> GetLatestTransactionListRequest? {
-            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(module: self.module, operation: self.operation, groupId: self.groupId, channelId: self.channelId, latestBlockNumber: self.latestBlockNumber, groupName: self.groupName, channelName: self.channelName, clusterId: self.clusterId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)

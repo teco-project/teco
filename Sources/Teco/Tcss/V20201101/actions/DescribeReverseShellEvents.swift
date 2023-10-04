@@ -55,7 +55,7 @@ extension Tcss {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeReverseShellEventsResponse) -> DescribeReverseShellEventsRequest? {
-            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters, order: self.order, by: self.by)

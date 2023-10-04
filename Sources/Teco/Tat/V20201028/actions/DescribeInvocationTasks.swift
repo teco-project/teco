@@ -66,7 +66,7 @@ extension Tat {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeInvocationTasksResponse) -> DescribeInvocationTasksRequest? {
-            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(invocationTaskIds: self.invocationTaskIds, filters: self.filters, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), hideOutput: self.hideOutput)

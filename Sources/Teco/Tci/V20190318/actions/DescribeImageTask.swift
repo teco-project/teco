@@ -44,7 +44,7 @@ extension Tci {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeImageTaskResponse) -> DescribeImageTaskRequest? {
-            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(jobId: self.jobId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))

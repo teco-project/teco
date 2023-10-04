@@ -64,7 +64,7 @@ extension Tag {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeTagsResponse) -> DescribeTagsRequest? {
-            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(tagKey: self.tagKey, tagValue: self.tagValue, offset: (self.offset ?? 0) + response.limit, limit: self.limit, createUin: self.createUin, tagKeys: self.tagKeys, showProject: self.showProject)

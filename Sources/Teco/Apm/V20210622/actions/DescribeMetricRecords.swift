@@ -94,7 +94,7 @@ extension Apm {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeMetricRecordsResponse) -> DescribeMetricRecordsRequest? {
-            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(filters: self.filters, metrics: self.metrics, groupBy: self.groupBy, orderBy: self.orderBy, instanceId: self.instanceId, limit: self.limit, startTime: self.startTime, offset: (self.offset ?? 0) + .init(response.getItems().count), endTime: self.endTime, businessName: self.businessName, pageIndex: self.pageIndex, pageSize: self.pageSize, orFilters: self.orFilters)

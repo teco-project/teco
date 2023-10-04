@@ -77,7 +77,7 @@ extension Ecdn {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribePurgeTasksResponse) -> DescribePurgeTasksRequest? {
-            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(purgeType: self.purgeType, startTime: self.startTime, endTime: self.endTime, taskId: self.taskId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, keyword: self.keyword, status: self.status)

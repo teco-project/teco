@@ -84,7 +84,7 @@ extension Dlc {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeDataEnginesResponse) -> DescribeDataEnginesRequest? {
-            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters, sortBy: self.sortBy, sorting: self.sorting, limit: self.limit, datasourceConnectionName: self.datasourceConnectionName, excludePublicEngine: self.excludePublicEngine, accessTypes: self.accessTypes, engineExecType: self.engineExecType, engineType: self.engineType, datasourceConnectionNameSet: self.datasourceConnectionNameSet)

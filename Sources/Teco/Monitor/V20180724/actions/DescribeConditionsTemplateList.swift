@@ -69,7 +69,7 @@ extension Monitor {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeConditionsTemplateListResponse) -> DescribeConditionsTemplateListRequest? {
-            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(module: self.module, viewName: self.viewName, groupName: self.groupName, groupID: self.groupID, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), updateTimeOrder: self.updateTimeOrder, policyCountOrder: self.policyCountOrder)

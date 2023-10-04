@@ -104,7 +104,7 @@ extension Monitor {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeProductEventListResponse) -> DescribeProductEventListRequest? {
-            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(module: self.module, productName: self.productName, eventName: self.eventName, instanceId: self.instanceId, dimensions: self.dimensions, regionList: self.regionList, type: self.type, status: self.status, project: self.project, isAlarmConfig: self.isAlarmConfig, timeOrder: self.timeOrder, startTime: self.startTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)

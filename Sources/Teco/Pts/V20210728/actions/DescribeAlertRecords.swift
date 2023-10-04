@@ -69,7 +69,7 @@ extension Pts {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeAlertRecordsResponse) -> DescribeAlertRecordsRequest? {
-            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(projectIds: self.projectIds, scenarioIds: self.scenarioIds, jobIds: self.jobIds, ascend: self.ascend, orderBy: self.orderBy, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, scenarioNames: self.scenarioNames)

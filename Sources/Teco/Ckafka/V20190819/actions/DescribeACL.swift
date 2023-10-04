@@ -59,7 +59,7 @@ extension Ckafka {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeACLResponse) -> DescribeACLRequest? {
-            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(instanceId: self.instanceId, resourceType: self.resourceType, resourceName: self.resourceName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchWord: self.searchWord)

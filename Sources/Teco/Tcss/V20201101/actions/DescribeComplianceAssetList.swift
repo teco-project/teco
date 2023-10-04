@@ -49,7 +49,7 @@ extension Tcss {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeComplianceAssetListResponse) -> DescribeComplianceAssetListRequest? {
-            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(assetTypeSet: self.assetTypeSet, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters)

@@ -80,7 +80,7 @@ extension Mongodb {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeCurrentOpResponse) -> DescribeCurrentOpRequest? {
-            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(instanceId: self.instanceId, ns: self.ns, millisecondRunning: self.millisecondRunning, op: self.op, replicaSetName: self.replicaSetName, state: self.state, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), orderBy: self.orderBy, orderByType: self.orderByType)

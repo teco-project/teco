@@ -99,7 +99,7 @@ extension Scf {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: GetFunctionLogsResponse) -> GetFunctionLogsRequest? {
-            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(functionName: self.functionName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, order: self.order, orderBy: self.orderBy, filter: self.filter, namespace: self.namespace, qualifier: self.qualifier, functionRequestId: self.functionRequestId, startTime: self.startTime, endTime: self.endTime, searchContext: self.searchContext)

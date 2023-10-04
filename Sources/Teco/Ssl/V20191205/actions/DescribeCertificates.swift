@@ -99,7 +99,7 @@ extension Ssl {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeCertificatesResponse) -> DescribeCertificatesRequest? {
-            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchKey: self.searchKey, certificateType: self.certificateType, projectId: self.projectId, expirationSort: self.expirationSort, certificateStatus: self.certificateStatus, deployable: self.deployable, upload: self.upload, renew: self.renew, filterSource: self.filterSource, isSM: self.isSM, filterExpiring: self.filterExpiring, hostable: self.hostable)

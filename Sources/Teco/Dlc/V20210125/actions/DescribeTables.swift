@@ -86,7 +86,7 @@ extension Dlc {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeTablesResponse) -> DescribeTablesRequest? {
-            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(databaseName: self.databaseName, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters, datasourceConnectionName: self.datasourceConnectionName, startTime: self.startTime, endTime: self.endTime, sort: self.sort, asc: self.asc, tableType: self.tableType, tableFormat: self.tableFormat)

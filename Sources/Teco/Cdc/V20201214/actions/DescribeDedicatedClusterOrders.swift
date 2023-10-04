@@ -59,7 +59,7 @@ extension Cdc {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeDedicatedClusterOrdersResponse) -> DescribeDedicatedClusterOrdersRequest? {
-            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(dedicatedClusterIds: self.dedicatedClusterIds, dedicatedClusterOrderIds: self.dedicatedClusterOrderIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, status: self.status, actionType: self.actionType)

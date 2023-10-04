@@ -64,7 +64,7 @@ extension Dlc {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeSparkAppTasksResponse) -> DescribeSparkAppTasksRequest? {
-            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(jobId: self.jobId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, taskId: self.taskId, startTime: self.startTime, endTime: self.endTime, filters: self.filters)

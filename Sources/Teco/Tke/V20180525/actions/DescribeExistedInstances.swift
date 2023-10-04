@@ -69,7 +69,7 @@ extension Tke {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeExistedInstancesResponse) -> DescribeExistedInstancesRequest? {
-            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(clusterId: self.clusterId, instanceIds: self.instanceIds, filters: self.filters, vagueIpAddress: self.vagueIpAddress, vagueInstanceName: self.vagueInstanceName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, ipAddresses: self.ipAddresses)

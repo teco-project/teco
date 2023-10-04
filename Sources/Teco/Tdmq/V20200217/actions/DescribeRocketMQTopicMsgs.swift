@@ -89,7 +89,7 @@ extension Tdmq {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeRocketMQTopicMsgsResponse) -> DescribeRocketMQTopicMsgsRequest? {
-            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(clusterId: self.clusterId, environmentId: self.environmentId, topicName: self.topicName, startTime: self.startTime, endTime: self.endTime, msgId: self.msgId, msgKey: self.msgKey, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, taskRequestId: self.taskRequestId, queryDlqMsg: self.queryDlqMsg, numOfLatestMsg: self.numOfLatestMsg)

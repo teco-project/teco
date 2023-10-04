@@ -56,7 +56,7 @@ extension Yunjing {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeComponentsResponse) -> DescribeComponentsRequest? {
-            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(uuid: self.uuid, componentId: self.componentId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters)

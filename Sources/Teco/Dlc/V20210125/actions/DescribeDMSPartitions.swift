@@ -89,7 +89,7 @@ extension Dlc {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeDMSPartitionsResponse) -> DescribeDMSPartitionsRequest? {
-            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(databaseName: self.databaseName, tableName: self.tableName, schemaName: self.schemaName, name: self.name, values: self.values, partitionNames: self.partitionNames, partValues: self.partValues, filter: self.filter, maxParts: self.maxParts, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, expression: self.expression)

@@ -69,7 +69,7 @@ extension Iotvideoindustry {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeWarningsResponse) -> DescribeWarningsRequest? {
-            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(orderType: self.orderType, deviceId: self.deviceId, warnLevelArray: self.warnLevelArray, warnModeArray: self.warnModeArray, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, dateBegin: self.dateBegin, dateEnd: self.dateEnd)

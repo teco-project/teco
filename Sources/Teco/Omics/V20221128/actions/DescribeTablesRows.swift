@@ -56,7 +56,7 @@ extension Omics {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeTablesRowsResponse) -> DescribeTablesRowsRequest? {
-            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(projectId: self.projectId, tableId: self.tableId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters)

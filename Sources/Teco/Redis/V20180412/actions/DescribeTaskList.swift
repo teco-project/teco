@@ -112,7 +112,7 @@ extension Redis {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeTaskListResponse) -> DescribeTaskListRequest? {
-            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(instanceId: self.instanceId, instanceName: self.instanceName, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), projectIds: self.projectIds, taskTypes: self.taskTypes, beginTime: self.beginTime, endTime: self.endTime, taskStatus: self.taskStatus, result: self.result, operatorUin: self.operatorUin, operateUin: self.operateUin)

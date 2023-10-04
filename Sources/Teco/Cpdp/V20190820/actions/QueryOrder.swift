@@ -94,7 +94,7 @@ extension Cpdp {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: QueryOrderResponse) -> QueryOrderRequest? {
-            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(midasAppId: self.midasAppId, userId: self.userId, type: self.type, midasSecretId: self.midasSecretId, midasSignature: self.midasSignature, count: self.count, offset: (self.offset ?? 0) + .init(response.getItems().count), startTime: self.startTime, endTime: self.endTime, outTradeNo: self.outTradeNo, transactionId: self.transactionId, midasEnvironment: self.midasEnvironment)
