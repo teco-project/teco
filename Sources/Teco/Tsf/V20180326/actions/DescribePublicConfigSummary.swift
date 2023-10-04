@@ -66,7 +66,7 @@ extension Tsf {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribePublicConfigSummaryResponse) -> DescribePublicConfigSummaryRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(searchWord: self.searchWord, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderBy: self.orderBy, orderType: self.orderType, configTagList: self.configTagList, disableProgramAuthCheck: self.disableProgramAuthCheck, configIdList: self.configIdList)

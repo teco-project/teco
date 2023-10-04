@@ -84,7 +84,7 @@ extension Cdb {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeSlowLogDataResponse) -> DescribeSlowLogDataRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(instanceId: self.instanceId, startTime: self.startTime, endTime: self.endTime, userHosts: self.userHosts, userNames: self.userNames, dataBases: self.dataBases, sortBy: self.sortBy, orderBy: self.orderBy, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, instType: self.instType)

@@ -59,7 +59,7 @@ extension Monitor {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribePrometheusScrapeJobsResponse) -> DescribePrometheusScrapeJobsRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(instanceId: self.instanceId, agentId: self.agentId, name: self.name, jobIds: self.jobIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)

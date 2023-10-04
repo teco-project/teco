@@ -132,7 +132,7 @@ extension Bm {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeDevicesResponse) -> DescribeDevicesRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, deviceClassCode: self.deviceClassCode, instanceIds: self.instanceIds, wanIps: self.wanIps, lanIps: self.lanIps, alias: self.alias, vagueIp: self.vagueIp, deadlineStartTime: self.deadlineStartTime, deadlineEndTime: self.deadlineEndTime, autoRenewFlag: self.autoRenewFlag, vpcId: self.vpcId, subnetId: self.subnetId, tags: self.tags, deviceType: self.deviceType, isLuckyDevice: self.isLuckyDevice, orderField: self.orderField, order: self.order, maintainStatus: self.maintainStatus)

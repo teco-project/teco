@@ -84,7 +84,7 @@ extension Ssa {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: SaEventPubResponse) -> SaEventPubRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(asset: self.asset, eventName: self.eventName, eventType1: self.eventType1, eventType2: self.eventType2, level: self.level, status: self.status, startTime: self.startTime, offset: self.offset + .init(response.getItems().count), limit: self.limit, endTime: self.endTime, oldIdMd5: self.oldIdMd5)

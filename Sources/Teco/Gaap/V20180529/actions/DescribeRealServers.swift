@@ -60,7 +60,7 @@ extension Gaap {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeRealServersResponse) -> DescribeRealServersRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(projectId: self.projectId, searchValue: self.searchValue, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, tagSet: self.tagSet, filters: self.filters)

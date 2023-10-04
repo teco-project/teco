@@ -59,7 +59,7 @@ extension Monitor {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeBindingPolicyObjectListResponse) -> DescribeBindingPolicyObjectListRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(module: self.module, groupId: self.groupId, policyId: self.policyId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), dimensions: self.dimensions)

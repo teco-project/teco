@@ -64,7 +64,7 @@ extension Iotexplorer {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: GetProjectListResponse) -> GetProjectListRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, instanceId: self.instanceId, projectId: self.projectId, productId: self.productId, includes: self.includes, projectName: self.projectName)

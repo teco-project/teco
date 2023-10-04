@@ -60,7 +60,7 @@ extension Cwp {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeLicenseBindListResponse) -> DescribeLicenseBindListRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(licenseId: self.licenseId, licenseType: self.licenseType, resourceId: self.resourceId, filters: self.filters, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))

@@ -33,7 +33,7 @@ extension Csip {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeListenerListResponse) -> DescribeListenerListRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.filter?.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(

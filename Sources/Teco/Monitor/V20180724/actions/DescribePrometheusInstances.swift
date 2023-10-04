@@ -85,7 +85,7 @@ extension Monitor {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribePrometheusInstancesResponse) -> DescribePrometheusInstancesRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(instanceIds: self.instanceIds, instanceStatus: self.instanceStatus, instanceName: self.instanceName, zones: self.zones, tagFilters: self.tagFilters, iPv4Address: self.iPv4Address, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), instanceChargeType: self.instanceChargeType)

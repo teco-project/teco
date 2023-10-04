@@ -77,7 +77,7 @@ extension Cynosdb {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeAuditLogsResponse) -> DescribeAuditLogsRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(instanceId: self.instanceId, startTime: self.startTime, endTime: self.endTime, order: self.order, orderBy: self.orderBy, filter: self.filter, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), logFilter: self.logFilter)

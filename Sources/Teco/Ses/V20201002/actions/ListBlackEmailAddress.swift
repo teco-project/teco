@@ -67,7 +67,7 @@ extension Ses {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: ListBlackEmailAddressResponse) -> ListBlackEmailAddressRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(startDate: self.startDate, endDate: self.endDate, limit: self.limit, offset: self.offset + .init(response.getItems().count), emailAddress: self.emailAddress, taskID: self.taskID)

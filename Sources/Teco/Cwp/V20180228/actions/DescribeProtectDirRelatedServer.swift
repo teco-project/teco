@@ -59,7 +59,7 @@ extension Cwp {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeProtectDirRelatedServerResponse) -> DescribeProtectDirRelatedServerRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(id: self.id, limit: self.limit, offset: self.offset + .init(response.getItems().count), filters: self.filters, order: self.order, by: self.by)

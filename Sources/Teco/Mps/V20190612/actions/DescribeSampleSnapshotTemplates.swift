@@ -51,7 +51,7 @@ extension Mps {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeSampleSnapshotTemplatesResponse) -> DescribeSampleSnapshotTemplatesRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(definitions: self.definitions, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, type: self.type)

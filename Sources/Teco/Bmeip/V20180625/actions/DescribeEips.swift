@@ -104,7 +104,7 @@ extension Bmeip {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeEipsResponse) -> DescribeEipsRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(eipIds: self.eipIds, eips: self.eips, instanceIds: self.instanceIds, searchKey: self.searchKey, status: self.status, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderField: self.orderField, order: self.order, payMode: self.payMode, vpcId: self.vpcId, bindTypes: self.bindTypes, exclusiveTag: self.exclusiveTag, aclId: self.aclId, bindAcl: self.bindAcl)

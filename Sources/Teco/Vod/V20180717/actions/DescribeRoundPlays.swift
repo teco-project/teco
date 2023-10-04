@@ -49,7 +49,7 @@ extension Vod {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeRoundPlaysResponse) -> DescribeRoundPlaysRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(subAppId: self.subAppId, roundPlayIds: self.roundPlayIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)

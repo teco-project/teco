@@ -86,7 +86,7 @@ extension Cls {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeDashboardsResponse) -> DescribeDashboardsRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters, topicIdRegionFilter: self.topicIdRegionFilter)

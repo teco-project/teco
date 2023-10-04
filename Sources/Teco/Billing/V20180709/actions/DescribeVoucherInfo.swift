@@ -104,7 +104,7 @@ extension Billing {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeVoucherInfoResponse) -> DescribeVoucherInfoRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(limit: self.limit, offset: self.offset + .init(response.getItems().count), status: self.status, voucherId: self.voucherId, codeId: self.codeId, productCode: self.productCode, activityId: self.activityId, voucherName: self.voucherName, timeFrom: self.timeFrom, timeTo: self.timeTo, sortField: self.sortField, sortOrder: self.sortOrder, payMode: self.payMode, payScene: self.payScene, operator: self.operator)

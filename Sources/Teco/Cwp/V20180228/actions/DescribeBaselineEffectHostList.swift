@@ -61,7 +61,7 @@ extension Cwp {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeBaselineEffectHostListResponse) -> DescribeBaselineEffectHostListRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(limit: self.limit, offset: self.offset + .init(response.getItems().count), baselineId: self.baselineId, filters: self.filters, strategyId: self.strategyId, uuidList: self.uuidList)

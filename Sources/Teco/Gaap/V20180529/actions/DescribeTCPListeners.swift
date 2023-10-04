@@ -71,7 +71,7 @@ extension Gaap {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeTCPListenersResponse) -> DescribeTCPListenersRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(proxyId: self.proxyId, listenerId: self.listenerId, listenerName: self.listenerName, port: self.port, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, groupId: self.groupId, searchValue: self.searchValue)

@@ -90,7 +90,7 @@ extension Cbs {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeDisksResponse) -> DescribeDisksRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(filters: self.filters, limit: self.limit, orderField: self.orderField, offset: (self.offset ?? 0) + .init(response.getItems().count), returnBindAutoSnapshotPolicy: self.returnBindAutoSnapshotPolicy, diskIds: self.diskIds, order: self.order)

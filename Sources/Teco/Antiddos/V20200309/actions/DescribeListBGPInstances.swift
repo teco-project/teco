@@ -124,7 +124,7 @@ extension Antiddos {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeListBGPInstancesResponse) -> DescribeListBGPInstancesRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, filterIp: self.filterIp, filterInstanceId: self.filterInstanceId, filterRegion: self.filterRegion, filterName: self.filterName, filterLine: self.filterLine, filterStatus: self.filterStatus, filterBoundStatus: self.filterBoundStatus, filterInstanceIdList: self.filterInstanceIdList, filterEnterpriseFlag: self.filterEnterpriseFlag, filterLightFlag: self.filterLightFlag, filterChannelFlag: self.filterChannelFlag, filterTag: self.filterTag, filterTrialFlag: self.filterTrialFlag, filterConvoy: self.filterConvoy, excludeAdvancedInfo: self.excludeAdvancedInfo, filterAssetIpList: self.filterAssetIpList, filterBasicPlusFlag: self.filterBasicPlusFlag)

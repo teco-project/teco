@@ -54,7 +54,7 @@ extension Vpc {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeVpcIpv6AddressesResponse) -> DescribeVpcIpv6AddressesRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(vpcId: self.vpcId, ipv6Addresses: self.ipv6Addresses, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, subnetId: self.subnetId)

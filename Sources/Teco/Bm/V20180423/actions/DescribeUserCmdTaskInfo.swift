@@ -59,7 +59,7 @@ extension Bm {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeUserCmdTaskInfoResponse) -> DescribeUserCmdTaskInfoRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(taskId: self.taskId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderField: self.orderField, order: self.order, searchKey: self.searchKey)

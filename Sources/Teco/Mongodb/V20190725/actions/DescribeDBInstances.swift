@@ -121,7 +121,7 @@ extension Mongodb {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeDBInstancesResponse) -> DescribeDBInstancesRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(instanceIds: self.instanceIds, instanceType: self.instanceType, clusterType: self.clusterType, status: self.status, vpcId: self.vpcId, subnetId: self.subnetId, payMode: self.payMode, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), orderBy: self.orderBy, orderByType: self.orderByType, projectIds: self.projectIds, searchKey: self.searchKey, tags: self.tags)

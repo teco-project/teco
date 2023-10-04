@@ -67,7 +67,7 @@ extension Tbm {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeBrandSocialOpinionResponse) -> DescribeBrandSocialOpinionRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(brandId: self.brandId, startDate: self.startDate, endDate: self.endDate, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, showList: self.showList)

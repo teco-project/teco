@@ -59,7 +59,7 @@ extension Waf {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeFindDomainListResponse) -> DescribeFindDomainListRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, key: self.key, isWafDomain: self.isWafDomain, by: self.by, order: self.order)

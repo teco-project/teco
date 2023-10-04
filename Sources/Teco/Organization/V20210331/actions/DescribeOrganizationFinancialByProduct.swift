@@ -59,7 +59,7 @@ extension Organization {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeOrganizationFinancialByProductResponse) -> DescribeOrganizationFinancialByProductRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(month: self.month, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), endMonth: self.endMonth, memberUins: self.memberUins, productCodes: self.productCodes)

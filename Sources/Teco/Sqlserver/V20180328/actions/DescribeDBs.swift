@@ -59,7 +59,7 @@ extension Sqlserver {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeDBsResponse) -> DescribeDBsRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(instanceIdSet: self.instanceIdSet, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), name: self.name, orderByType: self.orderByType, encryption: self.encryption)

@@ -82,7 +82,7 @@ extension Tsf {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeUnitApiUseDetailResponse) -> DescribeUnitApiUseDetailRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(gatewayDeployGroupId: self.gatewayDeployGroupId, apiId: self.apiId, startTime: self.startTime, endTime: self.endTime, gatewayInstanceId: self.gatewayInstanceId, groupId: self.groupId, offset: self.offset + .init(response.getItems().count), limit: self.limit, period: self.period)

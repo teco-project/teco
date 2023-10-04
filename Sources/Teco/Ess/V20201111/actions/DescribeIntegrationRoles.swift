@@ -69,7 +69,7 @@ extension Ess {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeIntegrationRolesResponse) -> DescribeIntegrationRolesRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(operator: self.operator, limit: self.limit, agent: self.agent, filters: self.filters, offset: (self.offset ?? 0) + response.limit)

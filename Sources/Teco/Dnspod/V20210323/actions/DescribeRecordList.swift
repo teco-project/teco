@@ -89,7 +89,7 @@ extension Dnspod {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeRecordListResponse) -> DescribeRecordListRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(domain: self.domain, domainId: self.domainId, subdomain: self.subdomain, recordType: self.recordType, recordLine: self.recordLine, recordLineId: self.recordLineId, groupId: self.groupId, keyword: self.keyword, sortField: self.sortField, sortType: self.sortType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)

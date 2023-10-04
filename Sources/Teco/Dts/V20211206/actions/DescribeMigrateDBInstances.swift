@@ -79,7 +79,7 @@ extension Dts {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeMigrateDBInstancesResponse) -> DescribeMigrateDBInstancesRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(databaseType: self.databaseType, migrateRole: self.migrateRole, instanceId: self.instanceId, instanceName: self.instanceName, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), accountMode: self.accountMode, tmpSecretId: self.tmpSecretId, tmpSecretKey: self.tmpSecretKey, tmpToken: self.tmpToken)

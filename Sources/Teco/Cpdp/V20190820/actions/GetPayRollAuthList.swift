@@ -71,7 +71,7 @@ extension Cpdp {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: GetPayRollAuthListResponse) -> GetPayRollAuthListRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(openId: self.openId, subMerchantId: self.subMerchantId, authDate: self.authDate, offset: self.offset + response.limit, limit: self.limit, wechatAppId: self.wechatAppId, wechatSubAppId: self.wechatSubAppId, authStatus: self.authStatus)

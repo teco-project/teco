@@ -94,7 +94,7 @@ extension Dayu {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeResourceListResponse) -> DescribeResourceListRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(business: self.business, regionList: self.regionList, line: self.line, idList: self.idList, name: self.name, ipList: self.ipList, status: self.status, expire: self.expire, oderBy: self.oderBy, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), cName: self.cName, domain: self.domain)

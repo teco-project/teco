@@ -59,7 +59,7 @@ extension Tsf {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeGroupsWithPluginResponse) -> DescribeGroupsWithPluginRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(pluginId: self.pluginId, offset: self.offset + .init(response.getItems().count), limit: self.limit, bound: self.bound, searchWord: self.searchWord, gatewayInstanceId: self.gatewayInstanceId)

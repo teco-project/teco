@@ -54,7 +54,7 @@ extension Ssa {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeCheckConfigAssetListResponse) -> DescribeCheckConfigAssetListRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(id: self.id, offset: self.offset + .init(response.getItems().count), limit: self.limit, search: self.search, filter: self.filter)

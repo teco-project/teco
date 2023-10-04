@@ -64,7 +64,7 @@ extension Iecp {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeNodeUnitTemplateOnNodeGroupResponse) -> DescribeNodeUnitTemplateOnNodeGroupRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(edgeUnitId: self.edgeUnitId, nodeGroupName: self.nodeGroupName, namespace: self.namespace, nodeUnitNamePattern: self.nodeUnitNamePattern, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, order: self.order)

@@ -74,7 +74,7 @@ extension Tione {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeTrainingModelsResponse) -> DescribeTrainingModelsRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(filters: self.filters, orderField: self.orderField, order: self.order, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, tagFilters: self.tagFilters, withModelVersions: self.withModelVersions)

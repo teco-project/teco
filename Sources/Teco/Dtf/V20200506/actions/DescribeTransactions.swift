@@ -69,7 +69,7 @@ extension Dtf {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeTransactionsResponse) -> DescribeTransactionsRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(groupId: self.groupId, transactionBeginFrom: self.transactionBeginFrom, transactionBeginTo: self.transactionBeginTo, searchError: self.searchError, transactionId: self.transactionId, transactionIdList: self.transactionIdList, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))

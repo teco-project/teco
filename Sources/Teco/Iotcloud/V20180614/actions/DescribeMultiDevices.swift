@@ -49,7 +49,7 @@ extension Iotcloud {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeMultiDevicesResponse) -> DescribeMultiDevicesRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(productId: self.productId, taskId: self.taskId, offset: self.offset + .init(response.getItems().count), limit: self.limit)

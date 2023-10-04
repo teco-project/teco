@@ -80,7 +80,7 @@ extension Dlc {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeDatasourceConnectionResponse) -> DescribeDatasourceConnectionRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(datasourceConnectionIds: self.datasourceConnectionIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, sortBy: self.sortBy, sorting: self.sorting, startTime: self.startTime, endTime: self.endTime, datasourceConnectionNames: self.datasourceConnectionNames, datasourceConnectionTypes: self.datasourceConnectionTypes)

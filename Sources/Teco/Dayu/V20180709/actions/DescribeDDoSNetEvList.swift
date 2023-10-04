@@ -67,7 +67,7 @@ extension Dayu {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeDDoSNetEvListResponse) -> DescribeDDoSNetEvListRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(business: self.business, id: self.id, startTime: self.startTime, endTime: self.endTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))

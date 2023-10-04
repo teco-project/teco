@@ -66,7 +66,7 @@ extension Scf {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: ListTriggersResponse) -> ListTriggersRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(functionName: self.functionName, namespace: self.namespace, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderBy: self.orderBy, order: self.order, filters: self.filters)

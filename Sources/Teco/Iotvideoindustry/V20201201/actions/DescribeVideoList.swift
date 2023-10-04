@@ -114,7 +114,7 @@ extension Iotvideoindustry {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeVideoListResponse) -> DescribeVideoListRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, startTime: self.startTime, endTime: self.endTime, deviceId: self.deviceId, startRecordTime: self.startRecordTime, endRecordTime: self.endRecordTime, startExpireTime: self.startExpireTime, endExpireTime: self.endExpireTime, startFileSize: self.startFileSize, endFileSize: self.endFileSize, isRecording: self.isRecording, channelId: self.channelId, planId: self.planId, sceneId: self.sceneId, warnId: self.warnId, recordType: self.recordType)

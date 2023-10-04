@@ -69,7 +69,7 @@ extension Tsf {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeFileConfigReleasesResponse) -> DescribeFileConfigReleasesRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(configId: self.configId, configName: self.configName, groupId: self.groupId, namespaceId: self.namespaceId, clusterId: self.clusterId, applicationId: self.applicationId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)

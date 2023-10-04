@@ -54,7 +54,7 @@ extension Dsgc {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeDSPACategoriesResponse) -> DescribeDSPACategoriesRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(dspaId: self.dspaId, categoryId: self.categoryId, name: self.name, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)

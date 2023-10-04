@@ -93,7 +93,7 @@ extension Cme {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: SearchMaterialResponse) -> SearchMaterialRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(platform: self.platform, searchScopes: self.searchScopes, materialTypes: self.materialTypes, text: self.text, resolution: self.resolution, durationRange: self.durationRange, createTimeRange: self.createTimeRange, tags: self.tags, sort: self.sort, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, operator: self.operator)

@@ -79,7 +79,7 @@ extension Ccc {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeTelCdrResponse) -> DescribeTelCdrRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(startTimeStamp: self.startTimeStamp, endTimeStamp: self.endTimeStamp, instanceId: self.instanceId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), sdkAppId: self.sdkAppId, pageSize: self.pageSize, pageNumber: self.pageNumber, phones: self.phones, sessionIds: self.sessionIds)

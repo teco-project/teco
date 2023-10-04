@@ -59,7 +59,7 @@ extension Eiam {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: ListUsersResponse) -> ListUsersRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(searchCondition: self.searchCondition, expectedFields: self.expectedFields, sort: self.sort, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, includeTotal: self.includeTotal)

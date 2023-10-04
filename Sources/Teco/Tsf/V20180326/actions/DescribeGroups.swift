@@ -83,7 +83,7 @@ extension Tsf {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeGroupsResponse) -> DescribeGroupsRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(searchWord: self.searchWord, applicationId: self.applicationId, orderBy: self.orderBy, orderType: self.orderType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, namespaceId: self.namespaceId, clusterId: self.clusterId, groupResourceTypeList: self.groupResourceTypeList, status: self.status, groupIdList: self.groupIdList)

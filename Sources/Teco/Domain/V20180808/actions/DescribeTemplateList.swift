@@ -54,7 +54,7 @@ extension Domain {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeTemplateListResponse) -> DescribeTemplateListRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, type: self.type, status: self.status, keyword: self.keyword)

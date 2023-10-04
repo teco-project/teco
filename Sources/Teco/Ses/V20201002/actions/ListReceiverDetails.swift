@@ -49,7 +49,7 @@ extension Ses {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: ListReceiverDetailsResponse) -> ListReceiverDetailsRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(receiverId: self.receiverId, offset: self.offset + .init(response.getItems().count), limit: self.limit, email: self.email)

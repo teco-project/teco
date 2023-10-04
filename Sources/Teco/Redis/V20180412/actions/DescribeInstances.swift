@@ -198,7 +198,7 @@ extension Redis {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeInstancesResponse) -> DescribeInstancesRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), instanceId: self.instanceId, orderBy: self.orderBy, orderType: self.orderType, vpcIds: self.vpcIds, subnetIds: self.subnetIds, searchKey: self.searchKey, projectIds: self.projectIds, instanceName: self.instanceName, uniqVpcIds: self.uniqVpcIds, uniqSubnetIds: self.uniqSubnetIds, regionIds: self.regionIds, status: self.status, typeVersion: self.typeVersion, engineName: self.engineName, autoRenew: self.autoRenew, billingMode: self.billingMode, type: self.type, searchKeys: self.searchKeys, typeList: self.typeList, monitorVersion: self.monitorVersion, instanceTags: self.instanceTags, tagKeys: self.tagKeys, productVersions: self.productVersions, instanceIds: self.instanceIds, azMode: self.azMode)

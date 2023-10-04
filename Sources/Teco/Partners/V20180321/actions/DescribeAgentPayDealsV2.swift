@@ -82,7 +82,7 @@ extension Partners {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeAgentPayDealsV2Response) -> DescribeAgentPayDealsV2Request? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, creatTimeRangeStart: self.creatTimeRangeStart, creatTimeRangeEnd: self.creatTimeRangeEnd, order: self.order, status: self.status, ownerUins: self.ownerUins, dealNames: self.dealNames, bigDealIds: self.bigDealIds)

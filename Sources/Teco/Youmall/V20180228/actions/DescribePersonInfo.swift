@@ -64,7 +64,7 @@ extension Youmall {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribePersonInfoResponse) -> DescribePersonInfoRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(companyId: self.companyId, shopId: self.shopId, startPersonId: self.startPersonId, offset: self.offset + .init(response.getItems().count), limit: self.limit, pictureExpires: self.pictureExpires, personType: self.personType)

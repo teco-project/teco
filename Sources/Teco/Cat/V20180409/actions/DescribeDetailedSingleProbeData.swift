@@ -121,7 +121,7 @@ extension Cat {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeDetailedSingleProbeDataResponse) -> DescribeDetailedSingleProbeDataRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(beginTime: self.beginTime, endTime: self.endTime, taskType: self.taskType, sortField: self.sortField, ascending: self.ascending, selectedFields: self.selectedFields, offset: self.offset + .init(response.getItems().count), limit: self.limit, taskID: self.taskID, operators: self.operators, districts: self.districts, errorTypes: self.errorTypes, city: self.city)

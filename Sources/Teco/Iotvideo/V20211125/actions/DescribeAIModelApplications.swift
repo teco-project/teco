@@ -49,7 +49,7 @@ extension Iotvideo {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeAIModelApplicationsResponse) -> DescribeAIModelApplicationsRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(modelId: self.modelId, limit: self.limit, offset: self.offset + .init(response.getItems().count), productId: self.productId)

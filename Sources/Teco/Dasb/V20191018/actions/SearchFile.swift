@@ -102,7 +102,7 @@ extension Dasb {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: SearchFileResponse) -> SearchFileRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(startTime: self.startTime, endTime: self.endTime, userName: self.userName, realName: self.realName, instanceId: self.instanceId, deviceName: self.deviceName, publicIp: self.publicIp, privateIp: self.privateIp, method: self.method, fileName: self.fileName, auditAction: self.auditAction, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))

@@ -54,7 +54,7 @@ extension Iotexplorer {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeGatewayBindDevicesResponse) -> DescribeGatewayBindDevicesRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(gatewayProductId: self.gatewayProductId, gatewayDeviceName: self.gatewayDeviceName, productId: self.productId, offset: self.offset + .init(response.getItems().count), limit: self.limit)

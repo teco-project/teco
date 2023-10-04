@@ -69,7 +69,7 @@ extension Dsgc {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeDSPAESDiscoveryTaskResultDetailResponse) -> DescribeDSPAESDiscoveryTaskResultDetailRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(dspaId: self.dspaId, taskId: self.taskId, complianceId: self.complianceId, offset: self.offset + .init(response.getItems().count), limit: self.limit, categoryIdList: self.categoryIdList, levelId: self.levelId, dbName: self.dbName)

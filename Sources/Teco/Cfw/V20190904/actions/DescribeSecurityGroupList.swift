@@ -64,7 +64,7 @@ extension Cfw {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeSecurityGroupListResponse) -> DescribeSecurityGroupListRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(direction: self.direction, area: self.area, searchValue: self.searchValue, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), status: self.status, filter: self.filter)

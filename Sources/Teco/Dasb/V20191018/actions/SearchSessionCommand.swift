@@ -68,7 +68,7 @@ extension Dasb {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: SearchSessionCommandResponse) -> SearchSessionCommandRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(cmd: self.cmd, startTime: self.startTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, encoding: self.encoding, endTime: self.endTime)

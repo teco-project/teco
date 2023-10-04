@@ -100,7 +100,7 @@ extension Dasb {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeDevicesResponse) -> DescribeDevicesRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(idSet: self.idSet, name: self.name, ip: self.ip, apCodeSet: self.apCodeSet, kind: self.kind, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, authorizedUserIdSet: self.authorizedUserIdSet, resourceIdSet: self.resourceIdSet, kindSet: self.kindSet, managedAccount: self.managedAccount, departmentId: self.departmentId, tagFilters: self.tagFilters, filters: self.filters)

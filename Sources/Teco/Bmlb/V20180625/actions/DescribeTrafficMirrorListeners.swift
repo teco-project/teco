@@ -79,7 +79,7 @@ extension Bmlb {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeTrafficMirrorListenersResponse) -> DescribeTrafficMirrorListenersRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(trafficMirrorId: self.trafficMirrorId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, searchLoadBalancerIds: self.searchLoadBalancerIds, searchLoadBalancerNames: self.searchLoadBalancerNames, searchVips: self.searchVips, searchListenerIds: self.searchListenerIds, searchListenerNames: self.searchListenerNames, searchProtocols: self.searchProtocols, searchLoadBalancerPorts: self.searchLoadBalancerPorts)

@@ -84,7 +84,7 @@ extension Dts {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeSyncJobsResponse) -> DescribeSyncJobsRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(jobId: self.jobId, jobName: self.jobName, order: self.order, orderSeq: self.orderSeq, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, status: self.status, runMode: self.runMode, jobType: self.jobType, payMode: self.payMode, tagFilters: self.tagFilters)

@@ -108,7 +108,7 @@ extension Essbasic {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeTemplatesResponse) -> DescribeTemplatesRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), .init(self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(agent: self.agent, templateId: self.templateId, contentType: self.contentType, limit: self.limit, offset: (self.offset ?? 0) + response.limit, queryAllComponents: self.queryAllComponents, templateName: self.templateName, withPreviewUrl: self.withPreviewUrl, withPdfUrl: self.withPdfUrl, channelTemplateId: self.channelTemplateId)

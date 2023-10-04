@@ -91,7 +91,7 @@ extension Sslpod {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeDomainsResponse) -> DescribeDomainsRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, searchType: self.searchType, tag: self.tag, grade: self.grade, brand: self.brand, code: self.code, hash: self.hash, item: self.item, status: self.status, domain: self.domain)

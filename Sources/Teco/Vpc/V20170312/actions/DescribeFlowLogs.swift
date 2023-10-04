@@ -101,7 +101,7 @@ extension Vpc {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeFlowLogsResponse) -> DescribeFlowLogsRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(vpcId: self.vpcId, flowLogId: self.flowLogId, flowLogName: self.flowLogName, resourceType: self.resourceType, resourceId: self.resourceId, trafficType: self.trafficType, cloudLogId: self.cloudLogId, cloudLogState: self.cloudLogState, orderField: self.orderField, orderDirection: self.orderDirection, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters, cloudLogRegion: self.cloudLogRegion)

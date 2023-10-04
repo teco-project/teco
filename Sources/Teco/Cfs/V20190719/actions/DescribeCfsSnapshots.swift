@@ -64,7 +64,7 @@ extension Cfs {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeCfsSnapshotsResponse) -> DescribeCfsSnapshotsRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), (self.offset ?? 0) + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(fileSystemId: self.fileSystemId, snapshotId: self.snapshotId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters, orderField: self.orderField, order: self.order)

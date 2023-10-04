@@ -59,7 +59,7 @@ extension Iecp {
 
         /// Compute the next request based on API response.
         public func makeNextRequest(with response: DescribeIotDevicesResponse) -> DescribeIotDevicesRequest? {
-            guard !response.getItems().isEmpty else {
+            guard case let items = response.getItems(), !items.isEmpty, let totalCount = response.getTotalCount(), self.offset + .init(items.count) >= totalCount else {
                 return nil
             }
             return .init(offset: self.offset + .init(response.getItems().count), limit: self.limit, productId: self.productId, namePattern: self.namePattern, versions: self.versions, order: self.order)
