@@ -20,6 +20,7 @@ extension TCCvmError {
     public struct ResourceInsufficient: TCCvmErrorType {
         enum Code: String {
             case availabilityZoneSoldOut = "ResourceInsufficient.AvailabilityZoneSoldOut"
+            case cidrBlock = "ResourceInsufficient.CidrBlock"
             case cloudDiskSoldOut = "ResourceInsufficient.CloudDiskSoldOut"
             case cloudDiskUnavailable = "ResourceInsufficient.CloudDiskUnavailable"
             case disasterRecoverGroupCvmQuota = "ResourceInsufficient.DisasterRecoverGroupCvmQuota"
@@ -53,6 +54,11 @@ extension TCCvmError {
         /// 该可用区已售罄
         public static var availabilityZoneSoldOut: ResourceInsufficient {
             ResourceInsufficient(.availabilityZoneSoldOut)
+        }
+
+        /// 网段资源不足。
+        public static var cidrBlock: ResourceInsufficient {
+            ResourceInsufficient(.cidrBlock)
         }
 
         /// 指定的云盘规格已售罄
@@ -90,6 +96,8 @@ extension TCCvmError {
             switch self.error {
             case .availabilityZoneSoldOut:
                 code = .resourceInsufficient_AvailabilityZoneSoldOut
+            case .cidrBlock:
+                code = .resourceInsufficient_CidrBlock
             case .cloudDiskSoldOut:
                 code = .resourceInsufficient_CloudDiskSoldOut
             case .cloudDiskUnavailable:

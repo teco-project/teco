@@ -43,6 +43,7 @@ extension TCCvmError {
             case tagKeyReserved = "FailedOperation.TagKeyReserved"
             case tatAgentNotSupport = "FailedOperation.TatAgentNotSupport"
             case unreturnable = "FailedOperation.Unreturnable"
+            case zoneInconsistent = "FailedOperation.ZoneInconsistent"
         }
 
         private let error: Code
@@ -187,6 +188,11 @@ extension TCCvmError {
             FailedOperation(.unreturnable)
         }
 
+        /// 给定实例所在可用区不相同，请给定相同可用区的实例。
+        public static var zoneInconsistent: FailedOperation {
+            FailedOperation(.zoneInconsistent)
+        }
+
         public func asCvmError() -> TCCvmError {
             let code: TCCvmError.Code
             switch self.error {
@@ -238,6 +244,8 @@ extension TCCvmError {
                 code = .failedOperation_TatAgentNotSupport
             case .unreturnable:
                 code = .failedOperation_Unreturnable
+            case .zoneInconsistent:
+                code = .failedOperation_ZoneInconsistent
             }
             return TCCvmError(code, context: self.context)
         }

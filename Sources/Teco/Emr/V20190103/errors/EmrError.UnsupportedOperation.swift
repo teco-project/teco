@@ -19,6 +19,7 @@ import TecoCore
 extension TCEmrError {
     public struct UnsupportedOperation: TCEmrErrorType {
         enum Code: String {
+            case notInWhiteList = "UnsupportedOperation.NotInWhiteList"
             case serviceNotSupport = "UnsupportedOperation.ServiceNotSupport"
             case other = "UnsupportedOperation"
         }
@@ -45,6 +46,11 @@ extension TCEmrError {
             self.context = context
         }
 
+        /// 该功能白名单支持。
+        public static var notInWhiteList: UnsupportedOperation {
+            UnsupportedOperation(.notInWhiteList)
+        }
+
         /// 该服务不支持此操作。
         public static var serviceNotSupport: UnsupportedOperation {
             UnsupportedOperation(.serviceNotSupport)
@@ -58,6 +64,8 @@ extension TCEmrError {
         public func asEmrError() -> TCEmrError {
             let code: TCEmrError.Code
             switch self.error {
+            case .notInWhiteList:
+                code = .unsupportedOperation_NotInWhiteList
             case .serviceNotSupport:
                 code = .unsupportedOperation_ServiceNotSupport
             case .other:

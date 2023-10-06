@@ -55,6 +55,7 @@ public struct TCFacefusionError: TCFacefusionErrorType {
         case failedOperation_RpcFail = "FailedOperation.RpcFail"
         case failedOperation_ServerError = "FailedOperation.ServerError"
         case failedOperation_TemplateFaceIDNotExist = "FailedOperation.TemplateFaceIDNotExist"
+        case failedOperation_Unknown = "FailedOperation.Unknown"
         case invalidParameterValue_ActivityIdNotFound = "InvalidParameterValue.ActivityIdNotFound"
         case invalidParameterValue_FaceRectParameterValueError = "InvalidParameterValue.FaceRectParameterValueError"
         case invalidParameterValue_ImageEmpty = "InvalidParameterValue.ImageEmpty"
@@ -245,6 +246,11 @@ public struct TCFacefusionError: TCFacefusionErrorType {
     /// 素材人脸ID不存在。
     public static var failedOperation_TemplateFaceIDNotExist: TCFacefusionError {
         TCFacefusionError(.failedOperation_TemplateFaceIDNotExist)
+    }
+
+    /// 未知错误。
+    public static var failedOperation_Unknown: TCFacefusionError {
+        TCFacefusionError(.failedOperation_Unknown)
     }
 
     /// 未查找到活动id。

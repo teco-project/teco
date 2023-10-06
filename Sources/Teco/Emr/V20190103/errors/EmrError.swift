@@ -161,6 +161,7 @@ public struct TCEmrError: TCEmrErrorType {
         case unauthorizedOperation_CheckCamAuth = "UnauthorizedOperation.CheckCamAuth"
         case unknownParameter = "UnknownParameter"
         case unsupportedOperation = "UnsupportedOperation"
+        case unsupportedOperation_NotInWhiteList = "UnsupportedOperation.NotInWhiteList"
         case unsupportedOperation_ServiceNotSupport = "UnsupportedOperation.ServiceNotSupport"
     }
 
@@ -877,6 +878,11 @@ public struct TCEmrError: TCEmrErrorType {
     /// 操作不支持。
     public static var unsupportedOperation: TCEmrError {
         TCEmrError(.unsupportedOperation)
+    }
+
+    /// 该功能白名单支持。
+    public static var unsupportedOperation_NotInWhiteList: TCEmrError {
+        TCEmrError(.unsupportedOperation_NotInWhiteList)
     }
 
     /// 该服务不支持此操作。
