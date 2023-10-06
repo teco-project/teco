@@ -37,7 +37,7 @@ public struct Gs: TCService {
     ///    - timeout: Timeout value for HTTP requests.
     ///    - byteBufferAllocator: Byte buffer allocator used throughout ``Gs``.
     public init(
-        client: TCClient,
+        client: TCClient = .shared,
         region: TCRegion? = nil,
         language: TCServiceConfig.Language? = nil,
         endpoint: TCServiceConfig.Endpoint = .global,
