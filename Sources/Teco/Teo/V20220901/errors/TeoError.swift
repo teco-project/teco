@@ -63,6 +63,7 @@ public struct TCTeoError: TCTeoErrorType {
         case invalidParameterValue_ZoneSameAsName = "InvalidParameterValue.ZoneSameAsName"
         case invalidParameter_ActionInProgress = "InvalidParameter.ActionInProgress"
         case invalidParameter_AliasDomainNotSupportSMCert = "InvalidParameter.AliasDomainNotSupportSMCert"
+        case invalidParameter_CacheKeyQueryStringRequiresFullUrlCacheOff = "InvalidParameter.CacheKeyQueryStringRequiresFullUrlCacheOff"
         case invalidParameter_CacheKeyQueryStringTooManyValue = "InvalidParameter.CacheKeyQueryStringTooManyValue"
         case invalidParameter_CertNotMatchDomain = "InvalidParameter.CertNotMatchDomain"
         case invalidParameter_CertSystemError = "InvalidParameter.CertSystemError"
@@ -124,6 +125,7 @@ public struct TCTeoError: TCTeoErrorType {
         case invalidParameter_InvalidDynamicRoutineBilling = "InvalidParameter.InvalidDynamicRoutineBilling"
         case invalidParameter_InvalidErrorPage = "InvalidParameter.InvalidErrorPage"
         case invalidParameter_InvalidErrorPageRedirectUrl = "InvalidParameter.InvalidErrorPageRedirectUrl"
+        case invalidParameter_InvalidForceRedirectType = "InvalidParameter.InvalidForceRedirectType"
         case invalidParameter_InvalidHttps = "InvalidParameter.InvalidHttps"
         case invalidParameter_InvalidHttpsCertInfo = "InvalidParameter.InvalidHttpsCertInfo"
         case invalidParameter_InvalidHttpsCipherSuiteAndTlsVersion = "InvalidParameter.InvalidHttpsCipherSuiteAndTlsVersion"
@@ -174,6 +176,7 @@ public struct TCTeoError: TCTeoErrorType {
         case invalidParameter_Target = "InvalidParameter.Target"
         case invalidParameter_TaskNotGenerated = "InvalidParameter.TaskNotGenerated"
         case invalidParameter_TaskSystemError = "InvalidParameter.TaskSystemError"
+        case invalidParameter_TooManyFilterValues = "InvalidParameter.TooManyFilterValues"
         case invalidParameter_UploadUrl = "InvalidParameter.UploadUrl"
         case invalidParameter_ZoneHasBeenBound = "InvalidParameter.ZoneHasBeenBound"
         case invalidParameter_ZoneIsGrayPublishing = "InvalidParameter.ZoneIsGrayPublishing"
@@ -469,6 +472,11 @@ public struct TCTeoError: TCTeoErrorType {
 
     public static var invalidParameter_AliasDomainNotSupportSMCert: TCTeoError {
         TCTeoError(.invalidParameter_AliasDomainNotSupportSMCert)
+    }
+
+    /// 无效的查询字符串。
+    public static var invalidParameter_CacheKeyQueryStringRequiresFullUrlCacheOff: TCTeoError {
+        TCTeoError(.invalidParameter_CacheKeyQueryStringRequiresFullUrlCacheOff)
     }
 
     /// 查询字符串规则超过了限制。
@@ -776,6 +784,11 @@ public struct TCTeoError: TCTeoErrorType {
         TCTeoError(.invalidParameter_InvalidErrorPageRedirectUrl)
     }
 
+    /// 无效的强制HTTPS跳转。
+    public static var invalidParameter_InvalidForceRedirectType: TCTeoError {
+        TCTeoError(.invalidParameter_InvalidForceRedirectType)
+    }
+
     /// 无效的HTTPS。
     public static var invalidParameter_InvalidHttps: TCTeoError {
         TCTeoError(.invalidParameter_InvalidHttps)
@@ -1021,6 +1034,11 @@ public struct TCTeoError: TCTeoErrorType {
     /// 内部错误。
     public static var invalidParameter_TaskSystemError: TCTeoError {
         TCTeoError(.invalidParameter_TaskSystemError)
+    }
+
+    /// 过滤值过多。
+    public static var invalidParameter_TooManyFilterValues: TCTeoError {
+        TCTeoError(.invalidParameter_TooManyFilterValues)
     }
 
     /// 文件上传链接存在问题。

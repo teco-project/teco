@@ -28,6 +28,7 @@ extension TCTemError {
             case minMaxNumNull = "MissingParameter.MinMaxNumNull"
             case namespaceIdNull = "MissingParameter.NamespaceIdNull"
             case pkgNameNull = "MissingParameter.PkgNameNull"
+            case repoServerNull = "MissingParameter.RepoServerNull"
             case scalerIdNull = "MissingParameter.ScalerIdNull"
             case serviceIdNull = "MissingParameter.ServiceIdNull"
             case svcRepoNotReady = "MissingParameter.SvcRepoNotReady"
@@ -102,6 +103,11 @@ extension TCTemError {
             MissingParameter(.pkgNameNull)
         }
 
+        /// 镜像仓库服务器不能为空。
+        public static var repoServerNull: MissingParameter {
+            MissingParameter(.repoServerNull)
+        }
+
         /// 弹性规则ID不能为空。
         public static var scalerIdNull: MissingParameter {
             MissingParameter(.scalerIdNull)
@@ -150,6 +156,8 @@ extension TCTemError {
                 code = .missingParameter_NamespaceIdNull
             case .pkgNameNull:
                 code = .missingParameter_PkgNameNull
+            case .repoServerNull:
+                code = .missingParameter_RepoServerNull
             case .scalerIdNull:
                 code = .missingParameter_ScalerIdNull
             case .serviceIdNull:

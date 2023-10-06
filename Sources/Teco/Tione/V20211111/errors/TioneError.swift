@@ -128,6 +128,7 @@ public struct TCTioneError: TCTioneErrorType {
         case invalidParameterValue_LifecycleNotFound = "InvalidParameterValue.LifecycleNotFound"
         case invalidParameterValue_LimitExceeded = "InvalidParameterValue.LimitExceeded"
         case invalidParameterValue_NotAllow = "InvalidParameterValue.NotAllow"
+        case invalidParameterValue_NotAllowedToCreateFreeVolumeNotebookWithBareMetalResourceGroup = "InvalidParameterValue.NotAllowedToCreateFreeVolumeNotebookWithBareMetalResourceGroup"
         case invalidParameterValue_NotAllowedToCreateNotebookWithBareMetalResourceGroup = "InvalidParameterValue.NotAllowedToCreateNotebookWithBareMetalResourceGroup"
         case invalidParameterValue_PageLimitExceeded = "InvalidParameterValue.PageLimitExceeded"
         case invalidParameterValue_RDMAConfigIllegal = "InvalidParameterValue.RDMAConfigIllegal"
@@ -767,6 +768,10 @@ public struct TCTioneError: TCTioneErrorType {
     /// 操作不允许。
     public static var invalidParameterValue_NotAllow: TCTioneError {
         TCTioneError(.invalidParameterValue_NotAllow)
+    }
+
+    public static var invalidParameterValue_NotAllowedToCreateFreeVolumeNotebookWithBareMetalResourceGroup: TCTioneError {
+        TCTioneError(.invalidParameterValue_NotAllowedToCreateFreeVolumeNotebookWithBareMetalResourceGroup)
     }
 
     public static var invalidParameterValue_NotAllowedToCreateNotebookWithBareMetalResourceGroup: TCTioneError {

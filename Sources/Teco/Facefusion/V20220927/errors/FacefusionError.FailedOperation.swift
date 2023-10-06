@@ -47,6 +47,7 @@ extension TCFacefusionError {
             case rpcFail = "FailedOperation.RpcFail"
             case serverError = "FailedOperation.ServerError"
             case templateFaceIDNotExist = "FailedOperation.TemplateFaceIDNotExist"
+            case unknown = "FailedOperation.Unknown"
             case other = "FailedOperation"
         }
 
@@ -212,6 +213,11 @@ extension TCFacefusionError {
             FailedOperation(.templateFaceIDNotExist)
         }
 
+        /// 未知错误。
+        public static var unknown: FailedOperation {
+            FailedOperation(.unknown)
+        }
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
@@ -276,6 +282,8 @@ extension TCFacefusionError {
                 code = .failedOperation_ServerError
             case .templateFaceIDNotExist:
                 code = .failedOperation_TemplateFaceIDNotExist
+            case .unknown:
+                code = .failedOperation_Unknown
             case .other:
                 code = .failedOperation
             }

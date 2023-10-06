@@ -53,6 +53,7 @@ public struct TCCvmError: TCCvmErrorType {
         case failedOperation_TagKeyReserved = "FailedOperation.TagKeyReserved"
         case failedOperation_TatAgentNotSupport = "FailedOperation.TatAgentNotSupport"
         case failedOperation_Unreturnable = "FailedOperation.Unreturnable"
+        case failedOperation_ZoneInconsistent = "FailedOperation.ZoneInconsistent"
         case imageQuotaLimitExceeded = "ImageQuotaLimitExceeded"
         case instancesQuotaLimitExceeded = "InstancesQuotaLimitExceeded"
         case internalError = "InternalError"
@@ -256,6 +257,7 @@ public struct TCCvmError: TCCvmErrorType {
         case resourceInUse_DiskRollbacking = "ResourceInUse.DiskRollbacking"
         case resourceInUse_HpcCluster = "ResourceInUse.HpcCluster"
         case resourceInsufficient_AvailabilityZoneSoldOut = "ResourceInsufficient.AvailabilityZoneSoldOut"
+        case resourceInsufficient_CidrBlock = "ResourceInsufficient.CidrBlock"
         case resourceInsufficient_CloudDiskSoldOut = "ResourceInsufficient.CloudDiskSoldOut"
         case resourceInsufficient_CloudDiskUnavailable = "ResourceInsufficient.CloudDiskUnavailable"
         case resourceInsufficient_DisasterRecoverGroupCvmQuota = "ResourceInsufficient.DisasterRecoverGroupCvmQuota"
@@ -575,6 +577,11 @@ public struct TCCvmError: TCCvmErrorType {
     /// 实例无法退还。
     public static var failedOperation_Unreturnable: TCCvmError {
         TCCvmError(.failedOperation_Unreturnable)
+    }
+
+    /// 给定实例所在可用区不相同，请给定相同可用区的实例。
+    public static var failedOperation_ZoneInconsistent: TCCvmError {
+        TCCvmError(.failedOperation_ZoneInconsistent)
     }
 
     /// 镜像配额超过了限制。
@@ -1603,6 +1610,11 @@ public struct TCCvmError: TCCvmErrorType {
     /// 该可用区已售罄
     public static var resourceInsufficient_AvailabilityZoneSoldOut: TCCvmError {
         TCCvmError(.resourceInsufficient_AvailabilityZoneSoldOut)
+    }
+
+    /// 网段资源不足。
+    public static var resourceInsufficient_CidrBlock: TCCvmError {
+        TCCvmError(.resourceInsufficient_CidrBlock)
     }
 
     /// 指定的云盘规格已售罄

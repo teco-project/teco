@@ -21,6 +21,7 @@ extension TCTeoError {
         enum Code: String {
             case actionInProgress = "InvalidParameter.ActionInProgress"
             case aliasDomainNotSupportSMCert = "InvalidParameter.AliasDomainNotSupportSMCert"
+            case cacheKeyQueryStringRequiresFullUrlCacheOff = "InvalidParameter.CacheKeyQueryStringRequiresFullUrlCacheOff"
             case cacheKeyQueryStringTooManyValue = "InvalidParameter.CacheKeyQueryStringTooManyValue"
             case certNotMatchDomain = "InvalidParameter.CertNotMatchDomain"
             case certSystemError = "InvalidParameter.CertSystemError"
@@ -82,6 +83,7 @@ extension TCTeoError {
             case invalidDynamicRoutineBilling = "InvalidParameter.InvalidDynamicRoutineBilling"
             case invalidErrorPage = "InvalidParameter.InvalidErrorPage"
             case invalidErrorPageRedirectUrl = "InvalidParameter.InvalidErrorPageRedirectUrl"
+            case invalidForceRedirectType = "InvalidParameter.InvalidForceRedirectType"
             case invalidHttps = "InvalidParameter.InvalidHttps"
             case invalidHttpsCertInfo = "InvalidParameter.InvalidHttpsCertInfo"
             case invalidHttpsCipherSuiteAndTlsVersion = "InvalidParameter.InvalidHttpsCipherSuiteAndTlsVersion"
@@ -132,6 +134,7 @@ extension TCTeoError {
             case target = "InvalidParameter.Target"
             case taskNotGenerated = "InvalidParameter.TaskNotGenerated"
             case taskSystemError = "InvalidParameter.TaskSystemError"
+            case tooManyFilterValues = "InvalidParameter.TooManyFilterValues"
             case uploadUrl = "InvalidParameter.UploadUrl"
             case zoneHasBeenBound = "InvalidParameter.ZoneHasBeenBound"
             case zoneIsGrayPublishing = "InvalidParameter.ZoneIsGrayPublishing"
@@ -168,6 +171,11 @@ extension TCTeoError {
 
         public static var aliasDomainNotSupportSMCert: InvalidParameter {
             InvalidParameter(.aliasDomainNotSupportSMCert)
+        }
+
+        /// 无效的查询字符串。
+        public static var cacheKeyQueryStringRequiresFullUrlCacheOff: InvalidParameter {
+            InvalidParameter(.cacheKeyQueryStringRequiresFullUrlCacheOff)
         }
 
         /// 查询字符串规则超过了限制。
@@ -475,6 +483,11 @@ extension TCTeoError {
             InvalidParameter(.invalidErrorPageRedirectUrl)
         }
 
+        /// 无效的强制HTTPS跳转。
+        public static var invalidForceRedirectType: InvalidParameter {
+            InvalidParameter(.invalidForceRedirectType)
+        }
+
         /// 无效的HTTPS。
         public static var invalidHttps: InvalidParameter {
             InvalidParameter(.invalidHttps)
@@ -722,6 +735,11 @@ extension TCTeoError {
             InvalidParameter(.taskSystemError)
         }
 
+        /// 过滤值过多。
+        public static var tooManyFilterValues: InvalidParameter {
+            InvalidParameter(.tooManyFilterValues)
+        }
+
         /// 文件上传链接存在问题。
         public static var uploadUrl: InvalidParameter {
             InvalidParameter(.uploadUrl)
@@ -754,6 +772,8 @@ extension TCTeoError {
                 code = .invalidParameter_ActionInProgress
             case .aliasDomainNotSupportSMCert:
                 code = .invalidParameter_AliasDomainNotSupportSMCert
+            case .cacheKeyQueryStringRequiresFullUrlCacheOff:
+                code = .invalidParameter_CacheKeyQueryStringRequiresFullUrlCacheOff
             case .cacheKeyQueryStringTooManyValue:
                 code = .invalidParameter_CacheKeyQueryStringTooManyValue
             case .certNotMatchDomain:
@@ -876,6 +896,8 @@ extension TCTeoError {
                 code = .invalidParameter_InvalidErrorPage
             case .invalidErrorPageRedirectUrl:
                 code = .invalidParameter_InvalidErrorPageRedirectUrl
+            case .invalidForceRedirectType:
+                code = .invalidParameter_InvalidForceRedirectType
             case .invalidHttps:
                 code = .invalidParameter_InvalidHttps
             case .invalidHttpsCertInfo:
@@ -976,6 +998,8 @@ extension TCTeoError {
                 code = .invalidParameter_TaskNotGenerated
             case .taskSystemError:
                 code = .invalidParameter_TaskSystemError
+            case .tooManyFilterValues:
+                code = .invalidParameter_TooManyFilterValues
             case .uploadUrl:
                 code = .invalidParameter_UploadUrl
             case .zoneHasBeenBound:

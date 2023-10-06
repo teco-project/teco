@@ -59,6 +59,7 @@ public struct TCWafError: TCWafErrorType {
         case invalidParameter_UnauthorizedOperationParameterErr = "InvalidParameter.UnauthorizedOperationParameterErr"
         case invalidParameter_UnknownAction = "InvalidParameter.UnknownAction"
         case invalidParameter_UpstreamParameterErr = "InvalidParameter.UpstreamParameterErr"
+        case invalidParameter_XFFResetParameterErr = "InvalidParameter.XFFResetParameterErr"
         case limitExceeded = "LimitExceeded"
         case limitExceeded_SpecificationErr = "LimitExceeded.SpecificationErr"
         case missingParameter = "MissingParameter"
@@ -269,6 +270,11 @@ public struct TCWafError: TCWafErrorType {
     /// 回源信息参数错误
     public static var invalidParameter_UpstreamParameterErr: TCWafError {
         TCWafError(.invalidParameter_UpstreamParameterErr)
+    }
+
+    /// 开启XFF重置时，代理情况必须选择“否”
+    public static var invalidParameter_XFFResetParameterErr: TCWafError {
+        TCWafError(.invalidParameter_XFFResetParameterErr)
     }
 
     /// 超过配额限制。

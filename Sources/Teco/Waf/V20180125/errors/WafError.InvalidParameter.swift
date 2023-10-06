@@ -35,6 +35,7 @@ extension TCWafError {
             case unauthorizedOperationParameterErr = "InvalidParameter.UnauthorizedOperationParameterErr"
             case unknownAction = "InvalidParameter.UnknownAction"
             case upstreamParameterErr = "InvalidParameter.UpstreamParameterErr"
+            case xffResetParameterErr = "InvalidParameter.XFFResetParameterErr"
             case other = "InvalidParameter"
         }
 
@@ -136,6 +137,11 @@ extension TCWafError {
             InvalidParameter(.upstreamParameterErr)
         }
 
+        /// 开启XFF重置时，代理情况必须选择“否”
+        public static var xffResetParameterErr: InvalidParameter {
+            InvalidParameter(.xffResetParameterErr)
+        }
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
@@ -176,6 +182,8 @@ extension TCWafError {
                 code = .invalidParameter_UnknownAction
             case .upstreamParameterErr:
                 code = .invalidParameter_UpstreamParameterErr
+            case .xffResetParameterErr:
+                code = .invalidParameter_XFFResetParameterErr
             case .other:
                 code = .invalidParameter
             }

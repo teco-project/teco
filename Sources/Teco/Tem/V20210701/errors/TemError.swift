@@ -137,6 +137,7 @@ public struct TCTemError: TCTemErrorType {
         case missingParameter_MinMaxNumNull = "MissingParameter.MinMaxNumNull"
         case missingParameter_NamespaceIdNull = "MissingParameter.NamespaceIdNull"
         case missingParameter_PkgNameNull = "MissingParameter.PkgNameNull"
+        case missingParameter_RepoServerNull = "MissingParameter.RepoServerNull"
         case missingParameter_ScalerIdNull = "MissingParameter.ScalerIdNull"
         case missingParameter_ServiceIdNull = "MissingParameter.ServiceIdNull"
         case missingParameter_SvcRepoNotReady = "MissingParameter.SvcRepoNotReady"
@@ -757,6 +758,11 @@ public struct TCTemError: TCTemErrorType {
     /// 包名不能为空。
     public static var missingParameter_PkgNameNull: TCTemError {
         TCTemError(.missingParameter_PkgNameNull)
+    }
+
+    /// 镜像仓库服务器不能为空。
+    public static var missingParameter_RepoServerNull: TCTemError {
+        TCTemError(.missingParameter_RepoServerNull)
     }
 
     /// 弹性规则ID不能为空。

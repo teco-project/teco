@@ -68,6 +68,7 @@ public struct TCCdbError: TCCdbErrorType {
         case failedOperation_TimeoutError = "FailedOperation.TimeoutError"
         case failedOperation_TypeInConflict = "FailedOperation.TypeInConflict"
         case failedOperation_VpcIpInUseError = "FailedOperation.VpcIpInUseError"
+        case failedOperation_VpcIpInvalidError = "FailedOperation.VpcIpInvalidError"
         case failedOperation_VpcIpNotInSubnetError = "FailedOperation.VpcIpNotInSubnetError"
         case internalError = "InternalError"
         case internalError_AsyncRequestError = "InternalError.AsyncRequestError"
@@ -467,6 +468,11 @@ public struct TCCdbError: TCCdbErrorType {
     /// 该IP已被占用。
     public static var failedOperation_VpcIpInUseError: TCCdbError {
         TCCdbError(.failedOperation_VpcIpInUseError)
+    }
+
+    /// 无效IP
+    public static var failedOperation_VpcIpInvalidError: TCCdbError {
+        TCCdbError(.failedOperation_VpcIpInvalidError)
     }
 
     /// 子网中不存在该IP

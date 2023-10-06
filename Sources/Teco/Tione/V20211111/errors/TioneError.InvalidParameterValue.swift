@@ -40,6 +40,7 @@ extension TCTioneError {
             case lifecycleNotFound = "InvalidParameterValue.LifecycleNotFound"
             case limitExceeded = "InvalidParameterValue.LimitExceeded"
             case notAllow = "InvalidParameterValue.NotAllow"
+            case notAllowedToCreateFreeVolumeNotebookWithBareMetalResourceGroup = "InvalidParameterValue.NotAllowedToCreateFreeVolumeNotebookWithBareMetalResourceGroup"
             case notAllowedToCreateNotebookWithBareMetalResourceGroup = "InvalidParameterValue.NotAllowedToCreateNotebookWithBareMetalResourceGroup"
             case pageLimitExceeded = "InvalidParameterValue.PageLimitExceeded"
             case rdmaConfigIllegal = "InvalidParameterValue.RDMAConfigIllegal"
@@ -187,6 +188,10 @@ extension TCTioneError {
             InvalidParameterValue(.notAllow)
         }
 
+        public static var notAllowedToCreateFreeVolumeNotebookWithBareMetalResourceGroup: InvalidParameterValue {
+            InvalidParameterValue(.notAllowedToCreateFreeVolumeNotebookWithBareMetalResourceGroup)
+        }
+
         public static var notAllowedToCreateNotebookWithBareMetalResourceGroup: InvalidParameterValue {
             InvalidParameterValue(.notAllowedToCreateNotebookWithBareMetalResourceGroup)
         }
@@ -274,6 +279,8 @@ extension TCTioneError {
                 code = .invalidParameterValue_LimitExceeded
             case .notAllow:
                 code = .invalidParameterValue_NotAllow
+            case .notAllowedToCreateFreeVolumeNotebookWithBareMetalResourceGroup:
+                code = .invalidParameterValue_NotAllowedToCreateFreeVolumeNotebookWithBareMetalResourceGroup
             case .notAllowedToCreateNotebookWithBareMetalResourceGroup:
                 code = .invalidParameterValue_NotAllowedToCreateNotebookWithBareMetalResourceGroup
             case .pageLimitExceeded:

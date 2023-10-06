@@ -52,6 +52,7 @@ extension TCCdbError {
             case timeoutError = "FailedOperation.TimeoutError"
             case typeInConflict = "FailedOperation.TypeInConflict"
             case vpcIpInUseError = "FailedOperation.VpcIpInUseError"
+            case vpcIpInvalidError = "FailedOperation.VpcIpInvalidError"
             case vpcIpNotInSubnetError = "FailedOperation.VpcIpNotInSubnetError"
             case other = "FailedOperation"
         }
@@ -246,6 +247,11 @@ extension TCCdbError {
             FailedOperation(.vpcIpInUseError)
         }
 
+        /// 无效IP
+        public static var vpcIpInvalidError: FailedOperation {
+            FailedOperation(.vpcIpInvalidError)
+        }
+
         /// 子网中不存在该IP
         public static var vpcIpNotInSubnetError: FailedOperation {
             FailedOperation(.vpcIpNotInSubnetError)
@@ -325,6 +331,8 @@ extension TCCdbError {
                 code = .failedOperation_TypeInConflict
             case .vpcIpInUseError:
                 code = .failedOperation_VpcIpInUseError
+            case .vpcIpInvalidError:
+                code = .failedOperation_VpcIpInvalidError
             case .vpcIpNotInSubnetError:
                 code = .failedOperation_VpcIpNotInSubnetError
             case .other:
