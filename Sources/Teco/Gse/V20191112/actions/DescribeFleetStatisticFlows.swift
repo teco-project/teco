@@ -28,14 +28,14 @@ extension Gse {
 
         /// 查询开始时间，时间格式：YYYY-MM-DD hh:mm:ss
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$beginTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var beginTime: Date?
 
         /// 查询结束时间，时间格式：YYYY-MM-DD hh:mm:ss
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$endTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var endTime: Date?
 
         /// 结果返回最大数量，最小值0，最大值100

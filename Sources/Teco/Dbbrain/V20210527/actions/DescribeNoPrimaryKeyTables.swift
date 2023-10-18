@@ -28,8 +28,8 @@ extension Dbbrain {
 
         /// 查询日期，如2021-05-27，最早为30天前的日期。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$date`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var date: Date
 
         /// 查询数目，默认为20，最大为100。

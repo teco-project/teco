@@ -34,14 +34,14 @@ extension Dbbrain {
 
         /// 开始时间，如“2019-09-10 12:13:14”。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$startTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var startTime: Date
 
         /// 截止时间，如“2019-09-11 10:13:14”。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$endTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var endTime: Date
 
         /// 过滤条件。可按设置的过滤条件过滤日志。

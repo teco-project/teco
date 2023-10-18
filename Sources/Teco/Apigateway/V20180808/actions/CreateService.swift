@@ -99,8 +99,8 @@ extension Apigateway {
 
         /// 服务创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。格式为：YYYY-MM-DDThh:mm:ssZ。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createdTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var createdTime: Date
 
         /// 网络类型列表，INNER为内网访问，OUTER为外网访问。

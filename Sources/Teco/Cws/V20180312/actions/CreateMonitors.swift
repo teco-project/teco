@@ -40,8 +40,8 @@ extension Cws {
 
         /// 首次扫描开始时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$firstScanStartTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var firstScanStartTime: Date
 
         public init(urls: [String], name: String, scannerType: String, crontab: UInt64, rateLimit: UInt64, firstScanStartTime: Date) {

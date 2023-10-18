@@ -56,8 +56,8 @@ extension Scf {
     public struct GetFunctionResponse: TCResponse {
         /// 函数的最后修改时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$modTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var modTime: Date
 
         /// 函数的代码
@@ -156,8 +156,8 @@ extension Scf {
 
         /// 函数创建回见
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$addTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var addTime: Date
 
         /// 公网访问配置

@@ -34,14 +34,14 @@ extension Msp {
 
         /// 迁移任务创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date
 
         /// 迁移任务更新时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$updateTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var updateTime: Date
 
         /// 迁移类别，如数据库迁移中mysql:mysql代表从mysql迁移到mysql，文件迁移中oss:cos代表从阿里云oss迁移到腾讯云cos

@@ -31,14 +31,14 @@ extension Bm {
 
         /// 时间过滤下限
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$startDate`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var startDate: Date?
 
         /// 时间过滤上限
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$endDate`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var endDate: Date?
 
         /// 任务状态ID过滤

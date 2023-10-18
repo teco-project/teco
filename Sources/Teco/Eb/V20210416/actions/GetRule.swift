@@ -65,14 +65,14 @@ extension Eb {
 
         /// 创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$addTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var addTime: Date
 
         /// 更新时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$modTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var modTime: Date
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

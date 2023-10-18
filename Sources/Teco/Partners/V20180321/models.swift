@@ -108,8 +108,8 @@ extension Partners {
 
         /// 支付时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$payTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var payTime: Date
 
         /// 云产品名称
@@ -374,8 +374,8 @@ extension Partners {
 
         /// 业务员创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date
 
         enum CodingKeys: String, CodingKey {
@@ -504,15 +504,15 @@ extension Partners {
         /// 申请时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$applyTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var applyTime: Date?
 
         /// 解绑/撤销时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$actionTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var actionTime: Date?
 
         enum CodingKeys: String, CodingKey {

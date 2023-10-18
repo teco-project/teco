@@ -25,14 +25,14 @@ extension Dasb {
     public struct SearchCommandRequest: TCPaginatedRequest {
         /// 搜索区间的开始时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$startTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var startTime: Date
 
         /// 搜索区间的结束时间，不填默认为开始时间到现在为止
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$endTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var endTime: Date?
 
         /// 用户名

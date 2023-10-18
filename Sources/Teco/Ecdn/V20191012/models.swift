@@ -141,15 +141,15 @@ extension Ecdn {
         /// 证书过期时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$expireTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var expireTime: Date?
 
         /// 证书颁发时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$deployTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var deployTime: Date?
 
         public init(certificate: String, certName: String? = nil, expireTime: Date? = nil, deployTime: Date? = nil) {
@@ -203,14 +203,14 @@ extension Ecdn {
 
         /// 域名创建时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date
 
         /// 域名更新时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$updateTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var updateTime: Date
 
         /// 源站配置详情。
@@ -283,14 +283,14 @@ extension Ecdn {
 
         /// 域名创建时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date
 
         /// 域名更新时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$updateTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var updateTime: Date
 
         /// 源站配置。
@@ -408,14 +408,14 @@ extension Ecdn {
     public struct DomainLogs: TCOutputModel {
         /// 日志起始时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$startTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var startTime: Date
 
         /// 日志结束时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$endTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var endTime: Date
 
         /// 日志下载路径。
@@ -665,8 +665,8 @@ extension Ecdn {
 
         /// 节点 IP 添加时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date
 
         enum CodingKeys: String, CodingKey {
@@ -750,8 +750,8 @@ extension Ecdn {
 
         /// 刷新任务提交时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date
 
         enum CodingKeys: String, CodingKey {
@@ -841,15 +841,15 @@ extension Ecdn {
         /// 证书过期时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$expireTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var expireTime: Date?
 
         /// 证书颁发时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$deployTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var deployTime: Date?
 
         /// 证书备注信息。
@@ -924,8 +924,8 @@ extension Ecdn {
         /// 数据统计时间点，采用向前汇总模式
         /// 以 5 分钟粒度为例，13:35:00 时间点代表的统计数据区间为 13:35:00 至 13:39:59
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$time`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var time: Date
 
         /// 数据值

@@ -25,14 +25,14 @@ extension Dbbrain {
     public struct DescribeDBDiagEventsRequest: TCPaginatedRequest {
         /// 开始时间，如“2021-05-27 00:00:00”，支持的最早查询时间为当前时间的前30天。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$startTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var startTime: Date
 
         /// 结束时间，如“2021-05-27 01:00:00”，结束时间与开始时间的间隔最大可为7天。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$endTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var endTime: Date
 
         /// 风险等级列表，取值按影响程度从高至低分别为：1 - 致命、2 -严重、3 - 告警、4 - 提示、5 -健康。

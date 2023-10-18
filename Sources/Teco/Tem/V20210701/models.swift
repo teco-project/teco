@@ -2000,15 +2000,15 @@ extension Tem {
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createDate`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createDate: Date?
 
         /// 修改时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$modifyDate`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var modifyDate: Date?
 
         /// 修改人

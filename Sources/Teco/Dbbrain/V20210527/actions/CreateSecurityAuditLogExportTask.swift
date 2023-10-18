@@ -28,14 +28,14 @@ extension Dbbrain {
 
         /// 导出日志开始时间，例如2020-12-28 00:00:00。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$startTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var startTime: Date
 
         /// 导出日志结束时间，例如2020-12-28 01:00:00。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$endTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var endTime: Date
 
         /// 服务产品类型，支持值："mysql" - 云数据库 MySQL。

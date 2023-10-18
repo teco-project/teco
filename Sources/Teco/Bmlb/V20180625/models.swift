@@ -729,8 +729,8 @@ extension Bmlb {
 
         /// 创建时间戳。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$addTimestamp`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var addTimestamp: Date?
 
         /// 转发后端服务器调度类型。
@@ -828,8 +828,8 @@ extension Bmlb {
 
         /// 创建时间戳。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$addTimestamp`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var addTimestamp: Date?
 
         /// 是否开启自定义健康检查：1（开启）、0（关闭）。默认值0，表示关闭。（该字段在健康检查开启的情况下才生效）
@@ -990,8 +990,8 @@ extension Bmlb {
 
         /// 添加时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$addTimestamp`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var addTimestamp: Date
 
         /// 负载均衡名ID。
@@ -1075,8 +1075,8 @@ extension Bmlb {
 
         /// 创建时间戳。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$addTimestamp`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var addTimestamp: Date?
 
         /// https转发类型。0：https。1：spdy。2：http2。3：spdy+http2。
@@ -1147,8 +1147,8 @@ extension Bmlb {
 
         /// 创建时间戳。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$addTimestamp`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var addTimestamp: Date?
 
         /// 返回的转发规则列表。
@@ -1274,8 +1274,8 @@ extension Bmlb {
 
         /// 创建时间戳。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$addTimestamp`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var addTimestamp: Date?
 
         /// 该转发路径所绑定的主机列表。
@@ -1329,8 +1329,8 @@ extension Bmlb {
 
         /// 创建时间戳。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$addTimestamp`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var addTimestamp: Date?
 
         /// 该转发域名下面的转发路径列表。
@@ -1366,8 +1366,8 @@ extension Bmlb {
 
         /// 创建时间戳。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$addTimestamp`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var addTimestamp: Date?
 
         /// 该转发域名下面的转发路径列表。
@@ -1430,8 +1430,8 @@ extension Bmlb {
 
         /// 创建时间戳。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$addTimestamp`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var addTimestamp: Date?
 
         public init(url: String? = nil, locationId: String? = nil, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, httpCheckPath: String? = nil, httpCheckDomain: String? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, httpCodes: [UInt64]? = nil, balanceMode: String? = nil, status: Int64? = nil, addTimestamp: Date? = nil) {
@@ -1502,12 +1502,12 @@ extension Bmlb {
 
         public let latestPayMode: String?
 
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date?
 
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$statusTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var statusTime: Date?
 
         /// 私有网络名称。
@@ -1782,8 +1782,8 @@ extension Bmlb {
 
         /// 创建时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date?
 
         /// 流量镜像所在私有网络的Cidr。
@@ -1861,8 +1861,8 @@ extension Bmlb {
 
         /// 添加时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$addTimestamp`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var addTimestamp: Date
 
         /// 负载均衡ID。

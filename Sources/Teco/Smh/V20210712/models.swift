@@ -30,15 +30,15 @@ extension Smh {
 
         /// 生效时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$effectiveTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var effectiveTime: Date
 
         /// 过期时间。如果为按量计费或永久有效实例，该属性为 null。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$expireTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var expireTime: Date?
 
         /// 用户数量。如果为按量计费或不限制用户数量实例，该属性为 null。
@@ -96,8 +96,8 @@ extension Smh {
 
         /// 媒体库创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$creationTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var creationTime: Date
 
         /// 媒体库配置项
@@ -270,15 +270,15 @@ extension Smh {
 
         /// 生效时间，即流量资源包的订购时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$effectiveTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var effectiveTime: Date
 
         /// 过期时间，即所抵扣的实例的过期时间。如果流量资源包所抵扣的实例为按量计费或永久有效实例，该属性为 null。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$expireTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var expireTime: Date?
 
         enum CodingKeys: String, CodingKey {

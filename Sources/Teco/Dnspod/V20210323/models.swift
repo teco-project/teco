@@ -674,14 +674,14 @@ extension Dnspod {
 
         /// 域名创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createdOn`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createdOn: Date
 
         /// 最后操作时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$updatedOn`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var updatedOn: Date
 
         /// 腾讯云账户Uin
@@ -818,14 +818,14 @@ extension Dnspod {
 
         /// 付费套餐开通时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$vipStartAt`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var vipStartAt: Date
 
         /// 付费套餐到期时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$vipEndAt`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var vipEndAt: Date
 
         /// 域名是否开通VIP自动续费，是：YES，否：NO，默认：DEFAULT
@@ -836,14 +836,14 @@ extension Dnspod {
 
         /// 域名添加时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createdOn`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createdOn: Date
 
         /// 域名更新时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$updatedOn`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var updatedOn: Date
 
         /// 域名所属账号
@@ -986,8 +986,8 @@ extension Dnspod {
 
         /// 域名自动解锁日期
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$lockEnd`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var lockEnd: Date
 
         enum CodingKeys: String, CodingKey {
@@ -1238,8 +1238,8 @@ extension Dnspod {
 
         /// 记录最后更新时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$updatedOn`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var updatedOn: Date
 
         /// 域名 ID 。
@@ -1276,8 +1276,8 @@ extension Dnspod {
 
         /// 更新时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$updatedOn`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var updatedOn: Date
 
         /// 主机名

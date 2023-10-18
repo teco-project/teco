@@ -121,14 +121,14 @@ extension Ic {
 
         /// 创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createdTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createdTime: Date
 
         /// 修改时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$modifiedTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var modifiedTime: Date
 
         /// 套餐周期

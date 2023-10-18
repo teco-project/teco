@@ -30,14 +30,14 @@ extension Cdn {
 
         /// 根据时间区间查询时，填充开始时间，如 2018-08-08 00:00:00
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$startTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var startTime: Date?
 
         /// 根据时间区间查询时，填充结束时间，如 2018-08-08 23:59:59
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$endTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var endTime: Date?
 
         /// 根据任务 ID 查询时，填充任务 ID

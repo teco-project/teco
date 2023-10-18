@@ -25,8 +25,8 @@ extension Cdn {
     public struct ModifyPurgeFetchTaskStatusRequest: TCRequest {
         /// 执行时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$executionTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var executionTime: Date
 
         /// 执行状态

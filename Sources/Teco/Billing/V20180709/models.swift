@@ -117,20 +117,20 @@ extension Billing {
 
         /// 扣费时间：结算扣费时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$payTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var payTime: Date
 
         /// 开始使用时间：产品服务开始使用时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$feeBeginTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var feeBeginTime: Date
 
         /// 结束使用时间：产品服务结束使用时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$feeEndTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var feeEndTime: Date
 
         /// 组件列表
@@ -444,20 +444,20 @@ extension Billing {
 
         /// 扣费时间：结算扣费时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$payTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var payTime: Date
 
         /// 开始使用时间：产品服务开始使用时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$feeBeginTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var feeBeginTime: Date
 
         /// 结束使用时间：产品服务结束使用时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$feeEndTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var feeEndTime: Date
 
         /// 配置描述：该资源下的计费项名称和用量合并展示，仅在资源账单体现
@@ -610,20 +610,20 @@ extension Billing {
 
         /// 扣费时间：结算扣费时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$payTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var payTime: Date
 
         /// 开始使用时间：产品服务开始使用时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$feeBeginTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var feeBeginTime: Date
 
         /// 结束使用时间：产品服务结束使用时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$feeEndTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var feeEndTime: Date
 
         /// 配置描述：该资源下的计费项名称和用量合并展示，仅在资源账单体现
@@ -1523,8 +1523,8 @@ extension Billing {
 
         /// 创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date
 
         /// 创建人
@@ -1712,20 +1712,20 @@ extension Billing {
 
         /// 扣费时间：结算扣费时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$payTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var payTime: Date
 
         /// 开始使用时间：产品服务开始使用时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$feeBeginTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var feeBeginTime: Date
 
         /// 结束使用时间：产品服务结束使用时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$feeEndTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var feeEndTime: Date
 
         /// 组件列表

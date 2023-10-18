@@ -57,15 +57,15 @@ extension Scf {
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$addTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var addTime: Date?
 
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$modTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var modTime: Date?
 
         public init(functionVersion: String, name: String, routingConfig: RoutingConfig, description: String? = nil, addTime: Date? = nil, modTime: Date? = nil) {
@@ -560,15 +560,15 @@ extension Scf {
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$addTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var addTime: Date?
 
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$modTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var modTime: Date?
 
         /// 版本状态
@@ -857,14 +857,14 @@ extension Scf {
     public struct Namespace: TCOutputModel {
         /// 命名空间创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$modTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var modTime: Date
 
         /// 命名空间修改时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$addTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var addTime: Date
 
         /// 命名空间描述
@@ -1269,8 +1269,8 @@ extension Scf {
     public struct Trigger: TCOutputModel {
         /// 触发器最后修改时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$modTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var modTime: Date
 
         /// 触发器类型
@@ -1284,8 +1284,8 @@ extension Scf {
 
         /// 触发器创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$addTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var addTime: Date
 
         /// 使能开关
@@ -1446,14 +1446,14 @@ extension Scf {
 
         /// 触发器创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$addTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var addTime: Date
 
         /// 触发器最后修改时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$modTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var modTime: Date
 
         /// 触发器最小资源ID

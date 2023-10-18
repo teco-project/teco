@@ -34,8 +34,8 @@ extension Cbs {
 
         /// 快照的到期时间；设置好快照将会被同时设置为非永久保留方式；超过到期时间后快照将会被自动删除。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$deadline`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var deadline: Date?
 
         public init(snapshotId: String, isPermanent: Bool? = nil, snapshotName: String? = nil, deadline: Date? = nil) {

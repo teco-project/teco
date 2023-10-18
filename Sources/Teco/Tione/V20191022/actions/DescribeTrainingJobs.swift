@@ -31,14 +31,14 @@ extension Tione {
 
         /// 创建时间晚于
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$creationTimeAfter`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var creationTimeAfter: Date?
 
         /// 创建时间早于
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$creationTimeBefore`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var creationTimeBefore: Date?
 
         /// 根据名称过滤

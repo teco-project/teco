@@ -31,14 +31,14 @@ extension Ckafka {
 
         /// 排行起始日期
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$beginDate`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var beginDate: Date?
 
         /// 排行结束日期
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$endDate`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var endDate: Date?
 
         /// Broker IP 地址

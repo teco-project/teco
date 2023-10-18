@@ -129,14 +129,14 @@ extension Antiddos {
 
         /// 到期时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$expiredTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var expiredTime: Date
 
         /// 购买时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createdTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createdTime: Date
 
         /// 资产实例的名称
@@ -334,14 +334,14 @@ extension Antiddos {
 
         /// 购买时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createdTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createdTime: Date
 
         /// 到期时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$expiredTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var expiredTime: Date
 
         /// 资产实例的名称
@@ -583,14 +583,14 @@ extension Antiddos {
 
         /// 创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date
 
         /// 修改时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$modifyTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var modifyTime: Date
 
         enum CodingKeys: String, CodingKey {
@@ -658,14 +658,14 @@ extension Antiddos {
 
         /// 创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date
 
         /// 修改时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$modifyTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var modifyTime: Date
 
         enum CodingKeys: String, CodingKey {
@@ -703,14 +703,14 @@ extension Antiddos {
 
         /// 创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date
 
         /// 修改时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$modifyTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var modifyTime: Date
 
         enum CodingKeys: String, CodingKey {
@@ -793,14 +793,14 @@ extension Antiddos {
 
         /// 创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date
 
         /// 修改时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$modifyTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var modifyTime: Date
 
         enum CodingKeys: String, CodingKey {
@@ -1186,8 +1186,8 @@ extension Antiddos {
 
         /// 当前到期时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$curDeadline`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var curDeadline: Date
 
         enum CodingKeys: String, CodingKey {
@@ -1927,8 +1927,8 @@ extension Antiddos {
 
         /// 修改时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$modifyTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var modifyTime: Date?
 
         /// 是否开启Https协议使用Http回源，取值[0(关闭), 1(开启)]，不填写默认是关闭
@@ -2526,14 +2526,14 @@ extension Antiddos {
 
         /// 创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createdTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createdTime: Date
 
         /// 最后修改时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$modifyTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var modifyTime: Date
 
         /// 域名名称
@@ -2746,8 +2746,8 @@ extension Antiddos {
 
         /// 密钥生成时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date
 
         public init(keyVersion: String, keyContent: String, keyId: String, keyOpenStatus: Int64, createTime: Date) {

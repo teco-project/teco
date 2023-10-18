@@ -25,14 +25,14 @@ extension Tiw {
     public struct DescribePostpaidUsageRequest: TCRequest {
         /// 开始时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$beginTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var beginTime: Date
 
         /// 结束时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$endTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var endTime: Date
 
         public init(beginTime: Date, endTime: Date) {

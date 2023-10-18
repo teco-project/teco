@@ -25,8 +25,8 @@ extension Vpc {
     public struct DescribeGatewayFlowMonitorDetailRequest: TCPaginatedRequest {
         /// 时间点。表示要查询这分钟内的明细。如：`2019-02-28 18:15:20`，将查询 `18:15` 这一分钟内的明细。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$timePoint`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var timePoint: Date
 
         /// VPN网关实例ID，形如：`vpn-ltjahce6`。

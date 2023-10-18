@@ -25,14 +25,14 @@ extension Tiw {
     public struct DescribeApplicationUsageRequest: TCRequest {
         /// 用量开始时间（包括该时间点）
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$beginTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var beginTime: Date
 
         /// 用量结束时间（不包括该时间点）
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$endTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var endTime: Date
 
         /// 白板子产品名

@@ -42,8 +42,8 @@ extension Ses {
     public struct BlackEmailAddress: TCOutputModel {
         /// 邮箱被拉黑时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$bounceTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var bounceTime: Date
 
         /// 被拉黑的邮箱地址
@@ -487,8 +487,8 @@ extension Ses {
         /// 日期
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$sendDate`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var sendDate: Date?
 
         /// 邮件请求数量

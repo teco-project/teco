@@ -36,16 +36,16 @@ extension Ams {
         ///
         /// 备注：该参数与Filter共同起到任务筛选作用，二者作用无先后顺序。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$startTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var startTime: Date?
 
         /// 该参数表示任务列表的结束时间，格式为ISO8601标准的时间戳。**默认值为空**，若传入该参数，则在这StartTime到这一时间之间的任务将会被筛选出来。
         ///
         /// 备注：该参数与Filter共同起到任务筛选作用，二者作用无先后顺序。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$endTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var endTime: Date?
 
         public init(limit: Int64? = nil, filter: TaskFilter? = nil, pageToken: String? = nil, startTime: Date? = nil, endTime: Date? = nil) {

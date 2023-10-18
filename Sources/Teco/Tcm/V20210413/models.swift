@@ -193,8 +193,8 @@ extension Tcm {
 
         /// 关联时间，只读
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$linkedTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var linkedTime: Date?
 
         /// 集群配置
@@ -817,15 +817,15 @@ extension Tcm {
 
         /// 创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createdTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createdTime: Date
 
         /// 修改时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$updatedTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var updatedTime: Date?
 
         /// 集群列表

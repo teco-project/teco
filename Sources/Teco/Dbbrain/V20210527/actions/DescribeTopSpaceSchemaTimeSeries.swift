@@ -34,14 +34,14 @@ extension Dbbrain {
 
         /// 开始日期，如“2021-01-01”，最早为当日的前第29天，默认为截止日期的前第6天。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$startDate`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var startDate: Date?
 
         /// 截止日期，如“2021-01-01”，最早为当日的前第29天，默认为当日。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$endDate`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var endDate: Date?
 
         /// 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。

@@ -57,20 +57,20 @@ extension Bmlb {
 
         /// 证书上传时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$certUploadTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var certUploadTime: Date
 
         /// 证书生效时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$certBeginTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var certBeginTime: Date
 
         /// 证书失效时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$certEndTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var certEndTime: Date
 
         /// 该证书关联的黑石负载均衡对象列表。

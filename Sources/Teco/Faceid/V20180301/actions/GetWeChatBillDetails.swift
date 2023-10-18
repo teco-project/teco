@@ -25,8 +25,8 @@ extension Faceid {
     public struct GetWeChatBillDetailsRequest: TCPaginatedRequest {
         /// 拉取的日期（YYYY-MM-DD）。最大可追溯到365天前。当天6点后才能拉取前一天的数据。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$date`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var date: Date
 
         /// 游标。用于分页，取第一页时传0，取后续页面时，传入本接口响应中返回的NextCursor字段的值。

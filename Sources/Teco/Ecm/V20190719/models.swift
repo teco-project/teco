@@ -194,8 +194,8 @@ extension Ecm {
         /// 后端服务被绑定的时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$registeredTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var registeredTime: Date?
 
         /// 弹性网卡唯一ID
@@ -483,14 +483,14 @@ extension Ecm {
 
         /// 云硬盘的创建时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date?
 
         /// 云硬盘的到期时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$deadlineTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var deadlineTime: Date
 
         /// 云盘的挂载类型。取值范围：
@@ -556,8 +556,8 @@ extension Ecm {
 
         /// 需要将云盘的到期时间与挂载的子机对齐时，可传入该参数。该参数表示子机当前的到期时间，此时Period如果传入，则表示子机需要续费的时长，云盘会自动按对齐到子机续费后的到期时间续费，示例取值：2018-03-30 20:15:03。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$curInstanceDeadline`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var curInstanceDeadline: Date?
 
         public init(period: UInt64, renewFlag: String? = nil, curInstanceDeadline: Date? = nil) {
@@ -1479,8 +1479,8 @@ extension Ecm {
         /// 创建时间。按照ISO8601标准表示，并且使用UTC时间。格式为：YYYY-MM-DDThh:mm:ssZ。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createdTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var createdTime: Date?
 
         enum CodingKeys: String, CodingKey {
@@ -1642,15 +1642,15 @@ extension Ecm {
         /// 负载均衡实例的创建时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date?
 
         /// 负载均衡实例的上次状态转换时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$statusTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var statusTime: Date?
 
         /// 私有网络的 ID。
@@ -3025,8 +3025,8 @@ extension Ecm {
 
         /// 快照的创建时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date?
 
         /// 快照关联的镜像个数。

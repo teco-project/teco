@@ -28,8 +28,8 @@ extension Dbbrain {
 
         /// 获取健康得分的时间，时间格式如：2019-09-10 12:13:14。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$time`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var time: Date
 
         /// 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。

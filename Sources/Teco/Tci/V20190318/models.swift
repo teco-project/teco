@@ -1074,8 +1074,8 @@ extension Tci {
     public struct Library: TCInputModel {
         /// 人员库创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var createTime: Date
 
         /// 人员库唯一标识符
@@ -1089,8 +1089,8 @@ extension Tci {
 
         /// 人员库修改时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$updateTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var updateTime: Date?
 
         public init(createTime: Date, libraryId: String, libraryName: String, personCount: Int64? = nil, updateTime: Date? = nil) {
@@ -1242,8 +1242,8 @@ extension Tci {
 
         /// 创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var createTime: Date?
 
         /// 工作号码
@@ -1263,8 +1263,8 @@ extension Tci {
 
         /// 修改时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$updateTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var updateTime: Date?
 
         public init(libraryId: String, personId: String, personName: String, createTime: Date? = nil, jobNumber: String? = nil, mail: String? = nil, male: Int64? = nil, phoneNumber: String? = nil, studentNumber: String? = nil, updateTime: Date? = nil) {

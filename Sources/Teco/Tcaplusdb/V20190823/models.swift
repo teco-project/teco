@@ -285,8 +285,8 @@ extension Tcaplusdb {
 
         /// 创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createdTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createdTime: Date
 
         /// 集群密码
@@ -1112,14 +1112,14 @@ extension Tcaplusdb {
 
         /// 快照时间点
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$snapshotTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var snapshotTime: Date
 
         /// 快照过期时间点
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$snapshotDeadTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var snapshotDeadTime: Date
 
         public init(tableGroupId: String, tableName: String, snapshotName: String, snapshotTime: Date, snapshotDeadTime: Date) {
@@ -1152,8 +1152,8 @@ extension Tcaplusdb {
 
         /// 快照过期时间点
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$snapshotDeadTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var snapshotDeadTime: Date?
 
         public init(tableGroupId: String, tableName: String, snapshotName: String, snapshotDeadTime: Date? = nil) {
@@ -1196,22 +1196,22 @@ extension Tcaplusdb {
         /// 快照的时间点
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$snapshotTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var snapshotTime: Date?
 
         /// 快照的过期时间点
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$snapshotDeadTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var snapshotDeadTime: Date?
 
         /// 快照创建时间点
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$snapshotCreateTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var snapshotCreateTime: Date?
 
         /// 快照大小
@@ -1315,8 +1315,8 @@ extension Tcaplusdb {
 
         /// 表格组创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createdTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createdTime: Date
 
         /// 表格组包含的表格数量
@@ -1736,14 +1736,14 @@ extension Tcaplusdb {
 
         /// 任务创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$startTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var startTime: Date
 
         /// 任务最后更新时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$updateTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var updateTime: Date
 
         /// 操作者

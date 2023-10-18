@@ -34,8 +34,8 @@ extension Dcdb {
 
         /// 查询的起始时间，形如2016-07-23 14:55:20
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$startTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var startTime: Date
 
         /// 实例的分片ID，形如shard-53ima8ln
@@ -43,8 +43,8 @@ extension Dcdb {
 
         /// 查询的结束时间，形如2016-08-22 14:55:20。如果不填，那么查询结束时间就是当前时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$endTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var endTime: Date?
 
         /// 要查询的具体数据库名称

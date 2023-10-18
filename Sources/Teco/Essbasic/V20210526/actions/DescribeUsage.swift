@@ -28,15 +28,15 @@ extension Essbasic {
 
         /// 开始时间，例如：2021-03-21
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$startDate`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var startDate: Date
 
         /// 结束时间，例如：2021-06-21；
         /// 开始时间到结束时间的区间长度小于等于90天。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$endDate`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var endDate: Date
 
         /// 是否汇总数据，默认不汇总。

@@ -56,8 +56,8 @@ extension Tbm {
 
         /// 文章发表日期
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$pubTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var pubTime: Date
 
         /// 文章标识
@@ -92,8 +92,8 @@ extension Tbm {
     public struct Comment: TCOutputModel {
         /// 评论的日期
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$date`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var date: Date
 
         /// 差评的个数
@@ -116,8 +116,8 @@ extension Tbm {
 
         /// 评论的时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$date`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var date: Date
 
         enum CodingKeys: String, CodingKey {
@@ -130,8 +130,8 @@ extension Tbm {
     public struct DateCount: TCOutputModel {
         /// 统计日期
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$date`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var date: Date
 
         /// 统计值
@@ -174,8 +174,8 @@ extension Tbm {
 
         /// 报道发表时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$pubTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var pubTime: Date
 
         /// 报道来源

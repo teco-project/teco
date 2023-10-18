@@ -23,14 +23,14 @@ extension Memcached {
     public struct InstanceListInfo: TCInputModel, TCOutputModel {
         /// 实例修改时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$modTimeStamp`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var modTimeStamp: Date?
 
         /// 实例隔离时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$isolateTimeStamp`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var isolateTimeStamp: Date?
 
         /// 实例是否设置自动续费标识，1：设置自动续费；0：未设置自动续费
@@ -69,8 +69,8 @@ extension Memcached {
 
         /// 实例创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$addTimeStamp`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var addTimeStamp: Date?
 
         /// 区域ID
@@ -87,8 +87,8 @@ extension Memcached {
 
         /// 实例截止时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$deadlineTimeStamp`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var deadlineTimeStamp: Date?
 
         /// vpc网络id 如：vpc-fk33jsf43kgv

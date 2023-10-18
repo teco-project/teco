@@ -31,8 +31,8 @@ extension Tcaplusdb {
 
         /// 待回档时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$rollbackTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var rollbackTime: Date
 
         /// 回档模式，支持：`KEYS`

@@ -37,8 +37,8 @@ extension Cr {
 
         /// 文件日期
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$fileDate`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var fileDate: Date
 
         public init(module: String, operation: String, fileUrl: String, fileName: String, fileDate: Date) {

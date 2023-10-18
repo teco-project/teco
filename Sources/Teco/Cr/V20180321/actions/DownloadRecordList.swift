@@ -31,8 +31,8 @@ extension Cr {
 
         /// 录音日期，格式为YYYY-MM-DD
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$bizDate`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var bizDate: Date
 
         /// 实例ID

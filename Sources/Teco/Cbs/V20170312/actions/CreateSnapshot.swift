@@ -31,8 +31,8 @@ extension Cbs {
 
         /// 快照的到期时间，到期后该快照将会自动删除,需要传入UTC时间下的ISO-8601标准时间格式,例如:2022-01-08T09:47:55+00:00,。到期时间最小可设置为一天后的当前时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$deadline`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var deadline: Date?
 
         /// 云硬盘备份点ID。传入此参数时，将通过备份点创建快照。

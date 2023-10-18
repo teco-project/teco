@@ -31,14 +31,14 @@ extension Partners {
 
         /// 下单时间范围起始点【请保持时间范围最大90天】
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$creatTimeRangeStart`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var creatTimeRangeStart: Date?
 
         /// 下单时间范围终止点【请保持时间范围最大90天】
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$creatTimeRangeEnd`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var creatTimeRangeEnd: Date?
 
         /// 0:下单时间降序；其他：下单时间升序

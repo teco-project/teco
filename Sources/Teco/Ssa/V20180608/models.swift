@@ -800,8 +800,8 @@ extension Ssa {
 
         /// 更新时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$updatetime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var updatetime: Date
 
         /// 标签
@@ -965,8 +965,8 @@ extension Ssa {
         /// 最近一次检测时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$lastCheckTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var lastCheckTime: Date?
 
         /// 资产组类型
@@ -1285,8 +1285,8 @@ extension Ssa {
         /// 最近更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$time`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var time: Date?
 
         /// 资产标签
@@ -1349,8 +1349,8 @@ extension Ssa {
         /// 最近一次检查时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$lastCheckTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var lastCheckTime: Date?
 
         /// 初始未检测状态0, 已通过为1，未通过为2
@@ -1420,8 +1420,8 @@ extension Ssa {
         /// 最近一次检查时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$lastCheckTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var lastCheckTime: Date?
 
         /// 初始未检测状态0, 已通过为1，未通过为2
@@ -1514,8 +1514,8 @@ extension Ssa {
         /// 事件发生时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$time`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var time: Date?
 
         /// 目的端口
@@ -1867,8 +1867,8 @@ extension Ssa {
     public struct ListDataSaEventPub: TCOutputModel {
         /// 时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$time`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var time: Date
 
         /// 安全事件1级分类

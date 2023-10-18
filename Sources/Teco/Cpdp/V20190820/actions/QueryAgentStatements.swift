@@ -25,8 +25,8 @@ extension Cpdp {
     public struct QueryAgentStatementsRequest: TCRequest {
         /// 结算单日期，月结算单填每月1日
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$date`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var date: Date
 
         /// 日结算单:daily

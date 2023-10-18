@@ -700,8 +700,8 @@ extension Bi {
         /// 最后一次登录时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$lastLogin`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var lastLogin: Date?
 
         /// 停启用状态
@@ -727,8 +727,8 @@ extension Bi {
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createdAt`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var createdAt: Date?
 
         /// 更改人
@@ -738,8 +738,8 @@ extension Bi {
         /// 更改时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$updatedAt`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var updatedAt: Date?
 
         /// 全局角色
@@ -926,8 +926,8 @@ extension Bi {
         /// 最后一次登录时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$lastLogin`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var lastLogin: Date?
 
         /// 账号状态

@@ -43,8 +43,8 @@ extension Cws {
 
         /// 首次扫描开始时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$firstScanStartTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var firstScanStartTime: Date
 
         /// 监测状态：1-监测中；2-暂停监测

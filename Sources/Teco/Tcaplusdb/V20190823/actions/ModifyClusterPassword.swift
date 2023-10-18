@@ -31,8 +31,8 @@ extension Tcaplusdb {
 
         /// 集群旧密码预期失效时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$oldPasswordExpireTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var oldPasswordExpireTime: Date
 
         /// 集群新密码，密码必须是a-zA-Z0-9的字符,且必须包含数字和大小写字母
