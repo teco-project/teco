@@ -29,8 +29,8 @@ extension Apcas {
 
         /// 调用时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$date`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var date: Date
 
         enum CodingKeys: String, CodingKey {
@@ -58,8 +58,8 @@ extension Apcas {
     public struct CallStatItem: TCOutputModel {
         /// 当前统计量的时间段
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$date`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var date: Date
 
         /// 当前时间段的调用量

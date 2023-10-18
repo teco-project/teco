@@ -732,15 +732,15 @@ extension Tke {
         /// 最后一次探测到该状态的时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$lastProbeTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var lastProbeTime: Date?
 
         /// 最后一次转换到该过程的时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$lastTransitionTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var lastTransitionTime: Date?
 
         /// 转换到该过程的简明原因
@@ -3442,8 +3442,8 @@ extension Tke {
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createdTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var createdTime: Date?
 
         /// 应用ID

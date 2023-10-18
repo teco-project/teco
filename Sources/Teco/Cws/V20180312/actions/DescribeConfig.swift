@@ -37,14 +37,14 @@ extension Cws {
 
         /// 记录创建时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createdAt`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var createdAt: Date
 
         /// 记录更新新建。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$updatedAt`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var updatedAt: Date
 
         /// 云用户appid。

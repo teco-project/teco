@@ -45,8 +45,8 @@ extension Vod {
 
         /// 媒体文件过期时间，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$expireTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var expireTime: Date?
 
         /// 指定上传园区，仅适用于对上传地域有特殊需求的用户：

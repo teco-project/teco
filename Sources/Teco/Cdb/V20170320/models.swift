@@ -51,20 +51,20 @@ extension Cdb {
 
         /// 账号信息修改时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$modifyTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var modifyTime: Date
 
         /// 修改密码的时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$modifyPasswordTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var modifyPasswordTime: Date
 
         /// 该值已废弃
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date
 
         /// 用户最大可用实例连接数
@@ -689,8 +689,8 @@ extension Cdb {
 
         /// 文件存储时间，时间格式：2016-03-17 02:10:37
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$date`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var date: Date
 
         /// 下载地址
@@ -1127,8 +1127,8 @@ extension Cdb {
     public struct DBSwitchInfo: TCOutputModel {
         /// 切换时间，格式为：2017-09-03 01:34:31
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$switchTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var switchTime: Date
 
         /// 切换类型，可能的返回值为：TRANSFER - 数据迁移；MASTER2SLAVE - 主备切换；RECOVERY - 主从恢复
@@ -1388,8 +1388,8 @@ extension Cdb {
 
         /// 任务创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date
 
         /// 文件大小
@@ -1570,8 +1570,8 @@ extension Cdb {
 
         /// 实例到期时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$deadlineTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var deadlineTime: Date
 
         /// 可用区部署方式。可能的值为：0 - 单可用区；1 - 多可用区
@@ -3107,8 +3107,8 @@ extension Cdb {
     public struct SqlFileInfo: TCOutputModel {
         /// 上传时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$uploadTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var uploadTime: Date
 
         /// 上传进度

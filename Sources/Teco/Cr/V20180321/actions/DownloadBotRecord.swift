@@ -31,8 +31,8 @@ extension Cr {
 
         /// 业务日期
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$bizDate`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var bizDate: Date
 
         public init(module: String, operation: String, bizDate: Date) {

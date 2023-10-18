@@ -50,8 +50,8 @@ extension Dayu {
 
         /// 解封时间（预计解封时间）
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$unblockTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var unblockTime: Date
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

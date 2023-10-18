@@ -25,8 +25,8 @@ extension Tchd {
     public struct DescribeEventsRequest: TCRequest {
         /// 事件的发生日期
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$eventDate`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var eventDate: Date
 
         /// 1. 不指定产品列表时将查询所有产品。

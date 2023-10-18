@@ -88,15 +88,15 @@ extension Ssl {
         /// 证书生效时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$certBeginTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var certBeginTime: Date?
 
         /// 证书失效时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$certEndTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var certEndTime: Date?
 
         /// 证书有效期：单位（月）。
@@ -106,8 +106,8 @@ extension Ssl {
         /// 申请时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$insertTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var insertTime: Date?
 
         /// 订单 ID。

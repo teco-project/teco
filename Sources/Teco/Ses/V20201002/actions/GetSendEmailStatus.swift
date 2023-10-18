@@ -25,8 +25,8 @@ extension Ses {
     public struct GetSendEmailStatusRequest: TCPaginatedRequest {
         /// 发送的日期，必填。仅支持查询某个日期，不支持范围查询。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$requestDate`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var requestDate: Date
 
         /// 偏移量。默认为0

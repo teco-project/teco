@@ -37,14 +37,14 @@ extension Youmall {
 
         /// 开始日期，格式yyyy-MM-dd，已废弃，请使用StartDateTime
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$startDate`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var startDate: Date?
 
         /// 结束日期，格式yyyy-MM-dd，已废弃，请使用EndDateTime
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$endDate`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var endDate: Date?
 
         /// 图片url过期时间：在当前时间+PictureExpires秒后，图片url无法继续正常访问；单位s；默认值1*24*60*60（1天）
@@ -52,14 +52,14 @@ extension Youmall {
 
         /// 开始时间，格式yyyy-MM-dd HH:mm:ss
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$startDateTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var startDateTime: Date?
 
         /// 结束时间，格式yyyy-MM-dd HH:mm:ss
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$endDateTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var endDateTime: Date?
 
         public init(companyId: String, shopId: UInt64, offset: UInt64, limit: UInt64, startDate: Date? = nil, endDate: Date? = nil, pictureExpires: UInt64? = nil, startDateTime: Date? = nil, endDateTime: Date? = nil) {

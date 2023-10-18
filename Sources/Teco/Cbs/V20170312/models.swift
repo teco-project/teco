@@ -117,8 +117,8 @@ extension Cbs {
 
         /// 定期快照下次触发的时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$nextTriggerTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var nextTriggerTime: Date?
 
         /// 定期快照策略名称。
@@ -132,8 +132,8 @@ extension Cbs {
 
         /// 定期快照策略的创建时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date?
 
         /// 使用该定期快照策略创建出来的快照保留天数。
@@ -226,14 +226,14 @@ extension Cbs {
 
         /// 独享集群到期时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$expiredTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var expiredTime: Date
 
         /// 存储池创建时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createdTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var createdTime: Date
 
         /// 当前集群中已创建的云盘数量。
@@ -451,8 +451,8 @@ extension Cbs {
 
         /// 云硬盘的到期时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$deadlineTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var deadlineTime: Date?
 
         /// 云盘是否挂载到云主机上。取值范围：
@@ -519,8 +519,8 @@ extension Cbs {
 
         /// 云硬盘的创建时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date?
 
         /// 销毁云盘时删除关联的非永久保留快照。0 表示非永久快照不随云盘销毁而销毁，1表示非永久快照随云盘销毁而销毁，默认取0。快照是否永久保留可以通过DescribeSnapshots接口返回的快照详情的IsPermanent字段来判断，true表示永久快照，false表示非永久快照。
@@ -628,8 +628,8 @@ extension Cbs {
 
         /// 云硬盘备份点的创建时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var createTime: Date
 
         /// 云盘是否为加密盘。取值范围：
@@ -667,8 +667,8 @@ extension Cbs {
 
         /// 需要将云盘的到期时间与挂载的子机对齐时，可传入该参数。该参数表示子机当前的到期时间，此时Period如果传入，则表示子机需要续费的时长，云盘会自动按对齐到子机续费后的到期时间续费，示例取值：2018-03-30 20:15:03。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$curInstanceDeadline`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var curInstanceDeadline: Date?
 
         public init(period: UInt64, renewFlag: String? = nil, curInstanceDeadline: Date? = nil) {
@@ -980,8 +980,8 @@ extension Cbs {
     public struct SharePermission: TCOutputModel {
         /// 快照分享的时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createdTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createdTime: Date
 
         /// 分享的账号Id
@@ -1025,8 +1025,8 @@ extension Cbs {
 
         /// 快照到期时间。如果快照为永久保留，此字段为空。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$deadlineTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var deadlineTime: Date?
 
         /// 快照创建进度百分比，快照创建成功后此字段恒为100。
@@ -1058,8 +1058,8 @@ extension Cbs {
 
         /// 快照的创建时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date?
 
         /// 快照关联的镜像个数。
@@ -1076,8 +1076,8 @@ extension Cbs {
 
         /// 快照开始共享的时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$timeStartShare`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var timeStartShare: Date
 
         /// 快照绑定的标签列表。

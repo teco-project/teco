@@ -43,14 +43,14 @@ extension Dcdb {
 
         /// 切换开始时间，格式如: "2019-12-12 07:00:00"。开始时间必须在当前时间一个小时以后，3天以内。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$switchStartTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var switchStartTime: Date?
 
         /// 切换结束时间,  格式如: "2019-12-12 07:15:00"，结束时间必须大于开始时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$switchEndTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var switchEndTime: Date?
 
         /// 是否自动重试。 0：不自动重试  1：自动重试

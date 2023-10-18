@@ -49,14 +49,14 @@ extension Bm {
 
         /// 设备到期时间查询的起始时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$deadlineStartTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var deadlineStartTime: Date?
 
         /// 设备到期时间查询的结束时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$deadlineEndTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var deadlineEndTime: Date?
 
         /// 自动续费标志 0:不自动续费，1:自动续费

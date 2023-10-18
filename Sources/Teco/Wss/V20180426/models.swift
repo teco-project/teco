@@ -72,15 +72,15 @@ extension Wss {
         /// 证书生效时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$certBeginTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var certBeginTime: Date?
 
         /// 证书过期时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$certEndTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var certEndTime: Date?
 
         /// 证书过期时间
@@ -90,8 +90,8 @@ extension Wss {
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$insertTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var insertTime: Date?
 
         /// 项目信息，ProjectId：项目ID，OwnerUin：项目所属的 uin（默认项目为0），Name：项目名称，CreatorUin：创建项目的 uin，CreateTime：项目创建时间，Info：项目说明

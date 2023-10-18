@@ -1077,8 +1077,8 @@ extension Ssl {
 
         /// 操作时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createdOn`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createdOn: Date
 
         enum CodingKeys: String, CodingKey {

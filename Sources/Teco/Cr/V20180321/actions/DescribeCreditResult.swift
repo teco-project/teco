@@ -40,8 +40,8 @@ extension Cr {
 
         /// 请求日期，格式为YYYY-MM-DD
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$requestDate`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var requestDate: Date
 
         public init(module: String, operation: String, instId: String, productId: String, caseId: String, requestDate: Date) {
@@ -86,8 +86,8 @@ extension Cr {
         /// 开始振铃时间，ResultCode为NON或DAD时才有此字段。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$ringStartTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var ringStartTime: Date?
 
         /// 振铃时长

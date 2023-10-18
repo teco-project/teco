@@ -30,15 +30,15 @@ extension Wedata {
         /// 任务启动时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$startTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var startTime: Date?
 
         /// 任务结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$endTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var endTime: Date?
 
         /// 当前任务状态
@@ -70,8 +70,8 @@ extension Wedata {
         /// 任务提交时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var createTime: Date?
 
         /// 任务状态
@@ -455,8 +455,8 @@ extension Wedata {
 
         /// 基线创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var createTime: Date?
 
         /// 保障任务
@@ -478,8 +478,8 @@ extension Wedata {
 
         /// 承诺时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$promiseTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var promiseTime: Date?
 
         /// 责任人uin
@@ -555,15 +555,15 @@ extension Wedata {
         /// 基线实例生成时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var createTime: Date?
 
         /// 基线实例预计完成时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$estimatedEndTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var estimatedEndTime: Date?
 
         /// 基线实例状态，P:暂停/ SF:安全/ WN:预警/ BL:破线 / TF:任务失败
@@ -585,8 +585,8 @@ extension Wedata {
         /// 承诺时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$promiseTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var promiseTime: Date?
 
         /// 告警级别 N: 普通 / I重要 / E: 紧急
@@ -616,8 +616,8 @@ extension Wedata {
         /// 任务实例DAG整体启动时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$criticalStartTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var criticalStartTime: Date?
 
         /// 基线实例上的关键任务实例
@@ -627,8 +627,8 @@ extension Wedata {
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$updateTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var updateTime: Date?
 
         /// 基线实例与保障任务实例映射
@@ -873,8 +873,8 @@ extension Wedata {
         /// 任务实例的数据时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$curRunDate`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var curRunDate: Date?
 
         /// 任务名称
@@ -900,36 +900,36 @@ extension Wedata {
         /// 预计最晚开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$latestStartTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var latestStartTime: Date?
 
         /// 实际开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$actualStartTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var actualStartTime: Date?
 
         /// 预计完成时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$estimatedEndTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var estimatedEndTime: Date?
 
         /// 最晚完成时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$latestEndTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var latestEndTime: Date?
 
         /// 实际完成时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$actualEndTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var actualEndTime: Date?
 
         /// 实例运行状态
@@ -3012,8 +3012,8 @@ extension Wedata {
 
         /// 产生事件时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$eventTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var eventTime: Date
 
         /// 事件名称
@@ -3046,15 +3046,15 @@ extension Wedata {
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var createTime: Date?
 
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$updateTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var updateTime: Date?
 
         /// 租户id

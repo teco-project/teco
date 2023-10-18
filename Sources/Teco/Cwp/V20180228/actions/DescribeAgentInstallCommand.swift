@@ -40,8 +40,8 @@ extension Cwp {
 
         /// 命令有效期，非腾讯云时必填
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$expireDate`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var expireDate: Date?
 
         /// 代理方式接入的vip

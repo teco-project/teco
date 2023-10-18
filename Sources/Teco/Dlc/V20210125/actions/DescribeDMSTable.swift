@@ -122,22 +122,22 @@ extension Dlc {
         /// 最后访问时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$lastAccessTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var lastAccessTime: Date?
 
         /// 数据更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$dataUpdateTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var dataUpdateTime: Date?
 
         /// 结构更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$structUpdateTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var structUpdateTime: Date?
 
         /// 列

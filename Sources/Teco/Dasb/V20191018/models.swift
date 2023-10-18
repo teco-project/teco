@@ -120,15 +120,15 @@ extension Dasb {
         /// 访问权限生效时间，如:"2021-09-22T00:00:00+00:00"
         /// 生效、失效时间不填则访问权限长期有效
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$validateFrom`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var validateFrom: Date
 
         /// 访问权限失效时间，如:"2021-09-23T00:00:00+00:00"
         /// 生效、失效时间不填则访问权限长期有效
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$validateTo`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var validateTo: Date
 
         /// 访问权限状态，1 - 已生效，2 - 未生效，3 - 已过期
@@ -580,8 +580,8 @@ extension Dasb {
 
         /// 操作时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$time`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var time: Date
 
         /// 来源IP
@@ -613,8 +613,8 @@ extension Dasb {
 
         /// 操作时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$time`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var time: Date
 
         /// 来源IP
@@ -662,8 +662,8 @@ extension Dasb {
 
         /// 过期时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$expireTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var expireTime: Date
 
         /// 资源状态，0 - 未初始化，1 - 正常，2 - 隔离，3 - 销毁，4 - 初始化失败，5 - 初始化中
@@ -677,8 +677,8 @@ extension Dasb {
 
         /// 资源创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var createTime: Date
 
         /// 商品码, p_cds_dasb
@@ -1135,15 +1135,15 @@ extension Dasb {
         /// 用户生效时间，如:"2021-09-22T00:00:00+00:00"
         /// 生效、失效时间不填则用户长期有效
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$validateFrom`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var validateFrom: Date?
 
         /// 用户失效时间，如:"2021-09-22T00:00:00+00:00"
         /// 生效、失效时间不填则用户长期有效
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$validateTo`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var validateTo: Date?
 
         /// 所属用户组列表

@@ -28,8 +28,8 @@ extension Cdn {
         /// 当报表类型为weekly，起始时间须为周一，结束时间须为同一周的周日
         /// 当报表类型为monthly，起始时间须为自然月第一天，即1号，结束时间须为该自然月最后一天
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$startTime`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var startTime: Date
 
         /// 查询结束时间：yyyy-MM-dd
@@ -37,8 +37,8 @@ extension Cdn {
         /// 当报表类型为weekly，起始时间须为周一，结束时间须为同一周的周日
         /// 当报表类型为monthly，起始时间须为自然月第一天，即1号，结束时间须为该自然月最后一天
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$endTime`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var endTime: Date
 
         /// 报表类型

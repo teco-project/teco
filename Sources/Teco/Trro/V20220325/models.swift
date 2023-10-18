@@ -76,14 +76,14 @@ extension Trro {
 
         /// 设备信息最近修改时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$modifyTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var modifyTime: Date
 
         /// 设备状态最近更新时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$lastReportTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var lastReportTime: Date
 
         /// 设备所属项目Id
@@ -146,8 +146,8 @@ extension Trro {
 
         /// 最近添加时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$modifyTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var modifyTime: Date
 
         enum CodingKeys: String, CodingKey {
@@ -173,8 +173,8 @@ extension Trro {
 
         /// 项目信息修改时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$modifyTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var modifyTime: Date
 
         enum CodingKeys: String, CodingKey {

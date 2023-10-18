@@ -42,8 +42,8 @@ extension Vpc {
 
         /// 链接到期时间。按照`ISO8601`标准表示，并且使用`UTC`时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$expiredAt`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var expiredAt: Date
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

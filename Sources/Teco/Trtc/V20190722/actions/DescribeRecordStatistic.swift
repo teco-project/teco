@@ -25,15 +25,15 @@ extension Trtc {
     public struct DescribeRecordStatisticRequest: TCRequest {
         /// 查询开始日期，格式为YYYY-MM-DD。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$startTime`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var startTime: Date
 
         /// 查询结束日期，格式为YYYY-MM-DD。
         /// 单次查询统计区间最多不能超过31天。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$endTime`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var endTime: Date
 
         /// 应用ID，可不传。传应用ID时返回的是该应用的用量，不传时返回多个应用的合计值。

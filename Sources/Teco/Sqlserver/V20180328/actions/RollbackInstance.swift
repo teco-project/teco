@@ -31,8 +31,8 @@ extension Sqlserver {
 
         /// 回档目标时间点
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$time`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var time: Date
 
         /// 需要回档的数据库

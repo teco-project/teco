@@ -55,14 +55,14 @@ extension Apigateway {
 
         /// 服务创建时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createdTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var createdTime: Date
 
         /// 服务修改时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$modifiedTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var modifiedTime: Date
 
         /// 网络类型列表，INNER为内网访问，OUTER为外网访问。

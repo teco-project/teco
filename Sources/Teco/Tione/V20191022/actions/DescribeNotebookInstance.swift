@@ -72,15 +72,15 @@ extension Tione {
         /// Notebook实例创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$creationTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var creationTime: Date?
 
         /// Notebook实例最近修改时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$lastModifiedTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var lastModifiedTime: Date?
 
         /// Notebook实例日志链接
@@ -126,8 +126,8 @@ extension Tione {
         /// 实例运行截止时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$deadline`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var deadline: Date?
 
         /// 自动停止配置

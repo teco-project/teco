@@ -2687,8 +2687,8 @@ extension Clb {
         /// 后端服务被绑定的时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$registeredTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var registeredTime: Date?
 
         /// 弹性网卡唯一ID
@@ -2731,14 +2731,14 @@ extension Clb {
 
         /// 目标组的创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createdTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createdTime: Date
 
         /// 目标组的修改时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$updatedTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var updatedTime: Date
 
         /// 关联到的规则数组

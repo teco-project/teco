@@ -37,14 +37,14 @@ extension Pts {
 
         /// 日志开始时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$from`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var from: Date?
 
         /// 日志结束时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$to`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var to: Date?
 
         /// 日志级别debug,info,error

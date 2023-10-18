@@ -117,8 +117,8 @@ extension Privatedns {
     public struct AuditLogInfo: TCOutputModel {
         /// 时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$date`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var date: Date
 
         /// 操作人uin
@@ -138,8 +138,8 @@ extension Privatedns {
     public struct DatePoint: TCOutputModel {
         /// 时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$date`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var date: Date
 
         /// 值
@@ -248,14 +248,14 @@ extension Privatedns {
 
         /// 创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createdOn`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createdOn: Date
 
         /// 修改时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$updatedOn`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var updatedOn: Date
 
         /// 记录数
@@ -359,14 +359,14 @@ extension Privatedns {
 
         /// 记录创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createdOn`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createdOn: Date
 
         /// 记录更新时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$updatedOn`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var updatedOn: Date
 
         /// 附加信息

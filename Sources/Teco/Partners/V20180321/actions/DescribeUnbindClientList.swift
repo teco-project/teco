@@ -37,14 +37,14 @@ extension Partners {
 
         /// 解绑申请时间范围起始点
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$applyTimeStart`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var applyTimeStart: Date?
 
         /// 解绑申请时间范围终止点
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$applyTimeEnd`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var applyTimeEnd: Date?
 
         /// 对申请时间的升序降序，值：asc，desc

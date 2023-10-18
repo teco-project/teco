@@ -170,8 +170,8 @@ extension Tcss {
         /// 镜像创建的时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$imageCreateTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var imageCreateTime: Date?
 
         /// 敏感信息数

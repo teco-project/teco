@@ -39,8 +39,8 @@ extension Eb {
     public struct GetEventBusResponse: TCResponse {
         /// 更新时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$modTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var modTime: Date
 
         /// 事件集描述
@@ -51,8 +51,8 @@ extension Eb {
 
         /// 创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$addTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var addTime: Date
 
         /// 日志集ID

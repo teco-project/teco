@@ -38,15 +38,15 @@ extension Cr {
         /// 黑名单生效截止日期，格式为YYYY-MM-DD，不填默认为永久。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$blackValidDate`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var blackValidDate: Date?
 
         /// 黑名单加入日期
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$blackAddDate`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var blackAddDate: Date?
 
         /// 0-生效 1-失效
@@ -127,8 +127,8 @@ extension Cr {
     public struct CallInfo: TCOutputModel {
         /// 业务日期
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$bizDate`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var bizDate: Date
 
         /// 状态 WAIT：待执行；DOING：执行中；ERROR：执行错误；DONE：已完成；
@@ -273,8 +273,8 @@ extension Cr {
 
         /// 任务日期
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$bizDate`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var bizDate: Date
 
         /// 被叫号码
@@ -282,8 +282,8 @@ extension Cr {
 
         /// 开始通话时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$callStartTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var callStartTime: Date
 
         /// 通话时长
@@ -327,8 +327,8 @@ extension Cr {
 
         /// 黑名单生效截止日期，格式为YYYY-MM-DD，不填默认为永久。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$blackValidDate`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var blackValidDate: Date?
 
         public init(blackType: String, operationType: String, blackValue: String, blackDescription: String, blackValidDate: Date? = nil) {
@@ -355,14 +355,14 @@ extension Cr {
 
         /// 外呼日期。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$bizDate`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var bizDate: Date
 
         /// 开始呼叫时间。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$callStartTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var callStartTime: Date
 
         /// 主叫号码。

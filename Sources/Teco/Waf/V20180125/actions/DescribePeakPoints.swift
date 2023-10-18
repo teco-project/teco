@@ -25,14 +25,14 @@ extension Waf {
     public struct DescribePeakPointsRequest: TCRequest {
         /// 查询起始时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$fromTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var fromTime: Date
 
         /// 查询终止时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$toTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var toTime: Date
 
         /// 查询的域名，如果查询所有域名数据，该参数不填写

@@ -93,14 +93,14 @@ extension Dcdb {
 
         /// 实例创建时间，格式为 2006-01-02 15:04:05
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date
 
         /// 实例到期时间，格式为 2006-01-02 15:04:05
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$periodEndTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var periodEndTime: Date
 
         /// 数据库版本信息

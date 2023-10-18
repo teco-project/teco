@@ -96,14 +96,14 @@ extension Tione {
     public struct CodeRepoSummary: TCOutputModel {
         /// 创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$creationTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var creationTime: Date
 
         /// 更新时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$lastModifiedTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var lastModifiedTime: Date
 
         /// 存储库名称
@@ -339,8 +339,8 @@ extension Tione {
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$creationTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var creationTime: Date?
 
         /// 最近修改时间
@@ -371,15 +371,15 @@ extension Tione {
         /// 启动时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$startupTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var startupTime: Date?
 
         /// 运行截止时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$deadline`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var deadline: Date?
 
         /// 自动停止配置
@@ -426,14 +426,14 @@ extension Tione {
 
         /// 创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$creationTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var creationTime: Date
 
         /// 修改时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$lastModifiedTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var lastModifiedTime: Date
 
         enum CodingKeys: String, CodingKey {
@@ -502,15 +502,15 @@ extension Tione {
         /// 状态开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$startTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var startTime: Date?
 
         /// 状态结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$endTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var endTime: Date?
 
         /// 状态名
@@ -555,15 +555,15 @@ extension Tione {
         /// 任务创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$creationTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var creationTime: Date?
 
         /// 最近修改时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$lastModifiedTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var lastModifiedTime: Date?
 
         /// 训练任务名
@@ -582,8 +582,8 @@ extension Tione {
         /// 完成时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$trainingEndTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var trainingEndTime: Date?
 
         /// 算了实例Id

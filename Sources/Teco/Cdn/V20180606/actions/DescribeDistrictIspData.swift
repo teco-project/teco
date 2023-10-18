@@ -29,15 +29,15 @@ extension Cdn {
         /// 查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间
         /// 支持近 60 天内的数据查询，每次查询时间区间为 3 小时
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$startTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var startTime: Date
 
         /// 查询结束时间，如：2018-09-04 10:40:00，返回结果小于等于指定时间
         /// 结束时间与起始时间区间最大为 3 小时
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$endTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var endTime: Date
 
         /// 指定查询指标，支持:

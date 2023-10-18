@@ -76,8 +76,8 @@ extension Gme {
 
         /// 统计时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$date`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var date: Date
 
         /// 录音转文本用量统计数据
@@ -702,8 +702,8 @@ extension Gme {
     public struct StatisticsItem: TCOutputModel {
         /// 日期，格式为年-月-日，如2018-07-13
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$statDate`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var statDate: Date
 
         /// 统计值

@@ -64,8 +64,8 @@ extension Youmall {
 
         /// 顾客首次进店时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$firstVisitTime`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var firstVisitTime: Date
 
         /// 顾客历史到访次数

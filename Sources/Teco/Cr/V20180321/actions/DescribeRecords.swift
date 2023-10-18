@@ -40,14 +40,14 @@ extension Cr {
 
         /// 查询起始日期，格式为YYYY-MM-DD
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$startBizDate`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var startBizDate: Date?
 
         /// 查询结束日期，格式为YYYY-MM-DD
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$endBizDate`) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var endBizDate: Date?
 
         /// 分页参数，索引，默认为0

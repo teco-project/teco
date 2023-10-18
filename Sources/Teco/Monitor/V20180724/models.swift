@@ -2218,8 +2218,8 @@ extension Monitor {
 
         /// 创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createAt`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var createAt: Date
 
         /// 实例 ID
@@ -2271,14 +2271,14 @@ extension Monitor {
 
         /// 创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createdAt`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var createdAt: Date
 
         /// 更新时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$updatedAt`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var updatedAt: Date
 
         /// 告警渠道的所有生效组织
@@ -2320,8 +2320,8 @@ extension Monitor {
 
         /// 创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createdAt`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createdAt: Date
 
         /// 运行状态（1:正在创建；2:运行中；3:异常；4:重启中；5:停机中； 6:已停机； 7: 已删除）
@@ -2421,14 +2421,14 @@ extension Monitor {
 
         /// 创建时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$createdAt`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var createdAt: Date
 
         /// 更新时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$updatedAt`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var updatedAt: Date
 
         /// 默认生效组织，已废弃，请使用 OrganizationIds

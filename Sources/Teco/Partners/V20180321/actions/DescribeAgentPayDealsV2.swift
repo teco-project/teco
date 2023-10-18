@@ -31,14 +31,14 @@ extension Partners {
 
         /// 下单时间范围起始点(不传时会默认查15天内订单，传值时需要传15天内的起始时间)
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$creatTimeRangeStart`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var creatTimeRangeStart: Date?
 
         /// 下单时间范围终止点
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$creatTimeRangeEnd`) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var creatTimeRangeEnd: Date?
 
         /// 0:下单时间降序；其他：下单时间升序

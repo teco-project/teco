@@ -28,8 +28,8 @@ extension Dasb {
 
         /// 开始时间，不得早于当前时间的180天前
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$startTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var startTime: Date
 
         /// 分页偏移位置，默认值为0
@@ -44,8 +44,8 @@ extension Dasb {
 
         /// 结束时间
         ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        /// While the wrapped date value is immutable just like other fields, you can customize the underlying
+        /// string value (through `$endTime`) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var endTime: Date?
 
         public init(cmd: String, startTime: Date, offset: UInt64? = nil, limit: UInt64? = nil, encoding: UInt64? = nil, endTime: Date? = nil) {
